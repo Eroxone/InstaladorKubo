@@ -82,30 +82,21 @@ Public Class InstaladorKubo
         lbRuta.Text = RutaDescargas
         Directory.CreateDirectory("C:\TEMP")
         File.WriteAllText("C:\TEMP\RutaAnterior.txt", RutaDescargas)
-
         'Compruebo si el Directorio contiene espacios y pido que lo cambies
-        ' ----------------
-        'Dim patron As String = "[A-Z](:\\)$"
-        'Dim cadena As String = "DD:\sdsds"
-        'Dim es_error As Boolean = System.Text.RegularExpressions.Regex.IsMatch(fbdDescarga.SelectedPath, "[A-Z](:\\)$")
 
-        'Dim b = 0
-
-        ' ----------------
         'Busco si la ruta es raiz
         If fbdDescarga.SelectedPath.Contains(" ") OrElse fbdDescarga.SelectedPath.Contains("F:") OrElse
             System.Text.RegularExpressions.Regex.IsMatch(fbdDescarga.SelectedPath, "[A-Z](:\\)$") Then
             MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades raíz", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             'Dejo la ruta defecto
-            Dim RutaDescargas = "D:\NOTIN\" 'PATH_TEMP
+            Dim RutaDescargas = "D:\NOTIN\"  'TODO Cambiar a C:
             lbRuta.Text = RutaDescargas
+            YaDescargados() 'TODO Si elijo una ruta mala al volver a la buena no recarga los existentes
             File.WriteAllText("C:\TEMP\RutaAnterior.txt", RutaDescargas)
         End If
-
         'If btDirDescargas.DialogResult = Windows.Forms.DialogResult.Cancel Then
         '    RutaDescargas = GetPathTemp()
         'End If
-        YaDescargados()
     End Sub
 
 
