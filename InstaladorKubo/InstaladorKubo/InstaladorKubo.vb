@@ -514,12 +514,9 @@ Public Class InstaladorKubo
             Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ConfigAccess.reg", AppWinStyle.Hide, True)
             Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\VentanasSigno.reg", AppWinStyle.Hide, True)
             Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ExclusionDefender.reg", AppWinStyle.Hide, True)
-            File.Copy(RutaDescargas & "Registro\MSOUTL.OLB", "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSOUTL.OLB", True)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
 
-        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PuestoNotinC.exe " & "C:\", AppWinStyle.NormalFocus, True)
+
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PuestoNotinC.exe " & "C:\", AppWinStyle.NormalFocus, True)
 
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2003.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
 
@@ -531,7 +528,12 @@ Public Class InstaladorKubo
 
         Shell("cmd.exe /c " & RutaDescargas & """" & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.Hide, True)
         Shell("cmd.exe /c " & RutaDescargas & """" & "Office2003\SP3 y Parche Access\MSACCESS.msp" & """", AppWinStyle.Hide, True)
-        'Libreria compartida Outlook
+
+            'Copiar Referencia Outlook
+            File.Copy(RutaDescargas & "Registro\MSOUTL.OLB", "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSOUTL.OLB", True)
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
         InstalarRequisitosNet()
     End Sub
@@ -627,7 +629,6 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -u -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.NormalFocus, True)
 
         MessageBox.Show("Instalación Notin .Net + Kubo finalizada", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Exit Sub
     End Sub
     'TODO Si digo a todo NO debe SALIR
 
