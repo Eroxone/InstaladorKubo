@@ -493,15 +493,16 @@ Public Class InstaladorKubo
 
         If EjecutableAccess = False Then
             InstalarNotinNet()
-        End If
 
-        If EjecutableAccess = True Then
-            NotinSiNo = MessageBox.Show("Posible instalación existente de NOTIN .NET (Access 2003). ¿Ejecutar instalación Office 2003?", "Instalación Office 2003", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        End If
-        If NotinSiNo = 6 Then
-            InstalarNotinNet()
         Else
-            InstalarRequisitosNet()
+            NotinSiNo = MessageBox.Show("Posible instalación existente de NOTIN .NET (Access 2003). ¿Ejecutar instalación Office 2003?", "Instalación Office 2003", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If NotinSiNo = DialogResult.Yes Then
+                InstalarNotinNet()
+            Else
+                InstalarRequisitosNet()
+            End If
+
         End If
 
     End Sub
@@ -566,32 +567,29 @@ Public Class InstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
             ConfigurarWord2016()
+        Else
+            WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If WordSiNo = 6 Then
+                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
+                ConfigurarWord2016()
+            Else
+                ConfigurarWord2016()
+            End If
         End If
 
-        If EjecutableWord = True Then
-            WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        End If
-        If WordSiNo = 6 Then
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-            Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
-            ConfigurarWord2016()
-        Else
-            ConfigurarWord2016()
-        End If
     End Sub
 
     Private Sub ConfigurarWord2016()
         If UnidadF() = True Then
             Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If ConfigurarWord = 6 Then
+            If ConfigurarWord = DialogResult.Yes Then
                 Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.Hide, True)
-            Else
-                KMSPico()
             End If
-            If UnidadF() = False Then
-                MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura Word", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            End If
+        Else
+            MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura Word", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
+        KMSPico()
     End Sub
 
 
