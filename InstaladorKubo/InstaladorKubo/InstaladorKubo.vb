@@ -49,7 +49,7 @@ Public Class InstaladorKubo
         If System.IO.File.Exists("C:\TEMP\RutaAnterior.txt") Then
             Return (System.IO.File.ReadAllText("C:\TEMP\RutaAnterior.txt"))
         End If
-        Return "D:\NOTIN\"
+        Return "C:\NOTIN\"
     End Function
 
     'COMPROBAR Unidad F
@@ -89,7 +89,7 @@ Public Class InstaladorKubo
             System.Text.RegularExpressions.Regex.IsMatch(fbdDescarga.SelectedPath, "[A-Z](:\\)$") Then
             MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades raíz", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             'Dejo la ruta defecto
-            Dim RutaDescargas = "D:\NOTIN\"  'TODO Cambiar a C:
+            Dim RutaDescargas = "C:\NOTIN\"  'TODO Cambiar a C:
             lbRuta.Text = RutaDescargas
             YaDescargados() 'TODO Si elijo una ruta mala al volver a la buena no recarga los existentes
             File.WriteAllText("C:\TEMP\RutaAnterior.txt", RutaDescargas)
@@ -579,11 +579,16 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub ConfigurarWord2016()
-        Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If ConfigurarWord = 6 Then
-            Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.Hide, True)
-        Else
-            KMSPico()
+        If UnidadF() = True Then
+            Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If ConfigurarWord = 6 Then
+                Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.Hide, True)
+            Else
+                KMSPico()
+            End If
+            If UnidadF() = False Then
+                MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura Word", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
         End If
     End Sub
 
@@ -622,9 +627,9 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -u -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.NormalFocus, True)
 
         MessageBox.Show("Instalación Notin .Net + Kubo finalizada", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
+        Exit Sub
     End Sub
-
+    'TODO Si digo a todo NO debe SALIR
 
 
 

@@ -25,7 +25,6 @@ Partial Class InstaladorKubo
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InstaladorKubo))
         Me.lbUnidadF = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.lbEstado = New System.Windows.Forms.Label()
         Me.fbdDescarga = New System.Windows.Forms.FolderBrowserDialog()
         Me.lb64bits = New System.Windows.Forms.Label()
         Me.lbUsuario = New System.Windows.Forms.Label()
@@ -65,7 +64,7 @@ Partial Class InstaladorKubo
         Me.lbUnidadF.AutoSize = True
         Me.lbUnidadF.Font = New System.Drawing.Font("HP Simplified", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbUnidadF.ForeColor = System.Drawing.Color.DarkGray
-        Me.lbUnidadF.Location = New System.Drawing.Point(106, 32)
+        Me.lbUnidadF.Location = New System.Drawing.Point(6, 27)
         Me.lbUnidadF.Name = "lbUnidadF"
         Me.lbUnidadF.Size = New System.Drawing.Size(100, 28)
         Me.lbUnidadF.TabIndex = 0
@@ -74,27 +73,16 @@ Partial Class InstaladorKubo
         'GroupBox4
         '
         Me.GroupBox4.BackColor = System.Drawing.Color.FloralWhite
-        Me.GroupBox4.Controls.Add(Me.lbEstado)
         Me.GroupBox4.Controls.Add(Me.lbUnidadF)
         Me.GroupBox4.Font = New System.Drawing.Font("Bookman Old Style", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(520, 22)
+        Me.GroupBox4.Location = New System.Drawing.Point(500, 22)
         Me.GroupBox4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.GroupBox4.Size = New System.Drawing.Size(302, 70)
+        Me.GroupBox4.Size = New System.Drawing.Size(273, 70)
         Me.GroupBox4.TabIndex = 35
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Unidad F"
-        '
-        'lbEstado
-        '
-        Me.lbEstado.AutoSize = True
-        Me.lbEstado.Font = New System.Drawing.Font("HP Simplified", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbEstado.Location = New System.Drawing.Point(6, 32)
-        Me.lbEstado.Name = "lbEstado"
-        Me.lbEstado.Size = New System.Drawing.Size(94, 28)
-        Me.lbEstado.TabIndex = 1
-        Me.lbEstado.Text = "ESTADO:"
         '
         'lb64bits
         '
@@ -144,10 +132,11 @@ Partial Class InstaladorKubo
         '
         'btSalir
         '
-        Me.btSalir.Location = New System.Drawing.Point(793, 538)
+        Me.btSalir.Font = New System.Drawing.Font("MS Reference Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btSalir.Location = New System.Drawing.Point(790, 536)
         Me.btSalir.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btSalir.Name = "btSalir"
-        Me.btSalir.Size = New System.Drawing.Size(88, 37)
+        Me.btSalir.Size = New System.Drawing.Size(91, 39)
         Me.btSalir.TabIndex = 33
         Me.btSalir.Text = "Salir"
         Me.btSalir.UseVisualStyleBackColor = True
@@ -158,7 +147,7 @@ Partial Class InstaladorKubo
         Me.btTodo.Location = New System.Drawing.Point(272, 316)
         Me.btTodo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btTodo.Name = "btTodo"
-        Me.btTodo.Size = New System.Drawing.Size(123, 42)
+        Me.btTodo.Size = New System.Drawing.Size(123, 29)
         Me.btTodo.TabIndex = 19
         Me.btTodo.Text = "Marcar todos"
         Me.btTodo.UseVisualStyleBackColor = True
@@ -386,7 +375,7 @@ Partial Class InstaladorKubo
         Me.lbRuta.AutoSize = True
         Me.lbRuta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lbRuta.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRuta.Location = New System.Drawing.Point(19, 573)
+        Me.lbRuta.Location = New System.Drawing.Point(19, 564)
         Me.lbRuta.Name = "lbRuta"
         Me.lbRuta.Size = New System.Drawing.Size(74, 19)
         Me.lbRuta.TabIndex = 31
@@ -455,7 +444,6 @@ Partial Class InstaladorKubo
 
     Friend WithEvents lbUnidadF As Label
     Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents lbEstado As Label
     Friend WithEvents fbdDescarga As FolderBrowserDialog
     Friend WithEvents lb64bits As Label
     Friend WithEvents lbUsuario As Label
