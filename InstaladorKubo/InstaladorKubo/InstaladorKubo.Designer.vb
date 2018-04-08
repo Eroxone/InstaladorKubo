@@ -22,6 +22,7 @@ Partial Class InstaladorKubo
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InstaladorKubo))
         Me.lbUnidadF = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.lbEstado = New System.Windows.Forms.Label()
@@ -423,7 +424,7 @@ Partial Class InstaladorKubo
         Me.btDescargar.Text = "Comenzar Descargas"
         Me.btDescargar.UseVisualStyleBackColor = True
         '
-        'Form1
+        'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -437,8 +438,9 @@ Partial Class InstaladorKubo
         Me.Controls.Add(Me.btDirDescargas)
         Me.Controls.Add(Me.pbDescargas)
         Me.Controls.Add(Me.btDescargar)
-        Me.Name = "Form1"
-        Me.Text = "Form1"
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Name = "InstaladorKubo"
+        Me.Text = "Instalador Kubo"
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
