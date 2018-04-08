@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "InstaladorKubo", "InstaladorKubo\InstaladorKubo.vbproj", "{7A785120-BDBE-4C4F-82F0-D6597A21BBFA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A785120-BDBE-4C4F-82F0-D6597A21BBFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A785120-BDBE-4C4F-82F0-D6597A21BBFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A785120-BDBE-4C4F-82F0-D6597A21BBFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A785120-BDBE-4C4F-82F0-D6597A21BBFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75836E5C-9602-4AD3-8BA3-F4600FD13D62}
+	EndGlobalSection
+EndGlobal
