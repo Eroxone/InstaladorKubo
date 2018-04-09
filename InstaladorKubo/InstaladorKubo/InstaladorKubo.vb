@@ -571,7 +571,6 @@ Public Class InstaladorKubo
         If EjecutableWord = False Then
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
-            ConfigurarWord2016()
         Else
             WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If WordSiNo = 6 Then
@@ -580,6 +579,30 @@ Public Class InstaladorKubo
             End If
         End If
 
+        EjecutableNotinNet()
+    End Sub
+
+    Private Sub EjecutableNotinNet()
+        If UnidadF() = True Then
+            Try
+                Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
+                If ExisteNotinNet = False Then
+                    File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
+                    Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
+                End If
+            Catch ex As Exception
+            End Try
+            'Ademas me traigo las Plantillas y el MDE
+            Try
+                File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
+            Catch ex As Exception
+            End Try
+            Try
+                File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
+            Catch ex As Exception
+            End Try
+            'Ver si muestro algun mensaje o simplemente sigo.
+        End If
         ConfigurarWord2016()
     End Sub
 
