@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Text
 
 Public Class InstaladorKubo
     'TODO Establecer contraseña de ejecución.
@@ -13,21 +14,47 @@ Public Class InstaladorKubo
     Private Const REGISTRO_DOWNLOAD As String = "registro.txt"
     Private Const PuestoNotin As String = "ftp://ftp.pandora.notin.net/Juanjo/PuestoNotin/"
     'Private UnidadF As Boolean = Directory.Exists("F:")
+    'Private textoLog As StringBuilder = New StringBuilder()
 
+    Private nombre_fichero_log As String = "LOG_" & DateTime.Now.Day & "_" & DateTime.Now.Month & "_" & DateTime.Now.Year & ".txt"
+    Private ruta_log As String = "C:\TEMP\InstaladorKubo\" & nombre_fichero_log
     Private RutaDescargas As String = GetPathTemp() 'PATH_TEMP
+
 
     Private Sub frmInstaladorNotin_Load(sender As Object, e As EventArgs) Handles Me.Load
         SistemaOperativo()
         lbRuta.Text = GetPathTemp()
         YaDescargados()
+        Tooltips()
+
+        'TODO Terminar proceso de Logger
+        Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
+        Dim cabecera_log As String = "---------------------------" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & DateTime.Now
+
+        Logger(cabecera_log)
+
+
+
+
+        '//Log
+
+
     End Sub
+
+    ' Funcion para logear el sistema
+#Region "LOG"
+    Private Sub Logger(ByVal textolog As String)
+
+        File.AppendAllText(ruta_log, textolog & vbCrLf)
+
+    End Sub
+#End Region
 
     Private Sub SistemaOperativo()
         Dim SistemaO = (My.Computer.Info.OSFullName)
         lbSistemaO.Text = SistemaO
         Dim UsuarioAtual = (My.User.Name)
         lbUsuario.Text = UsuarioAtual
-
         If UnidadF() = True Then
             lbUnidadF.Text = "CONECTADA"
             lbUnidadF.ForeColor = Color.Green
@@ -50,15 +77,15 @@ Public Class InstaladorKubo
     'RUTA ANTERIOR. SI EXISTÍA
     Private Function GetPathTemp() As String
 
-        If System.IO.File.Exists("C:\TEMP\RutaAnterior.txt") Then
-            Return (System.IO.File.ReadAllText("C:\TEMP\RutaAnterior.txt"))
+        If System.IO.File.Exists("C:\TEMP\InstaladorKubo\RutaAnterior.txt") Then
+            Return (System.IO.File.ReadAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt"))
         End If
         Return "C:\NOTIN\"
     End Function
 
     'COMPROBAR Unidad F
     Private Function UnidadF() As Boolean
-        If Directory.Exists("F:") Then
+        If File.Exists("F:\Windows\Nnotin.ini") Then
             Return True
         End If
         Return False
@@ -84,8 +111,7 @@ Public Class InstaladorKubo
 
         RutaDescargas = fbdDescarga.SelectedPath & "\"
         lbRuta.Text = RutaDescargas
-        Directory.CreateDirectory("C:\TEMP")
-        File.WriteAllText("C:\TEMP\RutaAnterior.txt", RutaDescargas)
+        File.WriteAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt", RutaDescargas)
         'Compruebo si el Directorio contiene espacios y pido que lo cambies
 
         'Busco si la ruta es raiz
@@ -96,7 +122,7 @@ Public Class InstaladorKubo
             Dim RutaDescargas = "C:\NOTIN\"
             lbRuta.Text = RutaDescargas
             YaDescargados() 'TODO Si elijo una ruta mala al volver a la buena no recarga los existentes
-            File.WriteAllText("C:\TEMP\RutaAnterior.txt", RutaDescargas)
+            File.WriteAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt", RutaDescargas)
         End If
         'If btDirDescargas.DialogResult = Windows.Forms.DialogResult.Cancel Then
         '    RutaDescargas = GetPathTemp()
@@ -648,7 +674,21 @@ Public Class InstaladorKubo
         MessageBox.Show("Instalación Notin .Net + Kubo finalizada", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
+    Private Sub Tooltips()
+        'Las propiedades tambien se pueden definir desde el explorador de objetos
+        tlpUnidadF.ToolTipIcon = ToolTipIcon.Info
+        tlpUnidadF.ToolTipTitle = "Conexión Unidad de Red"
+        tlpUnidadF.SetToolTip(lbUnidadF, "Chequea fichero F:\Windows\NNotin.ini")
+        tlpUnidadF.IsBalloon = True
 
+        tlpDescargas.ToolTipIcon = ToolTipIcon.Info
+        tlpDescargas.ToolTipTitle = "Leyenda Descargas"
+        tlpDescargas.SetToolTip(GroupBox1, "Gris: Descarga no realizada" + vbCrLf & "Verde: Descarga Completada" + vbCrLf & "Rojo: Descarga Incompleta")
+        tlpDescargas.IsBalloon = True
+
+
+    End Sub
     'TODO loquear instalacion y capturar los errores en el log como que no encuentra el mde y cosas asi
+
 
 End Class
