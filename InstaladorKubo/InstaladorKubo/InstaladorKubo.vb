@@ -653,6 +653,6 @@ Public Class InstaladorKubo
     'TODO Si digo a todo NO debe SALIR
 
 
-
+    'TODO loquear instalacion y capturar los errores en el log como que no encuentra el mde y cosas asi
 
 End Class
