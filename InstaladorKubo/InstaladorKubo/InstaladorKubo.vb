@@ -1,7 +1,7 @@
 ﻿Imports System.IO
 
 Public Class InstaladorKubo
-
+    'TODO Establecer contraseña de ejecución.
 
     ' CONTROLES DESCARGAS
 
@@ -45,8 +45,6 @@ Public Class InstaladorKubo
         End If
 
     End Sub
-    'TODO mostrar texto si unidad F o no
-
     'TODO Buscar nueva version comparando un txt como string por ejemplo
 
     'RUTA ANTERIOR. SI EXISTÍA
@@ -95,7 +93,7 @@ Public Class InstaladorKubo
             System.Text.RegularExpressions.Regex.IsMatch(fbdDescarga.SelectedPath, "[A-Z](:\\)$") Then
             MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades raíz", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             'Dejo la ruta defecto
-            Dim RutaDescargas = "C:\NOTIN\"  'TODO Cambiar a C:
+            Dim RutaDescargas = "C:\NOTIN\"
             lbRuta.Text = RutaDescargas
             YaDescargados() 'TODO Si elijo una ruta mala al volver a la buena no recarga los existentes
             File.WriteAllText("C:\TEMP\RutaAnterior.txt", RutaDescargas)
@@ -379,7 +377,6 @@ Public Class InstaladorKubo
             YaDescargados()
         End If
 
-        'TODO Añadir o bien la barra o un mensaje de Trabajando...
         'pbDescargas.Visible = False
 
         'Borrar ficheros txt escritos
@@ -513,17 +510,15 @@ Public Class InstaladorKubo
 
     End Sub
 
-    'TODO mas adelante comprobar para cada funcion si existe officce2003.exe 2016... etc
     Private Sub InstalarNotinNet()
         'Claves Registro
-        Try
-            Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
-            Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ConfigAccess.reg", AppWinStyle.Hide, True)
-            Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\VentanasSigno.reg", AppWinStyle.Hide, True)
-            Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ExclusionDefender.reg", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ConfigAccess.reg", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\VentanasSigno.reg", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ExclusionDefender.reg", AppWinStyle.Hide, True)
 
 
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PuestoNotinC.exe " & "C:\", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PuestoNotinC.exe " & "C:\", AppWinStyle.NormalFocus, True)
 
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2003.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
 
@@ -533,10 +528,13 @@ Public Class InstaladorKubo
         Shell("cmd.exe /C " & RutaDescargas & "Office2003\SETUP.EXE", AppWinStyle.Hide, True)
         Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
-            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.Hide, True)
-            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
 
-            'Copiar Referencia Outlook
+        Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
+
+        'Copiar Referencia Outlook
+        Try
             File.Copy(RutaDescargas & "Registro\MSOUTL.OLB", "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSOUTL.OLB", True)
         Catch ex As Exception
             MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -551,7 +549,6 @@ Public Class InstaladorKubo
 
         RequisitosSiNo = MessageBox.Show("¿Instalar Requisitos .NET?", "Pre-Requisitos", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If RequisitosSiNo = 6 Then
-            'TODO Arreglar esto de Administrador
             Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\KryptonSuite300.msi", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\Office2003PrimaryInterop.msi", AppWinStyle.Hide, True)
@@ -650,7 +647,6 @@ Public Class InstaladorKubo
 
         MessageBox.Show("Instalación Notin .Net + Kubo finalizada", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
-    'TODO Si digo a todo NO debe SALIR
 
 
     'TODO loquear instalacion y capturar los errores en el log como que no encuentra el mde y cosas asi
