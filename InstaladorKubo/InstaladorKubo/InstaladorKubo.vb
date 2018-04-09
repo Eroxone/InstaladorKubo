@@ -38,6 +38,12 @@ Public Class InstaladorKubo
             '  lbUnidadF.BackColor = Color.Red
         End If
 
+        If Directory.Exists("C:\WINDOWS\SYSWOW64") Then
+            lb64bits.Text = ("Sistema Operativo de 64bits")
+        Else
+            lb64bits.Text = ("Sistema Operativo de 32bits")
+        End If
+
     End Sub
     'TODO mostrar texto si unidad F o no
 
