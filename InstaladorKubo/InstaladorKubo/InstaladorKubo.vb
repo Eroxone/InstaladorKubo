@@ -527,8 +527,8 @@ Public Class InstaladorKubo
         Shell("cmd.exe /C " & RutaDescargas & "Office2003\SETUP.EXE", AppWinStyle.Hide, True)
         Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
-        Shell("cmd.exe /c " & RutaDescargas & """" & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.Hide, True)
-        Shell("cmd.exe /c " & RutaDescargas & """" & "Office2003\SP3 y Parche Access\MSACCESS.msp" & """", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
 
             'Copiar Referencia Outlook
             File.Copy(RutaDescargas & "Registro\MSOUTL.OLB", "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSOUTL.OLB", True)
@@ -546,15 +546,14 @@ Public Class InstaladorKubo
         RequisitosSiNo = MessageBox.Show("¿Instalar Requisitos .NET?", "Pre-Requisitos", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If RequisitosSiNo = 6 Then
             'TODO Arreglar esto de Administrador
-            Shell("cmd.exe /c " & "runas /user:administrador@localhost " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\KryptonSuite300.msi", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\Office2003PrimaryInterop.msi", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2005.exe", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2015.exe", AppWinStyle.Hide, True)
-            InstalarWord2016()
-        Else
-            InstalarWord2016()
         End If
+
+        InstalarWord2016()
     End Sub
 
     Private Sub InstalarWord2016()
@@ -572,12 +571,10 @@ Public Class InstaladorKubo
             If WordSiNo = 6 Then
                 Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
                 Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
-                ConfigurarWord2016()
-            Else
-                ConfigurarWord2016()
             End If
         End If
 
+        ConfigurarWord2016()
     End Sub
 
     Private Sub ConfigurarWord2016()
@@ -602,10 +599,8 @@ Public Class InstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.Hide, True)
             MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de ejecutarlo", "Ejecucion de KMSPico", MessageBoxButtons.OK)
-            SoftwareAncert()
-        Else
-            SoftwareAncert()
         End If
+        SoftwareAncert()
     End Sub
 
 
@@ -616,10 +611,8 @@ Public Class InstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "SFeren-2.8.exe", AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.NormalFocus, True)
-            AccesosDirectosEscritorio()
-        Else
-            AccesosDirectosEscritorio()
         End If
+        AccesosDirectosEscritorio()
     End Sub
 
     Private Sub AccesosDirectosEscritorio()
@@ -629,7 +622,6 @@ Public Class InstaladorKubo
         MessageBox.Show("Instalación Notin .Net + Kubo finalizada", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
     'TODO Si digo a todo NO debe SALIR
-
 
 
 
