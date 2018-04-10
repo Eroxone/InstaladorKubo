@@ -617,7 +617,7 @@ Public Class InstaladorKubo
         Dim WordSiNo As Integer = Nothing
 
         Dim EjecutableWord As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE")
-
+        'TODO Sandra me revise estos elseif
         If EjecutableWord = False Then
             If File.Exists(RutaDescargas & "Office2016.exe") Then
                 Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
@@ -635,7 +635,6 @@ Public Class InstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
         End If
-
 
         EjecutableNotinNet()
     End Sub
@@ -724,7 +723,7 @@ Public Class InstaladorKubo
 
         tlpOffice2016odt.ToolTipIcon = ToolTipIcon.Info
         tlpOffice2016odt.ToolTipTitle = "Office 2016 Desatendido"
-        tlpOffice2016odt.SetToolTip(cbOffice2016odt, "Instalará el paquete Office 2016 sin la intervención del usuario.")
+        tlpOffice2016odt.SetToolTip(cbOffice2016odt, "Descarga el paquete Office 2016 con instalación automatizada.")
         tlpOffice2016odt.IsBalloon = True
 
         tlpTerceros.ToolTipIcon = ToolTipIcon.Info
