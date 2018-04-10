@@ -58,6 +58,7 @@ Partial Class InstaladorKubo
         Me.tlpUnidadF = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpOffice2016odt = New System.Windows.Forms.ToolTip(Me.components)
+        Me.tlpTerceros = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -505,4 +506,5 @@ Partial Class InstaladorKubo
     Friend WithEvents tlpDescargas As ToolTip
     Friend WithEvents cbOffice2016odt As CheckBox
     Friend WithEvents tlpOffice2016odt As ToolTip
+    Friend WithEvents tlpTerceros As ToolTip
 End Class

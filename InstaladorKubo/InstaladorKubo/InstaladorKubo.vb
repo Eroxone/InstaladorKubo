@@ -710,6 +710,7 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub Tooltips()
+        'TODO revisar que aparezcan todos los tooltips al moverse entre las opciones
         'Las propiedades tambien se pueden definir desde el explorador de objetos
         tlpUnidadF.ToolTipIcon = ToolTipIcon.Info
         tlpUnidadF.ToolTipTitle = "Conexión Unidad de Red"
@@ -725,6 +726,11 @@ Public Class InstaladorKubo
         tlpOffice2016odt.ToolTipTitle = "Office 2016 Desatendido"
         tlpOffice2016odt.SetToolTip(cbOffice2016odt, "Instalará el paquete Office 2016 sin la intervención del usuario.")
         tlpOffice2016odt.IsBalloon = True
+
+        tlpTerceros.ToolTipIcon = ToolTipIcon.Info
+        tlpTerceros.ToolTipTitle = "Softare de terceros"
+        tlpTerceros.SetToolTip(cbTerceros, "Adobe Reader DC, FileZilla, Google Chrome, Notepad++, etc")
+        tlpTerceros.IsBalloon = True
 
     End Sub
 
