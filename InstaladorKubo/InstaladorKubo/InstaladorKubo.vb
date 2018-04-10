@@ -710,7 +710,7 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub Tooltips()
-        'TODO revisar que aparezcan todos los tooltips al moverse entre las opciones
+        'TODO comprobar se muestren todos los tooltips
         'Las propiedades tambien se pueden definir desde el explorador de objetos
         tlpUnidadF.ToolTipIcon = ToolTipIcon.Info
         tlpUnidadF.ToolTipTitle = "Conexión Unidad de Red"
