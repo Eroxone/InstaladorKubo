@@ -16,7 +16,9 @@ Public Class InstaladorKubo
     'Private UnidadF As Boolean = Directory.Exists("F:")
     'Private textoLog As StringBuilder = New StringBuilder()
 
-    Private nombre_fichero_log As String = "LOG_" & DateTime.Now.Day & "_" & DateTime.Now.Month & "_" & DateTime.Now.Year & ".txt"
+    'Private nombre_fichero_log As String = "LOG_" & DateTime.Now.Day & "_" & DateTime.Now.Month & "_" & DateTime.Now.Year & ".txt"
+    'De nombre de fichero dejo un único LOG de momento. Ya aprenderé el resto
+    Private nombre_fichero_log As String = "Logger_InstaladorKubo.txt"
     Private ruta_log As String = "C:\TEMP\InstaladorKubo\" & nombre_fichero_log
     Private RutaDescargas As String = GetPathTemp() 'PATH_TEMP
 
@@ -27,26 +29,22 @@ Public Class InstaladorKubo
         YaDescargados()
         Tooltips()
 
-        'TODO Terminar proceso de Logger
+        'TODO Terminar proceso de Logger. Ahora mismo lo hace al revés
         Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
-        Dim cabecera_log As String = "---------------------------" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & DateTime.Now
+        Dim cabecera_log As String = "=====  INICIO APLICACIÓN  =====" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & My.User.Name
 
         Logger(cabecera_log)
-
-
-
-
-        '//Log
-
 
     End Sub
 
     ' Funcion para logear el sistema
 #Region "LOG"
+
+    'Using writer As New StreamWriter(FullName, True)
+    'writer.writeline("linea")
+    'End Using
     Private Sub Logger(ByVal textolog As String)
-
-        File.AppendAllText(ruta_log, textolog & vbCrLf)
-
+        File.AppendAllText(ruta_log, DateTime.Now.Hour & ":" & DateTime.Now.Minute & "  " & textolog & vbCrLf)
     End Sub
 #End Region
 
@@ -59,10 +57,12 @@ Public Class InstaladorKubo
             lbUnidadF.Text = "CONECTADA"
             lbUnidadF.ForeColor = Color.Green
             ' lbUnidadF.BackColor = Color.Green
+            Logger("Iniciando con Unidad F CONECTADA")
         Else
             lbUnidadF.Text = "DESCONECTADA"
             lbUnidadF.ForeColor = Color.Red
             '  lbUnidadF.BackColor = Color.Red
+            Logger("Iniciando con Unidad F DESCONECTADA")
         End If
 
         If Directory.Exists("C:\WINDOWS\SYSWOW64") Then
