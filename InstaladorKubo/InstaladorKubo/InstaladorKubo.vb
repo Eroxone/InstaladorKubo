@@ -119,7 +119,7 @@ Public Class InstaladorKubo
             System.Text.RegularExpressions.Regex.IsMatch(fbdDescarga.SelectedPath, "[A-Z](:\\)$") Then
             MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades raíz", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             'Dejo la ruta defecto
-            Dim RutaDescargas = "C:\NOTIN\"
+            Dim RutaDescargas = "C:\NOTIN" 'TODO probar si el Cancelar ya no deja \\
             lbRuta.Text = RutaDescargas
             YaDescargados() 'TODO Si elijo una ruta mala al volver a la buena no recarga los existentes
             File.WriteAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt", RutaDescargas)
@@ -177,6 +177,20 @@ Public Class InstaladorKubo
         Else
             cbOffice2016.BackColor = SystemColors.Control
             cbOffice2016.Enabled = True
+        End If
+
+        If System.IO.File.Exists(RutaDescargas & "Office2016odt.exe") Then
+            Dim Archivo2016odt As New FileInfo(RutaDescargas & "Office2016.exe")
+            Dim Length2016odt As Long = Archivo2016odt.Length
+            If Archivo2016odt.Length = "2452664263" Then
+                cbOffice2016odt.BackColor = Color.LawnGreen
+                cbOffice2016odt.Enabled = False
+            ElseIf Archivo2016odt.Length < "2452664263" Then
+                cbOffice2016odt.BackColor = Color.LightSalmon
+            End If
+        Else
+            cbOffice2016odt.BackColor = SystemColors.Control
+            cbOffice2016odt.Enabled = True
         End If
 
         If System.IO.File.Exists(RutaDescargas & "ConfiguraWord2016.exe") Then
@@ -312,6 +326,11 @@ Public Class InstaladorKubo
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
         End If
 
+        If cbOffice2016odt.Checked Then
+            texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
+            texto = texto & PuestoNotin & "Office2016odt.exe" & vbCrLf
+        End If
+
         If cbNemo.Checked Then
             texto = texto & "http://nemo.notin.net/jnemo-latest.exe" & vbCrLf
         End If
@@ -413,6 +432,7 @@ Public Class InstaladorKubo
 
         cbOffice2003.Checked = False
         cbOffice2016.Checked = False
+        cbOffice2016odt.Checked = False
         cbNemo.Checked = False
         cbRequisitos.Checked = False
         cbPuestoNotin.Checked = False
@@ -429,6 +449,7 @@ Public Class InstaladorKubo
         If MarcarTodos = 0 Then
             cbOffice2003.Checked = True
             cbOffice2016.Checked = True
+            cbOffice2016odt.Checked = False
             cbNemo.Checked = True
             cbRequisitos.Checked = True
             cbPuestoNotin.Checked = True
@@ -440,7 +461,8 @@ Public Class InstaladorKubo
             MarcarTodos = 1
         ElseIf MarcarTodos = 1 Then
             cbOffice2003.Checked = False
-            cbOffice2016.Checked = False
+            cbOffice2016.Checked = True
+            cbOffice2016odt.Checked = False
             cbNemo.Checked = False
             cbRequisitos.Checked = False
             cbPuestoNotin.Checked = False
@@ -454,15 +476,20 @@ Public Class InstaladorKubo
 
 
 
-    'Autochequear Configuradores Notin y Word 2016
+    'Autochequear Configuradores Notin y Word 2016 <> Office 2016odt
     Private Sub cbOffice2003_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2003.CheckedChanged
         cbConfiguraNotin.CheckState = cbOffice2003.CheckState
     End Sub
 
     Private Sub cbOffice2016_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2016.CheckedChanged
         cbConfiguraWord2016.CheckState = cbOffice2016.CheckState
+        cbOffice2016odt.Checked = False
     End Sub
 
+    Private Sub cbOffice2016odt_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2016odt.CheckedChanged
+        cbConfiguraWord2016.CheckState = cbOffice2016odt.CheckState
+        cbOffice2016.Checked = False
+    End Sub
 
 
 
@@ -686,8 +713,14 @@ Public Class InstaladorKubo
         tlpDescargas.SetToolTip(GroupBox1, "Gris: Descarga no realizada" + vbCrLf & "Verde: Descarga Completada" + vbCrLf & "Rojo: Descarga Incompleta")
         tlpDescargas.IsBalloon = True
 
+        tlpOffice2016odt.ToolTipIcon = ToolTipIcon.Info
+        tlpOffice2016odt.ToolTipTitle = "Office 2016 Desatendido"
+        tlpOffice2016odt.SetToolTip(cbOffice2016odt, "Instalará el paquete Office 2016 sin la intervención del usuario.")
+        tlpOffice2016odt.IsBalloon = True
 
     End Sub
+
+
     'TODO loquear instalacion y capturar los errores en el log como que no encuentra el mde y cosas asi
 
 
