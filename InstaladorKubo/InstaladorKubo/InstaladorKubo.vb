@@ -12,7 +12,7 @@ Public Class InstaladorKubo
     Private Const REQUISITOS_DOWNLOAD As String = "requisitos.txt"
     Private Const TERCEROS_DOWNLOAD As String = "terceros.txt"
     Private Const REGISTRO_DOWNLOAD As String = "registro.txt"
-    Private Const PuestoNotin As String = "ftp://ftp.pandora.notin.net/Juanjo/PuestoNotin/"
+    Private Const PuestoNotin As String = "ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/"
     'Private UnidadF As Boolean = Directory.Exists("F:")
     'Private textoLog As StringBuilder = New StringBuilder()
 
@@ -180,7 +180,7 @@ Public Class InstaladorKubo
         End If
 
         If System.IO.File.Exists(RutaDescargas & "Office2016odt.exe") Then
-            Dim Archivo2016odt As New FileInfo(RutaDescargas & "Office2016.exe")
+            Dim Archivo2016odt As New FileInfo(RutaDescargas & "Office2016odt.exe")
             Dim Length2016odt As Long = Archivo2016odt.Length
             If Archivo2016odt.Length = "2452664263" Then
                 cbOffice2016odt.BackColor = Color.LawnGreen
@@ -299,13 +299,13 @@ Public Class InstaladorKubo
             'Descargar ejecutable WGet
             Try
                 'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "tecnicos", "20070401", False, 20000, False)
+                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
             Catch ex As Exception
                 'MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
                 'Reintentar descarga
                 Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
-                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "tecnicos", "20070401", False, 20000, False)
+                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
                 If REINTENTAR = DialogResult.Retry Then
 
                 End If
@@ -389,7 +389,7 @@ Public Class InstaladorKubo
         'EJECUCIONES DE WGET POR RUTAS DE DESCARGA
 
         'Ejecutar WGET Office y Notin
-        Dim WGETPANDORA As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=tecnicos --ftp-password=20070401 -i " & """" & RutaDescargas & "descargas.txt"" -P " & RutaDescargas
+        Dim WGETPANDORA As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "descargas.txt"" -P " & RutaDescargas
         Dim RutaCMDWget As String = RutaDescargas & WGETPANDORA
         'SI EXISTEN ESPACIOS EN LOS NOMBRES DE ARCHIVOS NO FUNCIONA YA QUE SI PONGO COMILLAS SI NO LLEVA ESPACIOS DA ERROR
 
@@ -398,7 +398,7 @@ Public Class InstaladorKubo
 
         'Ejecutar WGET Requisitos
         If cbRequisitos.Checked Then
-            Dim WGETPANDORAREQUISITOS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=tecnicos --ftp-password=20070401 -i " & """" & RutaDescargas & "requisitos.txt"" -P " & RutaDescargas & "Requisitos\"
+            Dim WGETPANDORAREQUISITOS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "requisitos.txt"" -P " & RutaDescargas & "Requisitos\"
             Dim RutaCMDWgetRequisitos As String = RutaDescargas & WGETPANDORAREQUISITOS
 
             Shell("cmd.exe /c " & RutaCMDWgetRequisitos, AppWinStyle.NormalFocus, True)
@@ -407,7 +407,7 @@ Public Class InstaladorKubo
 
         'Ejecutar WGET Terceros
         If cbTerceros.Checked Then
-            Dim WGETPANDORATERCEROS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=tecnicos --ftp-password=20070401 -i " & """" & RutaDescargas & "terceros.txt"" -P " & RutaDescargas & "Software\"
+            Dim WGETPANDORATERCEROS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "terceros.txt"" -P " & RutaDescargas & "Software\"
             Dim RutaCMDWgetTerceros As String = RutaDescargas & WGETPANDORATERCEROS
 
             Shell("cmd.exe /c " & RutaCMDWgetTerceros, AppWinStyle.NormalFocus, True)
@@ -415,7 +415,7 @@ Public Class InstaladorKubo
         End If
         'Ejecutar WGET Registro
         If cbConfiguraNotin.Checked Then
-            Dim WGETPANDORREGISTRO As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=tecnicos --ftp-password=20070401 -i " & """" & RutaDescargas & "registro.txt"" -P " & RutaDescargas & "Registro\"
+            Dim WGETPANDORREGISTRO As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "registro.txt"" -P " & RutaDescargas & "Registro\"
             Dim RutaCMDWgetRegistro As String = RutaDescargas & WGETPANDORREGISTRO
 
             Shell("cmd.exe /c " & RutaCMDWgetRegistro, AppWinStyle.NormalFocus, True)
@@ -448,8 +448,8 @@ Public Class InstaladorKubo
     Private Sub btTodo_Click(sender As Object, e As EventArgs) Handles btTodo.Click
         If MarcarTodos = 0 Then
             cbOffice2003.Checked = True
-            cbOffice2016.Checked = True
-            cbOffice2016odt.Checked = False
+            cbOffice2016.Checked = False
+            cbOffice2016odt.Checked = True
             cbNemo.Checked = True
             cbRequisitos.Checked = True
             cbPuestoNotin.Checked = True
@@ -461,7 +461,7 @@ Public Class InstaladorKubo
             MarcarTodos = 1
         ElseIf MarcarTodos = 1 Then
             cbOffice2003.Checked = False
-            cbOffice2016.Checked = True
+            cbOffice2016.Checked = False
             cbOffice2016odt.Checked = False
             cbNemo.Checked = False
             cbRequisitos.Checked = False
@@ -528,13 +528,13 @@ Public Class InstaladorKubo
             'Descargar ejecutable UnRAR
             Try
                 'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "tecnicos", "20070401", False, 20000, True)
+                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "juanjo", "Palomeras24", False, 20000, True)
             Catch ex As Exception
                 MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
                 'Reintentar descarga
                 Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
-                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "tecnicos", "20070401", False, 20000, True)
+                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "juanjo", "Palomeras24", False, 20000, True)
                 If REINTENTAR = DialogResult.Retry Then
                 End If
             End Try
@@ -616,18 +616,26 @@ Public Class InstaladorKubo
 
         Dim WordSiNo As Integer = Nothing
 
-        Dim EjecutableWord As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE16\WINWORD.EXE")
+        Dim EjecutableWord As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE")
 
         If EjecutableWord = False Then
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-            Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
-        Else
-            WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If WordSiNo = 6 Then
+            If File.Exists(RutaDescargas & "Office2016.exe") Then
+                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
+            ElseIf File.Exists(RutaDescargas & "Office2016odt.exe") Then
+                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
+            End If
+        ElseIf WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question) Then
+            If File.Exists(RutaDescargas & "Office2016.exe") Then
                 Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
                 Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
             End If
+        ElseIf File.Exists(RutaDescargas & "Office2016odt.exe") Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
         End If
+
 
         EjecutableNotinNet()
     End Sub
