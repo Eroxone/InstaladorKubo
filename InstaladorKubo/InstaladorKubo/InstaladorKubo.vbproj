@@ -63,7 +63,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>EricCartman.ico</ApplicationIcon>
+    <ApplicationIcon>Cartmanmago.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -143,6 +143,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cartmanmago.ico" />
     <Content Include="EricCartman.ico" />
   </ItemGroup>
   <ItemGroup>
