@@ -48,7 +48,7 @@ Public Class LeerFicherosINI
             Call WritePrivateProfileString(sSection, 0, 0, sIniFile)
         End Sub
 
-        Public Function IniGet(ByVal sFileName As String, ByVal sSection As String, ByVal sKeyName As String, Optional ByVal sDefault As String = "") As String
+        Public Shared Function IniGet(ByVal sFileName As String, ByVal sSection As String, ByVal sKeyName As String, Optional ByVal sDefault As String = "") As String
             '--------------------------------------------------------------------------
             ' Devuelve el valor de una clave de un fichero INI
             ' Los parámetros son:
@@ -70,7 +70,7 @@ Public Class LeerFicherosINI
             End If
         End Function
 
-        Public Sub IniWrite(ByVal sFileName As String, ByVal sSection As String, ByVal sKeyName As String, ByVal sValue As String)
+        Public Shared Sub IniWrite(ByVal sFileName As String, ByVal sSection As String, ByVal sKeyName As String, ByVal sValue As String)
             '--------------------------------------------------------------------------
             ' Guarda los datos de configuración
             ' Los parámetros son los mismos que en LeerIni

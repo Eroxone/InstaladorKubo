@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 Imports System.Text
-
+Imports InstaladorKubo.LeerFicherosINI
 
 Public Class InstaladorKubo
     'TODO Establecer contraseña de ejecución.
@@ -25,6 +25,10 @@ Public Class InstaladorKubo
 
 
     Private Sub frmInstaladorNotin_Load(sender As Object, e As EventArgs) Handles Me.Load
+
+
+        Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
+
         SistemaOperativo()
         lbRuta.Text = GetPathTemp()
         YaDescargados()
@@ -32,7 +36,6 @@ Public Class InstaladorKubo
 
         'TODO Terminar proceso de Logger. Ahora mismo lo hace al revés
         Dim cabecera_log As String = "=====  INICIO APLICACIÓN  =====" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & My.User.Name
-
         Logger(cabecera_log)
 
     End Sub
@@ -44,7 +47,7 @@ Public Class InstaladorKubo
     'writer.writeline("linea")
     'End Using
     Private Sub Logger(ByVal textolog As String)
-        Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
+        'Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
         File.AppendAllText(ruta_log, DateTime.Now.Hour & ":" & DateTime.Now.Minute & "  " & textolog & vbCrLf)
     End Sub
 #End Region
@@ -77,7 +80,8 @@ Public Class InstaladorKubo
 
     'RUTA ANTERIOR. SI EXISTÍA
     Private Function GetPathTemp() As String
-
+        'TODO Actualizar el txt por un INI usando la Clase
+        'cIniArray.IniWrite("D:\NOTIN\NNOTIN.INI", "NET", "NOMBRESERVIDOR", "holaquetal")
         If System.IO.File.Exists("C:\TEMP\InstaladorKubo\RutaAnterior.txt") Then
             Return (System.IO.File.ReadAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt"))
         End If
@@ -626,7 +630,7 @@ Public Class InstaladorKubo
         Dim WordSiNo As Integer = Nothing
 
         Dim EjecutableWord As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE")
-        'TODO Sandra me revise estos elseif
+
         If EjecutableWord = False Then
             If File.Exists(RutaDescargas & "Office2016.exe") Then
                 Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
@@ -725,7 +729,6 @@ Public Class InstaladorKubo
 
 #Region "Tooltips"
     Private Sub Tooltips()
-        'TODO comprobar se muestren todos los tooltips
         'Las propiedades tambien se pueden definir desde el explorador de objetos
         tlpUnidadF.ToolTipIcon = ToolTipIcon.Info
         tlpUnidadF.ToolTipTitle = "Conexión Unidad de Red"
@@ -755,17 +758,25 @@ Public Class InstaladorKubo
 
 
     Private Sub btOdbc_Click(sender As Object, e As EventArgs) Handles btOdbc.Click
-        'Funcion de Reintentar
-        Dim QueHacerF As DialogResult
-        While UnidadF() = False
-            QueHacerF = MessageBox.Show("Unidad F no conectada. No se puede obtener nombre Servidor SQL.", "Advertencia Unidad F", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning)
-            If QueHacerF = DialogResult.Abort Then
-                Exit Sub
-            ElseIf QueHacerF = DialogResult.Ignore Then
-                Exit While
+        If UnidadF() = True Then
+            'Uso la funcion SHARED de la Clase LeerFicherosINI
+            Dim nombre_servidor As String = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "NET", "NOMBRESERVIDOR", "SERVIDOR")
+            If File.Exists("C:\Windows\SysWoW64\odbcconf.exe") Then
+                Shell("cmd /c " & "C:\Windows\SysWoW64\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}", AppWinStyle.Hide, False)
+                btOdbc.BackColor = Color.LawnGreen
+                'C:\Windows\SysWoW64\odbcconf.exe /A {CONFIGSYSDSN "SQL Server" "DSN=NOTINSQL|Server=clustersql"}
+            ElseIf File.Exists("C:\Windows\System32\odbcconf.exe") Then
+                Shell("cmd /c " & "C:\Windows\System32\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}", AppWinStyle.Hide, False)
+                btOdbc.BackColor = Color.LawnGreen
+            Else
+                MessageBox.Show("No se puede acceder a la utilidad ODBCConf", "Ejecutable no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
-        End While
-        'Aqui la ejecución si la F existe
+        Else
+            MessageBox.Show("No se puede conectar con el Servidor (F:)", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            btOdbc.BackColor = Color.LightSalmon
+        End If
+
 
     End Sub
+
 End Class

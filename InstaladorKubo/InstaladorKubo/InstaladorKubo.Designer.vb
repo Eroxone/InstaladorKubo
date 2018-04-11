@@ -61,6 +61,7 @@ Partial Class InstaladorKubo
         Me.tlpOffice2016odt = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpTerceros = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpNotinKubo = New System.Windows.Forms.ToolTip(Me.components)
+        Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -401,7 +402,6 @@ Partial Class InstaladorKubo
         '
         'btOdbc
         '
-        Me.btOdbc.Enabled = False
         Me.btOdbc.Font = New System.Drawing.Font("Bookman Old Style", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btOdbc.Location = New System.Drawing.Point(5, 135)
         Me.btOdbc.Name = "btOdbc"
@@ -458,6 +458,11 @@ Partial Class InstaladorKubo
         '
         Me.tlpNotinKubo.IsBalloon = True
         Me.tlpNotinKubo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'NotifyIcon1
+        '
+        Me.NotifyIcon1.Text = "NotifyIcon1"
+        Me.NotifyIcon1.Visible = True
         '
         'InstaladorKubo
         '
@@ -528,4 +533,5 @@ Partial Class InstaladorKubo
     Friend WithEvents tlpTerceros As ToolTip
     Friend WithEvents btOdbc As Button
     Friend WithEvents tlpNotinKubo As ToolTip
+    Friend WithEvents NotifyIcon1 As NotifyIcon
 End Class
