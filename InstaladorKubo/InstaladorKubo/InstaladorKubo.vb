@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Text
 
+
 Public Class InstaladorKubo
     'TODO Establecer contraseña de ejecución.
 
@@ -135,6 +136,7 @@ Public Class InstaladorKubo
         YaDescargados()
     End Sub
 
+#Region "COMPROBAR TAMAÑO DESCARGAS"
     ' Archivo existe y mostrar tamaño del mismo
     Private Sub YaDescargados()
         'FICHEROS NOTIN Y WORD
@@ -270,8 +272,7 @@ Public Class InstaladorKubo
 
 
     End Sub
-
-
+#End Region
 
     'COMENZAR DESCARGAS
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
@@ -307,13 +308,14 @@ Public Class InstaladorKubo
                 Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
                 My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
                 If REINTENTAR = DialogResult.Retry Then
-
+                    My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, True)
                 End If
 
             End Try
 
         End If
 
+#Region "CREACIÓN FICHEROS RUTAS DESCARGAS"
 
         'Creación contenido del fichero
         ' MAS adelante cambiar Rutas para ordenar las descargas
@@ -337,8 +339,8 @@ Public Class InstaladorKubo
 
         If cbPuestoNotin.Checked Then
             texto = texto & PuestoNotin & "PuestoNotinC.exe" & vbCrLf
-            'Añado aqui los Accesos directos
             texto = texto & PuestoNotin & "AccesosDirectos.exe" & vbCrLf
+            texto = texto & PuestoNotin & "AccesosDirectos_odt.exe" & vbCrLf
         End If
 
         If cbRequisitos.Checked Then
@@ -386,6 +388,9 @@ Public Class InstaladorKubo
         System.IO.File.WriteAllText(RutaDescargas & TERCEROS_DOWNLOAD, terceros)
         System.IO.File.WriteAllText(RutaDescargas & REGISTRO_DOWNLOAD, registro)
 
+#End Region
+
+#Region "EJECUTAMOS WGET"
         'EJECUCIONES DE WGET POR RUTAS DE DESCARGA
 
         'Ejecutar WGET Office y Notin
@@ -422,6 +427,8 @@ Public Class InstaladorKubo
             YaDescargados()
         End If
 
+#End Region
+
         'pbDescargas.Visible = False
 
         'Borrar ficheros txt escritos
@@ -443,6 +450,7 @@ Public Class InstaladorKubo
         MessageBox.Show("Descargas finalizadas", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
+#Region "MARCAR/DESMARCAR TODOS"
     ' Marcar TODOS. Opcion variable Marcar/Desmarcar todos
     Private MarcarTodos As Integer = 0
     Private Sub btTodo_Click(sender As Object, e As EventArgs) Handles btTodo.Click
@@ -473,7 +481,7 @@ Public Class InstaladorKubo
             MarcarTodos = 0
         End If
     End Sub
-
+#End Region
 
 
     'Autochequear Configuradores Notin y Word 2016 <> Office 2016odt
@@ -514,7 +522,7 @@ Public Class InstaladorKubo
                 Exit While
             End If
         End While
-        ' CONTROLAR PULSR ABORTAR
+        ' CONTROLAR PULSAR ABORTAR
 
 
         If UnidadF() = True Then
@@ -563,6 +571,7 @@ Public Class InstaladorKubo
 
     End Sub
 
+#Region "INSTALACIONES SOFTWARE"
     Private Sub InstalarNotinNet()
         'Claves Registro
         Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
@@ -703,11 +712,18 @@ Public Class InstaladorKubo
 
     Private Sub AccesosDirectosEscritorio()
         Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
-        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -u -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.NormalFocus, True)
+        If File.Exists(RutaDescargas & "Office2016.exe") Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -u -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.NormalFocus, True)
+        ElseIf File.Exists(RutaDescargas & "Office2016_odt.exe") Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -u -y " & RutaDescargas & "AccesosDirectos_odt.exe " & Escritorio, AppWinStyle.NormalFocus, True)
+        Else
+        End If
 
-        MessageBox.Show("Instalación Notin .Net + Kubo finalizada", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
+#End Region
 
+#Region "Tooltips"
     Private Sub Tooltips()
         'TODO comprobar se muestren todos los tooltips
         'Las propiedades tambien se pueden definir desde el explorador de objetos
@@ -731,10 +747,25 @@ Public Class InstaladorKubo
         tlpTerceros.SetToolTip(cbTerceros, "Adobe Reader DC, FileZilla, Google Chrome, Notepad++, etc")
         tlpTerceros.IsBalloon = True
 
+        tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones"
+        tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Software. No obliga a instalar el paquete completo.")
+
     End Sub
+#End Region
 
 
-    'TODO loquear instalacion y capturar los errores en el log como que no encuentra el mde y cosas asi
+    Private Sub btOdbc_Click(sender As Object, e As EventArgs) Handles btOdbc.Click
+        'Funcion de Reintentar
+        Dim QueHacerF As DialogResult
+        While UnidadF() = False
+            QueHacerF = MessageBox.Show("Unidad F no conectada. No se puede obtener nombre Servidor SQL.", "Advertencia Unidad F", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning)
+            If QueHacerF = DialogResult.Abort Then
+                Exit Sub
+            ElseIf QueHacerF = DialogResult.Ignore Then
+                Exit While
+            End If
+        End While
+        'Aqui la ejecución si la F existe
 
-
+    End Sub
 End Class

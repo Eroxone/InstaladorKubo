@@ -94,6 +94,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LeerFicherosINI.vb" />
     <Compile Include="InstaladorKubo.vb">
       <SubType>Form</SubType>
     </Compile>

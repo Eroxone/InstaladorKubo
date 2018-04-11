@@ -59,6 +59,8 @@ Partial Class InstaladorKubo
         Me.tlpDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpOffice2016odt = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpTerceros = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btOdbc = New System.Windows.Forms.Button()
+        Me.tlpNotinKubo = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -218,7 +220,7 @@ Partial Class InstaladorKubo
         '
         Me.cbTerceros.AutoSize = True
         Me.cbTerceros.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold)
-        Me.cbTerceros.Location = New System.Drawing.Point(14, 269)
+        Me.cbTerceros.Location = New System.Drawing.Point(14, 273)
         Me.cbTerceros.Margin = New System.Windows.Forms.Padding(2)
         Me.cbTerceros.Name = "cbTerceros"
         Me.cbTerceros.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -385,6 +387,7 @@ Partial Class InstaladorKubo
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox2.Controls.Add(Me.btOdbc)
         Me.GroupBox2.Controls.Add(Me.btNotinKubo)
         Me.GroupBox2.Font = New System.Drawing.Font("Bookman Old Style", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(377, 110)
@@ -439,6 +442,21 @@ Partial Class InstaladorKubo
         Me.btDescargar.TabIndex = 27
         Me.btDescargar.Text = "Comenzar Descargas"
         Me.btDescargar.UseVisualStyleBackColor = True
+        '
+        'btOdbc
+        '
+        Me.btOdbc.Font = New System.Drawing.Font("Bookman Old Style", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btOdbc.Location = New System.Drawing.Point(5, 135)
+        Me.btOdbc.Name = "btOdbc"
+        Me.btOdbc.Size = New System.Drawing.Size(131, 27)
+        Me.btOdbc.TabIndex = 27
+        Me.btOdbc.Text = "Configurar ODBC"
+        Me.btOdbc.UseVisualStyleBackColor = True
+        '
+        'tlpNotinKubo
+        '
+        Me.tlpNotinKubo.IsBalloon = True
+        Me.tlpNotinKubo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
         'InstaladorKubo
         '
@@ -507,4 +525,6 @@ Partial Class InstaladorKubo
     Friend WithEvents cbOffice2016odt As CheckBox
     Friend WithEvents tlpOffice2016odt As ToolTip
     Friend WithEvents tlpTerceros As ToolTip
+    Friend WithEvents btOdbc As Button
+    Friend WithEvents tlpNotinKubo As ToolTip
 End Class
