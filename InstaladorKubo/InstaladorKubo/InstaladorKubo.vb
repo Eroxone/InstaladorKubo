@@ -31,7 +31,6 @@ Public Class InstaladorKubo
         Tooltips()
 
         'TODO Terminar proceso de Logger. Ahora mismo lo hace al revés
-        Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
         Dim cabecera_log As String = "=====  INICIO APLICACIÓN  =====" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & My.User.Name
 
         Logger(cabecera_log)
@@ -45,6 +44,7 @@ Public Class InstaladorKubo
     'writer.writeline("linea")
     'End Using
     Private Sub Logger(ByVal textolog As String)
+        Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
         File.AppendAllText(ruta_log, DateTime.Now.Hour & ":" & DateTime.Now.Minute & "  " & textolog & vbCrLf)
     End Sub
 #End Region
