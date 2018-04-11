@@ -51,6 +51,7 @@ Partial Class InstaladorKubo
         Me.cbPuestoNotin = New System.Windows.Forms.CheckBox()
         Me.btNotinKubo = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btOdbc = New System.Windows.Forms.Button()
         Me.lbRuta = New System.Windows.Forms.Label()
         Me.btDirDescargas = New System.Windows.Forms.Button()
         Me.pbDescargas = New System.Windows.Forms.ProgressBar()
@@ -59,7 +60,6 @@ Partial Class InstaladorKubo
         Me.tlpDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpOffice2016odt = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpTerceros = New System.Windows.Forms.ToolTip(Me.components)
-        Me.btOdbc = New System.Windows.Forms.Button()
         Me.tlpNotinKubo = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -399,6 +399,17 @@ Partial Class InstaladorKubo
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Instalación"
         '
+        'btOdbc
+        '
+        Me.btOdbc.Enabled = False
+        Me.btOdbc.Font = New System.Drawing.Font("Bookman Old Style", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btOdbc.Location = New System.Drawing.Point(5, 135)
+        Me.btOdbc.Name = "btOdbc"
+        Me.btOdbc.Size = New System.Drawing.Size(131, 27)
+        Me.btOdbc.TabIndex = 27
+        Me.btOdbc.Text = "Configurar ODBC"
+        Me.btOdbc.UseVisualStyleBackColor = True
+        '
         'lbRuta
         '
         Me.lbRuta.AutoSize = True
@@ -442,16 +453,6 @@ Partial Class InstaladorKubo
         Me.btDescargar.TabIndex = 27
         Me.btDescargar.Text = "Comenzar Descargas"
         Me.btDescargar.UseVisualStyleBackColor = True
-        '
-        'btOdbc
-        '
-        Me.btOdbc.Font = New System.Drawing.Font("Bookman Old Style", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btOdbc.Location = New System.Drawing.Point(5, 135)
-        Me.btOdbc.Name = "btOdbc"
-        Me.btOdbc.Size = New System.Drawing.Size(131, 27)
-        Me.btOdbc.TabIndex = 27
-        Me.btOdbc.Text = "Configurar ODBC"
-        Me.btOdbc.UseVisualStyleBackColor = True
         '
         'tlpNotinKubo
         '
