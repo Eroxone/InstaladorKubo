@@ -222,7 +222,7 @@ Public Class InstaladorKubo
         If System.IO.File.Exists(RutaDescargas & "PuestoNotinC.exe") Then
             Dim PuestoNotinC As New FileInfo(RutaDescargas & "PuestoNotinC.exe")
             Dim LengthPuestoNotinC As Long = PuestoNotinC.Length
-            If PuestoNotinC.Length = "15904392" Then
+            If PuestoNotinC.Length = "15906392" Then
                 cbPuestoNotin.BackColor = Color.LawnGreen
                 cbPuestoNotin.Enabled = False
             End If
