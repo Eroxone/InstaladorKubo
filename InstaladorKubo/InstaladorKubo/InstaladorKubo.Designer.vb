@@ -34,6 +34,7 @@ Partial Class InstaladorKubo
         Me.btSalir = New System.Windows.Forms.Button()
         Me.btTodo = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lbMBDescargas = New System.Windows.Forms.Label()
         Me.cbOffice2016odt = New System.Windows.Forms.CheckBox()
         Me.lbSoftwaredescargable = New System.Windows.Forms.Label()
         Me.cbTerceros = New System.Windows.Forms.CheckBox()
@@ -62,7 +63,6 @@ Partial Class InstaladorKubo
         Me.tlpNotinKubo = New System.Windows.Forms.ToolTip(Me.components)
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
-        Me.lbTamaño = New System.Windows.Forms.Label()
         Me.tlpTamaño = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -148,7 +148,7 @@ Partial Class InstaladorKubo
         'btSalir
         '
         Me.btSalir.Font = New System.Drawing.Font("MS Reference Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btSalir.Location = New System.Drawing.Point(594, 466)
+        Me.btSalir.Location = New System.Drawing.Point(609, 493)
         Me.btSalir.Margin = New System.Windows.Forms.Padding(2)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(68, 32)
@@ -170,7 +170,7 @@ Partial Class InstaladorKubo
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.GroupBox1.Controls.Add(Me.lbTamaño)
+        Me.GroupBox1.Controls.Add(Me.lbMBDescargas)
         Me.GroupBox1.Controls.Add(Me.cbOffice2016odt)
         Me.GroupBox1.Controls.Add(Me.btTodo)
         Me.GroupBox1.Controls.Add(Me.lbSoftwaredescargable)
@@ -197,6 +197,15 @@ Partial Class InstaladorKubo
         Me.GroupBox1.TabIndex = 29
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Descargas"
+        '
+        'lbMBDescargas
+        '
+        Me.lbMBDescargas.AutoSize = True
+        Me.lbMBDescargas.Location = New System.Drawing.Point(12, 299)
+        Me.lbMBDescargas.Name = "lbMBDescargas"
+        Me.lbMBDescargas.Size = New System.Drawing.Size(71, 20)
+        Me.lbMBDescargas.TabIndex = 21
+        Me.lbMBDescargas.Text = "Tamaño"
         '
         'cbOffice2016odt
         '
@@ -463,23 +472,14 @@ Partial Class InstaladorKubo
         'lbProcesandoDescargas
         '
         Me.lbProcesandoDescargas.AutoSize = True
-        Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Antique Olive Roman", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.DarkRed
-        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(324, 445)
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(210, 507)
         Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
-        Me.lbProcesandoDescargas.Size = New System.Drawing.Size(209, 20)
+        Me.lbProcesandoDescargas.Size = New System.Drawing.Size(210, 20)
         Me.lbProcesandoDescargas.TabIndex = 36
         Me.lbProcesandoDescargas.Text = "Procesando Descargas..."
         Me.lbProcesandoDescargas.Visible = False
-        '
-        'lbTamaño
-        '
-        Me.lbTamaño.AutoSize = True
-        Me.lbTamaño.Location = New System.Drawing.Point(12, 299)
-        Me.lbTamaño.Name = "lbTamaño"
-        Me.lbTamaño.Size = New System.Drawing.Size(71, 20)
-        Me.lbTamaño.TabIndex = 21
-        Me.lbTamaño.Text = "Tamaño"
         '
         'tlpTamaño
         '
@@ -491,7 +491,7 @@ Partial Class InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(688, 509)
+        Me.ClientSize = New System.Drawing.Size(688, 536)
         Me.Controls.Add(Me.lbProcesandoDescargas)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
@@ -558,6 +558,6 @@ Partial Class InstaladorKubo
     Friend WithEvents tlpNotinKubo As ToolTip
     Friend WithEvents NotifyIcon1 As NotifyIcon
     Friend WithEvents lbProcesandoDescargas As Label
-    Friend WithEvents lbTamaño As Label
+    Friend WithEvents lbMBDescargas As Label
     Friend WithEvents tlpTamaño As ToolTip
 End Class

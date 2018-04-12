@@ -77,7 +77,7 @@ Public Class InstaladorKubo
         End If
 
     End Sub
-    'TODO Buscar nueva version comparando un txt como string por ejemplo
+    'TODO Buscar nueva version comparando un ini como string por ejemplo
 
     'RUTA ANTERIOR. SI EXISTÍA
     Private Function GetPathTemp() As String
@@ -157,6 +157,7 @@ Public Class InstaladorKubo
         '    RutaDescargas = GetPathTemp()
         'End If
     End Sub
+
 
 
     'Recarga formulario tras salir de la eleccion de ruta
@@ -302,20 +303,18 @@ Public Class InstaladorKubo
     End Sub
 #End Region
 
+    ' Funcion calcular tamaño descarga chequeada
+
+
+
+
+
+
 
     'COMENZAR DESCARGAS
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
-        'TODO no llega a mostrar el label de Procesando Descargas
-        'lbProcesandoDescargas.Visible = True
 
         'TODO Mas adelante me meto con la barra de progreso en otro hilo
-
-        'Oculto boton descargas e indico que estoy Descargando arhivos
-        'btDescargar.Visible = False
-        ''TODO no le da tiempo a mostrar el cambio en el formulario
-        'lbProcesandoDescargas.Visible = True
-
-
 
         'Defino la cadenas vacias del fichero para las descargas y que esten limpios de principio
         Dim texto As String = ""
@@ -353,23 +352,20 @@ Public Class InstaladorKubo
 
         End If
 
+
+
 #Region "CREACIÓN FICHEROS RUTAS DESCARGAS"
-        Dim tamañodescargas As Integer = Nothing
 
         'TODO evento load tamaño descargas al btchekbox clic
         'Creación contenido del fichero
         ' MAS adelante cambiar Rutas para ordenar las descargas
         If cbOffice2003.Checked Then
             texto = texto & PuestoNotin & "Office2003.exe" & vbCrLf
-            tamañodescargas = tamañodescargas + "493"
-            lbTamaño.Text = tamañodescargas & " MB"
         End If
 
         If cbOffice2016.Checked Then
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
-            tamañodescargas = tamañodescargas + "705"
-            lbTamaño.Text = tamañodescargas & " MB"
         End If
 
         If cbOffice2016odt.Checked Then
@@ -434,6 +430,7 @@ Public Class InstaladorKubo
 
 #End Region
 
+
 #Region "EJECUTAMOS WGET"
         'EJECUCIONES DE WGET POR RUTAS DE DESCARGA
 
@@ -489,11 +486,12 @@ Public Class InstaladorKubo
         cbPasarelaSigno.Checked = False
         cbTerceros.Checked = False
 
-        MessageBox.Show("Descargas finalizadas", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         lbProcesandoDescargas.Visible = False
-        btDescargar.Visible = True
+        MessageBox.Show("Descargas finalizadas", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
 
-
+    Private Sub btDescargar_MouseDown(sender As Object, e As MouseEventArgs) Handles btDescargar.MouseDown
+        lbProcesandoDescargas.Visible = True
     End Sub
 
 #Region "MARCAR/DESMARCAR TODOS"
@@ -826,10 +824,9 @@ Public Class InstaladorKubo
 
 
 
-
 #End Region
 
-
+    'TODO pruebas captura ventana
 
 
 End Class
