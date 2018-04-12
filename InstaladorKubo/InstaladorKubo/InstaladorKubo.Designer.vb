@@ -54,7 +54,6 @@ Partial Class InstaladorKubo
         Me.btOdbc = New System.Windows.Forms.Button()
         Me.lbRuta = New System.Windows.Forms.Label()
         Me.btDirDescargas = New System.Windows.Forms.Button()
-        Me.pbDescargas = New System.Windows.Forms.ProgressBar()
         Me.btDescargar = New System.Windows.Forms.Button()
         Me.tlpUnidadF = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpDescargas = New System.Windows.Forms.ToolTip(Me.components)
@@ -62,6 +61,7 @@ Partial Class InstaladorKubo
         Me.tlpTerceros = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpNotinKubo = New System.Windows.Forms.ToolTip(Me.components)
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -432,17 +432,6 @@ Partial Class InstaladorKubo
         Me.btDirDescargas.Text = "Cambiar Ruta Descargas"
         Me.btDirDescargas.UseVisualStyleBackColor = True
         '
-        'pbDescargas
-        '
-        Me.pbDescargas.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.pbDescargas.Location = New System.Drawing.Point(316, 466)
-        Me.pbDescargas.Margin = New System.Windows.Forms.Padding(2)
-        Me.pbDescargas.Name = "pbDescargas"
-        Me.pbDescargas.Size = New System.Drawing.Size(75, 18)
-        Me.pbDescargas.Style = System.Windows.Forms.ProgressBarStyle.Marquee
-        Me.pbDescargas.TabIndex = 28
-        Me.pbDescargas.Visible = False
-        '
         'btDescargar
         '
         Me.btDescargar.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -464,11 +453,24 @@ Partial Class InstaladorKubo
         Me.NotifyIcon1.Text = "NotifyIcon1"
         Me.NotifyIcon1.Visible = True
         '
+        'lbProcesandoDescargas
+        '
+        Me.lbProcesandoDescargas.AutoSize = True
+        Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Antique Olive Roman", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.DarkRed
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(324, 445)
+        Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
+        Me.lbProcesandoDescargas.Size = New System.Drawing.Size(209, 20)
+        Me.lbProcesandoDescargas.TabIndex = 36
+        Me.lbProcesandoDescargas.Text = "Procesando Descargas..."
+        Me.lbProcesandoDescargas.Visible = False
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(688, 509)
+        Me.Controls.Add(Me.lbProcesandoDescargas)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.btSalir)
@@ -476,7 +478,6 @@ Partial Class InstaladorKubo
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.lbRuta)
         Me.Controls.Add(Me.btDirDescargas)
-        Me.Controls.Add(Me.pbDescargas)
         Me.Controls.Add(Me.btDescargar)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
@@ -534,4 +535,5 @@ Partial Class InstaladorKubo
     Friend WithEvents btOdbc As Button
     Friend WithEvents tlpNotinKubo As ToolTip
     Friend WithEvents NotifyIcon1 As NotifyIcon
+    Friend WithEvents lbProcesandoDescargas As Label
 End Class

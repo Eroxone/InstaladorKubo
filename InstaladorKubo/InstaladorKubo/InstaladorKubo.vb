@@ -302,10 +302,20 @@ Public Class InstaladorKubo
     End Sub
 #End Region
 
+
     'COMENZAR DESCARGAS
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
+        'TODO no llega a mostrar el label de Procesando Descargas
+        lbProcesandoDescargas.Visible = True
+        btDescargar.Visible = False
         'TODO Mas adelante me meto con la barra de progreso en otro hilo
-        'pbDescargas.Visible = True
+
+        'Oculto boton descargas e indico que estoy Descargando arhivos
+        'btDescargar.Visible = False
+        ''TODO no le da tiempo a mostrar el cambio en el formulario
+        'lbProcesandoDescargas.Visible = True
+
+
 
         'Defino la cadenas vacias del fichero para las descargas y que esten limpios de principio
         Dim texto As String = ""
@@ -457,8 +467,6 @@ Public Class InstaladorKubo
 
 #End Region
 
-        'pbDescargas.Visible = False
-
         'Borrar ficheros txt escritos
         System.IO.File.Delete(RutaDescargas & FILE_DOWNLOAD)
         System.IO.File.Delete(RutaDescargas & REQUISITOS_DOWNLOAD)
@@ -476,6 +484,10 @@ Public Class InstaladorKubo
         cbTerceros.Checked = False
 
         MessageBox.Show("Descargas finalizadas", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        lbProcesandoDescargas.Visible = False
+        btDescargar.Visible = True
+
+
     End Sub
 
 #Region "MARCAR/DESMARCAR TODOS"
@@ -575,8 +587,6 @@ Public Class InstaladorKubo
                 End If
             End Try
         End If
-
-        'TODO que sandra me ayude con esto. Seguro que se puede hacer mejor
 
 
         Dim NotinSiNo As Integer = Nothing
@@ -806,5 +816,14 @@ Public Class InstaladorKubo
 
 
     End Sub
+
+
+
+
+
 #End Region
+
+
+
+
 End Class
