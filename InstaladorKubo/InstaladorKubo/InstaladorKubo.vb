@@ -33,6 +33,7 @@ Public Class InstaladorKubo
         lbRuta.Text = GetPathTemp()
         YaDescargados()
         Tooltips()
+        FicheroINI()
 
         'TODO Terminar proceso de Logger. Ahora mismo lo hace al revés
         Dim cabecera_log As String = "=====  INICIO APLICACIÓN  =====" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & My.User.Name
@@ -80,12 +81,17 @@ Public Class InstaladorKubo
 
     'RUTA ANTERIOR. SI EXISTÍA
     Private Function GetPathTemp() As String
-        'TODO Actualizar el txt por un INI usando la Clase
         'cIniArray.IniWrite("D:\NOTIN\NNOTIN.INI", "NET", "NOMBRESERVIDOR", "holaquetal")
-        If System.IO.File.Exists("C:\TEMP\InstaladorKubo\RutaAnterior.txt") Then
-            Return (System.IO.File.ReadAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt"))
+        Dim rutadescargasini = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", Nothing)
+        If rutadescargasini IsNot Nothing Then
+            Return rutadescargasini
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", rutadescargasini)
+        Else
+            'If System.IO.File.Exists("C:\TEMP\InstaladorKubo\RutaAnterior.txt") Then
+            '    Return (System.IO.File.ReadAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt"))
+            'End If
+            Return "C:\NOTIN\"
         End If
-        Return "C:\NOTIN\"
     End Function
 
     'COMPROBAR Unidad F
@@ -96,6 +102,16 @@ Public Class InstaladorKubo
         Return False
         'Dim CuentaReintentos As Integer = CuentaReintentos + 1
     End Function
+
+    Private Sub FicheroINI()
+        Dim odbc = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "2")
+        If odbc = 1 Then
+            btOdbc.BackColor = Color.LawnGreen
+        ElseIf odbc = 0 Then
+            btOdbc.BackColor = Color.LightSalmon
+        End If
+    End Sub
+
 
     'ACCEDER A URL NOTARIADO
     Private Sub lblAncert_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblAncert.LinkClicked
@@ -112,23 +128,29 @@ Public Class InstaladorKubo
         ' Si hago clic en Cancelar me quedo con la ruta anterior
         If String.IsNullOrEmpty(fbdDescarga.SelectedPath) OrElse fbdDescarga.SelectedPath = "\" Then
             fbdDescarga.SelectedPath = GetPathTemp()
+            fbdDescarga.SelectedPath = GetPathTemp.Remove(GetPathTemp.Length - 1)
         End If
 
-        RutaDescargas = fbdDescarga.SelectedPath & "\"
-        lbRuta.Text = RutaDescargas
-        File.WriteAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt", RutaDescargas)
+        'RutaDescargas = fbdDescarga.SelectedPath & "\"
+        'lbRuta.Text = RutaDescargas
+        'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
+        'File.WriteAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt", RutaDescargas)
         'Compruebo si el Directorio contiene espacios y pido que lo cambies
 
         'Busco si la ruta es raiz
         If fbdDescarga.SelectedPath.Contains(" ") OrElse fbdDescarga.SelectedPath.Contains("F:") OrElse
             System.Text.RegularExpressions.Regex.IsMatch(fbdDescarga.SelectedPath, "[A-Z](:\\)$") Then
-            MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades raíz", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            'Dejo la ruta defecto
-            Dim RutaDescargas = "C:\NOTIN" 'TODO probar si el Cancelar ya no deja \\
-            lbRuta.Text = RutaDescargas
-            YaDescargados() 'TODO Si elijo una ruta mala al volver a la buena no recarga los existentes
-            File.WriteAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt", RutaDescargas)
+            MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades de Red o Raíz.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Dim RutaDescargas = "C:\NOTIN\"
+            'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
+            'lbRuta.Text = RutaDescargas
+        Else
         End If
+        RutaDescargas = fbdDescarga.SelectedPath & "\"
+        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
+        lbRuta.Text = RutaDescargas
+        YaDescargados()
+        'lbRuta.Text = RutaDescargas
         'If btDirDescargas.DialogResult = Windows.Forms.DialogResult.Cancel Then
         '    RutaDescargas = GetPathTemp()
         'End If
@@ -764,10 +786,14 @@ Public Class InstaladorKubo
             If File.Exists("C:\Windows\SysWoW64\odbcconf.exe") Then
                 Shell("cmd /c " & "C:\Windows\SysWoW64\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}", AppWinStyle.Hide, False)
                 btOdbc.BackColor = Color.LawnGreen
+                MessageBox.Show("NotinSQL configurado correctamente hacia: " & nombre_servidor, "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "1")
                 'C:\Windows\SysWoW64\odbcconf.exe /A {CONFIGSYSDSN "SQL Server" "DSN=NOTINSQL|Server=clustersql"}
             ElseIf File.Exists("C:\Windows\System32\odbcconf.exe") Then
                 Shell("cmd /c " & "C:\Windows\System32\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}", AppWinStyle.Hide, False)
                 btOdbc.BackColor = Color.LawnGreen
+                MessageBox.Show("NotinSQL configurado correctamente hacia: " & nombre_servidor, "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "1")
             Else
                 MessageBox.Show("No se puede acceder a la utilidad ODBCConf", "Ejecutable no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
