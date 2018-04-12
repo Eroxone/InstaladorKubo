@@ -307,7 +307,7 @@ Public Class InstaladorKubo
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
         'TODO no llega a mostrar el label de Procesando Descargas
         lbProcesandoDescargas.Visible = True
-        btDescargar.Visible = False
+
         'TODO Mas adelante me meto con la barra de progreso en otro hilo
 
         'Oculto boton descargas e indico que estoy Descargando arhivos
@@ -436,7 +436,7 @@ Public Class InstaladorKubo
         Dim RutaCMDWget As String = RutaDescargas & WGETPANDORA
         'SI EXISTEN ESPACIOS EN LOS NOMBRES DE ARCHIVOS NO FUNCIONA YA QUE SI PONGO COMILLAS SI NO LLEVA ESPACIOS DA ERROR
 
-        Shell("cmd.exe /c " & RutaCMDWget, AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaCMDWget, AppWinStyle.MinimizedNoFocus, True)
         YaDescargados()
 
         'Ejecutar WGET Requisitos
@@ -444,7 +444,7 @@ Public Class InstaladorKubo
             Dim WGETPANDORAREQUISITOS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "requisitos.txt"" -P " & RutaDescargas & "Requisitos\"
             Dim RutaCMDWgetRequisitos As String = RutaDescargas & WGETPANDORAREQUISITOS
 
-            Shell("cmd.exe /c " & RutaCMDWgetRequisitos, AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaCMDWgetRequisitos, AppWinStyle.MinimizedNoFocus, True)
             YaDescargados()
         End If
 
@@ -453,7 +453,7 @@ Public Class InstaladorKubo
             Dim WGETPANDORATERCEROS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "terceros.txt"" -P " & RutaDescargas & "Software\"
             Dim RutaCMDWgetTerceros As String = RutaDescargas & WGETPANDORATERCEROS
 
-            Shell("cmd.exe /c " & RutaCMDWgetTerceros, AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaCMDWgetTerceros, AppWinStyle.MinimizedNoFocus, True)
             YaDescargados()
         End If
         'Ejecutar WGET Registro
@@ -461,7 +461,7 @@ Public Class InstaladorKubo
             Dim WGETPANDORREGISTRO As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "registro.txt"" -P " & RutaDescargas & "Registro\"
             Dim RutaCMDWgetRegistro As String = RutaDescargas & WGETPANDORREGISTRO
 
-            Shell("cmd.exe /c " & RutaCMDWgetRegistro, AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaCMDWgetRegistro, AppWinStyle.MinimizedNoFocus, True)
             YaDescargados()
         End If
 
