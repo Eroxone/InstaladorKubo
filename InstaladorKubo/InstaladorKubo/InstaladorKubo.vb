@@ -250,7 +250,7 @@ Public Class InstaladorKubo
         If System.IO.File.Exists(RutaDescargas & "PuestoNotinC.exe") Then
             Dim PuestoNotinC As New FileInfo(RutaDescargas & "PuestoNotinC.exe")
             Dim LengthPuestoNotinC As Long = PuestoNotinC.Length
-            If PuestoNotinC.Length = "15906392" Then
+            If PuestoNotinC.Length = "17034966" Then
                 cbPuestoNotin.BackColor = Color.LawnGreen
                 cbPuestoNotin.Enabled = False
             End If
@@ -780,7 +780,7 @@ Public Class InstaladorKubo
     End Sub
 #End Region
 
-
+#Region "ODBC"
     Private Sub btOdbc_Click(sender As Object, e As EventArgs) Handles btOdbc.Click
         If UnidadF() = True Then
             'Uso la funcion SHARED de la Clase LeerFicherosINI
@@ -806,5 +806,5 @@ Public Class InstaladorKubo
 
 
     End Sub
-
+#End Region
 End Class
