@@ -146,9 +146,8 @@ Public Class InstaladorKubo
             'lbRuta.Text = RutaDescargas
         Else
             RutaDescargas = fbdDescarga.SelectedPath & "\"
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
         End If
-
+        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
         lbRuta.Text = RutaDescargas
         YaDescargados()
 
