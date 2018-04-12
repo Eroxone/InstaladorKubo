@@ -437,7 +437,7 @@ Public Class InstaladorKubo
         'SI EXISTEN ESPACIOS EN LOS NOMBRES DE ARCHIVOS NO FUNCIONA YA QUE SI PONGO COMILLAS SI NO LLEVA ESPACIOS DA ERROR
 
         Shell("cmd.exe /c " & RutaCMDWget, AppWinStyle.MinimizedNoFocus, True)
-        YaDescargados()
+        '    YaDescargados()
 
         'Ejecutar WGET Requisitos
         If cbRequisitos.Checked Then
@@ -445,7 +445,7 @@ Public Class InstaladorKubo
             Dim RutaCMDWgetRequisitos As String = RutaDescargas & WGETPANDORAREQUISITOS
 
             Shell("cmd.exe /c " & RutaCMDWgetRequisitos, AppWinStyle.MinimizedNoFocus, True)
-            YaDescargados()
+            '       YaDescargados()
         End If
 
         'Ejecutar WGET Terceros
@@ -454,7 +454,7 @@ Public Class InstaladorKubo
             Dim RutaCMDWgetTerceros As String = RutaDescargas & WGETPANDORATERCEROS
 
             Shell("cmd.exe /c " & RutaCMDWgetTerceros, AppWinStyle.MinimizedNoFocus, True)
-            YaDescargados()
+            '     YaDescargados()
         End If
         'Ejecutar WGET Registro
         If cbConfiguraNotin.Checked Then
@@ -462,9 +462,9 @@ Public Class InstaladorKubo
             Dim RutaCMDWgetRegistro As String = RutaDescargas & WGETPANDORREGISTRO
 
             Shell("cmd.exe /c " & RutaCMDWgetRegistro, AppWinStyle.MinimizedNoFocus, True)
-            YaDescargados()
+            ' YaDescargados()
         End If
-
+        YaDescargados()
 #End Region
 
         'Borrar ficheros txt escritos
