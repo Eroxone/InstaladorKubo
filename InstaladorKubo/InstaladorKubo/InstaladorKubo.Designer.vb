@@ -62,6 +62,8 @@ Partial Class InstaladorKubo
         Me.tlpNotinKubo = New System.Windows.Forms.ToolTip(Me.components)
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
+        Me.lbTamaño = New System.Windows.Forms.Label()
+        Me.tlpTamaño = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -168,6 +170,7 @@ Partial Class InstaladorKubo
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox1.Controls.Add(Me.lbTamaño)
         Me.GroupBox1.Controls.Add(Me.cbOffice2016odt)
         Me.GroupBox1.Controls.Add(Me.btTodo)
         Me.GroupBox1.Controls.Add(Me.lbSoftwaredescargable)
@@ -450,7 +453,11 @@ Partial Class InstaladorKubo
         '
         'NotifyIcon1
         '
-        Me.NotifyIcon1.Text = "NotifyIcon1"
+        Me.NotifyIcon1.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.NotifyIcon1.BalloonTipText = "Ejecutando InstaladorKubo"
+        Me.NotifyIcon1.BalloonTipTitle = "Instalador Kubo"
+        Me.NotifyIcon1.Icon = CType(resources.GetObject("NotifyIcon1.Icon"), System.Drawing.Icon)
+        Me.NotifyIcon1.Text = "InstaladorKubo"
         Me.NotifyIcon1.Visible = True
         '
         'lbProcesandoDescargas
@@ -464,6 +471,21 @@ Partial Class InstaladorKubo
         Me.lbProcesandoDescargas.TabIndex = 36
         Me.lbProcesandoDescargas.Text = "Procesando Descargas..."
         Me.lbProcesandoDescargas.Visible = False
+        '
+        'lbTamaño
+        '
+        Me.lbTamaño.AutoSize = True
+        Me.lbTamaño.Location = New System.Drawing.Point(12, 299)
+        Me.lbTamaño.Name = "lbTamaño"
+        Me.lbTamaño.Size = New System.Drawing.Size(71, 20)
+        Me.lbTamaño.TabIndex = 21
+        Me.lbTamaño.Text = "Tamaño"
+        '
+        'tlpTamaño
+        '
+        Me.tlpTamaño.IsBalloon = True
+        Me.tlpTamaño.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.tlpTamaño.ToolTipTitle = "Tamaño Paquetes seleccionados"
         '
         'InstaladorKubo
         '
@@ -536,4 +558,6 @@ Partial Class InstaladorKubo
     Friend WithEvents tlpNotinKubo As ToolTip
     Friend WithEvents NotifyIcon1 As NotifyIcon
     Friend WithEvents lbProcesandoDescargas As Label
+    Friend WithEvents lbTamaño As Label
+    Friend WithEvents tlpTamaño As ToolTip
 End Class

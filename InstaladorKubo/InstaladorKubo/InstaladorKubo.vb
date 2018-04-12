@@ -306,7 +306,7 @@ Public Class InstaladorKubo
     'COMENZAR DESCARGAS
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
         'TODO no llega a mostrar el label de Procesando Descargas
-        lbProcesandoDescargas.Visible = True
+        'lbProcesandoDescargas.Visible = True
 
         'TODO Mas adelante me meto con la barra de progreso en otro hilo
 
@@ -354,16 +354,22 @@ Public Class InstaladorKubo
         End If
 
 #Region "CREACIÓN FICHEROS RUTAS DESCARGAS"
+        Dim tamañodescargas As Integer = Nothing
 
+        'TODO evento load tamaño descargas al btchekbox clic
         'Creación contenido del fichero
         ' MAS adelante cambiar Rutas para ordenar las descargas
         If cbOffice2003.Checked Then
             texto = texto & PuestoNotin & "Office2003.exe" & vbCrLf
+            tamañodescargas = tamañodescargas + "493"
+            lbTamaño.Text = tamañodescargas & " MB"
         End If
 
         If cbOffice2016.Checked Then
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
+            tamañodescargas = tamañodescargas + "705"
+            lbTamaño.Text = tamañodescargas & " MB"
         End If
 
         If cbOffice2016odt.Checked Then
