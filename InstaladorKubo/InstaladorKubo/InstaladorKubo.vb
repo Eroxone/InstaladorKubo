@@ -137,7 +137,7 @@ Public Class InstaladorKubo
         'File.WriteAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt", RutaDescargas)
         'Compruebo si el Directorio contiene espacios y pido que lo cambies
 
-        'Busco si la ruta es raiz
+        'Busco si la ruta es raiz o contiene espacios
         If fbdDescarga.SelectedPath.Contains(" ") OrElse fbdDescarga.SelectedPath.Contains("F:") OrElse
             System.Text.RegularExpressions.Regex.IsMatch(fbdDescarga.SelectedPath, "[A-Z](:\\)$") Then
             MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades de Red o Raíz.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -145,11 +145,13 @@ Public Class InstaladorKubo
             'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
             'lbRuta.Text = RutaDescargas
         Else
+            RutaDescargas = fbdDescarga.SelectedPath & "\"
         End If
-        RutaDescargas = fbdDescarga.SelectedPath & "\"
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
         lbRuta.Text = RutaDescargas
         YaDescargados()
+
+
         'lbRuta.Text = RutaDescargas
         'If btDirDescargas.DialogResult = Windows.Forms.DialogResult.Cancel Then
         '    RutaDescargas = GetPathTemp()
