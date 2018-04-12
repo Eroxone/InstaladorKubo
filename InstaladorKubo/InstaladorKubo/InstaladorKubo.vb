@@ -140,14 +140,15 @@ Public Class InstaladorKubo
         'Busco si la ruta es raiz o contiene espacios
         If fbdDescarga.SelectedPath.Contains(" ") OrElse fbdDescarga.SelectedPath.Contains("F:") OrElse
             System.Text.RegularExpressions.Regex.IsMatch(fbdDescarga.SelectedPath, "[A-Z](:\\)$") Then
-            MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades de Red o Raíz.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Dim RutaDescargas = "C:\NOTIN\"
+            MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades de red o raíz.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            'Dim RutaDescargas = "C:\NOTIN\"
             'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
             'lbRuta.Text = RutaDescargas
         Else
             RutaDescargas = fbdDescarga.SelectedPath & "\"
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
         End If
-        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
+
         lbRuta.Text = RutaDescargas
         YaDescargados()
 
