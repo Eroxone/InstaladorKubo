@@ -182,13 +182,13 @@ Public Class InstaladorKubo
             Dim Length2003 As Long = Archivo2003.Length
             If Archivo2003.Length = "517573930" Then
                 cbOffice2003.BackColor = Color.LawnGreen
-                cbOffice2003.Enabled = False
+                '         cbOffice2003.Enabled = False
             ElseIf Archivo2003.Length < "517573930" Then
                 cbOffice2003.BackColor = Color.LightSalmon
             End If
         Else
             cbOffice2003.BackColor = SystemColors.Control
-            cbOffice2003.Enabled = True
+            '     cbOffice2003.Enabled = True
         End If
 
         If System.IO.File.Exists(RutaDescargas & "Registro\ConfigAccess.reg") Then
@@ -196,11 +196,11 @@ Public Class InstaladorKubo
             Dim LengthNotin As Long = ConfigNotin.Length
             If ConfigNotin.Length = "16688" Then
                 cbConfiguraNotin.BackColor = Color.LawnGreen
-                cbConfiguraNotin.Enabled = False
+                '        cbConfiguraNotin.Enabled = False
             End If
         Else
             cbConfiguraNotin.BackColor = SystemColors.Control
-            cbConfiguraNotin.Enabled = True
+            '     cbConfiguraNotin.Enabled = True
         End If
 
         If System.IO.File.Exists(RutaDescargas & "Office2016.exe") Then
@@ -208,13 +208,13 @@ Public Class InstaladorKubo
             Dim Length2016 As Long = Archivo2016.Length
             If Archivo2016.Length = "739967123" Then
                 cbOffice2016.BackColor = Color.LawnGreen
-                cbOffice2016.Enabled = False
+                '         cbOffice2016.Enabled = False
             ElseIf Archivo2016.Length < "739967123" Then
                 cbOffice2016.BackColor = Color.LightSalmon
             End If
         Else
             cbOffice2016.BackColor = SystemColors.Control
-            cbOffice2016.Enabled = True
+            '     cbOffice2016.Enabled = True
         End If
 
         If System.IO.File.Exists(RutaDescargas & "Office2016odt.exe") Then
@@ -222,13 +222,13 @@ Public Class InstaladorKubo
             Dim Length2016odt As Long = Archivo2016odt.Length
             If Archivo2016odt.Length = "2452664263" Then
                 cbOffice2016odt.BackColor = Color.LawnGreen
-                cbOffice2016odt.Enabled = False
+                '        cbOffice2016odt.Enabled = False
             ElseIf Archivo2016odt.Length < "2452664263" Then
                 cbOffice2016odt.BackColor = Color.LightSalmon
             End If
         Else
             cbOffice2016odt.BackColor = SystemColors.Control
-            cbOffice2016odt.Enabled = True
+            '      cbOffice2016odt.Enabled = True
         End If
 
         If System.IO.File.Exists(RutaDescargas & "ConfiguraWord2016.exe") Then
@@ -236,11 +236,11 @@ Public Class InstaladorKubo
             Dim LengthConfig2016 As Long = Config2016.Length
             If Config2016.Length = "349696" Then
                 cbConfiguraWord2016.BackColor = Color.LawnGreen
-                cbConfiguraWord2016.Enabled = False
+                '        cbConfiguraWord2016.Enabled = False
             End If
         Else
             cbConfiguraWord2016.BackColor = SystemColors.Control
-            cbConfiguraWord2016.Enabled = True
+            '      cbConfiguraWord2016.Enabled = True
         End If
 
         If System.IO.File.Exists(RutaDescargas & "jnemo-latest.exe") Then
@@ -248,11 +248,11 @@ Public Class InstaladorKubo
             Dim LengthjNemo As Long = jNemo.Length
             If jNemo.Length = "12672337" Then
                 cbNemo.BackColor = Color.LawnGreen
-                cbNemo.Enabled = False
+                '         cbNemo.Enabled = False
             End If
         Else
             cbNemo.BackColor = SystemColors.Control
-            cbNemo.Enabled = True
+            '     cbNemo.Enabled = True
         End If
 
         If System.IO.File.Exists(RutaDescargas & "PuestoNotinC.exe") Then
@@ -260,11 +260,11 @@ Public Class InstaladorKubo
             Dim LengthPuestoNotinC As Long = PuestoNotinC.Length
             If PuestoNotinC.Length = "17034966" Then
                 cbPuestoNotin.BackColor = Color.LawnGreen
-                cbPuestoNotin.Enabled = False
+                '        cbPuestoNotin.Enabled = False
             End If
         Else
             cbPuestoNotin.BackColor = SystemColors.Control
-            cbPuestoNotin.Enabled = True
+            '    cbPuestoNotin.Enabled = True
         End If
 
         'REQUISITOS. Cuento los archivos en el directorio
@@ -273,30 +273,30 @@ Public Class InstaladorKubo
 
             If ArchivosenRequisitos.Count = 4 Then
                 cbRequisitos.BackColor = Color.LawnGreen
-                cbRequisitos.Enabled = False
+                '                cbRequisitos.Enabled = False
             Else
                 cbRequisitos.BackColor = SystemColors.Control
             End If
         Else
             cbRequisitos.BackColor = SystemColors.Control
-            cbRequisitos.Enabled = True
+            '        cbRequisitos.Enabled = True
         End If
 
         'ANCERT Como puede variar el tamaño solo miro que exista el fichero
         If System.IO.File.Exists(RutaDescargas & "SFeren-2.8.exe") Then
             cbSferen.BackColor = Color.LawnGreen
-            cbSferen.Enabled = False
+            '            cbSferen.Enabled = False
         Else
             cbSferen.BackColor = SystemColors.Control
-            cbSferen.Enabled = True
+            '          cbSferen.Enabled = True
         End If
 
         If System.IO.File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
             cbPasarelaSigno.BackColor = Color.LawnGreen
-            cbPasarelaSigno.Enabled = False
+            '       cbPasarelaSigno.Enabled = False
         Else
             cbPasarelaSigno.BackColor = SystemColors.Control
-            cbPasarelaSigno.Enabled = True
+            '     cbPasarelaSigno.Enabled = True
         End If
 
         'SOFTWARE TERCEROS
