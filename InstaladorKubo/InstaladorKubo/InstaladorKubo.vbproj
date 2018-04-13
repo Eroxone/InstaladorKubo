@@ -165,6 +165,7 @@
   <ItemGroup>
     <Content Include="Cartmanmago.ico" />
     <Content Include="EricCartman.ico" />
+    <None Include="versioninternet.ini" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

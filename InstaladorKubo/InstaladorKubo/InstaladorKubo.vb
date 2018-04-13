@@ -26,7 +26,6 @@ Public Class InstaladorKubo
 
     Private Sub frmInstaladorNotin_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-
         Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
 
         SistemaOperativo()
@@ -38,6 +37,14 @@ Public Class InstaladorKubo
         'TODO Terminar proceso de Logger. Ahora mismo lo hace al revés
         Dim cabecera_log As String = "=====  INICIO APLICACIÓN  =====" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & My.User.Name
         Logger(cabecera_log)
+
+    End Sub
+
+
+    'TODO Comprobar version internet
+    Private Sub ComprobarVersion()
+        'Antes crear ruta si no existe y descargar el version ini de internet. controlar posible error de conexion.
+        Dim versioninternet = cIniArray.IniGet("C:\TEMP\InstaladorKubo\versioninternet", "CONTROL", "Version")
 
     End Sub
 
