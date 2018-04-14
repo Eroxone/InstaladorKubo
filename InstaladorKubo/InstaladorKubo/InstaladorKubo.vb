@@ -502,9 +502,15 @@ Public Class InstaladorKubo
         MessageBox.Show("Descargas finalizadas", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
+    'Mensajes de acción
     Private Sub btDescargar_MouseDown(sender As Object, e As MouseEventArgs) Handles btDescargar.MouseDown
         lbProcesandoDescargas.Visible = True
     End Sub
+
+    Private Sub btNotinKubo_MouseDown(sender As Object, e As MouseEventArgs) Handles btNotinKubo.MouseDown
+        lbInstalando.Visible = True
+    End Sub
+
 
 #Region "MARCAR/DESMARCAR TODOS"
     ' Marcar TODOS. Opcion variable Marcar/Desmarcar todos
@@ -566,7 +572,6 @@ Public Class InstaladorKubo
 
     Private Sub btNotinKubo_Click(sender As Object, e As EventArgs) Handles btNotinKubo.Click
 
-        '--------------------
         'Mientras unidad F no valida y usuario pulse reintentar
 
         Dim QueHacerF As DialogResult
@@ -773,6 +778,7 @@ Public Class InstaladorKubo
         Else
         End If
 
+        lbInstalando.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 #End Region
@@ -832,8 +838,6 @@ Public Class InstaladorKubo
 
 
     End Sub
-
-
 
 
 #End Region

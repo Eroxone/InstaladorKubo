@@ -64,6 +64,10 @@ Partial Class InstaladorKubo
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
         Me.tlpTamaño = New System.Windows.Forms.ToolTip(Me.components)
+        Me.lbInstalando = New System.Windows.Forms.Label()
+        Me.btFramework = New System.Windows.Forms.Button()
+        Me.btDirectivas = New System.Windows.Forms.Button()
+        Me.btJava = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -99,7 +103,7 @@ Partial Class InstaladorKubo
         '
         Me.lb64bits.AutoSize = True
         Me.lb64bits.Font = New System.Drawing.Font("Bookman Old Style", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lb64bits.Location = New System.Drawing.Point(12, 52)
+        Me.lb64bits.Location = New System.Drawing.Point(12, 46)
         Me.lb64bits.Name = "lb64bits"
         Me.lb64bits.Size = New System.Drawing.Size(128, 19)
         Me.lb64bits.TabIndex = 26
@@ -109,7 +113,7 @@ Partial Class InstaladorKubo
         '
         Me.lbUsuario.AutoSize = True
         Me.lbUsuario.Font = New System.Drawing.Font("Bookman Old Style", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbUsuario.Location = New System.Drawing.Point(12, 78)
+        Me.lbUsuario.Location = New System.Drawing.Point(12, 65)
         Me.lbUsuario.Name = "lbUsuario"
         Me.lbUsuario.Size = New System.Drawing.Size(63, 19)
         Me.lbUsuario.TabIndex = 25
@@ -136,7 +140,7 @@ Partial Class InstaladorKubo
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.GroupBox3.Size = New System.Drawing.Size(287, 108)
+        Me.GroupBox3.Size = New System.Drawing.Size(286, 97)
         Me.GroupBox3.TabIndex = 34
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Sistema"
@@ -203,13 +207,14 @@ Partial Class InstaladorKubo
         Me.lbMBDescargas.Size = New System.Drawing.Size(88, 23)
         Me.lbMBDescargas.TabIndex = 21
         Me.lbMBDescargas.Text = "Tamaño"
+        Me.lbMBDescargas.Visible = False
         '
         'cbOffice2016odt
         '
         Me.cbOffice2016odt.AutoSize = True
         Me.cbOffice2016odt.Font = New System.Drawing.Font("Bookman Old Style", 10.2!)
         Me.cbOffice2016odt.Location = New System.Drawing.Point(21, 107)
-        Me.cbOffice2016odt.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cbOffice2016odt.Margin = New System.Windows.Forms.Padding(4)
         Me.cbOffice2016odt.Name = "cbOffice2016odt"
         Me.cbOffice2016odt.Size = New System.Drawing.Size(239, 25)
         Me.cbOffice2016odt.TabIndex = 20
@@ -394,6 +399,9 @@ Partial Class InstaladorKubo
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox2.Controls.Add(Me.btJava)
+        Me.GroupBox2.Controls.Add(Me.btDirectivas)
+        Me.GroupBox2.Controls.Add(Me.btFramework)
         Me.GroupBox2.Controls.Add(Me.btOdbc)
         Me.GroupBox2.Controls.Add(Me.btNotinKubo)
         Me.GroupBox2.Font = New System.Drawing.Font("Bookman Old Style", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -408,13 +416,13 @@ Partial Class InstaladorKubo
         '
         'btOdbc
         '
-        Me.btOdbc.Font = New System.Drawing.Font("Bookman Old Style", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btOdbc.Location = New System.Drawing.Point(7, 166)
-        Me.btOdbc.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btOdbc.Font = New System.Drawing.Font("Bookman Old Style", 12.0!)
+        Me.btOdbc.Location = New System.Drawing.Point(7, 121)
+        Me.btOdbc.Margin = New System.Windows.Forms.Padding(4)
         Me.btOdbc.Name = "btOdbc"
-        Me.btOdbc.Size = New System.Drawing.Size(175, 33)
+        Me.btOdbc.Size = New System.Drawing.Size(201, 33)
         Me.btOdbc.TabIndex = 27
-        Me.btOdbc.Text = "Configurar ODBC"
+        Me.btOdbc.Text = "Conf. ODBC"
         Me.btOdbc.UseVisualStyleBackColor = True
         '
         'lbRuta
@@ -422,7 +430,7 @@ Partial Class InstaladorKubo
         Me.lbRuta.AutoSize = True
         Me.lbRuta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lbRuta.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRuta.Location = New System.Drawing.Point(21, 601)
+        Me.lbRuta.Location = New System.Drawing.Point(21, 598)
         Me.lbRuta.Name = "lbRuta"
         Me.lbRuta.Size = New System.Drawing.Size(74, 19)
         Me.lbRuta.TabIndex = 31
@@ -468,7 +476,7 @@ Partial Class InstaladorKubo
         Me.lbProcesandoDescargas.AutoSize = True
         Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.DarkRed
-        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(280, 624)
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(16, 626)
         Me.lbProcesandoDescargas.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
         Me.lbProcesandoDescargas.Size = New System.Drawing.Size(254, 25)
@@ -482,11 +490,54 @@ Partial Class InstaladorKubo
         Me.tlpTamaño.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.tlpTamaño.ToolTipTitle = "Tamaño Paquetes seleccionados"
         '
+        'lbInstalando
+        '
+        Me.lbInstalando.AutoSize = True
+        Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
+        Me.lbInstalando.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.lbInstalando.ForeColor = System.Drawing.Color.DarkRed
+        Me.lbInstalando.Location = New System.Drawing.Point(505, 515)
+        Me.lbInstalando.Name = "lbInstalando"
+        Me.lbInstalando.Size = New System.Drawing.Size(270, 25)
+        Me.lbInstalando.TabIndex = 37
+        Me.lbInstalando.Text = "Realizando Instalaciones..."
+        Me.lbInstalando.Visible = False
+        '
+        'btFramework
+        '
+        Me.btFramework.Location = New System.Drawing.Point(7, 172)
+        Me.btFramework.Name = "btFramework"
+        Me.btFramework.Size = New System.Drawing.Size(201, 33)
+        Me.btFramework.TabIndex = 28
+        Me.btFramework.Text = "Framework 3.5"
+        Me.btFramework.UseVisualStyleBackColor = True
+        '
+        'btDirectivas
+        '
+        Me.btDirectivas.Enabled = False
+        Me.btDirectivas.Location = New System.Drawing.Point(7, 226)
+        Me.btDirectivas.Name = "btDirectivas"
+        Me.btDirectivas.Size = New System.Drawing.Size(201, 33)
+        Me.btDirectivas.TabIndex = 29
+        Me.btDirectivas.Text = "Conf. Directivas"
+        Me.btDirectivas.UseVisualStyleBackColor = True
+        '
+        'btJava
+        '
+        Me.btJava.Enabled = False
+        Me.btJava.Location = New System.Drawing.Point(7, 279)
+        Me.btJava.Name = "btJava"
+        Me.btJava.Size = New System.Drawing.Size(201, 33)
+        Me.btJava.TabIndex = 30
+        Me.btJava.Text = "Excep. Java"
+        Me.btJava.UseVisualStyleBackColor = True
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(917, 660)
+        Me.Controls.Add(Me.lbInstalando)
         Me.Controls.Add(Me.lbProcesandoDescargas)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
@@ -555,4 +606,8 @@ Partial Class InstaladorKubo
     Friend WithEvents lbProcesandoDescargas As Label
     Friend WithEvents lbMBDescargas As Label
     Friend WithEvents tlpTamaño As ToolTip
+    Friend WithEvents lbInstalando As Label
+    Friend WithEvents btJava As Button
+    Friend WithEvents btDirectivas As Button
+    Friend WithEvents btFramework As Button
 End Class
