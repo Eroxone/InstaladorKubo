@@ -122,6 +122,14 @@ Public Class InstaladorKubo
         ElseIf odbc = 0 Then
             btOdbc.BackColor = Color.LightSalmon
         End If
+
+        Dim framework = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "REQUISITOS", "FRAMEWORK35", "2")
+        If framework = 1 Then
+            btFramework.BackColor = Color.LawnGreen
+        Else
+            btFramework.BackColor = SystemColors.Control
+        End If
+
     End Sub
 
 
@@ -400,7 +408,7 @@ Public Class InstaladorKubo
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "Office2003PrimaryInterop.msi" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "VisualTools2005.exe" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "VisualTools2015.exe" & vbCrLf
-            requisitos = requisitos & PuestoNotin & "Requisitos/" & "Framework35.bat" & vbCrLf
+            '   requisitos = requisitos & PuestoNotin & "Requisitos/" & "Framework35.bat" & vbCrLf
         End If
 
         If cbSferen.Checked Then
@@ -562,8 +570,9 @@ Public Class InstaladorKubo
     End Sub
 
 
-
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
+        'Si tengo que hacer limpieza de ficheros lo haré aqui
+        File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
         Me.Close()
     End Sub
 
@@ -670,7 +679,7 @@ Public Class InstaladorKubo
 
         RequisitosSiNo = MessageBox.Show("¿Instalar Requisitos .NET?", "Pre-Requisitos", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If RequisitosSiNo = 6 Then
-            Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
+            'Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\KryptonSuite300.msi", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\Office2003PrimaryInterop.msi", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2005.exe", AppWinStyle.Hide, True)
@@ -817,6 +826,8 @@ Public Class InstaladorKubo
         If UnidadF() = True Then
             'Uso la funcion SHARED de la Clase LeerFicherosINI
             Dim nombre_servidor As String = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "NET", "NOMBRESERVIDOR", "SERVIDOR")
+
+
             If File.Exists("C:\Windows\SysWoW64\odbcconf.exe") Then
                 Shell("cmd /c " & "C:\Windows\SysWoW64\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}", AppWinStyle.Hide, False)
                 btOdbc.BackColor = Color.LawnGreen
@@ -835,12 +846,37 @@ Public Class InstaladorKubo
             MessageBox.Show("No se puede conectar con el Servidor (F:)", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
             btOdbc.BackColor = Color.LightSalmon
         End If
+        
+            End Sub
+    #End Region
 
+
+    Public Sub RunAsAdmin(strFileName As String)
+
+        Dim proc As New Process()
+
+        proc.StartInfo.FileName = strFileName
+        proc.StartInfo.UseShellExecute = True
+        proc.StartInfo.Verb = "runas"
+        proc.Start()
 
     End Sub
 
+    Private Sub btFramework_Click(sender As Object, e As EventArgs) Handles btFramework.Click
+        Dim framework As String = "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All"
+        File.AppendAllText(RutaDescargas & "Requisitos\Framework35.bat", "@echo off" & vbCrLf)
+        File.AppendAllText(RutaDescargas & "Requisitos\Framework35.bat", framework)
+        'File.AppendAllText(RutaDescargas & "Requisitos\Framework35.bat", "pause")
+        'Borro el archivo BAT al SALIR del formulario
+        RunAsAdmin(RutaDescargas & "Requisitos\Framework35.bat")
 
-#End Region
+        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "REQUISITOS", "FRAMEWORK35", "1")
+        btFramework.BackColor = Color.LawnGreen
+
+
+        ' Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
+    End Sub
+
 
     'TODO pruebas captura ventana
 
