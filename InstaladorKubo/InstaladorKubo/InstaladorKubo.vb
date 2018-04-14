@@ -323,12 +323,7 @@ Public Class InstaladorKubo
     End Sub
 #End Region
 
-    ' Funcion calcular tamaño descarga chequeada
-
-
-
-
-
+    'TODO Funcion calcular tamaño descarga chequeada
 
 
     'COMENZAR DESCARGAS
@@ -348,7 +343,6 @@ Public Class InstaladorKubo
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error de Ruta", MessageBoxButtons.OK)
         End Try
-
 
 
         'Comprobamos si existe ya wget.exe
@@ -573,6 +567,7 @@ Public Class InstaladorKubo
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
         'Si tengo que hacer limpieza de ficheros lo haré aqui
         File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
+        File.Delete(RutaDescargas & "odbc32.bat")
         Me.Close()
     End Sub
 
@@ -827,30 +822,45 @@ Public Class InstaladorKubo
             'Uso la funcion SHARED de la Clase LeerFicherosINI
             Dim nombre_servidor As String = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "NET", "NOMBRESERVIDOR", "SERVIDOR")
 
-
             If File.Exists("C:\Windows\SysWoW64\odbcconf.exe") Then
-                Shell("cmd /c " & "C:\Windows\SysWoW64\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}", AppWinStyle.Hide, False)
+                Dim odbc64 As String = "C:\Windows\SysWoW64\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}"
+                File.WriteAllText(RutaDescargas & "odbc32.bat", odbc64 & vbCrLf)
+
+                RunAsAdmin(RutaDescargas & "odbc32.bat")
+
                 btOdbc.BackColor = Color.LawnGreen
-                MessageBox.Show("NotinSQL configurado correctamente hacia: " & nombre_servidor, "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor & ". Revisa ODBC creado.", "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Process.Start("C:\Windows\SysWoW64\odbcad32.exe")
                 cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "1")
+                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "SQLSERVER", nombre_servidor)
                 'C:\Windows\SysWoW64\odbcconf.exe /A {CONFIGSYSDSN "SQL Server" "DSN=NOTINSQL|Server=clustersql"}
             ElseIf File.Exists("C:\Windows\System32\odbcconf.exe") Then
-                Shell("cmd /c " & "C:\Windows\System32\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}", AppWinStyle.Hide, False)
+                Dim odbc32 As String = "C:\Windows\System32\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}"
+                File.WriteAllText(RutaDescargas & "odbc32.bat", odbc32 & vbCrLf)
+
+                RunAsAdmin(RutaDescargas & "odbc32.bat")
+
                 btOdbc.BackColor = Color.LawnGreen
-                MessageBox.Show("NotinSQL configurado correctamente hacia: " & nombre_servidor, "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor & ". Revisa ODBC creado.", "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Process.Start("C:\Windows\System32\odbcad32.exe")
+
+
                 cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "1")
+                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "SQLSERVER", nombre_servidor)
             Else
-                MessageBox.Show("No se puede acceder a la utilidad ODBCConf", "Ejecutable no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                MessageBox.Show("No se puede acceder a la utilidad ODBCConf.", "Ejecutable no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
         Else
             MessageBox.Show("No se puede conectar con el Servidor (F:)", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "0")
             btOdbc.BackColor = Color.LightSalmon
+
         End If
-        
-            End Sub
-    #End Region
 
+    End Sub
+#End Region
 
+    'EJECUTAR PROCESOS COMO ADMINISTRADOR
     Public Sub RunAsAdmin(strFileName As String)
 
         Dim proc As New Process()
