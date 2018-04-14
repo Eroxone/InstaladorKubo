@@ -2,6 +2,11 @@
 Imports System.Text
 Imports InstaladorKubo.LeerFicherosINI
 
+
+'WEB DE INSTALACIÓN
+'https://juanjonet.000webhostapp.com/InstaladorKubo.application
+
+
 Public Class InstaladorKubo
     'TODO Establecer contraseña de ejecución.
 
