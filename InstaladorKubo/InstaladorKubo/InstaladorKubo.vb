@@ -937,7 +937,7 @@ Public Class InstaladorKubo
 
         ' Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
     End Sub
-
+    'TODO Arreglar esta funcion. Debe llamarse desde cmd
     Private Sub btExcepJava_Click(sender As Object, e As EventArgs) Handles btExcepJava.Click
         My.Computer.Network.DownloadFile(PuestoNotin & "Utiles\ExcepcionesJava.bat", RutaDescargas & "Utiles\ExcepcionesJava.bat", "juanjo", "Palomeras24", False, 20000, True)
         RunAsAdmin(PuestoNotin & "Utiles\ExcepcionesJava.bat")
