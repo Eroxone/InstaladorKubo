@@ -193,7 +193,7 @@ Public Class InstaladorKubo
             'Obtener tamaño del archivo
             Dim Archivo2003 As New FileInfo(RutaDescargas & "Office2003.exe")
             Dim Length2003 As Long = Archivo2003.Length
-            If Archivo2003.Length = "517573930" Then
+            If Archivo2003.Length = "517577131" Then
                 cbOffice2003.BackColor = Color.LawnGreen
                 '         cbOffice2003.Enabled = False
             ElseIf Archivo2003.Length < "517573930" Then
