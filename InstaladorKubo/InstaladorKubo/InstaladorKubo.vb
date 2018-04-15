@@ -662,7 +662,7 @@ Public Class InstaladorKubo
 
         '  Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalFocus, False)
 
-        Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Desatendido.MST /qb-", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup.mst /qb-", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
         Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.NormalFocus, True)
