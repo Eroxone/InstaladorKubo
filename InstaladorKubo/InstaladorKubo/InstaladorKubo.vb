@@ -196,7 +196,7 @@ Public Class InstaladorKubo
             If Archivo2003.Length = "517577131" Then
                 cbOffice2003.BackColor = Color.LawnGreen
                 '         cbOffice2003.Enabled = False
-            ElseIf Archivo2003.Length < "517573930" Then
+            ElseIf Archivo2003.Length < "517577131" Then
                 cbOffice2003.BackColor = Color.LightSalmon
             End If
         Else
