@@ -375,6 +375,7 @@ Public Class InstaladorKubo
         ' MAS adelante cambiar Rutas para ordenar las descargas
         If cbOffice2003.Checked Then
             texto = texto & PuestoNotin & "Office2003.exe" & vbCrLf
+            texto = texto & PuestoNotin & "Setup.mst" & vbCrLf
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "OFFICE2003", "1")
         End If
 
@@ -659,8 +660,10 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PuestoNotinC.exe " & "C:\", AppWinStyle.NormalFocus, True)
 
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2003.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-
+        'Setup MST que personaliza la instalación de Office 2003
+        File.Copy(RutaDescargas & "Setup.mst", RutaDescargas & "Office2003\Setup.mst", True)
         '  Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalFocus, False)
+
 
         Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup.mst /qb-", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
