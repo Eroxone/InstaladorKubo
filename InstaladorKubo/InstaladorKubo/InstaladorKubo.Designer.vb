@@ -68,6 +68,8 @@ Partial Class InstaladorKubo
         Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
         Me.tlpTamaño = New System.Windows.Forms.ToolTip(Me.components)
         Me.lbInstalando = New System.Windows.Forms.Label()
+        Me.tlpAncert = New System.Windows.Forms.ToolTip(Me.components)
+        Me.tlpOffice2003 = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -187,7 +189,7 @@ Partial Class InstaladorKubo
         Me.GroupBox1.Controls.Add(Me.lbPaquetes)
         Me.GroupBox1.Controls.Add(Me.cbNemo)
         Me.GroupBox1.Controls.Add(Me.cbPuestoNotin)
-        Me.GroupBox1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.GroupBox1.Cursor = System.Windows.Forms.Cursors.Default
         Me.GroupBox1.Font = New System.Drawing.Font("Bookman Old Style", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(21, 135)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
@@ -251,9 +253,9 @@ Partial Class InstaladorKubo
         Me.cbOffice2003.Location = New System.Drawing.Point(21, 50)
         Me.cbOffice2003.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbOffice2003.Name = "cbOffice2003"
-        Me.cbOffice2003.Size = New System.Drawing.Size(127, 25)
+        Me.cbOffice2003.Size = New System.Drawing.Size(170, 25)
         Me.cbOffice2003.TabIndex = 0
-        Me.cbOffice2003.Text = "Office 2003"
+        Me.cbOffice2003.Text = "Office 2003 ORK"
         Me.cbOffice2003.UseVisualStyleBackColor = True
         '
         'cbOffice2016
@@ -272,7 +274,7 @@ Partial Class InstaladorKubo
         '
         Me.cbConfiguraNotin.AutoSize = True
         Me.cbConfiguraNotin.Font = New System.Drawing.Font("Bookman Old Style", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbConfiguraNotin.Location = New System.Drawing.Point(189, 50)
+        Me.cbConfiguraNotin.Location = New System.Drawing.Point(216, 50)
         Me.cbConfiguraNotin.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbConfiguraNotin.Name = "cbConfiguraNotin"
         Me.cbConfiguraNotin.Size = New System.Drawing.Size(153, 23)
@@ -333,7 +335,7 @@ Partial Class InstaladorKubo
         '
         Me.cbConfiguraWord2016.AutoSize = True
         Me.cbConfiguraWord2016.Font = New System.Drawing.Font("Bookman Old Style", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbConfiguraWord2016.Location = New System.Drawing.Point(189, 78)
+        Me.cbConfiguraWord2016.Location = New System.Drawing.Point(216, 78)
         Me.cbConfiguraWord2016.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbConfiguraWord2016.Name = "cbConfiguraWord2016"
         Me.cbConfiguraWord2016.Size = New System.Drawing.Size(160, 23)
@@ -532,6 +534,16 @@ Partial Class InstaladorKubo
         Me.lbInstalando.Text = "Realizando Instalaciones..."
         Me.lbInstalando.Visible = False
         '
+        'tlpAncert
+        '
+        Me.tlpAncert.IsBalloon = True
+        Me.tlpAncert.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'tlpOffice2003
+        '
+        Me.tlpOffice2003.IsBalloon = True
+        Me.tlpOffice2003.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -610,4 +622,6 @@ Partial Class InstaladorKubo
     Friend WithEvents btJava As Button
     Friend WithEvents btDirectivas As Button
     Friend WithEvents btFramework As Button
+    Friend WithEvents tlpAncert As ToolTip
+    Friend WithEvents tlpOffice2003 As ToolTip
 End Class

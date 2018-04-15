@@ -375,26 +375,31 @@ Public Class InstaladorKubo
         ' MAS adelante cambiar Rutas para ordenar las descargas
         If cbOffice2003.Checked Then
             texto = texto & PuestoNotin & "Office2003.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "OFFICE2003", "1")
         End If
 
         If cbOffice2016.Checked Then
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "OFFICE2016", "1")
         End If
 
         If cbOffice2016odt.Checked Then
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016odt.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "OFFICE2016ODT", "1")
         End If
 
         If cbNemo.Checked Then
             texto = texto & "http://nemo.notin.net/jnemo-latest.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "NEMO", "1")
         End If
 
         If cbPuestoNotin.Checked Then
             texto = texto & PuestoNotin & "PuestoNotinC.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos_odt.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "PUESTONOTIN", "1")
         End If
 
         If cbRequisitos.Checked Then
@@ -402,15 +407,18 @@ Public Class InstaladorKubo
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "Office2003PrimaryInterop.msi" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "VisualTools2005.exe" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "VisualTools2015.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REQUISITOS", "1")
             '   requisitos = requisitos & PuestoNotin & "Requisitos/" & "Framework35.bat" & vbCrLf
         End If
 
         If cbSferen.Checked Then
             texto = texto & PuestoNotin & "SFeren-2.8.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "SFEREN", "1")
         End If
 
         If cbPasarelaSigno.Checked Then
             texto = texto & PuestoNotin & "PasarelaSigno.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "PASARELASIGNO", "1")
         End If
 
         If cbTerceros.Checked Then
@@ -419,6 +427,7 @@ Public Class InstaladorKubo
             terceros = terceros & PuestoNotin & "Software/" & "ChromeSetup.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "Notepad_x64.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "WinRAR5.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "SOFTWARETERCEROS", "1")
         End If
 
         'Descagar configuradores del autochequeo
@@ -428,10 +437,12 @@ Public Class InstaladorKubo
             registro = registro & PuestoNotin & "VentanasSigno.reg" & vbCrLf
             registro = registro & PuestoNotin & "MSOUTL.OLB" & vbCrLf
             registro = registro & PuestoNotin & "ExclusionDefender.reg" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "CLAVESREGISTRO", "1")
         End If
 
         If cbConfiguraWord2016.Checked Then
             texto = texto & PuestoNotin & "ConfiguraWord2016.exe" & vbCrLf
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "CONFIGURAWORD", "1")
         End If
 
 
@@ -451,9 +462,10 @@ Public Class InstaladorKubo
         'Ejecutar WGET Office y Notin
         Dim WGETPANDORA As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "descargas.txt"" -P " & RutaDescargas
         Dim RutaCMDWget As String = RutaDescargas & WGETPANDORA
+
         'SI EXISTEN ESPACIOS EN LOS NOMBRES DE ARCHIVOS NO FUNCIONA YA QUE SI PONGO COMILLAS SI NO LLEVA ESPACIOS DA ERROR
 
-        Shell("cmd.exe /c " & RutaCMDWget, AppWinStyle.MinimizedNoFocus, True)
+        Shell("cmd.exe /c " & RutaCMDWget, AppWinStyle.NormalFocus, True)
         '    YaDescargados()
 
         'Ejecutar WGET Requisitos
@@ -461,7 +473,7 @@ Public Class InstaladorKubo
             Dim WGETPANDORAREQUISITOS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "requisitos.txt"" -P " & RutaDescargas & "Requisitos\"
             Dim RutaCMDWgetRequisitos As String = RutaDescargas & WGETPANDORAREQUISITOS
 
-            Shell("cmd.exe /c " & RutaCMDWgetRequisitos, AppWinStyle.MinimizedNoFocus, True)
+            Shell("cmd.exe /c " & RutaCMDWgetRequisitos, AppWinStyle.NormalFocus, True)
             '       YaDescargados()
         End If
 
@@ -470,7 +482,7 @@ Public Class InstaladorKubo
             Dim WGETPANDORATERCEROS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "terceros.txt"" -P " & RutaDescargas & "Software\"
             Dim RutaCMDWgetTerceros As String = RutaDescargas & WGETPANDORATERCEROS
 
-            Shell("cmd.exe /c " & RutaCMDWgetTerceros, AppWinStyle.MinimizedNoFocus, True)
+            Shell("cmd.exe /c " & RutaCMDWgetTerceros, AppWinStyle.NormalFocus, True)
             '     YaDescargados()
         End If
         'Ejecutar WGET Registro
@@ -478,7 +490,7 @@ Public Class InstaladorKubo
             Dim WGETPANDORREGISTRO As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "registro.txt"" -P " & RutaDescargas & "Registro\"
             Dim RutaCMDWgetRegistro As String = RutaDescargas & WGETPANDORREGISTRO
 
-            Shell("cmd.exe /c " & RutaCMDWgetRegistro, AppWinStyle.MinimizedNoFocus, True)
+            Shell("cmd.exe /c " & RutaCMDWgetRegistro, AppWinStyle.NormalFocus, True)
             ' YaDescargados()
         End If
         YaDescargados()
@@ -501,7 +513,7 @@ Public Class InstaladorKubo
         cbTerceros.Checked = False
 
         lbProcesandoDescargas.Visible = False
-        MessageBox.Show("Descargas finalizadas", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("DESCARGAS FINALIZADAS.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     'Mensajes de acción
@@ -520,8 +532,8 @@ Public Class InstaladorKubo
     Private Sub btTodo_Click(sender As Object, e As EventArgs) Handles btTodo.Click
         If MarcarTodos = 0 Then
             cbOffice2003.Checked = True
-            cbOffice2016.Checked = False
-            cbOffice2016odt.Checked = True
+            cbOffice2016.Checked = True
+            cbOffice2016odt.Checked = False
             cbNemo.Checked = True
             cbRequisitos.Checked = True
             cbPuestoNotin.Checked = True
@@ -565,9 +577,10 @@ Public Class InstaladorKubo
 
 
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
-        'Si tengo que hacer limpieza de ficheros lo haré aqui
+        'Limpieza de ficheros temporales para instalaciones por ejemplo
         File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
         File.Delete(RutaDescargas & "odbc32.bat")
+        File.Delete(RutaDescargas & "Registro\msoutl.bat")
         Me.Close()
     End Sub
 
@@ -613,6 +626,7 @@ Public Class InstaladorKubo
             End Try
         End If
 
+        'Verifico si has descargado Office 2003 usando el INI. Haré lo mismo con el resto de descargas
 
         Dim NotinSiNo As Integer = Nothing
 
@@ -629,7 +643,6 @@ Public Class InstaladorKubo
             Else
                 InstalarRequisitosNet()
             End If
-
         End If
 
     End Sub
@@ -647,23 +660,29 @@ Public Class InstaladorKubo
 
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2003.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
 
-        'TODO que muestre el numero de serie en nuevo formulario. Mejor que el bloc de notas
-        Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalNoFocus, False)
+        '  Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalFocus, False)
 
-        Shell("cmd.exe /C " & RutaDescargas & "Office2003\SETUP.EXE", AppWinStyle.Hide, True)
+        Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Desatendido.MST /qb-", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
-        Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
 
         Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
 
         'Copiar Referencia Outlook
-        Try
-            File.Copy(RutaDescargas & "Registro\MSOUTL.OLB", "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSOUTL.OLB", True)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        'TODO Copiar referencia Outlook como ADMIN
+        Dim msoutlxcopy As String = "xcopy /F /Y /C "
+        Dim msoutlorigen As String = RutaDescargas & "Registro\MSOUTL.OLB "
+        Dim msoutldestino As String = " ""C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\"" "
+        File.WriteAllText(RutaDescargas & "Registro\msoutl.bat", msoutlxcopy & msoutlorigen & msoutldestino)
+
+        RunAsAdmin(RutaDescargas & "Registro\msoutl.bat")
+        'Try
+        '    File.Copy(RutaDescargas & "Registro\MSOUTL.OLB", "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSOUTL.OLB", True)
+        'Catch ex As Exception
+        '    MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'End Try
 
         InstalarRequisitosNet()
     End Sub
@@ -675,10 +694,12 @@ Public Class InstaladorKubo
         RequisitosSiNo = MessageBox.Show("¿Instalar Requisitos .NET?", "Pre-Requisitos", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If RequisitosSiNo = 6 Then
             'Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
-            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\KryptonSuite300.msi", AppWinStyle.Hide, True)
-            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\Office2003PrimaryInterop.msi", AppWinStyle.Hide, True)
-            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2005.exe", AppWinStyle.Hide, True)
-            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2015.exe", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\KryptonSuite300.msi /passive", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\Office2003PrimaryInterop.msi /passive", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2005.exe /q", AppWinStyle.Hide, True)
+            Threading.Thread.Sleep(500)
+            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2015.exe /q", AppWinStyle.Hide, True)
+            Threading.Thread.Sleep(500)
         End If
 
         InstalarWord2016()
@@ -717,7 +738,7 @@ Public Class InstaladorKubo
                 Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
                 If ExisteNotinNet = False Then
                     File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
-                    Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
                 End If
             Catch ex As Exception
             End Try
@@ -729,8 +750,9 @@ Public Class InstaladorKubo
             Try
                 File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
             Catch ex As Exception
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
-            'Ver si muestro algun mensaje o simplemente sigo.
+
         End If
         ConfigurarWord2016()
     End Sub
@@ -755,7 +777,7 @@ Public Class InstaladorKubo
         KMSPicoSInO = MessageBox.Show("¿Ejecutar Activador Office 2016?", "KMSPico 10.2.0", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If KMSPicoSInO = 6 Then
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-            Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.Hide, True)
+            Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.NormalFocus, True)
             MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de ejecutarlo", "Ejecucion de KMSPico", MessageBoxButtons.OK)
         End If
         SoftwareAncert()
@@ -812,6 +834,12 @@ Public Class InstaladorKubo
 
         tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones"
         tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Software. No obliga a instalar el paquete completo.")
+
+        tlpAncert.ToolTipTitle = "URL Notariado"
+        tlpAncert.SetToolTip(lblAncert, "Acceder a url soporte.notariado.org")
+
+        tlpOffice2003.ToolTipTitle = "Office 2003 DESATENDIDO"
+        tlpOffice2003.SetToolTip(cbOffice2003, "Instalación automatizada ACCESS y librerías Outlook.")
 
     End Sub
 #End Region
