@@ -52,6 +52,7 @@ Partial Class InstaladorKubo
         Me.cbPuestoNotin = New System.Windows.Forms.CheckBox()
         Me.btNotinKubo = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btJava = New System.Windows.Forms.Button()
         Me.btExcepJava = New System.Windows.Forms.Button()
         Me.btDirectivas = New System.Windows.Forms.Button()
         Me.btFramework = New System.Windows.Forms.Button()
@@ -70,7 +71,6 @@ Partial Class InstaladorKubo
         Me.lbInstalando = New System.Windows.Forms.Label()
         Me.tlpAncert = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpOffice2003 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.btJava = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -418,6 +418,16 @@ Partial Class InstaladorKubo
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Instalación"
         '
+        'btJava
+        '
+        Me.btJava.Enabled = False
+        Me.btJava.Location = New System.Drawing.Point(7, 212)
+        Me.btJava.Name = "btJava"
+        Me.btJava.Size = New System.Drawing.Size(201, 33)
+        Me.btJava.TabIndex = 31
+        Me.btJava.Text = "Instalar JAVA"
+        Me.btJava.UseVisualStyleBackColor = True
+        '
         'btExcepJava
         '
         Me.btExcepJava.Enabled = False
@@ -545,15 +555,6 @@ Partial Class InstaladorKubo
         '
         Me.tlpOffice2003.IsBalloon = True
         Me.tlpOffice2003.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        '
-        'btJava
-        '
-        Me.btJava.Location = New System.Drawing.Point(7, 212)
-        Me.btJava.Name = "btJava"
-        Me.btJava.Size = New System.Drawing.Size(201, 33)
-        Me.btJava.TabIndex = 31
-        Me.btJava.Text = "Instalar JAVA"
-        Me.btJava.UseVisualStyleBackColor = True
         '
         'InstaladorKubo
         '
