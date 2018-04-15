@@ -130,6 +130,12 @@ Public Class InstaladorKubo
             btFramework.BackColor = SystemColors.Control
         End If
 
+        Dim excepjava = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "EXCEPJAVA", "2")
+        If excepjava = 1 Then
+            btExcepJava.BackColor = Color.LawnGreen
+        Else
+            btExcepJava.BackColor = SystemColors.Control
+        End If
     End Sub
 
 
@@ -795,6 +801,20 @@ Public Class InstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.NormalFocus, True)
         End If
+        jNemo()
+    End Sub
+
+    Private Sub jNemo()
+        If File.Exists(RutaDescargas & "jnemo-latest.exe") Then
+            Dim instalajnemo As New Process
+            instalajnemo.StartInfo.FileName = RutaDescargas & "jnemo-latest.exe"
+            'MiProceso.StartInfo.Arguments = "1664"
+            instalajnemo.Start() 'iniciar el proceso
+            'MiProceso.Kill()
+            'MiProceso.Dispose()
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "JNEMO", "1")
+        Else
+        End If
         AccesosDirectosEscritorio()
     End Sub
 
@@ -916,6 +936,13 @@ Public Class InstaladorKubo
 
 
         ' Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
+    End Sub
+
+    Private Sub btExcepJava_Click(sender As Object, e As EventArgs) Handles btExcepJava.Click
+        My.Computer.Network.DownloadFile(PuestoNotin & "Utiles\ExcepcionesJava.bat", RutaDescargas & "Utiles\ExcepcionesJava.bat", "juanjo", "Palomeras24", False, 20000, True)
+        RunAsAdmin(PuestoNotin & "Utiles\ExcepcionesJava.bat")
+        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "EXCEPJAVA", "1")
+        btExcepJava.BackColor = Color.LawnGreen
     End Sub
 
 

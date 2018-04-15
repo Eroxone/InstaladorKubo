@@ -52,7 +52,7 @@ Partial Class InstaladorKubo
         Me.cbPuestoNotin = New System.Windows.Forms.CheckBox()
         Me.btNotinKubo = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.btJava = New System.Windows.Forms.Button()
+        Me.btExcepJava = New System.Windows.Forms.Button()
         Me.btDirectivas = New System.Windows.Forms.Button()
         Me.btFramework = New System.Windows.Forms.Button()
         Me.btOdbc = New System.Windows.Forms.Button()
@@ -70,6 +70,7 @@ Partial Class InstaladorKubo
         Me.lbInstalando = New System.Windows.Forms.Label()
         Me.tlpAncert = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpOffice2003 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.btJava = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -402,6 +403,7 @@ Partial Class InstaladorKubo
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox2.Controls.Add(Me.btJava)
+        Me.GroupBox2.Controls.Add(Me.btExcepJava)
         Me.GroupBox2.Controls.Add(Me.btDirectivas)
         Me.GroupBox2.Controls.Add(Me.btFramework)
         Me.GroupBox2.Controls.Add(Me.btOdbc)
@@ -411,25 +413,25 @@ Partial Class InstaladorKubo
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.GroupBox2.Size = New System.Drawing.Size(356, 357)
+        Me.GroupBox2.Size = New System.Drawing.Size(356, 405)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Instalación"
         '
-        'btJava
+        'btExcepJava
         '
-        Me.btJava.Enabled = False
-        Me.btJava.Location = New System.Drawing.Point(7, 279)
-        Me.btJava.Name = "btJava"
-        Me.btJava.Size = New System.Drawing.Size(201, 33)
-        Me.btJava.TabIndex = 30
-        Me.btJava.Text = "Excep. Java"
-        Me.btJava.UseVisualStyleBackColor = True
+        Me.btExcepJava.Enabled = False
+        Me.btExcepJava.Location = New System.Drawing.Point(7, 265)
+        Me.btExcepJava.Name = "btExcepJava"
+        Me.btExcepJava.Size = New System.Drawing.Size(201, 33)
+        Me.btExcepJava.TabIndex = 30
+        Me.btExcepJava.Text = "Excep. JAVA"
+        Me.btExcepJava.UseVisualStyleBackColor = True
         '
         'btDirectivas
         '
         Me.btDirectivas.Enabled = False
-        Me.btDirectivas.Location = New System.Drawing.Point(7, 226)
+        Me.btDirectivas.Location = New System.Drawing.Point(7, 318)
         Me.btDirectivas.Name = "btDirectivas"
         Me.btDirectivas.Size = New System.Drawing.Size(201, 33)
         Me.btDirectivas.TabIndex = 29
@@ -438,7 +440,7 @@ Partial Class InstaladorKubo
         '
         'btFramework
         '
-        Me.btFramework.Location = New System.Drawing.Point(7, 172)
+        Me.btFramework.Location = New System.Drawing.Point(7, 107)
         Me.btFramework.Name = "btFramework"
         Me.btFramework.Size = New System.Drawing.Size(201, 33)
         Me.btFramework.TabIndex = 28
@@ -448,7 +450,7 @@ Partial Class InstaladorKubo
         'btOdbc
         '
         Me.btOdbc.Font = New System.Drawing.Font("Bookman Old Style", 12.0!)
-        Me.btOdbc.Location = New System.Drawing.Point(7, 121)
+        Me.btOdbc.Location = New System.Drawing.Point(7, 159)
         Me.btOdbc.Margin = New System.Windows.Forms.Padding(4)
         Me.btOdbc.Name = "btOdbc"
         Me.btOdbc.Size = New System.Drawing.Size(201, 33)
@@ -527,7 +529,7 @@ Partial Class InstaladorKubo
         Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
         Me.lbInstalando.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.lbInstalando.ForeColor = System.Drawing.Color.DarkRed
-        Me.lbInstalando.Location = New System.Drawing.Point(505, 515)
+        Me.lbInstalando.Location = New System.Drawing.Point(498, 626)
         Me.lbInstalando.Name = "lbInstalando"
         Me.lbInstalando.Size = New System.Drawing.Size(270, 25)
         Me.lbInstalando.TabIndex = 37
@@ -544,6 +546,15 @@ Partial Class InstaladorKubo
         Me.tlpOffice2003.IsBalloon = True
         Me.tlpOffice2003.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'btJava
+        '
+        Me.btJava.Location = New System.Drawing.Point(7, 212)
+        Me.btJava.Name = "btJava"
+        Me.btJava.Size = New System.Drawing.Size(201, 33)
+        Me.btJava.TabIndex = 31
+        Me.btJava.Text = "Instalar JAVA"
+        Me.btJava.UseVisualStyleBackColor = True
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -559,6 +570,7 @@ Partial Class InstaladorKubo
         Me.Controls.Add(Me.lbRuta)
         Me.Controls.Add(Me.btDirDescargas)
         Me.Controls.Add(Me.btDescargar)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.MaximizeBox = False
@@ -619,9 +631,10 @@ Partial Class InstaladorKubo
     Friend WithEvents lbMBDescargas As Label
     Friend WithEvents tlpTamaño As ToolTip
     Friend WithEvents lbInstalando As Label
-    Friend WithEvents btJava As Button
+    Friend WithEvents btExcepJava As Button
     Friend WithEvents btDirectivas As Button
     Friend WithEvents btFramework As Button
     Friend WithEvents tlpAncert As ToolTip
     Friend WithEvents tlpOffice2003 As ToolTip
+    Friend WithEvents btJava As Button
 End Class
