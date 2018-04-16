@@ -118,21 +118,21 @@ Public Class InstaladorKubo
     Private Sub FicheroINI()
         Dim odbc = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "2")
         If odbc = 1 Then
-            btOdbc.BackColor = Color.LawnGreen
+            btOdbc.BackColor = Color.PaleGreen
         ElseIf odbc = 0 Then
             btOdbc.BackColor = Color.LightSalmon
         End If
 
         Dim framework = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "REQUISITOS", "FRAMEWORK35", "2")
         If framework = 1 Then
-            btFramework.BackColor = Color.LawnGreen
+            btFramework.BackColor = Color.PaleGreen
         Else
             btFramework.BackColor = SystemColors.Control
         End If
 
         Dim excepjava = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "EXCEPJAVA", "2")
         If excepjava = 1 Then
-            btExcepJava.BackColor = Color.LawnGreen
+            btExcepJava.BackColor = Color.PaleGreen
         Else
             btExcepJava.BackColor = SystemColors.Control
         End If
@@ -200,7 +200,7 @@ Public Class InstaladorKubo
             Dim Archivo2003 As New FileInfo(RutaDescargas & "Office2003.exe")
             Dim Length2003 As Long = Archivo2003.Length
             If Archivo2003.Length = "517577131" Then
-                cbOffice2003.BackColor = Color.LawnGreen
+                cbOffice2003.BackColor = Color.PaleGreen
                 '         cbOffice2003.Enabled = False
             ElseIf Archivo2003.Length < "517577131" Then
                 cbOffice2003.BackColor = Color.LightSalmon
@@ -214,7 +214,7 @@ Public Class InstaladorKubo
             Dim ConfigNotin As New FileInfo(RutaDescargas & "Registro\ConfigAccess.reg")
             Dim LengthNotin As Long = ConfigNotin.Length
             If ConfigNotin.Length = "16688" Then
-                cbConfiguraNotin.BackColor = Color.LawnGreen
+                cbConfiguraNotin.BackColor = Color.PaleGreen
                 '        cbConfiguraNotin.Enabled = False
             End If
         Else
@@ -226,7 +226,7 @@ Public Class InstaladorKubo
             Dim Archivo2016 As New FileInfo(RutaDescargas & "Office2016.exe")
             Dim Length2016 As Long = Archivo2016.Length
             If Archivo2016.Length = "739967123" Then
-                cbOffice2016.BackColor = Color.LawnGreen
+                cbOffice2016.BackColor = Color.PaleGreen
                 '         cbOffice2016.Enabled = False
             ElseIf Archivo2016.Length < "739967123" Then
                 cbOffice2016.BackColor = Color.LightSalmon
@@ -240,7 +240,7 @@ Public Class InstaladorKubo
             Dim Archivo2016odt As New FileInfo(RutaDescargas & "Office2016odt.exe")
             Dim Length2016odt As Long = Archivo2016odt.Length
             If Archivo2016odt.Length = "2452664263" Then
-                cbOffice2016odt.BackColor = Color.LawnGreen
+                cbOffice2016odt.BackColor = Color.PaleGreen
                 '        cbOffice2016odt.Enabled = False
             ElseIf Archivo2016odt.Length < "2452664263" Then
                 cbOffice2016odt.BackColor = Color.LightSalmon
@@ -254,7 +254,7 @@ Public Class InstaladorKubo
             Dim Config2016 As New FileInfo(RutaDescargas & "ConfiguraWord2016.exe")
             Dim LengthConfig2016 As Long = Config2016.Length
             If Config2016.Length = "349696" Then
-                cbConfiguraWord2016.BackColor = Color.LawnGreen
+                cbConfiguraWord2016.BackColor = Color.PaleGreen
                 '        cbConfiguraWord2016.Enabled = False
             End If
         Else
@@ -266,7 +266,8 @@ Public Class InstaladorKubo
             Dim jNemo As New FileInfo(RutaDescargas & "jnemo-latest.exe")
             Dim LengthjNemo As Long = jNemo.Length
             If jNemo.Length = "12672337" Then
-                cbNemo.BackColor = Color.LawnGreen
+                cbNemo.BackColor = Color.PaleGreen
+
                 '         cbNemo.Enabled = False
             End If
         Else
@@ -278,7 +279,7 @@ Public Class InstaladorKubo
             Dim PuestoNotinC As New FileInfo(RutaDescargas & "PuestoNotinC.exe")
             Dim LengthPuestoNotinC As Long = PuestoNotinC.Length
             If PuestoNotinC.Length = "17034966" Then
-                cbPuestoNotin.BackColor = Color.LawnGreen
+                cbPuestoNotin.BackColor = Color.PaleGreen
                 '        cbPuestoNotin.Enabled = False
             End If
         Else
@@ -291,7 +292,7 @@ Public Class InstaladorKubo
             Dim ArchivosenRequisitos = My.Computer.FileSystem.GetFiles(RutaDescargas & "\Requisitos")
 
             If ArchivosenRequisitos.Count = 4 Then
-                cbRequisitos.BackColor = Color.LawnGreen
+                cbRequisitos.BackColor = Color.PaleGreen
                 '                cbRequisitos.Enabled = False
             Else
                 cbRequisitos.BackColor = SystemColors.Control
@@ -303,7 +304,7 @@ Public Class InstaladorKubo
 
         'ANCERT Como puede variar el tamaño solo miro que exista el fichero
         If System.IO.File.Exists(RutaDescargas & "SFeren-2.8.exe") Then
-            cbSferen.BackColor = Color.LawnGreen
+            cbSferen.BackColor = Color.PaleGreen
             '            cbSferen.Enabled = False
         Else
             cbSferen.BackColor = SystemColors.Control
@@ -311,7 +312,7 @@ Public Class InstaladorKubo
         End If
 
         If System.IO.File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
-            cbPasarelaSigno.BackColor = Color.LawnGreen
+            cbPasarelaSigno.BackColor = Color.PaleGreen
             '       cbPasarelaSigno.Enabled = False
         Else
             cbPasarelaSigno.BackColor = SystemColors.Control
@@ -320,7 +321,7 @@ Public Class InstaladorKubo
 
         'SOFTWARE TERCEROS
         If System.IO.Directory.Exists(RutaDescargas & "\Software") Then
-            cbTerceros.BackColor = Color.LawnGreen
+            cbTerceros.BackColor = Color.PaleGreen
         Else
             cbTerceros.BackColor = SystemColors.Control
         End If
@@ -836,7 +837,7 @@ Public Class InstaladorKubo
 
         lbInstalando.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        btNotinKubo.BackColor = Color.YellowGreen
+        btNotinKubo.ForeColor = Color.YellowGreen
         'TODO guardar en el ini para que conste que ya se realizo y poner fecha
     End Sub
 #End Region
@@ -888,7 +889,7 @@ Public Class InstaladorKubo
 
                 RunAsAdmin(RutaDescargas & "odbc32.bat")
 
-                btOdbc.BackColor = Color.LawnGreen
+                btOdbc.BackColor = Color.PaleGreen
                 MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor & ". Revisa ODBC creado.", "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Process.Start("C:\Windows\SysWoW64\odbcad32.exe")
                 cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "1")
@@ -900,7 +901,7 @@ Public Class InstaladorKubo
 
                 RunAsAdmin(RutaDescargas & "odbc32.bat")
 
-                btOdbc.BackColor = Color.LawnGreen
+                btOdbc.BackColor = Color.PaleGreen
                 MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor & ". Revisa ODBC creado.", "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Process.Start("C:\Windows\System32\odbcad32.exe")
 
@@ -941,7 +942,7 @@ Public Class InstaladorKubo
         RunAsAdmin(RutaDescargas & "Requisitos\Framework35.bat")
 
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "REQUISITOS", "FRAMEWORK35", "1")
-        btFramework.BackColor = Color.LawnGreen
+        btFramework.BackColor = Color.PaleGreen
 
 
         ' Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
@@ -951,7 +952,7 @@ Public Class InstaladorKubo
         My.Computer.Network.DownloadFile(PuestoNotin & "Utiles\ExcepcionesJava.bat", RutaDescargas & "Utiles\ExcepcionesJava.bat", "juanjo", "Palomeras24", False, 20000, True)
         RunAsAdmin(PuestoNotin & "Utiles\ExcepcionesJava.bat")
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "EXCEPJAVA", "1")
-        btExcepJava.BackColor = Color.LawnGreen
+        btExcepJava.BackColor = Color.PaleGreen
     End Sub
 
 
