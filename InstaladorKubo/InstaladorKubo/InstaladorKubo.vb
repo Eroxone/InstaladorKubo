@@ -583,10 +583,14 @@ Public Class InstaladorKubo
 
 
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
+
         'Limpieza de ficheros temporales para instalaciones por ejemplo
-        File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
-        File.Delete(RutaDescargas & "odbc32.bat")
-        File.Delete(RutaDescargas & "Registro\msoutl.bat")
+        Try
+            File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
+            File.Delete(RutaDescargas & "odbc32.bat")
+            File.Delete(RutaDescargas & "Registro\msoutl.bat")
+        Catch ex As Exception
+        End Try
         Me.Close()
     End Sub
 
@@ -833,8 +837,8 @@ Public Class InstaladorKubo
 
         lbInstalando.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        btNotinKubo.ForeColor = Color.YellowGreen
-        'TODO guardar en el ini para que conste que ya se realizo y poner fecha
+        'btNotinKubo.ForeColor = Color.YellowGreen
+        'TODO guardar en el ini para que conste que ya se realizo, cambiar color y poner fecha
     End Sub
 #End Region
 
@@ -852,9 +856,12 @@ Public Class InstaladorKubo
         tlpDescargas.IsBalloon = True
 
         tlpOffice2016odt.ToolTipIcon = ToolTipIcon.Info
-        tlpOffice2016odt.ToolTipTitle = "Office 2016 Desatendido"
+        tlpOffice2016odt.ToolTipTitle = "Office 2016 DESATENDIDO"
         tlpOffice2016odt.SetToolTip(cbOffice2016odt, "Descarga el paquete Office 2016 con instalación automatizada.")
         tlpOffice2016odt.IsBalloon = True
+
+        tlpOffice2016.ToolTipTitle = "Paquete Office 2016"
+        tlpOffice2016.SetToolTip(cbOffice2016, "Descarga el paquete Office con instalación personalizable")
 
         tlpTerceros.ToolTipIcon = ToolTipIcon.Info
         tlpTerceros.ToolTipTitle = "Softare de terceros"
@@ -862,7 +869,7 @@ Public Class InstaladorKubo
         tlpTerceros.IsBalloon = True
 
         tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones"
-        tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Software. No obliga a instalar el paquete completo.")
+        tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Software descargado. No obliga a instalar el paquete completo.")
 
         tlpAncert.ToolTipTitle = "URL Notariado"
         tlpAncert.SetToolTip(lblAncert, "Acceder a url soporte.notariado.org")
@@ -951,7 +958,6 @@ Public Class InstaladorKubo
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "EXCEPJAVA", "1")
         btExcepJava.BackColor = Color.PaleGreen
     End Sub
-
 
 
 End Class
