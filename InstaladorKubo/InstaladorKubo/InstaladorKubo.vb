@@ -46,12 +46,12 @@ Public Class InstaladorKubo
     End Sub
 
 
-    'TODO Comprobar version internet
-    Private Sub ComprobarVersion()
-        'Antes crear ruta si no existe y descargar el version ini de internet. controlar posible error de conexion.
-        Dim versioninternet = cIniArray.IniGet("C:\TEMP\InstaladorKubo\versioninternet", "CONTROL", "Version")
 
-    End Sub
+    'Private Sub ComprobarVersion()
+    '    'Antes crear ruta si no existe y descargar el version ini de internet. controlar posible error de conexion.
+    '    Dim versioninternet = cIniArray.IniGet("C:\TEMP\InstaladorKubo\versioninternet", "CONTROL", "Version")
+
+    'End Sub
 
     ' Funcion para logear el sistema
 #Region "LOG"
@@ -89,7 +89,6 @@ Public Class InstaladorKubo
         End If
 
     End Sub
-    'TODO Buscar nueva version comparando un ini como string por ejemplo
 
     'RUTA ANTERIOR. SI EXISTÍA
     Private Function GetPathTemp() As String
@@ -377,9 +376,7 @@ Public Class InstaladorKubo
 
 #Region "CREACIÓN FICHEROS RUTAS DESCARGAS"
 
-        'TODO evento load tamaño descargas al btchekbox clic
         'Creación contenido del fichero
-        ' MAS adelante cambiar Rutas para ordenar las descargas
         If cbOffice2003.Checked Then
             texto = texto & PuestoNotin & "Office2003.exe" & vbCrLf
             texto = texto & PuestoNotin & "Setup.mst" & vbCrLf
@@ -682,7 +679,6 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
 
         'Copiar Referencia Outlook
-        'TODO Copiar referencia Outlook como ADMIN
         Dim msoutlxcopy As String = "xcopy /F /Y /C "
         Dim msoutlorigen As String = RutaDescargas & "Registro\MSOUTL.OLB "
         Dim msoutldestino As String = " ""C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\"" "
@@ -950,13 +946,12 @@ Public Class InstaladorKubo
     'TODO Arreglar esta funcion. Debe llamarse desde cmd
     Private Sub btExcepJava_Click(sender As Object, e As EventArgs) Handles btExcepJava.Click
         My.Computer.Network.DownloadFile(PuestoNotin & "Utiles\ExcepcionesJava.bat", RutaDescargas & "Utiles\ExcepcionesJava.bat", "juanjo", "Palomeras24", False, 20000, True)
-        RunAsAdmin(PuestoNotin & "Utiles\ExcepcionesJava.bat")
+
+        RunAsAdmin(RutaDescargas & "Utiles\ExcepcionesJava.bat")
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "EXCEPJAVA", "1")
         btExcepJava.BackColor = Color.PaleGreen
     End Sub
 
-
-    'TODO pruebas captura ventana
 
 
 End Class
