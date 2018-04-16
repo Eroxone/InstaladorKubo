@@ -521,6 +521,7 @@ Public Class InstaladorKubo
 
         lbProcesandoDescargas.Visible = False
         MessageBox.Show("DESCARGAS FINALIZADAS.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
     End Sub
 
     'Mensajes de acción
@@ -539,8 +540,8 @@ Public Class InstaladorKubo
     Private Sub btTodo_Click(sender As Object, e As EventArgs) Handles btTodo.Click
         If MarcarTodos = 0 Then
             cbOffice2003.Checked = True
-            cbOffice2016.Checked = True
-            cbOffice2016odt.Checked = False
+            cbOffice2016.Checked = False
+            cbOffice2016odt.Checked = True
             cbNemo.Checked = True
             cbRequisitos.Checked = True
             cbPuestoNotin.Checked = True
@@ -715,9 +716,7 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub InstalarWord2016()
-
-        Dim WordSiNo As Integer = Nothing
-
+        'TODO Esto se podra simplificar con variables que recojan la existencia del ejecutable. Lo hare
         Dim EjecutableWord As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE")
 
         If EjecutableWord = False Then
@@ -728,16 +727,22 @@ Public Class InstaladorKubo
                 Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
                 Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
             End If
-        ElseIf WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question) Then
-            If File.Exists(RutaDescargas & "Office2016.exe") Then
-                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
+        ElseIf EjecutableWord = True Then
+            Dim WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If WordSiNo = 6 Then
+                If File.Exists(RutaDescargas & "Office2016.exe") Then
+                    Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                    Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
+                Else
+                    If File.Exists(RutaDescargas & "Office2016odt.exe") Then
+                        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                        Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
+                    Else
+                        MessageBox.Show("¿Seguro que has descargado una versión válida de Office 2016?")
+                    End If
+                End If
             End If
-        ElseIf File.Exists(RutaDescargas & "Office2016odt.exe") Then
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-            Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
         End If
-
         EjecutableNotinNet()
     End Sub
 
@@ -806,13 +811,15 @@ Public Class InstaladorKubo
 
     Private Sub jNemo()
         If File.Exists(RutaDescargas & "jnemo-latest.exe") Then
-            Dim instalajnemo As New Process
-            instalajnemo.StartInfo.FileName = RutaDescargas & "jnemo-latest.exe"
-            'MiProceso.StartInfo.Arguments = "1664"
-            instalajnemo.Start() 'iniciar el proceso
-            'MiProceso.Kill()
-            'MiProceso.Dispose()
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "JNEMO", "1")
+            If File.Exists("c:\Program Files (x86)\jNemo\jNemo.exe") = False Then
+                Dim instalajnemo As New Process
+                instalajnemo.StartInfo.FileName = RutaDescargas & "jnemo-latest.exe"
+                'MiProceso.StartInfo.Arguments = "1664"
+                instalajnemo.Start() 'iniciar el proceso
+                'MiProceso.Kill()
+                'MiProceso.Dispose()
+                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "JNEMO", "1")
+            End If
         Else
         End If
         AccesosDirectosEscritorio()
@@ -821,14 +828,16 @@ Public Class InstaladorKubo
     Private Sub AccesosDirectosEscritorio()
         Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
         If File.Exists(RutaDescargas & "Office2016.exe") Then
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -u -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.NormalFocus, True)
-        ElseIf File.Exists(RutaDescargas & "Office2016_odt.exe") Then
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -u -y " & RutaDescargas & "AccesosDirectos_odt.exe " & Escritorio, AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.NormalFocus, True)
+        ElseIf File.Exists(RutaDescargas & "Office2016odt.exe") Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos_odt.exe " & Escritorio, AppWinStyle.NormalFocus, True)
         Else
         End If
 
         lbInstalando.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        btNotinKubo.BackColor = Color.YellowGreen
+        'TODO guardar en el ini para que conste que ya se realizo y poner fecha
     End Sub
 #End Region
 
