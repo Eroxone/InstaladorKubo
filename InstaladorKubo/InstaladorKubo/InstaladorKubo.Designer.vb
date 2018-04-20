@@ -529,11 +529,11 @@ Partial Class InstaladorKubo
         'lbProcesandoDescargas
         '
         Me.lbProcesandoDescargas.AutoSize = True
-        Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Ravie", 12.0!)
         Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.DarkRed
         Me.lbProcesandoDescargas.Location = New System.Drawing.Point(339, 453)
         Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
-        Me.lbProcesandoDescargas.Size = New System.Drawing.Size(210, 20)
+        Me.lbProcesandoDescargas.Size = New System.Drawing.Size(268, 22)
         Me.lbProcesandoDescargas.TabIndex = 36
         Me.lbProcesandoDescargas.Text = "Procesando Descargas..."
         Me.lbProcesandoDescargas.Visible = False
@@ -548,12 +548,12 @@ Partial Class InstaladorKubo
         '
         Me.lbInstalando.AutoSize = True
         Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
-        Me.lbInstalando.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.lbInstalando.Font = New System.Drawing.Font("Ravie", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbInstalando.ForeColor = System.Drawing.Color.DarkRed
         Me.lbInstalando.Location = New System.Drawing.Point(339, 453)
         Me.lbInstalando.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbInstalando.Name = "lbInstalando"
-        Me.lbInstalando.Size = New System.Drawing.Size(226, 20)
+        Me.lbInstalando.Size = New System.Drawing.Size(300, 22)
         Me.lbInstalando.TabIndex = 37
         Me.lbInstalando.Text = "Realizando Instalaciones..."
         Me.lbInstalando.Visible = False
