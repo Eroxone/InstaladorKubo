@@ -290,7 +290,7 @@ Public Class InstaladorKubo
         If System.IO.Directory.Exists(RutaDescargas & "\Requisitos") Then
             Dim ArchivosenRequisitos = My.Computer.FileSystem.GetFiles(RutaDescargas & "\Requisitos")
 
-            If ArchivosenRequisitos.Count = 4 Then
+            If ArchivosenRequisitos.Count >= 4 Then
                 cbRequisitos.BackColor = Color.PaleGreen
                 '                cbRequisitos.Enabled = False
             Else
@@ -546,7 +546,7 @@ Public Class InstaladorKubo
             cbSferen.Checked = True
             cbPasarelaSigno.Checked = True
             cbTerceros.Checked = True
-            btTodo.Text = "Desmarcar todos"
+            btTodo.Text = "Desmarcar"
             'sumar uno a la variable
             MarcarTodos = 1
         ElseIf MarcarTodos = 1 Then
@@ -675,7 +675,7 @@ Public Class InstaladorKubo
 
 
         Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup.mst /qb-", AppWinStyle.NormalFocus, True)
-        Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
+        ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
         Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
@@ -938,6 +938,11 @@ Public Class InstaladorKubo
 
     Private Sub btFramework_Click(sender As Object, e As EventArgs) Handles btFramework.Click
         Dim framework As String = "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All"
+        If File.Exists(RutaDescargas & "Requisitos\Framework35.bat") Then
+            File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
+        Else
+        End If
+        Directory.CreateDirectory(RutaDescargas & "Requisitos")
         File.AppendAllText(RutaDescargas & "Requisitos\Framework35.bat", "@echo off" & vbCrLf)
         File.AppendAllText(RutaDescargas & "Requisitos\Framework35.bat", framework)
         'File.AppendAllText(RutaDescargas & "Requisitos\Framework35.bat", "pause")
@@ -959,5 +964,8 @@ Public Class InstaladorKubo
         btExcepJava.BackColor = Color.PaleGreen
     End Sub
 
+    Private Sub LinkInstalador_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkInstalador.LinkClicked
+        System.Diagnostics.Process.Start("http://instalador.notin.net/publish.htm")
+    End Sub
 
 End Class
