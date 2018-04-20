@@ -491,6 +491,7 @@ Partial Class InstaladorKubo
         '
         'btDirDescargas
         '
+        Me.btDirDescargas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btDirDescargas.Font = New System.Drawing.Font("Rockwell", 9.0!)
         Me.btDirDescargas.Location = New System.Drawing.Point(13, 466)
         Me.btDirDescargas.Margin = New System.Windows.Forms.Padding(2)
