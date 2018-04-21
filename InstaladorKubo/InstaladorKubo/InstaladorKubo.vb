@@ -250,10 +250,10 @@ Public Class InstaladorKubo
             '      cbOffice2016odt.Enabled = True
         End If
 
-        If System.IO.File.Exists(RutaDescargas & "ConfiguraWord2016.exe") Then
-            Dim Config2016 As New FileInfo(RutaDescargas & "ConfiguraWord2016.exe")
+        If System.IO.File.Exists(RutaDescargas & "ConfWord2016.rar") Then
+            Dim Config2016 As New FileInfo(RutaDescargas & "ConfWord2016.rar")
             Dim LengthConfig2016 As Long = Config2016.Length
-            If Config2016.Length = "349696" Then
+            If Config2016.Length = "8320" Then
                 cbConfiguraWord2016.ForeColor = Color.DarkGreen
                 '        cbConfiguraWord2016.Enabled = False
             End If
@@ -799,10 +799,24 @@ Public Class InstaladorKubo
             If ConfigurarWord = DialogResult.Yes Then
                 'Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
                 RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+                'TODO mejorar esto y obtener el proceso
+                Threading.Thread.Sleep(10000)
 
+                'Obtener texto entre caracteres
+                Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
+                expedientes = expedientes.Remove(0, 2)
+                Dim unidadi = expedientes.LastIndexOf("\I")
+                expedientes = expedientes.Substring(0, unidadi)
+
+                Directory.CreateDirectory(RutaDescargas & "Registro")
+                Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
+                File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
+                File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
+
+                RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
             End If
         Else
-            MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura Word", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
         KMSPico()
     End Sub
@@ -852,9 +866,9 @@ Public Class InstaladorKubo
     Private Sub AccesosDirectosEscritorio()
         Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
         If File.Exists(RutaDescargas & "Office2016.exe") Then
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.Hide, True)
         ElseIf File.Exists(RutaDescargas & "Office2016odt.exe") Then
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos_odt.exe " & Escritorio, AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos_odt.exe " & Escritorio, AppWinStyle.Hide, True)
         Else
         End If
 
