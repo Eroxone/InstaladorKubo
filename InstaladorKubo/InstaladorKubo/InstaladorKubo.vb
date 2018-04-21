@@ -456,7 +456,8 @@ Public Class InstaladorKubo
         End If
 
         If cbConfiguraWord2016.Checked Then
-            texto = texto & PuestoNotin & "ConfiguraWord2016.exe" & vbCrLf
+            'texto = texto & PuestoNotin & "ConfiguraWord2016.exe" & vbCrLf
+            texto = texto & PuestoNotin & "ConfWord2016.rar" & vbCrLf
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "CONFIGURAWORD", "1")
         End If
 
@@ -793,9 +794,12 @@ Public Class InstaladorKubo
 
     Private Sub ConfigurarWord2016()
         If UnidadF() = True Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
             Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If ConfigurarWord = DialogResult.Yes Then
-                Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
+                'Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
+                RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+
             End If
         Else
             MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura Word", MessageBoxButtons.OK, MessageBoxIcon.Warning)
