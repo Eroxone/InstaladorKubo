@@ -74,6 +74,7 @@ Partial Class InstaladorKubo
         Me.btDirDescargas = New System.Windows.Forms.Button()
         Me.TlpRutaDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpComenzarDescargas = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpJava = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -423,7 +424,6 @@ Partial Class InstaladorKubo
         '
         'btJava
         '
-        Me.btJava.Enabled = False
         Me.btJava.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btJava.Font = New System.Drawing.Font("Lucida Handwriting", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btJava.Location = New System.Drawing.Point(5, 172)
@@ -602,6 +602,11 @@ Partial Class InstaladorKubo
         Me.TlpComenzarDescargas.IsBalloon = True
         Me.TlpComenzarDescargas.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'TlpJava
+        '
+        Me.TlpJava.IsBalloon = True
+        Me.TlpJava.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -689,4 +694,5 @@ Partial Class InstaladorKubo
     Friend WithEvents btDirDescargas As Button
     Friend WithEvents TlpRutaDescargas As ToolTip
     Friend WithEvents TlpComenzarDescargas As ToolTip
+    Friend WithEvents TlpJava As ToolTip
 End Class

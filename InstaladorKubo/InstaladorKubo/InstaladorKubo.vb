@@ -135,7 +135,10 @@ Public Class InstaladorKubo
         Else
             btExcepJava.BackColor = SystemColors.Control
         End If
-
+        Dim java = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "JAVA8", "2")
+        If java = 1 Then
+            btJava.BackColor = Color.PaleGreen
+        End If
     End Sub
 
 
@@ -931,6 +934,9 @@ Public Class InstaladorKubo
         TlpComenzarDescargas.ToolTipTitle = "Comenzar proceso Descargas"
         TlpComenzarDescargas.SetToolTip(btDescargar, "Se descargarán/resumirán los paquetes seleccionados.")
 
+        TlpJava.ToolTipTitle = "Instalación DESATENDIDA JAVA 8"
+        TlpJava.SetToolTip(btJava, "Instalación silenciosa de Java. No requiere intervención del usuario")
+
     End Sub
 #End Region
 
@@ -1022,5 +1028,35 @@ Public Class InstaladorKubo
         System.Diagnostics.Process.Start("http://instalador.notin.net/publish.htm")
     End Sub
 
+    Private Sub btJava_Click(sender As Object, e As EventArgs) Handles btJava.Click
 
+        If Not System.IO.File.Exists(RutaDescargas & "wget.exe") Then
+            'Descargar ejecutable WGet
+            Try
+                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
+                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
+            Catch ex As Exception
+
+                'Reintentar descarga
+                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
+                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
+                If REINTENTAR = DialogResult.Retry Then
+                    My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, True)
+                End If
+            End Try
+        End If
+
+        'Descarga de JAVA 1.8.171
+        Directory.CreateDirectory(RutaDescargas & "Software")
+        Dim urljava As String = "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=233170_512cd62ec5174c3487ac17c61aaa89e8"
+        Dim wgetjava As String = "wget.exe -q --show-progress -t 5 -c "
+        Shell("cmd.exe /c " & RutaDescargas & wgetjava & urljava & " -O " & RutaDescargas & "Software\java8.exe", AppWinStyle.NormalFocus, True)
+        Dim instalajava As New Process()
+        instalajava.StartInfo.FileName = RutaDescargas & "Software/java8.exe"
+        instalajava.StartInfo.Arguments = "/s WEB_JAVA_SECURITY_LEVEL=M"
+        instalajava.Start() 'iniciar el proceso
+
+        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "JAVA8", "1")
+        btJava.BackColor = Color.PaleGreen
+    End Sub
 End Class
