@@ -602,10 +602,17 @@ Public Class InstaladorKubo
             File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
             File.Delete(RutaDescargas & "odbc32.bat")
             File.Delete(RutaDescargas & "Registro\msoutl.bat")
+            File.Delete(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+            File.Delete(RutaDescargas & "Registro\unidadfword.bat")
         Catch ex As Exception
         End Try
         Me.Close()
     End Sub
+
+    Private Sub btSalir_MouseDown(sender As Object, e As MouseEventArgs) Handles btSalir.MouseDown
+        btSalir.BackColor = Color.OrangeRed
+    End Sub
+
 
 
     'CONTROLES DE INSTALACION
@@ -807,6 +814,8 @@ Public Class InstaladorKubo
                 expedientes = expedientes.Remove(0, 2)
                 Dim unidadi = expedientes.LastIndexOf("\I")
                 expedientes = expedientes.Substring(0, unidadi)
+
+                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "EXPEDIENTES", expedientes)
 
                 Directory.CreateDirectory(RutaDescargas & "Registro")
                 Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
@@ -1012,5 +1021,6 @@ Public Class InstaladorKubo
     Private Sub LinkInstalador_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkInstalador.LinkClicked
         System.Diagnostics.Process.Start("http://instalador.notin.net/publish.htm")
     End Sub
+
 
 End Class
