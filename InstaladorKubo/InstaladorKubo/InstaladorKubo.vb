@@ -38,6 +38,8 @@ Public Class InstaladorKubo
         YaDescargados()
         Tooltips()
         FicheroINI()
+        'NotinenF()
+
 
         'TODO Terminar proceso de Logger. Ahora mismo lo hace al revés
         Dim cabecera_log As String = "=====  INICIO APLICACIÓN  =====" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & My.User.Name
@@ -143,7 +145,6 @@ Public Class InstaladorKubo
         If uac = 1 Then
             BtUac.BackColor = Color.PaleGreen
         End If
-
     End Sub
 
 
@@ -358,6 +359,25 @@ Public Class InstaladorKubo
         End If
     End Function
 
+    Private Function obtenerrobocopy()
+        If Not System.IO.File.Exists(RutaDescargas & "robocopy.exe") Then
+            'Descargar ejecutable WGet
+            Try
+                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
+                My.Computer.Network.DownloadFile(PuestoNotin & "robocopy.exe", RutaDescargas & "robocopy.exe", "juanjo", "Palomeras24", False, 20000, False)
+            Catch ex As Exception
+
+                'Reintentar descarga
+                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
+                My.Computer.Network.DownloadFile(PuestoNotin & "robocopy.exe", RutaDescargas & "robocopy.exe", "juanjo", "Palomeras24", False, 20000, False)
+                If REINTENTAR = DialogResult.Retry Then
+                    My.Computer.Network.DownloadFile(PuestoNotin & "robocopy.exe", RutaDescargas & "robocopy.exe", "juanjo", "Palomeras24", False, 20000, True)
+                End If
+            End Try
+        End If
+    End Function
+
+
 
     'COMENZAR DESCARGAS
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
@@ -558,7 +578,6 @@ Public Class InstaladorKubo
 
         lbProcesandoDescargas.Visible = False
         MessageBox.Show("DESCARGAS FINALIZADAS.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
 
     End Sub
 
@@ -1081,4 +1100,44 @@ Public Class InstaladorKubo
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "UAC", "1")
         BtUac.BackColor = Color.PaleGreen
     End Sub
+
+
+    'TODO copiar paquetes descargados a F o traerlos
+    Private Sub BtCopiarhaciaF_Click(sender As Object, e As EventArgs) Handles BtCopiarhaciaF.Click
+        If UnidadF() = False Then
+            MessageBox.Show("Conecta antes la Unidad F")
+            Exit Sub
+        End If
+        obtenerrobocopy()
+        Dim notinf = "F:\PRG.INS\NOTIN\"
+        Directory.CreateDirectory(notinf)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.exe" & " /E /R:5 /W:5 /ETA", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.bat" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.rar" & " /E /R:5 /W:5 /ETA", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.msi" & " /E /R:5 /W:5 /ETA", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.reg" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.olb" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.mst" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.xml" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
+
+        MessageBox.Show("Paquetes copiados a F:\PRG.INS\NOTIN", "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    Private Sub BtTraerdeF_Click(sender As Object, e As EventArgs) Handles BtTraerdeF.Click
+        If UnidadF() = False Then
+            MessageBox.Show("Conecta antes la Unidad F")
+            Exit Sub
+        End If
+        If Directory.Exists("F:\PRG.INS\NOTIN") = False Then
+            MessageBox.Show("Confirma que los Paquetes se hayan copiado a F", "Error de acceso", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+
+        obtenerrobocopy()
+        Dim notinf = "F:\PRG.INS\NOTIN\"
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & notinf & " " & RutaDescargas & " *.*" & " /E /R:5 /W:5 /ETA", AppWinStyle.NormalFocus, True)
+
+        MessageBox.Show("Paquetes en F traidos a " & RutaDescargas, "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
 End Class
