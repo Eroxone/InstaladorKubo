@@ -223,7 +223,7 @@ Partial Class InstaladorKubo
         Me.cbOffice2016odt.AutoSize = True
         Me.cbOffice2016odt.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
         Me.cbOffice2016odt.Location = New System.Drawing.Point(19, 129)
-        Me.cbOffice2016odt.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cbOffice2016odt.Margin = New System.Windows.Forms.Padding(4)
         Me.cbOffice2016odt.Name = "cbOffice2016odt"
         Me.cbOffice2016odt.Size = New System.Drawing.Size(260, 26)
         Me.cbOffice2016odt.TabIndex = 20
@@ -283,7 +283,7 @@ Partial Class InstaladorKubo
         '
         Me.cbConfiguraNotin.AutoSize = True
         Me.cbConfiguraNotin.Font = New System.Drawing.Font("Lucida Bright", 9.0!)
-        Me.cbConfiguraNotin.Location = New System.Drawing.Point(239, 60)
+        Me.cbConfiguraNotin.Location = New System.Drawing.Point(229, 60)
         Me.cbConfiguraNotin.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbConfiguraNotin.Name = "cbConfiguraNotin"
         Me.cbConfiguraNotin.Size = New System.Drawing.Size(165, 21)
@@ -320,7 +320,7 @@ Partial Class InstaladorKubo
         '
         Me.cbRequisitos.AutoSize = True
         Me.cbRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
-        Me.cbRequisitos.Location = New System.Drawing.Point(216, 210)
+        Me.cbRequisitos.Location = New System.Drawing.Point(229, 210)
         Me.cbRequisitos.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbRequisitos.Name = "cbRequisitos"
         Me.cbRequisitos.Size = New System.Drawing.Size(163, 26)
@@ -344,7 +344,7 @@ Partial Class InstaladorKubo
         '
         Me.cbConfiguraWord2016.AutoSize = True
         Me.cbConfiguraWord2016.Font = New System.Drawing.Font("Lucida Bright", 9.0!)
-        Me.cbConfiguraWord2016.Location = New System.Drawing.Point(239, 100)
+        Me.cbConfiguraWord2016.Location = New System.Drawing.Point(229, 100)
         Me.cbConfiguraWord2016.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbConfiguraWord2016.Name = "cbConfiguraWord2016"
         Me.cbConfiguraWord2016.Size = New System.Drawing.Size(168, 21)
@@ -356,7 +356,7 @@ Partial Class InstaladorKubo
         '
         Me.lbRequisitos.AutoSize = True
         Me.lbRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.2!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRequisitos.Location = New System.Drawing.Point(212, 186)
+        Me.lbRequisitos.Location = New System.Drawing.Point(225, 186)
         Me.lbRequisitos.Name = "lbRequisitos"
         Me.lbRequisitos.Size = New System.Drawing.Size(128, 19)
         Me.lbRequisitos.TabIndex = 14
@@ -433,7 +433,7 @@ Partial Class InstaladorKubo
         Me.BtUac.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtUac.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
         Me.BtUac.Location = New System.Drawing.Point(8, 370)
-        Me.BtUac.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtUac.Margin = New System.Windows.Forms.Padding(4)
         Me.BtUac.Name = "BtUac"
         Me.BtUac.Size = New System.Drawing.Size(223, 33)
         Me.BtUac.TabIndex = 32
@@ -494,7 +494,7 @@ Partial Class InstaladorKubo
         Me.btOdbc.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btOdbc.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btOdbc.Location = New System.Drawing.Point(7, 159)
-        Me.btOdbc.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btOdbc.Margin = New System.Windows.Forms.Padding(4)
         Me.btOdbc.Name = "btOdbc"
         Me.btOdbc.Size = New System.Drawing.Size(223, 33)
         Me.btOdbc.TabIndex = 27
@@ -624,7 +624,7 @@ Partial Class InstaladorKubo
         Me.BtTraerdeF.Enabled = False
         Me.BtTraerdeF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtTraerdeF.Location = New System.Drawing.Point(17, 69)
-        Me.BtTraerdeF.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtTraerdeF.Margin = New System.Windows.Forms.Padding(4)
         Me.BtTraerdeF.Name = "BtTraerdeF"
         Me.BtTraerdeF.Size = New System.Drawing.Size(213, 44)
         Me.BtTraerdeF.TabIndex = 1
@@ -636,7 +636,7 @@ Partial Class InstaladorKubo
         Me.BtCopiarhaciaF.Enabled = False
         Me.BtCopiarhaciaF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtCopiarhaciaF.Location = New System.Drawing.Point(17, 10)
-        Me.BtCopiarhaciaF.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtCopiarhaciaF.Margin = New System.Windows.Forms.Padding(4)
         Me.BtCopiarhaciaF.Name = "BtCopiarhaciaF"
         Me.BtCopiarhaciaF.Size = New System.Drawing.Size(213, 44)
         Me.BtCopiarhaciaF.TabIndex = 0
