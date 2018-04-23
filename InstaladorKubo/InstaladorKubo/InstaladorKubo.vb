@@ -40,6 +40,10 @@ Public Class InstaladorKubo
         FicheroINI()
         'NotinenF()
 
+        'Comprobación de ficheros para habilitar boton Traer Paquete a Servidor
+        If Directory.Exists("F:\PRG.INS\NOTIN") = True Then
+            BtTraerdeF.Enabled = True
+        End If
 
         'TODO Terminar proceso de Logger. Ahora mismo lo hace al revés
         Dim cabecera_log As String = "=====  INICIO APLICACIÓN  =====" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & My.User.Name
@@ -145,6 +149,11 @@ Public Class InstaladorKubo
         If uac = 1 Then
             BtUac.BackColor = Color.PaleGreen
         End If
+        Dim comienzodescargas = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "COMIENZO", "2")
+        If comienzodescargas = 1 Then
+            BtCopiarhaciaF.Enabled = True
+        End If
+
     End Sub
 
 
@@ -461,6 +470,7 @@ Public Class InstaladorKubo
             texto = texto & PuestoNotin & "PuestoNotinC.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos_odt.exe" & vbCrLf
+            texto = texto & PuestoNotin & "ScanImg_Beta_FT.exe" & vbCrLf
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "PUESTONOTIN", "1")
         End If
 
@@ -579,6 +589,7 @@ Public Class InstaladorKubo
         lbProcesandoDescargas.Visible = False
         MessageBox.Show("DESCARGAS FINALIZADAS.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+        BtCopiarhaciaF.Enabled = True
     End Sub
 
     'Mensajes de acción
@@ -750,10 +761,12 @@ Public Class InstaladorKubo
         Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup.mst /qb-", AppWinStyle.NormalFocus, True)
         ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
-        Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe /Q" & """", AppWinStyle.Hide, True)
         Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
 
+        Shell("cmd.exe /c " & RutaDescargas & "ScanImg_Beta_FT.exe", AppWinStyle.Hide, False)
         Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
+
 
         'Copiar Referencia Outlook
         Dim msoutlxcopy As String = "xcopy /F /Y /C "
@@ -982,6 +995,12 @@ Public Class InstaladorKubo
 
         TlpUac.SetToolTip(BtUac, "Exclusiones Windows Defender y Control Cuentas Usuario (Script Sanchez)")
 
+        TlpCopiarServidor.ToolTipTitle = "Copia Paquetes al Servidor"
+        TlpCopiarServidor.SetToolTip(BtCopiarhaciaF, "Copia los Paquetes descargados al Servidor para poder recogerlos posteriormente en otro equipo usando la opción siguiente.")
+
+        TlpTraerServidor.ToolTipTitle = "Recoge Paquetes desde el Servidor"
+        TlpTraerServidor.SetToolTip(BtTraerdeF, "Trae hacia la ruta Local los Paquetes copiados previamente al Servidor para así no tener que obtenerlos de Internet.")
+
     End Sub
 #End Region
 
@@ -1069,7 +1088,7 @@ Public Class InstaladorKubo
         btExcepJava.BackColor = Color.PaleGreen
     End Sub
 
-    Private Sub LinkInstalador_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkInstalador.LinkClicked
+    Private Sub LinkInstalador_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
         System.Diagnostics.Process.Start("http://instalador.notin.net/publish.htm")
     End Sub
 
@@ -1105,9 +1124,10 @@ Public Class InstaladorKubo
     'TODO copiar paquetes descargados a F o traerlos
     Private Sub BtCopiarhaciaF_Click(sender As Object, e As EventArgs) Handles BtCopiarhaciaF.Click
         If UnidadF() = False Then
-            MessageBox.Show("Conecta antes la Unidad F")
+            MessageBox.Show("Conecta antes la Unidad de Red F", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
+
         obtenerrobocopy()
         Dim notinf = "F:\PRG.INS\NOTIN\"
         Directory.CreateDirectory(notinf)
@@ -1120,12 +1140,13 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.mst" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.xml" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
 
-        MessageBox.Show("Paquetes copiados a F:\PRG.INS\NOTIN", "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Paquetes copiados a F:\PRG.INS\NOTIN\", "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        BtTraerdeF.Enabled = True
     End Sub
 
     Private Sub BtTraerdeF_Click(sender As Object, e As EventArgs) Handles BtTraerdeF.Click
         If UnidadF() = False Then
-            MessageBox.Show("Conecta antes la Unidad F")
+            MessageBox.Show("Conecta antes la Unidad de Red F", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
         If Directory.Exists("F:\PRG.INS\NOTIN") = False Then
@@ -1137,7 +1158,7 @@ Public Class InstaladorKubo
         Dim notinf = "F:\PRG.INS\NOTIN\"
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & notinf & " " & RutaDescargas & " *.*" & " /E /R:5 /W:5 /ETA", AppWinStyle.NormalFocus, True)
 
-        MessageBox.Show("Paquetes en F traidos a " & RutaDescargas, "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Paquetes en F:\PRG.INS\NOTIN copiados hacia " & RutaDescargas, "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
 End Class

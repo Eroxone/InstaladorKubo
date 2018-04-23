@@ -71,47 +71,49 @@ Partial Class InstaladorKubo
         Me.tlpAncert = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpOffice2003 = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpOffice2016 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.LinkInstalador = New System.Windows.Forms.LinkLabel()
         Me.btDirDescargas = New System.Windows.Forms.Button()
         Me.TlpRutaDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpComenzarDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpJava = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpUac = New System.Windows.Forms.ToolTip(Me.components)
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.BtTraerdeF = New System.Windows.Forms.Button()
         Me.BtCopiarhaciaF = New System.Windows.Forms.Button()
-        Me.LbPaquetesServidor = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.TlpPaquetesServidor = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TabGestion = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TlpCopiarServidor = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpTraerServidor = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
+        Me.TabGestion.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lbUnidadF
         '
         Me.lbUnidadF.AutoSize = True
-        Me.lbUnidadF.Font = New System.Drawing.Font("Consolas", 19.0!, System.Drawing.FontStyle.Bold)
+        Me.lbUnidadF.Font = New System.Drawing.Font("Lucida Bright", 15.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbUnidadF.ForeColor = System.Drawing.Color.DarkGray
-        Me.lbUnidadF.Location = New System.Drawing.Point(4, 22)
-        Me.lbUnidadF.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbUnidadF.Location = New System.Drawing.Point(5, 27)
         Me.lbUnidadF.Name = "lbUnidadF"
-        Me.lbUnidadF.Size = New System.Drawing.Size(126, 31)
+        Me.lbUnidadF.Size = New System.Drawing.Size(122, 29)
         Me.lbUnidadF.TabIndex = 0
         Me.lbUnidadF.Text = "Unidad F"
         '
         'GroupBox4
         '
-        Me.GroupBox4.BackColor = System.Drawing.Color.FloralWhite
+        Me.GroupBox4.BackColor = System.Drawing.Color.WhiteSmoke
         Me.GroupBox4.Controls.Add(Me.lbUnidadF)
-        Me.GroupBox4.Font = New System.Drawing.Font("Bookman Old Style", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox4.Location = New System.Drawing.Point(587, 22)
-        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox4.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.GroupBox4.Location = New System.Drawing.Point(475, 22)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox4.Size = New System.Drawing.Size(205, 57)
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox4.Size = New System.Drawing.Size(273, 70)
         Me.GroupBox4.TabIndex = 35
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Unidad F"
@@ -119,59 +121,56 @@ Partial Class InstaladorKubo
         'lb64bits
         '
         Me.lb64bits.AutoSize = True
-        Me.lb64bits.Font = New System.Drawing.Font("Lucida Calligraphy", 8.0!)
-        Me.lb64bits.Location = New System.Drawing.Point(9, 37)
-        Me.lb64bits.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lb64bits.Font = New System.Drawing.Font("Lucida Bright", 7.8!)
+        Me.lb64bits.Location = New System.Drawing.Point(12, 46)
         Me.lb64bits.Name = "lb64bits"
-        Me.lb64bits.Size = New System.Drawing.Size(95, 15)
+        Me.lb64bits.Size = New System.Drawing.Size(117, 16)
         Me.lb64bits.TabIndex = 26
         Me.lb64bits.Text = "Sistema x32/64"
         '
         'lbUsuario
         '
         Me.lbUsuario.AutoSize = True
-        Me.lbUsuario.Font = New System.Drawing.Font("Lucida Calligraphy", 8.0!)
-        Me.lbUsuario.Location = New System.Drawing.Point(9, 53)
-        Me.lbUsuario.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbUsuario.Font = New System.Drawing.Font("Lucida Bright", 7.8!)
+        Me.lbUsuario.Location = New System.Drawing.Point(12, 65)
         Me.lbUsuario.Name = "lbUsuario"
-        Me.lbUsuario.Size = New System.Drawing.Size(54, 15)
+        Me.lbUsuario.Size = New System.Drawing.Size(61, 16)
         Me.lbUsuario.TabIndex = 25
         Me.lbUsuario.Text = "Usuario"
         '
         'lbSistemaO
         '
         Me.lbSistemaO.AutoSize = True
-        Me.lbSistemaO.Font = New System.Drawing.Font("Lucida Calligraphy", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbSistemaO.Location = New System.Drawing.Point(9, 22)
-        Me.lbSistemaO.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbSistemaO.Font = New System.Drawing.Font("Lucida Bright", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbSistemaO.Location = New System.Drawing.Point(12, 27)
         Me.lbSistemaO.Name = "lbSistemaO"
-        Me.lbSistemaO.Size = New System.Drawing.Size(130, 15)
+        Me.lbSistemaO.Size = New System.Drawing.Size(134, 16)
         Me.lbSistemaO.TabIndex = 0
         Me.lbSistemaO.Text = "Sistema Operativo"
         '
         'GroupBox3
         '
-        Me.GroupBox3.BackColor = System.Drawing.Color.FloralWhite
+        Me.GroupBox3.BackColor = System.Drawing.Color.WhiteSmoke
         Me.GroupBox3.Controls.Add(Me.lb64bits)
         Me.GroupBox3.Controls.Add(Me.lbUsuario)
         Me.GroupBox3.Controls.Add(Me.lbSistemaO)
-        Me.GroupBox3.Font = New System.Drawing.Font("Bookman Old Style", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox3.Location = New System.Drawing.Point(30, 18)
-        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox3.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox3.Location = New System.Drawing.Point(40, 22)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox3.Size = New System.Drawing.Size(214, 79)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox3.Size = New System.Drawing.Size(285, 97)
         Me.GroupBox3.TabIndex = 34
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Sistema"
         '
         'btSalir
         '
-        Me.btSalir.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btSalir.Location = New System.Drawing.Point(716, 514)
-        Me.btSalir.Margin = New System.Windows.Forms.Padding(2)
+        Me.btSalir.Font = New System.Drawing.Font("Lucida Bright", 13.8!, System.Drawing.FontStyle.Bold)
+        Me.btSalir.Location = New System.Drawing.Point(959, 632)
+        Me.btSalir.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btSalir.Name = "btSalir"
-        Me.btSalir.Size = New System.Drawing.Size(68, 32)
+        Me.btSalir.Size = New System.Drawing.Size(91, 39)
         Me.btSalir.TabIndex = 33
         Me.btSalir.Text = "Salir"
         Me.btSalir.UseVisualStyleBackColor = True
@@ -180,11 +179,11 @@ Partial Class InstaladorKubo
         '
         Me.btTodo.BackColor = System.Drawing.SystemColors.Control
         Me.btTodo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btTodo.Font = New System.Drawing.Font("Lucida Calligraphy", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btTodo.Location = New System.Drawing.Point(224, 337)
-        Me.btTodo.Margin = New System.Windows.Forms.Padding(2)
+        Me.btTodo.Font = New System.Drawing.Font("Lucida Bright", 7.0!)
+        Me.btTodo.Location = New System.Drawing.Point(299, 415)
+        Me.btTodo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btTodo.Name = "btTodo"
-        Me.btTodo.Size = New System.Drawing.Size(85, 24)
+        Me.btTodo.Size = New System.Drawing.Size(113, 30)
         Me.btTodo.TabIndex = 19
         Me.btTodo.Text = "Marcar todos"
         Me.btTodo.UseVisualStyleBackColor = False
@@ -209,12 +208,12 @@ Partial Class InstaladorKubo
         Me.GroupBox1.Controls.Add(Me.cbNemo)
         Me.GroupBox1.Controls.Add(Me.cbPuestoNotin)
         Me.GroupBox1.Cursor = System.Windows.Forms.Cursors.Default
-        Me.GroupBox1.Font = New System.Drawing.Font("Georgia", 15.0!)
-        Me.GroupBox1.Location = New System.Drawing.Point(16, 110)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox1.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.GroupBox1.Location = New System.Drawing.Point(21, 135)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox1.Size = New System.Drawing.Size(313, 365)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox1.Size = New System.Drawing.Size(417, 449)
         Me.GroupBox1.TabIndex = 29
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Descargas"
@@ -222,10 +221,11 @@ Partial Class InstaladorKubo
         'cbOffice2016odt
         '
         Me.cbOffice2016odt.AutoSize = True
-        Me.cbOffice2016odt.Font = New System.Drawing.Font("Bodoni MT", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbOffice2016odt.Location = New System.Drawing.Point(14, 105)
+        Me.cbOffice2016odt.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
+        Me.cbOffice2016odt.Location = New System.Drawing.Point(19, 129)
+        Me.cbOffice2016odt.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cbOffice2016odt.Name = "cbOffice2016odt"
-        Me.cbOffice2016odt.Size = New System.Drawing.Size(223, 27)
+        Me.cbOffice2016odt.Size = New System.Drawing.Size(260, 26)
         Me.cbOffice2016odt.TabIndex = 20
         Me.cbOffice2016odt.Text = "Office 2016 ODT (2,4Gb)"
         Me.cbOffice2016odt.UseVisualStyleBackColor = True
@@ -233,23 +233,22 @@ Partial Class InstaladorKubo
         'lbSoftwaredescargable
         '
         Me.lbSoftwaredescargable.AutoSize = True
-        Me.lbSoftwaredescargable.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbSoftwaredescargable.Location = New System.Drawing.Point(13, 27)
-        Me.lbSoftwaredescargable.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbSoftwaredescargable.Font = New System.Drawing.Font("Lucida Bright", 10.2!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbSoftwaredescargable.Location = New System.Drawing.Point(17, 33)
         Me.lbSoftwaredescargable.Name = "lbSoftwaredescargable"
-        Me.lbSoftwaredescargable.Size = New System.Drawing.Size(125, 17)
+        Me.lbSoftwaredescargable.Size = New System.Drawing.Size(157, 19)
         Me.lbSoftwaredescargable.TabIndex = 2
         Me.lbSoftwaredescargable.Text = "Aplicación Notin"
         '
         'cbTerceros
         '
         Me.cbTerceros.AutoSize = True
-        Me.cbTerceros.Font = New System.Drawing.Font("Bodoni MT", 14.25!)
-        Me.cbTerceros.Location = New System.Drawing.Point(14, 301)
-        Me.cbTerceros.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbTerceros.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
+        Me.cbTerceros.Location = New System.Drawing.Point(19, 383)
+        Me.cbTerceros.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbTerceros.Name = "cbTerceros"
-        Me.cbTerceros.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.cbTerceros.Size = New System.Drawing.Size(222, 27)
+        Me.cbTerceros.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.cbTerceros.Size = New System.Drawing.Size(266, 26)
         Me.cbTerceros.TabIndex = 18
         Me.cbTerceros.Text = "Aplicaciones de Terceros"
         Me.cbTerceros.UseVisualStyleBackColor = True
@@ -258,12 +257,12 @@ Partial Class InstaladorKubo
         '
         Me.cbOffice2003.AutoSize = True
         Me.cbOffice2003.BackColor = System.Drawing.SystemColors.Control
-        Me.cbOffice2003.Font = New System.Drawing.Font("Bodoni MT", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbOffice2003.Font = New System.Drawing.Font("Lucida Bright", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbOffice2003.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.cbOffice2003.Location = New System.Drawing.Point(14, 49)
-        Me.cbOffice2003.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbOffice2003.Location = New System.Drawing.Point(19, 60)
+        Me.cbOffice2003.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbOffice2003.Name = "cbOffice2003"
-        Me.cbOffice2003.Size = New System.Drawing.Size(163, 27)
+        Me.cbOffice2003.Size = New System.Drawing.Size(188, 26)
         Me.cbOffice2003.TabIndex = 0
         Me.cbOffice2003.Text = "Office 2003 ORK"
         Me.cbOffice2003.UseVisualStyleBackColor = False
@@ -271,11 +270,11 @@ Partial Class InstaladorKubo
         'cbOffice2016
         '
         Me.cbOffice2016.AutoSize = True
-        Me.cbOffice2016.Font = New System.Drawing.Font("Bodoni MT", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbOffice2016.Location = New System.Drawing.Point(14, 81)
-        Me.cbOffice2016.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbOffice2016.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
+        Me.cbOffice2016.Location = New System.Drawing.Point(19, 100)
+        Me.cbOffice2016.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbOffice2016.Name = "cbOffice2016"
-        Me.cbOffice2016.Size = New System.Drawing.Size(116, 27)
+        Me.cbOffice2016.Size = New System.Drawing.Size(141, 26)
         Me.cbOffice2016.TabIndex = 1
         Me.cbOffice2016.Text = "Office 2016"
         Me.cbOffice2016.UseVisualStyleBackColor = True
@@ -283,11 +282,11 @@ Partial Class InstaladorKubo
         'cbConfiguraNotin
         '
         Me.cbConfiguraNotin.AutoSize = True
-        Me.cbConfiguraNotin.Font = New System.Drawing.Font("Century", 9.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbConfiguraNotin.Location = New System.Drawing.Point(179, 55)
-        Me.cbConfiguraNotin.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbConfiguraNotin.Font = New System.Drawing.Font("Lucida Bright", 9.0!)
+        Me.cbConfiguraNotin.Location = New System.Drawing.Point(239, 60)
+        Me.cbConfiguraNotin.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbConfiguraNotin.Name = "cbConfiguraNotin"
-        Me.cbConfiguraNotin.Size = New System.Drawing.Size(128, 20)
+        Me.cbConfiguraNotin.Size = New System.Drawing.Size(165, 21)
         Me.cbConfiguraNotin.TabIndex = 12
         Me.cbConfiguraNotin.Text = "Config. Notin .Net"
         Me.cbConfiguraNotin.UseVisualStyleBackColor = True
@@ -296,12 +295,11 @@ Partial Class InstaladorKubo
         '
         Me.lblAncert.AutoSize = True
         Me.lblAncert.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.lblAncert.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAncert.Font = New System.Drawing.Font("Lucida Bright", 10.2!, System.Drawing.FontStyle.Bold)
         Me.lblAncert.LinkColor = System.Drawing.Color.Black
-        Me.lblAncert.Location = New System.Drawing.Point(11, 229)
-        Me.lblAncert.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblAncert.Location = New System.Drawing.Point(15, 282)
         Me.lblAncert.Name = "lblAncert"
-        Me.lblAncert.Size = New System.Drawing.Size(123, 17)
+        Me.lblAncert.Size = New System.Drawing.Size(151, 19)
         Me.lblAncert.TabIndex = 8
         Me.lblAncert.TabStop = True
         Me.lblAncert.Text = "Software Ancert"
@@ -309,11 +307,11 @@ Partial Class InstaladorKubo
         'cbSferen
         '
         Me.cbSferen.AutoSize = True
-        Me.cbSferen.Font = New System.Drawing.Font("Bodoni MT", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbSferen.Location = New System.Drawing.Point(14, 248)
-        Me.cbSferen.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbSferen.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
+        Me.cbSferen.Location = New System.Drawing.Point(19, 305)
+        Me.cbSferen.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbSferen.Name = "cbSferen"
-        Me.cbSferen.Size = New System.Drawing.Size(78, 27)
+        Me.cbSferen.Size = New System.Drawing.Size(90, 26)
         Me.cbSferen.TabIndex = 7
         Me.cbSferen.Text = "Sferen"
         Me.cbSferen.UseVisualStyleBackColor = True
@@ -321,11 +319,11 @@ Partial Class InstaladorKubo
         'cbRequisitos
         '
         Me.cbRequisitos.AutoSize = True
-        Me.cbRequisitos.Font = New System.Drawing.Font("Bodoni MT", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbRequisitos.Location = New System.Drawing.Point(162, 180)
-        Me.cbRequisitos.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
+        Me.cbRequisitos.Location = New System.Drawing.Point(216, 210)
+        Me.cbRequisitos.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbRequisitos.Name = "cbRequisitos"
-        Me.cbRequisitos.Size = New System.Drawing.Size(145, 27)
+        Me.cbRequisitos.Size = New System.Drawing.Size(163, 26)
         Me.cbRequisitos.TabIndex = 15
         Me.cbRequisitos.Text = "Pre-Requisitos"
         Me.cbRequisitos.UseVisualStyleBackColor = True
@@ -333,11 +331,11 @@ Partial Class InstaladorKubo
         'cbPasarelaSigno
         '
         Me.cbPasarelaSigno.AutoSize = True
-        Me.cbPasarelaSigno.Font = New System.Drawing.Font("Bodoni MT", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbPasarelaSigno.Location = New System.Drawing.Point(14, 270)
-        Me.cbPasarelaSigno.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbPasarelaSigno.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
+        Me.cbPasarelaSigno.Location = New System.Drawing.Point(19, 332)
+        Me.cbPasarelaSigno.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbPasarelaSigno.Name = "cbPasarelaSigno"
-        Me.cbPasarelaSigno.Size = New System.Drawing.Size(144, 27)
+        Me.cbPasarelaSigno.Size = New System.Drawing.Size(166, 26)
         Me.cbPasarelaSigno.TabIndex = 6
         Me.cbPasarelaSigno.Text = "Pasarela Signo"
         Me.cbPasarelaSigno.UseVisualStyleBackColor = True
@@ -345,11 +343,11 @@ Partial Class InstaladorKubo
         'cbConfiguraWord2016
         '
         Me.cbConfiguraWord2016.AutoSize = True
-        Me.cbConfiguraWord2016.Font = New System.Drawing.Font("Century", 9.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbConfiguraWord2016.Location = New System.Drawing.Point(178, 87)
-        Me.cbConfiguraWord2016.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbConfiguraWord2016.Font = New System.Drawing.Font("Lucida Bright", 9.0!)
+        Me.cbConfiguraWord2016.Location = New System.Drawing.Point(239, 100)
+        Me.cbConfiguraWord2016.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbConfiguraWord2016.Name = "cbConfiguraWord2016"
-        Me.cbConfiguraWord2016.Size = New System.Drawing.Size(130, 20)
+        Me.cbConfiguraWord2016.Size = New System.Drawing.Size(168, 21)
         Me.cbConfiguraWord2016.TabIndex = 13
         Me.cbConfiguraWord2016.Text = "Config. Word 2016"
         Me.cbConfiguraWord2016.UseVisualStyleBackColor = True
@@ -357,33 +355,31 @@ Partial Class InstaladorKubo
         'lbRequisitos
         '
         Me.lbRequisitos.AutoSize = True
-        Me.lbRequisitos.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRequisitos.Location = New System.Drawing.Point(159, 161)
-        Me.lbRequisitos.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.2!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbRequisitos.Location = New System.Drawing.Point(212, 186)
         Me.lbRequisitos.Name = "lbRequisitos"
-        Me.lbRequisitos.Size = New System.Drawing.Size(106, 17)
+        Me.lbRequisitos.Size = New System.Drawing.Size(128, 19)
         Me.lbRequisitos.TabIndex = 14
         Me.lbRequisitos.Text = "Software .Net"
         '
         'lbPaquetes
         '
         Me.lbPaquetes.AutoSize = True
-        Me.lbPaquetes.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbPaquetes.Location = New System.Drawing.Point(11, 161)
-        Me.lbPaquetes.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbPaquetes.Font = New System.Drawing.Font("Lucida Bright", 10.2!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbPaquetes.Location = New System.Drawing.Point(15, 186)
         Me.lbPaquetes.Name = "lbPaquetes"
-        Me.lbPaquetes.Size = New System.Drawing.Size(76, 17)
+        Me.lbPaquetes.Size = New System.Drawing.Size(87, 19)
         Me.lbPaquetes.TabIndex = 5
         Me.lbPaquetes.Text = "Paquetes"
         '
         'cbNemo
         '
         Me.cbNemo.AutoSize = True
-        Me.cbNemo.Font = New System.Drawing.Font("Bodoni MT", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbNemo.Location = New System.Drawing.Point(14, 180)
-        Me.cbNemo.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbNemo.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
+        Me.cbNemo.Location = New System.Drawing.Point(19, 210)
+        Me.cbNemo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbNemo.Name = "cbNemo"
-        Me.cbNemo.Size = New System.Drawing.Size(76, 27)
+        Me.cbNemo.Size = New System.Drawing.Size(86, 26)
         Me.cbNemo.TabIndex = 3
         Me.cbNemo.Text = "Nemo"
         Me.cbNemo.UseVisualStyleBackColor = True
@@ -391,23 +387,23 @@ Partial Class InstaladorKubo
         'cbPuestoNotin
         '
         Me.cbPuestoNotin.AutoSize = True
-        Me.cbPuestoNotin.Font = New System.Drawing.Font("Bodoni MT", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbPuestoNotin.Location = New System.Drawing.Point(14, 202)
-        Me.cbPuestoNotin.Margin = New System.Windows.Forms.Padding(2)
+        Me.cbPuestoNotin.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
+        Me.cbPuestoNotin.Location = New System.Drawing.Point(19, 237)
+        Me.cbPuestoNotin.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.cbPuestoNotin.Name = "cbPuestoNotin"
-        Me.cbPuestoNotin.Size = New System.Drawing.Size(150, 27)
+        Me.cbPuestoNotin.Size = New System.Drawing.Size(168, 26)
         Me.cbPuestoNotin.TabIndex = 4
         Me.cbPuestoNotin.Text = "Puesto Notin C"
         Me.cbPuestoNotin.UseVisualStyleBackColor = True
         '
         'btNotinKubo
         '
-        Me.btNotinKubo.BackColor = System.Drawing.Color.PaleGoldenrod
-        Me.btNotinKubo.Font = New System.Drawing.Font("Bernard MT Condensed", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btNotinKubo.Location = New System.Drawing.Point(4, 29)
-        Me.btNotinKubo.Margin = New System.Windows.Forms.Padding(2)
+        Me.btNotinKubo.BackColor = System.Drawing.Color.Linen
+        Me.btNotinKubo.Font = New System.Drawing.Font("Lucida Bright", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btNotinKubo.Location = New System.Drawing.Point(5, 36)
+        Me.btNotinKubo.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btNotinKubo.Name = "btNotinKubo"
-        Me.btNotinKubo.Size = New System.Drawing.Size(178, 39)
+        Me.btNotinKubo.Size = New System.Drawing.Size(237, 48)
         Me.btNotinKubo.TabIndex = 26
         Me.btNotinKubo.Text = "NOTIN + KUBO"
         Me.btNotinKubo.UseVisualStyleBackColor = False
@@ -422,12 +418,12 @@ Partial Class InstaladorKubo
         Me.GroupBox2.Controls.Add(Me.btFramework)
         Me.GroupBox2.Controls.Add(Me.btOdbc)
         Me.GroupBox2.Controls.Add(Me.btNotinKubo)
-        Me.GroupBox2.Font = New System.Drawing.Font("Georgia", 15.0!)
-        Me.GroupBox2.Location = New System.Drawing.Point(587, 114)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
+        Me.GroupBox2.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox2.Location = New System.Drawing.Point(467, 135)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(225, 361)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GroupBox2.Size = New System.Drawing.Size(300, 444)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Instalaciones"
@@ -436,9 +432,10 @@ Partial Class InstaladorKubo
         '
         Me.BtUac.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtUac.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtUac.Location = New System.Drawing.Point(6, 301)
+        Me.BtUac.Location = New System.Drawing.Point(8, 370)
+        Me.BtUac.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtUac.Name = "BtUac"
-        Me.BtUac.Size = New System.Drawing.Size(167, 27)
+        Me.BtUac.Size = New System.Drawing.Size(223, 33)
         Me.BtUac.TabIndex = 32
         Me.BtUac.Text = "Installer UAC"
         Me.BtUac.UseVisualStyleBackColor = True
@@ -447,10 +444,10 @@ Partial Class InstaladorKubo
         '
         Me.btJava.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btJava.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btJava.Location = New System.Drawing.Point(5, 172)
-        Me.btJava.Margin = New System.Windows.Forms.Padding(2)
+        Me.btJava.Location = New System.Drawing.Point(7, 212)
+        Me.btJava.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btJava.Name = "btJava"
-        Me.btJava.Size = New System.Drawing.Size(167, 27)
+        Me.btJava.Size = New System.Drawing.Size(223, 33)
         Me.btJava.TabIndex = 31
         Me.btJava.Text = "Instalar JAVA"
         Me.btJava.UseVisualStyleBackColor = True
@@ -459,10 +456,10 @@ Partial Class InstaladorKubo
         '
         Me.btExcepJava.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btExcepJava.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btExcepJava.Location = New System.Drawing.Point(5, 215)
-        Me.btExcepJava.Margin = New System.Windows.Forms.Padding(2)
+        Me.btExcepJava.Location = New System.Drawing.Point(7, 265)
+        Me.btExcepJava.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btExcepJava.Name = "btExcepJava"
-        Me.btExcepJava.Size = New System.Drawing.Size(167, 27)
+        Me.btExcepJava.Size = New System.Drawing.Size(223, 33)
         Me.btExcepJava.TabIndex = 30
         Me.btExcepJava.Text = "Excep. JAVA"
         Me.btExcepJava.UseVisualStyleBackColor = True
@@ -472,10 +469,10 @@ Partial Class InstaladorKubo
         Me.btDirectivas.Enabled = False
         Me.btDirectivas.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btDirectivas.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btDirectivas.Location = New System.Drawing.Point(5, 258)
-        Me.btDirectivas.Margin = New System.Windows.Forms.Padding(2)
+        Me.btDirectivas.Location = New System.Drawing.Point(7, 318)
+        Me.btDirectivas.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btDirectivas.Name = "btDirectivas"
-        Me.btDirectivas.Size = New System.Drawing.Size(167, 27)
+        Me.btDirectivas.Size = New System.Drawing.Size(223, 33)
         Me.btDirectivas.TabIndex = 29
         Me.btDirectivas.Text = "Conf. Directivas"
         Me.btDirectivas.UseVisualStyleBackColor = True
@@ -484,10 +481,10 @@ Partial Class InstaladorKubo
         '
         Me.btFramework.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btFramework.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btFramework.Location = New System.Drawing.Point(5, 87)
-        Me.btFramework.Margin = New System.Windows.Forms.Padding(2)
+        Me.btFramework.Location = New System.Drawing.Point(7, 107)
+        Me.btFramework.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btFramework.Name = "btFramework"
-        Me.btFramework.Size = New System.Drawing.Size(167, 27)
+        Me.btFramework.Size = New System.Drawing.Size(223, 33)
         Me.btFramework.TabIndex = 28
         Me.btFramework.Text = "Framework 3.5"
         Me.btFramework.UseVisualStyleBackColor = True
@@ -496,9 +493,10 @@ Partial Class InstaladorKubo
         '
         Me.btOdbc.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btOdbc.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btOdbc.Location = New System.Drawing.Point(5, 129)
+        Me.btOdbc.Location = New System.Drawing.Point(7, 159)
+        Me.btOdbc.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btOdbc.Name = "btOdbc"
-        Me.btOdbc.Size = New System.Drawing.Size(167, 27)
+        Me.btOdbc.Size = New System.Drawing.Size(223, 33)
         Me.btOdbc.TabIndex = 27
         Me.btOdbc.Text = "ODBC NotinSQL"
         Me.btOdbc.UseVisualStyleBackColor = True
@@ -508,22 +506,21 @@ Partial Class InstaladorKubo
         Me.lbRuta.AutoSize = True
         Me.lbRuta.BackColor = System.Drawing.Color.SeaShell
         Me.lbRuta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbRuta.Font = New System.Drawing.Font("Perpetua Titling MT", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRuta.Location = New System.Drawing.Point(13, 526)
-        Me.lbRuta.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbRuta.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbRuta.Location = New System.Drawing.Point(17, 647)
         Me.lbRuta.Name = "lbRuta"
-        Me.lbRuta.Size = New System.Drawing.Size(67, 15)
+        Me.lbRuta.Size = New System.Drawing.Size(91, 19)
         Me.lbRuta.TabIndex = 31
         Me.lbRuta.Text = "C:\NOTIN\"
         '
         'btDescargar
         '
-        Me.btDescargar.BackColor = System.Drawing.Color.LightSkyBlue
-        Me.btDescargar.Font = New System.Drawing.Font("Optima", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btDescargar.Location = New System.Drawing.Point(215, 483)
-        Me.btDescargar.Margin = New System.Windows.Forms.Padding(2)
+        Me.btDescargar.BackColor = System.Drawing.Color.Azure
+        Me.btDescargar.Font = New System.Drawing.Font("Lucida Bright", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btDescargar.Location = New System.Drawing.Point(278, 594)
+        Me.btDescargar.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btDescargar.Name = "btDescargar"
-        Me.btDescargar.Size = New System.Drawing.Size(114, 58)
+        Me.btDescargar.Size = New System.Drawing.Size(161, 71)
         Me.btDescargar.TabIndex = 27
         Me.btDescargar.Text = "Comenzar Descargas"
         Me.btDescargar.UseVisualStyleBackColor = False
@@ -545,11 +542,12 @@ Partial Class InstaladorKubo
         'lbProcesandoDescargas
         '
         Me.lbProcesandoDescargas.AutoSize = True
-        Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold)
+        Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.DarkRed
-        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(424, 483)
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(446, 594)
+        Me.lbProcesandoDescargas.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
-        Me.lbProcesandoDescargas.Size = New System.Drawing.Size(267, 25)
+        Me.lbProcesandoDescargas.Size = New System.Drawing.Size(350, 31)
         Me.lbProcesandoDescargas.TabIndex = 36
         Me.lbProcesandoDescargas.Text = "Procesando Descargas..."
         Me.lbProcesandoDescargas.Visible = False
@@ -564,12 +562,11 @@ Partial Class InstaladorKubo
         '
         Me.lbInstalando.AutoSize = True
         Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
-        Me.lbInstalando.Font = New System.Drawing.Font("Rockwell", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbInstalando.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold)
         Me.lbInstalando.ForeColor = System.Drawing.Color.DarkRed
-        Me.lbInstalando.Location = New System.Drawing.Point(424, 483)
-        Me.lbInstalando.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lbInstalando.Location = New System.Drawing.Point(446, 594)
         Me.lbInstalando.Name = "lbInstalando"
-        Me.lbInstalando.Size = New System.Drawing.Size(289, 25)
+        Me.lbInstalando.Size = New System.Drawing.Size(377, 31)
         Me.lbInstalando.TabIndex = 37
         Me.lbInstalando.Text = "Realizando Instalaciones..."
         Me.lbInstalando.Visible = False
@@ -588,27 +585,15 @@ Partial Class InstaladorKubo
         '
         Me.tlpOffice2016.IsBalloon = True
         '
-        'LinkInstalador
-        '
-        Me.LinkInstalador.AutoSize = True
-        Me.LinkInstalador.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.LinkInstalador.Font = New System.Drawing.Font("Lucida Handwriting", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LinkInstalador.Location = New System.Drawing.Point(700, 6)
-        Me.LinkInstalador.Name = "LinkInstalador"
-        Me.LinkInstalador.Size = New System.Drawing.Size(112, 14)
-        Me.LinkInstalador.TabIndex = 38
-        Me.LinkInstalador.TabStop = True
-        Me.LinkInstalador.Text = "instalador.notin.net"
-        '
         'btDirDescargas
         '
         Me.btDirDescargas.BackColor = System.Drawing.Color.Linen
         Me.btDirDescargas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btDirDescargas.Font = New System.Drawing.Font("Palatino Linotype", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btDirDescargas.Location = New System.Drawing.Point(13, 488)
-        Me.btDirDescargas.Margin = New System.Windows.Forms.Padding(2)
+        Me.btDirDescargas.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btDirDescargas.Location = New System.Drawing.Point(17, 600)
+        Me.btDirDescargas.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btDirDescargas.Name = "btDirDescargas"
-        Me.btDirDescargas.Size = New System.Drawing.Size(121, 30)
+        Me.btDirDescargas.Size = New System.Drawing.Size(152, 38)
         Me.btDirDescargas.TabIndex = 30
         Me.btDirDescargas.Text = "Ruta Descargas"
         Me.btDirDescargas.UseVisualStyleBackColor = False
@@ -634,49 +619,33 @@ Partial Class InstaladorKubo
         Me.TlpUac.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpUac.ToolTipTitle = "Installer UAC"
         '
-        'GroupBox5
-        '
-        Me.GroupBox5.Controls.Add(Me.BtTraerdeF)
-        Me.GroupBox5.Controls.Add(Me.BtCopiarhaciaF)
-        Me.GroupBox5.Font = New System.Drawing.Font("Georgia", 13.0!)
-        Me.GroupBox5.Location = New System.Drawing.Point(364, 114)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(185, 128)
-        Me.GroupBox5.TabIndex = 39
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Paquetes Servidor"
-        '
         'BtTraerdeF
         '
-        Me.BtTraerdeF.Font = New System.Drawing.Font("Constantia", 13.0!, System.Drawing.FontStyle.Bold)
-        Me.BtTraerdeF.Location = New System.Drawing.Point(6, 82)
+        Me.BtTraerdeF.Enabled = False
+        Me.BtTraerdeF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtTraerdeF.Location = New System.Drawing.Point(17, 69)
+        Me.BtTraerdeF.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtTraerdeF.Name = "BtTraerdeF"
-        Me.BtTraerdeF.Size = New System.Drawing.Size(171, 36)
+        Me.BtTraerdeF.Size = New System.Drawing.Size(213, 44)
         Me.BtTraerdeF.TabIndex = 1
-        Me.BtTraerdeF.Text = "Traer del Servidor"
+        Me.BtTraerdeF.Text = "Traer de Servidor"
         Me.BtTraerdeF.UseVisualStyleBackColor = True
         '
         'BtCopiarhaciaF
         '
-        Me.BtCopiarhaciaF.Font = New System.Drawing.Font("Constantia", 13.0!, System.Drawing.FontStyle.Bold)
-        Me.BtCopiarhaciaF.Location = New System.Drawing.Point(6, 32)
+        Me.BtCopiarhaciaF.Enabled = False
+        Me.BtCopiarhaciaF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtCopiarhaciaF.Location = New System.Drawing.Point(17, 10)
+        Me.BtCopiarhaciaF.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtCopiarhaciaF.Name = "BtCopiarhaciaF"
-        Me.BtCopiarhaciaF.Size = New System.Drawing.Size(171, 36)
+        Me.BtCopiarhaciaF.Size = New System.Drawing.Size(213, 44)
         Me.BtCopiarhaciaF.TabIndex = 0
         Me.BtCopiarhaciaF.Text = "Copiar a Servidor"
         Me.BtCopiarhaciaF.UseVisualStyleBackColor = True
         '
-        'LbPaquetesServidor
-        '
-        Me.LbPaquetesServidor.AutoSize = True
-        Me.LbPaquetesServidor.Font = New System.Drawing.Font("Cambria", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbPaquetesServidor.Location = New System.Drawing.Point(362, 258)
-        Me.LbPaquetesServidor.Name = "LbPaquetesServidor"
-        Me.LbPaquetesServidor.Size = New System.Drawing.Size(0, 12)
-        Me.LbPaquetesServidor.TabIndex = 2
-        '
         'ContextMenuStrip1
         '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
         Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
         '
@@ -684,14 +653,56 @@ Partial Class InstaladorKubo
         '
         Me.TlpPaquetesServidor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'TabGestion
+        '
+        Me.TabGestion.Controls.Add(Me.TabPage1)
+        Me.TabGestion.Controls.Add(Me.TabPage2)
+        Me.TabGestion.Font = New System.Drawing.Font("Lucida Bright", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabGestion.Location = New System.Drawing.Point(800, 135)
+        Me.TabGestion.Name = "TabGestion"
+        Me.TabGestion.SelectedIndex = 0
+        Me.TabGestion.Size = New System.Drawing.Size(245, 155)
+        Me.TabGestion.TabIndex = 40
+        '
+        'TabPage1
+        '
+        Me.TabPage1.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage1.Controls.Add(Me.BtTraerdeF)
+        Me.TabPage1.Controls.Add(Me.BtCopiarhaciaF)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 27)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(237, 124)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Paquetes"
+        '
+        'TabPage2
+        '
+        Me.TabPage2.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage2.ImeMode = System.Windows.Forms.ImeMode.Katakana
+        Me.TabPage2.Location = New System.Drawing.Point(4, 27)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(237, 124)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Registro"
+        '
+        'TlpCopiarServidor
+        '
+        Me.TlpCopiarServidor.IsBalloon = True
+        Me.TlpCopiarServidor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'TlpTraerServidor
+        '
+        Me.TlpTraerServidor.IsBalloon = True
+        Me.TlpTraerServidor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'InstaladorKubo
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(829, 552)
-        Me.Controls.Add(Me.LbPaquetesServidor)
-        Me.Controls.Add(Me.GroupBox5)
-        Me.Controls.Add(Me.LinkInstalador)
+        Me.ClientSize = New System.Drawing.Size(1057, 679)
+        Me.Controls.Add(Me.TabGestion)
         Me.Controls.Add(Me.lbInstalando)
         Me.Controls.Add(Me.lbProcesandoDescargas)
         Me.Controls.Add(Me.GroupBox4)
@@ -705,7 +716,7 @@ Partial Class InstaladorKubo
         Me.Cursor = System.Windows.Forms.Cursors.Default
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.MaximizeBox = False
         Me.Name = "InstaladorKubo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -717,7 +728,8 @@ Partial Class InstaladorKubo
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox5.ResumeLayout(False)
+        Me.TabGestion.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -770,17 +782,19 @@ Partial Class InstaladorKubo
     Friend WithEvents tlpOffice2003 As ToolTip
     Friend WithEvents btJava As Button
     Friend WithEvents tlpOffice2016 As ToolTip
-    Friend WithEvents LinkInstalador As LinkLabel
     Friend WithEvents btDirDescargas As Button
     Friend WithEvents TlpRutaDescargas As ToolTip
     Friend WithEvents TlpComenzarDescargas As ToolTip
     Friend WithEvents TlpJava As ToolTip
     Friend WithEvents BtUac As Button
     Friend WithEvents TlpUac As ToolTip
-    Friend WithEvents GroupBox5 As GroupBox
     Friend WithEvents BtTraerdeF As Button
     Friend WithEvents BtCopiarhaciaF As Button
-    Friend WithEvents LbPaquetesServidor As Label
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents TlpPaquetesServidor As ToolTip
+    Friend WithEvents TabGestion As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents TlpCopiarServidor As ToolTip
+    Friend WithEvents TlpTraerServidor As ToolTip
 End Class
