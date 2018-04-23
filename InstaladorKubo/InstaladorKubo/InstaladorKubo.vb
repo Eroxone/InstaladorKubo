@@ -139,6 +139,11 @@ Public Class InstaladorKubo
         If java = 1 Then
             btJava.BackColor = Color.PaleGreen
         End If
+        Dim uac = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "UAC", "2")
+        If uac = 1 Then
+            BtUac.BackColor = Color.PaleGreen
+        End If
+
     End Sub
 
 
@@ -335,6 +340,24 @@ Public Class InstaladorKubo
 
     'TODO Funcion calcular tamaño descarga chequeada
 
+    Private Function obtenerwget()
+        If Not System.IO.File.Exists(RutaDescargas & "wget.exe") Then
+            'Descargar ejecutable WGet
+            Try
+                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
+                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
+            Catch ex As Exception
+
+                'Reintentar descarga
+                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
+                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
+                If REINTENTAR = DialogResult.Retry Then
+                    My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, True)
+                End If
+            End Try
+        End If
+    End Function
+
 
     'COMENZAR DESCARGAS
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
@@ -362,6 +385,7 @@ Public Class InstaladorKubo
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error de Ruta", MessageBoxButtons.OK)
         End Try
+
 
 
         'Comprobamos si existe ya wget.exe
@@ -937,6 +961,8 @@ Public Class InstaladorKubo
         TlpJava.ToolTipTitle = "Instalación DESATENDIDA JAVA 8"
         TlpJava.SetToolTip(btJava, "Instalación silenciosa de Java. No requiere intervención del usuario")
 
+        TlpUac.SetToolTip(BtUac, "Exclusiones Windows Defender y Control Cuentas Usuario (Script Sanchez)")
+
     End Sub
 #End Region
 
@@ -1029,22 +1055,7 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub btJava_Click(sender As Object, e As EventArgs) Handles btJava.Click
-
-        If Not System.IO.File.Exists(RutaDescargas & "wget.exe") Then
-            'Descargar ejecutable WGet
-            Try
-                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
-            Catch ex As Exception
-
-                'Reintentar descarga
-                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
-                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
-                If REINTENTAR = DialogResult.Retry Then
-                    My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, True)
-                End If
-            End Try
-        End If
+        obtenerwget()
 
         'Descarga de JAVA 1.8.171
         Directory.CreateDirectory(RutaDescargas & "Software")
@@ -1058,5 +1069,16 @@ Public Class InstaladorKubo
 
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "JAVA8", "1")
         btJava.BackColor = Color.PaleGreen
+    End Sub
+
+    Private Sub BtUac_Click(sender As Object, e As EventArgs) Handles BtUac.Click
+        obtenerwget()
+
+        Directory.CreateDirectory(RutaDescargas & "Utiles")
+        Dim wgetuac As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 " & PuestoNotin & "Utiles/InstallerUAC.exe "
+        Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\InstallerUAC.exe", AppWinStyle.NormalFocus, True)
+        RunAsAdmin(RutaDescargas & "Utiles\InstallerUAC.exe")
+        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "UAC", "1")
+        BtUac.BackColor = Color.PaleGreen
     End Sub
 End Class

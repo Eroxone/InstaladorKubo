@@ -75,6 +75,8 @@ Partial Class InstaladorKubo
         Me.TlpRutaDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpComenzarDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpJava = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtUac = New System.Windows.Forms.Button()
+        Me.TlpUac = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -406,6 +408,7 @@ Partial Class InstaladorKubo
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox2.Controls.Add(Me.BtUac)
         Me.GroupBox2.Controls.Add(Me.btJava)
         Me.GroupBox2.Controls.Add(Me.btExcepJava)
         Me.GroupBox2.Controls.Add(Me.btDirectivas)
@@ -417,7 +420,7 @@ Partial Class InstaladorKubo
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(267, 329)
+        Me.GroupBox2.Size = New System.Drawing.Size(267, 361)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Instalaciones"
@@ -607,6 +610,23 @@ Partial Class InstaladorKubo
         Me.TlpJava.IsBalloon = True
         Me.TlpJava.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'BtUac
+        '
+        Me.BtUac.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtUac.Font = New System.Drawing.Font("Lucida Handwriting", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.BtUac.Location = New System.Drawing.Point(6, 301)
+        Me.BtUac.Name = "BtUac"
+        Me.BtUac.Size = New System.Drawing.Size(167, 27)
+        Me.BtUac.TabIndex = 32
+        Me.BtUac.Text = "Installer UAC"
+        Me.BtUac.UseVisualStyleBackColor = True
+        '
+        'TlpUac
+        '
+        Me.TlpUac.IsBalloon = True
+        Me.TlpUac.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpUac.ToolTipTitle = "Installer UAC"
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -695,4 +715,6 @@ Partial Class InstaladorKubo
     Friend WithEvents TlpRutaDescargas As ToolTip
     Friend WithEvents TlpComenzarDescargas As ToolTip
     Friend WithEvents TlpJava As ToolTip
+    Friend WithEvents BtUac As Button
+    Friend WithEvents TlpUac As ToolTip
 End Class
