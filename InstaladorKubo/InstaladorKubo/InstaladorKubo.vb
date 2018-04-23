@@ -851,7 +851,7 @@ Public Class InstaladorKubo
             Try
                 File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
             Catch ex As Exception
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
 
         End If
@@ -1131,14 +1131,14 @@ Public Class InstaladorKubo
         obtenerrobocopy()
         Dim notinf = "F:\PRG.INS\NOTIN\"
         Directory.CreateDirectory(notinf)
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.exe" & " /E /R:5 /W:5 /ETA", AppWinStyle.NormalFocus, True)
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.bat" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.rar" & " /E /R:5 /W:5 /ETA", AppWinStyle.NormalFocus, True)
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.msi" & " /E /R:5 /W:5 /ETA", AppWinStyle.NormalFocus, True)
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.reg" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.olb" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.mst" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.xml" & " /E /R:5 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.exe" & " /E /R:2 /W:5 /ETA", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.bat" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.rar" & " /E /R:2 /W:5 /ETA", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.msi" & " /E /R:2 /W:5 /ETA", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.reg" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.olb" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.mst" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.xml" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
 
         MessageBox.Show("Paquetes copiados a F:\PRG.INS\NOTIN\", "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         BtTraerdeF.Enabled = True
@@ -1156,9 +1156,12 @@ Public Class InstaladorKubo
 
         obtenerrobocopy()
         Dim notinf = "F:\PRG.INS\NOTIN\"
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & notinf & " " & RutaDescargas & " *.*" & " /E /R:5 /W:5 /ETA", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & notinf & " " & RutaDescargas & " *.*" & " /E /R:1 /W:1 /ETA", AppWinStyle.NormalFocus, True)
 
         MessageBox.Show("Paquetes en F:\PRG.INS\NOTIN copiados hacia " & RutaDescargas, "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'Si no hago esto en el INI no permito realizar instalaciones
+        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "COMIENZO", "1")
+        BtCopiarhaciaF.Enabled = True
     End Sub
 
 End Class
