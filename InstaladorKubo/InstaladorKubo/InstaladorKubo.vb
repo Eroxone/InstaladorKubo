@@ -387,6 +387,25 @@ Public Class InstaladorKubo
     End Function
 
 
+    Private Function obtenerunrar()
+        'Comprobamos si existe ya unrar.exe
+        If Not System.IO.File.Exists(RutaDescargas & "unrar.exe") Then
+
+            'Descargar ejecutable UnRAR
+            Try
+                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
+                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "juanjo", "Palomeras24", False, 20000, True)
+            Catch ex As Exception
+                MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                'Reintentar descarga
+                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
+                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "juanjo", "Palomeras24", False, 20000, True)
+                If REINTENTAR = DialogResult.Retry Then
+                End If
+            End Try
+        End If
+    End Function
 
     'COMENZAR DESCARGAS
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
@@ -1113,11 +1132,18 @@ Public Class InstaladorKubo
 
     Private Sub BtUac_Click(sender As Object, e As EventArgs) Handles BtUac.Click
         obtenerwget()
-
+        
         Directory.CreateDirectory(RutaDescargas & "Utiles")
-        Dim wgetuac As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 " & PuestoNotin & "Utiles/InstallerUAC.exe "
-        Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\InstallerUAC.exe", AppWinStyle.NormalFocus, True)
-        RunAsAdmin(RutaDescargas & "Utiles\InstallerUAC.exe")
+        Dim wgetuac As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 " & PuestoNotin & "Utiles\UAC.ps1 "
+
+        Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\UAC.ps1", AppWinStyle.NormalFocus, True)
+
+        Dim uacadmin = RutaDescargas & "Utiles\UAC.bat"
+        Dim archivops1 As String = "cmd.exe /k powershell.exe -executionpolicy unrestricted -command " & RutaDescargas & "Utiles\UAC.ps1"
+        File.WriteAllText(RutaDescargas & "Utiles\UAC.bat", archivops1)
+
+        RunAsAdmin(uacadmin)
+
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "UAC", "1")
         BtUac.BackColor = Color.PaleGreen
     End Sub
