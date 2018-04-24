@@ -205,9 +205,9 @@ Public Class InstaladorKubo
 
 
     'Recarga formulario tras salir de la eleccion de ruta
-    Private Sub lbRuta_TextChanged(sender As Object, e As EventArgs) Handles lbRuta.TextChanged
-        YaDescargados()
-    End Sub
+    'Private Sub lbRuta_TextChanged(sender As Object, e As EventArgs) Handles lbRuta.TextChanged
+    '    YaDescargados()
+    'End Sub
 
 #Region "COMPROBAR TAMAÑO DESCARGAS"
     ' Archivo existe y mostrar tamaño del mismo
@@ -224,7 +224,7 @@ Public Class InstaladorKubo
                 cbOffice2003.ForeColor = Color.Red
             End If
         Else
-            cbOffice2003.BackColor = SystemColors.Control
+            cbOffice2003.ForeColor = SystemColors.ControlText
             '     cbOffice2003.Enabled = True
         End If
 
@@ -236,7 +236,7 @@ Public Class InstaladorKubo
                 '        cbConfiguraNotin.Enabled = False
             End If
         Else
-            cbConfiguraNotin.BackColor = SystemColors.Control
+            cbConfiguraNotin.ForeColor = SystemColors.ControlText
             '     cbConfiguraNotin.Enabled = True
         End If
 
@@ -250,7 +250,7 @@ Public Class InstaladorKubo
                 cbOffice2016.ForeColor = Color.Red
             End If
         Else
-            cbOffice2016.BackColor = SystemColors.Control
+            cbOffice2016.ForeColor = SystemColors.ControlText
             '     cbOffice2016.Enabled = True
         End If
 
@@ -264,7 +264,7 @@ Public Class InstaladorKubo
                 cbOffice2016odt.ForeColor = Color.Red
             End If
         Else
-            cbOffice2016odt.BackColor = SystemColors.Control
+            cbOffice2016odt.ForeColor = SystemColors.ControlText
             '      cbOffice2016odt.Enabled = True
         End If
 
@@ -276,7 +276,7 @@ Public Class InstaladorKubo
                 '        cbConfiguraWord2016.Enabled = False
             End If
         Else
-            cbConfiguraWord2016.BackColor = SystemColors.Control
+            cbConfiguraWord2016.ForeColor = SystemColors.ControlText
             '      cbConfiguraWord2016.Enabled = True
         End If
 
@@ -289,7 +289,7 @@ Public Class InstaladorKubo
                 '         cbNemo.Enabled = False
             End If
         Else
-            cbNemo.BackColor = SystemColors.Control
+            cbNemo.ForeColor = SystemColors.ControlText
             '     cbNemo.Enabled = True
         End If
 
@@ -301,7 +301,7 @@ Public Class InstaladorKubo
                 '        cbPuestoNotin.Enabled = False
             End If
         Else
-            cbPuestoNotin.BackColor = SystemColors.Control
+            cbPuestoNotin.ForeColor = SystemColors.ControlText
             '    cbPuestoNotin.Enabled = True
         End If
 
@@ -313,10 +313,10 @@ Public Class InstaladorKubo
                 cbRequisitos.ForeColor = Color.DarkGreen
                 '                cbRequisitos.Enabled = False
             Else
-                cbRequisitos.BackColor = SystemColors.Control
+                cbRequisitos.ForeColor = Color.Red
             End If
         Else
-            cbRequisitos.BackColor = SystemColors.Control
+            cbRequisitos.ForeColor = SystemColors.ControlText
             '        cbRequisitos.Enabled = True
         End If
 
@@ -325,7 +325,7 @@ Public Class InstaladorKubo
             cbSferen.ForeColor = Color.DarkGreen
             '            cbSferen.Enabled = False
         Else
-            cbSferen.BackColor = SystemColors.Control
+            cbSferen.ForeColor = SystemColors.ControlText
             '          cbSferen.Enabled = True
         End If
 
@@ -333,7 +333,7 @@ Public Class InstaladorKubo
             cbPasarelaSigno.ForeColor = Color.DarkGreen
             '       cbPasarelaSigno.Enabled = False
         Else
-            cbPasarelaSigno.BackColor = SystemColors.Control
+            cbPasarelaSigno.ForeColor = SystemColors.ControlText
             '     cbPasarelaSigno.Enabled = True
         End If
 
@@ -341,7 +341,7 @@ Public Class InstaladorKubo
         If System.IO.Directory.Exists(RutaDescargas & "\Software") Then
             cbTerceros.ForeColor = Color.DarkGreen
         Else
-            cbTerceros.BackColor = SystemColors.Control
+            cbTerceros.ForeColor = SystemColors.ControlText
         End If
 
 
@@ -689,6 +689,7 @@ Public Class InstaladorKubo
         While UnidadF() = False
             QueHacerF = MessageBox.Show("Unidad F no conectada. Habrá procesos que no se podrán completar y se omitirán.", "Advertencia Unidad F", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning)
             If QueHacerF = DialogResult.Abort Then
+                lbInstalando.Visible = False
                 Exit Sub
             ElseIf QueHacerF = DialogResult.Ignore Then
                 Exit While
