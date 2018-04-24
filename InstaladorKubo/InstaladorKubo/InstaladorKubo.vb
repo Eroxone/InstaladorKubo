@@ -1132,7 +1132,7 @@ Public Class InstaladorKubo
 
     Private Sub BtUac_Click(sender As Object, e As EventArgs) Handles BtUac.Click
         obtenerwget()
-        
+
         Directory.CreateDirectory(RutaDescargas & "Utiles")
         Dim wgetuac As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 " & PuestoNotin & "Utiles\UAC.ps1 "
 
