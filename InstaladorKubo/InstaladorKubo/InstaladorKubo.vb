@@ -590,6 +590,7 @@ Public Class InstaladorKubo
         MessageBox.Show("DESCARGAS FINALIZADAS.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         BtCopiarhaciaF.Enabled = True
+        btTodo.Text = "Marcar todos"
     End Sub
 
     'Mensajes de acción
