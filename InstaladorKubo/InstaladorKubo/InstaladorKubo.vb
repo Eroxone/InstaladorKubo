@@ -27,6 +27,7 @@ Public Class InstaladorKubo
     Private nombre_fichero_log As String = "Logger_InstaladorKubo.txt"
     Private ruta_log As String = "C:\TEMP\InstaladorKubo\" & nombre_fichero_log
     Private RutaDescargas As String = GetPathTemp() 'PATH_TEMP
+    Private Const instaladorkuboini = "C:\TEMP\InstaladorKubo\InstaladorKubo.ini"
 
 
     Private Sub frmInstaladorNotin_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -43,6 +44,7 @@ Public Class InstaladorKubo
         'Comprobación de ficheros para habilitar boton Traer Paquete a Servidor
         If Directory.Exists("F:\PRG.INS\NOTIN") = True Then
             BtTraerdeF.Enabled = True
+            BtTraerdeF.BackColor = Color.FloralWhite
         End If
 
         'TODO Terminar proceso de Logger. Ahora mismo lo hace al revés
@@ -99,10 +101,10 @@ Public Class InstaladorKubo
     'RUTA ANTERIOR. SI EXISTÍA
     Private Function GetPathTemp() As String
         'cIniArray.IniWrite("D:\NOTIN\NNOTIN.INI", "NET", "NOMBRESERVIDOR", "holaquetal")
-        Dim rutadescargasini = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", Nothing)
+        Dim rutadescargasini = cIniArray.IniGet(instaladorkuboini, "RUTAS", "RUTADESCARGAS", Nothing)
         If rutadescargasini IsNot Nothing Then
             Return rutadescargasini
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", rutadescargasini)
+            cIniArray.IniWrite(instaladorkuboini, "RUTAS", "RUTADESCARGAS", rutadescargasini)
         Else
             'If System.IO.File.Exists("C:\TEMP\InstaladorKubo\RutaAnterior.txt") Then
             '    Return (System.IO.File.ReadAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt"))
@@ -121,42 +123,43 @@ Public Class InstaladorKubo
     End Function
 
     Private Sub FicheroINI()
-        Dim odbc = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "2")
+        Dim odbc = cIniArray.IniGet(instaladorkuboini, "ODBC", "NOTINSQL", "2")
         If odbc = 1 Then
             btOdbc.BackColor = Color.PaleGreen
         ElseIf odbc = 0 Then
             btOdbc.BackColor = Color.LightSalmon
         End If
 
-        Dim framework = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "REQUISITOS", "FRAMEWORK35", "2")
+        Dim framework = cIniArray.IniGet(instaladorkuboini, "REQUISITOS", "FRAMEWORK35", "2")
         If framework = 1 Then
             btFramework.BackColor = Color.PaleGreen
         Else
             btFramework.BackColor = SystemColors.Control
         End If
 
-        Dim excepjava = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "EXCEPJAVA", "2")
+        Dim excepjava = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "EXCEPJAVA", "2")
         If excepjava = 1 Then
             btExcepJava.BackColor = Color.PaleGreen
         Else
             btExcepJava.BackColor = SystemColors.Control
         End If
-        Dim java = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "JAVA8", "2")
+        Dim java = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "JAVA8", "2")
         If java = 1 Then
             btJava.BackColor = Color.PaleGreen
         End If
-        Dim uac = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "UAC", "2")
+        Dim uac = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "UAC", "2")
         If uac = 1 Then
             BtUac.BackColor = Color.PaleGreen
         End If
-        Dim comienzodescargas = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "COMIENZO", "2")
+        Dim comienzodescargas = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         If comienzodescargas = 1 Then
             BtCopiarhaciaF.Enabled = True
         End If
-        Dim claveinift = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", "2")
+        Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
         If claveinift = 1 Then
             btNotinKubo.BackColor = Color.Honeydew
         End If
+
 
     End Sub
 
@@ -181,7 +184,7 @@ Public Class InstaladorKubo
 
         'RutaDescargas = fbdDescarga.SelectedPath & "\"
         'lbRuta.Text = RutaDescargas
-        'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
+        'cIniArray.IniWrite(instaladorkuboini, "RUTAS", "RUTADESCARGAS", RutaDescargas)
         'File.WriteAllText("C:\TEMP\InstaladorKubo\RutaAnterior.txt", RutaDescargas)
         'Compruebo si el Directorio contiene espacios y pido que lo cambies
 
@@ -190,12 +193,12 @@ Public Class InstaladorKubo
             System.Text.RegularExpressions.Regex.IsMatch(fbdDescarga.SelectedPath, "[A-Z](:\\)$") Then
             MessageBox.Show(fbdDescarga.SelectedPath & " no es una ruta válida. No se admiten espacios ni unidades de red o raíz.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             'Dim RutaDescargas = "C:\NOTIN\"
-            'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
+            'cIniArray.IniWrite(instaladorkuboini, "RUTAS", "RUTADESCARGAS", RutaDescargas)
             'lbRuta.Text = RutaDescargas
         Else
             RutaDescargas = fbdDescarga.SelectedPath & "\"
         End If
-        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", RutaDescargas)
+        cIniArray.IniWrite(instaladorkuboini, "RUTAS", "RUTADESCARGAS", RutaDescargas)
         lbRuta.Text = RutaDescargas
         YaDescargados()
 
@@ -279,7 +282,7 @@ Public Class InstaladorKubo
         If System.IO.File.Exists(RutaDescargas & "ConfWord2016.rar") Then
             Dim Config2016 As New FileInfo(RutaDescargas & "ConfWord2016.rar")
             Dim LengthConfig2016 As Long = Config2016.Length
-            If Config2016.Length = "8269" Then
+            If Config2016.Length = "8211" Then
                 cbConfiguraWord2016.ForeColor = Color.DarkGreen
                 '        cbConfiguraWord2016.Enabled = False
             End If
@@ -425,7 +428,7 @@ Public Class InstaladorKubo
         End If
 
         'Escribir en el INI para que conste que ya se ha efectuado alguna descarga
-        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "COMIENZO", "1")
+        cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "COMIENZO", "1")
 
         'TODO Mas adelante me meto con la barra de progreso en otro hilo
 
@@ -473,26 +476,26 @@ Public Class InstaladorKubo
         If cbOffice2003.Checked Then
             texto = texto & PuestoNotin & "Office2003.exe" & vbCrLf
             texto = texto & PuestoNotin & "Setup.mst" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2003", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2003", "1")
         End If
 
         If cbOffice2016.Checked Then
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016", "1")
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016ODT", "0")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "0")
         End If
 
         If cbOffice2016odt.Checked Then
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016ODT", "1")
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016", "0")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016", "0")
         End If
 
         If cbNemo.Checked Then
             texto = texto & "http://nemo.notin.net/jnemo-latest.exe" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "NEMO", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "NEMO", "1")
         End If
 
         If cbPuestoNotin.Checked Then
@@ -500,7 +503,7 @@ Public Class InstaladorKubo
             texto = texto & PuestoNotin & "AccesosDirectos.exe" & vbCrLf
             'texto = texto & PuestoNotin & "AccesosDirectos_odt.exe" & vbCrLf
             texto = texto & PuestoNotin & "ScanImg_Beta_FT.exe" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "PUESTONOTIN", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "PUESTONOTIN", "1")
         End If
 
         If cbRequisitos.Checked Then
@@ -508,18 +511,18 @@ Public Class InstaladorKubo
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "Office2003PrimaryInterop.msi" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "VisualTools2005.exe" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "VisualTools2015.exe" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "REQUISITOS", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "REQUISITOS", "1")
             '   requisitos = requisitos & PuestoNotin & "Requisitos/" & "Framework35.bat" & vbCrLf
         End If
 
         If cbSferen.Checked Then
             texto = texto & PuestoNotin & "SFeren-2.8.exe" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "SFEREN", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "SFEREN", "1")
         End If
 
         If cbPasarelaSigno.Checked Then
             texto = texto & PuestoNotin & "PasarelaSigno.exe" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "PASARELASIGNO", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "PASARELASIGNO", "1")
         End If
 
         If cbTerceros.Checked Then
@@ -528,7 +531,7 @@ Public Class InstaladorKubo
             terceros = terceros & PuestoNotin & "Software/" & "ChromeSetup.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "Notepad_x64.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "WinRAR5.exe" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "SOFTWARETERCEROS", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "SOFTWARETERCEROS", "1")
         End If
 
         'Descagar configuradores del autochequeo
@@ -538,13 +541,13 @@ Public Class InstaladorKubo
             registro = registro & PuestoNotin & "VentanasSigno.reg" & vbCrLf
             registro = registro & PuestoNotin & "MSOUTL.OLB" & vbCrLf
             registro = registro & PuestoNotin & "ExclusionDefender.reg" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "CLAVESREGISTRO", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "CLAVESREGISTRO", "1")
         End If
 
         If cbConfiguraWord2016.Checked Then
             'texto = texto & PuestoNotin & "ConfiguraWord2016.exe" & vbCrLf
             texto = texto & PuestoNotin & "ConfWord2016.rar" & vbCrLf
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "CONFIGURAWORD", "1")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "CONFIGURAWORD", "1")
         End If
 
 
@@ -691,6 +694,7 @@ Public Class InstaladorKubo
             File.Delete(RutaDescargas & "Registro\msoutl.bat")
             File.Delete(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
             File.Delete(RutaDescargas & "Registro\unidadfword.bat")
+            File.Delete(RutaDescargas & "primerreinicio.bat")
         Catch ex As Exception
         End Try
         Me.Close()
@@ -706,29 +710,34 @@ Public Class InstaladorKubo
     Private Sub btNotinKubo_Click(sender As Object, e As EventArgs) Handles btNotinKubo.Click
 
         'Comprobar si se ha efectuado alguna descarga
-        Dim comienzo = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "COMIENZO", "2")
+        Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         If comienzo = 2 Then
+            lbProcesandoDescargas.Visible = False
             MessageBox.Show("Descarga los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+
             Exit Sub
         End If
 
         'TODO Ejecutar Clave Registro FT y reiniciar obligatoriamente
-        Dim claveinift = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", "2")
+        Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
         If claveinift = 2 Then
             Dim claveregft As DialogResult
-            claveregft = MessageBox.Show("Se importarán Claves de Registro y será recomendable REINICIAR antes de proceder con la Instalación. ¿Continuamos?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+            claveregft = MessageBox.Show("Se importarán Claves de Registro y será necesario REINICIAR antes de proceder con la Instalación. ¿Continuamos?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
             If claveregft = DialogResult.Yes Then
                 If File.Exists(RutaDescargas & "Registro\FTComoAdministrador.reg") = False Then
                     Directory.CreateDirectory(RutaDescargas & "Registro")
                     My.Computer.Network.DownloadFile(PuestoNotin & "FTComoAdministrador.reg", RutaDescargas & "Registro\FTComoAdministrador.reg", "juanjo", "Palomeras24", False, 60000, True)
                 End If
                 Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.NormalFocus, True)
-                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", "1")
-                MessageBox.Show("Recomendamos REINICIAR el equipo.", "Preparación inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "1")
+                MessageBox.Show("Vamos a REINICIAR. Guarda tu trabajo.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Dim reinicio As String = "shutdown /r /f /t 0"
+                File.WriteAllText(RutaDescargas & "primerreinicio.bat", reinicio)
+                RunAsAdmin(RutaDescargas & "primerreinicio.bat")
                 Exit Sub
             ElseIf claveregft = DialogResult.No Then
                 MessageBox.Show("Continuamos con el resto de instalaciones.", "Operación cancelada", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", "0")
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "0")
             End If
         ElseIf claveinift = 1 OrElse claveinift = 0 Then
         End If
@@ -863,8 +872,8 @@ Public Class InstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
 
             'Que office instalamos??
-            Dim Office2016odt = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016ODT", "2")
-            Dim office2016per = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016", "2")
+            Dim Office2016odt = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "2")
+            Dim office2016per = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "OFFICE2016", "2")
             If Office2016odt = 1 Then
                 Try
                     My.Computer.Network.DownloadFile(PuestoNotin & "setup2016.MSP", RutaDescargas & "Office2016\setup2016.MSP", "juanjo", "Palomeras24", False, 60000, True)
@@ -939,11 +948,18 @@ Public Class InstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
             Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If ConfigurarWord = DialogResult.Yes Then
+
+                Try
+                    Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNetAddins.exe")
+                    Threading.Thread.Sleep(20000)
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Continuamos.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
                 'Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
                 'RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
                 Process.Start(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
                 'TODO mejorar esto y obtener el proceso
-                Threading.Thread.Sleep(10000)
+                'Threading.Thread.Sleep(10000)
 
                 'Obtener texto entre caracteres
                 Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
@@ -951,22 +967,18 @@ Public Class InstaladorKubo
                 Dim unidadi = expedientes.LastIndexOf("\I")
                 expedientes = expedientes.Substring(0, unidadi)
 
-                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "EXPEDIENTES", expedientes)
+                cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
 
                 Directory.CreateDirectory(RutaDescargas & "Registro")
                 Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
                 File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
                 File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
 
+                Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
                 RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
 
-                Try
-                    Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNetAddins.exe")
-                    Threading.Thread.Sleep(20000)
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
-                End Try
+
             End If
         Else
             MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -1009,8 +1021,9 @@ Public Class InstaladorKubo
                 instalajnemo.Start() 'iniciar el proceso
                 'MiProceso.Kill()
                 'MiProceso.Dispose()
-                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "JNEMO", "1")
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JNEMO", "1")
             End If
+            Threading.Thread.Sleep(10000)
         Else
         End If
         AccesosDirectosEscritorio()
@@ -1021,7 +1034,7 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.Hide, True)
 
         lbInstalando.Visible = False
-        MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK)
+        MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'btNotinKubo.ForeColor = Color.YellowGreen
         'TODO guardar en el ini para que conste que ya se realizo, cambiar color y poner fecha
 
@@ -1055,7 +1068,7 @@ Public Class InstaladorKubo
         tlpTerceros.SetToolTip(cbTerceros, "Adobe Reader DC, FileZilla, Google Chrome, Notepad++, etc")
         tlpTerceros.IsBalloon = True
 
-        tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones"
+        tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones Notin y Word 2016+Kubo"
         tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Software descargado. No obliga a instalar el paquete completo.")
 
         tlpAncert.ToolTipTitle = "URL Notariado"
@@ -1073,7 +1086,7 @@ Public Class InstaladorKubo
         TlpJava.ToolTipTitle = "Instalación DESATENDIDA JAVA 8"
         TlpJava.SetToolTip(btJava, "Instalación silenciosa de Java. No requiere intervención del usuario")
 
-        TlpUac.SetToolTip(BtUac, "Exclusiones Windows Defender y Control Cuentas Usuario (Script Sanchez)")
+        TlpUac.SetToolTip(BtUac, "Exclusiones Windows Defender y Control Cuentas Usuario")
 
         TlpCopiarServidor.ToolTipTitle = "Copia Paquetes al Servidor"
         TlpCopiarServidor.SetToolTip(BtCopiarhaciaF, "Copia los Paquetes descargados al Servidor para poder recogerlos posteriormente en otro equipo usando la opción siguiente.")
@@ -1089,38 +1102,47 @@ Public Class InstaladorKubo
         If UnidadF() = True Then
             'Uso la funcion SHARED de la Clase LeerFicherosINI
             Dim nombre_servidor As String = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "NET", "NOMBRESERVIDOR", "SERVIDOR")
+            My.Computer.Network.DownloadFile(PuestoNotin & "BDDatosNotinSQL.reg", RutaDescargas & "Registro\BDDatosNotinSQL.reg", "juanjo", "Palomeras24", False, 5000, True)
 
             If File.Exists("C:\Windows\SysWoW64\odbcconf.exe") Then
                 Dim odbc64 As String = "C:\Windows\SysWoW64\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}"
                 File.WriteAllText(RutaDescargas & "odbc32.bat", odbc64 & vbCrLf)
+                Dim bddatosnotinsql As String = "regedit.exe /s " & RutaDescargas & "Registro\BDDatosNotinSQL.reg"
+                File.WriteAllText(RutaDescargas & "BDDatosNotinSQL.bat", bddatosnotinsql)
 
                 RunAsAdmin(RutaDescargas & "odbc32.bat")
+                RunAsAdmin(RutaDescargas & "BDDatosNotinSQL.bat")
+
 
                 btOdbc.BackColor = Color.PaleGreen
-                MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor & ". Revisa ODBC creado.", "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Process.Start("C:\Windows\SysWoW64\odbcad32.exe")
-                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "1")
-                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "SQLSERVER", nombre_servidor)
+                MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor, "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                'Process.Start("C:\Windows\SysWoW64\odbcad32.exe")
+                cIniArray.IniWrite(instaladorkuboini, "ODBC", "NOTINSQL", "1")
+                cIniArray.IniWrite(instaladorkuboini, "ODBC", "SQLSERVER", nombre_servidor)
                 'C:\Windows\SysWoW64\odbcconf.exe /A {CONFIGSYSDSN "SQL Server" "DSN=NOTINSQL|Server=clustersql"}
             ElseIf File.Exists("C:\Windows\System32\odbcconf.exe") Then
                 Dim odbc32 As String = "C:\Windows\System32\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}"
                 File.WriteAllText(RutaDescargas & "odbc32.bat", odbc32 & vbCrLf)
+                'TODO Comprobar ruta registro Sistema 32bits
+                ' Dim bddatosnotinsql As String = "regedit.exe /s " & RutaDescargas & "Registro\BDDatosNotinSQL.reg"
+                'File.WriteAllText(RutaDescargas & "BDDatosNotinSQL.bat", bddatosnotinsql)
 
                 RunAsAdmin(RutaDescargas & "odbc32.bat")
+                'RunAsAdmin(RutaDescargas & "BDDatosNotinSQL.bat")
 
                 btOdbc.BackColor = Color.PaleGreen
                 MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor & ". Revisa ODBC creado.", "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Process.Start("C:\Windows\System32\odbcad32.exe")
 
 
-                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "1")
-                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "SQLSERVER", nombre_servidor)
+                cIniArray.IniWrite(instaladorkuboini, "ODBC", "NOTINSQL", "1")
+                cIniArray.IniWrite(instaladorkuboini, "ODBC", "SQLSERVER", nombre_servidor)
             Else
                 MessageBox.Show("No se puede acceder a la utilidad ODBCConf.", "Ejecutable no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
         Else
             MessageBox.Show("No se puede conectar con el Servidor (F:)", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "ODBC", "NOTINSQL", "0")
+            cIniArray.IniWrite(instaladorkuboini, "ODBC", "NOTINSQL", "0")
             btOdbc.BackColor = Color.LightSalmon
 
         End If
@@ -1153,7 +1175,7 @@ Public Class InstaladorKubo
         'Borro el archivo BAT al SALIR del formulario
         RunAsAdmin(RutaDescargas & "Requisitos\Framework35.bat")
 
-        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "REQUISITOS", "FRAMEWORK35", "1")
+        cIniArray.IniWrite(instaladorkuboini, "REQUISITOS", "FRAMEWORK35", "1")
         btFramework.BackColor = Color.PaleGreen
 
 
@@ -1164,7 +1186,7 @@ Public Class InstaladorKubo
         My.Computer.Network.DownloadFile(PuestoNotin & "Utiles\ExcepcionesJava.bat", RutaDescargas & "Utiles\ExcepcionesJava.bat", "juanjo", "Palomeras24", False, 20000, True)
 
         RunAsAdmin(RutaDescargas & "Utiles\ExcepcionesJava.bat")
-        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "EXCEPJAVA", "1")
+        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "EXCEPJAVA", "1")
         btExcepJava.BackColor = Color.PaleGreen
     End Sub
 
@@ -1185,7 +1207,7 @@ Public Class InstaladorKubo
         instalajava.StartInfo.Arguments = "/s WEB_JAVA_SECURITY_LEVEL=M"
         instalajava.Start() 'iniciar el proceso
 
-        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "JAVA8", "1")
+        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
         btJava.BackColor = Color.PaleGreen
     End Sub
 
@@ -1193,7 +1215,7 @@ Public Class InstaladorKubo
         obtenerwget()
 
         Directory.CreateDirectory(RutaDescargas & "Utiles")
-        Dim wgetuac As String = "wget.exe -q --show-progress -t 5 -c https://static.unidata.es/devops/ClientInstaller.exe "
+        Dim wgetuac As String = "wget.exe -q --show-progress --no-check-certificate -t 5 -c https://static.unidata.es/devops/ClientInstaller.exe "
         Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\ClientInstaller.exe", AppWinStyle.NormalFocus, True)
 
         Process.Start(RutaDescargas & "Utiles\ClientInstaller.exe")
@@ -1206,7 +1228,7 @@ Public Class InstaladorKubo
 
         'RunAsAdmin(uacadmin)
 
-        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "UAC", "1")
+        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "UAC", "1")
         BtUac.BackColor = Color.PaleGreen
     End Sub
 
@@ -1214,7 +1236,7 @@ Public Class InstaladorKubo
     'TODO copiar paquetes descargados a F o traerlos
     Private Sub BtCopiarhaciaF_Click(sender As Object, e As EventArgs) Handles BtCopiarhaciaF.Click
         If UnidadF() = False Then
-            MessageBox.Show("Conecta antes la Unidad de Red F", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Conecta antes la Unidad de Red F.", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -1230,17 +1252,20 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.mst" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.xml" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
 
+        cIniArray.IniWrite(instaladorkuboini, "PAQUETES", "COPIARHACIAF", "1")
         MessageBox.Show("Paquetes copiados a F:\PRG.INS\NOTIN\", "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         BtTraerdeF.Enabled = True
+        BtTraerdeF.BackColor = Color.AliceBlue
+
     End Sub
 
     Private Sub BtTraerdeF_Click(sender As Object, e As EventArgs) Handles BtTraerdeF.Click
         If UnidadF() = False Then
-            MessageBox.Show("Conecta antes la Unidad de Red F", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Conecta antes la Unidad de Red F.", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
         If Directory.Exists("F:\PRG.INS\NOTIN") = False Then
-            MessageBox.Show("Confirma que los Paquetes se hayan copiado a F", "Error de acceso", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Confirma que los Paquetes se hayan copiado a F:\PRG.INS\NOTIN.", "Error de acceso", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -1248,10 +1273,14 @@ Public Class InstaladorKubo
         Dim notinf = "F:\PRG.INS\NOTIN\"
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & notinf & " " & RutaDescargas & " *.*" & " /E /R:1 /W:1 /ETA", AppWinStyle.NormalFocus, True)
 
+        cIniArray.IniWrite(instaladorkuboini, "PAQUETES", "TRAERDEF", "1")
         MessageBox.Show("Paquetes en F:\PRG.INS\NOTIN copiados hacia " & RutaDescargas, "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'Si no hago esto en el INI no permito realizar instalaciones
-        cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "COMIENZO", "1")
+        cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "COMIENZO", "1")
         BtCopiarhaciaF.Enabled = True
     End Sub
 
+    Private Sub BtFicheroINI_Click(sender As Object, e As EventArgs) Handles BtFicheroINI.Click
+        Process.Start("notepad.exe", instaladorkuboini)
+    End Sub
 End Class
