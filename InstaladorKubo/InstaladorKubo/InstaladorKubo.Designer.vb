@@ -439,7 +439,7 @@ Partial Class InstaladorKubo
         '
         Me.BtUac.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtUac.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtUac.Location = New System.Drawing.Point(6, 301)
+        Me.BtUac.Location = New System.Drawing.Point(4, 84)
         Me.BtUac.Name = "BtUac"
         Me.BtUac.Size = New System.Drawing.Size(167, 27)
         Me.BtUac.TabIndex = 32
@@ -450,7 +450,7 @@ Partial Class InstaladorKubo
         '
         Me.btJava.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btJava.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btJava.Location = New System.Drawing.Point(5, 172)
+        Me.btJava.Location = New System.Drawing.Point(4, 289)
         Me.btJava.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btJava.Name = "btJava"
         Me.btJava.Size = New System.Drawing.Size(167, 27)
@@ -462,7 +462,7 @@ Partial Class InstaladorKubo
         '
         Me.btExcepJava.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btExcepJava.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btExcepJava.Location = New System.Drawing.Point(5, 215)
+        Me.btExcepJava.Location = New System.Drawing.Point(4, 248)
         Me.btExcepJava.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btExcepJava.Name = "btExcepJava"
         Me.btExcepJava.Size = New System.Drawing.Size(167, 27)
@@ -475,7 +475,7 @@ Partial Class InstaladorKubo
         Me.btDirectivas.Enabled = False
         Me.btDirectivas.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btDirectivas.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btDirectivas.Location = New System.Drawing.Point(5, 258)
+        Me.btDirectivas.Location = New System.Drawing.Point(4, 166)
         Me.btDirectivas.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btDirectivas.Name = "btDirectivas"
         Me.btDirectivas.Size = New System.Drawing.Size(167, 27)
@@ -487,7 +487,7 @@ Partial Class InstaladorKubo
         '
         Me.btFramework.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btFramework.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btFramework.Location = New System.Drawing.Point(5, 87)
+        Me.btFramework.Location = New System.Drawing.Point(4, 126)
         Me.btFramework.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btFramework.Name = "btFramework"
         Me.btFramework.Size = New System.Drawing.Size(167, 27)
@@ -499,7 +499,7 @@ Partial Class InstaladorKubo
         '
         Me.btOdbc.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btOdbc.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btOdbc.Location = New System.Drawing.Point(5, 129)
+        Me.btOdbc.Location = New System.Drawing.Point(4, 207)
         Me.btOdbc.Name = "btOdbc"
         Me.btOdbc.Size = New System.Drawing.Size(167, 27)
         Me.btOdbc.TabIndex = 27
