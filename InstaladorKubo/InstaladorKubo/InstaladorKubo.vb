@@ -240,33 +240,37 @@ Public Class InstaladorKubo
             '     cbConfiguraNotin.Enabled = True
         End If
 
+        'TODO que se compruebe el fichero ini a ver cual has descargado o mejor verifico el archivo MSP descargado para la instalación personalizada eso y el tamaño..
         If System.IO.File.Exists(RutaDescargas & "Office2016.exe") Then
             Dim Archivo2016 As New FileInfo(RutaDescargas & "Office2016.exe")
             Dim Length2016 As Long = Archivo2016.Length
             If Archivo2016.Length = "739967123" Then
                 cbOffice2016.ForeColor = Color.DarkGreen
+                cbOffice2016odt.ForeColor = Color.DarkGreen
                 '         cbOffice2016.Enabled = False
             ElseIf Archivo2016.Length < "739967123" Then
                 cbOffice2016.ForeColor = Color.Red
-            End If
-        Else
-            cbOffice2016.ForeColor = SystemColors.ControlText
-            '     cbOffice2016.Enabled = True
-        End If
-
-        If System.IO.File.Exists(RutaDescargas & "Office2016odt.exe") Then
-            Dim Archivo2016odt As New FileInfo(RutaDescargas & "Office2016odt.exe")
-            Dim Length2016odt As Long = Archivo2016odt.Length
-            If Archivo2016odt.Length = "2452664263" Then
-                cbOffice2016odt.ForeColor = Color.DarkGreen
-                '        cbOffice2016odt.Enabled = False
-            ElseIf Archivo2016odt.Length < "2452664263" Then
                 cbOffice2016odt.ForeColor = Color.Red
             End If
         Else
+            cbOffice2016.ForeColor = SystemColors.ControlText
             cbOffice2016odt.ForeColor = SystemColors.ControlText
-            '      cbOffice2016odt.Enabled = True
+            '     cbOffice2016.Enabled = True
         End If
+
+        'If System.IO.File.Exists(RutaDescargas & "Office2016odt.exe") Then
+        '    Dim Archivo2016odt As New FileInfo(RutaDescargas & "Office2016odt.exe")
+        '    Dim Length2016odt As Long = Archivo2016odt.Length
+        '    If Archivo2016odt.Length = "2452664263" Then
+        '        cbOffice2016odt.ForeColor = Color.DarkGreen
+        '        '        cbOffice2016odt.Enabled = False
+        '    ElseIf Archivo2016odt.Length < "2452664263" Then
+        '        cbOffice2016odt.ForeColor = Color.Red
+        '    End If
+        'Else
+        '    cbOffice2016odt.ForeColor = SystemColors.ControlText
+        '    '      cbOffice2016odt.Enabled = True
+        'End If
 
         If System.IO.File.Exists(RutaDescargas & "ConfWord2016.rar") Then
             Dim Config2016 As New FileInfo(RutaDescargas & "ConfWord2016.rar")
@@ -472,12 +476,14 @@ Public Class InstaladorKubo
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016", "1")
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016ODT", "0")
         End If
 
         If cbOffice2016odt.Checked Then
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
-            texto = texto & PuestoNotin & "Office2016odt.exe" & vbCrLf
+            texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016ODT", "1")
+            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016", "0")
         End If
 
         If cbNemo.Checked Then
@@ -703,6 +709,29 @@ Public Class InstaladorKubo
             Exit Sub
         End If
 
+        'TODO Ejecutar Clave Registro FT y reiniciar obligatoriamente
+        Dim claveinift = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", 2)
+        If claveinift = 2 Then
+            Dim claveregft As DialogResult
+            claveregft = MessageBox.Show("Se importarán Claves de Registro y será recomendable REINICIAR antes de continuar con la instalación. ¿Continuamos?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+            If claveregft = DialogResult.Yes Then
+                If File.Exists(RutaDescargas & "Registro\FTComoAdministrador.reg") = False Then
+                    Directory.CreateDirectory(RutaDescargas & "Registro")
+                    My.Computer.Network.DownloadFile(PuestoNotin & "FTComoAdministrador.reg", RutaDescargas & "Registro\FTComoAdministrador.reg", "juanjo", "Palomeras24", False, 60000, True)
+                End If
+                Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.NormalFocus, True)
+                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", "1")
+                MessageBox.Show("Recomendamos REINICIAR el equipo.", "Reinicio recomendado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Exit Sub
+            ElseIf claveregft = DialogResult.No Then
+                MessageBox.Show("Continuamos con el resto de instalaciones.", "Operación cancelada", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", "0")
+            End If
+        ElseIf claveinift = 1 OrElse claveinift = 0 Then
+        End If
+
+
+
         'Mientras unidad F no valida y usuario pulse reintentar
 
         Dim QueHacerF As DialogResult
@@ -828,30 +857,53 @@ Public Class InstaladorKubo
         Dim EjecutableWord As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE")
 
         If EjecutableWord = False Then
-            If File.Exists(RutaDescargas & "Office2016.exe") Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+
+            'Que office instalamos??
+            Dim Office2016odt = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016ODT", "2")
+            Dim office2016per = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "OFFICE2016", "2")
+            If Office2016odt = 1 Then
+                Try
+                    My.Computer.Network.DownloadFile(PuestoNotin & "setup2016.MSP", RutaDescargas & "Office2016\setup2016.MSP", "juanjo", "Palomeras24", False, 60000, True)
+                Catch ex As Exception
+                    MessageBox.Show("Error al obtener fichero MSP. Revisa tu conexión a Internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+                Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE /adminfile setup2016.MSP", AppWinStyle.Hide, True)
+
+            ElseIf office2016per = 1 Then
+                Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
+            End If
+        Else
+            Dim WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016 Personalizable?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If WordSiNo = 6 Then
                 Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
                 Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
-            ElseIf File.Exists(RutaDescargas & "Office2016odt.exe") Then
-                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
-            End If
-        ElseIf EjecutableWord = True Then
-            Dim WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If WordSiNo = 6 Then
-                If File.Exists(RutaDescargas & "Office2016.exe") Then
-                    Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                    Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
-                Else
-                    If File.Exists(RutaDescargas & "Office2016odt.exe") Then
-                        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                        Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
-                    Else
-                        MessageBox.Show("¿Seguro que has descargado una versión válida de Office 2016?")
-                    End If
-                End If
             End If
         End If
         EjecutableNotinNet()
+
+        '    If File.Exists(RutaDescargas & "Office2016.exe") Then
+        '        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+        '        Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
+        '    ElseIf File.Exists(RutaDescargas & "Office2016odt.exe") Then
+        '        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+        '        Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
+        '    End If
+        'ElseIf EjecutableWord = True Then
+        '    Dim WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        '    If WordSiNo = 6 Then
+        '        If File.Exists(RutaDescargas & "Office2016.exe") Then
+        '            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+        '            Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
+        '        Else
+        '            If File.Exists(RutaDescargas & "Office2016odt.exe") Then
+        '                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016odt.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+        '                Shell("cmd.exe /C " & RutaDescargas & "Office2016ODT\SETUP.EXE " & "/configure " & RutaDescargas & "Office2016ODT\Configuracion.xml", AppWinStyle.Hide, True)
+        '            Else
+        '                MessageBox.Show("¿Seguro que has descargado una versión válida de Office 2016?")
+        '            End If
+        '        End If
+        '    End If
     End Sub
 
     Private Sub EjecutableNotinNet()
@@ -988,7 +1040,7 @@ Public Class InstaladorKubo
         tlpOffice2016odt.SetToolTip(cbOffice2016odt, "Descarga el paquete Office 2016 con instalación automatizada.")
         tlpOffice2016odt.IsBalloon = True
 
-        tlpOffice2016.ToolTipTitle = "Paquete Office 2016"
+        tlpOffice2016.ToolTipTitle = "Paquete Office 2016 PERSONALIZABLE"
         tlpOffice2016.SetToolTip(cbOffice2016, "Descarga el paquete Office con instalación personalizable")
 
         tlpTerceros.ToolTipIcon = ToolTipIcon.Info
@@ -1134,15 +1186,18 @@ Public Class InstaladorKubo
         obtenerwget()
 
         Directory.CreateDirectory(RutaDescargas & "Utiles")
-        Dim wgetuac As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 " & PuestoNotin & "Utiles\UAC.ps1 "
+        Dim wgetuac As String = "wget.exe -q --show-progress -t 5 -c https://static.unidata.es/devops/ClientInstaller.exe "
+        Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\ClientInstaller.exe", AppWinStyle.NormalFocus, True)
 
-        Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\UAC.ps1", AppWinStyle.NormalFocus, True)
+        Process.Start(RutaDescargas & "Utiles\ClientInstaller.exe")
 
-        Dim uacadmin = RutaDescargas & "Utiles\UAC.bat"
-        Dim archivops1 As String = "cmd.exe /k powershell.exe -executionpolicy unrestricted -command " & RutaDescargas & "Utiles\UAC.ps1"
-        File.WriteAllText(RutaDescargas & "Utiles\UAC.bat", archivops1)
+        'Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\UAC.ps1", AppWinStyle.NormalFocus, True)
 
-        RunAsAdmin(uacadmin)
+        'Dim uacadmin = RutaDescargas & "Utiles\UAC.bat"
+        'Dim archivops1 As String = "cmd.exe /k powershell.exe -executionpolicy unrestricted -command " & RutaDescargas & "Utiles\UAC.ps1"
+        'File.WriteAllText(RutaDescargas & "Utiles\UAC.bat", archivops1)
+
+        'RunAsAdmin(uacadmin)
 
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "UAC", "1")
         BtUac.BackColor = Color.PaleGreen
