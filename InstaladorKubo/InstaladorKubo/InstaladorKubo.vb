@@ -153,6 +153,10 @@ Public Class InstaladorKubo
         If comienzodescargas = 1 Then
             BtCopiarhaciaF.Enabled = True
         End If
+        Dim claveinift = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", "2")
+        If claveinift = 1 Then
+            btNotinKubo.BackColor = Color.Honeydew
+        End If
 
     End Sub
 
@@ -275,7 +279,7 @@ Public Class InstaladorKubo
         If System.IO.File.Exists(RutaDescargas & "ConfWord2016.rar") Then
             Dim Config2016 As New FileInfo(RutaDescargas & "ConfWord2016.rar")
             Dim LengthConfig2016 As Long = Config2016.Length
-            If Config2016.Length = "8320" Then
+            If Config2016.Length = "8269" Then
                 cbConfiguraWord2016.ForeColor = Color.DarkGreen
                 '        cbConfiguraWord2016.Enabled = False
             End If
@@ -494,7 +498,7 @@ Public Class InstaladorKubo
         If cbPuestoNotin.Checked Then
             texto = texto & PuestoNotin & "PuestoNotinC.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos.exe" & vbCrLf
-            texto = texto & PuestoNotin & "AccesosDirectos_odt.exe" & vbCrLf
+            'texto = texto & PuestoNotin & "AccesosDirectos_odt.exe" & vbCrLf
             texto = texto & PuestoNotin & "ScanImg_Beta_FT.exe" & vbCrLf
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "DESCARGAS", "PUESTONOTIN", "1")
         End If
@@ -697,7 +701,6 @@ Public Class InstaladorKubo
     End Sub
 
 
-
     'CONTROLES DE INSTALACION
 
     Private Sub btNotinKubo_Click(sender As Object, e As EventArgs) Handles btNotinKubo.Click
@@ -710,10 +713,10 @@ Public Class InstaladorKubo
         End If
 
         'TODO Ejecutar Clave Registro FT y reiniciar obligatoriamente
-        Dim claveinift = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", 2)
+        Dim claveinift = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", "2")
         If claveinift = 2 Then
             Dim claveregft As DialogResult
-            claveregft = MessageBox.Show("Se importarán Claves de Registro y será recomendable REINICIAR antes de continuar con la instalación. ¿Continuamos?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+            claveregft = MessageBox.Show("Se importarán Claves de Registro y será recomendable REINICIAR antes de proceder con la Instalación. ¿Continuamos?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
             If claveregft = DialogResult.Yes Then
                 If File.Exists(RutaDescargas & "Registro\FTComoAdministrador.reg") = False Then
                     Directory.CreateDirectory(RutaDescargas & "Registro")
@@ -721,7 +724,7 @@ Public Class InstaladorKubo
                 End If
                 Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.NormalFocus, True)
                 cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "REGFT", "1")
-                MessageBox.Show("Recomendamos REINICIAR el equipo.", "Reinicio recomendado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show("Recomendamos REINICIAR el equipo.", "Preparación inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Exit Sub
             ElseIf claveregft = DialogResult.No Then
                 MessageBox.Show("Continuamos con el resto de instalaciones.", "Operación cancelada", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -937,7 +940,8 @@ Public Class InstaladorKubo
             Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If ConfigurarWord = DialogResult.Yes Then
                 'Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
-                RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+                'RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+                Process.Start(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
                 'TODO mejorar esto y obtener el proceso
                 Threading.Thread.Sleep(10000)
 
@@ -955,6 +959,14 @@ Public Class InstaladorKubo
                 File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
 
                 RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
+
+                Try
+                    Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNetAddins.exe")
+                    Threading.Thread.Sleep(20000)
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                End Try
             End If
         Else
             MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -971,7 +983,7 @@ Public Class InstaladorKubo
         If KMSPicoSInO = 6 Then
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.NormalFocus, True)
-            MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de ejecutarlo", "Ejecucion de KMSPico", MessageBoxButtons.OK)
+            MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de ejecutarlo.", "Activador KMSPico", MessageBoxButtons.OK)
         End If
         SoftwareAncert()
     End Sub
@@ -1006,15 +1018,10 @@ Public Class InstaladorKubo
 
     Private Sub AccesosDirectosEscritorio()
         Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
-        If File.Exists(RutaDescargas & "Office2016.exe") Then
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.Hide, True)
-        ElseIf File.Exists(RutaDescargas & "Office2016odt.exe") Then
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos_odt.exe " & Escritorio, AppWinStyle.Hide, True)
-        Else
-        End If
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.Hide, True)
 
         lbInstalando.Visible = False
-        MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK)
         'btNotinKubo.ForeColor = Color.YellowGreen
         'TODO guardar en el ini para que conste que ya se realizo, cambiar color y poner fecha
 
