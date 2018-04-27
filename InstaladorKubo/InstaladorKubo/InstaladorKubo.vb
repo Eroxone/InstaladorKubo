@@ -8,7 +8,7 @@ Imports InstaladorKubo.LeerFicherosINI
 
 
 Public Class InstaladorKubo
-    ' CONTROLES DESCARGAS
+    ' CONTROLES DESCARGAS VARIABLES STRING
 
     'Variables
     'Private Const PATH_TEMP As String = RutaAnterior() 'cambiar a C:\NOTIN\ == IMPORTANTE ==
@@ -1040,9 +1040,17 @@ Public Class InstaladorKubo
         MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'btNotinKubo.ForeColor = Color.YellowGreen
         'TODO guardar en el ini para que conste que ya se realizo, cambiar color y poner fecha
+        AbreExcel()
+    End Sub
 
+    Private Sub AbreExcel()
+        'TODO establecer asociacion de archivos.
+        My.Computer.Network.DownloadFile(PuestoNotin & "AbreExcel.exe", RutaDescargas & "AbreExcel.exe", "juanjo", "Palomeras24", False, 20000, False)
+        File.Copy(RutaDescargas & "AbreExcel.exe", "C:\Notawin.Net\AbreExcel.exe", True)
 
     End Sub
+
+
 #End Region
 
 #Region "Tooltips"
