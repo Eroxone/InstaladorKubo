@@ -818,7 +818,7 @@ Public Class InstaladorKubo
         '  Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalFocus, False)
 
 
-        Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup.mst /qb-", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup.mst /qb-", AppWinStyle.Hide, True)
         ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
         Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe /Q" & """", AppWinStyle.Hide, True)
@@ -925,7 +925,7 @@ Public Class InstaladorKubo
                 Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
                 If ExisteNotinNet = False Then
                     File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
-                    Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
                 End If
             Catch ex As Exception
             End Try
@@ -993,7 +993,7 @@ Public Class InstaladorKubo
         KMSPicoSInO = MessageBox.Show("¿Ejecutar Activador Office 2016?", "KMSPico 10.2.0", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If KMSPicoSInO = 6 Then
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-            Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.Hide, True)
             MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de ejecutarlo.", "Activador KMSPico", MessageBoxButtons.OK)
         End If
         SoftwareAncert()
@@ -1004,9 +1004,9 @@ Public Class InstaladorKubo
         Dim Ancert As Integer = Nothing
         Ancert = MessageBox.Show("¿Instalar Software Ancert?", "Sferen y Pasarela", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If Ancert = 6 Then
-            Shell("cmd.exe /c " & RutaDescargas & "SFeren-2.8.exe", AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & "SFeren-2.8.exe", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-            Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.Hide, True)
         End If
         jNemo()
     End Sub
@@ -1211,7 +1211,7 @@ Public Class InstaladorKubo
         Directory.CreateDirectory(RutaDescargas & "Software")
         Dim urljava As String = "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=233170_512cd62ec5174c3487ac17c61aaa89e8"
         Dim wgetjava As String = "wget.exe -q --show-progress -t 5 -c "
-        Shell("cmd.exe /c " & RutaDescargas & wgetjava & urljava & " -O " & RutaDescargas & "Software\java8.exe", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & wgetjava & urljava & " -O " & RutaDescargas & "Software\java8.exe", AppWinStyle.Hide, True)
         Dim instalajava As New Process()
         instalajava.StartInfo.FileName = RutaDescargas & "Software/java8.exe"
         instalajava.StartInfo.Arguments = "/s WEB_JAVA_SECURITY_LEVEL=M"
@@ -1226,7 +1226,7 @@ Public Class InstaladorKubo
 
         Directory.CreateDirectory(RutaDescargas & "Utiles")
         Dim wgetuac As String = "wget.exe -q --show-progress --no-check-certificate -t 5 -c https://static.unidata.es/devops/ClientInstaller.exe "
-        Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\ClientInstaller.exe", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\ClientInstaller.exe", AppWinStyle.Hide, True)
 
         Process.Start(RutaDescargas & "Utiles\ClientInstaller.exe")
 
@@ -1390,7 +1390,7 @@ Public Class InstaladorKubo
         '  Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalFocus, False)
 
 
-        Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup2003.mst /qb-", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup2003.mst /qb-", AppWinStyle.Hide, True)
         ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
         Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe /Q" & """", AppWinStyle.Hide, True)
@@ -1438,9 +1438,9 @@ Public Class InstaladorKubo
         Dim Ancert As Integer = Nothing
         Ancert = MessageBox.Show("¿Instalar Software Ancert?", "Sferen y Pasarela", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If Ancert = 6 Then
-            Shell("cmd.exe /c " & RutaDescargas & "SFeren-2.8.exe", AppWinStyle.NormalFocus, True)
-            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-            Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & "SFeren-2.8.exe", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.Hide, True)
         End If
         jNemo2003()
     End Sub
