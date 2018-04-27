@@ -710,10 +710,11 @@ Public Class InstaladorKubo
 
         'Comprobar si se ha efectuado alguna descarga
         Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
-        If comienzo = 2 Then
-            lbProcesandoDescargas.Visible = False
-            MessageBox.Show("Descarga los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-
+        Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
+        If comienzo = 2 AndAlso rutaenf = 2 Then
+            MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            'TODO la etiqueta no se oculta...
+            'lbProcesandoDescargas.Visible = False
             Exit Sub
         End If
 
@@ -726,8 +727,18 @@ Public Class InstaladorKubo
                     Directory.CreateDirectory(RutaDescargas & "Registro")
                     My.Computer.Network.DownloadFile(PuestoNotin & "FTComoAdministrador.reg", RutaDescargas & "Registro\FTComoAdministrador.reg", "juanjo", "Palomeras24", False, 60000, True)
                 End If
-                Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.NormalFocus, True)
+                Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "1")
+
+                PbInstalaciones.Visible = True
+                Dim p As Integer
+                While p < 6
+                    p = p + 1
+                    Threading.Thread.Sleep(600)
+                    PbInstalaciones.PerformStep()
+                End While
+
+
                 MessageBox.Show("Vamos a REINICIAR. Guarda tu trabajo.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Dim reinicio As String = "shutdown /r /f /t 0"
                 File.WriteAllText(RutaDescargas & "primerreinicio.bat", reinicio)
@@ -1116,6 +1127,8 @@ Public Class InstaladorKubo
 #Region "ODBC"
     Private Sub btOdbc_Click(sender As Object, e As EventArgs) Handles btOdbc.Click
         If UnidadF() = True Then
+            lbUnidadF.Text = "CONECTADA"
+            lbUnidadF.ForeColor = Color.Green
             'Uso la funcion SHARED de la Clase LeerFicherosINI
             Dim nombre_servidor As String = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "NET", "NOMBRESERVIDOR", "SERVIDOR")
             My.Computer.Network.DownloadFile(PuestoNotin & "BDDatosNotinSQL.reg", RutaDescargas & "Registro\BDDatosNotinSQL.reg", "juanjo", "Palomeras24", False, 5000, True)
@@ -1131,6 +1144,7 @@ Public Class InstaladorKubo
 
 
                 btOdbc.BackColor = Color.PaleGreen
+
                 MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor, "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'Process.Start("C:\Windows\SysWoW64\odbcad32.exe")
                 cIniArray.IniWrite(instaladorkuboini, "ODBC", "NOTINSQL", "1")
@@ -1160,7 +1174,6 @@ Public Class InstaladorKubo
             MessageBox.Show("No se puede conectar con el Servidor (F:)", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
             cIniArray.IniWrite(instaladorkuboini, "ODBC", "NOTINSQL", "0")
             btOdbc.BackColor = Color.LightSalmon
-
         End If
 
     End Sub
@@ -1347,7 +1360,6 @@ Public Class InstaladorKubo
             End If
         End While
         ' CONTROLAR PULSAR ABORTAR
-
 
         If UnidadF() = True Then
             lbUnidadF.Text = "CONECTADA"
