@@ -1045,8 +1045,13 @@ Public Class InstaladorKubo
 
     Private Sub AbreExcel()
         'TODO establecer asociacion de archivos.
-        My.Computer.Network.DownloadFile(PuestoNotin & "AbreExcel.exe", RutaDescargas & "AbreExcel.exe", "juanjo", "Palomeras24", False, 20000, False)
-        File.Copy(RutaDescargas & "AbreExcel.exe", "C:\Notawin.Net\AbreExcel.exe", True)
+        Try
+            My.Computer.Network.DownloadFile(PuestoNotin & "AbreExcel.exe", RutaDescargas & "AbreExcel.exe", "juanjo", "Palomeras24", False, 20000, False)
+            File.Copy(RutaDescargas & "AbreExcel.exe", "C:\Notawin.Net\AbreExcel.exe", True)
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
 
