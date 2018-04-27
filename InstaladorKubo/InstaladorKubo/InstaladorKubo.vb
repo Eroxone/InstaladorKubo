@@ -8,8 +8,6 @@ Imports InstaladorKubo.LeerFicherosINI
 
 
 Public Class InstaladorKubo
-    'TODO Establecer contraseña de ejecución.
-
     ' CONTROLES DESCARGAS
 
     'Variables
@@ -476,6 +474,7 @@ Public Class InstaladorKubo
         If cbOffice2003.Checked Then
             texto = texto & PuestoNotin & "Office2003.exe" & vbCrLf
             texto = texto & PuestoNotin & "Setup.mst" & vbCrLf
+            texto = texto & PuestoNotin & "Setup2003.mst" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2003", "1")
         End If
 
@@ -501,7 +500,7 @@ Public Class InstaladorKubo
         If cbPuestoNotin.Checked Then
             texto = texto & PuestoNotin & "PuestoNotinC.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos.exe" & vbCrLf
-            'texto = texto & PuestoNotin & "AccesosDirectos_odt.exe" & vbCrLf
+            texto = texto & PuestoNotin & "AccesosDirectos2003.exe" & vbCrLf
             texto = texto & PuestoNotin & "ScanImg_Beta_FT.exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "PUESTONOTIN", "1")
         End If
@@ -718,7 +717,6 @@ Public Class InstaladorKubo
             Exit Sub
         End If
 
-        'TODO Ejecutar Clave Registro FT y reiniciar obligatoriamente
         Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
         If claveinift = 2 Then
             Dim claveregft As DialogResult
@@ -825,10 +823,11 @@ Public Class InstaladorKubo
 
         Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe /Q" & """", AppWinStyle.Hide, True)
         Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
+        Threading.Thread.Sleep(10000)
 
         Shell("cmd.exe /c " & RutaDescargas & "ScanImg_Beta_FT.exe", AppWinStyle.Hide, False)
         Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
-
+        Threading.Thread.Sleep(10000)
 
         'Copiar Referencia Outlook
         Dim msoutlxcopy As String = "xcopy /F /Y /C "
@@ -847,18 +846,20 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub InstalarRequisitosNet()
+        Dim requisitosini = cIniArray.IniGet(instaladorkuboini, "REQUISITOS", "NET", "2")
 
-        Dim RequisitosSiNo As Integer = Nothing
-
-        RequisitosSiNo = MessageBox.Show("¿Instalar Requisitos .NET?", "Pre-Requisitos", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If RequisitosSiNo = 6 Then
+        If requisitosini = "2" Then
+            'Dim RequisitosSiNo As Integer = Nothing
+            'RequisitosSiNo = MessageBox.Show("¿Instalar Requisitos .NET?", "Pre-Requisitos", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            'If RequisitosSiNo = 6 Then
             'Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\KryptonSuite300.msi /passive", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\Office2003PrimaryInterop.msi /passive", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2005.exe /q", AppWinStyle.Hide, True)
-            Threading.Thread.Sleep(500)
+            Threading.Thread.Sleep(10000)
             Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2015.exe /q", AppWinStyle.Hide, True)
-            Threading.Thread.Sleep(500)
+            Threading.Thread.Sleep(10000)
+            cIniArray.IniWrite(instaladorkuboini, "REQUISITOS", "NET", "1")
         End If
 
         InstalarWord2016()
@@ -946,19 +947,20 @@ Public Class InstaladorKubo
     Private Sub ConfigurarWord2016()
         If UnidadF() = True Then
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
-            Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If ConfigurarWord = DialogResult.Yes Then
+            'Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            'If ConfigurarWord = DialogResult.Yes Then
+            Dim configurawordini = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "2")
 
+            If configurawordini = "2" Then
                 Try
-                    Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNetAddins.exe")
-                    Threading.Thread.Sleep(20000)
+                    Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNet.exe")
+                    Threading.Thread.Sleep(5000)
                 Catch ex As Exception
                     MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Continuamos.", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
                 'Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
                 'RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
                 Process.Start(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
-                'TODO mejorar esto y obtener el proceso
                 'Threading.Thread.Sleep(10000)
 
                 'Obtener texto entre caracteres
@@ -976,9 +978,6 @@ Public Class InstaladorKubo
 
                 Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
                 RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
-
-
-
             End If
         Else
             MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -1032,6 +1031,10 @@ Public Class InstaladorKubo
     Private Sub AccesosDirectosEscritorio()
         Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.Hide, True)
+        Try
+            File.Delete("C:\Users\Public\Desktop\Krypton Explorer.lnk")
+        Catch ex As Exception
+        End Try
 
         lbInstalando.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1181,7 +1184,6 @@ Public Class InstaladorKubo
 
         ' Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
     End Sub
-    'TODO Arreglar esta funcion. Debe llamarse desde cmd
     Private Sub btExcepJava_Click(sender As Object, e As EventArgs) Handles btExcepJava.Click
         My.Computer.Network.DownloadFile(PuestoNotin & "Utiles\ExcepcionesJava.bat", RutaDescargas & "Utiles\ExcepcionesJava.bat", "juanjo", "Palomeras24", False, 20000, True)
 
@@ -1233,7 +1235,6 @@ Public Class InstaladorKubo
     End Sub
 
 
-    'TODO copiar paquetes descargados a F o traerlos
     Private Sub BtCopiarhaciaF_Click(sender As Object, e As EventArgs) Handles BtCopiarhaciaF.Click
         If UnidadF() = False Then
             MessageBox.Show("Conecta antes la Unidad de Red F.", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1283,4 +1284,190 @@ Public Class InstaladorKubo
     Private Sub BtFicheroINI_Click(sender As Object, e As EventArgs) Handles BtFicheroINI.Click
         Process.Start("notepad.exe", instaladorkuboini)
     End Sub
+
+    Private Sub BtNotinWord2003_Click(sender As Object, e As EventArgs) Handles BtNotinWord2003.Click
+
+        'Comprobar si se ha efectuado alguna descarga
+        Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
+        If comienzo = 2 Then
+            lbProcesandoDescargas.Visible = False
+            MessageBox.Show("Descarga los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+
+            Exit Sub
+        End If
+
+        Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
+        If claveinift = 2 Then
+            Dim claveregft As DialogResult
+            claveregft = MessageBox.Show("Se importarán Claves de Registro y será necesario REINICIAR antes de proceder con la Instalación. ¿Continuamos?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+            If claveregft = DialogResult.Yes Then
+                If File.Exists(RutaDescargas & "Registro\FTComoAdministrador.reg") = False Then
+                    Directory.CreateDirectory(RutaDescargas & "Registro")
+                    My.Computer.Network.DownloadFile(PuestoNotin & "FTComoAdministrador.reg", RutaDescargas & "Registro\FTComoAdministrador.reg", "juanjo", "Palomeras24", False, 60000, True)
+                End If
+                Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.NormalFocus, True)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "1")
+                MessageBox.Show("Vamos a REINICIAR. Guarda tu trabajo.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Dim reinicio As String = "shutdown /r /f /t 0"
+                File.WriteAllText(RutaDescargas & "primerreinicio.bat", reinicio)
+                RunAsAdmin(RutaDescargas & "primerreinicio.bat")
+                Exit Sub
+            ElseIf claveregft = DialogResult.No Then
+                MessageBox.Show("Continuamos con el resto de instalaciones.", "Operación cancelada", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "0")
+            End If
+        ElseIf claveinift = 1 OrElse claveinift = 0 Then
+        End If
+
+
+
+        'Mientras unidad F no valida y usuario pulse reintentar
+
+        Dim QueHacerF As DialogResult
+        While UnidadF() = False
+            QueHacerF = MessageBox.Show("Unidad F no conectada. Habrá procesos que no se podrán completar y se omitirán.", "Advertencia Unidad F", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning)
+            If QueHacerF = DialogResult.Abort Then
+                lbInstalando.Visible = False
+                Exit Sub
+            ElseIf QueHacerF = DialogResult.Ignore Then
+                Exit While
+            End If
+        End While
+        ' CONTROLAR PULSAR ABORTAR
+
+
+        If UnidadF() = True Then
+            lbUnidadF.Text = "CONECTADA"
+            lbUnidadF.ForeColor = Color.Green
+        End If
+
+        'Comprobamos si existe ya unrar.exe
+        obtenerunrar()
+
+        'Verifico si has descargado Office 2003 usando el INI. Haré lo mismo con el resto de descargas
+
+        Dim NotinSiNo As Integer = Nothing
+
+        Dim EjecutableAccess As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE11\MSACCESS.EXE")
+
+        If EjecutableAccess = False Then
+            InstalarNotinNet2003()
+
+        Else
+            NotinSiNo = MessageBox.Show("Posible instalación existente de NOTIN .NET (Access 2003). ¿Ejecutar instalación Office 2003?", "Instalación Office 2003", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If NotinSiNo = DialogResult.Yes Then
+                InstalarNotinNet2003()
+            Else
+                InstalarRequisitosNet2003()
+            End If
+        End If
+
+    End Sub
+
+
+    Private Sub InstalarNotinNet2003()
+        'Claves Registro
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ConfigAccess.reg", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\VentanasSigno.reg", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ExclusionDefender.reg", AppWinStyle.Hide, True)
+
+
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PuestoNotinC.exe " & "C:\", AppWinStyle.NormalFocus, True)
+
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2003.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+        'Setup MST que personaliza la instalación de Office 2003
+        File.Copy(RutaDescargas & "Setup2003.mst", RutaDescargas & "Office2003\Setup2003.mst", True)
+        '  Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalFocus, False)
+
+
+        Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup2003.mst /qb-", AppWinStyle.NormalFocus, True)
+        ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
+
+        Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe /Q" & """", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
+
+        Shell("cmd.exe /c " & RutaDescargas & "ScanImg_Beta_FT.exe", AppWinStyle.Hide, False)
+        Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
+        'TODO Accesosdirectos.dot en Inicio de Word
+
+        'Copiar Referencia Outlook
+        Dim msoutlxcopy As String = "xcopy /F /Y /C "
+        Dim msoutlorigen As String = RutaDescargas & "Registro\MSOUTL.OLB "
+        Dim msoutldestino As String = " ""C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\"" "
+        File.WriteAllText(RutaDescargas & "Registro\msoutl.bat", msoutlxcopy & msoutlorigen & msoutldestino)
+
+        RunAsAdmin(RutaDescargas & "Registro\msoutl.bat")
+        'Try
+        '    File.Copy(RutaDescargas & "Registro\MSOUTL.OLB", "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSOUTL.OLB", True)
+        'Catch ex As Exception
+        '    MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'End Try
+
+        InstalarRequisitosNet2003()
+    End Sub
+
+    Private Sub InstalarRequisitosNet2003()
+
+        Dim RequisitosSiNo As Integer = Nothing
+
+        RequisitosSiNo = MessageBox.Show("¿Instalar Requisitos .NET?", "Pre-Requisitos", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If RequisitosSiNo = 6 Then
+            'Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\KryptonSuite300.msi /passive", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\Office2003PrimaryInterop.msi /passive", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2005.exe /q", AppWinStyle.Hide, True)
+            Threading.Thread.Sleep(10000)
+            Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2015.exe /q", AppWinStyle.Hide, True)
+            Threading.Thread.Sleep(10000)
+        End If
+
+        SoftwareAncert2003()
+    End Sub
+
+    Private Sub SoftwareAncert2003()
+        Dim Ancert As Integer = Nothing
+        Ancert = MessageBox.Show("¿Instalar Software Ancert?", "Sferen y Pasarela", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If Ancert = 6 Then
+            Shell("cmd.exe /c " & RutaDescargas & "SFeren-2.8.exe", AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.NormalFocus, True)
+        End If
+        jNemo2003()
+    End Sub
+
+    Private Sub jNemo2003()
+        If File.Exists(RutaDescargas & "jnemo-latest.exe") Then
+            If File.Exists("c:\Program Files (x86)\jNemo\jNemo.exe") = False Then
+                Dim instalajnemo As New Process
+                instalajnemo.StartInfo.FileName = RutaDescargas & "jnemo-latest.exe"
+                'MiProceso.StartInfo.Arguments = "1664"
+                instalajnemo.Start() 'iniciar el proceso
+                'MiProceso.Kill()
+                'MiProceso.Dispose()
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JNEMO", "1")
+            End If
+            Threading.Thread.Sleep(10000)
+        Else
+        End If
+        AccesosDirectosEscritorio2003()
+    End Sub
+
+    Private Sub AccesosDirectosEscritorio2003()
+        Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos2003.exe " & Escritorio, AppWinStyle.Hide, True)
+        Try
+            File.Delete("C:\Users\Public\Desktop\Krypton Explorer.lnk")
+        Catch ex As Exception
+        End Try
+
+        lbInstalando.Visible = False
+        MessageBox.Show("INSTALACIONES TERMINADAS", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'btNotinKubo.ForeColor = Color.YellowGreen
+
+    End Sub
+
+    'TODO personalizar Word 2003
+
 End Class
