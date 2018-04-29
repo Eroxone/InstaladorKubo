@@ -152,6 +152,8 @@ Public Class InstaladorKubo
         Dim uac = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "UAC", "2")
         If uac = 1 Then
             BtUac.BackColor = Color.PaleGreen
+        ElseIf uac = 0 Then
+            BtUac.BackColor = Color.LightSalmon
         End If
         Dim comienzodescargas = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         If comienzodescargas = 1 Then
@@ -1286,6 +1288,9 @@ Public Class InstaladorKubo
             Process.Start(RutaDescargas & "Utiles\ClientInstaller.exe")
         Catch ex As Exception
             RegistroInstalacion("ERROR ClientInstaller: " & ex.Message)
+            BtUac.BackColor = Color.LightSalmon
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "UAC", "0")
+            Exit Sub
         End Try
 
         'Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\UAC.ps1", AppWinStyle.NormalFocus, True)
