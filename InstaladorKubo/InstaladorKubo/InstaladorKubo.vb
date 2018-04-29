@@ -1282,8 +1282,11 @@ Public Class InstaladorKubo
         Directory.CreateDirectory(RutaDescargas & "Utiles")
         Dim wgetuac As String = "wget.exe -q --show-progress --no-check-certificate -t 5 -c https://static.unidata.es/devops/ClientInstaller.exe "
         Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\ClientInstaller.exe", AppWinStyle.Hide, True)
-
-        Process.Start(RutaDescargas & "Utiles\ClientInstaller.exe")
+        Try
+            Process.Start(RutaDescargas & "Utiles\ClientInstaller.exe")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR ClientInstaller: " & ex.Message)
+        End Try
 
         'Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\UAC.ps1", AppWinStyle.NormalFocus, True)
 
