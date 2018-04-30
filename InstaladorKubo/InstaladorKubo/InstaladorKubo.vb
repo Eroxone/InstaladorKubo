@@ -163,7 +163,12 @@ Public Class InstaladorKubo
         If claveinift = 1 Then
             btNotinKubo.BackColor = Color.Honeydew
         End If
-
+        Dim configuraword2016 = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "2")
+        If configuraword2016 = 1 Then
+            BtConfiguraWord2016.BackColor = Color.PaleGreen
+        ElseIf configuraword2016 = 0 Then
+            BtConfiguraWord2016.BackColor = Color.LightSalmon
+        End If
 
     End Sub
 
@@ -624,7 +629,7 @@ Public Class InstaladorKubo
         cbConfiguraWord2016.Checked = False
 
         lbProcesandoDescargas.Visible = False
-        MessageBox.Show("DESCARGAS FINALIZADAS.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("DESCARGAS FINALIZADAS. Puedes encontrar los Paquetes en " & RutaDescargas, "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         BtCopiarhaciaF.Enabled = True
         btTodo.Text = "Marcar todos"
@@ -751,7 +756,9 @@ Public Class InstaladorKubo
                 End While
 
 
-                MessageBox.Show("Vamos a REINICIAR. Guarda tu trabajo.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show("Vamos a REINICIAR. Guarda tu trabajo. Después continúa con las Instalaciones.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                RegistroInstalacion("Se reinició el equipo para aplicar las Claves de Registro.")
+
                 Dim reinicio As String = "shutdown /r /f /t 0"
                 File.WriteAllText(RutaDescargas & "primerreinicio.bat", reinicio)
                 RunAsAdmin(RutaDescargas & "primerreinicio.bat")
@@ -982,7 +989,36 @@ Public Class InstaladorKubo
                         Threading.Thread.Sleep(5000)
                     Catch ex As Exception
                         MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Continuamos.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
                         RegistroInstalacion(ex.Message)
+                    End Try
+
+                    'Instalacion de los Addins. Hay que forzarlo.
+                    Try
+                        'Crear una nueva estructura ProcessStartInfo.
+                        Dim pInfoaddin As New ProcessStartInfo()
+                        'Establecer el miembro de un nombre de archivo de pinfo como Eula.txt en la carpeta de sistema.
+                        pInfoaddin.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
+                        'Ejecutar el proceso.
+                        Dim notinaddin As Process = Process.Start(pInfoaddin)
+                        'Esperar a que la ventana de proceso complete la carga.
+                        notinaddin.WaitForInputIdle()
+                        'Esperar a que el proceso termine.
+                        notinaddin.WaitForExit()
+                        'Continuar con el código.
+                    Catch ex As Exception
+                        RegistroInstalacion("ERROR NotinAddin: " & ex.Message)
+                        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                    End Try
+                    Try
+                        Dim pInfotaskpane As New ProcessStartInfo()
+                        pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
+                        Dim notintaskpane As Process = Process.Start(pInfotaskpane)
+                        notintaskpane.WaitForInputIdle()
+                        notintaskpane.WaitForExit()
+                    Catch ex As Exception
+                        RegistroInstalacion("ERROR NotinTaskPane: " & ex.Message)
+                        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
                     End Try
                     'Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
                     'RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
@@ -1004,12 +1040,15 @@ Public Class InstaladorKubo
 
                     Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
                     RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
+                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
                 End If
             Else
                 MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
             End If
         Else
             RegistroInstalacion("ERROR: No se pudo Configurar WORD 2016. No se encontró la descarga de la Utilidad.")
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
         End If
 
         KMSPico()
@@ -1020,11 +1059,11 @@ Public Class InstaladorKubo
         'TODO Crear clave Registro para Excluir rutas de descarga e instalacion
         If File.Exists(RutaDescargas & "KMSpico10.exe") Then
             Dim KMSPicoSInO As Integer = Nothing
-            KMSPicoSInO = MessageBox.Show("¿Ejecutar Activador Office 2016?", "KMSPico 10.2.0", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            KMSPicoSInO = MessageBox.Show("¿Descomprimir Activador Office 2016?", "KMSPico 10.2.0", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If KMSPicoSInO = 6 Then
                 Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.Hide, True)
-                MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de ejecutarlo.", "Activador KMSPico", MessageBoxButtons.OK)
+                'Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.Hide, True)
+                MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de instalarlo. Lo encontrarás en " & RutaDescargas & "KMSpico10", "Activador KMSPico", MessageBoxButtons.OK)
             End If
         Else
             RegistroInstalacion("ERROR: No se pudo instalar KMSPico. Paquete ausente.")
@@ -1129,7 +1168,7 @@ Public Class InstaladorKubo
         tlpTerceros.IsBalloon = True
 
         tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones Notin y Word 2016+Kubo"
-        tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Software descargado. No obliga a instalar el paquete completo.")
+        tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Paquete descargado. Sialgún software se encuentra instalado preguntará si se desea realizar la reinstalación.")
 
         tlpAncert.ToolTipTitle = "URL Notariado"
         tlpAncert.SetToolTip(lblAncert, "Acceder a url soporte.notariado.org")
@@ -1605,6 +1644,97 @@ Public Class InstaladorKubo
         lbInstalando.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'btNotinKubo.ForeColor = Color.YellowGreen
+
+    End Sub
+
+    Private Sub BtConfiguraWord2016_Click(sender As Object, e As EventArgs) Handles BtConfiguraWord2016.Click
+        'TODO comprobar que se instaló notinnetinstaller. Añadir Tooltip.
+
+        Directory.CreateDirectory(RutaDescargas & "Office2016")
+        obtenerunrar()
+
+        Try
+            'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
+            My.Computer.Network.DownloadFile(PuestoNotin & "ConfWord2016.rar", RutaDescargas & "ConfWord2016.rar", "juanjo", "Palomeras24", False, 20000, True)
+        Catch ex As Exception
+            MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            RegistroInstalacion("ERROR Configurar Word 2016: " & ex.Message)
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+        End Try
+
+        If UnidadF() = True Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
+            'Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            'If ConfigurarWord = DialogResult.Yes Then
+            'Dim configurawordini = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "2")
+
+            Try
+                Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNet.exe")
+                Threading.Thread.Sleep(5000)
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion(ex.Message)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+            End Try
+
+            'Instalacion de los Addins. Hay que forzarlo.
+            Try
+                'Crear una nueva estructura ProcessStartInfo.
+                Dim pInfoaddin As New ProcessStartInfo()
+                'Establecer el miembro de un nombre de archivo de pinfo como Eula.txt en la carpeta de sistema.
+                pInfoaddin.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
+                'Ejecutar el proceso.
+                Dim notinaddin As Process = Process.Start(pInfoaddin)
+                'Esperar a que la ventana de proceso complete la carga.
+                notinaddin.WaitForInputIdle()
+                'Esperar a que el proceso termine.
+                notinaddin.WaitForExit()
+                'Continuar con el código.
+            Catch ex As Exception
+                RegistroInstalacion("ERROR NotinAddin: " & ex.Message)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                BtConfiguraWord2016.BackColor = Color.LightSalmon
+            End Try
+            Try
+                Dim pInfotaskpane As New ProcessStartInfo()
+                pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
+                Dim notintaskpane As Process = Process.Start(pInfotaskpane)
+                notintaskpane.WaitForInputIdle()
+                notintaskpane.WaitForExit()
+            Catch ex As Exception
+                RegistroInstalacion("ERROR NotinTaskPane: " & ex.Message)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                BtConfiguraWord2016.BackColor = Color.LightSalmon
+            End Try
+            'Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
+            'RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+            Process.Start(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+            'Threading.Thread.Sleep(10000)
+
+            'Obtener texto entre caracteres
+            Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
+            expedientes = expedientes.Remove(0, 2)
+            Dim unidadi = expedientes.LastIndexOf("\I")
+            expedientes = expedientes.Substring(0, unidadi)
+
+            cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
+
+            Directory.CreateDirectory(RutaDescargas & "Registro")
+            Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
+            File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
+            File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
+
+            Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
+            RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
+            BtConfiguraWord2016.BackColor = Color.PaleGreen
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
+        Else
+            MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+        End If
+
+
+
 
     End Sub
 
