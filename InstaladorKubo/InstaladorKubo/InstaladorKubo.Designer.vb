@@ -51,6 +51,7 @@ Partial Class InstaladorKubo
         Me.cbPuestoNotin = New System.Windows.Forms.CheckBox()
         Me.btNotinKubo = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.BtConfiguraWord2016 = New System.Windows.Forms.Button()
         Me.btJava = New System.Windows.Forms.Button()
         Me.BtUac = New System.Windows.Forms.Button()
         Me.btDirectivas = New System.Windows.Forms.Button()
@@ -90,7 +91,7 @@ Partial Class InstaladorKubo
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.BtNotinWord2003 = New System.Windows.Forms.Button()
         Me.PbInstalaciones = New System.Windows.Forms.ProgressBar()
-        Me.BtConfiguraWord2016 = New System.Windows.Forms.Button()
+        Me.TlpConfigWord2016 = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -436,6 +437,17 @@ Partial Class InstaladorKubo
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Requisitos Sistema"
         '
+        'BtConfiguraWord2016
+        '
+        Me.BtConfiguraWord2016.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtConfiguraWord2016.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BtConfiguraWord2016.Location = New System.Drawing.Point(19, 356)
+        Me.BtConfiguraWord2016.Name = "BtConfiguraWord2016"
+        Me.BtConfiguraWord2016.Size = New System.Drawing.Size(223, 34)
+        Me.BtConfiguraWord2016.TabIndex = 33
+        Me.BtConfiguraWord2016.Text = "Conf. Word 2016"
+        Me.BtConfiguraWord2016.UseVisualStyleBackColor = True
+        '
         'btJava
         '
         Me.btJava.FlatStyle = System.Windows.Forms.FlatStyle.Popup
@@ -777,16 +789,10 @@ Partial Class InstaladorKubo
         Me.PbInstalaciones.TabIndex = 42
         Me.PbInstalaciones.Visible = False
         '
-        'BtConfiguraWord2016
+        'TlpConfigWord2016
         '
-        Me.BtConfiguraWord2016.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtConfiguraWord2016.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtConfiguraWord2016.Location = New System.Drawing.Point(19, 356)
-        Me.BtConfiguraWord2016.Name = "BtConfiguraWord2016"
-        Me.BtConfiguraWord2016.Size = New System.Drawing.Size(223, 34)
-        Me.BtConfiguraWord2016.TabIndex = 33
-        Me.BtConfiguraWord2016.Text = "Conf. Word 2016"
-        Me.BtConfiguraWord2016.UseVisualStyleBackColor = True
+        Me.TlpConfigWord2016.IsBalloon = True
+        Me.TlpConfigWord2016.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
         'InstaladorKubo
         '
@@ -898,4 +904,5 @@ Partial Class InstaladorKubo
     Friend WithEvents PbInstalaciones As ProgressBar
     Friend WithEvents BtRegistroInstalaciones As Button
     Friend WithEvents BtConfiguraWord2016 As Button
+    Friend WithEvents TlpConfigWord2016 As ToolTip
 End Class

@@ -370,7 +370,7 @@ Public Class InstaladorKubo
 
     'TODO Funcion calcular tamaño descarga chequeada
 
-    Private Function obtenerwget()
+    Private Sub obtenerwget()
         If Not System.IO.File.Exists(RutaDescargas & "wget.exe") Then
             'Descargar ejecutable WGet
             Try
@@ -386,9 +386,9 @@ Public Class InstaladorKubo
                 End If
             End Try
         End If
-    End Function
+    End Sub
 
-    Private Function obtenerrobocopy()
+    Private Sub obtenerrobocopy()
         If Not System.IO.File.Exists(RutaDescargas & "robocopy.exe") Then
             'Descargar ejecutable WGet
             Try
@@ -404,10 +404,10 @@ Public Class InstaladorKubo
                 End If
             End Try
         End If
-    End Function
+    End Sub
 
 
-    Private Function obtenerunrar()
+    Private Sub obtenerunrar()
         'Comprobamos si existe ya unrar.exe
         If Not System.IO.File.Exists(RutaDescargas & "unrar.exe") Then
 
@@ -425,7 +425,7 @@ Public Class InstaladorKubo
                 End If
             End Try
         End If
-    End Function
+    End Sub
 
     'COMENZAR DESCARGAS
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
@@ -1193,6 +1193,8 @@ Public Class InstaladorKubo
         TlpTraerServidor.ToolTipTitle = "Recoge Paquetes desde el Servidor"
         TlpTraerServidor.SetToolTip(BtTraerdeF, "Trae hacia la ruta Local los Paquetes copiados previamente al Servidor para así no tener que obtenerlos de Internet.")
 
+        TlpConfigWord2016.ToolTipTitle = "Configurador independiente Word 2016"
+        TlpConfigWord2016.SetToolTip(BtConfiguraWord2016, "Instala Notin Addin y TaskPane para Word 2016. La instalación Notin+Kubo ya realiza esta acción.")
     End Sub
 #End Region
 
@@ -1648,21 +1650,35 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub BtConfiguraWord2016_Click(sender As Object, e As EventArgs) Handles BtConfiguraWord2016.Click
-        'TODO comprobar que se instaló notinnetinstaller. Añadir Tooltip.
-
-        Directory.CreateDirectory(RutaDescargas & "Office2016")
-        obtenerunrar()
-
-        Try
-            'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-            My.Computer.Network.DownloadFile(PuestoNotin & "ConfWord2016.rar", RutaDescargas & "ConfWord2016.rar", "juanjo", "Palomeras24", False, 20000, True)
-        Catch ex As Exception
-            MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            RegistroInstalacion("ERROR Configurar Word 2016: " & ex.Message)
-            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
-        End Try
-
         If UnidadF() = True Then
+
+            Dim notindesktop As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
+            If notindesktop = False Then
+                Try
+                    File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNetinstaller.exe")
+                    Dim pInfonotinnet As New ProcessStartInfo()
+                    pInfonotinnet.FileName = RutaDescargas & "NotinNetinstaller.exe"
+                    Dim notinnet As Process = Process.Start(pInfonotinnet)
+                    notinnet.WaitForInputIdle()
+                    notinnet.WaitForExit()
+                Catch ex As Exception
+                    MessageBox.Show("No se encontró el componente NotinNet instalado. No se ha podido acceder al ejecutable en F:\Notawin.Net para su instalación.", "Error NotinNetInstaller", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    RegistroInstalacion("No se pudo obtener NotinNetInstaller para Configurar Word 2016")
+                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                End Try
+            End If
+
+            Directory.CreateDirectory(RutaDescargas & "Office2016")
+            obtenerunrar()
+            Try
+                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
+                My.Computer.Network.DownloadFile(PuestoNotin & "ConfWord2016.rar", RutaDescargas & "ConfWord2016.rar", "juanjo", "Palomeras24", False, 20000, True)
+            Catch ex As Exception
+                MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("ERROR Configurar Word 2016: " & ex.Message)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+            End Try
+
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
             'Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             'If ConfigurarWord = DialogResult.Yes Then
