@@ -893,7 +893,6 @@ Public Class InstaladorKubo
         End If
 
 
-
         'Copiar Referencia Outlook
         Try
             Dim msoutlxcopy As String = "xcopy /F /Y /C "
@@ -1075,27 +1074,28 @@ Public Class InstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
         End If
 
-        KMSPico()
-    End Sub
-
-
-    Private Sub KMSPico()
-        'TODO Crear clave Registro para Excluir rutas de descarga e instalacion
-        If File.Exists(RutaDescargas & "KMSpico10.exe") Then
-            Dim KMSPicoSInO As Integer = Nothing
-            KMSPicoSInO = MessageBox.Show("¿Descomprimir Activador Office 2016?", "KMSPico 10.2.0", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If KMSPicoSInO = 6 Then
-                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                'Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.Hide, True)
-                MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de instalarlo. Lo encontrarás en " & RutaDescargas & "KMSpico10", "Activador KMSPico", MessageBoxButtons.OK)
-            End If
-        Else
-            RegistroInstalacion("ERROR: No se pudo instalar KMSPico. Paquete ausente.")
-        End If
-
-
         SoftwareAncert()
+        'KMSPico()
     End Sub
+
+
+    'Private Sub KMSPico()
+    '    'TODO Crear clave Registro para Excluir rutas de descarga e instalacion
+    '    If File.Exists(RutaDescargas & "KMSpico10.exe") Then
+    '        Dim KMSPicoSInO As Integer = Nothing
+    '        KMSPicoSInO = MessageBox.Show("¿Descomprimir Activador Office 2016?", "KMSPico 10.2.0", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+    '        If KMSPicoSInO = 6 Then
+    '            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+    '            'Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.Hide, True)
+    '            MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de instalarlo. Lo encontrarás en " & RutaDescargas & "KMSpico10", "Activador KMSPico", MessageBoxButtons.OK)
+    '        End If
+    '    Else
+    '        RegistroInstalacion("ERROR: No se pudo instalar KMSPico. Paquete ausente.")
+    '    End If
+
+
+    'SoftwareAncert()
+    'End Sub
 
 
     Private Sub SoftwareAncert()
@@ -1105,13 +1105,13 @@ Public Class InstaladorKubo
             If File.Exists(RutaDescargas & "SFeren-2.8.exe") Then
                 Shell("cmd.exe /c " & RutaDescargas & "SFeren-2.8.exe", AppWinStyle.Hide, True)
             Else
-                RegistroInstalacion("ERROR: Paquete Sferen no encontrado.")
+                RegistroInstalacion("ADVERTENCIA: Paquete Sferen no encontrado. No se instalará.")
             End If
             If File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
                 Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
                 Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.Hide, True)
             Else
-                RegistroInstalacion("ERROR: Instalable PasarelaSigno no encontrado.")
+                RegistroInstalacion("ADVERTENCIA: Instalable PasarelaSigno no encontrado. No se instalará.")
             End If
         End If
 
@@ -1843,7 +1843,7 @@ Public Class InstaladorKubo
             Dim pkmspico As New ProcessStartInfo()
             pkmspico.FileName = RutaDescargas & "KMSpico10\KMSpico_setup.exe"
             Dim kmspico As Process = Process.Start(pkmspico)
-            kmspico.WaitForInputIdle()
+            'kmspico.WaitForInputIdle()
             kmspico.WaitForExit()
             RegistroInstalacion("KMSPICO: Ejecutada Instalación de KMSPico 10.")
         Catch ex As Exception
@@ -1855,7 +1855,7 @@ Public Class InstaladorKubo
             Dim pkmspico As New ProcessStartInfo()
             pkmspico.FileName = "C:\Program Files\KMSPico\KMSELDI.exe"
             Dim kmspico As Process = Process.Start(pkmspico)
-            kmspico.WaitForInputIdle()
+            'kmspico.WaitForInputIdle()
             kmspico.WaitForExit()
             BtKmsPico.BackColor = Color.PaleGreen
         Catch ex As Exception

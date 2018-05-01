@@ -51,6 +51,7 @@ Partial Class InstaladorKubo
         Me.cbPuestoNotin = New System.Windows.Forms.CheckBox()
         Me.btNotinKubo = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.BtKmsPico = New System.Windows.Forms.Button()
         Me.BtConfiguraWord2016 = New System.Windows.Forms.Button()
         Me.btJava = New System.Windows.Forms.Button()
         Me.BtUac = New System.Windows.Forms.Button()
@@ -93,7 +94,6 @@ Partial Class InstaladorKubo
         Me.PbInstalaciones = New System.Windows.Forms.ProgressBar()
         Me.TlpConfigWord2016 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtLimpiar = New System.Windows.Forms.Button()
-        Me.BtKmsPico = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -435,16 +435,27 @@ Partial Class InstaladorKubo
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.GroupBox2.Size = New System.Drawing.Size(281, 443)
+        Me.GroupBox2.Size = New System.Drawing.Size(281, 449)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Requisitos Sistema"
+        '
+        'BtKmsPico
+        '
+        Me.BtKmsPico.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtKmsPico.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BtKmsPico.Location = New System.Drawing.Point(18, 255)
+        Me.BtKmsPico.Name = "BtKmsPico"
+        Me.BtKmsPico.Size = New System.Drawing.Size(223, 34)
+        Me.BtKmsPico.TabIndex = 34
+        Me.BtKmsPico.Text = "Activ. KMSPico"
+        Me.BtKmsPico.UseVisualStyleBackColor = True
         '
         'BtConfiguraWord2016
         '
         Me.BtConfiguraWord2016.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtConfiguraWord2016.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtConfiguraWord2016.Location = New System.Drawing.Point(19, 356)
+        Me.BtConfiguraWord2016.Location = New System.Drawing.Point(19, 305)
         Me.BtConfiguraWord2016.Name = "BtConfiguraWord2016"
         Me.BtConfiguraWord2016.Size = New System.Drawing.Size(223, 34)
         Me.BtConfiguraWord2016.TabIndex = 33
@@ -455,7 +466,7 @@ Partial Class InstaladorKubo
         '
         Me.btJava.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btJava.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btJava.Location = New System.Drawing.Point(19, 305)
+        Me.btJava.Location = New System.Drawing.Point(18, 359)
         Me.btJava.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btJava.Name = "btJava"
         Me.btJava.Size = New System.Drawing.Size(223, 34)
@@ -503,7 +514,7 @@ Partial Class InstaladorKubo
         '
         Me.btExcepJava.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btExcepJava.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.btExcepJava.Location = New System.Drawing.Point(19, 255)
+        Me.btExcepJava.Location = New System.Drawing.Point(19, 409)
         Me.btExcepJava.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btExcepJava.Name = "btExcepJava"
         Me.btExcepJava.Size = New System.Drawing.Size(223, 34)
@@ -740,7 +751,7 @@ Partial Class InstaladorKubo
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TabPage1.Size = New System.Drawing.Size(237, 128)
+        Me.TabPage1.Size = New System.Drawing.Size(217, 94)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Paquetes"
         '
@@ -809,17 +820,6 @@ Partial Class InstaladorKubo
         Me.BtLimpiar.Text = "Limpiar - Login"
         Me.BtLimpiar.UseVisualStyleBackColor = False
         Me.BtLimpiar.Visible = False
-        '
-        'BtKmsPico
-        '
-        Me.BtKmsPico.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtKmsPico.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtKmsPico.Location = New System.Drawing.Point(19, 406)
-        Me.BtKmsPico.Name = "BtKmsPico"
-        Me.BtKmsPico.Size = New System.Drawing.Size(223, 34)
-        Me.BtKmsPico.TabIndex = 34
-        Me.BtKmsPico.Text = "Activ. KMSPico"
-        Me.BtKmsPico.UseVisualStyleBackColor = True
         '
         'InstaladorKubo
         '
