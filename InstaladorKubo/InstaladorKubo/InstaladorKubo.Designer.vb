@@ -696,7 +696,7 @@ Partial Class InstaladorKubo
         Me.TabGestion.Controls.Add(Me.TabPage2)
         Me.TabGestion.Controls.Add(Me.TabPage1)
         Me.TabGestion.Font = New System.Drawing.Font("Lucida Bright", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabGestion.Location = New System.Drawing.Point(805, 380)
+        Me.TabGestion.Location = New System.Drawing.Point(805, 373)
         Me.TabGestion.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabGestion.Name = "TabGestion"
         Me.TabGestion.SelectedIndex = 0
@@ -814,9 +814,9 @@ Partial Class InstaladorKubo
         Me.BtLimpiar.Cursor = System.Windows.Forms.Cursors.Default
         Me.BtLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtLimpiar.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtLimpiar.Location = New System.Drawing.Point(907, 532)
+        Me.BtLimpiar.Location = New System.Drawing.Point(809, 516)
         Me.BtLimpiar.Name = "BtLimpiar"
-        Me.BtLimpiar.Size = New System.Drawing.Size(143, 33)
+        Me.BtLimpiar.Size = New System.Drawing.Size(172, 33)
         Me.BtLimpiar.TabIndex = 43
         Me.BtLimpiar.Text = "Limpiar Registros"
         Me.BtLimpiar.UseVisualStyleBackColor = False
@@ -827,12 +827,13 @@ Partial Class InstaladorKubo
         Me.BtLogin.BackColor = System.Drawing.Color.Gold
         Me.BtLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtLogin.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtLogin.Location = New System.Drawing.Point(907, 572)
+        Me.BtLogin.Location = New System.Drawing.Point(809, 632)
         Me.BtLogin.Name = "BtLogin"
-        Me.BtLogin.Size = New System.Drawing.Size(143, 33)
+        Me.BtLogin.Size = New System.Drawing.Size(119, 33)
         Me.BtLogin.TabIndex = 44
         Me.BtLogin.Text = "Auto Login"
         Me.BtLogin.UseVisualStyleBackColor = False
+        Me.BtLogin.Visible = False
         '
         'InstaladorKubo
         '

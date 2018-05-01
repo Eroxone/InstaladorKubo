@@ -44,6 +44,7 @@ Public Class InstaladorKubo
     Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If e.Control And e.KeyCode = Keys.J Then
             BtLimpiar.Visible = True
+            BtLogin.Visible = True
         End If
     End Sub
 
