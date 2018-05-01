@@ -474,7 +474,6 @@ Partial Class InstaladorKubo
         '
         'btDirectivas
         '
-        Me.btDirectivas.Enabled = False
         Me.btDirectivas.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.btDirectivas.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btDirectivas.Location = New System.Drawing.Point(19, 146)

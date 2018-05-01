@@ -170,6 +170,11 @@ Public Class InstaladorKubo
             BtConfiguraWord2016.BackColor = Color.LightSalmon
         End If
 
+        Dim directivas = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "2")
+        If directivas = 1 Then
+            btDirectivas.BackColor = Color.PaleGreen
+        End If
+
     End Sub
 
 
@@ -1288,6 +1293,57 @@ Public Class InstaladorKubo
 
         ' Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
     End Sub
+
+    Private Sub btDirectivas_Click(sender As Object, e As EventArgs) Handles btDirectivas.Click
+        Directory.CreateDirectory(RutaDescargas & "Directivas")
+
+        PbInstalaciones.Visible = True
+        PbInstalaciones.Step = 10
+        Threading.Thread.Sleep(2000)
+        PbInstalaciones.PerformStep()
+
+        'Desactivar resolución de nombres de multidifusión - Habilitada
+        Dim multicast As String = "REG add " & """" & "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" & """" & " /v EnableMulticast /t REG_DWORD /d 0 /f"
+        File.WriteAllText(RutaDescargas & "Directivas\multidifusion.bat", "cmd /c " & multicast)
+        RunAsAdmin(RutaDescargas & "Directivas\multidifusion.bat")
+
+        PbInstalaciones.Step = 15
+        Threading.Thread.Sleep(2000)
+        PbInstalaciones.PerformStep()
+        'powershell.exe -executionpolicy unrestricted -command .\UAC.ps1
+
+        Dim directivasps1 As String = "Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\Lsa -Name LmCompatibilityLevel -Value 1" & vbCrLf & "Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\Lsa -Name LimitBlankPasswordUse -Value 1"
+        'TODO "Set-GPRegistryValue -Path HKLM:\Software\Policies\Microsoft\Windows\NetCache -Name Enabled -Value 1" & vbCrLf
+        File.WriteAllText(RutaDescargas & "Directivas\Directivas.ps1", directivasps1)
+        File.WriteAllText(RutaDescargas & "Directivas\Directivasps1.bat", "@echo off" & vbCrLf & "powershell.exe -executionpolicy unrestricted -command " & RutaDescargas & "Directivas\Directivas.ps1")
+        RunAsAdmin(RutaDescargas & "Directivas\Directivasps1.bat")
+
+        PbInstalaciones.Step = 25
+        Threading.Thread.Sleep(2000)
+        PbInstalaciones.PerformStep()
+
+        Threading.Thread.Sleep(1000)
+        PbInstalaciones.Visible = False
+
+        Dim reiniciodirectivas As DialogResult
+        reiniciodirectivas = MessageBox.Show("Para aplicar correctamente las Directivas es necesario REINICIAR el equipo. Despúes podrás continuar con las Instalaciones.", "¿Reiniciamos?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+        If reiniciodirectivas = DialogResult.Yes Then
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "1")
+            RegistroInstalacion("Se reinició el equipo para aplicar las Directivas.")
+            Dim reinicio As String = "shutdown /r /f /t 0"
+            File.WriteAllText(RutaDescargas & "reiniciodirectivas.bat", reinicio)
+
+            RunAsAdmin(RutaDescargas & "reiniciodirectivas.bat")
+            Exit Sub
+        ElseIf reiniciodirectivas = DialogResult.No Then
+            RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Directivas.")
+            btDirectivas.BackColor = Color.LightSalmon
+        End If
+
+
+    End Sub
+
+
     Private Sub btExcepJava_Click(sender As Object, e As EventArgs) Handles btExcepJava.Click
         My.Computer.Network.DownloadFile(PuestoNotin & "Utiles\ExcepcionesJava.bat", RutaDescargas & "Utiles\ExcepcionesJava.bat", "juanjo", "Palomeras24", False, 20000, True)
 
@@ -1753,6 +1809,7 @@ Public Class InstaladorKubo
 
 
     End Sub
+
 
     'TODO personalizar Word 2003
 
