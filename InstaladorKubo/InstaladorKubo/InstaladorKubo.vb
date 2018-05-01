@@ -464,7 +464,7 @@ Public Class InstaladorKubo
         End If
     End Sub
 
-    'COMENZAR DESCARGAS
+#Region "COMENZAR DESCARGAS"
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
 
         'Si no chequeas nada salimos
@@ -671,6 +671,7 @@ Public Class InstaladorKubo
         BtCopiarhaciaF.Enabled = True
         btTodo.Text = "Marcar todos"
     End Sub
+#End Region
 
     'Mensajes de acción
     Private Sub btDescargar_MouseDown(sender As Object, e As MouseEventArgs) Handles btDescargar.MouseDown
@@ -713,8 +714,6 @@ Public Class InstaladorKubo
             MarcarTodos = 0
         End If
     End Sub
-#End Region
-
 
     'Autochequear Configuradores Notin y Word 2016 <> Office 2016odt
     Private Sub cbOffice2003_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2003.CheckedChanged
@@ -730,11 +729,12 @@ Public Class InstaladorKubo
         cbConfiguraWord2016.CheckState = cbOffice2016odt.CheckState
         cbOffice2016.Checked = False
     End Sub
-
+#End Region
 
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
 
-        'Limpieza de ficheros temporales para instalaciones por ejemplo
+        'Limpieza de ficheros temporales para instalaciones por ejemplo.
+        'TODO revisar si hay que limpiar mas archivos.
         Try
             File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
             File.Delete(RutaDescargas & "odbc32.bat")
@@ -752,13 +752,13 @@ Public Class InstaladorKubo
         btSalir.BackColor = Color.OrangeRed
     End Sub
 
-    'Control de errores de instalación
+    'Control de registro de instalación
     Private Sub RegistroInstalacion(ByVal mensajelog As String)
         File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", DateTime.Now.Hour & ":" & DateTime.Now.Minute & " - " & mensajelog & vbCrLf)
     End Sub
 
 
-    'CONTROLES DE INSTALACION
+#Region "COMIENZO DE INSTALACION DE PAQUETES. COMPROBACIONES INICIALES."
 
     Private Sub btNotinKubo_Click(sender As Object, e As EventArgs) Handles btNotinKubo.Click
         RegistroInstalacion("=== COMIENZO INSTALACIONES NOTIN-KUBO ===")
@@ -871,6 +871,7 @@ Public Class InstaladorKubo
         End If
 
     End Sub
+#End Region
 
 #Region "INSTALACIONES SOFTWARE"
     Private Sub InstalarNotinNet()
@@ -1233,6 +1234,9 @@ Public Class InstaladorKubo
 
         TlpConfigWord2016.ToolTipTitle = "Configurador independiente Word 2016"
         TlpConfigWord2016.SetToolTip(BtConfiguraWord2016, "Instala Notin Addin y TaskPane para Word 2016. La instalación Notin+Kubo ya realiza esta acción.")
+
+        TlpKmspico.ToolTipTitle = "Instalación de KMSpico 10.2 FINAL"
+        TlpKmspico.SetToolTip(BtKmsPico, "Descarga, descomprime e Instala KMSpico 10. Revisa antes las Excepciones del Antivirus.")
     End Sub
 #End Region
 

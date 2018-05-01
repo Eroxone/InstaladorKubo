@@ -95,6 +95,7 @@ Partial Class InstaladorKubo
         Me.TlpConfigWord2016 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtLimpiar = New System.Windows.Forms.Button()
         Me.BtLogin = New System.Windows.Forms.Button()
+        Me.TlpKmspico = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -449,7 +450,7 @@ Partial Class InstaladorKubo
         Me.BtKmsPico.Name = "BtKmsPico"
         Me.BtKmsPico.Size = New System.Drawing.Size(223, 34)
         Me.BtKmsPico.TabIndex = 34
-        Me.BtKmsPico.Text = "Activ. KMSPico"
+        Me.BtKmsPico.Text = "Activ. KMSpico"
         Me.BtKmsPico.UseVisualStyleBackColor = True
         '
         'BtConfiguraWord2016
@@ -835,6 +836,10 @@ Partial Class InstaladorKubo
         Me.BtLogin.UseVisualStyleBackColor = False
         Me.BtLogin.Visible = False
         '
+        'TlpKmspico
+        '
+        Me.TlpKmspico.IsBalloon = True
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -952,4 +957,5 @@ Partial Class InstaladorKubo
     Friend WithEvents BtLimpiar As Button
     Friend WithEvents BtKmsPico As Button
     Friend WithEvents BtLogin As Button
+    Friend WithEvents TlpKmspico As ToolTip
 End Class
