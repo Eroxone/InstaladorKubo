@@ -8,22 +8,14 @@ Imports InstaladorKubo.LeerFicherosINI
 
 
 Public Class InstaladorKubo
-    ' CONTROLES DESCARGAS VARIABLES STRING
-
+    'CONTROLES DESCARGAS VARIABLES STRING
+    'TODO LIMPIAR EL CODIGO. BORRAR LAS PRUEBAS Y LO QUE NO USO.
     'Variables
-    'Private Const PATH_TEMP As String = RutaAnterior() 'cambiar a C:\NOTIN\ == IMPORTANTE ==
     Private Const FILE_DOWNLOAD As String = "descargas.txt"
     Private Const REQUISITOS_DOWNLOAD As String = "requisitos.txt"
     Private Const TERCEROS_DOWNLOAD As String = "terceros.txt"
     Private Const REGISTRO_DOWNLOAD As String = "registro.txt"
     Private Const PuestoNotin As String = "ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/"
-    'Private UnidadF As Boolean = Directory.Exists("F:")
-    'Private textoLog As StringBuilder = New StringBuilder()
-
-    'Private nombre_fichero_log As String = "LOG_" & DateTime.Now.Day & "_" & DateTime.Now.Month & "_" & DateTime.Now.Year & ".txt"
-    'De nombre de fichero dejo un único LOG de momento. Ya aprenderé el resto
-    'Private nombre_fichero_log As String = "Logger_InstaladorKubo.txt"
-    'Private ruta_log As String = "C:\TEMP\InstaladorKubo\" & nombre_fichero_log
     Private RutaDescargas As String = GetPathTemp() 'PATH_TEMP
     Private Const instaladorkuboini = "C:\TEMP\InstaladorKubo\InstaladorKubo.ini"
 
@@ -47,11 +39,34 @@ Public Class InstaladorKubo
             BtTraerdeF.BackColor = Color.FloralWhite
         End If
 
-        'Dim cabecera_log As String = "=====  INICIO APLICACIÓN  =====" & vbCrLf & My.Computer.Info.OSFullName & vbCrLf & My.User.Name
-        'Logger(cabecera_log)
-
     End Sub
 
+    Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
+        If e.Control And e.KeyCode = Keys.J Then
+            BtLimpiar.Visible = True
+        End If
+    End Sub
+
+    Private Sub BtLimpiar_Click(sender As Object, e As EventArgs) Handles BtLimpiar.Click
+        Try
+            File.Delete("C:\TEMP\InstaladorKubo\instaladorkubo.ini")
+            File.Delete("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt")
+            cIniArray.IniWrite(instaladorkuboini, "LOGIN", "ENTRADA", 1)
+            RegistroInstalacion("=== Limpiados ficheros INI y Log de Registro ===")
+
+            PbInstalaciones.Visible = True
+            PbInstalaciones.Step = 35
+            Dim p As Integer
+            While p < 3
+                p = p + 1
+                Threading.Thread.Sleep(500)
+                PbInstalaciones.PerformStep()
+            End While
+            PbInstalaciones.Visible = False
+        Catch ex As Exception
+            RegistroInstalacion("Limpieza ficheros: " & ex.Message)
+        End Try
+    End Sub
 
 
     'Private Sub ComprobarVersion()
@@ -72,6 +87,7 @@ Public Class InstaladorKubo
     'End Sub
 #End Region
 
+#Region "Cabecera Formulario"
     Private Sub SistemaOperativo()
         Dim SistemaO = (My.Computer.Info.OSFullName)
         lbSistemaO.Text = SistemaO
@@ -99,6 +115,7 @@ Public Class InstaladorKubo
         End If
 
     End Sub
+#End Region
 
     'RUTA ANTERIOR. SI EXISTÍA
     Private Function GetPathTemp() As String
@@ -169,24 +186,25 @@ Public Class InstaladorKubo
         ElseIf configuraword2016 = 0 Then
             BtConfiguraWord2016.BackColor = Color.LightSalmon
         End If
-
         Dim directivas = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "2")
         If directivas = 1 Then
             btDirectivas.BackColor = Color.PaleGreen
         End If
+        Dim kmspico = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "KMSPICO10", "2")
+        If kmspico = 1 Then
+            BtKmsPico.BackColor = Color.PaleGreen
+        ElseIf kmspico = 0 Then
+            BtKmsPico.BackColor = Color.LightSalmon
+        End If
 
     End Sub
-
 
     'ACCEDER A URL NOTARIADO
     Private Sub lblAncert_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblAncert.LinkClicked
         System.Diagnostics.Process.Start("http://soporte.notariado.org")
-
     End Sub
 
-
-
-    'Boton Examinar
+    'Boton EXAMINAR
     Private Sub btDirDescargas_Click(sender As Object, e As EventArgs) Handles btDirDescargas.Click
         fbdDescarga.ShowDialog()
 
@@ -710,6 +728,7 @@ Public Class InstaladorKubo
             File.Delete(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
             File.Delete(RutaDescargas & "Registro\unidadfword.bat")
             File.Delete(RutaDescargas & "primerreinicio.bat")
+            File.Delete(RutaDescargas & "reiniciodirectivas.bat")
         Catch ex As Exception
         End Try
         Me.Close()
@@ -1796,21 +1815,63 @@ Public Class InstaladorKubo
             File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
             File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
 
-            Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
-            RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
-            BtConfiguraWord2016.BackColor = Color.PaleGreen
+            Try
+                Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
+                RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
+                BtConfiguraWord2016.BackColor = Color.PaleGreen
+            Catch ex As Exception
+                RegistroInstalacion("Claves Registro Word 2013: " & ex.Message)
+                BtConfiguraWord2016.BackColor = Color.LightSalmon
+            End Try
+
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
         Else
             MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
         End If
-
-
-
-
     End Sub
 
 
-    'TODO personalizar Word 2003
+    Private Sub BtKmsPico_Click(sender As Object, e As EventArgs) Handles BtKmsPico.Click
+        obtenerunrar()
+        obtenerwget()
+        Dim wgetkmspico As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/KMSpico10.exe -O " & RutaDescargas & "KMSPico10.exe"
+        Shell("cmd.exe /c " & RutaDescargas & wgetkmspico, AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.Hide, True)
+
+        Try
+            Dim pkmspico As New ProcessStartInfo()
+            pkmspico.FileName = RutaDescargas & "KMSpico10\KMSpico_setup.exe"
+            Dim kmspico As Process = Process.Start(pkmspico)
+            kmspico.WaitForInputIdle()
+            kmspico.WaitForExit()
+            RegistroInstalacion("KMSPICO: Ejecutada Instalación de KMSPico 10.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR KMSPico: " & ex.Message)
+            BtConfiguraWord2016.BackColor = Color.LightSalmon
+        End Try
+
+        Try
+            Dim pkmspico As New ProcessStartInfo()
+            pkmspico.FileName = "C:\Program Files\KMSPico\KMSELDI.exe"
+            Dim kmspico As Process = Process.Start(pkmspico)
+            kmspico.WaitForInputIdle()
+            kmspico.WaitForExit()
+            BtKmsPico.BackColor = Color.PaleGreen
+        Catch ex As Exception
+            RegistroInstalacion("ERROR KMSPico: " & ex.Message)
+            BtConfiguraWord2016.BackColor = Color.LightSalmon
+        End Try
+
+        RegistroInstalacion("KMSPICO: Instalado Servicio KMSPico 10.")
+        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "KMSPICO10", "1")
+
+        'TODO añadir tooltip
+    End Sub
+
+
+
+
+
 
 End Class

@@ -14,7 +14,7 @@ Public Class FormPassword
 
     Private Sub TbPassword_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbPassword.KeyPress
         If TbPassword.Text = "b30330104b" Then
-            cIniArray.IniWrite("C:\TEMP\InstaladorKubo\instaladorkubo.ini", "LOGIN", "ENTRADA", 1)
+            'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\instaladorkubo.ini", "LOGIN", "ENTRADA", 1)
             InstaladorKubo.Show()
             Me.Close()
         End If
