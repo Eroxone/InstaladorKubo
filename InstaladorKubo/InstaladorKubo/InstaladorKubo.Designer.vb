@@ -94,6 +94,7 @@ Partial Class InstaladorKubo
         Me.PbInstalaciones = New System.Windows.Forms.ProgressBar()
         Me.TlpConfigWord2016 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtLimpiar = New System.Windows.Forms.Button()
+        Me.BtLogin = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -817,9 +818,21 @@ Partial Class InstaladorKubo
         Me.BtLimpiar.Name = "BtLimpiar"
         Me.BtLimpiar.Size = New System.Drawing.Size(143, 33)
         Me.BtLimpiar.TabIndex = 43
-        Me.BtLimpiar.Text = "Limpiar - Login"
+        Me.BtLimpiar.Text = "Limpiar Registros"
         Me.BtLimpiar.UseVisualStyleBackColor = False
         Me.BtLimpiar.Visible = False
+        '
+        'BtLogin
+        '
+        Me.BtLogin.BackColor = System.Drawing.Color.Gold
+        Me.BtLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtLogin.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.BtLogin.Location = New System.Drawing.Point(907, 572)
+        Me.BtLogin.Name = "BtLogin"
+        Me.BtLogin.Size = New System.Drawing.Size(143, 33)
+        Me.BtLogin.TabIndex = 44
+        Me.BtLogin.Text = "Auto Login"
+        Me.BtLogin.UseVisualStyleBackColor = False
         '
         'InstaladorKubo
         '
@@ -827,6 +840,7 @@ Partial Class InstaladorKubo
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1073, 679)
+        Me.Controls.Add(Me.BtLogin)
         Me.Controls.Add(Me.BtLimpiar)
         Me.Controls.Add(Me.PbInstalaciones)
         Me.Controls.Add(Me.GroupBox5)
@@ -936,4 +950,5 @@ Partial Class InstaladorKubo
     Friend WithEvents TlpConfigWord2016 As ToolTip
     Friend WithEvents BtLimpiar As Button
     Friend WithEvents BtKmsPico As Button
+    Friend WithEvents BtLogin As Button
 End Class

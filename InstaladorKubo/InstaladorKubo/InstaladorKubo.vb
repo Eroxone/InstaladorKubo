@@ -51,7 +51,6 @@ Public Class InstaladorKubo
         Try
             File.Delete("C:\TEMP\InstaladorKubo\instaladorkubo.ini")
             File.Delete("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt")
-            cIniArray.IniWrite(instaladorkuboini, "LOGIN", "ENTRADA", 1)
             RegistroInstalacion("=== Limpiados ficheros INI y Log de Registro ===")
 
             PbInstalaciones.Visible = True
@@ -66,8 +65,22 @@ Public Class InstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("Limpieza ficheros: " & ex.Message)
         End Try
+
     End Sub
 
+    Private Sub BtLogin_Click(sender As Object, e As EventArgs) Handles BtLogin.Click
+        cIniArray.IniWrite(instaladorkuboini, "LOGIN", "ENTRADA", 1)
+
+        PbInstalaciones.Visible = True
+        PbInstalaciones.Step = 35
+        Dim p As Integer
+        While p < 3
+            p = p + 1
+            Threading.Thread.Sleep(500)
+            PbInstalaciones.PerformStep()
+        End While
+        PbInstalaciones.Visible = False
+    End Sub
 
     'Private Sub ComprobarVersion()
     '    'Antes crear ruta si no existe y descargar el version ini de internet. controlar posible error de conexion.
@@ -1357,6 +1370,7 @@ Public Class InstaladorKubo
         ElseIf reiniciodirectivas = DialogResult.No Then
             RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Directivas.")
             btDirectivas.BackColor = Color.LightSalmon
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "1")
         End If
 
 
@@ -1402,6 +1416,9 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & wgetuac & "-O " & RutaDescargas & "Utiles\ClientInstaller.exe", AppWinStyle.Hide, True)
         Try
             Process.Start(RutaDescargas & "Utiles\ClientInstaller.exe")
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "UAC", "1")
+            BtUac.BackColor = Color.PaleGreen
+            RegistroInstalacion("Ejecutado ClientInstaller.exe para deshabilitar UAC y añadir excepciones WindowsDefender.")
         Catch ex As Exception
             RegistroInstalacion("ERROR ClientInstaller: " & ex.Message)
             BtUac.BackColor = Color.LightSalmon
@@ -1417,9 +1434,6 @@ Public Class InstaladorKubo
 
         'RunAsAdmin(uacadmin)
 
-        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "UAC", "1")
-        BtUac.BackColor = Color.PaleGreen
-        RegistroInstalacion("Ejecutado ClientInstaller.exe para deshabilitar UAC y añadir excepciones WindowsDefender.")
     End Sub
 
 
@@ -1819,12 +1833,12 @@ Public Class InstaladorKubo
                 Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
                 RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
                 BtConfiguraWord2016.BackColor = Color.PaleGreen
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
             Catch ex As Exception
                 RegistroInstalacion("Claves Registro Word 2013: " & ex.Message)
                 BtConfiguraWord2016.BackColor = Color.LightSalmon
             End Try
 
-            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
         Else
             MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
@@ -1835,9 +1849,17 @@ Public Class InstaladorKubo
     Private Sub BtKmsPico_Click(sender As Object, e As EventArgs) Handles BtKmsPico.Click
         obtenerunrar()
         obtenerwget()
-        Dim wgetkmspico As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/KMSpico10.exe -O " & RutaDescargas & "KMSPico10.exe"
+        Dim wgetkmspico As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/KMSpico10.exe -O " & RutaDescargas & "KMSpico10.exe"
         Shell("cmd.exe /c " & RutaDescargas & wgetkmspico, AppWinStyle.NormalFocus, True)
-        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.Hide, True)
+
+        If File.Exists(RutaDescargas & "KMSpico10.exe") Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.Hide, True)
+        Else
+            BtKmsPico.BackColor = Color.LightSalmon
+            RegistroInstalacion("KMSPico: No se pudo obtener acceso al Ejecutable. Quizás no se descargó correctamente.")
+            MessageBox.Show("No se obtuvo el ejecutable para KMSPico. Revisa tu conexión a Internet.", "Error acceso KMSPico", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
 
         Try
             Dim pkmspico As New ProcessStartInfo()
@@ -1845,10 +1867,9 @@ Public Class InstaladorKubo
             Dim kmspico As Process = Process.Start(pkmspico)
             'kmspico.WaitForInputIdle()
             kmspico.WaitForExit()
-            RegistroInstalacion("KMSPICO: Ejecutada Instalación de KMSPico 10.")
+            RegistroInstalacion("KMSPICO: Ejecutada Instalación de KMSpico 10.")
         Catch ex As Exception
             RegistroInstalacion("ERROR KMSPico: " & ex.Message)
-            BtConfiguraWord2016.BackColor = Color.LightSalmon
         End Try
 
         Try
@@ -1868,10 +1889,6 @@ Public Class InstaladorKubo
 
         'TODO añadir tooltip
     End Sub
-
-
-
-
 
 
 End Class
