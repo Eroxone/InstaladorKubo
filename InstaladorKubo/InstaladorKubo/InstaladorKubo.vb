@@ -896,6 +896,8 @@ Public Class InstaladorKubo
             'Setup MST que personaliza la instalación de Office 2003
             File.Copy(RutaDescargas & "Setup.mst", RutaDescargas & "Office2003\Setup.mst", True)
             '  Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalFocus, False)
+            'Esperamos 5 segundos a que se complete la copia.
+            Threading.Thread.Sleep(3000)
 
             Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup.mst /qb-", AppWinStyle.Hide, True)
             ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
@@ -965,6 +967,7 @@ Public Class InstaladorKubo
                     Catch ex As Exception
                         MessageBox.Show("Error al obtener fichero MSP. Revisa tu conexión a Internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End Try
+                    Threading.Thread.Sleep(3000)
                     Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE /adminfile setup2016.MSP", AppWinStyle.Hide, True)
 
                 ElseIf office2016per = 1 Then
