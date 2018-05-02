@@ -1926,6 +1926,9 @@ Public Class InstaladorKubo
         If UnidadF() = True Then
             lbUnidadF.Text = "CONECTADA"
             lbUnidadF.ForeColor = Color.Green
+        Else
+            lbUnidadF.Text = "DESCONECTADA"
+            lbUnidadF.ForeColor = Color.Red
         End If
         PbInstalaciones.Visible = False
     End Sub
