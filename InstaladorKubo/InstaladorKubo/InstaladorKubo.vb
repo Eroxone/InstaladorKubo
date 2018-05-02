@@ -1428,7 +1428,7 @@ Public Class InstaladorKubo
         cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
         btJava.BackColor = Color.PaleGreen
         RegistroInstalacion("Instalada última versión de JAVA.")
-        MessageBox.Show("JAVA se encuentra instalándose en segundo plano. La instalación acabará en pocos minutos.", "Instalación desatendida JAVA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("JAVA se encuentra instalándose en segundo plano. Acabará en pocos minutos.", "Instalación desatendida JAVA", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub BtUac_Click(sender As Object, e As EventArgs) Handles BtUac.Click
