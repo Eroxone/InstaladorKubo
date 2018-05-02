@@ -541,6 +541,7 @@ Public Class InstaladorKubo
         If cbOffice2016odt.Checked Then
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
+            texto = texto & PuestoNotin & "setup2016.MSP" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "1")
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016", "0")
         End If
@@ -740,16 +741,16 @@ Public Class InstaladorKubo
 
         'Limpieza de ficheros temporales para instalaciones por ejemplo.
         'TODO revisar si hay que limpiar mas archivos.
-        Try
-            File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
-            File.Delete(RutaDescargas & "odbc32.bat")
-            File.Delete(RutaDescargas & "Registro\msoutl.bat")
-            File.Delete(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
-            File.Delete(RutaDescargas & "Registro\unidadfword.bat")
-            File.Delete(RutaDescargas & "primerreinicio.bat")
-            File.Delete(RutaDescargas & "reiniciodirectivas.bat")
-        Catch ex As Exception
-        End Try
+        'Try
+        '    File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
+        '    File.Delete(RutaDescargas & "odbc32.bat")
+        '    File.Delete(RutaDescargas & "Registro\msoutl.bat")
+        '    File.Delete(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+        '    File.Delete(RutaDescargas & "Registro\unidadfword.bat")
+        '    File.Delete(RutaDescargas & "primerreinicio.bat")
+        '    File.Delete(RutaDescargas & "reiniciodirectivas.bat")
+        'Catch ex As Exception
+        'End Try
         Me.Close()
     End Sub
 
@@ -925,7 +926,7 @@ Public Class InstaladorKubo
             RunAsAdmin(RutaDescargas & "Registro\msoutl.bat")
 
         Catch ex As Exception
-            RegistroInstalacion("ERROR: " & ex.Message)
+            RegistroInstalacion("ERROR MSOUTLB: " & ex.Message)
         End Try
         'Try
         '    File.Copy(RutaDescargas & "Registro\MSOUTL.OLB", "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSOUTL.OLB", True)
@@ -968,9 +969,11 @@ Public Class InstaladorKubo
                 Dim office2016per = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "OFFICE2016", "2")
                 If Office2016odt = 1 Then
                     Try
-                        My.Computer.Network.DownloadFile(PuestoNotin & "setup2016.MSP", RutaDescargas & "Office2016\setup2016.MSP", "juanjo", "Palomeras24", False, 60000, True)
+                        'My.Computer.Network.DownloadFile(PuestoNotin & "setup2016.MSP", RutaDescargas & "Office2016\setup2016.MSP", "juanjo", "Palomeras24", False, 60000, True)
+                        File.Copy(RutaDescargas & "setup2016.MSP", RutaDescargas & "Office2016\setup2016.MSP", True)
                     Catch ex As Exception
-                        MessageBox.Show("Error al obtener fichero MSP. Revisa tu conexión a Internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        MessageBox.Show("Error al copiar fichero MSP. Revisa que el fichero exista en " & RutaDescargas & "Office2016", "Error Setup MSP", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        RegistroInstalacion("Setup2016.MSP: " & ex.Message)
                     End Try
                     Threading.Thread.Sleep(3000)
                     Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE /adminfile setup2016.MSP", AppWinStyle.Hide, True)
@@ -1465,7 +1468,7 @@ Public Class InstaladorKubo
             MessageBox.Show("Conecta antes la Unidad de Red F.", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
-
+        'TODO mejorar copia. filtrar un poco...
         obtenerrobocopy()
         Dim notinf = "F:\PRG.INS\NOTIN\"
         Directory.CreateDirectory(notinf)
