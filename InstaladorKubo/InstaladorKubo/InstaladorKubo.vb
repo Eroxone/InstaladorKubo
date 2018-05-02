@@ -796,6 +796,8 @@ Public Class InstaladorKubo
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "1")
 
                 PbInstalaciones.Visible = True
+                PbInstalaciones.Maximum = 50
+                PbInstalaciones.Step = 10
                 Dim p As Integer
                 While p < 6
                     p = p + 1
@@ -1180,20 +1182,6 @@ Public Class InstaladorKubo
         Else
             RegistroInstalacion("ADVERTENCIA: Se encontró el ejecutable jNemo. Se omite su instalación.")
         End If
-        AccesosDirectosEscritorio()
-    End Sub
-
-    Private Sub AccesosDirectosEscritorio()
-        Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
-        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.Hide, True)
-        Try
-            File.Delete("C:\Users\Public\Desktop\Krypton Explorer.lnk")
-        Catch ex As Exception
-        End Try
-
-        lbInstalando.Visible = False
-        MessageBox.Show("INSTALACIONES TERMINADAS. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        'btNotinKubo.ForeColor = Color.YellowGreen
         FT()
     End Sub
 
@@ -1201,11 +1189,24 @@ Public Class InstaladorKubo
         Try
             ' Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
             Process.Start("C:\NOTAWIN.NET\FT.EXE", "/actualizaciones")
+            RegistroInstalacion("Instalando Paquetes de FT.")
         Catch ex As Exception
             RegistroInstalacion("Paquetes FT. No se pudieron instalar: " & ex.Message)
         End Try
+        AccesosDirectosEscritorio()
+    End Sub
+
+    Private Sub AccesosDirectosEscritorio()
+        Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.Hide, True)
+        RegistroInstalacion("Creados Accesos Directos en el Escritorio.")
+        Try
+            File.Delete("C:\Users\Public\Desktop\Krypton Explorer.lnk")
+        Catch ex As Exception
+        End Try
         AbreExcel()
     End Sub
+
 
     Private Sub AbreExcel()
         'TODO establecer asociacion de archivos.
@@ -1216,7 +1217,12 @@ Public Class InstaladorKubo
 
         End Try
 
+
+        lbInstalando.Visible = False
+        MessageBox.Show("INSTALACIONES TERMINADAS. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'btNotinKubo.ForeColor = Color.YellowGreen
     End Sub
+
 
 
 #End Region
@@ -1379,7 +1385,8 @@ Public Class InstaladorKubo
         Directory.CreateDirectory(RutaDescargas & "Directivas")
 
         PbInstalaciones.Visible = True
-        PbInstalaciones.Step = 10
+        PbInstalaciones.Maximum = 100
+        PbInstalaciones.Step = 20
         Threading.Thread.Sleep(2000)
         PbInstalaciones.PerformStep()
 
@@ -1388,7 +1395,7 @@ Public Class InstaladorKubo
         File.WriteAllText(RutaDescargas & "Directivas\multidifusion.bat", "cmd /c " & multicast)
         RunAsAdmin(RutaDescargas & "Directivas\multidifusion.bat")
 
-        PbInstalaciones.Step = 10
+        PbInstalaciones.Step = 25
         Threading.Thread.Sleep(2000)
         PbInstalaciones.PerformStep()
 
@@ -1399,7 +1406,7 @@ Public Class InstaladorKubo
         File.WriteAllText(RutaDescargas & "Directivas\sinconexion.bat", sinconexion)
         RunAsAdmin(RutaDescargas & "Directivas\sinconexion.bat")
 
-        PbInstalaciones.Step = 15
+        PbInstalaciones.Step = 25
         Threading.Thread.Sleep(2000)
         PbInstalaciones.PerformStep()
         'powershell.exe -executionpolicy unrestricted -command .\UAC.ps1
@@ -1409,7 +1416,7 @@ Public Class InstaladorKubo
         File.WriteAllText(RutaDescargas & "Directivas\Directivasps1.bat", "@echo off" & vbCrLf & "powershell.exe -executionpolicy unrestricted -command " & RutaDescargas & "Directivas\Directivas.ps1")
         RunAsAdmin(RutaDescargas & "Directivas\Directivasps1.bat")
 
-        PbInstalaciones.Step = 15
+        PbInstalaciones.Step = 30
         Threading.Thread.Sleep(2000)
         PbInstalaciones.PerformStep()
 
