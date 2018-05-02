@@ -1235,7 +1235,7 @@ Public Class InstaladorKubo
         TlpComenzarDescargas.ToolTipTitle = "Comenzar proceso Descargas"
         TlpComenzarDescargas.SetToolTip(btDescargar, "Se descargarán/resumirán los paquetes seleccionados.")
 
-        TlpJava.ToolTipTitle = "Instalación DESATENDIDA JAVA 8"
+        TlpJava.ToolTipTitle = "Instalación Desatendida JAVA 8"
         TlpJava.SetToolTip(btJava, "Instalación silenciosa de Java. No requiere intervención del usuario")
 
         TlpUac.SetToolTip(BtUac, "Exclusiones Windows Defender y Control Cuentas Usuario")
@@ -1428,6 +1428,7 @@ Public Class InstaladorKubo
         cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
         btJava.BackColor = Color.PaleGreen
         RegistroInstalacion("Instalada última versión de JAVA.")
+        MessageBox.Show("JAVA se encuentra instalándose en segundo plano. La instalación acabará en pocos minutos.", "Instalación desatendida JAVA", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub BtUac_Click(sender As Object, e As EventArgs) Handles BtUac.Click
