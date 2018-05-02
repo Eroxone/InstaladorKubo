@@ -34,7 +34,7 @@ Public Class InstaladorKubo
         'NotinenF()
 
         'Comprobación de ficheros para habilitar boton Traer Paquete a Servidor
-        If Directory.Exists("F:\PRG.INS\NOTIN") = True Then
+        If Directory.Exists("F:\PRG.INS\NOTIN\InstaladorKubo") = True Then
             BtTraerdeF.Enabled = True
             BtTraerdeF.BackColor = Color.FloralWhite
         End If
@@ -1364,13 +1364,16 @@ Public Class InstaladorKubo
         File.WriteAllText(RutaDescargas & "Directivas\multidifusion.bat", "cmd /c " & multicast)
         RunAsAdmin(RutaDescargas & "Directivas\multidifusion.bat")
 
+        'TODO añadir esta clave de registro
+        '[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetCache]
+        '"Enabled"=dword:00000000
+
         PbInstalaciones.Step = 15
         Threading.Thread.Sleep(2000)
         PbInstalaciones.PerformStep()
         'powershell.exe -executionpolicy unrestricted -command .\UAC.ps1
 
         Dim directivasps1 As String = "Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\Lsa -Name LmCompatibilityLevel -Value 1" & vbCrLf & "Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\Lsa -Name LimitBlankPasswordUse -Value 1"
-        'TODO "Set-GPRegistryValue -Path HKLM:\Software\Policies\Microsoft\Windows\NetCache -Name Enabled -Value 1" & vbCrLf
         File.WriteAllText(RutaDescargas & "Directivas\Directivas.ps1", directivasps1)
         File.WriteAllText(RutaDescargas & "Directivas\Directivasps1.bat", "@echo off" & vbCrLf & "powershell.exe -executionpolicy unrestricted -command " & RutaDescargas & "Directivas\Directivas.ps1")
         RunAsAdmin(RutaDescargas & "Directivas\Directivasps1.bat")
@@ -1470,7 +1473,7 @@ Public Class InstaladorKubo
         End If
         'TODO mejorar copia. filtrar un poco...
         obtenerrobocopy()
-        Dim notinf = "F:\PRG.INS\NOTIN\"
+        Dim notinf = "F:\PRG.INS\NOTIN\InstaladorKubo\"
         Directory.CreateDirectory(notinf)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.exe" & " /E /R:2 /W:5 /ETA", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.bat" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
@@ -1480,9 +1483,10 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.olb" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.mst" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.xml" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " *.msp" & " /E /R:2 /W:5 /ETA", AppWinStyle.Hide, True)
 
         cIniArray.IniWrite(instaladorkuboini, "PAQUETES", "COPIARHACIAF", "1")
-        MessageBox.Show("Paquetes copiados a F:\PRG.INS\NOTIN\", "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Paquetes copiados a F:\PRG.INS\NOTIN\InstaladorKubo", "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         BtTraerdeF.Enabled = True
         BtTraerdeF.BackColor = Color.AliceBlue
 
@@ -1493,17 +1497,17 @@ Public Class InstaladorKubo
             MessageBox.Show("Conecta antes la Unidad de Red F.", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
-        If Directory.Exists("F:\PRG.INS\NOTIN") = False Then
-            MessageBox.Show("Confirma que los Paquetes se hayan copiado a F:\PRG.INS\NOTIN.", "Error de acceso", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If Directory.Exists("F:\PRG.INS\NOTIN\InstaladorKubo") = False Then
+            MessageBox.Show("Confirma que los Paquetes se hayan copiado a F:\PRG.INS\NOTIN\InstaladorKubo.", "Error de acceso", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
 
         obtenerrobocopy()
-        Dim notinf = "F:\PRG.INS\NOTIN\"
+        Dim notinf = "F:\PRG.INS\NOTIN\InstaladorKubo\"
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & notinf & " " & RutaDescargas & " *.*" & " /E /R:1 /W:1 /ETA", AppWinStyle.NormalFocus, True)
 
         cIniArray.IniWrite(instaladorkuboini, "PAQUETES", "TRAERDEF", "1")
-        MessageBox.Show("Paquetes en F:\PRG.INS\NOTIN copiados hacia " & RutaDescargas, "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Paquetes en F:\PRG.INS\NOTIN\InstaladorKubo copiados hacia " & RutaDescargas, "Copia Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'Si no hago esto en el INI no permito realizar instalaciones
         cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "COMIENZO", "1")
         BtCopiarhaciaF.Enabled = True
@@ -1936,7 +1940,7 @@ Public Class InstaladorKubo
             If comienzo = 1 Then
                 BtCopiarhaciaF.Enabled = True
             End If
-        If Directory.Exists("F:\PRG.INS\NOTIN") Then
+        If Directory.Exists("F:\PRG.INS\NOTIN\InstaladorKubo") Then
             BtTraerdeF.Enabled = True
         Else
             lbUnidadF.Text = "DESCONECTADA"
