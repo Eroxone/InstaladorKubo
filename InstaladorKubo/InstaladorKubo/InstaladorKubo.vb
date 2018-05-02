@@ -987,11 +987,17 @@ Public Class InstaladorKubo
     Private Sub EjecutableNotinNet()
         If UnidadF() = True Then
             Try
-                Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
-                If ExisteNotinNet = False Then
-                    File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
-                    Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
-                End If
+                'Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
+                'If ExisteNotinNet = False Then
+                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
+                Dim pnotinnet As New ProcessStartInfo()
+                pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
+                Dim notinnet As Process = Process.Start(pnotinnet)
+                'notintaskpane.WaitForInputIdle()
+                notinnet.WaitForExit()
+
+                'Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
+                'End If
             Catch ex As Exception
                 RegistroInstalacion("NotinNetInstaller: " & ex.Message)
             End Try
@@ -1040,7 +1046,7 @@ Public Class InstaladorKubo
                         'Ejecutar el proceso.
                         Dim notinaddin As Process = Process.Start(pInfoaddin)
                         'Esperar a que la ventana de proceso complete la carga.
-                        notinaddin.WaitForInputIdle()
+                        'notinaddin.WaitForInputIdle()
                         'Esperar a que el proceso termine.
                         notinaddin.WaitForExit()
                         'Continuar con el código.
@@ -1052,7 +1058,7 @@ Public Class InstaladorKubo
                         Dim pInfotaskpane As New ProcessStartInfo()
                         pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
                         Dim notintaskpane As Process = Process.Start(pInfotaskpane)
-                        notintaskpane.WaitForInputIdle()
+                        'notintaskpane.WaitForInputIdle()
                         notintaskpane.WaitForExit()
                     Catch ex As Exception
                         RegistroInstalacion("ERROR NotinTaskPane: " & ex.Message)
@@ -1886,7 +1892,7 @@ Public Class InstaladorKubo
             BtKmsPico.BackColor = Color.PaleGreen
         Catch ex As Exception
             RegistroInstalacion("ERROR KMSPico: " & ex.Message)
-            BtConfiguraWord2016.BackColor = Color.LightSalmon
+            BtKmsPico.BackColor = Color.LightSalmon
         End Try
 
         RegistroInstalacion("KMSPICO: Instalado Servicio KMSPico 10.")
