@@ -39,6 +39,11 @@ Public Class InstaladorKubo
             BtTraerdeF.BackColor = Color.FloralWhite
         End If
 
+        'Icono reconectar F
+        If UnidadF() = False Then
+            BtReconectar.Enabled = True
+        End If
+
     End Sub
 
     Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
@@ -1246,6 +1251,9 @@ Public Class InstaladorKubo
 
         TlpKmspico.ToolTipTitle = "Instalación de KMSpico 10.2 FINAL"
         TlpKmspico.SetToolTip(BtKmsPico, "Descarga, descomprime e Instala KMSpico 10. Revisa antes las Excepciones del Antivirus.")
+
+        TlpReconectarF.ToolTipTitle = "Reconectar Unidad F"
+        TlpReconectarF.SetToolTip(BtReconectar, "Chequea la existencia Unidad F. Usa esto si la conectaste una vez arrancado el Instalador.")
     End Sub
 #End Region
 
@@ -1904,5 +1912,21 @@ Public Class InstaladorKubo
         'TODO añadir tooltip
     End Sub
 
+    Private Sub BtReconectar_Click(sender As Object, e As EventArgs) Handles BtReconectar.Click
 
+        PbInstalaciones.Visible = True
+        PbInstalaciones.Step = 25
+        Dim p As Integer
+        While p < 5
+            p = p + 1
+            Threading.Thread.Sleep(500)
+            PbInstalaciones.PerformStep()
+        End While
+
+        If UnidadF() = True Then
+            lbUnidadF.Text = "CONECTADA"
+            lbUnidadF.ForeColor = Color.Green
+        End If
+        PbInstalaciones.Visible = False
+    End Sub
 End Class
