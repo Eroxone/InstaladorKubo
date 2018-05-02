@@ -1924,12 +1924,22 @@ Public Class InstaladorKubo
             PbInstalaciones.PerformStep()
         End While
 
+        'TOOD revisar esto que lo he hecho rapido.
         If UnidadF() = True Then
             lbUnidadF.Text = "CONECTADA"
             lbUnidadF.ForeColor = Color.Green
+        End If
+        Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
+            If comienzo = 1 Then
+                BtCopiarhaciaF.Enabled = True
+            End If
+        If Directory.Exists("F:\PRG.INS\NOTIN") Then
+            BtTraerdeF.Enabled = True
         Else
             lbUnidadF.Text = "DESCONECTADA"
             lbUnidadF.ForeColor = Color.Red
+            BtCopiarhaciaF.Enabled = False
+            BtTraerdeF.Enabled = False
         End If
         PbInstalaciones.Visible = False
     End Sub
