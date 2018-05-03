@@ -44,6 +44,11 @@ Public Class InstaladorKubo
             BtReconectar.Enabled = True
         End If
 
+        Dim preparacioninicial = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
+        If preparacioninicial = 1 Then
+            LbPreparacionInicial.Visible = True
+        End If
+
     End Sub
 
     Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
@@ -1998,10 +2003,16 @@ Public Class InstaladorKubo
         End While
 
         'TOOD revisar esto que lo he hecho rapido.
-        If UnidadF() = True Then
-            lbUnidadF.Text = "CONECTADA"
-            lbUnidadF.ForeColor = Color.Green
-        End If
+        Try
+            If Directory.Exists("F:") Then
+                lbUnidadF.Text = "CONECTADA"
+                lbUnidadF.ForeColor = Color.Green
+                RegistroInstalacion("ÉXITO: Unidad F RECONECTADA correctamente.")
+            End If
+        Catch ex As Exception
+            RegistroInstalacion("ERROR: No se pudo conectar a Unidad F. Motivo: " & ex.Message)
+        End Try
+
         Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         If comienzo = 1 Then
             BtCopiarhaciaF.Enabled = True

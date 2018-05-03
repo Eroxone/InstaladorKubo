@@ -101,6 +101,7 @@ Partial Class InstaladorKubo
         Me.TlpReconectarF = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpDirectivas = New System.Windows.Forms.ToolTip(Me.components)
         Me.LnkRequisitos = New System.Windows.Forms.LinkLabel()
+        Me.LbPreparacionInicial = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -812,6 +813,7 @@ Partial Class InstaladorKubo
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.LbPreparacionInicial)
         Me.GroupBox5.Controls.Add(Me.BtNotinWord2003)
         Me.GroupBox5.Controls.Add(Me.btNotinKubo)
         Me.GroupBox5.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
@@ -819,7 +821,7 @@ Partial Class InstaladorKubo
         Me.GroupBox5.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox5.Size = New System.Drawing.Size(202, 146)
+        Me.GroupBox5.Size = New System.Drawing.Size(202, 167)
         Me.GroupBox5.TabIndex = 41
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Instalaciones DN"
@@ -828,7 +830,7 @@ Partial Class InstaladorKubo
         '
         Me.BtNotinWord2003.BackColor = System.Drawing.Color.MistyRose
         Me.BtNotinWord2003.Font = New System.Drawing.Font("Lucida Bright", 11.0!, System.Drawing.FontStyle.Bold)
-        Me.BtNotinWord2003.Location = New System.Drawing.Point(9, 85)
+        Me.BtNotinWord2003.Location = New System.Drawing.Point(9, 105)
         Me.BtNotinWord2003.Margin = New System.Windows.Forms.Padding(2)
         Me.BtNotinWord2003.Name = "BtNotinWord2003"
         Me.BtNotinWord2003.Size = New System.Drawing.Size(178, 41)
@@ -901,6 +903,19 @@ Partial Class InstaladorKubo
         Me.LnkRequisitos.Text = "Requisitos Notin"
         Me.LnkRequisitos.Visible = False
         '
+        'LbPreparacionInicial
+        '
+        Me.LbPreparacionInicial.AutoSize = True
+        Me.LbPreparacionInicial.BackColor = System.Drawing.SystemColors.Control
+        Me.LbPreparacionInicial.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbPreparacionInicial.ForeColor = System.Drawing.Color.SteelBlue
+        Me.LbPreparacionInicial.Location = New System.Drawing.Point(25, 71)
+        Me.LbPreparacionInicial.Name = "LbPreparacionInicial"
+        Me.LbPreparacionInicial.Size = New System.Drawing.Size(151, 15)
+        Me.LbPreparacionInicial.TabIndex = 28
+        Me.LbPreparacionInicial.Text = "Preparación Inicial OK"
+        Me.LbPreparacionInicial.Visible = False
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -942,6 +957,7 @@ Partial Class InstaladorKubo
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1025,4 +1041,5 @@ Partial Class InstaladorKubo
     Friend WithEvents BtLimpiarPaquetes As Button
     Friend WithEvents TlpDirectivas As ToolTip
     Friend WithEvents LnkRequisitos As LinkLabel
+    Friend WithEvents LbPreparacionInicial As Label
 End Class
