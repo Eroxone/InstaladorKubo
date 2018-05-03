@@ -136,6 +136,9 @@ Public Class InstaladorKubo
         'Dim nombreusuario As Integer = equipousuario.LastIndexOf("\")
         'Dim solonombre As Integer = equipousuario.Length
         'Dim usuarioactual = equipousuario.Substring(nombreusuario, solonombre)
+        'Dim equipo As Integer = equipousuario.LastIndexOf("\")
+        'Dim longequipousuario As Integer = equipousuario.Length - equipo
+        'Dim nombreusuario As String = equipousuario.Substring(equipo + 1, equipo)
 
         lbUsuario.Text = equipousuario
         'RegistroInstalacion("Usuario ejecución: " & UsuarioAtual)
