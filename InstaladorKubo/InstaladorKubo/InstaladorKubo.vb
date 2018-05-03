@@ -120,9 +120,26 @@ Public Class InstaladorKubo
     Private Sub SistemaOperativo()
         Dim SistemaO = (My.Computer.Info.OSFullName)
         lbSistemaO.Text = SistemaO
-        Dim UsuarioAtual = (My.User.Name)
-        lbUsuario.Text = UsuarioAtual
-        RegistroInstalacion("Usuario ejecución: " & UsuarioAtual)
+        If SistemaO.Contains("Home") Then
+            lbSistemaO.ForeColor = Color.Red
+            'ElseIf SistemaO.Contains("Pro") Then
+            '    lbSistemaO.ForeColor = Color.Green
+        End If
+
+        'TODO quedarme con el nombre del usuario. ARREGLAR esto
+        Dim equipousuario As String = (My.User.Name)
+
+        'Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
+        'expedientes = expedientes.Remove(0, 2)
+        'Dim unidadi = expedientes.LastIndexOf("\I")
+        'expedientes = expedientes.Substring(0, unidadi)
+        'Dim nombreusuario As Integer = equipousuario.LastIndexOf("\")
+        'Dim solonombre As Integer = equipousuario.Length
+        'Dim usuarioactual = equipousuario.Substring(nombreusuario, solonombre)
+
+        lbUsuario.Text = equipousuario
+        'RegistroInstalacion("Usuario ejecución: " & UsuarioAtual)
+
         If UnidadF() = True Then
             lbUnidadF.Text = "CONECTADA"
             lbUnidadF.ForeColor = Color.Green
@@ -598,6 +615,7 @@ Public Class InstaladorKubo
             terceros = terceros & PuestoNotin & "Software/" & "ChromeSetup.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "Notepad_x64.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "WinRAR5.exe" & vbCrLf
+            terceros = terceros & PuestoNotin & "Software/" & "FineReaderV11demo .exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "SOFTWARETERCEROS", "1")
         End If
 
@@ -1721,6 +1739,7 @@ Public Class InstaladorKubo
             Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup2003.mst /qb-", AppWinStyle.Hide, True)
             ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
+            'TODO no me instaló SP3 en Yecla. en General revisar TODO
             Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe /Q" & """", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
             Threading.Thread.Sleep(10000)
