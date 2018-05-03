@@ -116,32 +116,31 @@ Public Class InstaladorKubo
 #End Region
 
 #Region "Cabecera Formulario"
-    'TODO indicar RAM. CPU y si es Home ponerlo en rojo
+    'TODO si Windows no se encuentra en la Unidad C indicarlo
     Private Sub SistemaOperativo()
         Dim SistemaO = (My.Computer.Info.OSFullName)
         lbSistemaO.Text = SistemaO
         If SistemaO.Contains("Home") Then
             lbSistemaO.ForeColor = Color.Red
-            'ElseIf SistemaO.Contains("Pro") Then
-            '    lbSistemaO.ForeColor = Color.Green
         End If
 
-        'TODO quedarme con el nombre del usuario. ARREGLAR esto
+        If Directory.Exists("C:\WINDOWS\SYSWOW64") Then
+            lb64bits.Text = ("Sistema Operativo de 64bits")
+        Else
+            lb64bits.Text = ("Sistema Operativo de 32bits")
+        End If
+
         Dim equipousuario As String = (My.User.Name)
+        Dim equipo As Integer = equipousuario.LastIndexOf("\")
+        Dim usuario = equipousuario.Remove(0, equipo + 1)
+        lbUsuario.Text = "Usuario: " & usuario
 
-        'Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
-        'expedientes = expedientes.Remove(0, 2)
-        'Dim unidadi = expedientes.LastIndexOf("\I")
-        'expedientes = expedientes.Substring(0, unidadi)
-        'Dim nombreusuario As Integer = equipousuario.LastIndexOf("\")
-        'Dim solonombre As Integer = equipousuario.Length
-        'Dim usuarioactual = equipousuario.Substring(nombreusuario, solonombre)
-        'Dim equipo As Integer = equipousuario.LastIndexOf("\")
-        'Dim longequipousuario As Integer = equipousuario.Length - equipo
-        'Dim nombreusuario As String = equipousuario.Substring(equipo + 1, equipo)
-
-        lbUsuario.Text = equipousuario
-        'RegistroInstalacion("Usuario ejecución: " & UsuarioAtual)
+        Dim memoriaram = My.Computer.Info.TotalPhysicalMemory
+        Dim memoriarammb As Integer = memoriaram / 1024 / 1024
+        LBmemoriaram.Text = "Memoria RAM " & memoriarammb & "MB"
+        If memoriarammb < 2048 Then
+            LBmemoriaram.ForeColor = Color.Red
+        End If
 
         If UnidadF() = True Then
             lbUnidadF.Text = "CONECTADA"
@@ -155,12 +154,6 @@ Public Class InstaladorKubo
             '  lbUnidadF.BackColor = Color.Red
             'Logger("Iniciando con Unidad F DESCONECTADA")
             RegistroInstalacion("Iniciando con Unidad F DESCONECTADA.")
-        End If
-
-        If Directory.Exists("C:\WINDOWS\SYSWOW64") Then
-            lb64bits.Text = ("Sistema Operativo de 64bits")
-        Else
-            lb64bits.Text = ("Sistema Operativo de 32bits")
         End If
 
     End Sub
@@ -799,7 +792,7 @@ Public Class InstaladorKubo
     End Sub
 
 
-#Region "COMIENZO DE INSTALACION DE PAQUETES. COMPROBACIONES INICIALES."
+#Region "COMIENZO DE INSTALACION DE PAQUETES NOTIN+KUBO. COMPROBACIONES INICIALES."
 
     Private Sub btNotinKubo_Click(sender As Object, e As EventArgs) Handles btNotinKubo.Click
         RegistroInstalacion("=== COMIENZO INSTALACIONES NOTIN-KUBO ===")
@@ -918,9 +911,8 @@ Public Class InstaladorKubo
         End If
 
     End Sub
-#End Region
 
-#Region "INSTALACIONES SOFTWARE"
+
     Private Sub InstalarNotinNet()
 
         'Claves Registro
@@ -1251,12 +1243,12 @@ Public Class InstaladorKubo
 
         lbInstalando.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        RegistroInstalacion("=== FINALIZADAS INSTALACIONES NOTIN+KUBO ===")
         'btNotinKubo.ForeColor = Color.YellowGreen
     End Sub
-
-
-
 #End Region
+
+
 
 #Region "Tooltips"
     Private Sub Tooltips()
@@ -1324,6 +1316,9 @@ Public Class InstaladorKubo
 
         TlpExplorerDescargas.ToolTipTitle = "Explorar carpeta Descargas"
         TlpExplorerDescargas.SetToolTip(lbRuta, "Muestra en el Explorador de archivos la ruta " & RutaDescargas)
+
+        TlpSistema.ToolTipTitle = "Información Sistema Operativo"
+        TlpSistema.SetToolTip(GroupBox3, "Si alguna característica puede no cumplir los Requisitos se mostrará de color rojo.")
 
     End Sub
 #End Region
@@ -1437,10 +1432,8 @@ Public Class InstaladorKubo
         Threading.Thread.Sleep(2000)
         PbInstalaciones.PerformStep()
 
-        'TODO añadir esta clave de registro
+
         Dim sinconexion As String = "REG add " & """" & "HKLM\SOFTWARE\Policies\Microsoft\Windows\NetCache" & """" & " /V Enabled /t REG_DWORD /d 0 /f"
-        '[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetCache]
-        '"Enabled"=dword:00000000
         File.WriteAllText(RutaDescargas & "Directivas\sinconexion.bat", sinconexion)
         RunAsAdmin(RutaDescargas & "Directivas\sinconexion.bat")
 
@@ -1621,6 +1614,9 @@ Public Class InstaladorKubo
         Process.Start("notepad.exe", instaladorkuboini)
     End Sub
 
+
+#Region "INSTALACION NOTIN NET - WORD 2003"
+    'INSTALACIÓN NOTIN NET + WORD 2003
     Private Sub BtNotinWord2003_Click(sender As Object, e As EventArgs) Handles BtNotinWord2003.Click
 
         RegistroInstalacion("=== COMIENZO INSTALACIONES NOTIN-WORD 2003 ===")
@@ -1658,22 +1654,18 @@ Public Class InstaladorKubo
                 MessageBox.Show("Vamos a REINICIAR. Guarda tu trabajo.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Dim reinicio As String = "shutdown /r /f /t 0"
                 File.WriteAllText(RutaDescargas & "primerreinicio.bat", reinicio)
+                RegistroInstalacion("Procedemos a Reiniciar el equipo para la preparación inicial.")
                 RunAsAdmin(RutaDescargas & "primerreinicio.bat")
                 Exit Sub
             ElseIf claveregft = DialogResult.No Then
                 MessageBox.Show("Continuamos con el resto de instalaciones.", "Operación cancelada", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "0")
-
                 RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Claves de Registro.")
-
             End If
         ElseIf claveinift = 1 OrElse claveinift = 0 Then
         End If
 
-
-
         'Mientras unidad F no valida y usuario pulse reintentar
-
         Dim QueHacerF As DialogResult
         While UnidadF() = False
             QueHacerF = MessageBox.Show("Unidad F no conectada. Habrá procesos que no se podrán completar y se omitirán.", "Advertencia Unidad F", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning)
@@ -1695,18 +1687,12 @@ Public Class InstaladorKubo
         'Comprobamos si existe ya unrar.exe
         obtenerunrar()
 
-        'Verifico si has descargado Office 2003 usando el INI. Haré lo mismo con el resto de descargas
-
         Dim NotinSiNo As Integer = Nothing
-
         Dim EjecutableAccess As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE11\MSACCESS.EXE")
-
         If EjecutableAccess = False Then
             InstalarNotinNet2003()
-
         Else
             NotinSiNo = MessageBox.Show("Posible instalación existente de NOTIN .NET (Access 2003). ¿Ejecutar instalación Office 2003?", "Instalación Office 2003", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
             If NotinSiNo = DialogResult.Yes Then
                 InstalarNotinNet2003()
             Else
@@ -1723,12 +1709,12 @@ Public Class InstaladorKubo
         Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ConfigAccess.reg", AppWinStyle.Hide, True)
         Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\VentanasSigno.reg", AppWinStyle.Hide, True)
         'Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ExclusionDefender.reg", AppWinStyle.Hide, True)
-
+        RegistroInstalacion("Importadas Claves de Registro.")
         If File.Exists(RutaDescargas & "PuestoNotinC.exe") Then
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PuestoNotinC.exe " & "C:\", AppWinStyle.NormalFocus, True)
             Shell("cmd.exe /c " & RutaDescargas & "ScanImg_Beta_FT.exe", AppWinStyle.Hide, False)
-            Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
-            Threading.Thread.Sleep(10000)
+            RegistroInstalacion("Preparado Puesto Notin en C:\")
+            Threading.Thread.Sleep(5000)
         Else
             RegistroInstalacion("ERROR: No se encontró el Paquete PuestoNotinC. Se suprimió su instalación.")
         End If
@@ -1736,15 +1722,17 @@ Public Class InstaladorKubo
         If File.Exists(RutaDescargas & "Office2003.exe") Then
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2003.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
             'Setup MST que personaliza la instalación de Office 2003
-            File.Copy(RutaDescargas & "Setup2003.mst", RutaDescargas & "Office2003\Setup2003.mst", True)
-            '  Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalFocus, False)
+            Try
+                File.Copy(RutaDescargas & "Setup2003.mst", RutaDescargas & "Office2003\Setup2003.mst", True)
+            Catch ex As Exception
+                RegistroInstalacion("ERROR Setup2003.mst: " & ex.Message)
+            End Try
 
             Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup2003.mst /qb-", AppWinStyle.Hide, True)
-            ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
-            'TODO no me instaló SP3 en Yecla. en General revisar TODO
             Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe /Q" & """", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
+            RegistroInstalacion("Instalados SP3 y Parche Access para Office 2003.")
             Threading.Thread.Sleep(10000)
         Else
             RegistroInstalacion("ERROR: No se encontró el Paquete OFFICE2003.EXE ¿Seguro que lo descargaste?")
@@ -1758,11 +1746,11 @@ Public Class InstaladorKubo
             File.WriteAllText(RutaDescargas & "Registro\msoutl.bat", msoutlxcopy & msoutlorigen & msoutldestino)
 
             RunAsAdmin(RutaDescargas & "Registro\msoutl.bat")
+            RegistroInstalacion("Copiada Referencia Outlook.")
 
         Catch ex As Exception
-            RegistroInstalacion("ERROR: " & ex.Message)
+            RegistroInstalacion("ERROR Referencia Outlook: " & ex.Message)
         End Try
-
 
         InstalarRequisitosNet2003()
     End Sub
@@ -1775,10 +1763,11 @@ Public Class InstaladorKubo
                 Shell("cmd.exe /c " & RutaDescargas & "Requisitos\KryptonSuite300.msi /passive", AppWinStyle.Hide, True)
                 Shell("cmd.exe /c " & RutaDescargas & "Requisitos\Office2003PrimaryInterop.msi /passive", AppWinStyle.Hide, True)
                 Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2005.exe /q", AppWinStyle.Hide, True)
-                Threading.Thread.Sleep(10000)
+                Threading.Thread.Sleep(15000)
                 Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2015.exe /q", AppWinStyle.Hide, True)
-                Threading.Thread.Sleep(10000)
+                Threading.Thread.Sleep(15000)
                 cIniArray.IniWrite(instaladorkuboini, "REQUISITOS", "NET", "1")
+                RegistroInstalacion("Instalados Pre-Requisitos .Net")
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1791,11 +1780,17 @@ Public Class InstaladorKubo
     Private Sub EjecutableNotinNet2003()
         If UnidadF() = True Then
             Try
-                Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
-                If ExisteNotinNet = False Then
-                    File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
-                    Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
-                End If
+                'Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
+                'If ExisteNotinNet = False Then
+                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
+                Dim pnotinnet As New ProcessStartInfo()
+                pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
+                Dim notinnet As Process = Process.Start(pnotinnet)
+                'notintaskpane.WaitForInputIdle()
+                notinnet.WaitForExit()
+                RegistroInstalacion("Ejecutado NotinNetInstaller.exe")
+                'Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
+                'End If
             Catch ex As Exception
                 RegistroInstalacion("NotinNetInstaller: " & ex.Message)
             End Try
@@ -1806,13 +1801,13 @@ Public Class InstaladorKubo
                 RegistroInstalacion("ERROR: Notin8.mde" & ex.Message)
             End Try
             Try
-                File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOT", "C:\PLANTILLAS\NORMAL.DOT", True)
+                File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
             Catch ex As Exception
-                RegistroInstalacion("ERROR: Normal.dot " & ex.Message)
+                RegistroInstalacion("ERROR: Normal.dotm " & ex.Message)
                 'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
-
         End If
+        SoftwareAncert2003()
     End Sub
 
     Private Sub SoftwareAncert2003()
@@ -1836,6 +1831,7 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub jNemo2003()
+        'TODO mas adelantes si no tienes JAVA instalado lo haré yo.
         If File.Exists(RutaDescargas & "jnemo-latest.exe") Then
             If File.Exists("c:\Program Files (x86)\jNemo\jNemo.exe") = False Then
                 Dim instalajnemo As New Process
@@ -1845,17 +1841,27 @@ Public Class InstaladorKubo
                 'MiProceso.Kill()
                 'MiProceso.Dispose()
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JNEMO", "1")
+                RegistroInstalacion("Instalando jNemo-latest. Verifica que tengas JAVA.")
             End If
             Threading.Thread.Sleep(10000)
         Else
             RegistroInstalacion("ADVERTENCIA: Se encontró el ejecutable jNemo. Se omite su instalación.")
         End If
+        ft2003()
+    End Sub
+
+    Private Sub ft2003()
+        Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
+        Threading.Thread.Sleep(10000)
+        RegistroInstalacion("Instalados Paquetes desde FT /Actualizaciones")
         AccesosDirectosEscritorio2003()
     End Sub
 
     Private Sub AccesosDirectosEscritorio2003()
+        'TODO Crear este Paquete. No existe en el FTP.
         Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos2003.exe " & Escritorio, AppWinStyle.Hide, True)
+        RegistroInstalacion("Creados Accesos Directos en el Escritorio.")
         Try
             File.Delete("C:\Users\Public\Desktop\Krypton Explorer.lnk")
         Catch ex As Exception
@@ -1863,9 +1869,12 @@ Public Class InstaladorKubo
 
         lbInstalando.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        RegistroInstalacion("=== FIN DE LA INSTALACIÓN NOTIN+WORD2003 ===")
         'btNotinKubo.ForeColor = Color.YellowGreen
-
     End Sub
+#End Region
+
+
 
     Private Sub BtConfiguraWord2016_Click(sender As Object, e As EventArgs) Handles BtConfiguraWord2016.Click
         If UnidadF() = True Then
