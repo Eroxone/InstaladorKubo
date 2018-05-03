@@ -1449,12 +1449,15 @@ Public Class InstaladorKubo
             If File.Exists("C:\Windows\SysWOW64\gpupdate.exe") Then
                 RegistroInstalacion("Aplicando Directivas usando gpupdate 64bits.")
                 Process.Start("C:\Windows\SysWOW64\gpupdate.exe", "/force /boot")
+                btDirectivas.BackColor = Color.PaleGreen
             ElseIf File.Exists("C:\Windows\System32\gpupdate.exe") Then
                 RegistroInstalacion("Aplicando Directivas usando gpupdate 32bits.")
                 Process.Start("C:\Windows\System32\gpupdate.exe", "/force /boot")
+                btDirectivas.BackColor = Color.PaleGreen
             Else
                 RegistroInstalacion("ADVERTENCIA: No pude encontrar gpupdate.exe. Fuerzo reinicio a través de shutdown.")
                 Process.Start("shutdown", "/r /f /t 0")
+                btDirectivas.BackColor = Color.PaleGreen
             End If
 
         ElseIf reiniciodirectivas = DialogResult.No Then
