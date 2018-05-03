@@ -116,6 +116,7 @@ Public Class InstaladorKubo
 #End Region
 
 #Region "Cabecera Formulario"
+    'TODO indicar RAM. CPU y si es Home ponerlo en rojo
     Private Sub SistemaOperativo()
         Dim SistemaO = (My.Computer.Info.OSFullName)
         lbSistemaO.Text = SistemaO
