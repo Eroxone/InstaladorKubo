@@ -2020,14 +2020,15 @@ Public Class InstaladorKubo
         Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         If comienzo = 1 Then
             BtCopiarhaciaF.Enabled = True
+            RegistroInstalacion("Copiar Paquetes de F habilitado tras reconectar Unidad F.")
         End If
+
         If Directory.Exists("F:\PRG.INS\NOTIN\InstaladorKubo") Then
             BtTraerdeF.Enabled = True
             BtTraerdeF.BackColor = Color.AliceBlue
+            RegistroInstalacion("Encontrada ruta en F de Paquetes. Habilitamos opción para Traer a " & RutaDescargas)
         Else
-            'lbUnidadF.Text = "DESCONECTADA"
-            'lbUnidadF.ForeColor = Color.Red
-            BtCopiarhaciaF.Enabled = False
+            '            BtCopiarhaciaF.Enabled = False
             BtTraerdeF.Enabled = False
         End If
         PbInstalaciones.Visible = False
