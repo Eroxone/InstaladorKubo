@@ -1406,12 +1406,24 @@ Public Class InstaladorKubo
         File.WriteAllText(RutaDescargas & "Directivas\sinconexion.bat", sinconexion)
         RunAsAdmin(RutaDescargas & "Directivas\sinconexion.bat")
 
-        PbInstalaciones.Step = 25
+        PbInstalaciones.Step = 15
         Threading.Thread.Sleep(2000)
         PbInstalaciones.PerformStep()
         'powershell.exe -executionpolicy unrestricted -command .\UAC.ps1
 
-        Dim directivasps1 As String = "Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\Lsa -Name LmCompatibilityLevel -Value 1" & vbCrLf & "Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\Lsa -Name LimitBlankPasswordUse -Value 1"
+        'No reiniciar automáticamente con usuarios que hayan iniciado sesión en instalaciones de actualizaciones automáticas - Habilitada
+        'HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAutoRebootWithLoggedOnUsers: 0x00000001
+        'Dim noreiniciarupdate As String = "REG add " & """" & "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAutoRebootWithLoggedOnUsers" & """" & " /V Enabled /t REG_DWORD /d 1 /f"
+
+        'File.WriteAllText(RutaDescargas & "Directivas\noreiniciarupdate.bat", sinconexion)
+        'RunAsAdmin(RutaDescargas & "Directivas\noreiniciarupdate.bat")
+
+        PbInstalaciones.Step = 10
+        Threading.Thread.Sleep(2000)
+        PbInstalaciones.PerformStep()
+
+        'Enviar LM y NTLM - Contraseñas en Blanco para Consola - No reiniciar Windows Update
+        Dim directivasps1 As String = "Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\Lsa -Name LmCompatibilityLevel -Value 1" & vbCrLf & "Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Control\Lsa -Name LimitBlankPasswordUse -Value 1" & vbCrLf & "Set-ItemProperty -Path HKLM:\Software\Policies\Microsoft\Windows\WindowsUpdate\AU -Name NoAutoRebootWithLoggedOnUsers -Value 1"
         File.WriteAllText(RutaDescargas & "Directivas\Directivas.ps1", directivasps1)
         File.WriteAllText(RutaDescargas & "Directivas\Directivasps1.bat", "@echo off" & vbCrLf & "powershell.exe -executionpolicy unrestricted -command " & RutaDescargas & "Directivas\Directivas.ps1")
         RunAsAdmin(RutaDescargas & "Directivas\Directivasps1.bat")
@@ -1428,10 +1440,10 @@ Public Class InstaladorKubo
         If reiniciodirectivas = DialogResult.Yes Then
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "1")
             RegistroInstalacion("Directivas: Se reinició el equipo para aplicar las Directivas.")
-            Dim reinicio As String = "shutdown /r /f /t 0"
-            File.WriteAllText(RutaDescargas & "reiniciodirectivas.bat", reinicio)
+            Dim gpupdatereinicio As String = "gpupdate /force /boot"
+            'File.WriteAllText(RutaDescargas & "reiniciodirectivas.bat", reinicio)
 
-            RunAsAdmin(RutaDescargas & "reiniciodirectivas.bat")
+            RunAsAdmin(gpupdatereinicio)
             Exit Sub
         ElseIf reiniciodirectivas = DialogResult.No Then
             RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Directivas.")
