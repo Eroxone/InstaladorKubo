@@ -1447,13 +1447,22 @@ Public Class InstaladorKubo
         If reiniciodirectivas = DialogResult.Yes Then
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "1")
             RegistroInstalacion("Directivas: Se reinició el equipo para aplicar las Directivas.")
-            Dim gpupdatereinicio As String = "gpupdate /force /boot"
-            'File.WriteAllText(RutaDescargas & "reiniciodirectivas.bat", reinicio)
+            If File.Exists("C:\Windows\SysWOW64\gpupdate.exe") Then
+                Dim gpupdatereinicio As String = "C:\Windows\SysWOW64\gpupdate.exe /force /boot"
+                RunAsAdmin(gpupdatereinicio)
+                RegistroInstalacion("Reiniciado equipo usando gpupdate 64bits.")
+            ElseIf File.Exists("C:\Windows\System32\gpupdate.exe") Then
+                Dim gpupdatereinicio As String = "C:\Windows\System32\gpupdate.exe /force /boot"
+                RunAsAdmin(gpupdatereinicio)
+                RegistroInstalacion("Reiniciado equipo usando gpupdate 32bits.")
+            Else
+                Dim fuerzoreinicio As String = "shutdown /r /f /t 0"
+                RunAsAdmin(fuerzoreinicio)
+                RegistroInstalacion("ADVERTENCIA: No pude encontrar gpupdate.exe. Fuerzo reinicio a través de shutdown.")
+            End If
 
-            RunAsAdmin(gpupdatereinicio)
-            Exit Sub
         ElseIf reiniciodirectivas = DialogResult.No Then
-            RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Directivas.")
+                RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Directivas.")
             btDirectivas.BackColor = Color.LightSalmon
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "1")
         End If
