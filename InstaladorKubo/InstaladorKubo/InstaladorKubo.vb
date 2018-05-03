@@ -89,7 +89,7 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub BtLimpiarPaquetes_Click(sender As Object, e As EventArgs) Handles BtLimpiarPaquetes.Click
-
+        'TODO limpiar REG - BAT y lo que pueda ser delicado.
     End Sub
 
     'Private Sub ComprobarVersion()
@@ -225,6 +225,10 @@ Public Class InstaladorKubo
     'ACCEDER A URL NOTARIADO
     Private Sub lblAncert_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblAncert.LinkClicked
         System.Diagnostics.Process.Start("http://soporte.notariado.org")
+    End Sub
+
+    Private Sub LnkRequisitos_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LnkRequisitos.LinkClicked
+        'TODO añadir funcionalidad para url requisitos: https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing
     End Sub
 
     'Boton EXAMINAR
@@ -1287,6 +1291,9 @@ Public Class InstaladorKubo
 
         TlpReconectarF.ToolTipTitle = "Reconectar Unidad F"
         TlpReconectarF.SetToolTip(BtReconectar, "Chequea la existencia Unidad F. Usa esto si la conectaste una vez arrancado el Instalador.")
+
+        TlpDirectivas.ToolTipTitle = "Directivas de Windows"
+        TlpDirectivas.SetToolTip(btDirectivas, "Aplica las Directivas de Windows. Para más información lee la hoja de Requisitos.")
     End Sub
 #End Region
 
@@ -2002,5 +2009,6 @@ Public Class InstaladorKubo
         End If
         PbInstalaciones.Visible = False
     End Sub
+
 
 End Class
