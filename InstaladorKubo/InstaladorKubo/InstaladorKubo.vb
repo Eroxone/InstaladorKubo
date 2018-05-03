@@ -1446,19 +1446,15 @@ Public Class InstaladorKubo
         reiniciodirectivas = MessageBox.Show("Para aplicar correctamente las Directivas es necesario REINICIAR el equipo. Despúes podrás continuar con las Instalaciones.", "¿Reiniciamos?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
         If reiniciodirectivas = DialogResult.Yes Then
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "1")
-            RegistroInstalacion("Directivas: Se reinició el equipo para aplicar las Directivas.")
             If File.Exists("C:\Windows\SysWOW64\gpupdate.exe") Then
-                Dim gpupdatereinicio As String = "C:\Windows\SysWOW64\gpupdate.exe /force /boot"
-                RunAsAdmin(gpupdatereinicio)
                 RegistroInstalacion("Reiniciado equipo usando gpupdate 64bits.")
+                Process.Start("C:\Windows\SysWOW64\gpupdate.exe", "/force /boot")
             ElseIf File.Exists("C:\Windows\System32\gpupdate.exe") Then
-                Dim gpupdatereinicio As String = "C:\Windows\System32\gpupdate.exe /force /boot"
-                RunAsAdmin(gpupdatereinicio)
                 RegistroInstalacion("Reiniciado equipo usando gpupdate 32bits.")
+                Process.Start("C:\Windows\System32\gpupdate.exe", "/force /boot")
             Else
-                Dim fuerzoreinicio As String = "shutdown /r /f /t 0"
-                RunAsAdmin(fuerzoreinicio)
                 RegistroInstalacion("ADVERTENCIA: No pude encontrar gpupdate.exe. Fuerzo reinicio a través de shutdown.")
+                Process.Start("shutdown", "/r /f /t 0")
             End If
 
         ElseIf reiniciodirectivas = DialogResult.No Then
