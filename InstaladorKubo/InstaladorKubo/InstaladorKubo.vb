@@ -1299,6 +1299,10 @@ Public Class InstaladorKubo
 
         TlpDirectivas.ToolTipTitle = "Directivas de Windows"
         TlpDirectivas.SetToolTip(btDirectivas, "Aplica las Directivas de Windows. Para más información lee la hoja de Requisitos.")
+
+        TlpExplorerDescargas.ToolTipTitle = "Explorar carpeta Descargas"
+        TlpExplorerDescargas.SetToolTip(lbRuta, "Muestra en el Explorador de archivos la ruta " & RutaDescargas)
+
     End Sub
 #End Region
 
@@ -2004,7 +2008,7 @@ Public Class InstaladorKubo
 
         'TOOD revisar esto que lo he hecho rapido.
         Try
-            If Directory.Exists("F:") Then
+            If UnidadF() = True Then
                 lbUnidadF.Text = "CONECTADA"
                 lbUnidadF.ForeColor = Color.Green
                 RegistroInstalacion("ÉXITO: Unidad F RECONECTADA correctamente.")
@@ -2021,13 +2025,15 @@ Public Class InstaladorKubo
             BtTraerdeF.Enabled = True
             BtTraerdeF.BackColor = Color.AliceBlue
         Else
-            lbUnidadF.Text = "DESCONECTADA"
-            lbUnidadF.ForeColor = Color.Red
+            'lbUnidadF.Text = "DESCONECTADA"
+            'lbUnidadF.ForeColor = Color.Red
             BtCopiarhaciaF.Enabled = False
             BtTraerdeF.Enabled = False
         End If
         PbInstalaciones.Visible = False
     End Sub
 
-
+    Private Sub lbRuta_Click(sender As Object, e As EventArgs) Handles lbRuta.Click
+        Process.Start("explorer.exe", RutaDescargas)
+    End Sub
 End Class
