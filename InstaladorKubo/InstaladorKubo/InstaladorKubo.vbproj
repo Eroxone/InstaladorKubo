@@ -29,10 +29,11 @@
     <SupportUrl>http://tecnicos.notin.net/detalles.asp%3fid=1573</SupportUrl>
     <ProductName>InstaladorKubo</ProductName>
     <PublisherName>JuanjoNet</PublisherName>
+    <SuiteName>InstaladorKubo</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>109</ApplicationRevision>
+    <ApplicationRevision>114</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

@@ -569,6 +569,7 @@ Public Class InstaladorKubo
             texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
             texto = texto & PuestoNotin & "setup2016.MSP" & vbCrLf
+            texto = texto & PuestoNotin & "Setup2016SinWord.MSP" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "1")
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016", "0")
         End If
@@ -1276,8 +1277,11 @@ Public Class InstaladorKubo
         tlpTerceros.SetToolTip(cbTerceros, "Adobe Reader DC, FileZilla, Google Chrome, Notepad++, etc")
         tlpTerceros.IsBalloon = True
 
-        tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones Notin y Word 2016+Kubo"
+        tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones Notin y Word 2016 + Kubo"
         tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Paquete descargado. Sialgún software se encuentra instalado preguntará si se desea realizar la reinstalación.")
+
+        TlpNotinWord2003.ToolTipTitle = "Comienza Instalación Notin y Word 2003"
+        TlpNotinWord2003.SetToolTip(BtNotinWord2003, "Instala/Configura Notin y Word 2003. Además instalará Outlook, Excel..2016 si lo descargaste previamente.")
 
         tlpAncert.ToolTipTitle = "URL Notariado"
         tlpAncert.SetToolTip(lblAncert, "Acceder a url soporte.notariado.org")
@@ -1696,11 +1700,54 @@ Public Class InstaladorKubo
             If NotinSiNo = DialogResult.Yes Then
                 InstalarNotinNet2003()
             Else
-                InstalarRequisitosNet2003()
+                Office2016sinWord()
             End If
         End If
 
     End Sub
+
+    Private Sub Office2016sinWord()
+
+        Dim EjecutableWord As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE")
+
+        If File.Exists(RutaDescargas & "Office2016.exe") Then
+            If EjecutableWord = False Then
+                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                RegistroInstalacion("No se encuentra instalación previa de Office 2016. Procedemos a realizarla.")
+                'Que office instalamos??
+                Dim Office2016odt = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "2")
+                Dim office2016per = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "OFFICE2016", "2")
+                If Office2016odt = 1 Then
+                    Try
+                        'My.Computer.Network.DownloadFile(PuestoNotin & "setup2016.MSP", RutaDescargas & "Office2016\setup2016.MSP", "juanjo", "Palomeras24", False, 60000, True)
+                        File.Copy(RutaDescargas & "Setup2016SinWord.MSP", RutaDescargas & "Office2016\Setup2016SinWord.MSP", True)
+                    Catch ex As Exception
+                        MessageBox.Show("Error al copiar fichero MSP. Revisa que el fichero exista en " & RutaDescargas & "Office2016", "Error Setup MSP", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        RegistroInstalacion("Setup2016SinWord.MSP: " & ex.Message)
+                    End Try
+                    Threading.Thread.Sleep(3000)
+                    Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE /adminfile Setup2016SinWord.MSP", AppWinStyle.Hide, True)
+                    RegistroInstalacion("Se procedió a realizar la instalación Desatendida de Office 2016 sin WORD.")
+
+                ElseIf office2016per = 1 Then
+                    Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
+                    RegistroInstalacion("Se procedió a realizar la instalación Personalizada de Office 2016.")
+                End If
+            Else
+                Dim WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016 Personalizable?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If WordSiNo = 6 Then
+                    Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                    Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
+                    RegistroInstalacion("Se detectó una instalación previa de Office2016. Se ofrece la instalación Personalizada.")
+                End If
+            End If
+        Else
+            RegistroInstalacion("ERROR: No se encontró el Paquete OFFICE2016.EXE. Esto es un problema para realizar su instalación.")
+        End If
+
+        InstalarNotinNet2003()
+    End Sub
+
 
     Private Sub InstalarNotinNet2003()
 
@@ -1730,8 +1777,8 @@ Public Class InstaladorKubo
 
             Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup2003.mst /qb-", AppWinStyle.Hide, True)
 
-            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe /Q" & """", AppWinStyle.Hide, True)
-            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """" & " /q", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp" & """" & " /passive", AppWinStyle.Hide, True)
             RegistroInstalacion("Instalados SP3 y Parche Access para Office 2003.")
             Threading.Thread.Sleep(10000)
         Else
@@ -1858,10 +1905,11 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub AccesosDirectosEscritorio2003()
+        'TODO añadir accesos directos de Outlook 2016
         'TODO Crear este Paquete. No existe en el FTP.
         Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos2003.exe " & Escritorio, AppWinStyle.Hide, True)
-        RegistroInstalacion("Creados Accesos Directos en el Escritorio.")
+        RegistroInstalacion("Creados Accesos Directos en el Escritorio para Notin Net y Word 2003.")
         Try
             File.Delete("C:\Users\Public\Desktop\Krypton Explorer.lnk")
         Catch ex As Exception
@@ -1869,7 +1917,7 @@ Public Class InstaladorKubo
 
         lbInstalando.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        RegistroInstalacion("=== FIN DE LA INSTALACIÓN NOTIN+WORD2003 ===")
+        RegistroInstalacion("=== FIN DE LA INSTALACIÓN NOTIN + WORD 2003 ===")
         'btNotinKubo.ForeColor = Color.YellowGreen
     End Sub
 #End Region
@@ -2038,7 +2086,6 @@ Public Class InstaladorKubo
             PbInstalaciones.PerformStep()
         End While
 
-        'TOOD revisar esto que lo he hecho rapido.
         Try
             If UnidadF() = True Then
                 lbUnidadF.Text = "CONECTADA"
