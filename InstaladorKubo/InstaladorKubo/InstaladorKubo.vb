@@ -943,8 +943,8 @@ Public Class InstaladorKubo
             RegistroInstalacion("Realizada instalación desatendida de Office 2003.")
             ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
 
-            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe /Q" & """", AppWinStyle.Hide, True)
-            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp /passive" & """", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """" & " /q", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp" & """" & " /passive", AppWinStyle.Hide, True)
             RegistroInstalacion("Instalados SP3 y Parche Access para Office 2003.")
             Threading.Thread.Sleep(10000)
         Else
