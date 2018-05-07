@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Text
 Imports InstaladorKubo.LeerFicherosINI
+Imports System.Threading
 
 
 'WEB DE INSTALACIÓN
@@ -138,7 +139,7 @@ Public Class InstaladorKubo
         Dim memoriaram = My.Computer.Info.TotalPhysicalMemory
         Dim memoriarammb As Integer = memoriaram / 1024 / 1024
         LBmemoriaram.Text = "Memoria RAM " & memoriarammb & "MB"
-        If memoriarammb < 2048 Then
+        If memoriarammb < 3096 Then
             LBmemoriaram.ForeColor = Color.Red
         End If
 
@@ -1041,13 +1042,18 @@ Public Class InstaladorKubo
             Try
                 'Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
                 'If ExisteNotinNet = False Then
-                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
+                Try
+                    File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
+                Catch ex As Exception
+                    RegistroInstalacion("NotinNetInstaller no encontrado en la Unidad F. No ejecutamos esta función.")
+                End Try
+
                 Dim pnotinnet As New ProcessStartInfo()
                 pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
                 Dim notinnet As Process = Process.Start(pnotinnet)
                 'notintaskpane.WaitForInputIdle()
                 notinnet.WaitForExit()
-                RegistroInstalacion("Ejecutado NotinNetInstaller.exe")
+                RegistroInstalacion("Ejecutado instalador NotinNetInstaller.exe")
                 'Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
                 'End If
             Catch ex As Exception
@@ -1057,7 +1063,7 @@ Public Class InstaladorKubo
             Try
                 File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
             Catch ex As Exception
-                RegistroInstalacion("ERROR: Notin8.mde" & ex.Message)
+                RegistroInstalacion("ERROR: Notin8.mde " & ex.Message)
             End Try
             Try
                 File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
@@ -1086,7 +1092,7 @@ Public Class InstaladorKubo
                     Catch ex As Exception
                         MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Continuamos.", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
-                        RegistroInstalacion(ex.Message)
+                        RegistroInstalacion("ReferNet: " & ex.Message)
                     End Try
 
                     'Instalacion de los Addins. Hay que forzarlo.
@@ -1152,25 +1158,6 @@ Public Class InstaladorKubo
     End Sub
 
 
-    'Private Sub KMSPico()
-    '    'TODO Crear clave Registro para Excluir rutas de descarga e instalacion
-    '    If File.Exists(RutaDescargas & "KMSpico10.exe") Then
-    '        Dim KMSPicoSInO As Integer = Nothing
-    '        KMSPicoSInO = MessageBox.Show("¿Descomprimir Activador Office 2016?", "KMSPico 10.2.0", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-    '        If KMSPicoSInO = 6 Then
-    '            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "KMSpico10.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-    '            'Shell("cmd.exe /C " & RutaDescargas & "KMSpico10\" & "KMSpico_setup.exe", AppWinStyle.Hide, True)
-    '            MessageBox.Show("Añade Exclusión de AntiVirus hacia KMSPico antes de instalarlo. Lo encontrarás en " & RutaDescargas & "KMSpico10", "Activador KMSPico", MessageBoxButtons.OK)
-    '        End If
-    '    Else
-    '        RegistroInstalacion("ERROR: No se pudo instalar KMSPico. Paquete ausente.")
-    '    End If
-
-
-    'SoftwareAncert()
-    'End Sub
-
-
     Private Sub SoftwareAncert()
         Dim Ancert As Integer = Nothing
         Ancert = MessageBox.Show("¿Instalar Software Ancert?", "Sferen y Pasarela", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -1192,6 +1179,28 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub jNemo()
+        'TODO añadir comprobación 32bits aqui y en Office 2003
+        If Directory.Exists("c:\Program Files (x86)\Java") = False Then
+            'Descarga de JAVA 1.8.171
+            Directory.CreateDirectory(RutaDescargas & "Software")
+            Dim urljava As String = "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=233170_512cd62ec5174c3487ac17c61aaa89e8"
+            Dim wgetjava As String = "wget.exe -q --show-progress -t 5 -c "
+            Shell("cmd.exe /c " & RutaDescargas & wgetjava & urljava & " -O " & RutaDescargas & "Software\java8.exe", AppWinStyle.Hide, True)
+            Try
+                Dim pinstalajava As New ProcessStartInfo()
+                pinstalajava.FileName = RutaDescargas & "Software/java8.exe"
+                pinstalajava.Arguments = "/s WEB_JAVA_SECURITY_LEVEL=M"
+                Dim instalajava As Process = Process.Start(pinstalajava)
+                instalajava.WaitForExit()
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
+                btJava.BackColor = Color.PaleGreen
+                RegistroInstalacion("Instalada última versión de JAVA para jNemo.")
+            Catch ex As Exception
+                MessageBox.Show("No se pudo instalar JAVA. Instálalo manualmente al terminar. Puedes usar este mismo Instalador.", "Error Java", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("ERROR Java jNemo: " & ex.Message)
+            End Try
+        End If
+
         If File.Exists(RutaDescargas & "jnemo-latest.exe") Then
             If File.Exists("c:\Program Files (x86)\jNemo\jNemo.exe") = False Then
                 Dim instalajnemo As New Process
@@ -1223,30 +1232,30 @@ Public Class InstaladorKubo
     Private Sub AccesosDirectosEscritorio()
         Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos.exe " & Escritorio, AppWinStyle.Hide, True)
-        RegistroInstalacion("Creados Accesos Directos en el Escritorio.")
+        RegistroInstalacion("Creados Accesos Directos en el Escritorio. Ruta Escritorio: " & Escritorio)
         Try
             File.Delete("C:\Users\Public\Desktop\Krypton Explorer.lnk")
         Catch ex As Exception
         End Try
-        AbreExcel()
-    End Sub
-
-
-    Private Sub AbreExcel()
-        'TODO establecer asociacion de archivos.
-        Try
-            My.Computer.Network.DownloadFile(PuestoNotin & "AbreExcel.exe", RutaDescargas & "AbreExcel.exe", "juanjo", "Palomeras24", False, 20000, False)
-            File.Copy(RutaDescargas & "AbreExcel.exe", "C:\Notawin.Net\AbreExcel.exe", True)
-        Catch ex As Exception
-
-        End Try
-
+        'AbreExcel()
 
         lbInstalando.Visible = False
-        MessageBox.Show("INSTALACIONES TERMINADAS. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("INSTALACIONES TERMINADAS. Se recomienda REINICIAR el equipo. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         RegistroInstalacion("=== FINALIZADAS INSTALACIONES NOTIN+KUBO ===")
-        'btNotinKubo.ForeColor = Color.YellowGreen
+
     End Sub
+
+
+    'Private Sub AbreExcel()
+    '    'TODO establecer asociacion de archivos.
+    '    Try
+    '        My.Computer.Network.DownloadFile(PuestoNotin & "AbreExcel.exe", RutaDescargas & "AbreExcel.exe", "juanjo", "Palomeras24", False, 20000, False)
+    '        File.Copy(RutaDescargas & "AbreExcel.exe", "C:\Notawin.Net\AbreExcel.exe", True)
+    '    Catch ex As Exception
+
+    '    End Try
+    'btNotinKubo.ForeColor = Color.YellowGreen
+    'End Sub
 #End Region
 
 
@@ -1323,6 +1332,9 @@ Public Class InstaladorKubo
 
         TlpSistema.ToolTipTitle = "Información Sistema Operativo"
         TlpSistema.SetToolTip(GroupBox3, "Si alguna característica puede no cumplir los Requisitos se mostrará de color rojo.")
+
+        TlpFramework.ToolTipTitle = "Instalación Framework 3.5"
+        TlpFramework.SetToolTip(btFramework, "Se procederá a la instalación del Paquete Framework 3.5 necesario para .Net. Se recomienda Reinciar tras su instalación.")
 
     End Sub
 #End Region
@@ -1489,7 +1501,7 @@ Public Class InstaladorKubo
             End If
 
         ElseIf reiniciodirectivas = DialogResult.No Then
-                RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Directivas.")
+            RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Directivas.")
             btDirectivas.BackColor = Color.LightSalmon
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "1")
         End If
@@ -1878,7 +1890,29 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub jNemo2003()
-        'TODO mas adelantes si no tienes JAVA instalado lo haré yo.
+        'TODO añadir comprobación 32bits
+        If Directory.Exists("c:\Program Files (x86)\Java") = False Then
+            'Descarga de JAVA 1.8.171
+            Directory.CreateDirectory(RutaDescargas & "Software")
+            Dim urljava As String = "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=233170_512cd62ec5174c3487ac17c61aaa89e8"
+            Dim wgetjava As String = "wget.exe -q --show-progress -t 5 -c "
+            Shell("cmd.exe /c " & RutaDescargas & wgetjava & urljava & " -O " & RutaDescargas & "Software\java8.exe", AppWinStyle.Hide, True)
+            Try
+                Dim pinstalajava As New ProcessStartInfo()
+                pinstalajava.FileName = RutaDescargas & "Software/java8.exe"
+                pinstalajava.Arguments = "/s WEB_JAVA_SECURITY_LEVEL=M"
+                Dim instalajava As Process = Process.Start(pinstalajava)
+                instalajava.WaitForExit()
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
+                btJava.BackColor = Color.PaleGreen
+                RegistroInstalacion("Instalada última versión de JAVA para jNemo.")
+            Catch ex As Exception
+                MessageBox.Show("No se pudo instalar JAVA. Instálalo manualmente al terminar. Puedes usar este mismo Instalador.", "Error Java", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("ERROR Java jNemo: " & ex.Message)
+            End Try
+        End If
+
+
         If File.Exists(RutaDescargas & "jnemo-latest.exe") Then
             If File.Exists("c:\Program Files (x86)\jNemo\jNemo.exe") = False Then
                 Dim instalajnemo As New Process
@@ -1905,8 +1939,6 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub AccesosDirectosEscritorio2003()
-        'TODO añadir accesos directos de Outlook 2016
-        'TODO Crear este Paquete. No existe en el FTP.
         Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectos2003.exe " & Escritorio, AppWinStyle.Hide, True)
         RegistroInstalacion("Creados Accesos Directos en el Escritorio para Notin Net y Word 2003.")
@@ -1916,7 +1948,7 @@ Public Class InstaladorKubo
         End Try
 
         lbInstalando.Visible = False
-        MessageBox.Show("INSTALACIONES TERMINADAS. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("INSTALACIONES TERMINADAS. Se recomienda REINICIAR el equipo. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         RegistroInstalacion("=== FIN DE LA INSTALACIÓN NOTIN + WORD 2003 ===")
         'btNotinKubo.ForeColor = Color.YellowGreen
     End Sub
@@ -2116,4 +2148,8 @@ Public Class InstaladorKubo
     Private Sub lbRuta_Click(sender As Object, e As EventArgs) Handles lbRuta.Click
         Process.Start("explorer.exe", RutaDescargas)
     End Sub
+
+
+    'TODO procedimiento para calcular tamaño descarga
+
 End Class
