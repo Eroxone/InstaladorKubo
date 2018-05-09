@@ -2237,7 +2237,7 @@ Public Class InstaladorKubo
             correo.To.Add(Destinatario)
             correo.SubjectEncoding = System.Text.Encoding.UTF8
             correo.Subject = "Descargas InstaladorKubo Finalizadas"
-            correo.Body = "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos."
+            correo.Body = "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos." & vbCrLf & "Puedes proceder a realizar las instalaciones cuando quieras. Cualquier duda tienes disponible el Comunicado 1573: http://tecnicos.notin.net/detalles.asp?id=1573 o a mi incluso en vacaciones. Muchas gracias"
             correo.BodyEncoding = System.Text.Encoding.UTF8
             'correo.IsBodyHtml = False(formato tipo web o normal:  true = web)
             correo.IsBodyHtml = False
