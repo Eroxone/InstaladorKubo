@@ -430,6 +430,7 @@ Public Class InstaladorKubo
         'SOFTWARE TERCEROS
         If System.IO.Directory.Exists(RutaDescargas & "\Software") Then
             cbTerceros.ForeColor = Color.DarkGreen
+            BtExplorarterceros.Enabled = True
         Else
             cbTerceros.ForeColor = SystemColors.ControlText
         End If
@@ -1347,6 +1348,9 @@ Public Class InstaladorKubo
         TlpTuemail.ToolTipTitle = "Indica tu email para recibir un aviso"
         TlpTuemail.SetToolTip(Tbtucorreo, "Se te remitirá un email de confirmación cuando finalicen las descargas seleccionadas.")
 
+        tlpTerceros.ToolTipTitle = "Explorar Carpeta Software"
+        tlpTerceros.SetToolTip(BtExplorarterceros, "Muestra en el explorador la ruta donde se encuentra el Software de terceros descargado.")
+
     End Sub
 #End Region
 
@@ -2208,10 +2212,9 @@ Public Class InstaladorKubo
         CalcularTamanoDescarga(94.9, cbTerceros.Checked)
     End Sub
 
-    'TODO enviar email al completar descargas
 
 
-
+#Region "ENVIO EMAIL"
     Private Function validaremail()
         If Tbtucorreo.Text = "tuemail@notin.net" Then
             Return False
@@ -2264,4 +2267,13 @@ Public Class InstaladorKubo
     Private Sub Tbtucorreo_MouseClick(sender As Object, e As MouseEventArgs) Handles Tbtucorreo.MouseClick
         Tbtucorreo.Text = ""
     End Sub
+
+    Private Sub BtExplorarterceros_Click(sender As Object, e As EventArgs) Handles BtExplorarterceros.Click
+        Process.Start("explorer.exe", RutaDescargas & "Software")
+    End Sub
+
+#End Region
+
+
+
 End Class

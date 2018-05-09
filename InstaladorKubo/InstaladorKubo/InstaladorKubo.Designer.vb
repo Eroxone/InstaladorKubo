@@ -111,6 +111,9 @@ Partial Class InstaladorKubo
         Me.TlpFramework = New System.Windows.Forms.ToolTip(Me.components)
         Me.Tbtucorreo = New System.Windows.Forms.TextBox()
         Me.TlpTuemail = New System.Windows.Forms.ToolTip(Me.components)
+        Me.LbNotificacionemail = New System.Windows.Forms.Label()
+        Me.BtExplorarterceros = New System.Windows.Forms.Button()
+        Me.TlpExplorarTerceros = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -138,7 +141,7 @@ Partial Class InstaladorKubo
         Me.GroupBox4.BackColor = System.Drawing.Color.WhiteSmoke
         Me.GroupBox4.Controls.Add(Me.lbUnidadF)
         Me.GroupBox4.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox4.Location = New System.Drawing.Point(348, 18)
+        Me.GroupBox4.Location = New System.Drawing.Point(371, 18)
         Me.GroupBox4.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Padding = New System.Windows.Forms.Padding(2)
@@ -212,7 +215,7 @@ Partial Class InstaladorKubo
         '
         Me.btSalir.BackColor = System.Drawing.SystemColors.Control
         Me.btSalir.Font = New System.Drawing.Font("Lucida Bright", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.btSalir.Location = New System.Drawing.Point(765, 533)
+        Me.btSalir.Location = New System.Drawing.Point(765, 529)
         Me.btSalir.Margin = New System.Windows.Forms.Padding(2)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(72, 33)
@@ -224,7 +227,7 @@ Partial Class InstaladorKubo
         '
         Me.btTodo.BackColor = System.Drawing.SystemColors.Control
         Me.btTodo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btTodo.Font = New System.Drawing.Font("Lucida Bright", 7.0!)
+        Me.btTodo.Font = New System.Drawing.Font("Lucida Bright", 7.25!, System.Drawing.FontStyle.Italic)
         Me.btTodo.Location = New System.Drawing.Point(224, 337)
         Me.btTodo.Margin = New System.Windows.Forms.Padding(2)
         Me.btTodo.Name = "btTodo"
@@ -236,6 +239,7 @@ Partial Class InstaladorKubo
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.Control
+        Me.GroupBox1.Controls.Add(Me.BtExplorarterceros)
         Me.GroupBox1.Controls.Add(Me.LbMBDescargas)
         Me.GroupBox1.Controls.Add(Me.BtLimpiarPaquetes)
         Me.GroupBox1.Controls.Add(Me.cbOffice2016odt)
@@ -271,7 +275,7 @@ Partial Class InstaladorKubo
         Me.LbMBDescargas.BackColor = System.Drawing.SystemColors.Control
         Me.LbMBDescargas.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbMBDescargas.ForeColor = System.Drawing.Color.DimGray
-        Me.LbMBDescargas.Location = New System.Drawing.Point(11, 345)
+        Me.LbMBDescargas.Location = New System.Drawing.Point(118, 346)
         Me.LbMBDescargas.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LbMBDescargas.Name = "LbMBDescargas"
         Me.LbMBDescargas.Size = New System.Drawing.Size(87, 15)
@@ -283,7 +287,7 @@ Partial Class InstaladorKubo
         Me.BtLimpiarPaquetes.BackColor = System.Drawing.Color.Gold
         Me.BtLimpiarPaquetes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtLimpiarPaquetes.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtLimpiarPaquetes.Location = New System.Drawing.Point(233, 270)
+        Me.BtLimpiarPaquetes.Location = New System.Drawing.Point(237, 204)
         Me.BtLimpiarPaquetes.Margin = New System.Windows.Forms.Padding(2)
         Me.BtLimpiarPaquetes.Name = "BtLimpiarPaquetes"
         Me.BtLimpiarPaquetes.Size = New System.Drawing.Size(76, 39)
@@ -318,7 +322,7 @@ Partial Class InstaladorKubo
         '
         Me.cbTerceros.AutoSize = True
         Me.cbTerceros.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
-        Me.cbTerceros.Location = New System.Drawing.Point(14, 311)
+        Me.cbTerceros.Location = New System.Drawing.Point(14, 301)
         Me.cbTerceros.Margin = New System.Windows.Forms.Padding(2)
         Me.cbTerceros.Name = "cbTerceros"
         Me.cbTerceros.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -606,7 +610,7 @@ Partial Class InstaladorKubo
         Me.lbRuta.BackColor = System.Drawing.SystemColors.Control
         Me.lbRuta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lbRuta.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRuta.Location = New System.Drawing.Point(17, 516)
+        Me.lbRuta.Location = New System.Drawing.Point(16, 510)
         Me.lbRuta.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbRuta.Name = "lbRuta"
         Me.lbRuta.Size = New System.Drawing.Size(70, 17)
@@ -660,7 +664,7 @@ Partial Class InstaladorKubo
         Me.lbProcesandoDescargas.AutoSize = True
         Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.Green
-        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(367, 483)
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(366, 499)
         Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
         Me.lbProcesandoDescargas.Size = New System.Drawing.Size(283, 25)
         Me.lbProcesandoDescargas.TabIndex = 36
@@ -679,7 +683,7 @@ Partial Class InstaladorKubo
         Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
         Me.lbInstalando.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold)
         Me.lbInstalando.ForeColor = System.Drawing.Color.Green
-        Me.lbInstalando.Location = New System.Drawing.Point(367, 484)
+        Me.lbInstalando.Location = New System.Drawing.Point(366, 502)
         Me.lbInstalando.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbInstalando.Name = "lbInstalando"
         Me.lbInstalando.Size = New System.Drawing.Size(309, 25)
@@ -917,7 +921,7 @@ Partial Class InstaladorKubo
         '
         'PbInstalaciones
         '
-        Me.PbInstalaciones.Location = New System.Drawing.Point(371, 516)
+        Me.PbInstalaciones.Location = New System.Drawing.Point(371, 537)
         Me.PbInstalaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.PbInstalaciones.MarqueeAnimationSpeed = 50
         Me.PbInstalaciones.Maximum = 50
@@ -955,7 +959,7 @@ Partial Class InstaladorKubo
         Me.BtReconectar.Enabled = False
         Me.BtReconectar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtReconectar.Image = CType(resources.GetObject("BtReconectar.Image"), System.Drawing.Image)
-        Me.BtReconectar.Location = New System.Drawing.Point(566, 24)
+        Me.BtReconectar.Location = New System.Drawing.Point(608, 25)
         Me.BtReconectar.Name = "BtReconectar"
         Me.BtReconectar.Size = New System.Drawing.Size(57, 50)
         Me.BtReconectar.TabIndex = 45
@@ -1007,9 +1011,9 @@ Partial Class InstaladorKubo
         '
         Me.Tbtucorreo.BackColor = System.Drawing.SystemColors.Control
         Me.Tbtucorreo.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Tbtucorreo.Location = New System.Drawing.Point(208, 546)
+        Me.Tbtucorreo.Location = New System.Drawing.Point(208, 542)
         Me.Tbtucorreo.Name = "Tbtucorreo"
-        Me.Tbtucorreo.Size = New System.Drawing.Size(121, 20)
+        Me.Tbtucorreo.Size = New System.Drawing.Size(120, 20)
         Me.Tbtucorreo.TabIndex = 47
         Me.Tbtucorreo.Text = "tuemail@notin.net"
         '
@@ -1018,12 +1022,40 @@ Partial Class InstaladorKubo
         Me.TlpTuemail.IsBalloon = True
         Me.TlpTuemail.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'LbNotificacionemail
+        '
+        Me.LbNotificacionemail.AutoSize = True
+        Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbNotificacionemail.Location = New System.Drawing.Point(65, 544)
+        Me.LbNotificacionemail.Name = "LbNotificacionemail"
+        Me.LbNotificacionemail.Size = New System.Drawing.Size(137, 15)
+        Me.LbNotificacionemail.TabIndex = 48
+        Me.LbNotificacionemail.Text = "Recibir notificación:"
+        '
+        'BtExplorarterceros
+        '
+        Me.BtExplorarterceros.Enabled = False
+        Me.BtExplorarterceros.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtExplorarterceros.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtExplorarterceros.Location = New System.Drawing.Point(14, 327)
+        Me.BtExplorarterceros.Name = "BtExplorarterceros"
+        Me.BtExplorarterceros.Size = New System.Drawing.Size(71, 27)
+        Me.BtExplorarterceros.TabIndex = 23
+        Me.BtExplorarterceros.Text = "Explorar"
+        Me.BtExplorarterceros.UseVisualStyleBackColor = True
+        '
+        'TlpExplorarTerceros
+        '
+        Me.TlpExplorarTerceros.IsBalloon = True
+        Me.TlpExplorarTerceros.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(857, 583)
+        Me.ClientSize = New System.Drawing.Size(857, 577)
+        Me.Controls.Add(Me.LbNotificacionemail)
         Me.Controls.Add(Me.Tbtucorreo)
         Me.Controls.Add(Me.LnkRequisitos)
         Me.Controls.Add(Me.BtReconectar)
@@ -1154,4 +1186,7 @@ Partial Class InstaladorKubo
     Friend WithEvents LbMBDescargas As Label
     Friend WithEvents Tbtucorreo As TextBox
     Friend WithEvents TlpTuemail As ToolTip
+    Friend WithEvents LbNotificacionemail As Label
+    Friend WithEvents BtExplorarterceros As Button
+    Friend WithEvents TlpExplorarTerceros As ToolTip
 End Class
