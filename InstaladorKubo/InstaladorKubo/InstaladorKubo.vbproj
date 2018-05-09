@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>121</ApplicationRevision>
+    <ApplicationRevision>125</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -75,7 +75,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Cartmanmago.ico</ApplicationIcon>
+    <ApplicationIcon>instaladorsoftware.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -189,7 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Cartmanmago.ico" />
-    <Content Include="EricCartman.ico" />
+    <Content Include="instaladorsoftware.ico" />
     <None Include="versioninternet.ini" />
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 Imports System.Text
 Imports InstaladorKubo.LeerFicherosINI
 Imports System.Threading
-
+Imports System.Net.Mail
 
 'WEB DE INSTALACIÓN
 'http://instalador.notin.net
@@ -681,6 +681,8 @@ Public Class InstaladorKubo
             ' YaDescargados()
         End If
         YaDescargados()
+        'TODO Activar esto cuando de la funcionalidad.
+        '    EnvioMail()
 #End Region
 
         'Borrar ficheros txt escritos
@@ -702,6 +704,9 @@ Public Class InstaladorKubo
         cbConfiguraWord2016.Checked = False
 
         lbProcesandoDescargas.Visible = False
+
+        EnvioMail()
+
         MessageBox.Show("DESCARGAS FINALIZADAS. Puedes encontrar los Paquetes en " & RutaDescargas, "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         BtCopiarhaciaF.Enabled = True
@@ -754,14 +759,17 @@ Public Class InstaladorKubo
     'Autochequear Configuradores Notin y Word 2016 <> Office 2016odt
     Private Sub cbOffice2003_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2003.CheckedChanged
         cbConfiguraNotin.CheckState = cbOffice2003.CheckState
+        CalcularTamanoDescarga(493, cbOffice2003.Checked)
     End Sub
 
     Private Sub cbOffice2016_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2016.CheckedChanged
+        CalcularTamanoDescarga(705, cbOffice2016.Checked)
         cbConfiguraWord2016.CheckState = cbOffice2016.CheckState
         cbOffice2016odt.Checked = False
     End Sub
 
     Private Sub cbOffice2016odt_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2016odt.CheckedChanged
+        CalcularTamanoDescarga(705, cbOffice2016odt.Checked)
         cbConfiguraWord2016.CheckState = cbOffice2016odt.CheckState
         cbOffice2016.Checked = False
     End Sub
@@ -1335,6 +1343,9 @@ Public Class InstaladorKubo
 
         TlpFramework.ToolTipTitle = "Instalación Framework 3.5"
         TlpFramework.SetToolTip(btFramework, "Se procederá a la instalación del Paquete Framework 3.5 necesario para .Net. Se recomienda Reinciar tras su instalación.")
+
+        TlpTuemail.ToolTipTitle = "Indica tu email para recibir un aviso"
+        TlpTuemail.SetToolTip(Tbtucorreo, "Se te remitirá un email de confirmación cuando finalicen las descargas seleccionadas.")
 
     End Sub
 #End Region
@@ -2152,4 +2163,106 @@ Public Class InstaladorKubo
 
     'TODO procedimiento para calcular tamaño descarga
 
+    Private TamanoTotal As Integer = 0
+    Private Sub CalcularTamanoDescarga(ByVal size As Integer, ByVal is_checked As Boolean)
+        If is_checked = True Then
+            TamanoTotal = TamanoTotal + size
+        Else
+            TamanoTotal = TamanoTotal - size
+        End If
+        LbMBDescargas.Text = TamanoTotal.ToString() & " MB"
+        If TamanoTotal > 1024 Then
+        End If
+    End Sub
+
+    'Los checkbox de Office2003/16 están arriba ya que los usé para asociarlos a su configuración
+    Private Sub cbConfiguraNotin_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraNotin.CheckedChanged
+        CalcularTamanoDescarga(1, cbConfiguraNotin.Checked)
+    End Sub
+
+    Private Sub cbConfiguraWord2016_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraWord2016.CheckedChanged
+        CalcularTamanoDescarga(1, cbConfiguraWord2016.Checked)
+    End Sub
+
+    Private Sub cbNemo_CheckedChanged(sender As Object, e As EventArgs) Handles cbNemo.CheckedChanged
+        CalcularTamanoDescarga(12, cbNemo.Checked)
+    End Sub
+
+    Private Sub cbRequisitos_CheckedChanged(sender As Object, e As EventArgs) Handles cbRequisitos.CheckedChanged
+        CalcularTamanoDescarga(45.5, cbRequisitos.Checked)
+    End Sub
+
+    Private Sub cbPuestoNotin_CheckedChanged(sender As Object, e As EventArgs) Handles cbPuestoNotin.CheckedChanged
+        CalcularTamanoDescarga(16.2, cbPuestoNotin.Checked)
+    End Sub
+
+    Private Sub cbSferen_CheckedChanged(sender As Object, e As EventArgs) Handles cbSferen.CheckedChanged
+        CalcularTamanoDescarga(80.1, cbSferen.Checked)
+    End Sub
+
+    Private Sub cbPasarelaSigno_CheckedChanged(sender As Object, e As EventArgs) Handles cbPasarelaSigno.CheckedChanged
+        CalcularTamanoDescarga(1, cbPasarelaSigno.Checked)
+    End Sub
+
+    Private Sub cbTerceros_CheckedChanged(sender As Object, e As EventArgs) Handles cbTerceros.CheckedChanged
+        CalcularTamanoDescarga(94.9, cbTerceros.Checked)
+    End Sub
+
+    'TODO enviar email al completar descargas
+
+
+
+    Private Function validaremail()
+        If Tbtucorreo.Text = "tuemail@notin.net" Then
+            Return False
+        ElseIf System.Text.RegularExpressions.Regex.IsMatch(Tbtucorreo.Text, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$") Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+
+    Public Sub EnvioMail()
+
+        If validaremail() = True Then
+
+            Dim A As String = Tbtucorreo.Text
+            Dim Destinatario As MailAddress = New MailAddress(A)
+
+            Dim correo As New MailMessage
+            Dim smtp As New SmtpClient()
+
+            correo.From = New MailAddress("juanjo@notin.net", "Instalador Kubo", System.Text.Encoding.UTF8)
+            correo.To.Add(Destinatario)
+            correo.SubjectEncoding = System.Text.Encoding.UTF8
+            correo.Subject = "Descargas InstaladorKubo Finalizadas"
+            correo.Body = "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos."
+            correo.BodyEncoding = System.Text.Encoding.UTF8
+            'correo.IsBodyHtml = False(formato tipo web o normal:  true = web)
+            correo.IsBodyHtml = False
+            correo.Priority = MailPriority.High
+
+            smtp.Credentials = New System.Net.NetworkCredential("juanjo@notin.net", "juanJo24")
+            smtp.Port = 25
+            smtp.Host = "smtp.notin.net"
+            smtp.EnableSsl = False
+            Try
+                smtp.Send(correo)
+                Tbtucorreo.BackColor = Color.Honeydew
+                RegistroInstalacion("Correo de notificación enviado a " & Tbtucorreo.Text)
+            Catch ex As Exception
+                RegistroInstalacion("ERROR Email: " & ex.Message)
+
+            End Try
+        Else
+            Tbtucorreo.BackColor = Color.MistyRose
+            RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & Tbtucorreo.Text & " no se consideró válida o no se indicó ningunta dirección.")
+        End If
+
+    End Sub
+
+    Private Sub Tbtucorreo_MouseClick(sender As Object, e As MouseEventArgs) Handles Tbtucorreo.MouseClick
+        Tbtucorreo.Text = ""
+    End Sub
 End Class
