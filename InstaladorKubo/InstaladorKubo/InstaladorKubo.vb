@@ -2256,7 +2256,6 @@ Public Class InstaladorKubo
 
             End Try
         Else
-            Tbtucorreo.BackColor = Color.MistyRose
             RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & Tbtucorreo.Text & " no se consideró válida o no se indicó ningunta dirección.")
         End If
 
