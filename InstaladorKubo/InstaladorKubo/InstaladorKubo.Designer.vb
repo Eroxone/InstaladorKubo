@@ -35,6 +35,7 @@ Partial Class InstaladorKubo
         Me.btSalir = New System.Windows.Forms.Button()
         Me.btTodo = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.BtExplorarterceros = New System.Windows.Forms.Button()
         Me.LbMBDescargas = New System.Windows.Forms.Label()
         Me.BtLimpiarPaquetes = New System.Windows.Forms.Button()
         Me.cbOffice2016odt = New System.Windows.Forms.CheckBox()
@@ -112,7 +113,6 @@ Partial Class InstaladorKubo
         Me.Tbtucorreo = New System.Windows.Forms.TextBox()
         Me.TlpTuemail = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbNotificacionemail = New System.Windows.Forms.Label()
-        Me.BtExplorarterceros = New System.Windows.Forms.Button()
         Me.TlpExplorarTerceros = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -268,6 +268,18 @@ Partial Class InstaladorKubo
         Me.GroupBox1.TabIndex = 29
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Descargas"
+        '
+        'BtExplorarterceros
+        '
+        Me.BtExplorarterceros.Enabled = False
+        Me.BtExplorarterceros.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtExplorarterceros.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtExplorarterceros.Location = New System.Drawing.Point(14, 327)
+        Me.BtExplorarterceros.Name = "BtExplorarterceros"
+        Me.BtExplorarterceros.Size = New System.Drawing.Size(71, 27)
+        Me.BtExplorarterceros.TabIndex = 23
+        Me.BtExplorarterceros.Text = "Explorar"
+        Me.BtExplorarterceros.UseVisualStyleBackColor = True
         '
         'LbMBDescargas
         '
@@ -1031,18 +1043,6 @@ Partial Class InstaladorKubo
         Me.LbNotificacionemail.Size = New System.Drawing.Size(137, 15)
         Me.LbNotificacionemail.TabIndex = 48
         Me.LbNotificacionemail.Text = "Recibir notificación:"
-        '
-        'BtExplorarterceros
-        '
-        Me.BtExplorarterceros.Enabled = False
-        Me.BtExplorarterceros.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtExplorarterceros.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtExplorarterceros.Location = New System.Drawing.Point(14, 327)
-        Me.BtExplorarterceros.Name = "BtExplorarterceros"
-        Me.BtExplorarterceros.Size = New System.Drawing.Size(71, 27)
-        Me.BtExplorarterceros.TabIndex = 23
-        Me.BtExplorarterceros.Text = "Explorar"
-        Me.BtExplorarterceros.UseVisualStyleBackColor = True
         '
         'TlpExplorarTerceros
         '

@@ -2236,7 +2236,7 @@ Public Class InstaladorKubo
             Dim correo As New MailMessage
             Dim smtp As New SmtpClient()
 
-            correo.From = New MailAddress("juanjo@notin.net", "Instalador Kubo", System.Text.Encoding.UTF8)
+            correo.From = New MailAddress("instalador@notin.net", "Instalador Kubo", System.Text.Encoding.UTF8)
             correo.To.Add(Destinatario)
             correo.SubjectEncoding = System.Text.Encoding.UTF8
             correo.Subject = "Descargas InstaladorKubo Finalizadas"
@@ -2246,10 +2246,10 @@ Public Class InstaladorKubo
             correo.IsBodyHtml = False
             correo.Priority = MailPriority.High
 
-            smtp.Credentials = New System.Net.NetworkCredential("juanjo@notin.net", "juanJo24")
-            smtp.Port = 25
+            smtp.Credentials = New System.Net.NetworkCredential("instalador@notin.net", "insta24")
+            smtp.Port = 587
             smtp.Host = "smtp.notin.net"
-            smtp.EnableSsl = False
+            smtp.EnableSsl = True
             Try
                 smtp.Send(correo)
                 Tbtucorreo.BackColor = Color.Honeydew
