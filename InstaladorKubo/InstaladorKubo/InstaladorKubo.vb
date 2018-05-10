@@ -243,9 +243,9 @@ Public Class InstaladorKubo
     End Sub
 
     'ACCEDER A URL NOTARIADO
-    Private Sub lblAncert_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblAncert.LinkClicked
-        System.Diagnostics.Process.Start("http://soporte.notariado.org")
-    End Sub
+    'Private Sub lblAncert_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
+    '    System.Diagnostics.Process.Start("http://soporte.notariado.org")
+    'End Sub
 
     Private Sub LnkRequisitos_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LnkRequisitos.LinkClicked
         'TODO añadir funcionalidad para url requisitos: https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing
@@ -435,6 +435,17 @@ Public Class InstaladorKubo
             cbTerceros.ForeColor = SystemColors.ControlText
         End If
 
+        'ABBYY Fine Reader
+        If System.IO.File.Exists(RutaDescargas & "Software/FineReaderV11.exe") Then
+            Dim FineReader11 As New FileInfo(RutaDescargas & "Software/FineReaderV11.exe")
+            Dim LengthFineReader11 As Long = FineReader11.Length
+            If FineReader11.Length = "405915565" Then
+                CbFineReader.ForeColor = Color.DarkGreen
+            ElseIf FineReader11.Length < "405915565" Then
+                CbFineReader.ForeColor = Color.Red
+            End If
+        End If
+
 
     End Sub
 #End Region
@@ -502,7 +513,7 @@ Public Class InstaladorKubo
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
 
         'Si no chequeas nada salimos
-        If (cbConfiguraNotin.Checked OrElse cbConfiguraWord2016.Checked OrElse cbNemo.Checked OrElse cbOffice2003.Checked OrElse cbOffice2016.Checked OrElse cbOffice2016odt.Checked OrElse cbPasarelaSigno.Checked OrElse cbPuestoNotin.Checked OrElse cbRequisitos.Checked OrElse cbSferen.Checked OrElse cbTerceros.Checked) = False Then
+        If (cbConfiguraNotin.Checked OrElse cbConfiguraWord2016.Checked OrElse cbNemo.Checked OrElse cbOffice2003.Checked OrElse cbOffice2016.Checked OrElse cbOffice2016odt.Checked OrElse cbPasarelaSigno.Checked OrElse cbPuestoNotin.Checked OrElse cbRequisitos.Checked OrElse cbSferen.Checked OrElse cbTerceros.Checked OrElse CbFineReader.Checked) = False Then
             MessageBox.Show("NINGUNA DESCARGA SELECCIONADA.", "Gestión Descargas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Exit Sub
         End If
@@ -517,6 +528,7 @@ Public Class InstaladorKubo
         Dim requisitos As String = ""
         Dim terceros As String = ""
         Dim registro As String = ""
+        Dim abbyfinereader As String = ""
 
         'Directorio descargas. No es necesario pero me apunto estas funciones
         Try
@@ -673,6 +685,14 @@ Public Class InstaladorKubo
             Shell("cmd.exe /c " & RutaCMDWgetTerceros, AppWinStyle.NormalFocus, True)
             '     YaDescargados()
         End If
+
+        'Ejecutar WGET AbbyyFineReader
+        If CbFineReader.Checked Then
+            Dim WGETFINEREADER As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 " & PuestoNotin & "Software/FineReaderV11.exe " & "-O " & RutaDescargas & "Software\FineReaderV11.exe"
+            Dim RutaCMDWgetFineReader As String = RutaDescargas & WGETFINEREADER
+            Shell("cmd.exe /c " & RutaCMDWgetFineReader, AppWinStyle.NormalFocus, True)
+        End If
+
         'Ejecutar WGET Registro
         If cbConfiguraNotin.Checked Then
             Dim WGETPANDORREGISTRO As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "registro.txt"" -P " & RutaDescargas & "Registro\"
@@ -703,7 +723,7 @@ Public Class InstaladorKubo
         cbTerceros.Checked = False
         cbConfiguraNotin.Checked = False
         cbConfiguraWord2016.Checked = False
-
+        CbFineReader.Checked = False
         lbProcesandoDescargas.Visible = False
 
         EnvioMail()
@@ -752,6 +772,7 @@ Public Class InstaladorKubo
             cbSferen.Checked = False
             cbPasarelaSigno.Checked = False
             cbTerceros.Checked = False
+            CbFineReader.Checked = False
             btTodo.Text = "Marcar todos"
             MarcarTodos = 0
         End If
@@ -1291,8 +1312,8 @@ Public Class InstaladorKubo
         tlpOffice2016.SetToolTip(cbOffice2016, "Descarga el paquete Office con instalación personalizable")
 
         tlpTerceros.ToolTipIcon = ToolTipIcon.Info
-        tlpTerceros.ToolTipTitle = "Softare de terceros"
-        tlpTerceros.SetToolTip(cbTerceros, "Adobe Reader DC, FileZilla, Google Chrome, Notepad++, etc")
+        tlpTerceros.ToolTipTitle = "Software recomendado"
+        tlpTerceros.SetToolTip(cbTerceros, "Incluye Adobe Reader DC, FileZilla, Google Chrome y Notepad++")
         tlpTerceros.IsBalloon = True
 
         tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones Notin y Word 2016 + Kubo"
@@ -1301,8 +1322,8 @@ Public Class InstaladorKubo
         TlpNotinWord2003.ToolTipTitle = "Comienza Instalación Notin y Word 2003"
         TlpNotinWord2003.SetToolTip(BtNotinWord2003, "Instala/Configura Notin y Word 2003. Además instalará Outlook, Excel..2016 si lo descargaste previamente.")
 
-        tlpAncert.ToolTipTitle = "URL Notariado"
-        tlpAncert.SetToolTip(lblAncert, "Acceder a url soporte.notariado.org")
+        'tlpAncert.ToolTipTitle = "URL Notariado"
+        'tlpAncert.SetToolTip(lblAncert, "Acceder a url soporte.notariado.org")
 
         tlpOffice2003.ToolTipTitle = "Office 2003 DESATENDIDO"
         tlpOffice2003.SetToolTip(cbOffice2003, "Instalación automatizada ACCESS y librerías Outlook.")
@@ -1337,7 +1358,7 @@ Public Class InstaladorKubo
         TlpDirectivas.SetToolTip(btDirectivas, "Aplica las Directivas de Windows. Para más información lee la hoja de Requisitos.")
 
         TlpExplorerDescargas.ToolTipTitle = "Explorar carpeta Descargas"
-        TlpExplorerDescargas.SetToolTip(BtExplorarRutas, "Muestra en el Explorador de archivos la ruta " & RutaDescargas)
+        TlpExplorerDescargas.SetToolTip(BtExplorarRutas, "Muestra en el explorador de archivos la ruta " & RutaDescargas)
 
         TlpSistema.ToolTipTitle = "Información Sistema Operativo"
         TlpSistema.SetToolTip(GroupBox3, "Si alguna característica puede no cumplir los Requisitos se mostrará de color rojo.")
@@ -1346,7 +1367,7 @@ Public Class InstaladorKubo
         TlpFramework.SetToolTip(btFramework, "Se procederá a la instalación del Paquete Framework 3.5 necesario para .Net. Se recomienda Reinciar tras su instalación.")
 
         TlpTuemail.ToolTipTitle = "Indica tu email para recibir un aviso"
-        TlpTuemail.SetToolTip(Tbtucorreo, "Se te remitirá un email de confirmación cuando finalicen las descargas seleccionadas.")
+        TlpTuemail.SetToolTip(CBoxEmail, "Se te remitirá un email de confirmación cuando finalicen las descargas seleccionadas.")
 
 
     End Sub
@@ -2201,6 +2222,9 @@ Public Class InstaladorKubo
     Private Sub cbPasarelaSigno_CheckedChanged(sender As Object, e As EventArgs) Handles cbPasarelaSigno.CheckedChanged
         CalcularTamanoDescarga(1, cbPasarelaSigno.Checked)
     End Sub
+    Private Sub CbFineReader_CheckedChanged(sender As Object, e As EventArgs) Handles CbFineReader.CheckedChanged
+        CalcularTamanoDescarga(387, CbFineReader.Checked)
+    End Sub
 
     Private Sub cbTerceros_CheckedChanged(sender As Object, e As EventArgs) Handles cbTerceros.CheckedChanged
         CalcularTamanoDescarga(94.9, cbTerceros.Checked)
@@ -2210,9 +2234,9 @@ Public Class InstaladorKubo
 
 #Region "ENVIO EMAIL"
     Private Function validaremail()
-        If Tbtucorreo.Text = "tuemail@notin.net" Then
+        If CBoxEmail.Text = Nothing Then
             Return False
-        ElseIf System.Text.RegularExpressions.Regex.IsMatch(Tbtucorreo.Text, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$") Then
+        ElseIf System.Text.RegularExpressions.Regex.IsMatch(CBoxEmail.Text, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$") Then
             Return True
         Else
             Return False
@@ -2224,7 +2248,8 @@ Public Class InstaladorKubo
 
         If validaremail() = True Then
 
-            Dim A As String = Tbtucorreo.Text
+            '            Dim A As String = Tbtucorreo.Text
+            Dim a As String = CBoxEmail.Text
             Dim Destinatario As MailAddress = New MailAddress(A)
 
             Dim correo As New MailMessage
@@ -2234,7 +2259,7 @@ Public Class InstaladorKubo
             correo.To.Add(Destinatario)
             correo.SubjectEncoding = System.Text.Encoding.UTF8
             correo.Subject = "Descargas InstaladorKubo Finalizadas"
-            correo.Body = "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos." & vbCrLf & "Puedes proceder a realizar las instalaciones cuando quieras. Cualquier duda tienes disponible el Comunicado 1573: http://tecnicos.notin.net/detalles.asp?id=1573 o a mi incluso en vacaciones. Muchas gracias"
+            correo.Body = "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos." & vbCrLf & "Puedes proceder a realizar las instalaciones cuando quieras. Cualquier duda tienes disponible el Comunicado 1573: http://tecnicos.notin.net/detalles.asp?id=1573 Cualquier comentario o sugerencia siempre es bienvenido. Muchas gracias"
             correo.BodyEncoding = System.Text.Encoding.UTF8
             'correo.IsBodyHtml = False(formato tipo web o normal:  true = web)
             correo.IsBodyHtml = False
@@ -2247,20 +2272,20 @@ Public Class InstaladorKubo
             Try
                 smtp.Send(correo)
                 Tbtucorreo.BackColor = Color.Honeydew
-                RegistroInstalacion("Correo de notificación enviado a " & Tbtucorreo.Text)
+                RegistroInstalacion("Correo de notificación enviado a " & CBoxEmail.Text)
             Catch ex As Exception
                 RegistroInstalacion("ERROR Email: " & ex.Message)
 
             End Try
         Else
-            RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & Tbtucorreo.Text & " no se consideró válida o no se indicó ningunta dirección.")
+            RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & CBoxEmail.Text & " no se consideró válida o no se indicó ningunta dirección.")
         End If
 
     End Sub
 
-    Private Sub Tbtucorreo_MouseClick(sender As Object, e As MouseEventArgs) Handles Tbtucorreo.MouseClick
-        Tbtucorreo.Text = ""
-    End Sub
+    'Private Sub Tbtucorreo_MouseClick(sender As Object, e As MouseEventArgs) Handles Tbtucorreo.MouseClick
+    '    Tbtucorreo.Text = ""
+    'End Sub
 #End Region
 
 
@@ -2268,8 +2293,7 @@ Public Class InstaladorKubo
         Process.Start("explorer.exe", RutaDescargas)
     End Sub
 
+    Private Sub Tbtucorreo_TextChanged(sender As Object, e As EventArgs) Handles Tbtucorreo.TextChanged
 
-
-
-
+    End Sub
 End Class
