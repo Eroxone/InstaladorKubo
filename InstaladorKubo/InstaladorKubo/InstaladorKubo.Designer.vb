@@ -35,7 +35,6 @@ Partial Class InstaladorKubo
         Me.btSalir = New System.Windows.Forms.Button()
         Me.btTodo = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.BtExplorarterceros = New System.Windows.Forms.Button()
         Me.LbMBDescargas = New System.Windows.Forms.Label()
         Me.BtLimpiarPaquetes = New System.Windows.Forms.Button()
         Me.cbOffice2016odt = New System.Windows.Forms.CheckBox()
@@ -113,7 +112,7 @@ Partial Class InstaladorKubo
         Me.Tbtucorreo = New System.Windows.Forms.TextBox()
         Me.TlpTuemail = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbNotificacionemail = New System.Windows.Forms.Label()
-        Me.TlpExplorarTerceros = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtExplorarRutas = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -239,7 +238,6 @@ Partial Class InstaladorKubo
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.GroupBox1.Controls.Add(Me.BtExplorarterceros)
         Me.GroupBox1.Controls.Add(Me.LbMBDescargas)
         Me.GroupBox1.Controls.Add(Me.BtLimpiarPaquetes)
         Me.GroupBox1.Controls.Add(Me.cbOffice2016odt)
@@ -269,25 +267,13 @@ Partial Class InstaladorKubo
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Descargas"
         '
-        'BtExplorarterceros
-        '
-        Me.BtExplorarterceros.Enabled = False
-        Me.BtExplorarterceros.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtExplorarterceros.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtExplorarterceros.Location = New System.Drawing.Point(14, 327)
-        Me.BtExplorarterceros.Name = "BtExplorarterceros"
-        Me.BtExplorarterceros.Size = New System.Drawing.Size(71, 27)
-        Me.BtExplorarterceros.TabIndex = 23
-        Me.BtExplorarterceros.Text = "Explorar"
-        Me.BtExplorarterceros.UseVisualStyleBackColor = True
-        '
         'LbMBDescargas
         '
         Me.LbMBDescargas.AutoSize = True
         Me.LbMBDescargas.BackColor = System.Drawing.SystemColors.Control
         Me.LbMBDescargas.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbMBDescargas.ForeColor = System.Drawing.Color.DimGray
-        Me.LbMBDescargas.Location = New System.Drawing.Point(118, 346)
+        Me.LbMBDescargas.Location = New System.Drawing.Point(133, 345)
         Me.LbMBDescargas.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LbMBDescargas.Name = "LbMBDescargas"
         Me.LbMBDescargas.Size = New System.Drawing.Size(87, 15)
@@ -633,7 +619,7 @@ Partial Class InstaladorKubo
         '
         Me.btDescargar.BackColor = System.Drawing.Color.Azure
         Me.btDescargar.Font = New System.Drawing.Font("Lucida Bright", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btDescargar.Location = New System.Drawing.Point(208, 483)
+        Me.btDescargar.Location = New System.Drawing.Point(208, 484)
         Me.btDescargar.Margin = New System.Windows.Forms.Padding(2)
         Me.btDescargar.Name = "btDescargar"
         Me.btDescargar.Size = New System.Drawing.Size(121, 58)
@@ -952,7 +938,7 @@ Partial Class InstaladorKubo
         Me.BtLogin.BackColor = System.Drawing.Color.Gold
         Me.BtLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtLogin.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtLogin.Location = New System.Drawing.Point(748, 474)
+        Me.BtLogin.Location = New System.Drawing.Point(748, 497)
         Me.BtLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.BtLogin.Name = "BtLogin"
         Me.BtLogin.Size = New System.Drawing.Size(89, 27)
@@ -1023,7 +1009,7 @@ Partial Class InstaladorKubo
         '
         Me.Tbtucorreo.BackColor = System.Drawing.SystemColors.Control
         Me.Tbtucorreo.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Tbtucorreo.Location = New System.Drawing.Point(208, 542)
+        Me.Tbtucorreo.Location = New System.Drawing.Point(208, 547)
         Me.Tbtucorreo.Name = "Tbtucorreo"
         Me.Tbtucorreo.Size = New System.Drawing.Size(120, 20)
         Me.Tbtucorreo.TabIndex = 47
@@ -1038,23 +1024,31 @@ Partial Class InstaladorKubo
         '
         Me.LbNotificacionemail.AutoSize = True
         Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbNotificacionemail.Location = New System.Drawing.Point(65, 544)
+        Me.LbNotificacionemail.Location = New System.Drawing.Point(124, 549)
         Me.LbNotificacionemail.Name = "LbNotificacionemail"
-        Me.LbNotificacionemail.Size = New System.Drawing.Size(137, 15)
+        Me.LbNotificacionemail.Size = New System.Drawing.Size(78, 15)
         Me.LbNotificacionemail.TabIndex = 48
-        Me.LbNotificacionemail.Text = "Recibir notificación:"
+        Me.LbNotificacionemail.Text = "Notificar a:"
         '
-        'TlpExplorarTerceros
+        'BtExplorarRutas
         '
-        Me.TlpExplorarTerceros.IsBalloon = True
-        Me.TlpExplorarTerceros.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.BtExplorarRutas.Enabled = False
+        Me.BtExplorarRutas.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtExplorarRutas.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtExplorarRutas.Image = CType(resources.GetObject("BtExplorarRutas.Image"), System.Drawing.Image)
+        Me.BtExplorarRutas.Location = New System.Drawing.Point(16, 530)
+        Me.BtExplorarRutas.Name = "BtExplorarRutas"
+        Me.BtExplorarRutas.Size = New System.Drawing.Size(43, 40)
+        Me.BtExplorarRutas.TabIndex = 23
+        Me.BtExplorarRutas.UseVisualStyleBackColor = True
         '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(857, 577)
+        Me.ClientSize = New System.Drawing.Size(857, 581)
+        Me.Controls.Add(Me.BtExplorarRutas)
         Me.Controls.Add(Me.LbNotificacionemail)
         Me.Controls.Add(Me.Tbtucorreo)
         Me.Controls.Add(Me.LnkRequisitos)
@@ -1187,6 +1181,5 @@ Partial Class InstaladorKubo
     Friend WithEvents Tbtucorreo As TextBox
     Friend WithEvents TlpTuemail As ToolTip
     Friend WithEvents LbNotificacionemail As Label
-    Friend WithEvents BtExplorarterceros As Button
-    Friend WithEvents TlpExplorarTerceros As ToolTip
+    Friend WithEvents BtExplorarRutas As Button
 End Class

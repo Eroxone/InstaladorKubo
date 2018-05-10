@@ -430,7 +430,7 @@ Public Class InstaladorKubo
         'SOFTWARE TERCEROS
         If System.IO.Directory.Exists(RutaDescargas & "\Software") Then
             cbTerceros.ForeColor = Color.DarkGreen
-            BtExplorarterceros.Enabled = True
+            BtExplorarRutas.Enabled = True
         Else
             cbTerceros.ForeColor = SystemColors.ControlText
         End If
@@ -1337,7 +1337,7 @@ Public Class InstaladorKubo
         TlpDirectivas.SetToolTip(btDirectivas, "Aplica las Directivas de Windows. Para más información lee la hoja de Requisitos.")
 
         TlpExplorerDescargas.ToolTipTitle = "Explorar carpeta Descargas"
-        TlpExplorerDescargas.SetToolTip(lbRuta, "Muestra en el Explorador de archivos la ruta " & RutaDescargas)
+        TlpExplorerDescargas.SetToolTip(BtExplorarRutas, "Muestra en el Explorador de archivos la ruta " & RutaDescargas)
 
         TlpSistema.ToolTipTitle = "Información Sistema Operativo"
         TlpSistema.SetToolTip(GroupBox3, "Si alguna característica puede no cumplir los Requisitos se mostrará de color rojo.")
@@ -1348,8 +1348,6 @@ Public Class InstaladorKubo
         TlpTuemail.ToolTipTitle = "Indica tu email para recibir un aviso"
         TlpTuemail.SetToolTip(Tbtucorreo, "Se te remitirá un email de confirmación cuando finalicen las descargas seleccionadas.")
 
-        tlpTerceros.ToolTipTitle = "Explorar Carpeta Software"
-        tlpTerceros.SetToolTip(BtExplorarterceros, "Muestra en el explorador la ruta donde se encuentra el Software de terceros descargado.")
 
     End Sub
 #End Region
@@ -2160,10 +2158,6 @@ Public Class InstaladorKubo
         PbInstalaciones.Visible = False
     End Sub
 
-    Private Sub lbRuta_Click(sender As Object, e As EventArgs) Handles lbRuta.Click
-        Process.Start("explorer.exe", RutaDescargas)
-    End Sub
-
 
     'TODO procedimiento para calcular tamaño descarga
 
@@ -2268,8 +2262,8 @@ Public Class InstaladorKubo
         Tbtucorreo.Text = ""
     End Sub
 
-    Private Sub BtExplorarterceros_Click(sender As Object, e As EventArgs) Handles BtExplorarterceros.Click
-        Process.Start("explorer.exe", RutaDescargas & "Software")
+    Private Sub BtExplorarRutas_Click(sender As Object, e As EventArgs) Handles BtExplorarRutas.Click
+        Process.Start("explorer.exe", RutaDescargas)
     End Sub
 
 #End Region
