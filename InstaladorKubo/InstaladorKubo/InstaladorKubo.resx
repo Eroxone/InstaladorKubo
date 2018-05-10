@@ -1051,11 +1051,10 @@
   </metadata>
   <data name="BtExplorarRutas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAACgAAAAfCAYAAACVgY94AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EwAACxMBAJqcGAAAAAd0SU1FB+IFCgkHOraZC8cAAACLSURBVFhH7dVBCoAgEIXhTtyROoHSTtctO4Md
-        ZWAioSgTJJ6gwVt8CxXGf6WDiDyM06JfpTNqem3kAkrSGTW9NnIBJemMmh6L3OUt3Ju6iztdgfO6ac8Y
-        iGIgioEoBqLia5076EH8SRgIYCCKgSgGohiIYiCKgaj/BIYQ1DmnxpimrLWR916PJhEZdlt1qIsse7KE
-        AAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABkAAAATCAYAAABlcqYFAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EwAACxMBAJqcGAAAAAd0SU1FB+IFCg4xHOjHCcoAAABlSURBVEhLY3j69Ckc5807+B8fRlZLCkbhYDMY
+        GSOrJQXDGdgMpQYGW7L+5J3/tMajlpCE6WMJKPaxSVALw5MwNklq4VFLSMKjlpCEh6Elt2/f/r9mzRqq
+        4rVr1/7fvn070JKnDACgJ+r49ow6LwAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

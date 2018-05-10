@@ -2261,12 +2261,14 @@ Public Class InstaladorKubo
     Private Sub Tbtucorreo_MouseClick(sender As Object, e As MouseEventArgs) Handles Tbtucorreo.MouseClick
         Tbtucorreo.Text = ""
     End Sub
+#End Region
+
 
     Private Sub BtExplorarRutas_Click(sender As Object, e As EventArgs) Handles BtExplorarRutas.Click
         Process.Start("explorer.exe", RutaDescargas)
     End Sub
 
-#End Region
+
 
 
 
