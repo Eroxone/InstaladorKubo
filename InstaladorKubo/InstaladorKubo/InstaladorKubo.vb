@@ -2290,10 +2290,11 @@ Public Class InstaladorKubo
 
 
     Private Sub BtExplorarRutas_Click(sender As Object, e As EventArgs) Handles BtExplorarRutas.Click
-        Process.Start("explorer.exe", RutaDescargas)
+        If Directory.Exists(RutaDescargas) Then
+            Process.Start("explorer.exe", RutaDescargas)
+        End If
     End Sub
 
-    Private Sub Tbtucorreo_TextChanged(sender As Object, e As EventArgs) Handles Tbtucorreo.TextChanged
 
-    End Sub
+
 End Class

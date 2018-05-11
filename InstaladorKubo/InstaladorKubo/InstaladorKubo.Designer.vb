@@ -1069,7 +1069,7 @@ Partial Class InstaladorKubo
         '
         'BtExplorarRutas
         '
-        Me.BtExplorarRutas.Enabled = False
+        Me.BtExplorarRutas.BackColor = System.Drawing.SystemColors.Control
         Me.BtExplorarRutas.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtExplorarRutas.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtExplorarRutas.Image = CType(resources.GetObject("BtExplorarRutas.Image"), System.Drawing.Image)
@@ -1077,7 +1077,7 @@ Partial Class InstaladorKubo
         Me.BtExplorarRutas.Name = "BtExplorarRutas"
         Me.BtExplorarRutas.Size = New System.Drawing.Size(37, 32)
         Me.BtExplorarRutas.TabIndex = 23
-        Me.BtExplorarRutas.UseVisualStyleBackColor = True
+        Me.BtExplorarRutas.UseVisualStyleBackColor = False
         '
         'CBoxEmail
         '
