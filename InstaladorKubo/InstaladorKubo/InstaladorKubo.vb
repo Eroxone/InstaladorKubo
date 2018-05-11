@@ -1199,7 +1199,7 @@ Public Class InstaladorKubo
             End If
             If File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
                 Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.Hide, True)
+                Shell("cmd.exe /c " & RutaDescargas & "\PasarelaSigno\setup.exe", AppWinStyle.Hide, True)
             Else
                 RegistroInstalacion("ADVERTENCIA: Instalable PasarelaSigno no encontrado. No se instalará.")
             End If
