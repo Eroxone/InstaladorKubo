@@ -1086,7 +1086,7 @@ Partial Class InstaladorKubo
         Me.CBoxEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.CBoxEmail.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
         Me.CBoxEmail.FormattingEnabled = True
-        Me.CBoxEmail.Items.AddRange(New Object() {"juanjo@notin.net", "mariano@notin.net", "taller@notin.net", "atencionalcliente@notin.net", "sistemas@notin.net", "carmona@notin.net", "clemente@notin.net", "dperez@notin.net", "jaime@notin.net", "josechumillas@notin.net", "montes@notin.net", "manolo@notin.net", "ruben@notin.net", "pascual@notin.net", "jonatan@notin.net", "oscar@notin.net", "malaga@notin.net", "roberto@notin.net", "madrid@notin.net", "granada@notin.net", "valencia@notin.net", "cristian@notin.net", "gerard@notin.net", "sevilla@notin.net", "jramon@notin.net", "pablo@notin.net", "extremadura@notin.net", "logistica@notin.net", "nemo@notin.net"})
+        Me.CBoxEmail.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
         Me.CBoxEmail.Location = New System.Drawing.Point(207, 547)
         Me.CBoxEmail.Name = "CBoxEmail"
         Me.CBoxEmail.Size = New System.Drawing.Size(139, 22)
