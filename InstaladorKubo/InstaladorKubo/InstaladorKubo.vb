@@ -61,9 +61,9 @@ Public Class InstaladorKubo
 
     Private Sub BtLimpiar_Click(sender As Object, e As EventArgs) Handles BtLimpiar.Click
         Try
-            File.Delete("C:\TEMP\InstaladorKubo\instaladorkubo.ini")
+            'File.Delete("C:\TEMP\InstaladorKubo\instaladorkubo.ini")
             File.Delete("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt")
-            RegistroInstalacion("=== Limpiados ficheros INI y Log de Registro ===")
+            RegistroInstalacion("=== Limpiado Log de Registro ===")
 
             PbInstalaciones.Visible = True
             PbInstalaciones.Step = 35
@@ -239,7 +239,12 @@ Public Class InstaladorKubo
         ElseIf kmspico = 0 Then
             BtKmsPico.BackColor = Color.LightSalmon
         End If
-
+        Dim notinpdf = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "NOTINPDF", "2")
+        If notinpdf = 1 Then
+            BtNotinpdf.BackColor = Color.PaleGreen
+        ElseIf notinpdf = 0 Then
+            BtNotinpdf.BackColor = Color.LightSalmon
+        End If
     End Sub
 
     'ACCEDER A URL NOTARIADO
@@ -1369,6 +1374,9 @@ Public Class InstaladorKubo
         TlpTuemail.ToolTipTitle = "Indica tu email para recibir un aviso"
         TlpTuemail.SetToolTip(CBoxEmail, "Se te remitirá un email de confirmación cuando finalicen las descargas seleccionadas.")
 
+        TlpNotinpdf.ToolTipTitle = "Instalador NotinPDF"
+        TlpNotinpdf.SetToolTip(BtNotinpdf, "Se descargará y lanzará el ejecutable NotinPDF.")
+
 
     End Sub
 #End Region
@@ -2138,8 +2146,29 @@ Public Class InstaladorKubo
 
         RegistroInstalacion("KMSPICO: Instalado Servicio KMSPico 10.")
         cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "KMSPICO10", "1")
+    End Sub
+
+    Private Sub BtNotinpdf_Click(sender As Object, e As EventArgs) Handles BtNotinpdf.Click
+        obtenerwget()
+        Dim WGETNotinPDF As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/LOPEZ/MyPrograms/NotinPdf/NotinPdf.rar -O " & RutaDescargas & "NotinPdf.rar"
+        Shell("cmd /c " & RutaDescargas & WGETNotinPDF, AppWinStyle.NormalFocus, True)
+        MessageBox.Show("A continuación se ejecutará el Instalador de Fer. López. Cualquier cosa que veas, no entiendas o no te parezca apropiada tendrás que hablarla con él. Gracias", "Ejecutar NotinPDF", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        obtenerunrar()
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "NotinPdf.rar " & RutaDescargas & "NotinPDF\", AppWinStyle.NormalFocus, True)
+        Try
+            Process.Start(RutaDescargas & "NotinPDF\notinpdf.exe")
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "NOTINPDF", "1")
+            BtNotinpdf.BackColor = Color.PaleGreen
+            RegistroInstalacion("Ejecutado instalador NotinPDF.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR NotinPDF: " & ex.Message)
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "NOTINPDF", "2")
+            BtNotinpdf.BackColor = Color.LightSalmon
+        End Try
+
 
     End Sub
+
 
     Private Sub BtReconectar_Click(sender As Object, e As EventArgs) Handles BtReconectar.Click
 
@@ -2294,7 +2323,6 @@ Public Class InstaladorKubo
             Process.Start("explorer.exe", RutaDescargas)
         End If
     End Sub
-
 
 
 End Class

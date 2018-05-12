@@ -1057,6 +1057,9 @@
         4rVr1/7fvn070JKnDACgJ+r49ow6LwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="TlpNotinpdf.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1033, 77</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>116</value>
   </metadata>
