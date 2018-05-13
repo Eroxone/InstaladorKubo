@@ -20,5 +20,4 @@ Public Class FormPassword
         End If
     End Sub
 
-    'TODO cambiar icono del Password
 End Class

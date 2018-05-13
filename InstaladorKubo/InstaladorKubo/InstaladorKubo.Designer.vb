@@ -986,12 +986,12 @@ Partial Class InstaladorKubo
         Me.LbPreparacionInicial.BackColor = System.Drawing.SystemColors.Control
         Me.LbPreparacionInicial.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbPreparacionInicial.ForeColor = System.Drawing.Color.Green
-        Me.LbPreparacionInicial.Location = New System.Drawing.Point(37, 86)
+        Me.LbPreparacionInicial.Location = New System.Drawing.Point(19, 86)
         Me.LbPreparacionInicial.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LbPreparacionInicial.Name = "LbPreparacionInicial"
-        Me.LbPreparacionInicial.Size = New System.Drawing.Size(175, 17)
+        Me.LbPreparacionInicial.Size = New System.Drawing.Size(206, 17)
         Me.LbPreparacionInicial.TabIndex = 28
-        Me.LbPreparacionInicial.Text = "Preparación Inicial OK"
+        Me.LbPreparacionInicial.Text = "PREPARACIÓN INICIAL OK"
         Me.LbPreparacionInicial.Visible = False
         '
         'BtNotinWord2003
@@ -1161,7 +1161,7 @@ Partial Class InstaladorKubo
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1206, 715)
+        Me.ClientSize = New System.Drawing.Size(1227, 715)
         Me.Controls.Add(Me.CBoxEmail)
         Me.Controls.Add(Me.BtExplorarRutas)
         Me.Controls.Add(Me.LbNotificacionemail)
