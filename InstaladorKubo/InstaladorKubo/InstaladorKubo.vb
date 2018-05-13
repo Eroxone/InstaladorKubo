@@ -50,6 +50,8 @@ Public Class InstaladorKubo
             LbPreparacionInicial.Visible = True
         End If
 
+        'Guardo correo anterior de notificaciones
+        CBoxEmail.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
     End Sub
 
     Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
@@ -533,7 +535,7 @@ Public Class InstaladorKubo
         Dim requisitos As String = ""
         Dim terceros As String = ""
         Dim registro As String = ""
-        Dim abbyfinereader As String = ""
+        'Dim abbyyfinereader As String = ""
 
         'Directorio descargas. No es necesario pero me apunto estas funciones
         Try
@@ -631,7 +633,7 @@ Public Class InstaladorKubo
             terceros = terceros & PuestoNotin & "Software/" & "ChromeSetup.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "Notepad_x64.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "WinRAR5.exe" & vbCrLf
-            terceros = terceros & PuestoNotin & "Software/" & "FineReaderV11demo .exe" & vbCrLf
+            '    terceros = terceros & PuestoNotin & "Software/" & "FineReaderV11demo .exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "SOFTWARETERCEROS", "1")
         End If
 
@@ -707,8 +709,7 @@ Public Class InstaladorKubo
             ' YaDescargados()
         End If
         YaDescargados()
-        'TODO Activar esto cuando de la funcionalidad.
-        '    EnvioMail()
+
 #End Region
 
         'Borrar ficheros txt escritos
@@ -2277,9 +2278,9 @@ Public Class InstaladorKubo
 
         If validaremail() = True Then
 
-            '            Dim A As String = Tbtucorreo.Text
+            'Dim A As String = Tbtucorreo.Text
             Dim a As String = CBoxEmail.Text
-            Dim Destinatario As MailAddress = New MailAddress(A)
+            Dim Destinatario As MailAddress = New MailAddress(a)
 
             Dim correo As New MailMessage
             Dim smtp As New SmtpClient()
@@ -2288,7 +2289,7 @@ Public Class InstaladorKubo
             correo.To.Add(Destinatario)
             correo.SubjectEncoding = System.Text.Encoding.UTF8
             correo.Subject = "Descargas InstaladorKubo Finalizadas"
-            correo.Body = "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos." & vbCrLf & "Puedes proceder a realizar las instalaciones cuando quieras. Cualquier duda tienes disponible el Comunicado 1573: http://tecnicos.notin.net/detalles.asp?id=1573 Cualquier comentario o sugerencia siempre es bienvenido. Muchas gracias"
+            correo.Body = "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos." & vbCrLf & "Puedes proceder a realizar las instalaciones cuando quieras." & vbCrLf & "Cualquier duda tienes disponible el Comunicado 1573: http://tecnicos.notin.net/detalles.asp?id=1573" & vbCrLf & "Muchas gracias"
             correo.BodyEncoding = System.Text.Encoding.UTF8
             'correo.IsBodyHtml = False(formato tipo web o normal:  true = web)
             correo.IsBodyHtml = False
@@ -2312,9 +2313,6 @@ Public Class InstaladorKubo
 
     End Sub
 
-    'Private Sub Tbtucorreo_MouseClick(sender As Object, e As MouseEventArgs) Handles Tbtucorreo.MouseClick
-    '    Tbtucorreo.Text = ""
-    'End Sub
 #End Region
 
 
@@ -2324,5 +2322,12 @@ Public Class InstaladorKubo
         End If
     End Sub
 
+    Private Sub CBoxEmail_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBoxEmail.LostFocus
+        If validaremail() = True Then
+            Dim destinatario As String = CBoxEmail.Text
+            cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", destinatario)
+            RegistroInstalacion("EMAIL: Dirección de correo establecida a " & destinatario)
+        End If
 
+    End Sub
 End Class

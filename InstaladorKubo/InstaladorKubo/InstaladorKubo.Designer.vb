@@ -565,7 +565,7 @@ Partial Class InstaladorKubo
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage5.Size = New System.Drawing.Size(256, 241)
         Me.TabPage5.TabIndex = 0
-        Me.TabPage5.Text = "Obligatorio"
+        Me.TabPage5.Text = "Necesario"
         '
         'BtKmsPico
         '
@@ -639,7 +639,7 @@ Partial Class InstaladorKubo
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage6.Size = New System.Drawing.Size(256, 241)
         Me.TabPage6.TabIndex = 1
-        Me.TabPage6.Text = "Opcional"
+        Me.TabPage6.Text = "Opcionales"
         '
         'BtNotinpdf
         '
@@ -1161,7 +1161,7 @@ Partial Class InstaladorKubo
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1143, 715)
+        Me.ClientSize = New System.Drawing.Size(1206, 715)
         Me.Controls.Add(Me.CBoxEmail)
         Me.Controls.Add(Me.BtExplorarRutas)
         Me.Controls.Add(Me.LbNotificacionemail)
