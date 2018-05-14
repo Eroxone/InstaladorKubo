@@ -88,16 +88,8 @@ Partial Class InstaladorKubo
         Me.TlpComenzarDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpJava = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpUac = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtTraerdeF = New System.Windows.Forms.Button()
-        Me.BtCopiarhaciaF = New System.Windows.Forms.Button()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.TlpPaquetesServidor = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TabGestion = New System.Windows.Forms.TabControl()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.BtRegistroInstalaciones = New System.Windows.Forms.Button()
-        Me.BtFicheroINI = New System.Windows.Forms.Button()
-        Me.BtLimpiar = New System.Windows.Forms.Button()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TlpCopiarServidor = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpTraerServidor = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
@@ -108,19 +100,28 @@ Partial Class InstaladorKubo
         Me.TlpConfigWord2016 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtLogin = New System.Windows.Forms.Button()
         Me.TlpKmspico = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtReconectar = New System.Windows.Forms.Button()
         Me.TlpReconectarF = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpDirectivas = New System.Windows.Forms.ToolTip(Me.components)
-        Me.LnkRequisitos = New System.Windows.Forms.LinkLabel()
         Me.TlpExplorerDescargas = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpSistema = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpNotinWord2003 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpFramework = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpTuemail = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpNotinpdf = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpRequisitosNotin = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtReconectar = New System.Windows.Forms.Button()
         Me.LbNotificacionemail = New System.Windows.Forms.Label()
         Me.BtExplorarRutas = New System.Windows.Forms.Button()
         Me.CBoxEmail = New System.Windows.Forms.ComboBox()
-        Me.TlpNotinpdf = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtDocRequisitos = New System.Windows.Forms.Button()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.BtCopiarhaciaF = New System.Windows.Forms.Button()
+        Me.BtTraerdeF = New System.Windows.Forms.Button()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.BtLimpiar = New System.Windows.Forms.Button()
+        Me.BtFicheroINI = New System.Windows.Forms.Button()
+        Me.BtRegistroInstalaciones = New System.Windows.Forms.Button()
+        Me.TabGestion = New System.Windows.Forms.TabControl()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -131,10 +132,10 @@ Partial Class InstaladorKubo
         Me.TabSistema.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         Me.TabPage6.SuspendLayout()
-        Me.TabGestion.SuspendLayout()
-        Me.TabPage2.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        Me.TabPage2.SuspendLayout()
+        Me.TabGestion.SuspendLayout()
         Me.SuspendLayout()
         '
         'lbUnidadF
@@ -534,12 +535,13 @@ Partial Class InstaladorKubo
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox2.Controls.Add(Me.TabSistema)
+        Me.GroupBox2.Controls.Add(Me.BtDocRequisitos)
         Me.GroupBox2.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(371, 110)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(205, 297)
+        Me.GroupBox2.Size = New System.Drawing.Size(205, 361)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Requisitos Sistema"
@@ -829,32 +831,6 @@ Partial Class InstaladorKubo
         Me.TlpUac.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpUac.ToolTipTitle = "Installer UAC"
         '
-        'BtTraerdeF
-        '
-        Me.BtTraerdeF.BackColor = System.Drawing.SystemColors.Control
-        Me.BtTraerdeF.Enabled = False
-        Me.BtTraerdeF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtTraerdeF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtTraerdeF.Location = New System.Drawing.Point(3, 57)
-        Me.BtTraerdeF.Name = "BtTraerdeF"
-        Me.BtTraerdeF.Size = New System.Drawing.Size(160, 36)
-        Me.BtTraerdeF.TabIndex = 1
-        Me.BtTraerdeF.Text = "Traer de Servidor"
-        Me.BtTraerdeF.UseVisualStyleBackColor = False
-        '
-        'BtCopiarhaciaF
-        '
-        Me.BtCopiarhaciaF.BackColor = System.Drawing.Color.FloralWhite
-        Me.BtCopiarhaciaF.Enabled = False
-        Me.BtCopiarhaciaF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtCopiarhaciaF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtCopiarhaciaF.Location = New System.Drawing.Point(3, 8)
-        Me.BtCopiarhaciaF.Name = "BtCopiarhaciaF"
-        Me.BtCopiarhaciaF.Size = New System.Drawing.Size(160, 36)
-        Me.BtCopiarhaciaF.TabIndex = 0
-        Me.BtCopiarhaciaF.Text = "Copiar a Servidor"
-        Me.BtCopiarhaciaF.UseVisualStyleBackColor = False
-        '
         'ContextMenuStrip1
         '
         Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
@@ -864,87 +840,6 @@ Partial Class InstaladorKubo
         'TlpPaquetesServidor
         '
         Me.TlpPaquetesServidor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        '
-        'TabGestion
-        '
-        Me.TabGestion.Appearance = System.Windows.Forms.TabAppearance.Buttons
-        Me.TabGestion.Controls.Add(Me.TabPage2)
-        Me.TabGestion.Controls.Add(Me.TabPage1)
-        Me.TabGestion.Font = New System.Drawing.Font("Lucida Bright", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TabGestion.Location = New System.Drawing.Point(608, 335)
-        Me.TabGestion.Margin = New System.Windows.Forms.Padding(2)
-        Me.TabGestion.Name = "TabGestion"
-        Me.TabGestion.SelectedIndex = 0
-        Me.TabGestion.Size = New System.Drawing.Size(184, 139)
-        Me.TabGestion.TabIndex = 40
-        '
-        'TabPage2
-        '
-        Me.TabPage2.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage2.Controls.Add(Me.BtRegistroInstalaciones)
-        Me.TabPage2.Controls.Add(Me.BtFicheroINI)
-        Me.TabPage2.Controls.Add(Me.BtLimpiar)
-        Me.TabPage2.ImeMode = System.Windows.Forms.ImeMode.Katakana
-        Me.TabPage2.Location = New System.Drawing.Point(4, 28)
-        Me.TabPage2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage2.Size = New System.Drawing.Size(176, 107)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Registro"
-        '
-        'BtRegistroInstalaciones
-        '
-        Me.BtRegistroInstalaciones.BackColor = System.Drawing.SystemColors.Control
-        Me.BtRegistroInstalaciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtRegistroInstalaciones.Font = New System.Drawing.Font("Lucida Bright", 10.2!)
-        Me.BtRegistroInstalaciones.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtRegistroInstalaciones.Location = New System.Drawing.Point(6, 7)
-        Me.BtRegistroInstalaciones.Name = "BtRegistroInstalaciones"
-        Me.BtRegistroInstalaciones.Size = New System.Drawing.Size(129, 28)
-        Me.BtRegistroInstalaciones.TabIndex = 1
-        Me.BtRegistroInstalaciones.Text = "Visualizar Log"
-        Me.BtRegistroInstalaciones.UseVisualStyleBackColor = False
-        '
-        'BtFicheroINI
-        '
-        Me.BtFicheroINI.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtFicheroINI.Font = New System.Drawing.Font("Lucida Bright", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtFicheroINI.Location = New System.Drawing.Point(6, 40)
-        Me.BtFicheroINI.Margin = New System.Windows.Forms.Padding(2)
-        Me.BtFicheroINI.Name = "BtFicheroINI"
-        Me.BtFicheroINI.Size = New System.Drawing.Size(108, 28)
-        Me.BtFicheroINI.TabIndex = 0
-        Me.BtFicheroINI.Text = "Fichero INI"
-        Me.BtFicheroINI.UseVisualStyleBackColor = True
-        '
-        'BtLimpiar
-        '
-        Me.BtLimpiar.BackColor = System.Drawing.Color.Gold
-        Me.BtLimpiar.Cursor = System.Windows.Forms.Cursors.Default
-        Me.BtLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtLimpiar.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtLimpiar.Location = New System.Drawing.Point(6, 74)
-        Me.BtLimpiar.Margin = New System.Windows.Forms.Padding(2)
-        Me.BtLimpiar.Name = "BtLimpiar"
-        Me.BtLimpiar.Size = New System.Drawing.Size(129, 27)
-        Me.BtLimpiar.TabIndex = 43
-        Me.BtLimpiar.Text = "Limpiar Log"
-        Me.BtLimpiar.UseVisualStyleBackColor = False
-        Me.BtLimpiar.Visible = False
-        '
-        'TabPage1
-        '
-        Me.TabPage1.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage1.Controls.Add(Me.BtTraerdeF)
-        Me.TabPage1.Controls.Add(Me.BtCopiarhaciaF)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 28)
-        Me.TabPage1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage1.Size = New System.Drawing.Size(176, 107)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "Paquetes"
         '
         'TlpCopiarServidor
         '
@@ -963,7 +858,7 @@ Partial Class InstaladorKubo
         Me.GroupBox5.Controls.Add(Me.BtNotinWord2003)
         Me.GroupBox5.Controls.Add(Me.btNotinKubo)
         Me.GroupBox5.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.GroupBox5.Location = New System.Drawing.Point(608, 110)
+        Me.GroupBox5.Location = New System.Drawing.Point(608, 109)
         Me.GroupBox5.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Padding = New System.Windows.Forms.Padding(2)
@@ -989,7 +884,7 @@ Partial Class InstaladorKubo
         Me.LbPreparacionInicial.BackColor = System.Drawing.SystemColors.Control
         Me.LbPreparacionInicial.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbPreparacionInicial.ForeColor = System.Drawing.Color.Green
-        Me.LbPreparacionInicial.Location = New System.Drawing.Point(14, 70)
+        Me.LbPreparacionInicial.Location = New System.Drawing.Point(10, 71)
         Me.LbPreparacionInicial.Name = "LbPreparacionInicial"
         Me.LbPreparacionInicial.Size = New System.Drawing.Size(174, 15)
         Me.LbPreparacionInicial.TabIndex = 28
@@ -1043,17 +938,6 @@ Partial Class InstaladorKubo
         Me.TlpKmspico.IsBalloon = True
         Me.TlpKmspico.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'BtReconectar
-        '
-        Me.BtReconectar.Enabled = False
-        Me.BtReconectar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtReconectar.Image = CType(resources.GetObject("BtReconectar.Image"), System.Drawing.Image)
-        Me.BtReconectar.Location = New System.Drawing.Point(608, 25)
-        Me.BtReconectar.Name = "BtReconectar"
-        Me.BtReconectar.Size = New System.Drawing.Size(57, 50)
-        Me.BtReconectar.TabIndex = 45
-        Me.BtReconectar.UseVisualStyleBackColor = True
-        '
         'TlpReconectarF
         '
         Me.TlpReconectarF.IsBalloon = True
@@ -1063,18 +947,6 @@ Partial Class InstaladorKubo
         '
         Me.TlpDirectivas.IsBalloon = True
         Me.TlpDirectivas.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        '
-        'LnkRequisitos
-        '
-        Me.LnkRequisitos.AutoSize = True
-        Me.LnkRequisitos.Font = New System.Drawing.Font("Lucida Bright", 7.8!)
-        Me.LnkRequisitos.Location = New System.Drawing.Point(696, 18)
-        Me.LnkRequisitos.Name = "LnkRequisitos"
-        Me.LnkRequisitos.Size = New System.Drawing.Size(96, 14)
-        Me.LnkRequisitos.TabIndex = 46
-        Me.LnkRequisitos.TabStop = True
-        Me.LnkRequisitos.Text = "Requisitos Notin"
-        Me.LnkRequisitos.Visible = False
         '
         'TlpExplorerDescargas
         '
@@ -1100,6 +972,27 @@ Partial Class InstaladorKubo
         '
         Me.TlpTuemail.IsBalloon = True
         Me.TlpTuemail.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'TlpNotinpdf
+        '
+        Me.TlpNotinpdf.IsBalloon = True
+        Me.TlpNotinpdf.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'TlpRequisitosNotin
+        '
+        Me.TlpRequisitosNotin.IsBalloon = True
+        Me.TlpRequisitosNotin.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'BtReconectar
+        '
+        Me.BtReconectar.Enabled = False
+        Me.BtReconectar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtReconectar.Image = CType(resources.GetObject("BtReconectar.Image"), System.Drawing.Image)
+        Me.BtReconectar.Location = New System.Drawing.Point(608, 25)
+        Me.BtReconectar.Name = "BtReconectar"
+        Me.BtReconectar.Size = New System.Drawing.Size(57, 50)
+        Me.BtReconectar.TabIndex = 45
+        Me.BtReconectar.UseVisualStyleBackColor = True
         '
         'LbNotificacionemail
         '
@@ -1136,10 +1029,126 @@ Partial Class InstaladorKubo
         Me.CBoxEmail.Size = New System.Drawing.Size(139, 22)
         Me.CBoxEmail.TabIndex = 49
         '
-        'TlpNotinpdf
+        'BtDocRequisitos
         '
-        Me.TlpNotinpdf.IsBalloon = True
-        Me.TlpNotinpdf.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.BtDocRequisitos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtDocRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.BtDocRequisitos.Image = CType(resources.GetObject("BtDocRequisitos.Image"), System.Drawing.Image)
+        Me.BtDocRequisitos.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
+        Me.BtDocRequisitos.Location = New System.Drawing.Point(16, 294)
+        Me.BtDocRequisitos.Name = "BtDocRequisitos"
+        Me.BtDocRequisitos.Size = New System.Drawing.Size(167, 35)
+        Me.BtDocRequisitos.TabIndex = 50
+        Me.BtDocRequisitos.Text = "Requisitos Notin"
+        Me.BtDocRequisitos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtDocRequisitos.UseVisualStyleBackColor = True
+        '
+        'TabPage1
+        '
+        Me.TabPage1.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage1.Controls.Add(Me.BtTraerdeF)
+        Me.TabPage1.Controls.Add(Me.BtCopiarhaciaF)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(2)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(2)
+        Me.TabPage1.Size = New System.Drawing.Size(170, 107)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "Paquetes"
+        '
+        'BtCopiarhaciaF
+        '
+        Me.BtCopiarhaciaF.BackColor = System.Drawing.Color.FloralWhite
+        Me.BtCopiarhaciaF.Enabled = False
+        Me.BtCopiarhaciaF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtCopiarhaciaF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtCopiarhaciaF.Location = New System.Drawing.Point(3, 8)
+        Me.BtCopiarhaciaF.Name = "BtCopiarhaciaF"
+        Me.BtCopiarhaciaF.Size = New System.Drawing.Size(160, 36)
+        Me.BtCopiarhaciaF.TabIndex = 0
+        Me.BtCopiarhaciaF.Text = "Copiar a Servidor"
+        Me.BtCopiarhaciaF.UseVisualStyleBackColor = False
+        '
+        'BtTraerdeF
+        '
+        Me.BtTraerdeF.BackColor = System.Drawing.SystemColors.Control
+        Me.BtTraerdeF.Enabled = False
+        Me.BtTraerdeF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtTraerdeF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtTraerdeF.Location = New System.Drawing.Point(3, 57)
+        Me.BtTraerdeF.Name = "BtTraerdeF"
+        Me.BtTraerdeF.Size = New System.Drawing.Size(160, 36)
+        Me.BtTraerdeF.TabIndex = 1
+        Me.BtTraerdeF.Text = "Traer de Servidor"
+        Me.BtTraerdeF.UseVisualStyleBackColor = False
+        '
+        'TabPage2
+        '
+        Me.TabPage2.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage2.Controls.Add(Me.BtRegistroInstalaciones)
+        Me.TabPage2.Controls.Add(Me.BtFicheroINI)
+        Me.TabPage2.Controls.Add(Me.BtLimpiar)
+        Me.TabPage2.ImeMode = System.Windows.Forms.ImeMode.Katakana
+        Me.TabPage2.Location = New System.Drawing.Point(4, 28)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(2)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(2)
+        Me.TabPage2.Size = New System.Drawing.Size(170, 107)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Registro"
+        '
+        'BtLimpiar
+        '
+        Me.BtLimpiar.BackColor = System.Drawing.Color.Gold
+        Me.BtLimpiar.Cursor = System.Windows.Forms.Cursors.Default
+        Me.BtLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtLimpiar.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtLimpiar.Location = New System.Drawing.Point(6, 74)
+        Me.BtLimpiar.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtLimpiar.Name = "BtLimpiar"
+        Me.BtLimpiar.Size = New System.Drawing.Size(129, 27)
+        Me.BtLimpiar.TabIndex = 43
+        Me.BtLimpiar.Text = "Limpiar Log"
+        Me.BtLimpiar.UseVisualStyleBackColor = False
+        Me.BtLimpiar.Visible = False
+        '
+        'BtFicheroINI
+        '
+        Me.BtFicheroINI.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtFicheroINI.Font = New System.Drawing.Font("Lucida Bright", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtFicheroINI.Location = New System.Drawing.Point(6, 40)
+        Me.BtFicheroINI.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtFicheroINI.Name = "BtFicheroINI"
+        Me.BtFicheroINI.Size = New System.Drawing.Size(108, 28)
+        Me.BtFicheroINI.TabIndex = 0
+        Me.BtFicheroINI.Text = "Fichero INI"
+        Me.BtFicheroINI.UseVisualStyleBackColor = True
+        '
+        'BtRegistroInstalaciones
+        '
+        Me.BtRegistroInstalaciones.BackColor = System.Drawing.SystemColors.Control
+        Me.BtRegistroInstalaciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtRegistroInstalaciones.Font = New System.Drawing.Font("Lucida Bright", 10.2!)
+        Me.BtRegistroInstalaciones.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtRegistroInstalaciones.Location = New System.Drawing.Point(6, 7)
+        Me.BtRegistroInstalaciones.Name = "BtRegistroInstalaciones"
+        Me.BtRegistroInstalaciones.Size = New System.Drawing.Size(129, 28)
+        Me.BtRegistroInstalaciones.TabIndex = 1
+        Me.BtRegistroInstalaciones.Text = "Visualizar Log"
+        Me.BtRegistroInstalaciones.UseVisualStyleBackColor = False
+        '
+        'TabGestion
+        '
+        Me.TabGestion.Appearance = System.Windows.Forms.TabAppearance.Buttons
+        Me.TabGestion.Controls.Add(Me.TabPage2)
+        Me.TabGestion.Controls.Add(Me.TabPage1)
+        Me.TabGestion.Font = New System.Drawing.Font("Lucida Bright", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TabGestion.Location = New System.Drawing.Point(617, 336)
+        Me.TabGestion.Margin = New System.Windows.Forms.Padding(2)
+        Me.TabGestion.Name = "TabGestion"
+        Me.TabGestion.SelectedIndex = 0
+        Me.TabGestion.Size = New System.Drawing.Size(178, 139)
+        Me.TabGestion.TabIndex = 40
         '
         'InstaladorKubo
         '
@@ -1150,7 +1159,6 @@ Partial Class InstaladorKubo
         Me.Controls.Add(Me.CBoxEmail)
         Me.Controls.Add(Me.BtExplorarRutas)
         Me.Controls.Add(Me.LbNotificacionemail)
-        Me.Controls.Add(Me.LnkRequisitos)
         Me.Controls.Add(Me.BtReconectar)
         Me.Controls.Add(Me.BtLogin)
         Me.Controls.Add(Me.PbInstalaciones)
@@ -1189,11 +1197,11 @@ Partial Class InstaladorKubo
         Me.TabSistema.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
-        Me.TabGestion.ResumeLayout(False)
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabGestion.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1251,31 +1259,21 @@ Partial Class InstaladorKubo
     Friend WithEvents TlpJava As ToolTip
     Friend WithEvents BtUac As Button
     Friend WithEvents TlpUac As ToolTip
-    Friend WithEvents BtTraerdeF As Button
-    Friend WithEvents BtCopiarhaciaF As Button
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents TlpPaquetesServidor As ToolTip
-    Friend WithEvents TabGestion As TabControl
-    Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabPage2 As TabPage
     Friend WithEvents TlpCopiarServidor As ToolTip
     Friend WithEvents TlpTraerServidor As ToolTip
     Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents BtFicheroINI As Button
     Friend WithEvents BtNotinWord2003 As Button
     Friend WithEvents PbInstalaciones As ProgressBar
-    Friend WithEvents BtRegistroInstalaciones As Button
     Friend WithEvents BtConfiguraWord2016 As Button
     Friend WithEvents TlpConfigWord2016 As ToolTip
-    Friend WithEvents BtLimpiar As Button
     Friend WithEvents BtKmsPico As Button
     Friend WithEvents BtLogin As Button
     Friend WithEvents TlpKmspico As ToolTip
-    Friend WithEvents BtReconectar As Button
     Friend WithEvents TlpReconectarF As ToolTip
     Friend WithEvents BtLimpiarPaquetes As Button
     Friend WithEvents TlpDirectivas As ToolTip
-    Friend WithEvents LnkRequisitos As LinkLabel
     Friend WithEvents LbPreparacionInicial As Label
     Friend WithEvents TlpExplorerDescargas As ToolTip
     Friend WithEvents TlpSistema As ToolTip
@@ -1285,16 +1283,27 @@ Partial Class InstaladorKubo
     Friend WithEvents TlpFramework As ToolTip
     Friend WithEvents LbMBDescargas As Label
     Friend WithEvents TlpTuemail As ToolTip
-    Friend WithEvents LbNotificacionemail As Label
-    Friend WithEvents BtExplorarRutas As Button
     Friend WithEvents TabAncertTerceros As TabControl
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents TabPage4 As TabPage
     Friend WithEvents CbFineReader As CheckBox
-    Friend WithEvents CBoxEmail As ComboBox
     Friend WithEvents TabSistema As TabControl
     Friend WithEvents TabPage5 As TabPage
     Friend WithEvents TabPage6 As TabPage
     Friend WithEvents BtNotinpdf As Button
     Friend WithEvents TlpNotinpdf As ToolTip
+    Friend WithEvents TlpRequisitosNotin As ToolTip
+    Friend WithEvents BtReconectar As Button
+    Friend WithEvents LbNotificacionemail As Label
+    Friend WithEvents BtExplorarRutas As Button
+    Friend WithEvents CBoxEmail As ComboBox
+    Friend WithEvents BtDocRequisitos As Button
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents BtTraerdeF As Button
+    Friend WithEvents BtCopiarhaciaF As Button
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents BtRegistroInstalaciones As Button
+    Friend WithEvents BtFicheroINI As Button
+    Friend WithEvents BtLimpiar As Button
+    Friend WithEvents TabGestion As TabControl
 End Class

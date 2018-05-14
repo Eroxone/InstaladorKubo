@@ -10,8 +10,6 @@ Imports System.Net.Mail
 
 Public Class InstaladorKubo
     'CONTROLES DESCARGAS VARIABLES STRING
-    'TODO LIMPIAR EL CODIGO. BORRAR LAS PRUEBAS Y LO QUE NO USO.
-    'Variables
     Private Const FILE_DOWNLOAD As String = "descargas.txt"
     Private Const REQUISITOS_DOWNLOAD As String = "requisitos.txt"
     Private Const TERCEROS_DOWNLOAD As String = "terceros.txt"
@@ -50,7 +48,7 @@ Public Class InstaladorKubo
             LbPreparacionInicial.Visible = True
         End If
 
-        'Guardo correo anterior de notificaciones
+        'Cargo correo anterior de notificaciones
         CBoxEmail.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
     End Sub
 
@@ -100,26 +98,8 @@ Public Class InstaladorKubo
         'TODO limpiar REG - BAT y lo que pueda ser delicado.
     End Sub
 
-    'Private Sub ComprobarVersion()
-    '    'Antes crear ruta si no existe y descargar el version ini de internet. controlar posible error de conexion.
-    '    Dim versioninternet = cIniArray.IniGet("C:\TEMP\InstaladorKubo\versioninternet", "CONTROL", "Version")
-
-    'End Sub
-
-    ' Funcion para logear el sistema. SIN USAR
-#Region "LOG"
-
-    'Using writer As New StreamWriter(FullName, True)
-    'writer.writeline("linea")
-    'End Using
-    'Private Sub Logger(ByVal textolog As String)
-    '    'Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
-    '    File.AppendAllText(ruta_log, DateTime.Now.Hour & ":" & DateTime.Now.Minute & "  " & textolog & vbCrLf)
-    'End Sub
-#End Region
 
 #Region "Cabecera Formulario"
-    'TODO si Windows no se encuentra en la Unidad C indicarlo
     Private Sub SistemaOperativo()
         Dim SistemaO = (My.Computer.Info.OSFullName)
         lbSistemaO.Text = SistemaO
@@ -129,8 +109,11 @@ Public Class InstaladorKubo
 
         If Directory.Exists("C:\WINDOWS\SYSWOW64") Then
             lb64bits.Text = ("Sistema Operativo de 64bits")
-        Else
+        ElseIf Directory.Exists("C:\WINDOWS\SYSTEM32") Then
             lb64bits.Text = ("Sistema Operativo de 32bits")
+        Else
+            MessageBox.Show("No se puede determinar la arquitectura de Windows. Revisa la instalación del SO y que la ruta raíz sea C:\", "Arquitectura indeterminada", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            lb64bits.Text = ("Arquitectura SO sin determinar")
         End If
 
         Dim equipousuario As String = (My.User.Name)
@@ -254,7 +237,7 @@ Public Class InstaladorKubo
     '    System.Diagnostics.Process.Start("http://soporte.notariado.org")
     'End Sub
 
-    Private Sub LnkRequisitos_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LnkRequisitos.LinkClicked
+    Private Sub LnkRequisitos_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
         'TODO añadir funcionalidad para url requisitos: https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing
     End Sub
 
@@ -1377,6 +1360,9 @@ Public Class InstaladorKubo
         TlpNotinpdf.ToolTipTitle = "Instalador NotinPDF"
         TlpNotinpdf.SetToolTip(BtNotinpdf, "Se descargará y lanzará el ejecutable NotinPDF.")
 
+        TlpRequisitosNotin.ToolTipTitle = "Hoja Requisitos Notin"
+        TlpRequisitosNotin.SetToolTip(BtDocRequisitos, "Muestra el documento con los Requisitos para instalar Notin.")
+
 
     End Sub
 #End Region
@@ -1618,7 +1604,6 @@ Public Class InstaladorKubo
             MessageBox.Show("Conecta antes la Unidad de Red F.", "Unidad no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
-        'TODO mejorar copia. filtrar un poco...
         obtenerrobocopy()
         Dim notinf = "F:\PRG.INS\NOTIN\InstaladorKubo\"
         Directory.CreateDirectory(notinf)
@@ -1628,7 +1613,7 @@ Public Class InstaladorKubo
         Dim mstmsp As String = "Setup.mst Setup2003.mst setup2016.MSP Setup2016SinWord.MSP"
 
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " " & exe & " /R:2 /W:5", AppWinStyle.NormalFocus, True)
-        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " " & rar & " /R:2 /W:5", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " " & rar & " /R:2 /W:5", AppWinStyle.Hide, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Registro\" & " " & notinf & "Registro\" & " *.*" & " /R:2 /W:5", AppWinStyle.Hide, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Requisitos\" & " " & notinf & "Requisitos\" & " *.*" & " /R:2 /W:5", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Software\" & " " & notinf & "Software\" & " *.*" & " /R:2 /W:5", AppWinStyle.NormalFocus, True)
@@ -2214,7 +2199,6 @@ Public Class InstaladorKubo
     End Sub
 
 
-    'TODO procedimiento para calcular tamaño descarga
 
     Private TamanoTotal As Integer = 0
     Private Sub CalcularTamanoDescarga(ByVal size As Integer, ByVal is_checked As Boolean)
@@ -2337,5 +2321,8 @@ Public Class InstaladorKubo
 
     End Sub
 
-
+    Private Sub BtDocRequisitos_Click(sender As Object, e As EventArgs) Handles BtDocRequisitos.Click
+        Process.Start("iexplore.exe", "https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing")
+        RegistroInstalacion("Hoja de Requisitos Notin abierta.")
+    End Sub
 End Class
