@@ -2305,7 +2305,6 @@ Public Class InstaladorKubo
             smtp.EnableSsl = True
             Try
                 smtp.Send(correo)
-                Tbtucorreo.BackColor = Color.Honeydew
                 RegistroInstalacion("Correo de notificación enviado a " & CBoxEmail.Text)
             Catch ex As Exception
                 RegistroInstalacion("ERROR Email: " & ex.Message)
