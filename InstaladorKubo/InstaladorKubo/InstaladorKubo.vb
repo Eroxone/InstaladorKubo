@@ -57,6 +57,8 @@ Public Class InstaladorKubo
         If e.Control And e.KeyCode = Keys.J Then
             BtLimpiar.Visible = True
             BtLogin.Visible = True
+            'TODO Quitar esto cuando la funcionalidad esté lista
+            BtISL.Enabled = True
         End If
     End Sub
 
