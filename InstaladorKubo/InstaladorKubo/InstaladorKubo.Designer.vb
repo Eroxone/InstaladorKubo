@@ -65,6 +65,7 @@ Partial Class InstaladorKubo
         Me.BtUac = New System.Windows.Forms.Button()
         Me.btDirectivas = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.BtISL = New System.Windows.Forms.Button()
         Me.BtNotinpdf = New System.Windows.Forms.Button()
         Me.BtConfiguraWord2016 = New System.Windows.Forms.Button()
         Me.btExcepJava = New System.Windows.Forms.Button()
@@ -122,7 +123,6 @@ Partial Class InstaladorKubo
         Me.BtFicheroINI = New System.Windows.Forms.Button()
         Me.BtLimpiar = New System.Windows.Forms.Button()
         Me.TabGestion = New System.Windows.Forms.TabControl()
-        Me.BtISL = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -650,6 +650,16 @@ Partial Class InstaladorKubo
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Opcional"
         '
+        'BtISL
+        '
+        Me.BtISL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtISL.Location = New System.Drawing.Point(8, 170)
+        Me.BtISL.Name = "BtISL"
+        Me.BtISL.Size = New System.Drawing.Size(167, 28)
+        Me.BtISL.TabIndex = 35
+        Me.BtISL.Text = "Configurar ISL"
+        Me.BtISL.UseVisualStyleBackColor = True
+        '
         'BtNotinpdf
         '
         Me.BtNotinpdf.FlatStyle = System.Windows.Forms.FlatStyle.Popup
@@ -1151,17 +1161,6 @@ Partial Class InstaladorKubo
         Me.TabGestion.SelectedIndex = 0
         Me.TabGestion.Size = New System.Drawing.Size(178, 139)
         Me.TabGestion.TabIndex = 40
-        '
-        'BtISL
-        '
-        Me.BtISL.Enabled = False
-        Me.BtISL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtISL.Location = New System.Drawing.Point(8, 170)
-        Me.BtISL.Name = "BtISL"
-        Me.BtISL.Size = New System.Drawing.Size(167, 28)
-        Me.BtISL.TabIndex = 35
-        Me.BtISL.Text = "Configurar ISL"
-        Me.BtISL.UseVisualStyleBackColor = True
         '
         'InstaladorKubo
         '
