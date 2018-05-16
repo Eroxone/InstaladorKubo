@@ -69,6 +69,7 @@ Partial Class InstaladorKubo
         Me.BtConfiguraWord2016 = New System.Windows.Forms.Button()
         Me.btExcepJava = New System.Windows.Forms.Button()
         Me.btJava = New System.Windows.Forms.Button()
+        Me.BtDocRequisitos = New System.Windows.Forms.Button()
         Me.lbRuta = New System.Windows.Forms.Label()
         Me.btDescargar = New System.Windows.Forms.Button()
         Me.tlpUnidadF = New System.Windows.Forms.ToolTip(Me.components)
@@ -113,15 +114,15 @@ Partial Class InstaladorKubo
         Me.LbNotificacionemail = New System.Windows.Forms.Label()
         Me.BtExplorarRutas = New System.Windows.Forms.Button()
         Me.CBoxEmail = New System.Windows.Forms.ComboBox()
-        Me.BtDocRequisitos = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.BtCopiarhaciaF = New System.Windows.Forms.Button()
         Me.BtTraerdeF = New System.Windows.Forms.Button()
+        Me.BtCopiarhaciaF = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.BtLimpiar = New System.Windows.Forms.Button()
-        Me.BtFicheroINI = New System.Windows.Forms.Button()
         Me.BtRegistroInstalaciones = New System.Windows.Forms.Button()
+        Me.BtFicheroINI = New System.Windows.Forms.Button()
+        Me.BtLimpiar = New System.Windows.Forms.Button()
         Me.TabGestion = New System.Windows.Forms.TabControl()
+        Me.BtISL = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -636,6 +637,7 @@ Partial Class InstaladorKubo
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage6.Controls.Add(Me.BtISL)
         Me.TabPage6.Controls.Add(Me.BtNotinpdf)
         Me.TabPage6.Controls.Add(Me.BtConfiguraWord2016)
         Me.TabPage6.Controls.Add(Me.btExcepJava)
@@ -694,6 +696,20 @@ Partial Class InstaladorKubo
         Me.btJava.TabIndex = 31
         Me.btJava.Text = "Instalar JAVA"
         Me.btJava.UseVisualStyleBackColor = True
+        '
+        'BtDocRequisitos
+        '
+        Me.BtDocRequisitos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtDocRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.BtDocRequisitos.Image = CType(resources.GetObject("BtDocRequisitos.Image"), System.Drawing.Image)
+        Me.BtDocRequisitos.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
+        Me.BtDocRequisitos.Location = New System.Drawing.Point(16, 294)
+        Me.BtDocRequisitos.Name = "BtDocRequisitos"
+        Me.BtDocRequisitos.Size = New System.Drawing.Size(167, 35)
+        Me.BtDocRequisitos.TabIndex = 50
+        Me.BtDocRequisitos.Text = "Requisitos Notin"
+        Me.BtDocRequisitos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtDocRequisitos.UseVisualStyleBackColor = True
         '
         'lbRuta
         '
@@ -1029,20 +1045,6 @@ Partial Class InstaladorKubo
         Me.CBoxEmail.Size = New System.Drawing.Size(139, 22)
         Me.CBoxEmail.TabIndex = 49
         '
-        'BtDocRequisitos
-        '
-        Me.BtDocRequisitos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtDocRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.BtDocRequisitos.Image = CType(resources.GetObject("BtDocRequisitos.Image"), System.Drawing.Image)
-        Me.BtDocRequisitos.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.BtDocRequisitos.Location = New System.Drawing.Point(16, 294)
-        Me.BtDocRequisitos.Name = "BtDocRequisitos"
-        Me.BtDocRequisitos.Size = New System.Drawing.Size(167, 35)
-        Me.BtDocRequisitos.TabIndex = 50
-        Me.BtDocRequisitos.Text = "Requisitos Notin"
-        Me.BtDocRequisitos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtDocRequisitos.UseVisualStyleBackColor = True
-        '
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.SystemColors.Control
@@ -1056,19 +1058,6 @@ Partial Class InstaladorKubo
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Paquetes"
         '
-        'BtCopiarhaciaF
-        '
-        Me.BtCopiarhaciaF.BackColor = System.Drawing.Color.FloralWhite
-        Me.BtCopiarhaciaF.Enabled = False
-        Me.BtCopiarhaciaF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtCopiarhaciaF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtCopiarhaciaF.Location = New System.Drawing.Point(3, 8)
-        Me.BtCopiarhaciaF.Name = "BtCopiarhaciaF"
-        Me.BtCopiarhaciaF.Size = New System.Drawing.Size(160, 36)
-        Me.BtCopiarhaciaF.TabIndex = 0
-        Me.BtCopiarhaciaF.Text = "Copiar a Servidor"
-        Me.BtCopiarhaciaF.UseVisualStyleBackColor = False
-        '
         'BtTraerdeF
         '
         Me.BtTraerdeF.BackColor = System.Drawing.SystemColors.Control
@@ -1081,6 +1070,19 @@ Partial Class InstaladorKubo
         Me.BtTraerdeF.TabIndex = 1
         Me.BtTraerdeF.Text = "Traer de Servidor"
         Me.BtTraerdeF.UseVisualStyleBackColor = False
+        '
+        'BtCopiarhaciaF
+        '
+        Me.BtCopiarhaciaF.BackColor = System.Drawing.Color.FloralWhite
+        Me.BtCopiarhaciaF.Enabled = False
+        Me.BtCopiarhaciaF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtCopiarhaciaF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtCopiarhaciaF.Location = New System.Drawing.Point(3, 8)
+        Me.BtCopiarhaciaF.Name = "BtCopiarhaciaF"
+        Me.BtCopiarhaciaF.Size = New System.Drawing.Size(160, 36)
+        Me.BtCopiarhaciaF.TabIndex = 0
+        Me.BtCopiarhaciaF.Text = "Copiar a Servidor"
+        Me.BtCopiarhaciaF.UseVisualStyleBackColor = False
         '
         'TabPage2
         '
@@ -1097,6 +1099,31 @@ Partial Class InstaladorKubo
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Registro"
         '
+        'BtRegistroInstalaciones
+        '
+        Me.BtRegistroInstalaciones.BackColor = System.Drawing.SystemColors.Control
+        Me.BtRegistroInstalaciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtRegistroInstalaciones.Font = New System.Drawing.Font("Lucida Bright", 10.2!)
+        Me.BtRegistroInstalaciones.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.BtRegistroInstalaciones.Location = New System.Drawing.Point(6, 7)
+        Me.BtRegistroInstalaciones.Name = "BtRegistroInstalaciones"
+        Me.BtRegistroInstalaciones.Size = New System.Drawing.Size(129, 28)
+        Me.BtRegistroInstalaciones.TabIndex = 1
+        Me.BtRegistroInstalaciones.Text = "Visualizar Log"
+        Me.BtRegistroInstalaciones.UseVisualStyleBackColor = False
+        '
+        'BtFicheroINI
+        '
+        Me.BtFicheroINI.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtFicheroINI.Font = New System.Drawing.Font("Lucida Bright", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtFicheroINI.Location = New System.Drawing.Point(6, 40)
+        Me.BtFicheroINI.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtFicheroINI.Name = "BtFicheroINI"
+        Me.BtFicheroINI.Size = New System.Drawing.Size(108, 28)
+        Me.BtFicheroINI.TabIndex = 0
+        Me.BtFicheroINI.Text = "Fichero INI"
+        Me.BtFicheroINI.UseVisualStyleBackColor = True
+        '
         'BtLimpiar
         '
         Me.BtLimpiar.BackColor = System.Drawing.Color.Gold
@@ -1112,31 +1139,6 @@ Partial Class InstaladorKubo
         Me.BtLimpiar.UseVisualStyleBackColor = False
         Me.BtLimpiar.Visible = False
         '
-        'BtFicheroINI
-        '
-        Me.BtFicheroINI.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtFicheroINI.Font = New System.Drawing.Font("Lucida Bright", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtFicheroINI.Location = New System.Drawing.Point(6, 40)
-        Me.BtFicheroINI.Margin = New System.Windows.Forms.Padding(2)
-        Me.BtFicheroINI.Name = "BtFicheroINI"
-        Me.BtFicheroINI.Size = New System.Drawing.Size(108, 28)
-        Me.BtFicheroINI.TabIndex = 0
-        Me.BtFicheroINI.Text = "Fichero INI"
-        Me.BtFicheroINI.UseVisualStyleBackColor = True
-        '
-        'BtRegistroInstalaciones
-        '
-        Me.BtRegistroInstalaciones.BackColor = System.Drawing.SystemColors.Control
-        Me.BtRegistroInstalaciones.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtRegistroInstalaciones.Font = New System.Drawing.Font("Lucida Bright", 10.2!)
-        Me.BtRegistroInstalaciones.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtRegistroInstalaciones.Location = New System.Drawing.Point(6, 7)
-        Me.BtRegistroInstalaciones.Name = "BtRegistroInstalaciones"
-        Me.BtRegistroInstalaciones.Size = New System.Drawing.Size(129, 28)
-        Me.BtRegistroInstalaciones.TabIndex = 1
-        Me.BtRegistroInstalaciones.Text = "Visualizar Log"
-        Me.BtRegistroInstalaciones.UseVisualStyleBackColor = False
-        '
         'TabGestion
         '
         Me.TabGestion.Appearance = System.Windows.Forms.TabAppearance.Buttons
@@ -1149,6 +1151,17 @@ Partial Class InstaladorKubo
         Me.TabGestion.SelectedIndex = 0
         Me.TabGestion.Size = New System.Drawing.Size(178, 139)
         Me.TabGestion.TabIndex = 40
+        '
+        'BtISL
+        '
+        Me.BtISL.Enabled = False
+        Me.BtISL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtISL.Location = New System.Drawing.Point(8, 170)
+        Me.BtISL.Name = "BtISL"
+        Me.BtISL.Size = New System.Drawing.Size(167, 28)
+        Me.BtISL.TabIndex = 35
+        Me.BtISL.Text = "Configurar ISL"
+        Me.BtISL.UseVisualStyleBackColor = True
         '
         'InstaladorKubo
         '
@@ -1306,4 +1319,5 @@ Partial Class InstaladorKubo
     Friend WithEvents BtFicheroINI As Button
     Friend WithEvents BtLimpiar As Button
     Friend WithEvents TabGestion As TabControl
+    Friend WithEvents BtISL As Button
 End Class

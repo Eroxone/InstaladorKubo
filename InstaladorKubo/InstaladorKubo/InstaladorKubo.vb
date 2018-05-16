@@ -2325,4 +2325,12 @@ Public Class InstaladorKubo
         Process.Start("iexplore.exe", "https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing")
         RegistroInstalacion("Hoja de Requisitos Notin abierta.")
     End Sub
+
+    Private Sub BtISL_Click(sender As Object, e As EventArgs) Handles BtISL.Click
+        'TODO ISL
+        ' http://isl.notin.net/start/ISLAlwaysOn?cmdline=grant_silent+%22zeJw9jzFOQzEMQGVVdIKFg1ROHDvxEWAoC2MXx3GqX1W%2fQ%2fuvwZlBHRjfm96bAJ%2bbrZfbHs4%2bd3D8%2bv44vsB5GTsoGM4Da%2fNZZktKgqQ0Mo46sNUYo1HPtUexjoVcWy3J1Ycl9s7zT4haG%2bSzh5lOTETSlDOHNatds0dEkxkUyjVyZlcZSllrJnSLauxSHBPKD9wBlvv1sN4ey3pY4%2fEGG8Dp9M%2bny%2fPkHbZnPXFOIlxJ%2bBX28AtDiT%2fb%22+%2FSILENT+%2FVERYSILENT+password+%22b30330104%22+description+%22carmonas+-+palomo%22
+
+
+
+    End Sub
 End Class
