@@ -233,6 +233,10 @@ Public Class InstaladorKubo
         ElseIf notinpdf = 0 Then
             BtNotinpdf.BackColor = Color.LightSalmon
         End If
+        Dim isl = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "ISL", "2")
+        If isl = 1 Then
+            BtISL.BackColor = Color.PaleGreen
+        End If
     End Sub
 
     'ACCEDER A URL NOTARIADO
@@ -2349,18 +2353,19 @@ Public Class InstaladorKubo
             Exit Sub
         End If
 
-        obtenerwget()
+        'obtenerwget()
         'TODO Poner en verde, al ini.. etc Terminar vamos..
         'Que no se puedan indicar en blanco... Lo controlo en el otro formulario con un cerrar.
 
         'Shell("cmd /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 -c ")
 
         Process.Start("iexplore.exe", "-private " & "http://isl.notin.net/users/start/ISLAlwaysOn?cmdline=grant_silent+%22zeJw9jjFuAzEMBEEYcZUU%2bYhBiaJEPiHNpUnpRiKp4ADjUtj%2bRt6cMwK4m91mZgIsP7d1e4FvmwdYPr8%2blp1XP0DBMHZsYrNMSUoVSckzenOUFu5CI7cRpQ8sZCqtJFPzntgGz%2f2o2sXJ5ojedWIiqqKcObr0NjRbREidQaHcImc2ra6UtWVC69E6Wy2GCesvXAHW6%2bW0PXJPW9ze4A5wPj%2f3P73D%2fRGPievuyqyFXuEIf6iePyA%3d%22+%2fSILENT+%2fVERYSILENT+password+%22b30330104%22+description+%22" & islgrupo & "+-+" & islnombre & "%22")
-
+        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "ISL", "1")
+        BtISL.BackColor = Color.PaleGreen
         'My.Computer.Network.DownloadFile("http://isl.notin.net/users/start/ISLAlwaysOn?cmdline=grant_silent+%22zeJw9jzFOQzEMQGVVdIKFg1ROHDvxEWAoC2MXx3GqX1W%2fQ%2fuvwZlBHRjfm96bAJ%2bbrZfbHs4%2bd3D8%2bv44vsB5GTsoGM4Da%2fNZZktKgqQ0Mo46sNUYo1HPtUexjoVcWy3J1Ycl9s7zT4haG%2bSzh5lOTETSlDOHNatds0dEkxkUyjVyZlcZSllrJnSLauxSHBPKD9wBlvv1sN4ey3pY4%2fEGG8Dp9M%2bny%2fPkHbZnPXFOIlxJ%2bBX28AtDiT%2fb%22+%2fSILENT+%2fVERYSILENT+password+%22b30330104%22+description+%22carmonas+-+palomo%22", RutaDescargas & "ISLAlwaysON.exe", Nothing, Nothing, True, 10000, True)
 
 
         'ConfigurarISL("pepe", "antonio")
-        RegistroInstalacion("ISLAlwaysON: Configurado Servicio ISL con las credenciales: " & islgrupo & " - " & islnombre)
+        RegistroInstalacion("ISLAlwaysON: Configurado Servicio ISL con las credenciales: " & islgrupo & " - " & islnombre & ".")
     End Sub
 End Class
