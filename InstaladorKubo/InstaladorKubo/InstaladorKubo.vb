@@ -2340,9 +2340,18 @@ Public Class InstaladorKubo
         Dim islnombre As String = FrmConfigurarISL.TbISLNombre.Text
         Dim islgrupo As String = FrmConfigurarISL.TbISLGrupo.Text
 
+        If islgrupo = "" Then
+            RegistroInstalacion("ISL: No se estableció ningún nombre de Grupo. Se canceló el proceso.")
+            Exit Sub
+
+        ElseIf islnombre = "" Then
+            RegistroInstalacion("ISL: No se estableció ningún nombre de Usuario. Se canceló el proceso.")
+            Exit Sub
+        End If
+
         obtenerwget()
         'TODO Poner en verde, al ini.. etc Terminar vamos..
-        'Que no se puedan indicar en blanco...
+        'Que no se puedan indicar en blanco... Lo controlo en el otro formulario con un cerrar.
 
         'Shell("cmd /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 -c ")
 
@@ -2352,6 +2361,6 @@ Public Class InstaladorKubo
 
 
         'ConfigurarISL("pepe", "antonio")
-
+        RegistroInstalacion("ISLAlwaysON: Configurado Servicio ISL con las credenciales: " & islgrupo & " - " & islnombre)
     End Sub
 End Class

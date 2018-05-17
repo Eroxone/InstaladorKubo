@@ -2,30 +2,23 @@
 
 Imports System.Xml
 
-
+'TODO leer XML nemo - Intro para confirmar - No se admita en blanco
 Public Class FrmConfigurarISL
 
-    Private Sub FrmConfigurarISL_Load(sender As Object, e As EventArgs) Handles Me.Load
-
+    Private Sub BtConfirmarISL_Click(sender As Object, e As EventArgs) Handles BtConfirmarISL.Click
+        If TbISLGrupo.Text = "" Then
+            MessageBox.Show("No se admiten campos vacíos", "Información incompleta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+        ElseIf TbISLNombre.Text = "" Then
+            MessageBox.Show("No se admiten campos vacíos", "Información incompleta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+        Else
+            InstaladorKubo.Show()
+            Me.Close()
+        End If
     End Sub
 
-    'TODO leer xml de Nemo
-    'TODO que con intro puedas saltar de una a otra
-    'Private Sub LbGrupoISL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles LbGrupoISL.KeyPress
-    '    If e.KeyChar = ChrW(Keys.Enter) Then
-    '        e.Handled = True
-    '        SendKeys.Send("{TAB}")
-    '    End If
-    'End Sub
-
-    'Private Sub LbNombreISL_KeyPress(sender As Object, e As KeyPressEventArgs) Handles LbNombreISL.KeyPress
-    '    If e.KeyChar = ChrW(Keys.Enter) Then
-    '        e.Handled = True
-    '        SendKeys.Send("{TAB}")
-    '    End If
-    'End Sub
-
-    Private Sub BtConfirmarISL_Click(sender As Object, e As EventArgs) Handles BtConfirmarISL.Click
+    Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
+        TbISLGrupo.Text = ""
+        TbISLNombre.Text = ""
         InstaladorKubo.Show()
         Me.Close()
     End Sub
