@@ -814,7 +814,7 @@ Public Class InstaladorKubo
     End Sub
 
     'Control de registro de instalación
-    Private Sub RegistroInstalacion(ByVal mensajelog As String)
+    Shared Sub RegistroInstalacion(ByVal mensajelog As String)
         File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", DateTime.Now.Hour & ":" & DateTime.Now.Minute & " - " & mensajelog & vbCrLf)
     End Sub
 
@@ -2336,36 +2336,5 @@ Public Class InstaladorKubo
     Private Sub BtISL_Click(sender As Object, e As EventArgs) Handles BtISL.Click
         'MessageBox.Show("Funcionalidad en pruebas. Pendiente de revisión por Sánchez", "Instalar ISL", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         FrmConfigurarISL.ShowDialog()
-
-        ' http://isl.notin.net/users/start/ISLAlwaysOn?cmdline=grant_silent+%22zeJw9jjFuAzEMBEEYcZUU%2bYhBiaJEPiHNpUnpRiKp4ADjUtj%2bRt6cMwK4m91mZgIsP7d1e4FvmwdYPr8%2blp1XP0DBMHZsYrNMSUoVSckzenOUFu5CI7cRpQ8sZCqtJFPzntgGz%2f2o2sXJ5ojedWIiqqKcObr0NjRbREidQaHcImc2ra6UtWVC69E6Wy2GCesvXAHW6%2bW0PXJPW9ze4A5wPj%2f3P73D%2fRGPievuyqyFXuEIf6iePyA%3d%22+%2fSILENT+%2fVERYSILENT+password+%22b30330104%22+description+%22pruebas+-+palomo%22
-
-
-        'TODO SANDRAAAAAAAAAAA esto seguro que es cutre y te vas a reir.. como sería bien hecho??
-        Dim islnombre As String = FrmConfigurarISL.TbISLNombre.Text
-        Dim islgrupo As String = FrmConfigurarISL.TbISLGrupo.Text
-
-        If islgrupo = "" Then
-            RegistroInstalacion("ISL: No se estableció ningún nombre de Grupo. Se canceló el proceso.")
-            Exit Sub
-
-        ElseIf islnombre = "" Then
-            RegistroInstalacion("ISL: No se estableció ningún nombre de Usuario. Se canceló el proceso.")
-            Exit Sub
-        End If
-
-        'obtenerwget()
-        'TODO Poner en verde, al ini.. etc Terminar vamos..
-        'Que no se puedan indicar en blanco... Lo controlo en el otro formulario con un cerrar.
-
-        'Shell("cmd /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 -c ")
-
-        Process.Start("iexplore.exe", "-private " & "http://isl.notin.net/users/start/ISLAlwaysOn?cmdline=grant_silent+%22zeJw9jjFuAzEMBEEYcZUU%2bYhBiaJEPiHNpUnpRiKp4ADjUtj%2bRt6cMwK4m91mZgIsP7d1e4FvmwdYPr8%2blp1XP0DBMHZsYrNMSUoVSckzenOUFu5CI7cRpQ8sZCqtJFPzntgGz%2f2o2sXJ5ojedWIiqqKcObr0NjRbREidQaHcImc2ra6UtWVC69E6Wy2GCesvXAHW6%2bW0PXJPW9ze4A5wPj%2f3P73D%2fRGPievuyqyFXuEIf6iePyA%3d%22+%2fSILENT+%2fVERYSILENT+password+%22b30330104%22+description+%22" & islgrupo & "+-+" & islnombre & "%22")
-        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "ISL", "1")
-        BtISL.BackColor = Color.PaleGreen
-        'My.Computer.Network.DownloadFile("http://isl.notin.net/users/start/ISLAlwaysOn?cmdline=grant_silent+%22zeJw9jzFOQzEMQGVVdIKFg1ROHDvxEWAoC2MXx3GqX1W%2fQ%2fuvwZlBHRjfm96bAJ%2bbrZfbHs4%2bd3D8%2bv44vsB5GTsoGM4Da%2fNZZktKgqQ0Mo46sNUYo1HPtUexjoVcWy3J1Ycl9s7zT4haG%2bSzh5lOTETSlDOHNatds0dEkxkUyjVyZlcZSllrJnSLauxSHBPKD9wBlvv1sN4ey3pY4%2fEGG8Dp9M%2bny%2fPkHbZnPXFOIlxJ%2bBX28AtDiT%2fb%22+%2fSILENT+%2fVERYSILENT+password+%22b30330104%22+description+%22carmonas+-+palomo%22", RutaDescargas & "ISLAlwaysON.exe", Nothing, Nothing, True, 10000, True)
-
-
-        'ConfigurarISL("pepe", "antonio")
-        RegistroInstalacion("ISLAlwaysON: Configurado Servicio ISL con las credenciales: " & islgrupo & " - " & islnombre & ".")
     End Sub
 End Class

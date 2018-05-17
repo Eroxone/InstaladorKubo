@@ -33,7 +33,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>150</ApplicationRevision>
+    <ApplicationRevision>151</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -134,6 +134,12 @@
     <Compile Include="ConfigurarISL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmNavegador.Designer.vb">
+      <DependentUpon>FrmNavegador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNavegador.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Password.Designer.vb">
       <DependentUpon>Password.vb</DependentUpon>
     </Compile>
@@ -167,6 +173,9 @@
   <ItemGroup>
     <EmbeddedResource Include="ConfigurarISL.resx">
       <DependentUpon>ConfigurarISL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNavegador.resx">
+      <DependentUpon>FrmNavegador.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InstaladorKubo.resx">
       <DependentUpon>InstaladorKubo.vb</DependentUpon>
