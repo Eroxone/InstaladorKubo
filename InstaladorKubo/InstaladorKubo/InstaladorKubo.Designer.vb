@@ -652,7 +652,6 @@ Partial Class InstaladorKubo
         '
         'BtISL
         '
-        Me.BtISL.Enabled = False
         Me.BtISL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtISL.Location = New System.Drawing.Point(8, 170)
         Me.BtISL.Name = "BtISL"

@@ -160,9 +160,11 @@ Public Class LeerFicherosINI
                 Optional ByVal backSlash As Boolean = False
                 ) As String
             ' System.Reflection.Assembly.GetExecutingAssembly...
+#Disable Warning BC42025 ' Acceso del miembro compartido, el miembro de constante, el miembro de enumeración o el tipo anidado a través de una instancia
             Dim s As String =
                 IO.Path.GetDirectoryName(
                 System.Reflection.Assembly.GetExecutingAssembly.GetCallingAssembly.Location)
+#Enable Warning BC42025 ' Acceso del miembro compartido, el miembro de constante, el miembro de enumeración o el tipo anidado a través de una instancia
             ' si hay que añadirle el backslash
             If backSlash Then
                 s &= "\"

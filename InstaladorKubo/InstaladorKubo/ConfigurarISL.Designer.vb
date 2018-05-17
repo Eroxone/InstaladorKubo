@@ -24,71 +24,80 @@ Partial Class FrmConfigurarISL
     Private Sub InitializeComponent()
         Me.TbISLNombre = New System.Windows.Forms.TextBox()
         Me.TbISLGrupo = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.LbNombreISL = New System.Windows.Forms.Label()
+        Me.LbGrupoISL = New System.Windows.Forms.Label()
+        Me.BtConfirmarISL = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'TbISLNombre
         '
-        Me.TbISLNombre.Location = New System.Drawing.Point(167, 78)
+        Me.TbISLNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TbISLNombre.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TbISLNombre.Location = New System.Drawing.Point(132, 78)
         Me.TbISLNombre.Name = "TbISLNombre"
-        Me.TbISLNombre.Size = New System.Drawing.Size(187, 20)
+        Me.TbISLNombre.Size = New System.Drawing.Size(187, 30)
         Me.TbISLNombre.TabIndex = 1
         '
         'TbISLGrupo
         '
-        Me.TbISLGrupo.Location = New System.Drawing.Point(167, 29)
+        Me.TbISLGrupo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TbISLGrupo.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TbISLGrupo.Location = New System.Drawing.Point(132, 39)
         Me.TbISLGrupo.Name = "TbISLGrupo"
-        Me.TbISLGrupo.Size = New System.Drawing.Size(187, 20)
+        Me.TbISLGrupo.Size = New System.Drawing.Size(187, 30)
         Me.TbISLGrupo.TabIndex = 0
         '
-        'Label1
+        'LbNombreISL
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(28, 78)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(44, 13)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Nombre"
+        Me.LbNombreISL.AutoSize = True
+        Me.LbNombreISL.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbNombreISL.Location = New System.Drawing.Point(28, 78)
+        Me.LbNombreISL.Name = "LbNombreISL"
+        Me.LbNombreISL.Size = New System.Drawing.Size(87, 22)
+        Me.LbNombreISL.TabIndex = 2
+        Me.LbNombreISL.Text = "Nombre"
         '
-        'Label2
+        'LbGrupoISL
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(31, 35)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(36, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Grupo"
+        Me.LbGrupoISL.AutoSize = True
+        Me.LbGrupoISL.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbGrupoISL.Location = New System.Drawing.Point(31, 35)
+        Me.LbGrupoISL.Name = "LbGrupoISL"
+        Me.LbGrupoISL.Size = New System.Drawing.Size(71, 22)
+        Me.LbGrupoISL.TabIndex = 3
+        Me.LbGrupoISL.Text = "Grupo"
         '
-        'Button1
+        'BtConfirmarISL
         '
-        Me.Button1.Location = New System.Drawing.Point(167, 136)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(152, 59)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.BtConfirmarISL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtConfirmarISL.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.BtConfirmarISL.Location = New System.Drawing.Point(132, 140)
+        Me.BtConfirmarISL.Name = "BtConfirmarISL"
+        Me.BtConfirmarISL.Size = New System.Drawing.Size(141, 53)
+        Me.BtConfirmarISL.TabIndex = 3
+        Me.BtConfirmarISL.Text = "Confirmar"
+        Me.BtConfirmarISL.UseVisualStyleBackColor = True
         '
         'FrmConfigurarISL
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(505, 277)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.ClientSize = New System.Drawing.Size(396, 223)
+        Me.Controls.Add(Me.BtConfirmarISL)
+        Me.Controls.Add(Me.LbGrupoISL)
+        Me.Controls.Add(Me.LbNombreISL)
         Me.Controls.Add(Me.TbISLGrupo)
         Me.Controls.Add(Me.TbISLNombre)
+        Me.KeyPreview = True
         Me.Name = "FrmConfigurarISL"
         Me.Text = "ConfigurarISL"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents LbNombreISL As Label
+    Friend WithEvents LbGrupoISL As Label
     Public WithEvents TbISLNombre As TextBox
     Public WithEvents TbISLGrupo As TextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents BtConfirmarISL As Button
 End Class
