@@ -50,6 +50,7 @@ Public Class FrmConfigurarISL
                 End While
             End If
             Return ultimoprofile
+            InstaladorKubo.RegistroInstalacion("ISL: leído nodo username con valor " & ultimoprofile)
         Else
             InstaladorKubo.RegistroInstalacion("ADVERTENCIA ISL: No se ha encontrado el XML de jNemo en " & jnemoxml)
             'Obtener nombre del equipo
@@ -57,6 +58,7 @@ Public Class FrmConfigurarISL
             Dim equipo As Integer = equipousuario.LastIndexOf("\")
             Dim usuario = equipousuario.Remove(0, equipo + 1)
             Return usuario
+            InstaladorKubo.RegistroInstalacion("ISL: Se procede a leer el nombre de Usuario del equipo. Se obtiene " & usuario)
         End If
     End Function
 
