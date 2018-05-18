@@ -24,7 +24,7 @@ Public Class FrmNavegador
 
         RegistroInstalacion("ISLAlwaysON: Configurado Servicio ISL con las credenciales: " & islgrupo & " - " & islnombre & ".")
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "ISL", "1")
-        'TODO ver la forma de cerrar este formulario
+        InstaladorKubo.BtISL.BackColor = Color.PaleGreen        'TODO ver la forma de cerrar este formulario
 
     End Sub
 

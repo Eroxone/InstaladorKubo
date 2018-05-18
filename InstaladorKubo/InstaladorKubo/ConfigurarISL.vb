@@ -52,11 +52,17 @@ Public Class FrmConfigurarISL
             Return ultimoprofile
         Else
             InstaladorKubo.RegistroInstalacion("ADVERTENCIA ISL: No se ha encontrado el XML de jNemo en " & jnemoxml)
+            'Obtener nombre del equipo
+            Dim equipousuario As String = (My.User.Name)
+            Dim equipo As Integer = equipousuario.LastIndexOf("\")
+            Dim usuario = equipousuario.Remove(0, equipo + 1)
+            Return usuario
         End If
     End Function
 
     Private Sub FrmConfigurarISL_Load(sender As Object, e As EventArgs) Handles Me.Load
         ' LeerXML()
+        TbISLNombre.Text = LeerXML()
 
         Try
             Dim profile As String = LeerXML()
