@@ -17,7 +17,7 @@ Public Class InstaladorKubo
     Private Const REGISTRO_DOWNLOAD As String = "registro.txt"
     Private Const PuestoNotin As String = "ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/"
     Private RutaDescargas As String = GetPathTemp() 'PATH_TEMP
-    Private Const instaladorkuboini = "C:\TEMP\InstaladorKubo\InstaladorKubo.ini"
+    Public Const instaladorkuboini = "C:\TEMP\InstaladorKubo\InstaladorKubo.ini"
 
 
     Private Sub frmInstaladorNotin_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -814,7 +814,7 @@ Public Class InstaladorKubo
     End Sub
 
     'Control de registro de instalación
-    Shared Sub RegistroInstalacion(ByVal mensajelog As String)
+    Public Shared Sub RegistroInstalacion(ByVal mensajelog As String)
         File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", DateTime.Now.Hour & ":" & DateTime.Now.Minute & " - " & mensajelog & vbCrLf)
     End Sub
 

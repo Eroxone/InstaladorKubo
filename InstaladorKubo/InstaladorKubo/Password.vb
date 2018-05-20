@@ -1,10 +1,12 @@
-﻿Imports InstaladorKubo.LeerFicherosINI
+﻿Imports ClassLog
+Imports InstaladorKubo.LeerFicherosINI
+
+
 
 Public Class FormPassword
 
-
     Private Sub FormPassword_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim entrada = cIniArray.IniGet("C:\TEMP\InstaladorKubo\instaladorkubo.ini", "LOGIN", "ENTRADA", 2)
+        Dim entrada = cIniArray.IniGet(InstaladorKubo.instaladorkuboini, "LOGIN", "ENTRADA", 2)
         If entrada = 1 Then
             InstaladorKubo.Show()
             Me.Close()
