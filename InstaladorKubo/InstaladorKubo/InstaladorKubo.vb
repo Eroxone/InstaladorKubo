@@ -2153,7 +2153,8 @@ Public Class InstaladorKubo
         obtenerunrar()
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "NotinPdf.rar " & RutaDescargas & "NotinPDF\", AppWinStyle.NormalFocus, True)
         Try
-            Process.Start(RutaDescargas & "NotinPDF\notinpdf.exe")
+            RunAsAdmin(RutaDescargas & "NotinPDF\notinpdf.exe")
+            '            Process.Start(RutaDescargas & "NotinPDF\notinpdf.exe")
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "NOTINPDF", "1")
             BtNotinpdf.BackColor = Color.PaleGreen
             RegistroInstalacion("Ejecutado instalador NotinPDF.")
