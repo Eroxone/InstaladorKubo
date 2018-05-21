@@ -443,6 +443,15 @@ Public Class InstaladorKubo
             End If
         End If
 
+        If System.IO.File.Exists(RutaDescargas & "PaquetesFT.rar") Then
+            Dim paquetesft As New FileInfo(RutaDescargas & "PaquetesFT.rar")
+            Dim lengthpaquetesft As Long = paquetesft.Length
+            If paquetesft.Length = "2044887" Then
+                CbPaquetesFT.ForeColor = Color.DarkGreen
+            ElseIf paquetesft.Length < "2044887" Then
+                CbPaquetesFT.ForeColor = Color.Red
+            End If
+        End If
 
     End Sub
 #End Region
@@ -509,7 +518,7 @@ Public Class InstaladorKubo
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
 
         'Si no chequeas nada salimos
-        If (cbConfiguraNotin.Checked OrElse cbConfiguraWord2016.Checked OrElse cbNemo.Checked OrElse cbOffice2003.Checked OrElse cbOffice2016.Checked OrElse cbOffice2016odt.Checked OrElse cbPasarelaSigno.Checked OrElse cbPuestoNotin.Checked OrElse cbRequisitos.Checked OrElse cbSferen.Checked OrElse cbTerceros.Checked OrElse CbFineReader.Checked) = False Then
+        If (cbConfiguraNotin.Checked OrElse cbConfiguraWord2016.Checked OrElse cbNemo.Checked OrElse cbOffice2003.Checked OrElse cbOffice2016.Checked OrElse cbOffice2016odt.Checked OrElse cbPasarelaSigno.Checked OrElse cbPuestoNotin.Checked OrElse cbRequisitos.Checked OrElse cbSferen.Checked OrElse cbTerceros.Checked OrElse CbFineReader.Checked OrElse CbPaquetesFT.Checked) = False Then
             MessageBox.Show("NINGUNA DESCARGA SELECCIONADA.", "Gestión Descargas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Exit Sub
         End If
@@ -596,6 +605,12 @@ Public Class InstaladorKubo
             texto = texto & PuestoNotin & "ScanImg_Beta_FT.exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "PUESTONOTIN", "1")
         End If
+
+        If CbPaquetesFT.Checked Then
+            texto = texto & PuestoNotin & "PaquetesFT.rar" & vbCrLf
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "PAQUETESFT", "1")
+        End If
+
 
         If cbRequisitos.Checked Then
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "KryptonSuite300.msi" & vbCrLf
@@ -719,6 +734,7 @@ Public Class InstaladorKubo
         cbConfiguraNotin.Checked = False
         cbConfiguraWord2016.Checked = False
         CbFineReader.Checked = False
+        CbPaquetesFT.Checked = False
         lbProcesandoDescargas.Visible = False
 
         EnvioMail()
@@ -754,6 +770,7 @@ Public Class InstaladorKubo
             cbSferen.Checked = True
             cbPasarelaSigno.Checked = True
             cbTerceros.Checked = True
+            CbPaquetesFT.Checked = True
             btTodo.Text = "Desmarcar"
             'sumar uno a la variable
             MarcarTodos = 1
@@ -768,6 +785,7 @@ Public Class InstaladorKubo
             cbPasarelaSigno.Checked = False
             cbTerceros.Checked = False
             CbFineReader.Checked = False
+            CbPaquetesFT.Checked = False
             btTodo.Text = "Marcar todos"
             MarcarTodos = 0
         End If
@@ -1251,6 +1269,41 @@ Public Class InstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("Paquetes FT. No se pudieron instalar: " & ex.Message)
         End Try
+
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PaquetesFT.rar " & RutaDescargas, AppWinStyle.NormalFocus, True)
+
+        Try
+            Process.Start(RutaDescargas & "PaquetesFT\BarCodex.exe")
+            Process.Start(RutaDescargas & "PaquetesFT\catastrowsclient-setup.exe")
+            Process.Start(RutaDescargas & "PaquetesFT\NotinScrap-setup.exe")
+            RegistroInstalacion("Instalados Paquetes esenciales de FT.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR PaquetesFT: " & ex.Message)
+        End Try
+
+        'Mailer-Setup
+        Try
+            Dim mailerxcopy As String = "xcopy /F /Y /C "
+            Dim mailerorigen As String = RutaDescargas & "PaquetesFT\MailerCOM.dll "
+            If Directory.Exists("C:\Windows\SysWOW64") Then
+                Dim mailerdestino As String = " ""C:\Windows\SysWOW64\"" "
+                File.WriteAllText(RutaDescargas & "PaquetesFT\mailersetup.bat", mailerxcopy & mailerorigen & mailerdestino)
+                RegistroInstalacion("Mailer-Setup: copiada Referencia en Sistema de 64bits.")
+            ElseIf Directory.Exists("C:\Windows\System32") Then
+                Dim mailerdestino As String = " ""C:\Windows\System32\"" "
+                RegistroInstalacion("Mailer-Setup: copiada Referencia en Sistema de 32bits.")
+                File.WriteAllText(RutaDescargas & "PaquetesFT\mailersetup.bat", mailerxcopy & mailerorigen & mailerdestino)
+            Else
+                RegistroInstalacion("ERROR Paquete Mailer-Setup: No he podido determinar Sistema 32/64bits.")
+            End If
+
+            RunAsAdmin(RutaDescargas & "PaquetesFT\mailersetup.bat")
+
+        Catch ex As Exception
+
+        End Try
+
+
         AccesosDirectosEscritorio()
     End Sub
 
@@ -1370,6 +1423,8 @@ Public Class InstaladorKubo
         TlpRequisitosNotin.ToolTipTitle = "Hoja Requisitos Notin"
         TlpRequisitosNotin.SetToolTip(BtDocRequisitos, "Muestra el documento con los Requisitos para instalar Notin.")
 
+        TlpPaquetesFT.ToolTipTitle = "Paquetes FT esenciales"
+        TlpPaquetesFT.SetToolTip(CbPaquetesFT, "Descarga e Instala los Paquetes FT esenciales por si FT no fuera capaz de realizar dicha acción.")
 
     End Sub
 #End Region
