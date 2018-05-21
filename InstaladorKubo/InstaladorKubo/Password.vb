@@ -1,5 +1,4 @@
-﻿Imports ClassLog
-Imports InstaladorKubo.LeerFicherosINI
+﻿Imports InstaladorKubo.LeerFicherosINI
 
 
 
