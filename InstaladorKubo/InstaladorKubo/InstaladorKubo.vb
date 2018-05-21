@@ -1270,6 +1270,7 @@ Public Class InstaladorKubo
             RegistroInstalacion("Paquetes FT. No se pudieron instalar: " & ex.Message)
         End Try
 
+        'TODO controlar que exista o no hacer nada en caso contrario
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PaquetesFT.rar " & RutaDescargas, AppWinStyle.NormalFocus, True)
 
         Try
@@ -1424,7 +1425,8 @@ Public Class InstaladorKubo
         TlpRequisitosNotin.SetToolTip(BtDocRequisitos, "Muestra el documento con los Requisitos para instalar Notin.")
 
         TlpPaquetesFT.ToolTipTitle = "Paquetes FT esenciales"
-        TlpPaquetesFT.SetToolTip(CbPaquetesFT, "Descarga e Instala los Paquetes FT esenciales por si FT no fuera capaz de realizar dicha acción.")
+        TlpPaquetesFT.SetToolTip(CbPaquetesFT, "Descarga e Instala los Paquetes FT esenciales para el funcionamiento de Notin.")
+        TlpPaquetesFT.ToolTipIcon = ToolTipIcon.Info
 
     End Sub
 #End Region
