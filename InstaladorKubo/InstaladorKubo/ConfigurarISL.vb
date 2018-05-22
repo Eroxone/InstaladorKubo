@@ -2,7 +2,6 @@
 Imports System.Xml
 Imports System.Environment
 
-'TODO leer XML nemo - Intro para confirmar - No se admita en blanco
 Public Class FrmConfigurarISL
 
     Private Sub BtConfirmarISL_Click(sender As Object, e As EventArgs) Handles BtConfirmarISL.Click
@@ -24,6 +23,27 @@ Public Class FrmConfigurarISL
         Me.Close()
     End Sub
 
+    Private Sub FrmConfigurarISL_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ' LeerXML()
+        'TbISLNombre.Text = LeerXML()
+
+        Try
+            Dim profile As String = LeerXML()
+            Dim longprofile As Integer = profile.Length
+            Dim longusuario As Integer = profile.LastIndexOf(".")
+            Dim usuario = profile.Remove(longusuario, longprofile - longusuario)
+            Dim grupo = profile.Remove(0, longusuario + 1)
+            TbISLGrupo.Text = grupo
+            TbISLNombre.Text = usuario
+            InstaladorKubo.RegistroInstalacion("ISL: Obtenido Grupo y Nombre del XML " & grupo & " - " & usuario & ".")
+        Catch ex As Exception
+            TbISLNombre.Text = LeerXML().ToString
+            TbISLGrupo.Text = "UNIDATA"
+            InstaladorKubo.RegistroInstalacion("ISL: Leído nombre de Usuario del Equipo. No se pudo obtener del XML.")
+        End Try
+
+    End Sub
+
     'TODO QUE SANDRA ME EXPLIQUE COMO HACER ESTO SIN FUNCION CON UN SUB Y UN BYVAL
     Private Function LeerXML()
         Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
@@ -35,7 +55,7 @@ Public Class FrmConfigurarISL
 
             Dim ultimoprofile As String = ""
 
-            '"/jnemo/profiles/profile" ' nos quedamos con el primero
+            '"/jnemo/profiles/profile" ' nos quedamos con el ultimo
             'TODO Hacer una copia del xml en un dir temporal
             Dim profiles As XmlNode = doc.SelectSingleNode("/jnemo/profiles")
             If profiles IsNot Nothing Then
@@ -52,30 +72,15 @@ Public Class FrmConfigurarISL
             Return ultimoprofile
             InstaladorKubo.RegistroInstalacion("ISL: leído nodo username con valor " & ultimoprofile)
         Else
-            InstaladorKubo.RegistroInstalacion("ADVERTENCIA ISL: No se ha encontrado el XML de jNemo en " & jnemoxml)
             'Obtener nombre del equipo
             Dim equipousuario As String = (My.User.Name)
             Dim equipo As Integer = equipousuario.LastIndexOf("\")
             Dim usuario = equipousuario.Remove(0, equipo + 1)
             Return usuario
-            InstaladorKubo.RegistroInstalacion("ISL: Se procede a leer el nombre de Usuario del equipo. Se obtiene " & usuario)
+            'TODO NO RECOGE NOMBRE DEL USUARIO
+            InstaladorKubo.RegistroInstalacion("Se procede a leer el nombre de Usuario del equipo. Se obtiene " & usuario)
         End If
     End Function
 
-    Private Sub FrmConfigurarISL_Load(sender As Object, e As EventArgs) Handles Me.Load
-        ' LeerXML()
-        TbISLNombre.Text = LeerXML()
 
-        Try
-            Dim profile As String = LeerXML()
-            Dim longprofile As Integer = profile.Length
-            Dim longusuario As Integer = profile.LastIndexOf(".")
-            Dim usuario = profile.Remove(longusuario, longprofile - longusuario)
-            Dim grupo = profile.Remove(0, longusuario + 1)
-            TbISLGrupo.Text = grupo
-            TbISLNombre.Text = usuario
-        Catch ex As Exception
-        End Try
-
-    End Sub
 End Class
