@@ -58,7 +58,7 @@ Public Class InstaladorKubo
             BtLimpiar.Visible = True
             BtLogin.Visible = True
             'TODO Quitar esto cuando la funcionalidad esté lista
-            BtISL.Enabled = True
+            BtSubeBinario.Visible = True
         End If
     End Sub
 
@@ -1298,7 +1298,13 @@ Public Class InstaladorKubo
                 RegistroInstalacion("ERROR Paquete Mailer-Setup: No he podido determinar Sistema 32/64bits.")
             End If
 
-            RunAsAdmin(RutaDescargas & "PaquetesFT\mailersetup.bat")
+            Try
+                RunAsAdmin(RutaDescargas & "PaquetesFT\mailersetup.bat")
+                RegistroInstalacion("DLL MailerCOM Registrada correctamente.")
+            Catch ex As Exception
+                RegistroInstalacion("ERROR DLL Mailer-Setup: " & ex.Message)
+            End Try
+
 
         Catch ex As Exception
 
@@ -2400,4 +2406,15 @@ Public Class InstaladorKubo
         FrmConfigurarISL.ShowDialog()
     End Sub
 
+    Private Sub BtSubeBinario_Click(sender As Object, e As EventArgs) Handles BtSubeBinario.Click
+
+        Try
+            Dim original As String = "C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\InstaladorKubo.exe"
+            My.Computer.Network.UploadFile(original, "ftp://instalador.notin.net/InstaladorKubo.exe", "instalador", "4a9P1dK", True, 20000)
+            RegistroInstalacion("Subido binario al FTP para su ejecución en entornos con problemas ClickOnce.")
+        Catch ex As Exception
+            RegistroInstalacion("Error subida Binario: " & ex.Message & ".")
+        End Try
+
+    End Sub
 End Class

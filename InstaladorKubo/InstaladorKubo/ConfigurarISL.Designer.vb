@@ -36,7 +36,7 @@ Partial Class FrmConfigurarISL
         Me.TbISLNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TbISLNombre.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TbISLNombre.Location = New System.Drawing.Point(176, 96)
-        Me.TbISLNombre.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TbISLNombre.Margin = New System.Windows.Forms.Padding(4)
         Me.TbISLNombre.Name = "TbISLNombre"
         Me.TbISLNombre.Size = New System.Drawing.Size(248, 35)
         Me.TbISLNombre.TabIndex = 1
@@ -46,7 +46,7 @@ Partial Class FrmConfigurarISL
         Me.TbISLGrupo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TbISLGrupo.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TbISLGrupo.Location = New System.Drawing.Point(176, 48)
-        Me.TbISLGrupo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TbISLGrupo.Margin = New System.Windows.Forms.Padding(4)
         Me.TbISLGrupo.Name = "TbISLGrupo"
         Me.TbISLGrupo.Size = New System.Drawing.Size(248, 35)
         Me.TbISLGrupo.TabIndex = 0
@@ -78,7 +78,7 @@ Partial Class FrmConfigurarISL
         Me.BtConfirmarISL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtConfirmarISL.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
         Me.BtConfirmarISL.Location = New System.Drawing.Point(176, 159)
-        Me.BtConfirmarISL.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtConfirmarISL.Margin = New System.Windows.Forms.Padding(4)
         Me.BtConfirmarISL.Name = "BtConfirmarISL"
         Me.BtConfirmarISL.Size = New System.Drawing.Size(188, 65)
         Me.BtConfirmarISL.TabIndex = 3
@@ -89,7 +89,7 @@ Partial Class FrmConfigurarISL
         '
         Me.BtSalir.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtSalir.Location = New System.Drawing.Point(453, 218)
-        Me.BtSalir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtSalir.Margin = New System.Windows.Forms.Padding(4)
         Me.BtSalir.Name = "BtSalir"
         Me.BtSalir.Size = New System.Drawing.Size(100, 42)
         Me.BtSalir.TabIndex = 4
@@ -109,7 +109,7 @@ Partial Class FrmConfigurarISL
         Me.Controls.Add(Me.TbISLNombre)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FrmConfigurarISL"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Configurar ISL AlwaysON"

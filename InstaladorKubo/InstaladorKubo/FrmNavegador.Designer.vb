@@ -29,12 +29,16 @@ Partial Class FrmNavegador
         '
         'Navegador
         '
+        Me.Navegador.AllowNavigation = False
+        Me.Navegador.AllowWebBrowserDrop = False
         Me.Navegador.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Navegador.Location = New System.Drawing.Point(0, 0)
         Me.Navegador.MinimumSize = New System.Drawing.Size(20, 20)
         Me.Navegador.Name = "Navegador"
+        Me.Navegador.ScrollBarsEnabled = False
         Me.Navegador.Size = New System.Drawing.Size(635, 116)
         Me.Navegador.TabIndex = 0
+        Me.Navegador.WebBrowserShortcutsEnabled = False
         '
         'LBNavegador
         '
@@ -59,7 +63,7 @@ Partial Class FrmNavegador
         Me.MinimizeBox = False
         Me.Name = "FrmNavegador"
         Me.Opacity = 0.9R
-        Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Navegador"
         Me.ResumeLayout(False)
