@@ -383,7 +383,7 @@ Public Class InstaladorKubo
         If System.IO.File.Exists(RutaDescargas & "PuestoNotinC.exe") Then
             Dim PuestoNotinC As New FileInfo(RutaDescargas & "PuestoNotinC.exe")
             Dim LengthPuestoNotinC As Long = PuestoNotinC.Length
-            If PuestoNotinC.Length = "17034966" Then
+            If PuestoNotinC.Length = "17034578" Then
                 cbPuestoNotin.ForeColor = Color.DarkGreen
                 '        cbPuestoNotin.Enabled = False
             End If
@@ -2264,7 +2264,7 @@ Public Class InstaladorKubo
     End Sub
 
 
-
+    'CALCULO TAMAÑO DESCARGAS MEGABYTES
     Private TamanoTotal As Integer = 0
     Private Sub CalcularTamanoDescarga(ByVal size As Integer, ByVal is_checked As Boolean)
         If is_checked = True Then
@@ -2311,6 +2311,10 @@ Public Class InstaladorKubo
 
     Private Sub cbTerceros_CheckedChanged(sender As Object, e As EventArgs) Handles cbTerceros.CheckedChanged
         CalcularTamanoDescarga(94.9, cbTerceros.Checked)
+    End Sub
+
+    Private Sub CbPaquetesFT_CheckedChanged(sender As Object, e As EventArgs) Handles CbPaquetesFT.CheckedChanged
+        CalcularTamanoDescarga(1.94, CbPaquetesFT.Checked)
     End Sub
 
 
@@ -2395,4 +2399,5 @@ Public Class InstaladorKubo
         'MessageBox.Show("Funcionalidad en pruebas. Pendiente de revisión por Sánchez", "Instalar ISL", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         FrmConfigurarISL.ShowDialog()
     End Sub
+
 End Class

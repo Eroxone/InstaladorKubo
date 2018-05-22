@@ -35,6 +35,7 @@ Partial Class InstaladorKubo
         Me.btSalir = New System.Windows.Forms.Button()
         Me.btTodo = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.CbPaquetesFT = New System.Windows.Forms.CheckBox()
         Me.TabAncertTerceros = New System.Windows.Forms.TabControl()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.cbPasarelaSigno = New System.Windows.Forms.CheckBox()
@@ -123,7 +124,6 @@ Partial Class InstaladorKubo
         Me.BtFicheroINI = New System.Windows.Forms.Button()
         Me.BtLimpiar = New System.Windows.Forms.Button()
         Me.TabGestion = New System.Windows.Forms.TabControl()
-        Me.CbPaquetesFT = New System.Windows.Forms.CheckBox()
         Me.TlpPaquetesFT = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -282,6 +282,17 @@ Partial Class InstaladorKubo
         Me.GroupBox1.TabIndex = 29
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Descargas"
+        '
+        'CbPaquetesFT
+        '
+        Me.CbPaquetesFT.AutoSize = True
+        Me.CbPaquetesFT.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
+        Me.CbPaquetesFT.Location = New System.Drawing.Point(14, 209)
+        Me.CbPaquetesFT.Name = "CbPaquetesFT"
+        Me.CbPaquetesFT.Size = New System.Drawing.Size(118, 21)
+        Me.CbPaquetesFT.TabIndex = 24
+        Me.CbPaquetesFT.Text = "Paquetes FT"
+        Me.CbPaquetesFT.UseVisualStyleBackColor = True
         '
         'TabAncertTerceros
         '
@@ -1164,17 +1175,6 @@ Partial Class InstaladorKubo
         Me.TabGestion.SelectedIndex = 0
         Me.TabGestion.Size = New System.Drawing.Size(178, 139)
         Me.TabGestion.TabIndex = 40
-        '
-        'CbPaquetesFT
-        '
-        Me.CbPaquetesFT.AutoSize = True
-        Me.CbPaquetesFT.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
-        Me.CbPaquetesFT.Location = New System.Drawing.Point(14, 209)
-        Me.CbPaquetesFT.Name = "CbPaquetesFT"
-        Me.CbPaquetesFT.Size = New System.Drawing.Size(118, 21)
-        Me.CbPaquetesFT.TabIndex = 24
-        Me.CbPaquetesFT.Text = "Paquetes FT"
-        Me.CbPaquetesFT.UseVisualStyleBackColor = True
         '
         'TlpPaquetesFT
         '
