@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Revisar los valores de los atributos del ensamblado
 
 <Assembly: AssemblyTitle("InstaladorKubo")>
-<Assembly: AssemblyDescription("JuanjoNet")>
+<Assembly: AssemblyDescription("Instalador Kubo")>
 <Assembly: AssemblyCompany("JuanjoNet")>
 <Assembly: AssemblyProduct("InstaladorKubo")>
 <Assembly: AssemblyCopyright("Copyright ©  2018")>
