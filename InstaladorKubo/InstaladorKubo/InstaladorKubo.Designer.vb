@@ -126,6 +126,7 @@ Partial Class InstaladorKubo
         Me.TabGestion = New System.Windows.Forms.TabControl()
         Me.TlpPaquetesFT = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtSubeBinario = New System.Windows.Forms.Button()
+        Me.TlpISL = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1202,6 +1203,11 @@ Partial Class InstaladorKubo
         Me.BtSubeBinario.UseVisualStyleBackColor = False
         Me.BtSubeBinario.Visible = False
         '
+        'TlpISL
+        '
+        Me.TlpISL.IsBalloon = True
+        Me.TlpISL.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'InstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1363,4 +1369,5 @@ Partial Class InstaladorKubo
     Friend WithEvents CbPaquetesFT As CheckBox
     Friend WithEvents TlpPaquetesFT As ToolTip
     Friend WithEvents BtSubeBinario As Button
+    Friend WithEvents TlpISL As ToolTip
 End Class
