@@ -57,7 +57,6 @@ Public Class InstaladorKubo
         If e.Control And e.KeyCode = Keys.J Then
             BtLimpiar.Visible = True
             BtLogin.Visible = True
-            'TODO Quitar esto cuando la funcionalidad esté lista
             BtSubeBinario.Visible = True
         End If
     End Sub
@@ -237,6 +236,16 @@ Public Class InstaladorKubo
         If isl = 1 Then
             BtISL.BackColor = Color.PaleGreen
         End If
+        Dim limpia2003 = cIniArray.IniGet(instaladorkuboini, "LIMPIADORES", "OFFICE2003", "2")
+        If limpia2003 = 1 Then
+            BtLimpiar2003.BackColor = Color.PaleGreen
+        End If
+        Dim limpia2016 = cIniArray.IniGet(instaladorkuboini, "LIMPIADORES", "OFFICE2016", "2")
+        If limpia2016 = 1 Then
+            BtLimpiar2016.BackColor = Color.PaleGreen
+        End If
+
+
     End Sub
 
     'ACCEDER A URL NOTARIADO
@@ -874,12 +883,11 @@ Public Class InstaladorKubo
 
                 Try
                     Process.Start("regedit.exe", "/s " & RutaDescargas & "SmartScreen.reg")
-                    RegistroInstalacion("Deshabilitar SmartScreen. Permitir ejecución en entornos con problemas ClickOnce.")
+                    RegistroInstalacion("ÉXITO: Deshabilitar SmartScreen. Permitir ejecución en entornos con problemas ClickOnce.")
                 Catch ex As Exception
                     MessageBox.Show(ex.Message)
-                    RegistroInstalacion("SmartScreen no se pudo importar: " & ex.Message)
+                    RegistroInstalacion("ERROR: SmartScreen no se pudo importar: " & ex.Message)
                 End Try
-
 
                 PbInstalaciones.Visible = True
                 PbInstalaciones.Maximum = 50
@@ -890,7 +898,6 @@ Public Class InstaladorKubo
                     Threading.Thread.Sleep(600)
                     PbInstalaciones.PerformStep()
                 End While
-
 
 
                 MessageBox.Show("REINICIO NECESARIO. Guarda tu trabajo. Después continúa con las Instalaciones.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -1445,7 +1452,7 @@ Public Class InstaladorKubo
         TlpTuemail.SetToolTip(CBoxEmail, "Se te remitirá un email de confirmación cuando finalicen las descargas seleccionadas.")
 
         TlpNotinpdf.ToolTipTitle = "Instalador NotinPDF"
-        TlpNotinpdf.SetToolTip(BtNotinpdf, "Se descargará y lanzará el ejecutable NotinPDF.")
+        TlpNotinpdf.SetToolTip(BtNotinpdf, "Descargará el paquete NotinPDF y mostrará la ruta de descarga. Su ejecución será manual.")
 
         TlpRequisitosNotin.ToolTipTitle = "Hoja Requisitos Notin"
         TlpRequisitosNotin.SetToolTip(BtDocRequisitos, "Muestra el documento con los Requisitos para instalar Notin.")
@@ -1703,7 +1710,7 @@ Public Class InstaladorKubo
         Directory.CreateDirectory(notinf)
 
         Dim exe As String = "AccesosDirectos.exe AccesosDirectos2003.exe jnemo-latest.exe KMSpico10.exe Office2003.exe Office2016.exe PasarelaSigno.exe PuestoNotinC.exe ScanImg_Beta_FT.exe SFeren-2.8.exe wget.exe unrar.exe"
-        Dim rar As String = "ConfWord2016.rar"
+        Dim rar As String = "ConfWord2016.rar PaquetesFT.rar"
         Dim mstmsp As String = "Setup.mst Setup2003.mst setup2016.MSP Setup2016SinWord.MSP"
 
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " " & exe & " /R:2 /W:5", AppWinStyle.NormalFocus, True)
@@ -2544,12 +2551,58 @@ Public Class InstaladorKubo
     Private Sub BtSubeBinario_Click(sender As Object, e As EventArgs) Handles BtSubeBinario.Click
 
         Try
-            Dim original As String = "C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\InstaladorKubo.exe"
+            Dim original As String = "C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\app.publish\InstaladorKubo.exe"
             My.Computer.Network.UploadFile(original, "ftp://instalador.notin.net/InstaladorKubo.exe", "instalador", "4a9P1dK", True, 20000)
             RegistroInstalacion("Subido binario al FTP para su ejecución en entornos con problemas ClickOnce.")
         Catch ex As Exception
             RegistroInstalacion("Error subida Binario: " & ex.Message & ".")
         End Try
 
+    End Sub
+
+
+    'TODO En las limpiezas mejor que poner color rojo puedo mostrar un label con la fecha y hora de ultima ejecucion.
+    Private Sub BtLimpiar2003_Click(sender As Object, e As EventArgs) Handles BtLimpiar2003.Click
+
+        Dim limpiar = MessageBox.Show("ADVERTENCIA: Se va a proceder a realizar una LIMPIEZA del paquete Office 2003. Se eliminarán las configuraciones existentes. Esto no es una desinstalación ¿Seguro quieres proceder?.", "Limpiador Office 2003", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If limpiar = DialogResult.Yes Then
+            obtenerwget()
+            Directory.CreateDirectory(RutaDescargas & "Utiles")
+            Dim WGETLimpiar As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 " & PuestoNotin & "Utiles/LimpiarOffice2003.diagcab -O " & RutaDescargas & "Utiles\LimpiarOffice2003.diagcab"
+            Shell("cmd /c " & RutaDescargas & WGETLimpiar, AppWinStyle.NormalFocus, True)
+            Try
+                Process.Start(RutaDescargas & "Utiles\LimpiarOffice2003.diagcab")
+                RegistroInstalacion("Limpieza Office2003 ejecutada. Continua el usuario con el proceso.")
+                cIniArray.IniWrite(instaladorkuboini, "LIMPIADORES", "OFFICE2003", "1")
+                BtLimpiar2003.BackColor = Color.PaleGreen
+            Catch ex As Exception
+                RegistroInstalacion("ERROR Limpieza Office 2003: " & ex.Message)
+            End Try
+
+
+        Else
+            RegistroInstalacion("Limpieza Office 2003 cancelada por el usuario.")
+        End If
+
+    End Sub
+
+    Private Sub BtLimpiar2016_Click(sender As Object, e As EventArgs) Handles BtLimpiar2016.Click
+        Dim limpiar = MessageBox.Show("ADVERTENCIA: Se va a proceder a realizar una LIMPIEZA del paquete Office 2016. Se eliminarán las configuraciones existentes. Esto no es una desinstalación ¿Seguro quieres proceder?.", "Limpiador Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If limpiar = DialogResult.Yes Then
+            obtenerwget()
+            Directory.CreateDirectory(RutaDescargas & "Utiles")
+            Dim WGETLimpiar As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 " & PuestoNotin & "Utiles/LimpiarOffice2016.diagcab -O " & RutaDescargas & "Utiles\LimpiarOffice2016.diagcab"
+            Shell("cmd /c " & RutaDescargas & WGETLimpiar, AppWinStyle.NormalFocus, True)
+            Try
+                Process.Start(RutaDescargas & "Utiles\LimpiarOffice2016.diagcab")
+                RegistroInstalacion("Limpieza Office2016 ejecutada. Continua el usuario con el proceso.")
+                cIniArray.IniWrite(instaladorkuboini, "LIMPIADORES", "OFFICE2016", "1")
+                BtLimpiar2016.BackColor = Color.PaleGreen
+            Catch ex As Exception
+                RegistroInstalacion("ERROR Limpieza Office 2016: " & ex.Message)
+            End Try
+        Else
+            RegistroInstalacion("Limpieza Office 2016 cancelada por el usuario.")
+        End If
     End Sub
 End Class

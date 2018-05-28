@@ -10,10 +10,10 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("InstaladorKubo")>
 <Assembly: AssemblyDescription("Instalador Kubo")>
-<Assembly: AssemblyCompany("JuanjoNet")>
+<Assembly: AssemblyCompany("Instalador")>
 <Assembly: AssemblyProduct("InstaladorKubo")>
 <Assembly: AssemblyCopyright("Copyright ©  2018")>
-<Assembly: AssemblyTrademark("JuanjoNet")>
+<Assembly: AssemblyTrademark("Instalador")>
 
 <Assembly: ComVisible(False)>
 
