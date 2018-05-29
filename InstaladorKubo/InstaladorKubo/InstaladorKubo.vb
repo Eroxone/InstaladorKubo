@@ -863,61 +863,52 @@ Public Class InstaladorKubo
 
         Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
         If claveinift = 2 Then
+            If File.Exists(RutaDescargas & "Registro\FTComoAdministrador.reg") = False Then
+                Directory.CreateDirectory(RutaDescargas & "Registro")
+                My.Computer.Network.DownloadFile(PuestoNotin & "FTComoAdministrador.reg", RutaDescargas & "Registro\FTComoAdministrador.reg", "juanjo", "Palomeras24", False, 60000, True)
+            End If
+            Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "1")
+
+            'Deshabilitar SMARTSCREEN. Problemas tras el reinicio en ClickOnce
+            Try
+                My.Computer.Network.DownloadFile(PuestoNotin & "SmartScreen.reg", RutaDescargas & "SmartScreen.reg", "juanjo", "Palomeras24", False, 10000, True)
+            Catch ex As Exception
+                RegistroInstalacion("No se pudo obtener SmartScreen REG del FTP: " & ex.Message & ".")
+            End Try
+
+            Try
+                Process.Start("regedit.exe", "/s " & RutaDescargas & "SmartScreen.reg")
+                RegistroInstalacion("Deshabilitar SmartScreen. Permitir ejecución en entornos con problemas ClickOnce.")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+                RegistroInstalacion("SmartScreen no se pudo importar: " & ex.Message)
+            End Try
+            PbInstalaciones.Visible = True
+            Dim p As Integer
+            While p < 6
+                p = p + 1
+                Threading.Thread.Sleep(600)
+                PbInstalaciones.PerformStep()
+            End While
+
             Dim claveregft As DialogResult
-            claveregft = MessageBox.Show("Se importarán Claves de Registro y será recomendable REINICIAR antes de proceder con la Instalación. ¿Realizamos la preparación inicial?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+            claveregft = MessageBox.Show("Se importaron Claves de Registro y será recomendable REINICIAR antes de proceder con la Instalación. ¿Realizamos la preparación inicial?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
             If claveregft = DialogResult.Yes Then
-                If File.Exists(RutaDescargas & "Registro\FTComoAdministrador.reg") = False Then
-                    Directory.CreateDirectory(RutaDescargas & "Registro")
-                    My.Computer.Network.DownloadFile(PuestoNotin & "FTComoAdministrador.reg", RutaDescargas & "Registro\FTComoAdministrador.reg", "juanjo", "Palomeras24", False, 60000, True)
-                End If
-                Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
-                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "1")
 
-
-                'Deshabilitar SMARTSCREEN. Problemas tras el reinicio en ClickOnce
-                Try
-                    My.Computer.Network.DownloadFile(PuestoNotin & "SmartScreen.reg", RutaDescargas & "SmartScreen.reg", "juanjo", "Palomeras24", False, 10000, True)
-                Catch ex As Exception
-                    RegistroInstalacion("No se pudo obtener SmartScreen REG del FTP: " & ex.Message & ".")
-                End Try
-
-                Try
-                    Process.Start("regedit.exe", "/s " & RutaDescargas & "SmartScreen.reg")
-                    RegistroInstalacion("ÉXITO: Deshabilitar SmartScreen. Permitir ejecución en entornos con problemas ClickOnce.")
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message)
-                    RegistroInstalacion("ERROR: SmartScreen no se pudo importar: " & ex.Message)
-                End Try
-
-                PbInstalaciones.Visible = True
-                PbInstalaciones.Maximum = 50
-                PbInstalaciones.Step = 10
-                Dim p As Integer
-                While p < 6
-                    p = p + 1
-                    Threading.Thread.Sleep(600)
-                    PbInstalaciones.PerformStep()
-                End While
-
-
-                MessageBox.Show("REINICIO NECESARIO. Guarda tu trabajo. Después continúa con las Instalaciones.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                RegistroInstalacion("ÉXITO: Se reinició el equipo para aplicar las Claves de Registro.")
-
+                MessageBox.Show("REINICIO NECESARIO. Guarda tu trabajo.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Dim reinicio As String = "shutdown /r /f /t 0"
                 File.WriteAllText(RutaDescargas & "primerreinicio.bat", reinicio)
+                RegistroInstalacion("Procedemos a Reiniciar el equipo para la preparación inicial.")
                 RunAsAdmin(RutaDescargas & "primerreinicio.bat")
                 Exit Sub
             ElseIf claveregft = DialogResult.No Then
-                MessageBox.Show("Continuamos con el resto de instalaciones.", "Operación cancelada", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                MessageBox.Show("Continuamos con el resto de instalaciones.", "Reinicio cancelado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "0")
-
                 RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Claves de Registro.")
-
             End If
         ElseIf claveinift = 1 OrElse claveinift = 0 Then
         End If
-
-
 
         'Mientras unidad F no valida y usuario pulse reintentar
 
@@ -1781,39 +1772,38 @@ Public Class InstaladorKubo
 
         Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
         If claveinift = 2 Then
+            If File.Exists(RutaDescargas & "Registro\FTComoAdministrador.reg") = False Then
+                Directory.CreateDirectory(RutaDescargas & "Registro")
+                My.Computer.Network.DownloadFile(PuestoNotin & "FTComoAdministrador.reg", RutaDescargas & "Registro\FTComoAdministrador.reg", "juanjo", "Palomeras24", False, 60000, True)
+            End If
+            Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "1")
+
+            'Deshabilitar SMARTSCREEN. Problemas tras el reinicio en ClickOnce
+            Try
+                My.Computer.Network.DownloadFile(PuestoNotin & "SmartScreen.reg", RutaDescargas & "SmartScreen.reg", "juanjo", "Palomeras24", False, 10000, True)
+            Catch ex As Exception
+                RegistroInstalacion("No se pudo obtener SmartScreen REG del FTP: " & ex.Message & ".")
+            End Try
+
+            Try
+                Process.Start("regedit.exe", "/s " & RutaDescargas & "SmartScreen.reg")
+                RegistroInstalacion("Deshabilitar SmartScreen. Permitir ejecución en entornos con problemas ClickOnce.")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+                RegistroInstalacion("SmartScreen no se pudo importar: " & ex.Message)
+            End Try
+            PbInstalaciones.Visible = True
+            Dim p As Integer
+            While p < 6
+                p = p + 1
+                Threading.Thread.Sleep(600)
+                PbInstalaciones.PerformStep()
+            End While
+
             Dim claveregft As DialogResult
-            claveregft = MessageBox.Show("Se importarán Claves de Registro y será recomendable REINICIAR antes de proceder con la Instalación. ¿Realizamos la preparación inicial?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+            claveregft = MessageBox.Show("Se importaron Claves de Registro y será recomendable REINICIAR antes de proceder con la Instalación. ¿Realizamos la preparación inicial?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
             If claveregft = DialogResult.Yes Then
-                If File.Exists(RutaDescargas & "Registro\FTComoAdministrador.reg") = False Then
-                    Directory.CreateDirectory(RutaDescargas & "Registro")
-                    My.Computer.Network.DownloadFile(PuestoNotin & "FTComoAdministrador.reg", RutaDescargas & "Registro\FTComoAdministrador.reg", "juanjo", "Palomeras24", False, 60000, True)
-                End If
-                Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
-                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "1")
-
-                'Deshabilitar SMARTSCREEN. Problemas tras el reinicio en ClickOnce
-                Try
-                    My.Computer.Network.DownloadFile(PuestoNotin & "SmartScreen.reg", RutaDescargas & "SmartScreen.reg", "juanjo", "Palomeras24", False, 10000, True)
-                Catch ex As Exception
-                    RegistroInstalacion("No se pudo obtener SmartScreen REG del FTP: " & ex.Message & ".")
-                End Try
-
-                Try
-                    Process.Start("regedit.exe", "/s " & RutaDescargas & "SmartScreen.reg")
-                    RegistroInstalacion("Deshabilitar SmartScreen. Permitir ejecución en entornos con problemas ClickOnce.")
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message)
-                    RegistroInstalacion("SmartScreen no se pudo importar: " & ex.Message)
-                End Try
-
-                PbInstalaciones.Visible = True
-                Dim p As Integer
-                While p < 6
-                    p = p + 1
-                    Threading.Thread.Sleep(600)
-                    PbInstalaciones.PerformStep()
-                End While
-
 
                 MessageBox.Show("REINICIO NECESARIO. Guarda tu trabajo.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Dim reinicio As String = "shutdown /r /f /t 0"
@@ -1822,7 +1812,7 @@ Public Class InstaladorKubo
                 RunAsAdmin(RutaDescargas & "primerreinicio.bat")
                 Exit Sub
             ElseIf claveregft = DialogResult.No Then
-                MessageBox.Show("Continuamos con el resto de instalaciones.", "Operación cancelada", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                MessageBox.Show("Continuamos con el resto de instalaciones.", "Reinicio cancelado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "0")
                 RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Claves de Registro.")
             End If
@@ -1901,6 +1891,18 @@ Public Class InstaladorKubo
         Else
             RegistroInstalacion("ERROR: No se encontró el Paquete OFFICE2003.EXE ¿Seguro que lo descargaste?")
         End If
+
+        'Parche para Scroll Word 2003
+        Try
+            Directory.CreateDirectory(RutaDescargas & "Office2003\ParcheScrollWORD")
+            Dim wgetwinword As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/winwordsroll.msp -O " & RutaDescargas & "Office2003\ParcheScrollWORD\winwordsroll.msp"
+            Shell("cmd.exe /c " & RutaDescargas & wgetwinword, AppWinStyle.NormalFocus, True)
+            Process.Start(RutaDescargas & "Office2003\ParcheScrollWORD\winwordsroll.msp", "/passive")
+            Threading.Thread.Sleep(10000)
+            RegistroInstalacion("Parcheado Word 2003. Winword MSP por problema de SCROLL.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Parche Word 2003: " & ex.Message)
+        End Try
 
         'Copiar Referencia Outlook
         Try
