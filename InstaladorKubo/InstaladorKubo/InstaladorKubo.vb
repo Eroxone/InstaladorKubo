@@ -236,15 +236,18 @@ Public Class InstaladorKubo
         If isl = 1 Then
             BtISL.BackColor = Color.PaleGreen
         End If
-        Dim limpia2003 = cIniArray.IniGet(instaladorkuboini, "LIMPIADORES", "OFFICE2003", "2")
-        If limpia2003 = 1 Then
-            BtLimpiar2003.BackColor = Color.PaleGreen
+        'Dim limpia2003 = cIniArray.IniGet(instaladorkuboini, "LIMPIADORES", "OFFICE2003", "2")
+        'If limpia2003 = 1 Then
+        '    BtLimpiar2003.BackColor = Color.PaleGreen
+        'End If
+        'Dim limpia2016 = cIniArray.IniGet(instaladorkuboini, "LIMPIADORES", "OFFICE2016", "2")
+        'If limpia2016 = 1 Then
+        '    BtLimpiar2016.BackColor = Color.PaleGreen
+        'End If
+        Dim sql2014 = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "SQL2014", "2")
+        If sql2014 = 1 Then
+            BtSQL2014.BackColor = Color.PaleGreen
         End If
-        Dim limpia2016 = cIniArray.IniGet(instaladorkuboini, "LIMPIADORES", "OFFICE2016", "2")
-        If limpia2016 = 1 Then
-            BtLimpiar2016.BackColor = Color.PaleGreen
-        End If
-
 
     End Sub
 
@@ -1456,6 +1459,9 @@ Public Class InstaladorKubo
         TlpISL.ToolTipTitle = "Instalación automatizada ISL AlwaysON"
         TlpISL.SetToolTip(BtISL, "Añade este equipo para su futura conexión desde ISL Light de operador.")
 
+        TlpSQL2014.ToolTipTitle = "Descarga SQL 2014 Business"
+        TlpSQL2014.SetToolTip(BtSQL2014, "Descarga el Motor SQL en " & RutaDescargas & " Más adelante automatizaré su Instalación.")
+
     End Sub
 #End Region
 
@@ -2550,6 +2556,20 @@ Public Class InstaladorKubo
         FrmConfigurarISL.ShowDialog()
     End Sub
 
+    Private Sub BtSQL2014_Click(sender As Object, e As EventArgs) Handles BtSQL2014.Click
+        Directory.CreateDirectory(RutaDescargas & "SQL")
+        obtenerwget()
+        Dim wgetserialsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SerialsSQL2014.txt -O " & RutaDescargas & "SQL\SerialsSQL2014.txt"
+        Dim wgetsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SQLServer2014.iso -O " & RutaDescargas & "SQL\SQLServer2014.iso"
+        Shell("cmd /c " & RutaDescargas & wgetserialsql, AppWinStyle.Hide, True)
+        Shell("cmd /c " & RutaDescargas & wgetsql, AppWinStyle.NormalFocus, True)
+
+        Process.Start("explorer.exe", RutaDescargas & "SQL")
+        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "SQL2014", "1")
+
+    End Sub
+
+
     Private Sub BtSubeBinario_Click(sender As Object, e As EventArgs) Handles BtSubeBinario.Click
 
         Try
@@ -2561,6 +2581,7 @@ Public Class InstaladorKubo
         End Try
 
     End Sub
+
 
 
     'TODO En las limpiezas mejor que poner color rojo puedo mostrar un label con la fecha y hora de ultima ejecucion.
@@ -2576,7 +2597,7 @@ Public Class InstaladorKubo
                 Process.Start(RutaDescargas & "Utiles\LimpiarOffice2003.diagcab")
                 RegistroInstalacion("Limpieza Office2003 ejecutada. Continua el usuario con el proceso.")
                 cIniArray.IniWrite(instaladorkuboini, "LIMPIADORES", "OFFICE2003", "1")
-                BtLimpiar2003.BackColor = Color.PaleGreen
+
             Catch ex As Exception
                 RegistroInstalacion("ERROR Limpieza Office 2003: " & ex.Message)
             End Try
@@ -2599,7 +2620,7 @@ Public Class InstaladorKubo
                 Process.Start(RutaDescargas & "Utiles\LimpiarOffice2016.diagcab")
                 RegistroInstalacion("Limpieza Office2016 ejecutada. Continua el usuario con el proceso.")
                 cIniArray.IniWrite(instaladorkuboini, "LIMPIADORES", "OFFICE2016", "1")
-                BtLimpiar2016.BackColor = Color.PaleGreen
+
             Catch ex As Exception
                 RegistroInstalacion("ERROR Limpieza Office 2016: " & ex.Message)
             End Try
@@ -2607,4 +2628,7 @@ Public Class InstaladorKubo
             RegistroInstalacion("Limpieza Office 2016 cancelada por el usuario.")
         End If
     End Sub
+
+
+
 End Class
