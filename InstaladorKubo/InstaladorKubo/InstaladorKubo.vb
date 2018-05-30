@@ -2557,15 +2557,8 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub BtSQL2014_Click(sender As Object, e As EventArgs) Handles BtSQL2014.Click
-        Directory.CreateDirectory(RutaDescargas & "SQL")
-        obtenerwget()
-        Dim wgetserialsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SerialsSQL2014.txt -O " & RutaDescargas & "SQL\SerialsSQL2014.txt"
-        Dim wgetsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SQLServer2014.iso -O " & RutaDescargas & "SQL\SQLServer2014.iso"
-        Shell("cmd /c " & RutaDescargas & wgetserialsql, AppWinStyle.Hide, True)
-        Shell("cmd /c " & RutaDescargas & wgetsql, AppWinStyle.NormalFocus, True)
 
-        Process.Start("explorer.exe", RutaDescargas & "SQL")
-        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "SQL2014", "1")
+
 
     End Sub
 
