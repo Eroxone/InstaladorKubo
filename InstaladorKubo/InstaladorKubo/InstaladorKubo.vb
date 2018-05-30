@@ -4,6 +4,7 @@ Imports InstaladorKubo.LeerFicherosINI
 Imports System.Threading
 Imports System.Net.Mail
 Imports InstaladorKubo.FrmConfigurarISL
+Imports InstaladorKubo.ObtenerEjecutables
 
 'WEB DE INSTALACIÓN
 'http://instalador.notin.net
@@ -453,8 +454,11 @@ Public Class InstaladorKubo
             ElseIf FineReader11.Length < "405915565" Then
                 CbFineReader.ForeColor = Color.Red
             End If
+        Else
+            CbFineReader.ForeColor = SystemColors.ControlText
         End If
 
+        'Paquetes FT
         If System.IO.File.Exists(RutaDescargas & "PaquetesFT.rar") Then
             Dim paquetesft As New FileInfo(RutaDescargas & "PaquetesFT.rar")
             Dim lengthpaquetesft As Long = paquetesft.Length
@@ -463,68 +467,15 @@ Public Class InstaladorKubo
             ElseIf paquetesft.Length < "2044887" Then
                 CbPaquetesFT.ForeColor = Color.Red
             End If
-        End If
+        Else
+            CbPaquetesFT.ForeColor = SystemColors.ControlText
+            End If
+
 
     End Sub
 #End Region
 
 
-    Private Sub obtenerwget()
-        If Not System.IO.File.Exists(RutaDescargas & "wget.exe") Then
-            'Descargar ejecutable WGet
-            Try
-                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
-            Catch ex As Exception
-
-                'Reintentar descarga
-                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
-                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
-                If REINTENTAR = DialogResult.Retry Then
-                    My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, True)
-                End If
-            End Try
-        End If
-    End Sub
-
-    Private Sub obtenerrobocopy()
-        If Not System.IO.File.Exists(RutaDescargas & "robocopy.exe") Then
-            'Descargar ejecutable WGet
-            Try
-                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-                My.Computer.Network.DownloadFile(PuestoNotin & "robocopy.exe", RutaDescargas & "robocopy.exe", "juanjo", "Palomeras24", False, 20000, False)
-            Catch ex As Exception
-
-                'Reintentar descarga
-                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
-                My.Computer.Network.DownloadFile(PuestoNotin & "robocopy.exe", RutaDescargas & "robocopy.exe", "juanjo", "Palomeras24", False, 20000, False)
-                If REINTENTAR = DialogResult.Retry Then
-                    My.Computer.Network.DownloadFile(PuestoNotin & "robocopy.exe", RutaDescargas & "robocopy.exe", "juanjo", "Palomeras24", False, 20000, True)
-                End If
-            End Try
-        End If
-    End Sub
-
-
-    Private Sub obtenerunrar()
-        'Comprobamos si existe ya unrar.exe
-        If Not System.IO.File.Exists(RutaDescargas & "unrar.exe") Then
-
-            'Descargar ejecutable UnRAR
-            Try
-                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "juanjo", "Palomeras24", False, 20000, True)
-            Catch ex As Exception
-                MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-                'Reintentar descarga
-                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
-                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "juanjo", "Palomeras24", False, 20000, True)
-                If REINTENTAR = DialogResult.Retry Then
-                End If
-            End Try
-        End If
-    End Sub
 
 #Region "COMENZAR DESCARGAS"
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
@@ -1083,6 +1034,17 @@ Public Class InstaladorKubo
                 ElseIf office2016per = 1 Then
                     Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE", AppWinStyle.Hide, True)
                     RegistroInstalacion("Se procedió a realizar la instalación Personalizada de Office 2016.")
+                Else
+                    Try
+                        'My.Computer.Network.DownloadFile(PuestoNotin & "setup2016.MSP", RutaDescargas & "Office2016\setup2016.MSP", "juanjo", "Palomeras24", False, 60000, True)
+                        File.Copy(RutaDescargas & "setup2016.MSP", RutaDescargas & "Office2016\setup2016.MSP", True)
+                    Catch ex As Exception
+                        MessageBox.Show("Error al copiar fichero MSP. Revisa que el fichero exista en " & RutaDescargas & "Office2016", "Error Setup MSP", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        RegistroInstalacion("Setup2016.MSP: " & ex.Message)
+                    End Try
+                    Threading.Thread.Sleep(3000)
+                    Shell("cmd.exe /C " & RutaDescargas & "Office2016\SETUP.EXE /adminfile setup2016.MSP", AppWinStyle.Hide, True)
+                    RegistroInstalacion("ADVERTENCIA: No se determinó la preferencia de instalación para Office 2016. Por defecto realizamos la ODT.")
                 End If
             Else
                 Dim WordSiNo = MessageBox.Show("Se ha detectado una posible instalación de WORD 2016. ¿Ejecutar instalación Office 2016 Personalizable?", "Instalación Office 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -1459,8 +1421,8 @@ Public Class InstaladorKubo
         TlpISL.ToolTipTitle = "Instalación automatizada ISL AlwaysON"
         TlpISL.SetToolTip(BtISL, "Añade este equipo para su futura conexión desde ISL Light de operador.")
 
-        TlpSQL2014.ToolTipTitle = "Descarga SQL 2014 Business"
-        TlpSQL2014.SetToolTip(BtSQL2014, "Descarga el Motor SQL en " & RutaDescargas & " Más adelante automatizaré su Instalación.")
+        TlpSQL2014.ToolTipTitle = "Descarga e Instala SQL 2014 Business"
+        TlpSQL2014.SetToolTip(BtSQL2014, "Accederemos al formulario donde podrás personalizar la ruta de instalación de SQL Server 2014.")
 
     End Sub
 #End Region
@@ -2557,9 +2519,7 @@ Public Class InstaladorKubo
     End Sub
 
     Private Sub BtSQL2014_Click(sender As Object, e As EventArgs) Handles BtSQL2014.Click
-
-
-
+        FrmSQLInstalacion.ShowDialog()
     End Sub
 
 
