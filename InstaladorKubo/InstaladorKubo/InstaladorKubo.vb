@@ -10,7 +10,7 @@ Imports InstaladorKubo.ObtenerEjecutables
 'http://instalador.notin.net
 
 
-Public Class InstaladorKubo
+Public Class FrmInstaladorKubo
     'CONTROLES DESCARGAS VARIABLES STRING
     Private Const FILE_DOWNLOAD As String = "descargas.txt"
     Private Const REQUISITOS_DOWNLOAD As String = "requisitos.txt"
@@ -245,7 +245,7 @@ Public Class InstaladorKubo
         'If limpia2016 = 1 Then
         '    BtLimpiar2016.BackColor = Color.PaleGreen
         'End If
-        Dim sql2014 = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "SQL2014", "2")
+        Dim sql2014 = cIniArray.IniGet(instaladorkuboini, "SQL2014", "INSTALADO", "2")
         If sql2014 = 1 Then
             BtSQL2014.BackColor = Color.PaleGreen
         End If
@@ -469,7 +469,7 @@ Public Class InstaladorKubo
             End If
         Else
             CbPaquetesFT.ForeColor = SystemColors.ControlText
-            End If
+        End If
 
 
     End Sub
@@ -2436,7 +2436,6 @@ Public Class InstaladorKubo
     End Sub
 
 
-
 #Region "ENVIO EMAIL"
     Private Function validaremail()
         If CBoxEmail.Text = Nothing Then
@@ -2504,8 +2503,6 @@ Public Class InstaladorKubo
         Else
             cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
         End If
-
-
     End Sub
 
     Private Sub BtDocRequisitos_Click(sender As Object, e As EventArgs) Handles BtDocRequisitos.Click
@@ -2524,7 +2521,6 @@ Public Class InstaladorKubo
 
 
     Private Sub BtSubeBinario_Click(sender As Object, e As EventArgs) Handles BtSubeBinario.Click
-
         Try
             Dim original As String = "C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\app.publish\InstaladorKubo.exe"
             My.Computer.Network.UploadFile(original, "ftp://instalador.notin.net/InstaladorKubo.exe", "instalador", "4a9P1dK", True, 20000)
@@ -2532,12 +2528,9 @@ Public Class InstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("Error subida Binario: " & ex.Message & ".")
         End Try
-
     End Sub
 
 
-
-    'TODO En las limpiezas mejor que poner color rojo puedo mostrar un label con la fecha y hora de ultima ejecucion.
     Private Sub BtLimpiar2003_Click(sender As Object, e As EventArgs) Handles BtLimpiar2003.Click
 
         Dim limpiar = MessageBox.Show("ADVERTENCIA: Se va a proceder a realizar una LIMPIEZA del paquete Office 2003. Se eliminarán las configuraciones existentes. Esto no es una desinstalación ¿Seguro quieres proceder?.", "Limpiador Office 2003", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
@@ -2554,8 +2547,6 @@ Public Class InstaladorKubo
             Catch ex As Exception
                 RegistroInstalacion("ERROR Limpieza Office 2003: " & ex.Message)
             End Try
-
-
         Else
             RegistroInstalacion("Limpieza Office 2003 cancelada por el usuario.")
         End If
@@ -2581,7 +2572,5 @@ Public Class InstaladorKubo
             RegistroInstalacion("Limpieza Office 2016 cancelada por el usuario.")
         End If
     End Sub
-
-
 
 End Class

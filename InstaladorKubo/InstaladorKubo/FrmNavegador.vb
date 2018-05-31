@@ -1,5 +1,5 @@
 ﻿Imports InstaladorKubo.LeerFicherosINI
-Imports InstaladorKubo.InstaladorKubo
+Imports InstaladorKubo.FrmInstaladorKubo
 
 Public Class FrmNavegador
     Private Sub FrmNavegador_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -23,7 +23,7 @@ Public Class FrmNavegador
 
         RegistroInstalacion("ISLAlwaysON: Configurado Servicio ISL con las credenciales: " & islgrupo & " - " & islnombre & ".")
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "ISL", "1")
-        InstaladorKubo.BtISL.BackColor = Color.PaleGreen        'TODO ver la forma de cerrar este formulario
+        FrmInstaladorKubo.BtISL.BackColor = Color.PaleGreen        'TODO ver la forma de cerrar este formulario
 
     End Sub
 

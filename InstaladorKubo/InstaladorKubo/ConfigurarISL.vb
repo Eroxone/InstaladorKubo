@@ -19,7 +19,7 @@ Public Class FrmConfigurarISL
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
         TbISLGrupo.Text = ""
         TbISLNombre.Text = ""
-        InstaladorKubo.Show()
+        FrmInstaladorKubo.Show()
         Me.Close()
     End Sub
 
@@ -35,11 +35,11 @@ Public Class FrmConfigurarISL
             Dim grupo = profile.Remove(0, longusuario + 1)
             TbISLGrupo.Text = grupo
             TbISLNombre.Text = usuario
-            InstaladorKubo.RegistroInstalacion("ISL: Obtenido Grupo y Nombre del XML " & grupo & " - " & usuario & ".")
+            FrmInstaladorKubo.RegistroInstalacion("ISL: Obtenido Grupo y Nombre del XML " & grupo & " - " & usuario & ".")
         Catch ex As Exception
             TbISLNombre.Text = LeerXML().ToString
             TbISLGrupo.Text = "UNIDATA"
-            InstaladorKubo.RegistroInstalacion("ISL: Leído nombre de Usuario del Equipo. No se pudo obtener del XML.")
+            FrmInstaladorKubo.RegistroInstalacion("ISL: Leído nombre de Usuario del Equipo. No se pudo obtener del XML.")
         End Try
 
     End Sub
@@ -70,7 +70,7 @@ Public Class FrmConfigurarISL
                 End While
             End If
             Return ultimoprofile
-            InstaladorKubo.RegistroInstalacion("ISL: leído nodo username con valor " & ultimoprofile)
+            FrmInstaladorKubo.RegistroInstalacion("ISL: leído nodo username con valor " & ultimoprofile)
         Else
             'Obtener nombre del equipo
             Dim equipousuario As String = (My.User.Name)
@@ -78,9 +78,8 @@ Public Class FrmConfigurarISL
             Dim usuario = equipousuario.Remove(0, equipo + 1)
             Return usuario
             'TODO NO RECOGE NOMBRE DEL USUARIO
-            InstaladorKubo.RegistroInstalacion("Se procede a leer el nombre de Usuario del equipo. Se obtiene " & usuario)
+            FrmInstaladorKubo.RegistroInstalacion("Se procede a leer el nombre de Usuario del equipo. Se obtiene " & usuario)
         End If
     End Function
-
 
 End Class

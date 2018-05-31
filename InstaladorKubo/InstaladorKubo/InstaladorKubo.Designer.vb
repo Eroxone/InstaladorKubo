@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class InstaladorKubo
+Partial Class FrmInstaladorKubo
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -23,7 +23,7 @@ Partial Class InstaladorKubo
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(InstaladorKubo))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmInstaladorKubo))
         Me.lbUnidadF = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.fbdDescarga = New System.Windows.Forms.FolderBrowserDialog()
@@ -60,12 +60,12 @@ Partial Class InstaladorKubo
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TabSistema = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.BtKmsPico = New System.Windows.Forms.Button()
         Me.btOdbc = New System.Windows.Forms.Button()
         Me.btFramework = New System.Windows.Forms.Button()
         Me.BtUac = New System.Windows.Forms.Button()
         Me.btDirectivas = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.BtKmsPico = New System.Windows.Forms.Button()
         Me.BtISL = New System.Windows.Forms.Button()
         Me.BtNotinpdf = New System.Windows.Forms.Button()
         Me.BtConfiguraWord2016 = New System.Windows.Forms.Button()
@@ -245,7 +245,7 @@ Partial Class InstaladorKubo
         '
         Me.btSalir.BackColor = System.Drawing.SystemColors.Control
         Me.btSalir.Font = New System.Drawing.Font("Lucida Bright", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.btSalir.Location = New System.Drawing.Point(848, 561)
+        Me.btSalir.Location = New System.Drawing.Point(867, 560)
         Me.btSalir.Margin = New System.Windows.Forms.Padding(2)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(72, 33)
@@ -602,18 +602,6 @@ Partial Class InstaladorKubo
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
-        'BtKmsPico
-        '
-        Me.BtKmsPico.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtKmsPico.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtKmsPico.Location = New System.Drawing.Point(8, 130)
-        Me.BtKmsPico.Margin = New System.Windows.Forms.Padding(2)
-        Me.BtKmsPico.Name = "BtKmsPico"
-        Me.BtKmsPico.Size = New System.Drawing.Size(167, 28)
-        Me.BtKmsPico.TabIndex = 34
-        Me.BtKmsPico.Text = "Activ. KMSpico"
-        Me.BtKmsPico.UseVisualStyleBackColor = True
-        '
         'btOdbc
         '
         Me.btOdbc.FlatStyle = System.Windows.Forms.FlatStyle.Popup
@@ -677,6 +665,18 @@ Partial Class InstaladorKubo
         Me.TabPage6.Size = New System.Drawing.Size(226, 245)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
+        '
+        'BtKmsPico
+        '
+        Me.BtKmsPico.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtKmsPico.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BtKmsPico.Location = New System.Drawing.Point(8, 130)
+        Me.BtKmsPico.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtKmsPico.Name = "BtKmsPico"
+        Me.BtKmsPico.Size = New System.Drawing.Size(167, 28)
+        Me.BtKmsPico.TabIndex = 34
+        Me.BtKmsPico.Text = "Activ. KMSpico"
+        Me.BtKmsPico.UseVisualStyleBackColor = True
         '
         'BtISL
         '
@@ -1049,7 +1049,7 @@ Partial Class InstaladorKubo
         Me.BtLogin.BackColor = System.Drawing.Color.Gold
         Me.BtLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtLogin.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtLogin.Location = New System.Drawing.Point(831, 526)
+        Me.BtLogin.Location = New System.Drawing.Point(850, 525)
         Me.BtLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.BtLogin.Name = "BtLogin"
         Me.BtLogin.Size = New System.Drawing.Size(89, 27)
@@ -1269,7 +1269,7 @@ Partial Class InstaladorKubo
         Me.BtSubeBinario.BackColor = System.Drawing.Color.Gold
         Me.BtSubeBinario.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtSubeBinario.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtSubeBinario.Location = New System.Drawing.Point(817, 480)
+        Me.BtSubeBinario.Location = New System.Drawing.Point(836, 479)
         Me.BtSubeBinario.Margin = New System.Windows.Forms.Padding(2)
         Me.BtSubeBinario.Name = "BtSubeBinario"
         Me.BtSubeBinario.Size = New System.Drawing.Size(104, 28)
@@ -1288,7 +1288,7 @@ Partial Class InstaladorKubo
         Me.TlpSQL2014.IsBalloon = True
         Me.TlpSQL2014.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'InstaladorKubo
+        'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -1318,7 +1318,7 @@ Partial Class InstaladorKubo
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.Name = "InstaladorKubo"
+        Me.Name = "FrmInstaladorKubo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Instalador Kubo"
         Me.GroupBox4.ResumeLayout(False)
