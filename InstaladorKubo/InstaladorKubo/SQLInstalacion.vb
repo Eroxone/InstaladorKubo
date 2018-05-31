@@ -25,14 +25,15 @@ Public Class FrmSQLInstalacion
 
         Directory.CreateDirectory(rutadescargas & "SQL")
         Dim wgetserialsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SerialsSQL2014.txt -O " & rutadescargas & "SQL\SerialsSQL2014.txt"
-        Dim wgetsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SQLServer2014.iso -O " & rutadescargas & "SQL\SQLServer2014.exe"
+        Dim wgetsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SQLServer2014.exe -O " & rutadescargas & "SQL\SQLServer2014.exe"
         Shell("cmd /c " & rutadescargas & wgetserialsql, AppWinStyle.Hide, True)
         Shell("cmd /c " & rutadescargas & wgetsql, AppWinStyle.NormalFocus, True)
-        RegistroInstalacion("SQL2014: Terminada descarga de la ISO. Se procede a descomprimir la imagen.")
+        RegistroInstalacion("SQL2014: Terminada descarga del Paquete en RAR. Se procede a descomprimir la imagen.")
 
-        Shell("cmd.exe /c " & rutadescargas & "unrar.exe x -u -y " & rutadescargas & "SQL\SQLServer2014.exe " & rutadescargas & "SQL\", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & rutadescargas & "unrar.exe x -f -y " & rutadescargas & "SQL\SQLServer2014.exe " & rutadescargas & "SQL\", AppWinStyle.NormalFocus, True)
         'TODO convertir la ISO en un RAR para poder trabajar con el unrar
-        Dim parametrossql As String = "/IAcceptSQLServerLicenseTerms=True /Action=Install /ENU=False /QUIETSIMPLE=True /UpdateEnabled=True /ERRORREPORTING=False /USEMICROSOFTUPDATE=False /FEATURES=SQLENGINE, SSMS, ADV_SSMS /UpdateSource=MU /HELP=False /INDICATEPROGRESS=True /X86=False " & "/INSTALLSHAREDDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /INSTALLSHAREDWOWDIR=" & """" & "C:\Program Files (x86)\Microsoft SQL" & """" & " /INSTANCENAME=" & """" & instancia & """" & " /SQMREPORTING=False /INSTANCEID=" & """" & instancia & """" & "  /INSTANCEDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /AGTSVCACCOUNT=" & """" & "NT Service\SQLSERVERAGENT" & """" & " /AGTSVCSTARTUPTYPE=Manual /COMMFABRICPORT=0 /COMMFABRICNETWORKLEVEL=0 /COMMFABRICENCRYPTION=0 /MATRIXCMBRICKCOMMPORT=0 /SQLSVCSTARTUPTYPE=Automatic /FILESTREAMLEVEL=1 /ENABLERANU=False /SQLCOLLATION=Modern_Spanish_CI_AS /SQLSVCACCOUNT=" & """" & "NT Service\MSSQLSERVER" & """" & " /SECURITYMODE=SQL /SAPWD=03071997" & " /SQLBACKUPDIR=" & """" & rutabdusuario & "\Backup" & """" & " /SQLUSERDBDIR=" & """" & rutabdusuario & """" & " /TCPENABLED=1 /NPENABLED=1 /BROWSERSVCSTARTUPTYPE=Automatic /SQLSYSADMINACCOUNTS=Administrador"
+        Dim parametrossql As String = "/IAcceptSQLServerLicenseTerms=True /Action=Install /ENU=False /QUIETSIMPLE=True /UpdateEnabled=True /ERRORREPORTING=False /USEMICROSOFTUPDATE=False /FEATURES=SQLENGINE,SSMS,ADV_SSMS /UpdateSource=MU /HELP=False /INDICATEPROGRESS=True /X86=False" & " /INSTALLSHAREDDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /INSTALLSHAREDWOWDIR=" & """" & "C:\Program Files (x86)\Microsoft SQL" & """" & " /INSTANCENAME=" & """" & instancia & """" & " /SQMREPORTING=False /INSTANCEID=" & """" & instancia & """" & " /INSTANCEDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /AGTSVCSTARTUPTYPE=Manual /COMMFABRICPORT=0 /COMMFABRICNETWORKLEVEL=0 /COMMFABRICENCRYPTION=0 /MATRIXCMBRICKCOMMPORT=0 /SQLSVCSTARTUPTYPE=Automatic /FILESTREAMLEVEL=1 /ENABLERANU=False /SQLCOLLATION=Modern_Spanish_CI_AS /SECURITYMODE=SQL /SAPWD=03071997" & " /SQLBACKUPDIR=" & """" & rutabdusuario & "\Backup" & """" & " /SQLUSERDBDIR=" & """" & rutabdusuario & """" & " /TCPENABLED=1 /NPENABLED=1 /BROWSERSVCSTARTUPTYPE=Automatic /SQLSYSADMINACCOUNTS=Administrador"
+        'Dim parametrossql As String = "/IAcceptSQLServerLicenseTerms=True /Action=Install /ENU=False /QUIETSIMPLE=True /UpdateEnabled=True /ERRORREPORTING=False /USEMICROSOFTUPDATE=False /FEATURES=SQLENGINE,SSMS,ADV_SSMS /UpdateSource=MU /HELP=False /INDICATEPROGRESS=True /X86=False" & " /INSTALLSHAREDDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /INSTALLSHAREDWOWDIR=" & """" & "C:\Program Files (x86)\Microsoft SQL" & """" & " /INSTANCENAME=" & """" & instancia & """" & " /SQMREPORTING=False /INSTANCEID=" & """" & instancia & """" & " /INSTANCEDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /AGTSVCACCOUNT=" & """" & "NT Service\SQLSERVERAGENT" & """" & " /AGTSVCSTARTUPTYPE=Manual /COMMFABRICPORT=0 /COMMFABRICNETWORKLEVEL=0 /COMMFABRICENCRYPTION=0 /MATRIXCMBRICKCOMMPORT=0 /SQLSVCSTARTUPTYPE=Automatic /FILESTREAMLEVEL=1 /ENABLERANU=False /SQLCOLLATION=Modern_Spanish_CI_AS /SQLSVCACCOUNT=" & """" & "NT Service\MSSQLSERVER" & """" & " /SECURITYMODE=SQL /SAPWD=03071997" & " /SQLBACKUPDIR=" & """" & rutabdusuario & "\Backup" & """" & " /SQLUSERDBDIR=" & """" & rutabdusuario & """" & " /TCPENABLED=1 /NPENABLED=1 /BROWSERSVCSTARTUPTYPE=Automatic /SQLSYSADMINACCOUNTS=Administrador"
 
         Try
             Directory.CreateDirectory(rutabdusuario)
@@ -72,5 +73,9 @@ Public Class FrmSQLInstalacion
 
     Private Sub FrmSQLInstalacion_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         FrmInstaladorKubo.Show()
+    End Sub
+
+    Private Sub BtLogs_Click(sender As Object, e As EventArgs) Handles BtLogs.Click
+        Process.Start("explorer.exe", "C:\Program Files\Microsoft SQL Server\120\Setup Bootstrap\Log")
     End Sub
 End Class

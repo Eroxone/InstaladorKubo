@@ -36,6 +36,7 @@ Partial Class FrmSQLInstalacion
         Me.TbInstancia = New System.Windows.Forms.TextBox()
         Me.TlpInstalaSQL = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtSalir = New System.Windows.Forms.Button()
+        Me.BtLogs = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'BtDescargarSQL
@@ -45,7 +46,7 @@ Partial Class FrmSQLInstalacion
         Me.BtDescargarSQL.Location = New System.Drawing.Point(226, 230)
         Me.BtDescargarSQL.Name = "BtDescargarSQL"
         Me.BtDescargarSQL.Size = New System.Drawing.Size(153, 50)
-        Me.BtDescargarSQL.TabIndex = 0
+        Me.BtDescargarSQL.TabIndex = 3
         Me.BtDescargarSQL.Text = "COMENZAR"
         Me.BtDescargarSQL.UseVisualStyleBackColor = True
         '
@@ -108,10 +109,10 @@ Partial Class FrmSQLInstalacion
         '
         Me.TbBDUsuario.Font = New System.Drawing.Font("Lucida Bright", 12.0!)
         Me.TbBDUsuario.Location = New System.Drawing.Point(160, 135)
-        Me.TbBDUsuario.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TbBDUsuario.Margin = New System.Windows.Forms.Padding(2)
         Me.TbBDUsuario.Name = "TbBDUsuario"
         Me.TbBDUsuario.Size = New System.Drawing.Size(380, 26)
-        Me.TbBDUsuario.TabIndex = 7
+        Me.TbBDUsuario.TabIndex = 2
         Me.TbBDUsuario.Text = "G:\RESPALDO\F\NOTAWIN.NET"
         '
         'TextBox1
@@ -119,11 +120,11 @@ Partial Class FrmSQLInstalacion
         Me.TextBox1.BackColor = System.Drawing.SystemColors.ControlLight
         Me.TextBox1.Font = New System.Drawing.Font("Lucida Bright", 12.0!)
         Me.TextBox1.Location = New System.Drawing.Point(160, 57)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.Size = New System.Drawing.Size(380, 26)
-        Me.TextBox1.TabIndex = 8
+        Me.TextBox1.TabIndex = 6
         Me.TextBox1.Text = "C:\Program Files\Microsoft SQL Server"
         '
         'TbBackup
@@ -131,11 +132,11 @@ Partial Class FrmSQLInstalacion
         Me.TbBackup.BackColor = System.Drawing.SystemColors.ControlLight
         Me.TbBackup.Font = New System.Drawing.Font("Lucida Bright", 12.0!)
         Me.TbBackup.Location = New System.Drawing.Point(160, 175)
-        Me.TbBackup.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TbBackup.Margin = New System.Windows.Forms.Padding(2)
         Me.TbBackup.Name = "TbBackup"
         Me.TbBackup.ReadOnly = True
         Me.TbBackup.Size = New System.Drawing.Size(380, 26)
-        Me.TbBackup.TabIndex = 9
+        Me.TbBackup.TabIndex = 7
         Me.TbBackup.Text = "G:\RESPALDO\F\NOTAWIN.NET\BACKUP"
         '
         'TbInstancia
@@ -143,10 +144,10 @@ Partial Class FrmSQLInstalacion
         Me.TbInstancia.BackColor = System.Drawing.SystemColors.Window
         Me.TbInstancia.Font = New System.Drawing.Font("Lucida Bright", 12.0!)
         Me.TbInstancia.Location = New System.Drawing.Point(160, 97)
-        Me.TbInstancia.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TbInstancia.Margin = New System.Windows.Forms.Padding(2)
         Me.TbInstancia.Name = "TbInstancia"
         Me.TbInstancia.Size = New System.Drawing.Size(380, 26)
-        Me.TbInstancia.TabIndex = 10
+        Me.TbInstancia.TabIndex = 1
         Me.TbInstancia.Text = "MSSQLSERVER"
         '
         'TlpInstalaSQL
@@ -160,15 +161,27 @@ Partial Class FrmSQLInstalacion
         Me.BtSalir.Location = New System.Drawing.Point(497, 246)
         Me.BtSalir.Name = "BtSalir"
         Me.BtSalir.Size = New System.Drawing.Size(94, 34)
-        Me.BtSalir.TabIndex = 11
+        Me.BtSalir.TabIndex = 4
         Me.BtSalir.Text = "Salir"
         Me.BtSalir.UseVisualStyleBackColor = True
+        '
+        'BtLogs
+        '
+        Me.BtLogs.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtLogs.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtLogs.Location = New System.Drawing.Point(24, 230)
+        Me.BtLogs.Name = "BtLogs"
+        Me.BtLogs.Size = New System.Drawing.Size(88, 50)
+        Me.BtLogs.TabIndex = 5
+        Me.BtLogs.Text = "Visualizar Logs SQL"
+        Me.BtLogs.UseVisualStyleBackColor = True
         '
         'FrmSQLInstalacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(603, 292)
+        Me.Controls.Add(Me.BtLogs)
         Me.Controls.Add(Me.BtSalir)
         Me.Controls.Add(Me.TbInstancia)
         Me.Controls.Add(Me.TbBackup)
@@ -180,7 +193,9 @@ Partial Class FrmSQLInstalacion
         Me.Controls.Add(Me.LbDatosUsuario)
         Me.Controls.Add(Me.LbSQL2014)
         Me.Controls.Add(Me.BtDescargarSQL)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
         Me.Name = "FrmSQLInstalacion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "SQLInstalacion"
@@ -201,4 +216,5 @@ Partial Class FrmSQLInstalacion
     Friend WithEvents TbInstancia As TextBox
     Friend WithEvents TlpInstalaSQL As ToolTip
     Friend WithEvents BtSalir As Button
+    Friend WithEvents BtLogs As Button
 End Class
