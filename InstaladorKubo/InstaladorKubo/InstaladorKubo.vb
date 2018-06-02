@@ -1687,8 +1687,8 @@ Public Class FrmInstaladorKubo
         Directory.CreateDirectory(notinf)
 
         Dim exe As String = "AccesosDirectos.exe AccesosDirectos2003.exe jnemo-latest.exe KMSpico10.exe Office2003.exe Office2016.exe PasarelaSigno.exe PuestoNotinC.exe ScanImg_Beta_FT.exe SFeren-2.8.exe wget.exe unrar.exe"
-        Dim rar As String = "ConfWord2016.rar PaquetesFT.rar"
-        Dim mstmsp As String = "Setup.mst Setup2003.mst setup2016.MSP Setup2016SinWord.MSP"
+        Dim rar As String = "ConfWord2016.rar PaquetesFT.rar Office2016x64.rar"
+        Dim mstmsp As String = "Setup.mst Setup2003.mst setup2016.MSP Setup2016SinWord.MSP setup2016x64.MSP"
 
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " " & exe & " /R:2 /W:5", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " " & rar & " /R:2 /W:5", AppWinStyle.Hide, True)
