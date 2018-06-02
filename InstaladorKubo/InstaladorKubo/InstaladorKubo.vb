@@ -1128,7 +1128,7 @@ Public Class FrmInstaladorKubo
                         Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNet.exe")
                         Threading.Thread.Sleep(5000)
                     Catch ex As Exception
-                        MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Continuamos.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        'MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Continuamos.", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
                         RegistroInstalacion("ReferNet: " & ex.Message)
                     End Try
