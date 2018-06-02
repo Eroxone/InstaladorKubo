@@ -354,20 +354,18 @@ Public Class FrmInstaladorKubo
             '     cbOffice2016.Enabled = True
         End If
 
-        'If System.IO.File.Exists(RutaDescargas & "Office2016odt.exe") Then
-        '    Dim Archivo2016odt As New FileInfo(RutaDescargas & "Office2016odt.exe")
-        '    Dim Length2016odt As Long = Archivo2016odt.Length
-        '    If Archivo2016odt.Length = "2452664263" Then
-        '        cbOffice2016odt.ForeColor = Color.DarkGreen
-        '        '        cbOffice2016odt.Enabled = False
-        '    ElseIf Archivo2016odt.Length < "2452664263" Then
-        '        cbOffice2016odt.ForeColor = Color.Red
-        '    End If
-        'Else
-        '    cbOffice2016odt.ForeColor = SystemColors.ControlText
-        '    '      cbOffice2016odt.Enabled = True
-        'End If
-
+        If System.IO.File.Exists(RutaDescargas & "Office2016x64.rar") Then
+            Dim Archivo2016x64 As New FileInfo(RutaDescargas & "Office2016.exe")
+            Dim Length2016x64 As Long = Archivo2016x64.Length
+            If Archivo2016x64.Length = "864537901" Then
+                CbOffice2016x64.ForeColor = Color.DarkGreen
+                '         cbOffice2016.Enabled = False
+            ElseIf Archivo2016x64.Length < "864537901" Then
+                CbOffice2016x64.ForeColor = Color.Red
+            End If
+        Else
+            CbOffice2016x64.ForeColor = SystemColors.ControlText
+        End If
         If System.IO.File.Exists(RutaDescargas & "ConfWord2016.rar") Then
             Dim Config2016 As New FileInfo(RutaDescargas & "ConfWord2016.rar")
             Dim LengthConfig2016 As Long = Config2016.Length
@@ -481,7 +479,7 @@ Public Class FrmInstaladorKubo
     Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
 
         'Si no chequeas nada salimos
-        If (cbConfiguraNotin.Checked OrElse cbConfiguraWord2016.Checked OrElse cbNemo.Checked OrElse cbOffice2003.Checked OrElse cbOffice2016.Checked OrElse cbOffice2016odt.Checked OrElse cbPasarelaSigno.Checked OrElse cbPuestoNotin.Checked OrElse cbRequisitos.Checked OrElse cbSferen.Checked OrElse cbTerceros.Checked OrElse CbFineReader.Checked OrElse CbPaquetesFT.Checked) = False Then
+        If (cbConfiguraNotin.Checked OrElse cbConfiguraWord2016.Checked OrElse cbNemo.Checked OrElse cbOffice2003.Checked OrElse cbOffice2016.Checked OrElse cbOffice2016odt.Checked OrElse cbPasarelaSigno.Checked OrElse cbPuestoNotin.Checked OrElse cbRequisitos.Checked OrElse cbSferen.Checked OrElse cbTerceros.Checked OrElse CbFineReader.Checked OrElse CbPaquetesFT.Checked OrElse CbOffice2016x64.Checked) = False Then
             MessageBox.Show("NINGUNA DESCARGA SELECCIONADA.", "Gestión Descargas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Exit Sub
         End If
@@ -541,19 +539,27 @@ Public Class FrmInstaladorKubo
         End If
 
         If cbOffice2016.Checked Then
-            texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016", "1")
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "0")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016X64", "0")
         End If
 
         If cbOffice2016odt.Checked Then
-            texto = texto & PuestoNotin & "KMSpico10.exe" & vbCrLf
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
             texto = texto & PuestoNotin & "setup2016.MSP" & vbCrLf
             texto = texto & PuestoNotin & "Setup2016SinWord.MSP" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "1")
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016", "0")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016X64", "0")
+        End If
+        If CbOffice2016x64.Checked Then
+            texto = texto & PuestoNotin & "Office2016x64.rar" & vbCrLf
+            texto = texto & PuestoNotin & "setup2016x64.MSP" & vbCrLf
+
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "0")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016", "0")
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016X64", "1")
         End If
 
         If cbNemo.Checked Then
@@ -688,6 +694,7 @@ Public Class FrmInstaladorKubo
         cbOffice2003.Checked = False
         cbOffice2016.Checked = False
         cbOffice2016odt.Checked = False
+        CbOffice2016x64.Checked = False
         cbNemo.Checked = False
         cbRequisitos.Checked = False
         cbPuestoNotin.Checked = False
@@ -727,6 +734,7 @@ Public Class FrmInstaladorKubo
             cbOffice2003.Checked = True
             cbOffice2016.Checked = False
             cbOffice2016odt.Checked = True
+            CbOffice2016x64.Checked = False
             cbNemo.Checked = True
             cbRequisitos.Checked = True
             cbPuestoNotin.Checked = True
@@ -741,6 +749,7 @@ Public Class FrmInstaladorKubo
             cbOffice2003.Checked = False
             cbOffice2016.Checked = False
             cbOffice2016odt.Checked = False
+            CbOffice2016x64.Checked = False
             cbNemo.Checked = False
             cbRequisitos.Checked = False
             cbPuestoNotin.Checked = False
@@ -764,13 +773,22 @@ Public Class FrmInstaladorKubo
         CalcularTamanoDescarga(705, cbOffice2016.Checked)
         cbConfiguraWord2016.CheckState = cbOffice2016.CheckState
         cbOffice2016odt.Checked = False
+        CbOffice2016x64.Checked = False
     End Sub
 
     Private Sub cbOffice2016odt_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2016odt.CheckedChanged
         CalcularTamanoDescarga(705, cbOffice2016odt.Checked)
         cbConfiguraWord2016.CheckState = cbOffice2016odt.CheckState
         cbOffice2016.Checked = False
+        CbOffice2016x64.Checked = False
     End Sub
+    Private Sub CbOffice2016x64_CheckedChanged(sender As Object, e As EventArgs) Handles CbOffice2016x64.CheckedChanged
+        CalcularTamanoDescarga(865, CbOffice2016x64.Checked)
+        cbConfiguraWord2016x64.CheckState = CbOffice2016x64.CheckState
+        cbOffice2016.Checked = False
+        cbOffice2016odt.Checked = False
+    End Sub
+
 #End Region
 
     Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
@@ -885,25 +903,7 @@ Public Class FrmInstaladorKubo
             lbUnidadF.ForeColor = Color.Green
         End If
 
-        'Comprobamos si existe ya unrar.exe
-        If Not System.IO.File.Exists(RutaDescargas & "unrar.exe") Then
-
-            'Descargar ejecutable UnRAR
-            Try
-                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "juanjo", "Palomeras24", False, 20000, True)
-                RegistroInstalacion("ÉXITO: Obtenido paquete UNRAR.EXE")
-            Catch ex As Exception
-                MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                RegistroInstalacion("ERROR: No se pudo obtener el ejecutable UNRAR.EXE.")
-                'Reintentar descarga
-                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
-                My.Computer.Network.DownloadFile(PuestoNotin & "unrar.exe", RutaDescargas & "unrar.exe", "juanjo", "Palomeras24", False, 20000, True)
-                If REINTENTAR = DialogResult.Retry Then
-                End If
-            End Try
-        End If
-
+        obtenerunrar()
 
         Dim NotinSiNo As Integer = Nothing
 
@@ -1055,8 +1055,27 @@ Public Class FrmInstaladorKubo
                 End If
             End If
         Else
-            RegistroInstalacion("ERROR: No se encontró el Paquete OFFICE2016.EXE. ¿Seguro lo descargaste?. Se omite su instalación.")
+            RegistroInstalacion("ADVERTENCIA: No se encontró el Paquete OFFICE2016.EXE. Buscando Paquete de Office X64.")
         End If
+
+        Dim EjecutableWordx64 As Boolean = File.Exists("C:\Program Files\Microsoft Office\OFFICE16\WINWORD.EXE" OrElse "C:\Program Files\Microsoft Office\root\OFFICE16\WINWORD.EXE")
+        If EjecutableWordx64 = False Then
+            If File.Exists(RutaDescargas & "Office2016x64.rar") Then
+                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016x64.rar " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                Try
+                    File.Copy(RutaDescargas & "setup2016x64.MSP", RutaDescargas & "Office2016x64\setup2016x64.MSP", True)
+                Catch ex As Exception
+                    MessageBox.Show("Error al copiar fichero MSPx64. Revisa que el fichero exista en " & RutaDescargas & "Office2016x64", "Error Setup MSPx64", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    RegistroInstalacion("Setup2016x64.MSP: " & ex.Message)
+                End Try
+                Threading.Thread.Sleep(3000)
+                Shell("cmd.exe /C " & RutaDescargas & "Office2016x64\SETUP.EXE /adminfile setup2016x64.MSP", AppWinStyle.Hide, True)
+                RegistroInstalacion("Realizada instalación desatendida Office 2016 x64 Pro Plus.")
+            Else
+                RegistroInstalacion("ERROR: Detectada posible instalación de Office 2016. Debe limpiarse antes de proceder a relizar la instalación desatendida.")
+            End If
+        End If
+
 
         EjecutableNotinNet()
     End Sub
@@ -1095,6 +1114,7 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("ERROR: Normal.dotm " & ex.Message)
                 'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
+            'TODO aqui descargar Version de x64 de NotinNet si se elige ese office.
 
         End If
         ConfigurarWord2016()
@@ -1176,6 +1196,7 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR: No se pudo Configurar WORD 2016. No se encontró la descarga de la Utilidad.")
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
         End If
+        'TODO preparar esto también para la versión de 64bits
 
         SoftwareAncert()
         'KMSPico()
@@ -1349,6 +1370,9 @@ Public Class FrmInstaladorKubo
         tlpOffice2016.ToolTipTitle = "Paquete Office 2016 PERSONALIZABLE"
         tlpOffice2016.SetToolTip(cbOffice2016, "Descarga el paquete Office con instalación personalizable")
 
+        TlpOffice2016x64.ToolTipTitle = "Paquete Office 2016 x64 DESATENTIDO"
+        TlpOffice2016x64.SetToolTip(CbOffice2016x64, "Descarga el paquete Office 2016 x64. Versiones Beta Nexus.")
+
         tlpTerceros.ToolTipIcon = ToolTipIcon.Info
         tlpTerceros.ToolTipTitle = "Software recomendado"
         tlpTerceros.SetToolTip(cbTerceros, "Incluye Adobe Reader DC, FileZilla, Google Chrome y Notepad++")
@@ -1422,7 +1446,7 @@ Public Class FrmInstaladorKubo
         TlpISL.SetToolTip(BtISL, "Añade este equipo para su futura conexión desde ISL Light de operador.")
 
         TlpSQL2014.ToolTipTitle = "Descarga e Instala SQL 2014 Business"
-        TlpSQL2014.SetToolTip(BtSQL2014, "Accederemos al formulario donde podrás personalizar la ruta de instalación de SQL Server 2014.")
+        TlpSQL2014.SetToolTip(BtSQL2014, "Accederemos al formulario donde podrás personalizar la instalación de SQL Server 2014.")
 
     End Sub
 #End Region
@@ -2572,5 +2596,6 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("Limpieza Office 2016 cancelada por el usuario.")
         End If
     End Sub
+
 
 End Class
