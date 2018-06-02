@@ -21,7 +21,7 @@ Public Class FrmInstaladorKubo
     Public Const instaladorkuboini = "C:\TEMP\InstaladorKubo\InstaladorKubo.ini"
 
 
-    Private Sub frmInstaladorNotin_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub FrmInstaladorNotin_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
         File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", vbCrLf & vbCrLf)
@@ -355,7 +355,7 @@ Public Class FrmInstaladorKubo
         End If
 
         If System.IO.File.Exists(RutaDescargas & "Office2016x64.rar") Then
-            Dim Archivo2016x64 As New FileInfo(RutaDescargas & "Office2016.exe")
+            Dim Archivo2016x64 As New FileInfo(RutaDescargas & "Office2016x64.rar")
             Dim Length2016x64 As Long = Archivo2016x64.Length
             If Archivo2016x64.Length = "864537901" Then
                 CbOffice2016x64.ForeColor = Color.DarkGreen
@@ -376,6 +376,16 @@ Public Class FrmInstaladorKubo
         Else
             cbConfiguraWord2016.ForeColor = SystemColors.ControlText
             '      cbConfiguraWord2016.Enabled = True
+        End If
+
+        If System.IO.File.Exists(RutaDescargas & "ConfWord2016x64.rar") Then
+            Dim Config2016x64 As New FileInfo(RutaDescargas & "ConfWord2016x64.rar")
+            Dim LengthConfig2016x64 As Long = Config2016x64.Length
+            If Config2016x64.Length = "8229" Then
+                cbConfiguraWord2016.ForeColor = Color.DarkGreen
+            End If
+        Else
+            cbConfiguraWord2016.ForeColor = SystemColors.ControlText
         End If
 
         If System.IO.File.Exists(RutaDescargas & "jnemo-latest.exe") Then
@@ -571,6 +581,7 @@ Public Class FrmInstaladorKubo
             texto = texto & PuestoNotin & "PuestoNotinC.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos2003.exe" & vbCrLf
+            texto = texto & PuestoNotin & "AccesosDirectosx64.exe" & vbCrLf
             texto = texto & PuestoNotin & "ScanImg_Beta_FT.exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "PUESTONOTIN", "1")
         End If
@@ -625,7 +636,10 @@ Public Class FrmInstaladorKubo
             texto = texto & PuestoNotin & "ConfWord2016.rar" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "CONFIGURAWORD", "1")
         End If
-
+        If cbConfiguraWord2016x64.Checked Then
+            texto = texto & PuestoNotin & "ConfWord2016x64.rar" & vbCrLf
+            cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "CONFIGURAWORDX64", "1")
+        End If
 
         'Guardar el texto en el fichero
         System.IO.File.WriteAllText(RutaDescargas & FILE_DOWNLOAD, texto)
@@ -783,7 +797,7 @@ Public Class FrmInstaladorKubo
         CbOffice2016x64.Checked = False
     End Sub
     Private Sub CbOffice2016x64_CheckedChanged(sender As Object, e As EventArgs) Handles CbOffice2016x64.CheckedChanged
-        CalcularTamanoDescarga(865, CbOffice2016x64.Checked)
+        CalcularTamanoDescarga(824, CbOffice2016x64.Checked)
         cbConfiguraWord2016x64.CheckState = CbOffice2016x64.CheckState
         cbOffice2016.Checked = False
         cbOffice2016odt.Checked = False
@@ -1058,25 +1072,6 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ADVERTENCIA: No se encontró el Paquete OFFICE2016.EXE. Buscando Paquete de Office X64.")
         End If
 
-        Dim EjecutableWordx64 As Boolean = File.Exists("C:\Program Files\Microsoft Office\OFFICE16\WINWORD.EXE" OrElse "C:\Program Files\Microsoft Office\root\OFFICE16\WINWORD.EXE")
-        If EjecutableWordx64 = False Then
-            If File.Exists(RutaDescargas & "Office2016x64.rar") Then
-                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016x64.rar " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                Try
-                    File.Copy(RutaDescargas & "setup2016x64.MSP", RutaDescargas & "Office2016x64\setup2016x64.MSP", True)
-                Catch ex As Exception
-                    MessageBox.Show("Error al copiar fichero MSPx64. Revisa que el fichero exista en " & RutaDescargas & "Office2016x64", "Error Setup MSPx64", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    RegistroInstalacion("Setup2016x64.MSP: " & ex.Message)
-                End Try
-                Threading.Thread.Sleep(3000)
-                Shell("cmd.exe /C " & RutaDescargas & "Office2016x64\SETUP.EXE /adminfile setup2016x64.MSP", AppWinStyle.Hide, True)
-                RegistroInstalacion("Realizada instalación desatendida Office 2016 x64 Pro Plus.")
-            Else
-                RegistroInstalacion("ERROR: Detectada posible instalación de Office 2016. Debe limpiarse antes de proceder a relizar la instalación desatendida.")
-            End If
-        End If
-
-
         EjecutableNotinNet()
     End Sub
 
@@ -1114,7 +1109,6 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("ERROR: Normal.dotm " & ex.Message)
                 'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
-            'TODO aqui descargar Version de x64 de NotinNet si se elige ese office.
 
         End If
         ConfigurarWord2016()
@@ -2226,8 +2220,6 @@ Public Class FrmInstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
             'Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             'If ConfigurarWord = DialogResult.Yes Then
-            'Dim configurawordini = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "2")
-
             Try
                 Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNet.exe")
                 Threading.Thread.Sleep(5000)
@@ -2596,6 +2588,492 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("Limpieza Office 2016 cancelada por el usuario.")
         End If
     End Sub
+
+    Private Sub BtNexus64_Click(sender As Object, e As EventArgs) Handles BtNexus64.Click
+        RegistroInstalacion("=== COMIENZO INSTALACIONES NOTIN-NEXUS x64 ===")
+
+        'Comprobar si se ha efectuado alguna descarga
+        Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
+        Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
+        If comienzo = 2 AndAlso rutaenf = 2 Then
+            MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            'TODO la etiqueta no se oculta... Arreglar tb para Word 2003
+            'lbProcesandoDescargas.Visible = False
+            Exit Sub
+        End If
+
+        Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
+        If claveinift = 2 Then
+            If File.Exists(RutaDescargas & "Registro\FTComoAdministrador.reg") = False Then
+                Directory.CreateDirectory(RutaDescargas & "Registro")
+                My.Computer.Network.DownloadFile(PuestoNotin & "FTComoAdministrador.reg", RutaDescargas & "Registro\FTComoAdministrador.reg", "juanjo", "Palomeras24", False, 60000, True)
+            End If
+            Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "1")
+
+            'Deshabilitar SMARTSCREEN. Problemas tras el reinicio en ClickOnce
+            Try
+                My.Computer.Network.DownloadFile(PuestoNotin & "SmartScreen.reg", RutaDescargas & "SmartScreen.reg", "juanjo", "Palomeras24", False, 10000, True)
+            Catch ex As Exception
+                RegistroInstalacion("No se pudo obtener SmartScreen REG del FTP: " & ex.Message & ".")
+            End Try
+
+            Try
+                Process.Start("regedit.exe", "/s " & RutaDescargas & "SmartScreen.reg")
+                RegistroInstalacion("Deshabilitar SmartScreen. Permitir ejecución en entornos con problemas ClickOnce.")
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+                RegistroInstalacion("SmartScreen no se pudo importar: " & ex.Message)
+            End Try
+            PbInstalaciones.Visible = True
+            Dim p As Integer
+            While p < 6
+                p = p + 1
+                Threading.Thread.Sleep(600)
+                PbInstalaciones.PerformStep()
+            End While
+
+            Dim claveregft As DialogResult
+            claveregft = MessageBox.Show("Se importaron Claves de Registro y será recomendable REINICIAR antes de proceder con la Instalación. ¿Realizamos la preparación inicial?", "Importar Claves y Reiniciar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
+            If claveregft = DialogResult.Yes Then
+
+                MessageBox.Show("REINICIO NECESARIO. Guarda tu trabajo.", "Reinicio inicial", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Dim reinicio As String = "shutdown /r /f /t 0"
+                File.WriteAllText(RutaDescargas & "primerreinicio.bat", reinicio)
+                RegistroInstalacion("Procedemos a Reiniciar el equipo para la preparación inicial.")
+                RunAsAdmin(RutaDescargas & "primerreinicio.bat")
+                Exit Sub
+            ElseIf claveregft = DialogResult.No Then
+                MessageBox.Show("Continuamos con el resto de instalaciones.", "Reinicio cancelado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "0")
+                RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Claves de Registro.")
+            End If
+        ElseIf claveinift = 1 OrElse claveinift = 0 Then
+        End If
+
+        'Mientras unidad F no valida y usuario pulse reintentar
+
+        Dim QueHacerF As DialogResult
+        While UnidadF() = False
+            QueHacerF = MessageBox.Show("Unidad F no conectada. Habrá procesos que no se podrán completar y se omitirán.", "Advertencia Unidad F", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Warning)
+            If QueHacerF = DialogResult.Abort Then
+                lbInstalando.Visible = False
+                Exit Sub
+            ElseIf QueHacerF = DialogResult.Ignore Then
+                RegistroInstalacion("ADVERTENCIA: Comenzaste la Instalación sin Conectar la Unidad F.")
+                Exit While
+            End If
+        End While
+        ' CONTROLAR PULSAR ABORTAR
+
+
+        If UnidadF() = True Then
+            lbUnidadF.Text = "CONECTADA"
+            lbUnidadF.ForeColor = Color.Green
+        End If
+
+        obtenerunrar()
+
+        Dim NotinSiNo As Integer = Nothing
+
+        Dim EjecutableAccess As Boolean = File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE11\MSACCESS.EXE")
+
+        If EjecutableAccess = False Then
+            RegistroInstalacion("No se encontro Office 2003 instalado. Se procede a la instalación automatizada.")
+            InstalarNotinNetx64()
+
+        Else
+            NotinSiNo = MessageBox.Show("Posible instalación existente de NOTIN .NET (Access 2003). ¿Ejecutar instalación Office 2003?", "Instalación Office 2003", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If NotinSiNo = DialogResult.Yes Then
+                RegistroInstalacion("Se encontró el paquete Office pero se procede a su reinstalación.")
+                InstalarNotinNetx64()
+            Else
+                InstalarRequisitosNetx64()
+                RegistroInstalacion("Omitida instalación Office 2003. Pasamos a la instalación de los Pre-Requisitos.")
+            End If
+        End If
+
+    End Sub
+
+
+    Private Sub InstalarNotinNetx64()
+
+        'Claves Registro
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\FTComoAdministrador.reg", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ConfigAccess.reg", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\VentanasSigno.reg", AppWinStyle.Hide, True)
+        'Shell("cmd.exe /c REGEDIT /s " & RutaDescargas & "Registro\ExclusionDefender.reg", AppWinStyle.Hide, True)
+        RegistroInstalacion("Importadas Claves Registro para Notin.")
+
+        If File.Exists(RutaDescargas & "PuestoNotinC.exe") Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PuestoNotinC.exe " & "C:\", AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & "ScanImg_Beta_FT.exe", AppWinStyle.Hide, False)
+            'Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
+            Threading.Thread.Sleep(10000)
+        Else
+            RegistroInstalacion("ERROR: No se encontró el Paquete PuestoNotinC. Se suprimió su instalación.")
+        End If
+
+        If File.Exists(RutaDescargas & "Office2003.exe") Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2003.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+            'Setup MST que personaliza la instalación de Office 2003
+            File.Copy(RutaDescargas & "Setup.mst", RutaDescargas & "Office2003\Setup.mst", True)
+            '  Shell("C:\WINDOWS\system32\notepad.exe " & RutaDescargas & "Office2003\NSERIE.TXT", AppWinStyle.NormalFocus, False)
+            'Esperamos 5 segundos a que se complete la copia.
+            Threading.Thread.Sleep(3000)
+
+            Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe TRANSFORMS=" & RutaDescargas & "Office2003\Setup.mst /qb-", AppWinStyle.Hide, True)
+            RegistroInstalacion("Realizada instalación desatendida de Office 2003.")
+            ' Shell("cmd.exe /C taskkill /f /im notepad.exe", AppWinStyle.Hide, False)
+
+            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """" & " /q", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp" & """" & " /passive", AppWinStyle.Hide, True)
+            RegistroInstalacion("Instalados SP3 y Parche Access para Office 2003.")
+            Threading.Thread.Sleep(10000)
+        Else
+            RegistroInstalacion("ERROR: No se encontró el Paquete OFFICE2003.EXE ¿Seguro que lo descargaste?")
+        End If
+
+
+        'Copiar Referencia Outlook
+        Try
+            Dim msoutlxcopy As String = "xcopy /F /Y /C "
+            Dim msoutlorigen As String = RutaDescargas & "Registro\MSOUTL.OLB "
+            Dim msoutldestino As String = " ""C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\"" "
+            File.WriteAllText(RutaDescargas & "Registro\msoutl.bat", msoutlxcopy & msoutlorigen & msoutldestino)
+
+            RunAsAdmin(RutaDescargas & "Registro\msoutl.bat")
+            RegistroInstalacion("Copiada libreria Outlook necesaria para Notin.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR MSOUTLB: " & ex.Message)
+        End Try
+        'Try
+        '    File.Copy(RutaDescargas & "Registro\MSOUTL.OLB", "C:\Program Files (x86)\Common Files\microsoft shared\OFFICE11\MSOUTL.OLB", True)
+        'Catch ex As Exception
+        '    MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'End Try
+
+        InstalarRequisitosNetx64()
+    End Sub
+
+    Private Sub InstalarRequisitosNetx64()
+        Try
+            Dim requisitosini = cIniArray.IniGet(instaladorkuboini, "REQUISITOS", "NET", "2")
+
+            If requisitosini = "2" Then
+                Shell("cmd.exe /c " & RutaDescargas & "Requisitos\KryptonSuite300.msi /passive", AppWinStyle.Hide, True)
+                Shell("cmd.exe /c " & RutaDescargas & "Requisitos\Office2003PrimaryInterop.msi /passive", AppWinStyle.Hide, True)
+                Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2005.exe /q", AppWinStyle.Hide, True)
+                Threading.Thread.Sleep(15000)
+                Shell("cmd.exe /c " & RutaDescargas & "Requisitos\VisualTools2015.exe /q", AppWinStyle.Hide, True)
+                Threading.Thread.Sleep(15000)
+                cIniArray.IniWrite(instaladorkuboini, "REQUISITOS", "NET", "1")
+                RegistroInstalacion("Instalados Pre-Requisitos .Net")
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            RegistroInstalacion("ERROR Requisitos Net: " & ex.Message)
+        End Try
+        InstalarWord2016x64()
+    End Sub
+
+    Private Sub InstalarWord2016x64()
+        Dim EjecutableWordx64 As Boolean = File.Exists("C:\Program Files\Microsoft Office\OFFICE16\WINWORD.EXE") OrElse File.Exists("C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE")
+
+        If EjecutableWordx64 = False Then
+            If File.Exists(RutaDescargas & "Office2016x64.rar") Then
+                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2016x64.rar " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                RegistroInstalacion("No se encuentra instalación previa de Office 2016 x64. Procedemos a realizarla.")
+                Try
+                    File.Copy(RutaDescargas & "setup2016x64.MSP", RutaDescargas & "Office2016x64\setup2016x64.MSP", True)
+                Catch ex As Exception
+                    MessageBox.Show("Error al copiar fichero MSP x64. Revisa que el fichero exista en " & RutaDescargas & "Office2016 x64", "Error Setup x64 MSP", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    RegistroInstalacion("Setup2016x64.MSP: " & ex.Message)
+                End Try
+                Threading.Thread.Sleep(3000)
+                Shell("cmd.exe /C " & RutaDescargas & "Office2016x64\SETUP.EXE /adminfile setup2016x64.MSP", AppWinStyle.Hide, True)
+                RegistroInstalacion("Se procedió a realizar la instalación Desatendida de Office 2016 x64.")
+
+            Else
+
+                RegistroInstalacion("ADVERTENCIA: No se determinó la preferencia de instalación para Office 2016. Por defecto realizamos la ODT.")
+            End If
+        Else
+            MessageBox.Show("Se ha encontrado una instalación previa de Office 2016x64. Se omite su instalación.", "Instalación Office 2016x64 existente", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
+        EjecutableNotinNetx64()
+    End Sub
+
+
+
+    Private Sub EjecutableNotinNetx64()
+        If UnidadF() = True Then
+            'Try
+            'Try
+            'TODO ver donde y cómo se llama y descarga la versión de 64bits
+            '    File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
+            'Catch ex As Exception
+            '    RegistroInstalacion("NotinNetInstaller no encontrado en la Unidad F. No ejecutamos esta función.")
+            'End Try
+            ''TODO Si no se encuentra puedo descagar la Estable de internet.
+            'Dim pnotinnet As New ProcessStartInfo()
+            'pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
+            'Dim notinnet As Process = Process.Start(pnotinnet)
+            ''notintaskpane.WaitForInputIdle()
+            'notinnet.WaitForExit()
+            'RegistroInstalacion("Ejecutado instalador NotinNetInstaller.exe")
+            'Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
+            'End If
+            'Catch ex As Exception
+            '    RegistroInstalacion("NotinNetInstaller: " & ex.Message)
+            'End Try
+            'Ademas me traigo las Plantillas y el MDE
+            Try
+                File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
+            Catch ex As Exception
+                RegistroInstalacion("ERROR: Notin8.mde " & ex.Message)
+            End Try
+            Try
+                File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
+            Catch ex As Exception
+                RegistroInstalacion("ERROR: Normal.dotm " & ex.Message)
+                'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+
+        End If
+        ConfigurarWord2016x64()
+    End Sub
+
+    Private Sub ConfigurarWord2016x64()
+        If File.Exists(RutaDescargas & "ConfWord2016x64.rar") Then
+
+            If UnidadF() = True Then
+                Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016x64.rar " & RutaDescargas & "Office2016x64\", AppWinStyle.Hide, True)
+                'Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                'If ConfigurarWord = DialogResult.Yes Then
+                Try
+                    Process.Start("C:\Program Files\Humano Software\Notin\Compatibilidad\ReferNet.exe")
+                    Threading.Thread.Sleep(5000)
+                Catch ex As Exception
+                    'MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Continuamos.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
+                    RegistroInstalacion("ReferNet: " & ex.Message)
+                End Try
+
+                'Instalacion de los Addins. Hay que forzarlo.
+                Try
+                    'Crear una nueva estructura ProcessStartInfo.
+                    Dim pInfoaddin As New ProcessStartInfo()
+                    'Establecer el miembro de un nombre de archivo de pinfo como Eula.txt en la carpeta de sistema.
+                    pInfoaddin.FileName = "C:\Program Files\Humano Software\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
+                    'Ejecutar el proceso.
+                    Dim notinaddin As Process = Process.Start(pInfoaddin)
+                    'Esperar a que la ventana de proceso complete la carga.
+                    'notinaddin.WaitForInputIdle()
+                    'Esperar a que el proceso termine.
+                    notinaddin.WaitForExit()
+                    'Continuar con el código.
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR NotinAddin: " & ex.Message)
+                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                End Try
+                Try
+                    Dim pInfotaskpane As New ProcessStartInfo()
+                    pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
+                    Dim notintaskpane As Process = Process.Start(pInfotaskpane)
+                    'notintaskpane.WaitForInputIdle()
+                    notintaskpane.WaitForExit()
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR NotinTaskPane: " & ex.Message)
+                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                End Try
+                'Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
+                'RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+                Process.Start(RutaDescargas & "Office2016x64\ConfWord2016x64\ConfiguraWord2016.bat")
+                'Threading.Thread.Sleep(10000)
+
+                'Obtener texto entre caracteres
+                Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
+                expedientes = expedientes.Remove(0, 2)
+                Dim unidadi = expedientes.LastIndexOf("\I")
+                expedientes = expedientes.Substring(0, unidadi)
+
+                cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
+
+                Directory.CreateDirectory(RutaDescargas & "Registro")
+                Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
+                File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
+                File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
+
+                Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
+                RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "1")
+            Else
+                MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016 x64.", "Configura WORD 2016 x64", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
+        End If
+        Else
+        RegistroInstalacion("ERROR: No se pudo Configurar WORD 2016 x64. No se encontró la descarga de la Utilidad.")
+        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
+        End If
+        'TODO preparar esto también para la versión de 64bits
+
+        SoftwareAncertx64()
+        'KMSPico()
+    End Sub
+
+
+    Private Sub SoftwareAncertx64()
+        If File.Exists(RutaDescargas & "SFeren-2.8.exe") OrElse File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
+            Dim Ancert As Integer = Nothing
+            Ancert = MessageBox.Show("¿Instalar Software Ancert?", "Sferen y Pasarela", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If Ancert = 6 Then
+                If File.Exists(RutaDescargas & "SFeren-2.8.exe") Then
+                    Shell("cmd.exe /c " & RutaDescargas & "SFeren-2.8.exe", AppWinStyle.Hide, True)
+                Else
+                    RegistroInstalacion("ADVERTENCIA: Paquete Sferen no encontrado. No se instalará.")
+                End If
+                If File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
+                    Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "\PasarelaSigno\setup.exe", AppWinStyle.Hide, True)
+                Else
+                    RegistroInstalacion("ADVERTENCIA: Instalable PasarelaSigno no encontrado. No se instalará.")
+                End If
+            Else
+                RegistroInstalacion("Software ANCERT no descargado. Se omite su instalación.")
+            End If
+        End If
+        jNemox64()
+    End Sub
+
+    Private Sub jNemox64()
+        'TODO añadir comprobación 32bits aqui y en Office 2003
+        If Directory.Exists("c:\Program Files (x86)\Java") = False Then
+            'Descarga de JAVA 1.8.171
+            Directory.CreateDirectory(RutaDescargas & "Software")
+            Dim urljava As String = "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=233170_512cd62ec5174c3487ac17c61aaa89e8"
+            Dim wgetjava As String = "wget.exe -q --show-progress -t 5 -c "
+            Shell("cmd.exe /c " & RutaDescargas & wgetjava & urljava & " -O " & RutaDescargas & "Software\java8.exe", AppWinStyle.Hide, True)
+            Try
+                Dim pinstalajava As New ProcessStartInfo()
+                pinstalajava.FileName = RutaDescargas & "Software/java8.exe"
+                pinstalajava.Arguments = "/s WEB_JAVA_SECURITY_LEVEL=M"
+                Dim instalajava As Process = Process.Start(pinstalajava)
+                instalajava.WaitForExit()
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
+                btJava.BackColor = Color.PaleGreen
+                RegistroInstalacion("Instalada última versión de JAVA para jNemo.")
+            Catch ex As Exception
+                MessageBox.Show("No se pudo instalar JAVA. Instálalo manualmente al terminar. Puedes usar este mismo Instalador.", "Error Java", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("ERROR Java jNemo: " & ex.Message)
+            End Try
+        End If
+
+        If File.Exists(RutaDescargas & "jnemo-latest.exe") Then
+            If File.Exists("c:\Program Files (x86)\jNemo\jNemo.exe") = False Then
+                Dim instalajnemo As New Process
+                instalajnemo.StartInfo.FileName = RutaDescargas & "jnemo-latest.exe"
+                'MiProceso.StartInfo.Arguments = "1664"
+                instalajnemo.Start() 'iniciar el proceso
+                'MiProceso.Kill()
+                'MiProceso.Dispose()
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JNEMO", "1")
+            End If
+            Threading.Thread.Sleep(10000)
+        Else
+            RegistroInstalacion("ADVERTENCIA: Se encontró el ejecutable jNemo. Se omite su instalación.")
+        End If
+        FTx64()
+    End Sub
+
+    Private Sub FTx64()
+        Try
+            ' Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
+            Process.Start("C:\NOTAWIN.NET\FT.EXE", "/actualizaciones")
+            RegistroInstalacion("Instalando Paquetes de FT.")
+        Catch ex As Exception
+            RegistroInstalacion("Paquetes FT. No se pudieron instalar: " & ex.Message)
+        End Try
+
+        If File.Exists(RutaDescargas & "PaquetesFT.rar") Then
+            Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PaquetesFT.rar " & RutaDescargas, AppWinStyle.NormalFocus, True)
+
+            Try
+                Process.Start(RutaDescargas & "PaquetesFT\BarCodex.exe")
+                Process.Start(RutaDescargas & "PaquetesFT\catastrowsclient-setup.exe")
+                Process.Start(RutaDescargas & "PaquetesFT\NotinScrap-setup.exe")
+                RegistroInstalacion("Instalados Paquetes esenciales de FT.")
+            Catch ex As Exception
+                RegistroInstalacion("ERROR PaquetesFT: " & ex.Message)
+            End Try
+
+            'Mailer-Setup
+            Try
+                Dim mailerxcopy As String = "xcopy /F /Y /C "
+                Dim mailerorigen As String = RutaDescargas & "PaquetesFT\MailerCOM.dll "
+                If Directory.Exists("C:\Windows\SysWOW64") Then
+                    Dim mailerdestino As String = " ""C:\Windows\SysWOW64\"" "
+                    File.WriteAllText(RutaDescargas & "PaquetesFT\mailersetup.bat", mailerxcopy & mailerorigen & mailerdestino)
+                    RegistroInstalacion("Mailer-Setup: copiada Referencia en Sistema de 64bits.")
+                ElseIf Directory.Exists("C:\Windows\System32") Then
+                    Dim mailerdestino As String = " ""C:\Windows\System32\"" "
+                    RegistroInstalacion("Mailer-Setup: copiada Referencia en Sistema de 32bits.")
+                    File.WriteAllText(RutaDescargas & "PaquetesFT\mailersetup.bat", mailerxcopy & mailerorigen & mailerdestino)
+                Else
+                    RegistroInstalacion("ERROR Paquete Mailer-Setup: No he podido determinar Sistema 32/64bits.")
+                End If
+
+                Try
+                    RunAsAdmin(RutaDescargas & "PaquetesFT\mailersetup.bat")
+                    RegistroInstalacion("DLL MailerCOM Registrada correctamente.")
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR DLL Mailer-Setup: " & ex.Message)
+                End Try
+            Catch ex As Exception
+            End Try
+        Else
+            RegistroInstalacion("PaquetesFT no descargado. Se omite su instalación.")
+        End If
+
+        AccesosDirectosEscritoriox64()
+    End Sub
+
+    Private Sub AccesosDirectosEscritoriox64()
+        Dim Escritorio As String = """" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & """"
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe e -y " & RutaDescargas & "AccesosDirectosx64.exe " & Escritorio, AppWinStyle.Hide, True)
+        RegistroInstalacion("Creados Accesos Directos en el Escritorio. Ruta Escritorio: " & Escritorio)
+        Try
+            File.Delete("C:\Users\Public\Desktop\Krypton Explorer.lnk")
+        Catch ex As Exception
+        End Try
+        'AbreExcel()
+
+        lbInstalando.Visible = False
+        MessageBox.Show("INSTALACIONES TERMINADAS. Se recomienda REINICIAR el equipo. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        RegistroInstalacion("=== FINALIZADAS INSTALACIONES NOTIN+NEXUS x64 ===")
+
+    End Sub
+
+
+    'Private Sub AbreExcel()
+    '    'TODO establecer asociacion de archivos.
+    '    Try
+    '        My.Computer.Network.DownloadFile(PuestoNotin & "AbreExcel.exe", RutaDescargas & "AbreExcel.exe", "juanjo", "Palomeras24", False, 20000, False)
+    '        File.Copy(RutaDescargas & "AbreExcel.exe", "C:\Notawin.Net\AbreExcel.exe", True)
+    '    Catch ex As Exception
+
+    '    End Try
+    'btNotinKubo.ForeColor = Color.YellowGreen
+    'End Sub
+
+
+
+
+    '        RegistroInstalacion("ERROR: Detectada posible instalación de Office 2016. Debe limpiarse antes de proceder a relizar la instalación desatendida.")
+    '    End If
+    'End If
 
 
 End Class
