@@ -103,8 +103,8 @@ Partial Class FrmInstaladorKubo
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
         Me.BtNexus64 = New System.Windows.Forms.Button()
-        Me.BtNotinWord2003 = New System.Windows.Forms.Button()
         Me.LbPreparacionInicial = New System.Windows.Forms.Label()
+        Me.BtNotinWord2003 = New System.Windows.Forms.Button()
         Me.TabPage9 = New System.Windows.Forms.TabPage()
         Me.BtLimpiar2016 = New System.Windows.Forms.Button()
         Me.BtLimpiar2003 = New System.Windows.Forms.Button()
@@ -1005,18 +1005,6 @@ Partial Class FrmInstaladorKubo
         Me.BtNexus64.Text = "NOTIN+NEXUS x64"
         Me.BtNexus64.UseVisualStyleBackColor = False
         '
-        'BtNotinWord2003
-        '
-        Me.BtNotinWord2003.BackColor = System.Drawing.Color.MistyRose
-        Me.BtNotinWord2003.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtNotinWord2003.Location = New System.Drawing.Point(19, 77)
-        Me.BtNotinWord2003.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.BtNotinWord2003.Name = "BtNotinWord2003"
-        Me.BtNotinWord2003.Size = New System.Drawing.Size(237, 50)
-        Me.BtNotinWord2003.TabIndex = 27
-        Me.BtNotinWord2003.Text = "NOTIN+WORD2003"
-        Me.BtNotinWord2003.UseVisualStyleBackColor = False
-        '
         'LbPreparacionInicial
         '
         Me.LbPreparacionInicial.AutoSize = True
@@ -1031,6 +1019,18 @@ Partial Class FrmInstaladorKubo
         Me.LbPreparacionInicial.Text = "PREPARACIÓN INICIAL OK"
         Me.LbPreparacionInicial.Visible = False
         '
+        'BtNotinWord2003
+        '
+        Me.BtNotinWord2003.BackColor = System.Drawing.Color.MistyRose
+        Me.BtNotinWord2003.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtNotinWord2003.Location = New System.Drawing.Point(19, 77)
+        Me.BtNotinWord2003.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.BtNotinWord2003.Name = "BtNotinWord2003"
+        Me.BtNotinWord2003.Size = New System.Drawing.Size(237, 50)
+        Me.BtNotinWord2003.TabIndex = 27
+        Me.BtNotinWord2003.Text = "NOTIN+WORD2003"
+        Me.BtNotinWord2003.UseVisualStyleBackColor = False
+        '
         'TabPage9
         '
         Me.TabPage9.BackColor = System.Drawing.SystemColors.Control
@@ -1040,7 +1040,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage9.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TabPage9.Size = New System.Drawing.Size(283, 222)
+        Me.TabPage9.Size = New System.Drawing.Size(283, 233)
         Me.TabPage9.TabIndex = 1
         Me.TabPage9.Text = "Limpieza"
         '

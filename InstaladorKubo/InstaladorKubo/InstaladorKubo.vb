@@ -2451,6 +2451,9 @@ Public Class FrmInstaladorKubo
         CalcularTamanoDescarga(1.94, CbPaquetesFT.Checked)
     End Sub
 
+    Private Sub cbConfiguraWord2016x64_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraWord2016x64.CheckedChanged
+        CalcularTamanoDescarga(1, cbConfiguraWord2016x64.Checked)
+    End Sub
 
 #Region "ENVIO EMAIL"
     Private Function validaremail()
@@ -3055,6 +3058,7 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("=== FINALIZADAS INSTALACIONES NOTIN+NEXUS x64 ===")
 
     End Sub
+
 
 
     'Private Sub AbreExcel()
