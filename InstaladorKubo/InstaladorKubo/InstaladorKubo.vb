@@ -382,10 +382,10 @@ Public Class FrmInstaladorKubo
             Dim Config2016x64 As New FileInfo(RutaDescargas & "ConfWord2016x64.rar")
             Dim LengthConfig2016x64 As Long = Config2016x64.Length
             If Config2016x64.Length = "8229" Then
-                cbConfiguraWord2016.ForeColor = Color.DarkGreen
+                cbConfiguraWord2016x64.ForeColor = Color.DarkGreen
             End If
         Else
-            cbConfiguraWord2016.ForeColor = SystemColors.ControlText
+            cbConfiguraWord2016x64.ForeColor = SystemColors.ControlText
         End If
 
         If System.IO.File.Exists(RutaDescargas & "jnemo-latest.exe") Then
