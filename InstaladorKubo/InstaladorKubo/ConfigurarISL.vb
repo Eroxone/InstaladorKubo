@@ -10,7 +10,6 @@ Public Class FrmConfigurarISL
         ElseIf TbISLNombre.Text = "" Then
             MessageBox.Show("No se admiten campos vacíos", "Información incompleta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         Else
-            'InstaladorKubo.Show()
             FrmNavegador.Show()
             Me.Close()
         End If
@@ -24,8 +23,6 @@ Public Class FrmConfigurarISL
     End Sub
 
     Private Sub FrmConfigurarISL_Load(sender As Object, e As EventArgs) Handles Me.Load
-        ' LeerXML()
-        'TbISLNombre.Text = LeerXML()
 
         Try
             Dim profile As String = LeerXML()
@@ -35,11 +32,11 @@ Public Class FrmConfigurarISL
             Dim grupo = profile.Remove(0, longusuario + 1)
             TbISLGrupo.Text = grupo
             TbISLNombre.Text = usuario
-            FrmInstaladorKubo.RegistroInstalacion("ISL: Obtenido Grupo y Nombre del XML " & grupo & " - " & usuario & ".")
+            FrmInstaladorKubo.RegistroInstalacion("ISL: Leído " & grupo & " - " & usuario & " desde el XML jNemo.")
         Catch ex As Exception
             TbISLNombre.Text = LeerXML().ToString
             TbISLGrupo.Text = "UNIDATA"
-            FrmInstaladorKubo.RegistroInstalacion("ISL: Leído nombre de Usuario del Equipo. No se pudo obtener del XML.")
+            FrmInstaladorKubo.RegistroInstalacion("ISL: Se obtiene usuario: " & TbISLNombre.Text.ToString & ". No se pudo determinar el Grupo. Se ofrece UNIDATA.")
         End Try
 
     End Sub
@@ -48,15 +45,16 @@ Public Class FrmConfigurarISL
     Private Function LeerXML()
         Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
         Dim jnemoxml As String = appData & "\jNemo\jnemo.xml"
+        Dim jnemoisl As String = appData & "\jNemo\jnemoisl.xml"
 
         If File.Exists(jnemoxml) Then
+            File.Copy(jnemoxml, appData & "\jNemo\jnemoisl.xml", True)
             Dim doc As New XmlDocument()
-            doc.Load(jnemoxml)
+            doc.Load(jnemoisl)
 
             Dim ultimoprofile As String = ""
 
             '"/jnemo/profiles/profile" ' nos quedamos con el ultimo
-            'TODO Hacer una copia del xml en un dir temporal
             Dim profiles As XmlNode = doc.SelectSingleNode("/jnemo/profiles")
             If profiles IsNot Nothing Then
                 Dim nr As New XmlNodeReader(profiles)
@@ -70,15 +68,13 @@ Public Class FrmConfigurarISL
                 End While
             End If
             Return ultimoprofile
-            FrmInstaladorKubo.RegistroInstalacion("ISL: leído nodo username con valor " & ultimoprofile)
         Else
             'Obtener nombre del equipo
             Dim equipousuario As String = (My.User.Name)
             Dim equipo As Integer = equipousuario.LastIndexOf("\")
             Dim usuario = equipousuario.Remove(0, equipo + 1)
+            FrmInstaladorKubo.RegistroInstalacion("ISL: No se pudo obtener <profile> desde el XML. Leemos Usuario del equipo: " & usuario)
             Return usuario
-            'TODO NO RECOGE NOMBRE DEL USUARIO
-            FrmInstaladorKubo.RegistroInstalacion("Se procede a leer el nombre de Usuario del equipo. Se obtiene " & usuario)
         End If
     End Function
 

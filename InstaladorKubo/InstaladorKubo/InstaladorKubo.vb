@@ -252,17 +252,8 @@ Public Class FrmInstaladorKubo
 
     End Sub
 
-    'ACCEDER A URL NOTARIADO
-    'Private Sub lblAncert_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
-    '    System.Diagnostics.Process.Start("http://soporte.notariado.org")
-    'End Sub
-
-    Private Sub LnkRequisitos_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
-        'TODO añadir funcionalidad para url requisitos: https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing
-    End Sub
-
     'Boton EXAMINAR
-    Private Sub btDirDescargas_Click(sender As Object, e As EventArgs) Handles btDirDescargas.Click
+    Private Sub BtDirDescargas_Click(sender As Object, e As EventArgs) Handles btDirDescargas.Click
         fbdDescarga.ShowDialog()
 
         ' Si hago clic en Cancelar me quedo con la ruta anterior
@@ -486,7 +477,7 @@ Public Class FrmInstaladorKubo
 
 
 #Region "COMENZAR DESCARGAS"
-    Private Sub btDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
+    Private Sub BtDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
 
         'Si no chequeas nada salimos
         If (cbConfiguraNotin.Checked OrElse cbConfiguraWord2016.Checked OrElse cbNemo.Checked OrElse cbOffice2003.Checked OrElse cbOffice2016.Checked OrElse cbOffice2016odt.Checked OrElse cbPasarelaSigno.Checked OrElse cbPuestoNotin.Checked OrElse cbRequisitos.Checked OrElse cbSferen.Checked OrElse cbTerceros.Checked OrElse CbFineReader.Checked OrElse CbPaquetesFT.Checked OrElse CbOffice2016x64.Checked) = False Then
@@ -731,11 +722,11 @@ Public Class FrmInstaladorKubo
 #End Region
 
     'Mensajes de acción
-    Private Sub btDescargar_MouseDown(sender As Object, e As MouseEventArgs) Handles btDescargar.MouseDown
+    Private Sub BtDescargar_MouseDown(sender As Object, e As MouseEventArgs) Handles btDescargar.MouseDown
         lbProcesandoDescargas.Visible = True
     End Sub
 
-    Private Sub btNotinKubo_MouseDown(sender As Object, e As MouseEventArgs) Handles btNotinKubo.MouseDown
+    Private Sub BtNotinKubo_MouseDown(sender As Object, e As MouseEventArgs) Handles btNotinKubo.MouseDown
         lbInstalando.Visible = True
     End Sub
 
@@ -743,7 +734,7 @@ Public Class FrmInstaladorKubo
 #Region "MARCAR/DESMARCAR TODOS"
     ' Marcar TODOS. Opcion variable Marcar/Desmarcar todos
     Private MarcarTodos As Integer = 0
-    Private Sub btTodo_Click(sender As Object, e As EventArgs) Handles btTodo.Click
+    Private Sub BtTodo_Click(sender As Object, e As EventArgs) Handles btTodo.Click
         If MarcarTodos = 0 Then
             cbOffice2003.Checked = True
             cbOffice2016.Checked = False
@@ -805,7 +796,7 @@ Public Class FrmInstaladorKubo
 
 #End Region
 
-    Private Sub btSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
+    Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
 
         'Limpieza de ficheros temporales para instalaciones por ejemplo.
         'TODO revisar si hay que limpiar mas archivos.
@@ -822,7 +813,7 @@ Public Class FrmInstaladorKubo
         Me.Close()
     End Sub
 
-    Private Sub btSalir_MouseDown(sender As Object, e As MouseEventArgs) Handles btSalir.MouseDown
+    Private Sub BtSalir_MouseDown(sender As Object, e As MouseEventArgs) Handles btSalir.MouseDown
         btSalir.BackColor = SystemColors.ControlLightLight
     End Sub
 
@@ -834,7 +825,7 @@ Public Class FrmInstaladorKubo
 
 #Region "COMIENZO DE INSTALACION DE PAQUETES NOTIN+KUBO. COMPROBACIONES INICIALES."
 
-    Private Sub btNotinKubo_Click(sender As Object, e As EventArgs) Handles btNotinKubo.Click
+    Private Sub BtNotinKubo_Click(sender As Object, e As EventArgs) Handles btNotinKubo.Click
         RegistroInstalacion("=== COMIENZO INSTALACIONES NOTIN-KUBO ===")
 
         'Comprobar si se ha efectuado alguna descarga
@@ -842,8 +833,8 @@ Public Class FrmInstaladorKubo
         Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
         If comienzo = 2 AndAlso rutaenf = 2 Then
             MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            'TODO la etiqueta no se oculta... Arreglar tb para Word 2003
-            'lbProcesandoDescargas.Visible = False
+            lbInstalando.Visible = False
+
             Exit Sub
         End If
 
@@ -1078,39 +1069,39 @@ Public Class FrmInstaladorKubo
     Private Sub EjecutableNotinNet()
         If UnidadF() = True Then
             Try
-                'Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
-                'If ExisteNotinNet = False Then
-                Try
-                    File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
-                Catch ex As Exception
-                    RegistroInstalacion("NotinNetInstaller no encontrado en la Unidad F. No ejecutamos esta función.")
-                End Try
-                'TODO Si no se encuentra puedo descagar la Estable de internet.
-                Dim pnotinnet As New ProcessStartInfo()
-                pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
-                Dim notinnet As Process = Process.Start(pnotinnet)
-                'notintaskpane.WaitForInputIdle()
-                notinnet.WaitForExit()
-                RegistroInstalacion("Ejecutado instalador NotinNetInstaller.exe")
-                'Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
-                'End If
+                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
+                RegistroInstalacion("NotinNetInstaller copiado de F:\NOTAWIN.NET a " & RutaDescargas & ".")
             Catch ex As Exception
-                RegistroInstalacion("NotinNetInstaller: " & ex.Message)
+                RegistroInstalacion("NotinNetInstaller no encontrado en la Unidad F. Procedemos a descargarla versión estable desde static.unidata.es")
+            End Try
+        Else
+            Shell("cmd /c " & "wget.exe -q --show-progress http://static.unidata.es/estable/NotinNetInstaller.exe -o " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+        End If
+
+        'Una vez obtenido procedemos a ejecutar NotinNetInstaller
+        Try
+            Dim pnotinnet As New ProcessStartInfo()
+            pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
+            Dim notinnet As Process = Process.Start(pnotinnet)
+            'notintaskpane.WaitForInputIdle()
+            notinnet.WaitForExit()
+            RegistroInstalacion("Ejecutado instalador NotinNetInstaller.exe desde " & RutaDescargas & ".")
+        Catch ex As Exception
+            RegistroInstalacion("NotinNetInstaller: " & ex.Message)
             End Try
             'Ademas me traigo las Plantillas y el MDE
             Try
                 File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
             Catch ex As Exception
-                RegistroInstalacion("ERROR: Notin8.mde " & ex.Message)
-            End Try
+            RegistroInstalacion("ERROR: Copiando Notin8.mde " & ex.Message)
+        End Try
             Try
                 File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
             Catch ex As Exception
-                RegistroInstalacion("ERROR: Normal.dotm " & ex.Message)
-                'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
+            RegistroInstalacion("ERROR: Copiando Normal.dotm " & ex.Message)
+            'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
-        End If
         ConfigurarWord2016()
     End Sub
 
@@ -1446,7 +1437,7 @@ Public Class FrmInstaladorKubo
 #End Region
 
 #Region "ODBC"
-    Private Sub btOdbc_Click(sender As Object, e As EventArgs) Handles btOdbc.Click
+    Private Sub BtOdbc_Click(sender As Object, e As EventArgs) Handles btOdbc.Click
         If UnidadF() = True Then
             lbUnidadF.Text = "CONECTADA"
             lbUnidadF.ForeColor = Color.Green
@@ -1516,7 +1507,7 @@ Public Class FrmInstaladorKubo
 
     End Sub
 
-    Private Sub btFramework_Click(sender As Object, e As EventArgs) Handles btFramework.Click
+    Private Sub BtFramework_Click(sender As Object, e As EventArgs) Handles btFramework.Click
         Dim framework As String = "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All"
         If File.Exists(RutaDescargas & "Requisitos\Framework35.bat") Then
             File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
@@ -1536,7 +1527,7 @@ Public Class FrmInstaladorKubo
         ' Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
     End Sub
 
-    Private Sub btDirectivas_Click(sender As Object, e As EventArgs) Handles btDirectivas.Click
+    Private Sub BtDirectivas_Click(sender As Object, e As EventArgs) Handles btDirectivas.Click
         Directory.CreateDirectory(RutaDescargas & "Directivas")
 
         PbInstalaciones.Visible = True
@@ -1616,7 +1607,7 @@ Public Class FrmInstaladorKubo
     End Sub
 
 
-    Private Sub btExcepJava_Click(sender As Object, e As EventArgs) Handles btExcepJava.Click
+    Private Sub BtExcepJava_Click(sender As Object, e As EventArgs) Handles btExcepJava.Click
         My.Computer.Network.DownloadFile(PuestoNotin & "Utiles\ExcepcionesJava.bat", RutaDescargas & "Utiles\ExcepcionesJava.bat", "juanjo", "Palomeras24", False, 20000, True)
 
         RunAsAdmin(RutaDescargas & "Utiles\ExcepcionesJava.bat")
@@ -1629,7 +1620,7 @@ Public Class FrmInstaladorKubo
         System.Diagnostics.Process.Start("http://instalador.notin.net/publish.htm")
     End Sub
 
-    Private Sub btJava_Click(sender As Object, e As EventArgs) Handles btJava.Click
+    Private Sub BtJava_Click(sender As Object, e As EventArgs) Handles btJava.Click
         obtenerwget()
 
         'Descarga de JAVA 1.8.171
@@ -1751,8 +1742,9 @@ Public Class FrmInstaladorKubo
         Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
         If comienzo = 2 AndAlso rutaenf = 2 Then
+            lbInstalando.Visible = False
             MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            'lbProcesandoDescargas.Visible = False
+
             Exit Sub
         End If
 
@@ -2026,33 +2018,39 @@ Public Class FrmInstaladorKubo
     Private Sub EjecutableNotinNet2003()
         If UnidadF() = True Then
             Try
-                'Dim ExisteNotinNet As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
-                'If ExisteNotinNet = False Then
                 File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
-                Dim pnotinnet As New ProcessStartInfo()
-                pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
-                Dim notinnet As Process = Process.Start(pnotinnet)
-                'notintaskpane.WaitForInputIdle()
-                notinnet.WaitForExit()
-                RegistroInstalacion("Ejecutado NotinNetInstaller.exe")
-                'Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
-                'End If
+                RegistroInstalacion("NotinNetInstaller copiado de F:\NOTAWIN.NET a " & RutaDescargas & ".")
             Catch ex As Exception
-                RegistroInstalacion("NotinNetInstaller: " & ex.Message)
+                RegistroInstalacion("NotinNetInstaller no encontrado en la Unidad F. Procedemos a descargarla versión estable desde static.unidata.es")
+            End Try
+        Else
+            Shell("cmd /c " & "wget.exe -q --show-progress http://static.unidata.es/estable/NotinNetInstaller.exe -o " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+        End If
+
+        'Una vez obtenido procedemos a ejecutar NotinNetInstaller
+        Try
+            Dim pnotinnet As New ProcessStartInfo()
+            pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
+            Dim notinnet As Process = Process.Start(pnotinnet)
+            'notintaskpane.WaitForInputIdle()
+            notinnet.WaitForExit()
+            RegistroInstalacion("Ejecutado NotinNetInstaller.exe")
+        Catch ex As Exception
+            RegistroInstalacion("NotinNetInstaller: " & ex.Message)
             End Try
             'Ademas me traigo las Plantillas y el MDE
             Try
                 File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
             Catch ex As Exception
-                RegistroInstalacion("ERROR: Notin8.mde" & ex.Message)
-            End Try
+            RegistroInstalacion("ERROR: Copiando Notin8.mde" & ex.Message)
+        End Try
             Try
                 File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
             Catch ex As Exception
-                RegistroInstalacion("ERROR: Normal.dotm " & ex.Message)
-                'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
-        End If
+            RegistroInstalacion("ERROR: Copiando Normal.dotm " & ex.Message)
+            'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
         SoftwareAncert2003()
     End Sub
 
@@ -2412,11 +2410,11 @@ Public Class FrmInstaladorKubo
     End Sub
 
     'Los checkbox de Office2003/16 están arriba ya que los usé para asociarlos a su configuración
-    Private Sub cbConfiguraNotin_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraNotin.CheckedChanged
+    Private Sub CbConfiguraNotin_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraNotin.CheckedChanged
         CalcularTamanoDescarga(1, cbConfiguraNotin.Checked)
     End Sub
 
-    Private Sub cbConfiguraWord2016_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraWord2016.CheckedChanged
+    Private Sub CbConfiguraWord2016_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraWord2016.CheckedChanged
         CalcularTamanoDescarga(1, cbConfiguraWord2016.Checked)
     End Sub
 
@@ -2451,7 +2449,7 @@ Public Class FrmInstaladorKubo
         CalcularTamanoDescarga(1.94, CbPaquetesFT.Checked)
     End Sub
 
-    Private Sub cbConfiguraWord2016x64_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraWord2016x64.CheckedChanged
+    Private Sub CbConfiguraWord2016x64_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraWord2016x64.CheckedChanged
         CalcularTamanoDescarga(1, cbConfiguraWord2016x64.Checked)
     End Sub
 
@@ -2599,9 +2597,9 @@ Public Class FrmInstaladorKubo
         Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
         If comienzo = 2 AndAlso rutaenf = 2 Then
+            lbInstalando.Visible = False
             MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            'TODO la etiqueta no se oculta... Arreglar tb para Word 2003
-            'lbProcesandoDescargas.Visible = False
+
             Exit Sub
         End If
 

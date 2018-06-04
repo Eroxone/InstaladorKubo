@@ -100,10 +100,10 @@ Partial Class FrmInstaladorKubo
         Me.TlpCopiarServidor = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpTraerServidor = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.LbPreparacionInicial = New System.Windows.Forms.Label()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage8 = New System.Windows.Forms.TabPage()
         Me.BtNexus64 = New System.Windows.Forms.Button()
-        Me.LbPreparacionInicial = New System.Windows.Forms.Label()
         Me.BtNotinWord2003 = New System.Windows.Forms.Button()
         Me.TabPage9 = New System.Windows.Forms.TabPage()
         Me.BtLimpiar2016 = New System.Windows.Forms.Button()
@@ -968,6 +968,20 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Software DN"
         '
+        'LbPreparacionInicial
+        '
+        Me.LbPreparacionInicial.AutoSize = True
+        Me.LbPreparacionInicial.BackColor = System.Drawing.SystemColors.Control
+        Me.LbPreparacionInicial.Font = New System.Drawing.Font("Lucida Bright", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbPreparacionInicial.ForeColor = System.Drawing.Color.ForestGreen
+        Me.LbPreparacionInicial.Location = New System.Drawing.Point(8, 300)
+        Me.LbPreparacionInicial.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LbPreparacionInicial.Name = "LbPreparacionInicial"
+        Me.LbPreparacionInicial.Size = New System.Drawing.Size(269, 22)
+        Me.LbPreparacionInicial.TabIndex = 28
+        Me.LbPreparacionInicial.Text = "PREPARACIÓN INICIAL OK"
+        Me.LbPreparacionInicial.Visible = False
+        '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage8)
@@ -997,6 +1011,7 @@ Partial Class FrmInstaladorKubo
         'BtNexus64
         '
         Me.BtNexus64.BackColor = System.Drawing.Color.Honeydew
+        Me.BtNexus64.Enabled = False
         Me.BtNexus64.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
         Me.BtNexus64.Location = New System.Drawing.Point(19, 160)
         Me.BtNexus64.Name = "BtNexus64"
@@ -1004,20 +1019,6 @@ Partial Class FrmInstaladorKubo
         Me.BtNexus64.TabIndex = 52
         Me.BtNexus64.Text = "NOTIN+NEXUS x64"
         Me.BtNexus64.UseVisualStyleBackColor = False
-        '
-        'LbPreparacionInicial
-        '
-        Me.LbPreparacionInicial.AutoSize = True
-        Me.LbPreparacionInicial.BackColor = System.Drawing.SystemColors.Control
-        Me.LbPreparacionInicial.Font = New System.Drawing.Font("Cooper Black", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbPreparacionInicial.ForeColor = System.Drawing.Color.ForestGreen
-        Me.LbPreparacionInicial.Location = New System.Drawing.Point(8, 300)
-        Me.LbPreparacionInicial.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LbPreparacionInicial.Name = "LbPreparacionInicial"
-        Me.LbPreparacionInicial.Size = New System.Drawing.Size(287, 21)
-        Me.LbPreparacionInicial.TabIndex = 28
-        Me.LbPreparacionInicial.Text = "PREPARACIÓN INICIAL OK"
-        Me.LbPreparacionInicial.Visible = False
         '
         'BtNotinWord2003
         '
@@ -1040,7 +1041,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage9.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TabPage9.Size = New System.Drawing.Size(283, 233)
+        Me.TabPage9.Size = New System.Drawing.Size(283, 222)
         Me.TabPage9.TabIndex = 1
         Me.TabPage9.Text = "Limpieza"
         '
