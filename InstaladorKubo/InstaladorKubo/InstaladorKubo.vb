@@ -2817,7 +2817,7 @@ Public Class FrmInstaladorKubo
             Catch ex As Exception
                 RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener de F:\Notawin.Net\x64\ se procede a su decarga desde static.unidata")
                 Dim urlnotinnetx64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
-                Shell("cmd.exe /c " & RutaDescargas & "wget.exe -c -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+                Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
             End Try
 
             Try
