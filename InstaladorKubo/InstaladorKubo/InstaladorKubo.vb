@@ -1067,6 +1067,10 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub EjecutableNotinNet()
+
+        cIniArray.IniWrite("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "32")
+        RegistroInstalacion("PlataformaAddin=32 escrito en el INI local de C:\Notawin.Net.")
+
         If UnidadF() = True Then
             Try
                 File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
@@ -1088,16 +1092,16 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("Ejecutado instalador NotinNetInstaller.exe desde " & RutaDescargas & ".")
         Catch ex As Exception
             RegistroInstalacion("NotinNetInstaller: " & ex.Message)
-            End Try
-            'Ademas me traigo las Plantillas y el MDE
-            Try
-                File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
-            Catch ex As Exception
+        End Try
+        'Ademas me traigo las Plantillas y el MDE
+        Try
+            File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
+        Catch ex As Exception
             RegistroInstalacion("ERROR: Copiando Notin8.mde " & ex.Message)
         End Try
-            Try
-                File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
-            Catch ex As Exception
+        Try
+            File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
+        Catch ex As Exception
             RegistroInstalacion("ERROR: Copiando Normal.dotm " & ex.Message)
             'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -2810,6 +2814,11 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub EjecutableNotinNetx64()
+
+        'Escribir en el INI que el Sistema es 64bits
+        cIniArray.IniWrite("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "64")
+        RegistroInstalacion("PlataformaAddin=64 escrito en el INI local de C:\Notawin.Net.")
+
         If UnidadF() = True Then
             Try
                 File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
@@ -2824,7 +2833,7 @@ Public Class FrmInstaladorKubo
                 Dim pnotinnet As New ProcessStartInfo()
                 pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
                 Dim notinnet As Process = Process.Start(pnotinnet)
-                notinnet.WaitForInputIdle()
+                'notinnet.WaitForInputIdle()
                 notinnet.WaitForExit()
                 RegistroInstalacion("NotinNetInstaller x64: Ejecutado proceso de instalación.")
             Catch ex As Exception
