@@ -2805,7 +2805,7 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("ADVERTENCIA: No se determinó la preferencia de instalación para Office 2016. Por defecto realizamos la ODT.")
             End If
         Else
-            MessageBox.Show("Se ha encontrado una instalación previa de Office 2016x64. Se omite su instalación.", "Instalación Office 2016x64 existente", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Se ha encontrado una instalación previa de Office 2016 x64. Se omite su instalación.", "Instalación Office 2016 x64", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
 
         EjecutableNotinNetx64()
@@ -2888,17 +2888,17 @@ Public Class FrmInstaladorKubo
                     'Continuar con el código.
                 Catch ex As Exception
                     RegistroInstalacion("ERROR NotinAddin: " & ex.Message)
-                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
                 End Try
                 Try
                     Dim pInfotaskpane As New ProcessStartInfo()
-                    pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
+                    pInfotaskpane.FileName = "C:\Program Files\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
                     Dim notintaskpane As Process = Process.Start(pInfotaskpane)
                     'notintaskpane.WaitForInputIdle()
                     notintaskpane.WaitForExit()
                 Catch ex As Exception
                     RegistroInstalacion("ERROR NotinTaskPane: " & ex.Message)
-                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
                 End Try
                 'Shell("cmd.exe /C " & RutaDescargas & "ConfiguraWord2016.exe", AppWinStyle.NormalFocus, True)
                 'RunAsAdmin(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
