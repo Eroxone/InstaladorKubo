@@ -2878,7 +2878,7 @@ Public Class FrmInstaladorKubo
                     'Crear una nueva estructura ProcessStartInfo.
                     Dim pInfoaddin As New ProcessStartInfo()
                     'Establecer el miembro de un nombre de archivo de pinfo como Eula.txt en la carpeta de sistema.
-                    pInfoaddin.FileName = "C:\Program Files\Humano Software\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
+                    pInfoaddin.FileName = "C:\Program Files\Humano Software (x86)\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
                     'Ejecutar el proceso.
                     Dim notinaddin As Process = Process.Start(pInfoaddin)
                     'Esperar a que la ventana de proceso complete la carga.
@@ -2892,7 +2892,7 @@ Public Class FrmInstaladorKubo
                 End Try
                 Try
                     Dim pInfotaskpane As New ProcessStartInfo()
-                    pInfotaskpane.FileName = "C:\Program Files\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
+                    pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
                     Dim notintaskpane As Process = Process.Start(pInfotaskpane)
                     'notintaskpane.WaitForInputIdle()
                     notintaskpane.WaitForExit()
