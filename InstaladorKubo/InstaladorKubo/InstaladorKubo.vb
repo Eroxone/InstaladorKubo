@@ -2811,31 +2811,32 @@ Public Class FrmInstaladorKubo
 
     Private Sub EjecutableNotinNetx64()
         If UnidadF() = True Then
-            'Try
-            'Try
-            'TODO ver donde y cómo se llama y descarga la versión de 64bits
-            '    File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
-            'Catch ex As Exception
-            '    RegistroInstalacion("NotinNetInstaller no encontrado en la Unidad F. No ejecutamos esta función.")
-            'End Try
-            ''TODO Si no se encuentra puedo descagar la Estable de internet.
-            'Dim pnotinnet As New ProcessStartInfo()
-            'pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
-            'Dim notinnet As Process = Process.Start(pnotinnet)
-            ''notintaskpane.WaitForInputIdle()
-            'notinnet.WaitForExit()
-            'RegistroInstalacion("Ejecutado instalador NotinNetInstaller.exe")
-            'Shell("cmd.exe /c " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.Hide, True)
-            'End If
-            'Catch ex As Exception
-            '    RegistroInstalacion("NotinNetInstaller: " & ex.Message)
-            'End Try
-            'Ademas me traigo las Plantillas y el MDE
+            Try
+                File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
+                RegistroInstalacion("NotinNetInstaller x64 copiado correctamente desde F:\Notawin.Net\x64\ para su ejecución.")
+            Catch ex As Exception
+                RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener de F:\Notawin.Net\x64\ se procede a su decarga desde static.unidata")
+                Dim urlnotinnetx64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
+                Shell("cmd.exe /c " & RutaDescargas & "wget.exe -c -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+            End Try
+
+            Try
+                Dim pnotinnet As New ProcessStartInfo()
+                pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
+                Dim notinnet As Process = Process.Start(pnotinnet)
+                notinnet.WaitForInputIdle()
+                notinnet.WaitForExit()
+                RegistroInstalacion("NotinNetInstaller x64: Ejecutado proceso de instalación.")
+            Catch ex As Exception
+                RegistroInstalacion("ERROR NotinNetInstaller x64: " & ex.Message)
+            End Try
+
             Try
                 File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
             Catch ex As Exception
                 RegistroInstalacion("ERROR: Notin8.mde " & ex.Message)
             End Try
+
             Try
                 File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
             Catch ex As Exception
