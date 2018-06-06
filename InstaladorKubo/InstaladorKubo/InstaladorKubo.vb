@@ -2470,7 +2470,7 @@ Public Class FrmInstaladorKubo
 
 
     Public Sub EnvioMail()
-
+        'TODO enviar email cuando termine la instalación con el log e info sistema
         If validaremail() = True Then
 
             'Dim A As String = Tbtucorreo.Text
@@ -2484,11 +2484,11 @@ Public Class FrmInstaladorKubo
             correo.To.Add(Destinatario)
             correo.SubjectEncoding = System.Text.Encoding.UTF8
             correo.Subject = "Descargas InstaladorKubo Finalizadas"
-            correo.Body = "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos." & vbCrLf & "Puedes proceder a realizar las instalaciones cuando quieras." & vbCrLf & "Cualquier duda tienes disponible el Comunicado 1573: http://tecnicos.notin.net/detalles.asp?id=1573" & vbCrLf & "Muchas gracias"
+            correo.Body = "" & vbCrLf & "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos." & vbCrLf & "Puedes proceder a realizar las instalaciones cuando quieras." & vbCrLf & "Cualquier duda tienes disponible el Comunicado 1573: http://tecnicos.notin.net/detalles.asp?id=1573" & vbCrLf & "Muchas gracias"
             correo.BodyEncoding = System.Text.Encoding.UTF8
             'correo.IsBodyHtml = False(formato tipo web o normal:  true = web)
             correo.IsBodyHtml = False
-            correo.Priority = MailPriority.High
+            correo.Priority = MailPriority.Normal
 
             smtp.Credentials = New System.Net.NetworkCredential("instalador@notin.net", "insta24")
             smtp.Port = 587
