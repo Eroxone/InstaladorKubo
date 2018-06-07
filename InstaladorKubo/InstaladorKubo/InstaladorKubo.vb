@@ -2196,14 +2196,23 @@ Public Class FrmInstaladorKubo
             If notindesktop = False Then
                 Try
                     File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNetinstaller.exe")
+                Catch ex As Exception
+                    'MessageBox.Show("No se encontró el componente NotinNet instalado. No se ha podido acceder al ejecutable en F:\Notawin.Net para su instalación. Se procede a su Descarga.", "Error NotinNetInstaller no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    RegistroInstalacion("ADVERTENCIA: No se pudo obtener NotinNetInstaller para Configurar Word 2016. Se procede a su Descarga.")
+                    Dim urlestablenet As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
+                    Shell("cmd /c " & RutaDescargas & "wget.exe -q --show-progress http://static.unidata.es/estable/NotinNetInstaller.exe -O " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+                End Try
+
+                Try
                     Dim pInfonotinnet As New ProcessStartInfo()
                     pInfonotinnet.FileName = RutaDescargas & "NotinNetinstaller.exe"
                     Dim notinnet As Process = Process.Start(pInfonotinnet)
-                    notinnet.WaitForInputIdle()
+                    'notinnet.WaitForInputIdle()
                     notinnet.WaitForExit()
+                    RegistroInstalacion("ÉXITO: Instalado NotinNetInstaller.exe desde " & RutaDescargas)
+                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
                 Catch ex As Exception
-                    MessageBox.Show("No se encontró el componente NotinNet instalado. No se ha podido acceder al ejecutable en F:\Notawin.Net para su instalación.", "Error NotinNetInstaller", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    RegistroInstalacion("No se pudo obtener NotinNetInstaller para Configurar Word 2016")
+                    RegistroInstalacion("ERROR: No se pudo ejecutar NotinNetInstaller: " & ex.Message)
                     cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
                 End Try
             End If
