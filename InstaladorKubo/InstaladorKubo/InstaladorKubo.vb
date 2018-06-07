@@ -2213,24 +2213,29 @@ Public Class FrmInstaladorKubo
             'TODO obtener nombre usuario para clave registro
             Dim notindesktop As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
             If notindesktop = False Then
+                obtenerrobocopy()
                 Try
-                    File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNetinstaller.exe")
+                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & "F:\Notawin.Net\NotinNetInstaller.exe " & RutaDescargas & "NotinNetInstaller.exe /R:2 /W:5", AppWinStyle.NormalFocus, True)
+                    'File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNetinstaller.exe", True)
                 Catch ex As Exception
                     'MessageBox.Show("No se encontró el componente NotinNet instalado. No se ha podido acceder al ejecutable en F:\Notawin.Net para su instalación. Se procede a su Descarga.", "Error NotinNetInstaller no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    RegistroInstalacion("ADVERTENCIA: No se pudo obtener NotinNetInstaller para Configurar Word 2016. Se procede a su Descarga.")
+                    RegistroInstalacion("ERROR copiando NotinNetInstaller.exe desde F usando Robocopy.")
                 End Try
 
-                Try
-                    obtenerwget()
-                    Dim urlestablenet As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
-                    Shell("cmd /c " & RutaDescargas & "wget.exe -q --show-progress http://static.unidata.es/estable/NotinNetInstaller.exe -O " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
-                Catch ex As Exception
-                    RegistroInstalacion("No se ha podido obtener estable desde static.unidata.es. " & ex.Message)
-                    MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
-                    BtConfiguraWord2016.BackColor = Color.LightSalmon
-                    Exit Sub
-                End Try
+                If File.Exists(RutaDescargas & "NotinNetInstaller.exe") = False Then
+                    Try
+                        RegistroInstalacion("ADVERTENCIA: No se pudo obtener NotinNetInstaller para Configurar Word 2016 desde F:\Notawin.Net. Se procede a su Descarga.")
+                        obtenerwget()
+                        Dim urlestablenet As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
+                        Shell("cmd /c " & RutaDescargas & "wget.exe -q --show-progress http://static.unidata.es/estable/NotinNetInstaller.exe -O " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+                    Catch ex As Exception
+                        RegistroInstalacion("No se ha podido obtener estable desde static.unidata.es. " & ex.Message)
+                        MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                        BtConfiguraWord2016.BackColor = Color.LightSalmon
+                        Exit Sub
+                    End Try
+                End If
 
                 Try
                     Dim pInfonotinnet As New ProcessStartInfo()
@@ -2607,8 +2612,8 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtConfWord2016ADRA_Click(sender As Object, e As EventArgs) Handles BtConfWord2016ADRA.Click
+
         Directory.CreateDirectory(RutaDescargas & "Office2016")
-        obtenerunrar()
         Try
             'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
             My.Computer.Network.DownloadFile(PuestoNotin & "ConfWord2016Adra.rar", RutaDescargas & "ConfWord2016Adra.rar", "juanjo", "Palomeras24", False, 20000, True)
@@ -2621,6 +2626,7 @@ Public Class FrmInstaladorKubo
             Exit Sub
         End Try
 
+        obtenerunrar()
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016Adra.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
         'Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         'If ConfigurarWord = DialogResult.Yes Then
