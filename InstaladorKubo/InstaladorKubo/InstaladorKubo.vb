@@ -2626,47 +2626,46 @@ Public Class FrmInstaladorKubo
             Exit Sub
         End Try
 
-        obtenerunrar()
-        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016Adra.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
-        'Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        'If ConfigurarWord = DialogResult.Yes Then
-        Try
-            Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNet.exe")
-            Threading.Thread.Sleep(5000)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            RegistroInstalacion("ERROR ReferNet:" & ex.Message)
-            cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-            BtConfWord2016ADRA.BackColor = Color.LightSalmon
-            Exit Sub
-        End Try
+        'obtenerunrar()
+        'Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016Adra.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
+
+        'Try
+        '    Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNet.exe")
+        '    Threading.Thread.Sleep(5000)
+        'Catch ex As Exception
+        '    MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    RegistroInstalacion("ERROR ReferNet:" & ex.Message)
+        '    cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
+        '    BtConfWord2016ADRA.BackColor = Color.LightSalmon
+        '    Exit Sub
+        'End Try
 
         'Instalacion de los Addins. Hay que forzarlo.
-        Try
-            Dim pInfoaddin As New ProcessStartInfo()
-            pInfoaddin.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
-            Dim notinaddin As Process = Process.Start(pInfoaddin)
-            notinaddin.WaitForExit()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            RegistroInstalacion("ERROR NotinAddin: " & ex.Message)
-            cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-            BtConfWord2016ADRA.BackColor = Color.LightSalmon
-            Exit Sub
-        End Try
-        Try
-            Dim pInfotaskpane As New ProcessStartInfo()
-            pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
-            Dim notintaskpane As Process = Process.Start(pInfotaskpane)
-            'notintaskpane.WaitForInputIdle()
-            notintaskpane.WaitForExit()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            RegistroInstalacion("ERROR NotinTaskPane: " & ex.Message)
-            cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-            BtConfWord2016ADRA.BackColor = Color.LightSalmon
-            Exit Sub
-        End Try
+        'Try
+        '    Dim pInfoaddin As New ProcessStartInfo()
+        '    pInfoaddin.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
+        '    Dim notinaddin As Process = Process.Start(pInfoaddin)
+        '    notinaddin.WaitForExit()
+        'Catch ex As Exception
+        '    MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    RegistroInstalacion("ERROR NotinAddin: " & ex.Message)
+        '    cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
+        '    BtConfWord2016ADRA.BackColor = Color.LightSalmon
+        '    Exit Sub
+        'End Try
+        'Try
+        '    Dim pInfotaskpane As New ProcessStartInfo()
+        '    pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
+        '    Dim notintaskpane As Process = Process.Start(pInfotaskpane)
+        '    'notintaskpane.WaitForInputIdle()
+        '    notintaskpane.WaitForExit()
+        'Catch ex As Exception
+        '    MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    RegistroInstalacion("ERROR NotinTaskPane: " & ex.Message)
+        '    cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
+        '    BtConfWord2016ADRA.BackColor = Color.LightSalmon
+        '    Exit Sub
+        'End Try
 
 
         Try
@@ -2681,28 +2680,35 @@ Public Class FrmInstaladorKubo
             Exit Sub
         End Try
 
+        'Convertir todo necesario de w16recopregjjAdra a reg add
+        Shell("cmd.exe /c \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\Security ")
+
+
+
+
+
+
         'Obtener texto entre caracteres
-        Try
-            Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
-            expedientes = expedientes.Remove(0, 2)
-            Dim unidadi = expedientes.LastIndexOf("\I")
-            expedientes = expedientes.Substring(0, unidadi)
+        'Try
+        '    Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
+        '    expedientes = expedientes.Remove(0, 2)
+        '    Dim unidadi = expedientes.LastIndexOf("\I")
+        '    expedientes = expedientes.Substring(0, unidadi)
 
-            cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
+        '    cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
 
-            Directory.CreateDirectory(RutaDescargas & "Registro")
-            Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
-            File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
-            File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
-            RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
-        Catch ex As Exception
-            MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016 AdRA", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            RegistroInstalacion("UnidadFWord.bat: " & ex.Message)
-            cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-            BtConfWord2016ADRA.BackColor = Color.LightSalmon
-            Exit Sub
-        End Try
-
+        '    Directory.CreateDirectory(RutaDescargas & "Registro")
+        '    Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
+        '    File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
+        '    File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
+        '    RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
+        'Catch ex As Exception
+        '    MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016 AdRA", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    RegistroInstalacion("UnidadFWord.bat: " & ex.Message)
+        '    cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
+        '    BtConfWord2016ADRA.BackColor = Color.LightSalmon
+        '    Exit Sub
+        'End Try
 
         Try
             Dim equipousuario As String = (My.User.Name)
@@ -2710,13 +2716,23 @@ Public Class FrmInstaladorKubo
             Dim usuario = equipousuario.Remove(0, equipo + 1)
             RegistroInstalacion("WORD 2016 ADRA: Obtenido nombre usuario para Ruta Plantillas: " & usuario)
 
-            Dim seguridadplantillas As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location5" & """" & " /v Path /t REG_SZ /d Z:\" & usuario & "\DOCUMENTS\NOTIN\PLANTILLAS" & "\F" & " /f" & vbCrLf
-            File.WriteAllText(RutaDescargas & "Registro\plantillasz.bat", "reg add ")
-            File.AppendAllText(RutaDescargas & "Registro\plantillasz.bat", seguridadplantillas)
-            Dim plantillasusuario As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Common\General" & """" & " /v UserTemplates /t REG_SZ /d Z:\" & usuario & "\DOCUMENTS\NOTIN\PLANTILLAS /f"
-            File.AppendAllText(RutaDescargas & "Registro\plantillasz.bat", "reg add ")
-            File.AppendAllText(RutaDescargas & "Registro\plantillasz.bat", plantillasusuario)
-            RunAsAdmin(RutaDescargas & "Registro\plantillasz.bat")
+
+            'Dim seguridadplantillas As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location5" & """" & " /v Path /t REG_SZ /d Z:\" & usuario & "\DOCUMENTS\NOTIN\PLANTILLAS" & "\F" & " /f" & vbCrLf
+            'File.WriteAllText(RutaDescargas & "Registro\plantillasz.bat", "reg add ")
+            'File.AppendAllText(RutaDescargas & "Registro\plantillasz.bat", seguridadplantillas)
+            'Dim plantillasusuario As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Common\General" & """" & " /v UserTemplates /t REG_SZ /d Z:\" & usuario & "\DOCUMENTS\NOTIN\PLANTILLAS /f"
+            'File.AppendAllText(RutaDescargas & "Registro\plantillasz.bat", "reg add ")
+            'File.AppendAllText(RutaDescargas & "Registro\plantillasz.bat", plantillasusuario)
+            'RunAsAdmin(RutaDescargas & "Registro\plantillasz.bat")
+
+            Shell("cmd.exe /c reg add \\NOTINRAPP\HKCU\\SOFTWARE\Microsoft\Office\16.0\Common\General /v UserTemplates /t REG_SZ /d Z:\" & usuario & "\DOCUMENTS\NOTIN\PLANTILLAS /f")
+
+
+            ''Escribir nombre Usuario en Word
+            'Shell("cmd.exe /c reg delete \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\UserInfo /v UserInitials /f")
+            'Shell("cmd.exe /c reg add \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\UserInfo /v UserInitials /t REG_SZ /d " & usuario & " /f")
+            'Shell("cmd.exe /c reg delete \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\UserInfo /v UserName /f")
+            'Shell("cmd.exe /c reg add \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\UserInfo /v UserName /t REG_SZ /d " & usuario & " /f")
 
         Catch ex As Exception
             MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016 AdRA", MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -802,6 +802,7 @@ Partial Class FrmInstaladorKubo
         '
         'BtConfWord2016ADRA
         '
+        Me.BtConfWord2016ADRA.Enabled = False
         Me.BtConfWord2016ADRA.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtConfWord2016ADRA.Location = New System.Drawing.Point(8, 10)
         Me.BtConfWord2016ADRA.Name = "BtConfWord2016ADRA"
