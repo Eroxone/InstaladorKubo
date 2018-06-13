@@ -1224,7 +1224,6 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub jNemo()
-        'TODO añadir comprobación 32bits aqui y en Office 2003
         If Directory.Exists("c:\Program Files (x86)\Java") = False Then
             'Descarga de JAVA 1.8.171
             Directory.CreateDirectory(RutaDescargas & "Software")
@@ -2620,7 +2619,6 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             RegistroInstalacion("ERROR Configurar Word 2016: " & ex.Message)
-            'TODO añadir al INI  de colores
             cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
             MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016 AdRA", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -3275,6 +3273,10 @@ Public Class FrmInstaladorKubo
         MessageBox.Show("INSTALACIONES TERMINADAS. Se recomienda REINICIAR el equipo. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         RegistroInstalacion("=== FINALIZADAS INSTALACIONES NOTIN+NEXUS x64 ===")
 
+    End Sub
+
+    Private Sub BtMigradorSQL_Click(sender As Object, e As EventArgs) Handles BtMigradorSQL.Click
+        ' TODO Descarga y ejecuta migrador y muestra log
     End Sub
 
 

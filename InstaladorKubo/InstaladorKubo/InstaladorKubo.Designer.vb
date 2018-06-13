@@ -140,6 +140,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpISL = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpSQL2014 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpOffice2016x64 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -772,6 +773,7 @@ Partial Class FrmInstaladorKubo
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage7.Controls.Add(Me.BtMigradorSQL)
         Me.TabPage7.Controls.Add(Me.BtSQL2014)
         Me.TabPage7.Location = New System.Drawing.Point(4, 27)
         Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
@@ -1036,7 +1038,7 @@ Partial Class FrmInstaladorKubo
         '
         'BtNexus64
         '
-        Me.BtNexus64.BackColor = System.Drawing.Color.Honeydew
+        Me.BtNexus64.BackColor = System.Drawing.Color.GhostWhite
         Me.BtNexus64.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
         Me.BtNexus64.Location = New System.Drawing.Point(14, 130)
         Me.BtNexus64.Margin = New System.Windows.Forms.Padding(2)
@@ -1361,6 +1363,16 @@ Partial Class FrmInstaladorKubo
         Me.TlpOffice2016x64.IsBalloon = True
         Me.TlpOffice2016x64.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'BtMigradorSQL
+        '
+        Me.BtMigradorSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtMigradorSQL.Location = New System.Drawing.Point(8, 50)
+        Me.BtMigradorSQL.Name = "BtMigradorSQL"
+        Me.BtMigradorSQL.Size = New System.Drawing.Size(167, 28)
+        Me.BtMigradorSQL.TabIndex = 1
+        Me.BtMigradorSQL.Text = "MigradorNotinSQL"
+        Me.BtMigradorSQL.UseVisualStyleBackColor = True
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1541,4 +1553,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtNexus64 As Button
     Friend WithEvents TabPage10 As TabPage
     Friend WithEvents BtConfWord2016ADRA As Button
+    Friend WithEvents BtMigradorSQL As Button
 End Class
