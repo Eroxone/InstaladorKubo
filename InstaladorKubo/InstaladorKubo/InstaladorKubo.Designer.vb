@@ -141,6 +141,8 @@ Partial Class FrmInstaladorKubo
         Me.TlpSQL2014 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpOffice2016x64 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
+        Me.BtNetBeta = New System.Windows.Forms.Button()
+        Me.LbBetaNet = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -585,7 +587,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.btNotinKubo.BackColor = System.Drawing.Color.BlanchedAlmond
         Me.btNotinKubo.Font = New System.Drawing.Font("Lucida Bright", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btNotinKubo.Location = New System.Drawing.Point(14, 15)
+        Me.btNotinKubo.Location = New System.Drawing.Point(14, 10)
         Me.btNotinKubo.Margin = New System.Windows.Forms.Padding(2)
         Me.btNotinKubo.Name = "btNotinKubo"
         Me.btNotinKubo.Size = New System.Drawing.Size(178, 41)
@@ -603,7 +605,7 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(340, 361)
+        Me.GroupBox2.Size = New System.Drawing.Size(408, 361)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Utilidades Sistema"
@@ -619,7 +621,7 @@ Partial Class FrmInstaladorKubo
         Me.TabSistema.Margin = New System.Windows.Forms.Padding(2)
         Me.TabSistema.Name = "TabSistema"
         Me.TabSistema.SelectedIndex = 0
-        Me.TabSistema.Size = New System.Drawing.Size(314, 276)
+        Me.TabSistema.Size = New System.Drawing.Size(375, 276)
         Me.TabSistema.TabIndex = 35
         '
         'TabPage5
@@ -633,7 +635,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage5.Size = New System.Drawing.Size(306, 245)
+        Me.TabPage5.Size = New System.Drawing.Size(367, 245)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
@@ -687,6 +689,8 @@ Partial Class FrmInstaladorKubo
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage6.Controls.Add(Me.LbBetaNet)
+        Me.TabPage6.Controls.Add(Me.BtNetBeta)
         Me.TabPage6.Controls.Add(Me.BtKmsPico)
         Me.TabPage6.Controls.Add(Me.BtISL)
         Me.TabPage6.Controls.Add(Me.BtNotinpdf)
@@ -697,7 +701,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage6.Size = New System.Drawing.Size(306, 245)
+        Me.TabPage6.Size = New System.Drawing.Size(367, 245)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
         '
@@ -778,7 +782,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.Location = New System.Drawing.Point(4, 27)
         Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(306, 245)
+        Me.TabPage7.Size = New System.Drawing.Size(367, 245)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
         '
@@ -1052,7 +1056,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtNotinWord2003.BackColor = System.Drawing.Color.MistyRose
         Me.BtNotinWord2003.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtNotinWord2003.Location = New System.Drawing.Point(14, 74)
+        Me.BtNotinWord2003.Location = New System.Drawing.Point(14, 70)
         Me.BtNotinWord2003.Margin = New System.Windows.Forms.Padding(2)
         Me.BtNotinWord2003.Name = "BtNotinWord2003"
         Me.BtNotinWord2003.Size = New System.Drawing.Size(178, 41)
@@ -1373,6 +1377,26 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL.Text = "MigradorNotinSQL"
         Me.BtMigradorSQL.UseVisualStyleBackColor = True
         '
+        'BtNetBeta
+        '
+        Me.BtNetBeta.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNetBeta.Location = New System.Drawing.Point(186, 10)
+        Me.BtNetBeta.Name = "BtNetBeta"
+        Me.BtNetBeta.Size = New System.Drawing.Size(167, 28)
+        Me.BtNetBeta.TabIndex = 36
+        Me.BtNetBeta.Text = "Beta Notin .NET"
+        Me.BtNetBeta.UseVisualStyleBackColor = True
+        '
+        'LbBetaNet
+        '
+        Me.LbBetaNet.AutoSize = True
+        Me.LbBetaNet.Font = New System.Drawing.Font("Lucida Bright", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbBetaNet.Location = New System.Drawing.Point(183, 41)
+        Me.LbBetaNet.Name = "LbBetaNet"
+        Me.LbBetaNet.Size = New System.Drawing.Size(128, 13)
+        Me.LbBetaNet.TabIndex = 37
+        Me.LbBetaNet.Text = "Fecha última ejecución Beta"
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1421,6 +1445,7 @@ Partial Class FrmInstaladorKubo
         Me.TabSistema.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
+        Me.TabPage6.PerformLayout()
         Me.TabPage7.ResumeLayout(False)
         Me.TabPage10.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
@@ -1554,4 +1579,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TabPage10 As TabPage
     Friend WithEvents BtConfWord2016ADRA As Button
     Friend WithEvents BtMigradorSQL As Button
+    Friend WithEvents BtNetBeta As Button
+    Friend WithEvents LbBetaNet As Label
 End Class
