@@ -67,17 +67,19 @@ Partial Class FrmInstaladorKubo
         Me.BtUac = New System.Windows.Forms.Button()
         Me.btDirectivas = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.BtBetax64 = New System.Windows.Forms.Button()
-        Me.LbBetaNet = New System.Windows.Forms.Label()
-        Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.BtKmsPico = New System.Windows.Forms.Button()
         Me.BtISL = New System.Windows.Forms.Button()
         Me.BtNotinpdf = New System.Windows.Forms.Button()
         Me.BtConfiguraWord2016 = New System.Windows.Forms.Button()
         Me.btExcepJava = New System.Windows.Forms.Button()
         Me.btJava = New System.Windows.Forms.Button()
-        Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.TabPage11 = New System.Windows.Forms.TabPage()
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LbBetaNet = New System.Windows.Forms.Label()
+        Me.BtBetax64 = New System.Windows.Forms.Button()
+        Me.BtNetBeta = New System.Windows.Forms.Button()
+        Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
         Me.BtConfWord2016ADRA = New System.Windows.Forms.Button()
@@ -144,8 +146,8 @@ Partial Class FrmInstaladorKubo
         Me.TlpISL = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpSQL2014 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpOffice2016x64 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TabPage11 = New System.Windows.Forms.TabPage()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.BtRestaurarBak = New System.Windows.Forms.Button()
+        Me.BtBlancosBD = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -156,6 +158,7 @@ Partial Class FrmInstaladorKubo
         Me.TabSistema.SuspendLayout()
         Me.TabPage5.SuspendLayout()
         Me.TabPage6.SuspendLayout()
+        Me.TabPage11.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.TabPage10.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -165,7 +168,6 @@ Partial Class FrmInstaladorKubo
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabGestion.SuspendLayout()
-        Me.TabPage11.SuspendLayout()
         Me.SuspendLayout()
         '
         'lbUnidadF
@@ -640,7 +642,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage5.Size = New System.Drawing.Size(367, 245)
+        Me.TabPage5.Size = New System.Drawing.Size(378, 245)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
@@ -704,39 +706,9 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage6.Size = New System.Drawing.Size(367, 245)
+        Me.TabPage6.Size = New System.Drawing.Size(378, 245)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
-        '
-        'BtBetax64
-        '
-        Me.BtBetax64.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtBetax64.Location = New System.Drawing.Point(8, 50)
-        Me.BtBetax64.Name = "BtBetax64"
-        Me.BtBetax64.Size = New System.Drawing.Size(167, 28)
-        Me.BtBetax64.TabIndex = 38
-        Me.BtBetax64.Text = "Beta x64 .NET"
-        Me.BtBetax64.UseVisualStyleBackColor = True
-        '
-        'LbBetaNet
-        '
-        Me.LbBetaNet.AutoSize = True
-        Me.LbBetaNet.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbBetaNet.Location = New System.Drawing.Point(5, 224)
-        Me.LbBetaNet.Name = "LbBetaNet"
-        Me.LbBetaNet.Size = New System.Drawing.Size(99, 15)
-        Me.LbBetaNet.TabIndex = 37
-        Me.LbBetaNet.Text = "Sin información"
-        '
-        'BtNetBeta
-        '
-        Me.BtNetBeta.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNetBeta.Location = New System.Drawing.Point(8, 10)
-        Me.BtNetBeta.Name = "BtNetBeta"
-        Me.BtNetBeta.Size = New System.Drawing.Size(167, 28)
-        Me.BtNetBeta.TabIndex = 36
-        Me.BtNetBeta.Text = "Beta Notin .NET"
-        Me.BtNetBeta.UseVisualStyleBackColor = True
         '
         'BtKmsPico
         '
@@ -807,26 +779,82 @@ Partial Class FrmInstaladorKubo
         Me.btJava.Text = "Instalar JAVA"
         Me.btJava.UseVisualStyleBackColor = True
         '
-        'TabPage7
+        'TabPage11
         '
-        Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage7.Controls.Add(Me.BtSQL2014)
-        Me.TabPage7.Location = New System.Drawing.Point(4, 27)
-        Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
-        Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(367, 245)
-        Me.TabPage7.TabIndex = 2
-        Me.TabPage7.Text = "SQL"
+        Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.Label1)
+        Me.TabPage11.Controls.Add(Me.LbBetaNet)
+        Me.TabPage11.Controls.Add(Me.BtBetax64)
+        Me.TabPage11.Controls.Add(Me.BtNetBeta)
+        Me.TabPage11.Location = New System.Drawing.Point(4, 27)
+        Me.TabPage11.Name = "TabPage11"
+        Me.TabPage11.Size = New System.Drawing.Size(378, 245)
+        Me.TabPage11.TabIndex = 4
+        Me.TabPage11.Text = ".Net"
         '
         'BtMigradorSQL
         '
         Me.BtMigradorSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtMigradorSQL.Location = New System.Drawing.Point(197, 10)
+        Me.BtMigradorSQL.Location = New System.Drawing.Point(194, 10)
         Me.BtMigradorSQL.Name = "BtMigradorSQL"
         Me.BtMigradorSQL.Size = New System.Drawing.Size(167, 28)
         Me.BtMigradorSQL.TabIndex = 1
         Me.BtMigradorSQL.Text = "Migrador SQL"
         Me.BtMigradorSQL.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(193, 10)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(167, 15)
+        Me.Label1.TabIndex = 39
+        Me.Label1.Text = "Software Net instalado:"
+        '
+        'LbBetaNet
+        '
+        Me.LbBetaNet.AutoSize = True
+        Me.LbBetaNet.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbBetaNet.Location = New System.Drawing.Point(193, 36)
+        Me.LbBetaNet.Name = "LbBetaNet"
+        Me.LbBetaNet.Size = New System.Drawing.Size(99, 15)
+        Me.LbBetaNet.TabIndex = 37
+        Me.LbBetaNet.Text = "Sin información"
+        '
+        'BtBetax64
+        '
+        Me.BtBetax64.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtBetax64.Location = New System.Drawing.Point(8, 50)
+        Me.BtBetax64.Name = "BtBetax64"
+        Me.BtBetax64.Size = New System.Drawing.Size(167, 28)
+        Me.BtBetax64.TabIndex = 38
+        Me.BtBetax64.Text = "Beta x64 .NET"
+        Me.BtBetax64.UseVisualStyleBackColor = True
+        '
+        'BtNetBeta
+        '
+        Me.BtNetBeta.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNetBeta.Location = New System.Drawing.Point(8, 10)
+        Me.BtNetBeta.Name = "BtNetBeta"
+        Me.BtNetBeta.Size = New System.Drawing.Size(167, 28)
+        Me.BtNetBeta.TabIndex = 36
+        Me.BtNetBeta.Text = "Beta Notin .NET"
+        Me.BtNetBeta.UseVisualStyleBackColor = True
+        '
+        'TabPage7
+        '
+        Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage7.Controls.Add(Me.BtBlancosBD)
+        Me.TabPage7.Controls.Add(Me.BtRestaurarBak)
+        Me.TabPage7.Controls.Add(Me.BtMigradorSQL)
+        Me.TabPage7.Controls.Add(Me.BtSQL2014)
+        Me.TabPage7.Location = New System.Drawing.Point(4, 27)
+        Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
+        Me.TabPage7.Name = "TabPage7"
+        Me.TabPage7.Size = New System.Drawing.Size(378, 245)
+        Me.TabPage7.TabIndex = 2
+        Me.TabPage7.Text = "SQL"
         '
         'BtSQL2014
         '
@@ -844,7 +872,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Controls.Add(Me.BtConfWord2016ADRA)
         Me.TabPage10.Location = New System.Drawing.Point(4, 27)
         Me.TabPage10.Name = "TabPage10"
-        Me.TabPage10.Size = New System.Drawing.Size(367, 245)
+        Me.TabPage10.Size = New System.Drawing.Size(378, 245)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
@@ -1409,29 +1437,26 @@ Partial Class FrmInstaladorKubo
         Me.TlpOffice2016x64.IsBalloon = True
         Me.TlpOffice2016x64.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'TabPage11
+        'BtRestaurarBak
         '
-        Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage11.Controls.Add(Me.BtMigradorSQL)
-        Me.TabPage11.Controls.Add(Me.Label1)
-        Me.TabPage11.Controls.Add(Me.LbBetaNet)
-        Me.TabPage11.Controls.Add(Me.BtBetax64)
-        Me.TabPage11.Controls.Add(Me.BtNetBeta)
-        Me.TabPage11.Location = New System.Drawing.Point(4, 27)
-        Me.TabPage11.Name = "TabPage11"
-        Me.TabPage11.Size = New System.Drawing.Size(378, 245)
-        Me.TabPage11.TabIndex = 4
-        Me.TabPage11.Text = ".Net"
+        Me.BtRestaurarBak.Enabled = False
+        Me.BtRestaurarBak.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtRestaurarBak.Location = New System.Drawing.Point(8, 50)
+        Me.BtRestaurarBak.Name = "BtRestaurarBak"
+        Me.BtRestaurarBak.Size = New System.Drawing.Size(167, 28)
+        Me.BtRestaurarBak.TabIndex = 2
+        Me.BtRestaurarBak.Text = "Restaurar BD"
+        Me.BtRestaurarBak.UseVisualStyleBackColor = True
         '
-        'Label1
+        'BtBlancosBD
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(5, 205)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(167, 15)
-        Me.Label1.TabIndex = 39
-        Me.Label1.Text = "Software Net instalado:"
+        Me.BtBlancosBD.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtBlancosBD.Location = New System.Drawing.Point(8, 90)
+        Me.BtBlancosBD.Name = "BtBlancosBD"
+        Me.BtBlancosBD.Size = New System.Drawing.Size(167, 28)
+        Me.BtBlancosBD.TabIndex = 3
+        Me.BtBlancosBD.Text = "Datos Blancos"
+        Me.BtBlancosBD.UseVisualStyleBackColor = True
         '
         'FrmInstaladorKubo
         '
@@ -1481,6 +1506,8 @@ Partial Class FrmInstaladorKubo
         Me.TabSistema.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
+        Me.TabPage11.ResumeLayout(False)
+        Me.TabPage11.PerformLayout()
         Me.TabPage7.ResumeLayout(False)
         Me.TabPage10.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
@@ -1491,8 +1518,6 @@ Partial Class FrmInstaladorKubo
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabGestion.ResumeLayout(False)
-        Me.TabPage11.ResumeLayout(False)
-        Me.TabPage11.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1621,4 +1646,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtBetax64 As Button
     Friend WithEvents TabPage11 As TabPage
     Friend WithEvents Label1 As Label
+    Friend WithEvents BtBlancosBD As Button
+    Friend WithEvents BtRestaurarBak As Button
 End Class

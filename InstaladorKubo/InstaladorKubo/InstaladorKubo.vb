@@ -269,7 +269,14 @@ Public Class FrmInstaladorKubo
         'Else
         '    BtNetBeta.BackColor = SystemColors.Control
         'End If
-
+        Dim bdblancos = cIniArray.IniGet(instaladorkuboini, "SQL2014", "BLANCOS", "2")
+        If bdblancos = 1 Then
+            BtBlancosBD.BackColor = Color.PaleGreen
+        ElseIf bdblancos = 0 Then
+            BtBlancosBD.BackColor = Color.Salmon
+        Else
+            BtBlancosBD.BackColor = SystemColors.Control
+        End If
 
     End Sub
 
@@ -1089,28 +1096,44 @@ Public Class FrmInstaladorKubo
 
     Private Sub EjecutableNotinNet()
 
-        cIniArray.IniWrite("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "32")
-        RegistroInstalacion("PlataformaAddin=32 escrito en el INI local de C:\Notawin.Net.")
+        If File.Exists("C:\Notawin.Net\notin.ini") Then
+            cIniArray.IniWrite("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "32")
+            RegistroInstalacion("PlataformaAddin=32 escrito en el INI local de C:\Notawin.Net por si existía versión =64")
+        Else
+            RegistroInstalacion("ERROR: PlataformaAddin=32 no se pudo escribir en el INI Local. Revisa su existencia y permisos.")
+        End If
 
         If UnidadF() = True Then
             Try
-                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
-                RegistroInstalacion("NotinNetInstaller copiado de F:\NOTAWIN.NET a " & RutaDescargas & ".")
+                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe", True)
+                RegistroInstalacion("NotinNetInstaller copiado correctamente desde F:\Notawin.Net\ para su ejecución.")
             Catch ex As Exception
-                RegistroInstalacion("NotinNetInstaller no encontrado en la Unidad F. Procedemos a descargarla versión estable desde static.unidata.es")
+                RegistroInstalacion("NotinNetInstaller: No se pudo obtener de F:\Notawin.Net\ se procede a su decarga desde static.unidata")
             End Try
-        Else
-            Shell("cmd /c " & "wget.exe -q --show-progress http://static.unidata.es/estable/NotinNetInstaller.exe -o " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+
+            Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe")
+            Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
+
+            If notinnetinstaller.Length < "100000000" Then
+                RegistroInstalacion("NotinNetInstaller ocupa menos de 100Mb. Posible fichero corrupto. Se procede a su descarga.")
+                Try
+                    Dim urlnotinnetestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
+                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe", AppWinStyle.NormalFocus, True)
+                Catch ex As Exception
+                    RegistroInstalacion("NotinNetInstaller: No se pudo obtener desde su url de descarga. Seguirán errores de Addins.")
+                End Try
+            End If
         End If
+
 
         'Una vez obtenido procedemos a ejecutar NotinNetInstaller
         Try
             Dim pnotinnet As New ProcessStartInfo()
-            pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
+            pnotinnet.FileName = RutaDescargas & "\NotinNet\NotinNetInstaller_ESTABLE.exe"
             Dim notinnet As Process = Process.Start(pnotinnet)
             'notintaskpane.WaitForInputIdle()
             notinnet.WaitForExit()
-            RegistroInstalacion("Ejecutado instalador NotinNetInstaller.exe desde " & RutaDescargas & ".")
+            RegistroInstalacion("Ejecutado instalador NotinNetInstaller_ESTABLE.exe desde " & RutaDescargas & "NotinNet\")
         Catch ex As Exception
             RegistroInstalacion("NotinNetInstaller: " & ex.Message)
         End Try
@@ -1126,7 +1149,7 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR: Copiando Normal.dotm " & ex.Message)
             'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
+        ObtenerVersionNet()
         ConfigurarWord2016()
     End Sub
 
@@ -2040,41 +2063,60 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub EjecutableNotinNet2003()
+        If File.Exists("C:\Notawin.Net\notin.ini") Then
+            cIniArray.IniWrite("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "32")
+            RegistroInstalacion("PlataformaAddin=32 escrito en el INI local de C:\Notawin.Net por si existía versión =64")
+        Else
+            RegistroInstalacion("ERROR: PlataformaAddin=32 no se pudo escribir en el INI Local. Revisa su existencia y permisos.")
+        End If
+
         If UnidadF() = True Then
             Try
-                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
-                RegistroInstalacion("NotinNetInstaller copiado de F:\NOTAWIN.NET a " & RutaDescargas & ".")
+                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe", True)
+                RegistroInstalacion("NotinNetInstaller copiado correctamente desde F:\Notawin.Net\ para su ejecución.")
             Catch ex As Exception
-                RegistroInstalacion("NotinNetInstaller no encontrado en la Unidad F. Procedemos a descargarla versión estable desde static.unidata.es")
+                RegistroInstalacion("NotinNetInstaller: No se pudo obtener de F:\Notawin.Net\ se procede a su decarga desde static.unidata")
             End Try
-        Else
-            Shell("cmd /c " & "wget.exe -q --show-progress http://static.unidata.es/estable/NotinNetInstaller.exe -o " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+
+            Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe")
+            Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
+
+            If notinnetinstaller.Length < "100000000" Then
+                RegistroInstalacion("NotinNetInstaller ocupa menos de 100Mb. Posible fichero corrupto. Se procede a su descarga.")
+                Try
+                    Dim urlnotinnetestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
+                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe", AppWinStyle.NormalFocus, True)
+                Catch ex As Exception
+                    RegistroInstalacion("NotinNetInstaller: No se pudo obtener desde su url de descarga. Seguirán errores de Addins.")
+                End Try
+            End If
         End If
 
         'Una vez obtenido procedemos a ejecutar NotinNetInstaller
         Try
             Dim pnotinnet As New ProcessStartInfo()
-            pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
+            pnotinnet.FileName = RutaDescargas & "\NotinNet\NotinNetInstaller_ESTABLE.exe"
             Dim notinnet As Process = Process.Start(pnotinnet)
             'notintaskpane.WaitForInputIdle()
             notinnet.WaitForExit()
-            RegistroInstalacion("Ejecutado NotinNetInstaller.exe")
+            RegistroInstalacion("Ejecutado instalador NotinNetInstaller_ESTABLE.exe desde " & RutaDescargas & "NotinNet\")
         Catch ex As Exception
             RegistroInstalacion("NotinNetInstaller: " & ex.Message)
-            End Try
-            'Ademas me traigo las Plantillas y el MDE
-            Try
-                File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
-            Catch ex As Exception
-            RegistroInstalacion("ERROR: Copiando Notin8.mde" & ex.Message)
         End Try
-            Try
-                File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOTM", "C:\PLANTILLAS\NORMAL.DOTM", True)
-            Catch ex As Exception
-            RegistroInstalacion("ERROR: Copiando Normal.dotm " & ex.Message)
+        'Ademas me traigo las Plantillas y el MDE
+        Try
+            File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
+        Catch ex As Exception
+            RegistroInstalacion("ERROR: Copiando Notin8.mde " & ex.Message)
+        End Try
+        Try
+            File.Copy("F:\NOTIN\PLANTILLAS\NORMAL.DOT", "C:\PLANTILLAS\NORMAL.DOT", True)
+        Catch ex As Exception
+            RegistroInstalacion("ERROR: Copiando Normal.dot " & ex.Message)
             'MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
+        ObtenerVersionNet()
         SoftwareAncert2003()
     End Sub
 
@@ -3037,22 +3079,37 @@ Public Class FrmInstaladorKubo
     Private Sub EjecutableNotinNetx64()
 
         'Escribir en el INI que el Sistema es 64bits
-        cIniArray.IniWrite("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "64")
-        RegistroInstalacion("PlataformaAddin=64 escrito en el INI local de C:\Notawin.Net.")
+        If File.Exists("C:\Notawin.Net\notin.ini") Then
+            cIniArray.IniWrite("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "64")
+            RegistroInstalacion("PlataformaAddin=64 escrito en el INI local de C:\Notawin.Net.")
+        Else
+            RegistroInstalacion("ERROR: PlataformaAddin=64 no pudo escribirse en el INI Local. Revisa su existencia y permisos.")
+        End If
 
         If UnidadF() = True Then
             Try
-                File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNetInstaller.exe", True)
+                File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe", True)
                 RegistroInstalacion("NotinNetInstaller x64 copiado correctamente desde F:\Notawin.Net\x64\ para su ejecución.")
             Catch ex As Exception
                 RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener de F:\Notawin.Net\x64\ se procede a su decarga desde static.unidata")
-                Dim urlnotinnetx64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
-                Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
             End Try
+
+            Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe")
+            Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
+
+            If notinnetinstaller.Length < "100000000" Then
+                RegistroInstalacion("NotinNetInstaller x64 ocupa menos de 100Mb. Posible fichero corrupto. Se procede a su descarga.")
+                Try
+                    Dim urlnotinnetx64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
+                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe", AppWinStyle.NormalFocus, True)
+                Catch ex As Exception
+                    RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener desde su url de descarga. Seguirán errores de Addins.")
+                End Try
+            End If
 
             Try
                 Dim pnotinnet As New ProcessStartInfo()
-                pnotinnet.FileName = RutaDescargas & "NotinNetInstaller.exe"
+                pnotinnet.FileName = RutaDescargas & "NotinNetInstaller_BETAx64.exe"
                 Dim notinnet As Process = Process.Start(pnotinnet)
                 'notinnet.WaitForInputIdle()
                 notinnet.WaitForExit()
@@ -3075,6 +3132,7 @@ Public Class FrmInstaladorKubo
             End Try
 
         End If
+        ObtenerVersionNet()
         ConfigurarWord2016x64()
     End Sub
 
@@ -3086,7 +3144,7 @@ Public Class FrmInstaladorKubo
                 'Dim ConfigurarWord = MessageBox.Show("¿Configuramos Word 2016?", "Configurar Word 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 'If ConfigurarWord = DialogResult.Yes Then
                 Try
-                    Process.Start("C:\Program Files\Humano Software\Notin\Compatibilidad\ReferNet.exe")
+                    Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNet.exe")
                     Threading.Thread.Sleep(5000)
                 Catch ex As Exception
                     'MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Continuamos.", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -3099,7 +3157,7 @@ Public Class FrmInstaladorKubo
                     'Crear una nueva estructura ProcessStartInfo.
                     Dim pInfoaddin As New ProcessStartInfo()
                     'Establecer el miembro de un nombre de archivo de pinfo como Eula.txt en la carpeta de sistema.
-                    pInfoaddin.FileName = "C:\Program Files\Humano Software (x86)\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
+                    pInfoaddin.FileName = "C:\Program Files (x86)\Humano Software (x86)\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
                     'Ejecutar el proceso.
                     Dim notinaddin As Process = Process.Start(pInfoaddin)
                     'Esperar a que la ventana de proceso complete la carga.
@@ -3144,11 +3202,11 @@ Public Class FrmInstaladorKubo
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "1")
             Else
                 MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016 x64.", "Configura WORD 2016 x64", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
-        End If
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
+            End If
         Else
-        RegistroInstalacion("ERROR: No se pudo Configurar WORD 2016 x64. No se encontró la descarga de la Utilidad.")
-        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
+            RegistroInstalacion("ERROR: No se pudo Configurar WORD 2016 x64. No se encontró la descarga de la Utilidad.")
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
         End If
         'TODO preparar esto también para la versión de 64bits
 
@@ -3354,16 +3412,52 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "NET", "BETAx64", "1")
 
             ObtenerVersionNet()
-            BtNetBeta.BackColor = Color.PaleGreen
+            BtBetax64.BackColor = Color.PaleGreen
 
         Catch ex As Exception
             RegistroInstalacion("BETAx64 Notin: Error instalando Beta: " & ex.Message)
-            BtNetBeta.BackColor = Color.LightSalmon
+            BtBetax64.BackColor = Color.LightSalmon
             cIniArray.IniWrite(instaladorkuboini, "NET", "BETAx64", "0")
         End Try
 
 
     End Sub
+
+    Private Sub BtBlancosBD_Click(sender As Object, e As EventArgs) Handles BtBlancosBD.Click
+        obtenerwget()
+        Directory.CreateDirectory(RutaDescargas & "BLANCOS_SQL2014")
+        'BAK
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/BLANCOS_SQL2014/BAK/DATOS.BAK -O " & RutaDescargas & "BLANCOS_SQL2014\DATOS.BAK", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/BLANCOS_SQL2014/BAK/HISTORIC.BAK -O " & RutaDescargas & "BLANCOS_SQL2014\HISTORIC.BAK", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/BLANCOS_SQL2014/BAK/MODELOS.BAK -O " & RutaDescargas & "BLANCOS_SQL2014\MODELOS.BAK", AppWinStyle.NormalFocus, True)
+        'MDF-LDF
+        Directory.CreateDirectory(RutaDescargas & "BLANCOS_SQL2014\MDF-LDF")
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/BLANCOS_SQL2014/MDF-LDF/HISTORIC.mdf -O " & RutaDescargas & "BLANCOS_SQL2014\MDF-LDF\HISTORIC.MDF", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/BLANCOS_SQL2014/MDF-LDF/HISTORIC.ldf -O " & RutaDescargas & "BLANCOS_SQL2014\MDF-LDF\HISTORIC.LDF", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/BLANCOS_SQL2014/MDF-LDF/MODELOS.mdf -O " & RutaDescargas & "BLANCOS_SQL2014\MDF-LDF\MODELOS.MDF", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/BLANCOS_SQL2014/MDF-LDF/MODELOS.ldf -O " & RutaDescargas & "BLANCOS_SQL2014\MDF-LDF\MODELOS.LDF", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/BLANCOS_SQL2014/MDF-LDF/DATOS.mdf -O " & RutaDescargas & "BLANCOS_SQL2014\MDF-LDF\DATOS.MDF", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/BLANCOS_SQL2014/MDF-LDF/DATOS.ldf -O " & RutaDescargas & "BLANCOS_SQL2014\MDF-LDF\DATOS.LDF", AppWinStyle.NormalFocus, True)
+
+
+        If File.Exists(RutaDescargas & "BLANCOS_SQL2014\DATOS.BAK") Then
+            RegistroInstalacion("ËXITO: Obtenidos DATOS BLANCOS desde Pandora.")
+            BtBlancosBD.BackColor = Color.PaleGreen
+            cIniArray.IniWrite(instaladorkuboini, "SQL2014", "BLANCOS", "1")
+            Process.Start("explorer.exe", RutaDescargas & "BLANCOS_SQL2014\")
+        Else
+            RegistroInstalacion("ERROR BD_BLANCOS: No se pudo comprobar la existencia de las descargas.")
+            BtBlancosBD.BackColor = Color.LightSalmon
+            cIniArray.IniWrite(instaladorkuboini, "SQL2014", "BLANCOS", "0")
+        End If
+
+
+
+    End Sub
+
+
+
+
 
 
     'Private Sub AbreExcel()
