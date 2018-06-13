@@ -5,6 +5,7 @@ Imports System.Threading
 Imports System.Net.Mail
 Imports InstaladorKubo.FrmConfigurarISL
 Imports InstaladorKubo.ObtenerEjecutables
+Imports System.Environment
 
 'WEB DE INSTALACIÓN
 'http://instalador.notin.net
@@ -53,9 +54,8 @@ Public Class FrmInstaladorKubo
         'Cargo correo anterior de notificaciones
         CBoxEmail.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
 
-        'Última Ejecución de Beta Net
-        LbBetaNet.Text = cIniArray.IniGet(instaladorkuboini, "NET", "FECHABETA", "Fecha última ejecución Beta")
-
+        'Versiones Beta NET
+        ObtenerVersionNet()
     End Sub
 
     Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
@@ -261,6 +261,15 @@ Public Class FrmInstaladorKubo
         Else
             BtConfWord2016ADRA.BackColor = SystemColors.Control
         End If
+        'Dim betanet = cIniArray.IniGet(instaladorkuboini, "NET", "BETA", "2")
+        'If betanet = 1 Then
+        '    BtNetBeta.BackColor = Color.PaleGreen
+        'ElseIf betanet = 0 Then
+        '    BtNetBeta.BackColor = Color.LightSalmon
+        'Else
+        '    BtNetBeta.BackColor = SystemColors.Control
+        'End If
+
 
     End Sub
 
@@ -3280,28 +3289,77 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtMigradorSQL_Click(sender As Object, e As EventArgs) Handles BtMigradorSQL.Click
-        ' TODO Descarga y ejecuta migrador y muestra log
+        obtenerwget()
+
     End Sub
+
+    Private Sub ObtenerVersionNet()
+        Try
+            Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
+            Dim infoinstaller As String = appData & "\Notin\InfoInstaller.txt"
+            Dim infoversion As String
+
+            Dim sr As New System.IO.StreamReader(infoinstaller)
+            infoversion = sr.ReadToEnd()
+            sr.Close()
+            LbBetaNet.Text = infoversion
+            cIniArray.IniWrite(instaladorkuboini, "NET", "VERSION", infoversion)
+            RegistroInstalacion("Beta Net: InfoVersión en el Sistema: " & infoversion)
+        Catch ex As Exception
+            RegistroInstalacion("Beta Net: No se pudo determinar Versión: " & ex.Message)
+        End Try
+    End Sub
+
 
     Private Sub BtNetBeta_Click(sender As Object, e As EventArgs) Handles BtNetBeta.Click
         obtenerwget()
         Dim urlbeta As String = "http://static.unidata.es/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
         Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbeta & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_BETA.exe", AppWinStyle.NormalFocus, True)
+
         Try
             Dim pnotinnetbeta As New ProcessStartInfo()
             pnotinnetbeta.FileName = RutaDescargas & "NotinNet\NotinNetInstaller_BETA.exe"
             Dim notinnetbeta As Process = Process.Start(pnotinnetbeta)
             'notinnet.WaitForInputIdle()
             notinnetbeta.WaitForExit()
+
             RegistroInstalacion("BETA Notin: Instalador NotinNetInstaller versión BETA ejecutado correctamente. Fecha " & DateTime.Now.Date)
-            cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
-            LbBetaNet.Text = "Ejecución: " & DateTime.Now
+
+            'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
+            cIniArray.IniWrite(instaladorkuboini, "NET", "BETA", "1")
+
+            ObtenerVersionNet()
             BtNetBeta.BackColor = Color.PaleGreen
-            'TODO añadir control en el INI
+
         Catch ex As Exception
             RegistroInstalacion("BETA Notin: Error instalando Beta: " & ex.Message)
             BtNetBeta.BackColor = Color.LightSalmon
+            cIniArray.IniWrite(instaladorkuboini, "NET", "BETA", "0")
+        End Try
+    End Sub
+
+    Private Sub BtBetax64_Click(sender As Object, e As EventArgs) Handles BtBetax64.Click
+        obtenerwget()
+        Dim urlbeta64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
+        Directory.CreateDirectory(RutaDescargas & "NotinNet")
+        Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbeta64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe", AppWinStyle.NormalFocus, True)
+        Try
+            Dim pnotinnetbetax64 As New ProcessStartInfo()
+            pnotinnetbetax64.FileName = RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe"
+            Dim notinnetbetax64 As Process = Process.Start(pnotinnetbetax64)
+            'notinnet.WaitForInputIdle()
+            notinnetbetax64.WaitForExit()
+            RegistroInstalacion("BETAx64 Notin: Instalador NotinNetInstaller versión BETA ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            cIniArray.IniWrite(instaladorkuboini, "NET", "BETAx64", "1")
+
+            ObtenerVersionNet()
+            BtNetBeta.BackColor = Color.PaleGreen
+
+        Catch ex As Exception
+            RegistroInstalacion("BETAx64 Notin: Error instalando Beta: " & ex.Message)
+            BtNetBeta.BackColor = Color.LightSalmon
+            cIniArray.IniWrite(instaladorkuboini, "NET", "BETAx64", "0")
         End Try
 
 
