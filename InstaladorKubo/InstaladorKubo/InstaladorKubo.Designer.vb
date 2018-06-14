@@ -62,6 +62,7 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TabSistema = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.BtFramework462 = New System.Windows.Forms.Button()
         Me.btOdbc = New System.Windows.Forms.Button()
         Me.btFramework = New System.Windows.Forms.Button()
         Me.BtUac = New System.Windows.Forms.Button()
@@ -151,7 +152,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpISL = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpSQL2014 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpOffice2016x64 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtFramework462 = New System.Windows.Forms.Button()
+        Me.BtChocolatey = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -651,6 +652,18 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
+        'BtFramework462
+        '
+        Me.BtFramework462.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtFramework462.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtFramework462.Location = New System.Drawing.Point(195, 10)
+        Me.BtFramework462.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtFramework462.Name = "BtFramework462"
+        Me.BtFramework462.Size = New System.Drawing.Size(167, 28)
+        Me.BtFramework462.TabIndex = 33
+        Me.BtFramework462.Text = "Framework 4.6.2"
+        Me.BtFramework462.UseVisualStyleBackColor = True
+        '
         'btOdbc
         '
         Me.btOdbc.FlatStyle = System.Windows.Forms.FlatStyle.Popup
@@ -701,6 +714,7 @@ Partial Class FrmInstaladorKubo
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage6.Controls.Add(Me.BtChocolatey)
         Me.TabPage6.Controls.Add(Me.BtKmsPico)
         Me.TabPage6.Controls.Add(Me.BtISL)
         Me.TabPage6.Controls.Add(Me.BtNotinpdf)
@@ -1501,17 +1515,15 @@ Partial Class FrmInstaladorKubo
         Me.TlpOffice2016x64.IsBalloon = True
         Me.TlpOffice2016x64.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'BtFramework462
+        'BtChocolatey
         '
-        Me.BtFramework462.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtFramework462.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtFramework462.Location = New System.Drawing.Point(195, 10)
-        Me.BtFramework462.Margin = New System.Windows.Forms.Padding(2)
-        Me.BtFramework462.Name = "BtFramework462"
-        Me.BtFramework462.Size = New System.Drawing.Size(167, 28)
-        Me.BtFramework462.TabIndex = 33
-        Me.BtFramework462.Text = "Framework 4.6.2"
-        Me.BtFramework462.UseVisualStyleBackColor = True
+        Me.BtChocolatey.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtChocolatey.Location = New System.Drawing.Point(195, 10)
+        Me.BtChocolatey.Name = "BtChocolatey"
+        Me.BtChocolatey.Size = New System.Drawing.Size(167, 28)
+        Me.BtChocolatey.TabIndex = 36
+        Me.BtChocolatey.Text = "Chocolatey"
+        Me.BtChocolatey.UseVisualStyleBackColor = True
         '
         'FrmInstaladorKubo
         '
@@ -1708,4 +1720,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbUVersionMigrador As Label
     Friend WithEvents TbMigradorLog As TextBox
     Friend WithEvents BtFramework462 As Button
+    Friend WithEvents BtChocolatey As Button
 End Class

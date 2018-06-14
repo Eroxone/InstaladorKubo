@@ -20,11 +20,11 @@ Public Class Chocolatey
                 RegistroInstalacion("ÉXITO: Obtenido instalador para Chocolatey")
                 FrmInstaladorKubo.RunAsAdmin(rutadescargas & "Chocolatey\InstalacionChocolatey.bat")
                 cIniArray.IniWrite(instaladorkuboini, "CHOCOLATEY", "INSTALADO", "1")
-                InstaladorKubo.FrmInstaladorKubo.BtFramework462.BackColor = Color.PaleGreen
+                InstaladorKubo.FrmInstaladorKubo.BtChocolatey.BackColor = Color.PaleGreen
             Catch ex As Exception
                 MessageBox.Show("Error instalando Chocolatey. Revisa Log para mas detalles.", "Paquete Chocolatey", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 RegistroInstalacion("ERROR obteniendo instalador para Chocolatey: " & ex.Message)
-                InstaladorKubo.FrmInstaladorKubo.BtFramework462.BackColor = Color.Salmon
+                InstaladorKubo.FrmInstaladorKubo.BtChocolatey.BackColor = Color.LightSalmon
             End Try
 
         End If

@@ -299,6 +299,14 @@ Public Class FrmInstaladorKubo
         If framework462 = 1 Then
             BtFramework462.BackColor = Color.PaleGreen
         End If
+        Dim instaladochocolatey = cIniArray.IniGet(instaladorkuboini, "CHOCOLATEY", "INSTALADO", "2")
+        If instaladochocolatey = 1 Then
+            BtChocolatey.BackColor = Color.PaleGreen
+        ElseIf instaladochocolatey = 0 Then
+            BtChocolatey.BackColor = Color.LightSalmon
+        Else
+            BtChocolatey.BackColor = SystemColors.Control
+        End If
 
     End Sub
 
@@ -2012,6 +2020,15 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR Referencia Outlook: " & ex.Message)
         End Try
 
+        ' Limpiar XML LOCAL para evitar errores de configuraciones propias de Word 2016/Kubo
+        Try
+            Dim appdata As String = GetFolderPath(SpecialFolder.ApplicationData)
+            File.Delete(appdata & "Notin\NotinConfig.xml")
+            RegistroInstalacion("Eliminado NotinConfig XML LOCAL para evitar errores de configuración propios de 2016/Kubo.")
+        Catch ex As Exception
+            RegistroInstalacion("No se pudo eliminar NotinConfig XML en AppData: " & ex.Message)
+        End Try
+
         Office2016sinWord()
     End Sub
 
@@ -3524,17 +3541,41 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "SQL2014", "BLANCOS", "0")
         End If
 
-
-
     End Sub
 
 
     'MODULO CHOCOLATEY
     Private Sub BtFramework462_Click(sender As Object, e As EventArgs) Handles BtFramework462.Click
-        ObtenerChocolatey()
-        Shell("choco install donet-4.6.2", AppWinStyle.NormalFocus, False)
-        cIniArray.IniWrite(instaladorkuboini, "CHOCOLATEY", "FRAMEWORK462", "1")
+        Dim instaladochocolatey = cIniArray.IniGet(instaladorkuboini, "CHOCOLATEY", "INSTALADO", "0")
+        If instaladochocolatey = 0 Then
+            Dim instalachocolatey = MessageBox.Show("Necesario Paquete Chocolatey. Disponible también en la pestaña Útiles. ¿Lo instalamos?", "Paquete Chocolatey necesario", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If instalachocolatey = DialogResult.Yes Then
+                ObtenerChocolatey()
+                Threading.Thread.Sleep(20000)
+                MessageBox.Show("Cuando finalice la instalación de Chocolatey puedes continuar con la instalación de Framework 4.6.2", "Choco para Framework 4.6.2", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            Else
+                Exit Sub
+            End If
+        End If
 
+        Dim framework462 As String = "choco install donet-4.6.2"
+        File.WriteAllText(RutaDescargas & "Chocolatey\Framework462.bat", framework462)
+        Try
+            RunAsAdmin(RutaDescargas & "Chocolatey\Framework462.bat")
+            RegistroInstalacion("Lanzado Paquete Choco para Framework 4.6.2")
+            cIniArray.IniWrite(instaladorkuboini, "CHOCOLATEY", "FRAMEWORK462", "1")
+            BtFramework462.BackColor = Color.PaleGreen
+        Catch ex As Exception
+            RegistroInstalacion("ERROR lanzando Framework 4.6.2 desde Choco: " & ex.Message)
+            BtFramework462.BackColor = Color.LightSalmon
+        End Try
+
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtChocolatey.Click
+        ObtenerChocolatey()
     End Sub
 
 
