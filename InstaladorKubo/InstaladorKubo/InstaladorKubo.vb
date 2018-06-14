@@ -6,6 +6,8 @@ Imports System.Net.Mail
 Imports InstaladorKubo.FrmConfigurarISL
 Imports InstaladorKubo.ObtenerEjecutables
 Imports System.Environment
+Imports InstaladorKubo.Chocolatey
+
 
 'WEB DE INSTALACIÓN
 'http://instalador.notin.net
@@ -292,6 +294,10 @@ Public Class FrmInstaladorKubo
         If migradorsql = 1 Then
             BtMigradorSQL.BackColor = Color.PaleGreen
             BtMigradorLOG.Visible = True
+        End If
+        Dim framework462 = cIniArray.IniGet(instaladorkuboini, "CHOCOLATEY", "FRAMEWORK462", "2")
+        If framework462 = 1 Then
+            BtFramework462.BackColor = Color.PaleGreen
         End If
 
     End Sub
@@ -3519,6 +3525,15 @@ Public Class FrmInstaladorKubo
         End If
 
 
+
+    End Sub
+
+
+    'MODULO CHOCOLATEY
+    Private Sub BtFramework462_Click(sender As Object, e As EventArgs) Handles BtFramework462.Click
+        ObtenerChocolatey()
+        Shell("choco install donet-4.6.2", AppWinStyle.NormalFocus, False)
+        cIniArray.IniWrite(instaladorkuboini, "CHOCOLATEY", "FRAMEWORK462", "1")
 
     End Sub
 

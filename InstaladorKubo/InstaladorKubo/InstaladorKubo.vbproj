@@ -139,6 +139,7 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="CapturarVentanas.vb" />
+    <Compile Include="Chocolatey.vb" />
     <Compile Include="ConfigurarISL.Designer.vb">
       <DependentUpon>ConfigurarISL.vb</DependentUpon>
     </Compile>
