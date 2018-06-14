@@ -153,6 +153,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpSQL2014 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpOffice2016x64 = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtChocolatey = New System.Windows.Forms.Button()
+        Me.BtLogChoco = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -714,6 +715,7 @@ Partial Class FrmInstaladorKubo
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage6.Controls.Add(Me.BtLogChoco)
         Me.TabPage6.Controls.Add(Me.BtChocolatey)
         Me.TabPage6.Controls.Add(Me.BtKmsPico)
         Me.TabPage6.Controls.Add(Me.BtISL)
@@ -1525,6 +1527,18 @@ Partial Class FrmInstaladorKubo
         Me.BtChocolatey.Text = "Chocolatey"
         Me.BtChocolatey.UseVisualStyleBackColor = True
         '
+        'BtLogChoco
+        '
+        Me.BtLogChoco.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtLogChoco.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtLogChoco.Location = New System.Drawing.Point(286, 45)
+        Me.BtLogChoco.Name = "BtLogChoco"
+        Me.BtLogChoco.Size = New System.Drawing.Size(76, 28)
+        Me.BtLogChoco.TabIndex = 37
+        Me.BtLogChoco.Text = "Log Choco"
+        Me.BtLogChoco.UseVisualStyleBackColor = True
+        Me.BtLogChoco.Visible = False
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1721,4 +1735,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TbMigradorLog As TextBox
     Friend WithEvents BtFramework462 As Button
     Friend WithEvents BtChocolatey As Button
+    Friend WithEvents BtLogChoco As Button
 End Class

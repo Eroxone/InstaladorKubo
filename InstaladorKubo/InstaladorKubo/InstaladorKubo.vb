@@ -302,8 +302,10 @@ Public Class FrmInstaladorKubo
         Dim instaladochocolatey = cIniArray.IniGet(instaladorkuboini, "CHOCOLATEY", "INSTALADO", "2")
         If instaladochocolatey = 1 Then
             BtChocolatey.BackColor = Color.PaleGreen
+            BtLogChoco.Visible = True
         ElseIf instaladochocolatey = 0 Then
             BtChocolatey.BackColor = Color.LightSalmon
+            BtLogChoco.Visible = True
         Else
             BtChocolatey.BackColor = SystemColors.Control
         End If
@@ -3559,7 +3561,7 @@ Public Class FrmInstaladorKubo
             End If
         End If
 
-        Dim framework462 As String = "choco install donet-4.6.2"
+        Dim framework462 As String = "choco install -y dotnet4.6.2"
         File.WriteAllText(RutaDescargas & "Chocolatey\Framework462.bat", framework462)
         Try
             RunAsAdmin(RutaDescargas & "Chocolatey\Framework462.bat")
@@ -3576,6 +3578,10 @@ Public Class FrmInstaladorKubo
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtChocolatey.Click
         ObtenerChocolatey()
+    End Sub
+
+    Private Sub BtLogChoco_Click(sender As Object, e As EventArgs) Handles BtLogChoco.Click
+        Process.Start("notepad.exe", "C:\ProgramData\chocolatey\logs\chocolatey.log")
     End Sub
 
 
