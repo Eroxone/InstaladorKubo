@@ -68,6 +68,8 @@ Partial Class FrmInstaladorKubo
         Me.BtUac = New System.Windows.Forms.Button()
         Me.btDirectivas = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.BtLogChoco = New System.Windows.Forms.Button()
+        Me.BtChocolatey = New System.Windows.Forms.Button()
         Me.BtKmsPico = New System.Windows.Forms.Button()
         Me.BtISL = New System.Windows.Forms.Button()
         Me.BtNotinpdf = New System.Windows.Forms.Button()
@@ -152,8 +154,8 @@ Partial Class FrmInstaladorKubo
         Me.TlpISL = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpSQL2014 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpOffice2016x64 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtChocolatey = New System.Windows.Forms.Button()
-        Me.BtLogChoco = New System.Windows.Forms.Button()
+        Me.BtEstableNet = New System.Windows.Forms.Button()
+        Me.BtNotinNetF = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -731,6 +733,28 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
         '
+        'BtLogChoco
+        '
+        Me.BtLogChoco.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtLogChoco.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtLogChoco.Location = New System.Drawing.Point(286, 45)
+        Me.BtLogChoco.Name = "BtLogChoco"
+        Me.BtLogChoco.Size = New System.Drawing.Size(76, 28)
+        Me.BtLogChoco.TabIndex = 37
+        Me.BtLogChoco.Text = "Log Choco"
+        Me.BtLogChoco.UseVisualStyleBackColor = True
+        Me.BtLogChoco.Visible = False
+        '
+        'BtChocolatey
+        '
+        Me.BtChocolatey.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtChocolatey.Location = New System.Drawing.Point(195, 10)
+        Me.BtChocolatey.Name = "BtChocolatey"
+        Me.BtChocolatey.Size = New System.Drawing.Size(167, 28)
+        Me.BtChocolatey.TabIndex = 36
+        Me.BtChocolatey.Text = "Chocolatey"
+        Me.BtChocolatey.UseVisualStyleBackColor = True
+        '
         'BtKmsPico
         '
         Me.BtKmsPico.FlatStyle = System.Windows.Forms.FlatStyle.Popup
@@ -803,6 +827,8 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.BtNotinNetF)
+        Me.TabPage11.Controls.Add(Me.BtEstableNet)
         Me.TabPage11.Controls.Add(Me.Label1)
         Me.TabPage11.Controls.Add(Me.LbBetaNet)
         Me.TabPage11.Controls.Add(Me.BtBetax64)
@@ -1517,27 +1543,26 @@ Partial Class FrmInstaladorKubo
         Me.TlpOffice2016x64.IsBalloon = True
         Me.TlpOffice2016x64.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'BtChocolatey
+        'BtEstableNet
         '
-        Me.BtChocolatey.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtChocolatey.Location = New System.Drawing.Point(195, 10)
-        Me.BtChocolatey.Name = "BtChocolatey"
-        Me.BtChocolatey.Size = New System.Drawing.Size(167, 28)
-        Me.BtChocolatey.TabIndex = 36
-        Me.BtChocolatey.Text = "Chocolatey"
-        Me.BtChocolatey.UseVisualStyleBackColor = True
+        Me.BtEstableNet.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtEstableNet.Location = New System.Drawing.Point(8, 90)
+        Me.BtEstableNet.Name = "BtEstableNet"
+        Me.BtEstableNet.Size = New System.Drawing.Size(167, 28)
+        Me.BtEstableNet.TabIndex = 40
+        Me.BtEstableNet.Text = "Estable Notin .NET"
+        Me.BtEstableNet.UseVisualStyleBackColor = True
         '
-        'BtLogChoco
+        'BtNotinNetF
         '
-        Me.BtLogChoco.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtLogChoco.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtLogChoco.Location = New System.Drawing.Point(286, 45)
-        Me.BtLogChoco.Name = "BtLogChoco"
-        Me.BtLogChoco.Size = New System.Drawing.Size(76, 28)
-        Me.BtLogChoco.TabIndex = 37
-        Me.BtLogChoco.Text = "Log Choco"
-        Me.BtLogChoco.UseVisualStyleBackColor = True
-        Me.BtLogChoco.Visible = False
+        Me.BtNotinNetF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNotinNetF.Location = New System.Drawing.Point(195, 90)
+        Me.BtNotinNetF.Name = "BtNotinNetF"
+        Me.BtNotinNetF.Size = New System.Drawing.Size(167, 28)
+        Me.BtNotinNetF.TabIndex = 41
+        Me.BtNotinNetF.Text = "NotinNet -> F: .."
+        Me.BtNotinNetF.UseVisualStyleBackColor = True
+        Me.BtNotinNetF.Visible = False
         '
         'FrmInstaladorKubo
         '
@@ -1736,4 +1761,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtFramework462 As Button
     Friend WithEvents BtChocolatey As Button
     Friend WithEvents BtLogChoco As Button
+    Friend WithEvents BtEstableNet As Button
+    Friend WithEvents BtNotinNetF As Button
 End Class

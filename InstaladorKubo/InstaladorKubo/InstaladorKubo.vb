@@ -210,30 +210,36 @@ Public Class FrmInstaladorKubo
         Else
             btExcepJava.BackColor = SystemColors.Control
         End If
+
         Dim java = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "JAVA8", "2")
         If java = 1 Then
             btJava.BackColor = Color.PaleGreen
         End If
+
         Dim uac = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "UAC", "2")
         If uac = 1 Then
             BtUac.BackColor = Color.PaleGreen
         ElseIf uac = 0 Then
             BtUac.BackColor = Color.LightSalmon
         End If
+
         Dim comienzodescargas = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         If comienzodescargas = 1 Then
             BtCopiarhaciaF.Enabled = True
         End If
+
         Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
         If claveinift = 1 Then
             btNotinKubo.BackColor = Color.Honeydew
         End If
+
         Dim configuraword2016 = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "2")
         If configuraword2016 = 1 Then
             BtConfiguraWord2016.BackColor = Color.PaleGreen
         ElseIf configuraword2016 = 0 Then
             BtConfiguraWord2016.BackColor = Color.LightSalmon
         End If
+
         Dim directivas = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "2")
         If directivas = 1 Then
             btDirectivas.BackColor = Color.PaleGreen
@@ -244,12 +250,14 @@ Public Class FrmInstaladorKubo
         ElseIf kmspico = 0 Then
             BtKmsPico.BackColor = Color.LightSalmon
         End If
+
         Dim notinpdf = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "NOTINPDF", "2")
         If notinpdf = 1 Then
             BtNotinpdf.BackColor = Color.PaleGreen
         ElseIf notinpdf = 0 Then
             BtNotinpdf.BackColor = Color.LightSalmon
         End If
+
         Dim isl = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "ISL", "2")
         If isl = 1 Then
             BtISL.BackColor = Color.PaleGreen
@@ -262,10 +270,12 @@ Public Class FrmInstaladorKubo
         'If limpia2016 = 1 Then
         '    BtLimpiar2016.BackColor = Color.PaleGreen
         'End If
+
         Dim sql2014 = cIniArray.IniGet(instaladorkuboini, "SQL2014", "INSTALADO", "2")
         If sql2014 = 1 Then
             BtSQL2014.BackColor = Color.PaleGreen
         End If
+
         Dim confword2016adra = cIniArray.IniGet(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "2")
         If confword2016adra = 1 Then
             BtConfWord2016ADRA.BackColor = Color.PaleGreen
@@ -274,14 +284,19 @@ Public Class FrmInstaladorKubo
         Else
             BtConfWord2016ADRA.BackColor = SystemColors.Control
         End If
-        'Dim betanet = cIniArray.IniGet(instaladorkuboini, "NET", "BETA", "2")
-        'If betanet = 1 Then
-        '    BtNetBeta.BackColor = Color.PaleGreen
-        'ElseIf betanet = 0 Then
-        '    BtNetBeta.BackColor = Color.LightSalmon
-        'Else
-        '    BtNetBeta.BackColor = SystemColors.Control
-        'End If
+
+        Dim notinnet = cIniArray.IniGet(instaladorkuboini, "NET", "BETA", "FALSE")
+        If notinnet = "BETA" Then
+            BtNetBeta.BackColor = Color.PaleGreen
+            BtNotinNetF.Visible = True
+        ElseIf notinnet = "BETAX64" Then
+            BtBetax64.BackColor = Color.PaleGreen
+            BtNotinNetF.Visible = True
+        ElseIf notinnet = "ESTABLE" Then
+            BtEstableNet.BackColor = Color.PaleGreen
+            BtNotinNetF.Visible = True
+        End If
+
         Dim bdblancos = cIniArray.IniGet(instaladorkuboini, "SQL2014", "BLANCOS", "2")
         If bdblancos = 1 Then
             BtBlancosBD.BackColor = Color.PaleGreen
@@ -290,15 +305,18 @@ Public Class FrmInstaladorKubo
         Else
             BtBlancosBD.BackColor = SystemColors.Control
         End If
+
         Dim migradorsql = cIniArray.IniGet(instaladorkuboini, "SQL", "MIGRADOR", "2")
         If migradorsql = 1 Then
             BtMigradorSQL.BackColor = Color.PaleGreen
             BtMigradorLOG.Visible = True
         End If
+
         Dim framework462 = cIniArray.IniGet(instaladorkuboini, "CHOCOLATEY", "FRAMEWORK462", "2")
         If framework462 = 1 Then
             BtFramework462.BackColor = Color.PaleGreen
         End If
+
         Dim instaladochocolatey = cIniArray.IniGet(instaladorkuboini, "CHOCOLATEY", "INSTALADO", "2")
         If instaladochocolatey = 1 Then
             BtChocolatey.BackColor = Color.PaleGreen
@@ -1766,6 +1784,7 @@ Public Class FrmInstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Requisitos\" & " " & notinf & "Requisitos\" & " *.*" & " /R:2 /W:5", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Software\" & " " & notinf & "Software\" & " *.*" & " /R:2 /W:5", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & " " & notinf & " " & mstmsp & " /R:2 /W:5", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\" & " " & notinf & "NotinNet\" & " *.*" & " /R:2 /W:5", AppWinStyle.NormalFocus, True)
 
 
 
@@ -3465,11 +3484,11 @@ Public Class FrmInstaladorKubo
         obtenerwget()
         Dim urlbeta As String = "http://static.unidata.es/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
-        Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbeta & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_BETA.exe", AppWinStyle.NormalFocus, True)
+        Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbeta & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
 
         Try
             Dim pnotinnetbeta As New ProcessStartInfo()
-            pnotinnetbeta.FileName = RutaDescargas & "NotinNet\NotinNetInstaller_BETA.exe"
+            pnotinnetbeta.FileName = RutaDescargas & "NotinNet\NotinNetInstaller.exe"
             Dim notinnetbeta As Process = Process.Start(pnotinnetbeta)
             'notinnet.WaitForInputIdle()
             notinnetbeta.WaitForExit()
@@ -3477,7 +3496,7 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("BETA Notin: Instalador NotinNetInstaller versión BETA ejecutado correctamente. Fecha " & DateTime.Now.Date)
 
             'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
-            cIniArray.IniWrite(instaladorkuboini, "NET", "BETA", "1")
+            cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETA")
 
             ObtenerVersionNet()
             BtNetBeta.BackColor = Color.PaleGreen
@@ -3485,7 +3504,6 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("BETA Notin: Error instalando Beta: " & ex.Message)
             BtNetBeta.BackColor = Color.LightSalmon
-            cIniArray.IniWrite(instaladorkuboini, "NET", "BETA", "0")
         End Try
     End Sub
 
@@ -3493,15 +3511,15 @@ Public Class FrmInstaladorKubo
         obtenerwget()
         Dim urlbeta64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
-        Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbeta64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe", AppWinStyle.NormalFocus, True)
+        Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbeta64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
         Try
             Dim pnotinnetbetax64 As New ProcessStartInfo()
-            pnotinnetbetax64.FileName = RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe"
+            pnotinnetbetax64.FileName = RutaDescargas & "NotinNet\NotinNetInstaller.exe"
             Dim notinnetbetax64 As Process = Process.Start(pnotinnetbetax64)
             'notinnet.WaitForInputIdle()
             notinnetbetax64.WaitForExit()
-            RegistroInstalacion("BETAx64 Notin: Instalador NotinNetInstaller versión BETA ejecutado correctamente. Fecha " & DateTime.Now.Date)
-            cIniArray.IniWrite(instaladorkuboini, "NET", "BETAx64", "1")
+            RegistroInstalacion("BETAx64 Notin: Instalador NotinNetInstaller versión BETAx64 ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAX64")
 
             ObtenerVersionNet()
             BtBetax64.BackColor = Color.PaleGreen
@@ -3509,11 +3527,48 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("BETAx64 Notin: Error instalando Beta: " & ex.Message)
             BtBetax64.BackColor = Color.LightSalmon
-            cIniArray.IniWrite(instaladorkuboini, "NET", "BETAx64", "0")
         End Try
 
-
     End Sub
+
+    Private Sub BtEstableNet_Click(sender As Object, e As EventArgs) Handles BtEstableNet.Click
+        obtenerwget()
+        Dim urlestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
+        Directory.CreateDirectory(RutaDescargas & "NotinNet")
+        Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+
+        Try
+            Dim pnotinnetestable As New ProcessStartInfo()
+            pnotinnetestable.FileName = RutaDescargas & "NotinNet\NotinNetInstaller.exe"
+            Dim notinnetestable As Process = Process.Start(pnotinnetestable)
+            'notinnet.WaitForInputIdle()
+            notinnetestable.WaitForExit()
+
+            RegistroInstalacion("ESTABLE Notin: Instalador NotinNetInstaller versión ESTABLE ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "ESTABLE")
+
+            ObtenerVersionNet()
+            BtEstableNet.BackColor = Color.PaleGreen
+
+        Catch ex As Exception
+            RegistroInstalacion("ESTABLE Notin: Error instalando NotiNet: " & ex.Message)
+            BtEstableNet.BackColor = Color.LightSalmon
+        End Try
+    End Sub
+
+
+    Private Sub BtNotinNetF_Click(sender As Object, e As EventArgs) Handles BtNotinNetF.Click
+        If UnidadF() = True AndAlso File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = True Then
+            obtenerrobocopy()
+            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\Notawin.Net\ NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+            RegistroInstalacion("NotinNetInstaller copiado a F:\Notawin.Net para su distribución en el despacho.")
+        Else
+            MessageBox.Show("Hubo un problema al Copiar NotinNetInstaller a F. Revisa conexión con Unidad F y que hayas descargado el ejecutable.", "Error de Ruta o Ejecutable", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            RegistroInstalacion("ERROR Copiando NotinNetInstaller a F. Posible Unidad desconectada o archivo no descargado.")
+        End If
+    End Sub
+
+
 
     Private Sub BtBlancosBD_Click(sender As Object, e As EventArgs) Handles BtBlancosBD.Click
         obtenerwget()
@@ -3553,7 +3608,7 @@ Public Class FrmInstaladorKubo
             Dim instalachocolatey = MessageBox.Show("Necesario Paquete Chocolatey. Disponible también en la pestaña Útiles. ¿Lo instalamos?", "Paquete Chocolatey necesario", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If instalachocolatey = DialogResult.Yes Then
                 ObtenerChocolatey()
-                Threading.Thread.Sleep(20000)
+                Threading.Thread.Sleep(35000)
                 MessageBox.Show("Cuando finalice la instalación de Chocolatey puedes continuar con la instalación de Framework 4.6.2", "Choco para Framework 4.6.2", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
             Else
@@ -3583,6 +3638,10 @@ Public Class FrmInstaladorKubo
     Private Sub BtLogChoco_Click(sender As Object, e As EventArgs) Handles BtLogChoco.Click
         Process.Start("notepad.exe", "C:\ProgramData\chocolatey\logs\chocolatey.log")
     End Sub
+
+
+
+
 
 
 
