@@ -285,7 +285,7 @@ Public Class FrmInstaladorKubo
             BtConfWord2016ADRA.BackColor = SystemColors.Control
         End If
 
-        Dim notinnet = cIniArray.IniGet(instaladorkuboini, "NET", "BETA", "FALSE")
+        Dim notinnet = cIniArray.IniGet(instaladorkuboini, "NET", "NOTINNET", "FALSE")
         If notinnet = "BETA" Then
             BtNetBeta.BackColor = Color.PaleGreen
             BtNotinNetF.Visible = True
@@ -3500,10 +3500,14 @@ Public Class FrmInstaladorKubo
 
             ObtenerVersionNet()
             BtNetBeta.BackColor = Color.PaleGreen
+            BtBetax64.BackColor = SystemColors.Control
+            BtEstableNet.BackColor = SystemColors.Control
 
         Catch ex As Exception
             RegistroInstalacion("BETA Notin: Error instalando Beta: " & ex.Message)
             BtNetBeta.BackColor = Color.LightSalmon
+            BtBetax64.BackColor = SystemColors.Control
+            BtEstableNet.BackColor = SystemColors.Control
         End Try
     End Sub
 
@@ -3523,10 +3527,14 @@ Public Class FrmInstaladorKubo
 
             ObtenerVersionNet()
             BtBetax64.BackColor = Color.PaleGreen
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstableNet.BackColor = SystemColors.Control
 
         Catch ex As Exception
             RegistroInstalacion("BETAx64 Notin: Error instalando Beta: " & ex.Message)
             BtBetax64.BackColor = Color.LightSalmon
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstableNet.BackColor = SystemColors.Control
         End Try
 
     End Sub
@@ -3549,10 +3557,14 @@ Public Class FrmInstaladorKubo
 
             ObtenerVersionNet()
             BtEstableNet.BackColor = Color.PaleGreen
+            BtNetBeta.BackColor = SystemColors.Control
+            BtBetax64.BackColor = SystemColors.Control
 
         Catch ex As Exception
             RegistroInstalacion("ESTABLE Notin: Error instalando NotiNet: " & ex.Message)
             BtEstableNet.BackColor = Color.LightSalmon
+            BtNetBeta.BackColor = SystemColors.Control
+            BtBetax64.BackColor = SystemColors.Control
         End Try
     End Sub
 
@@ -3608,8 +3620,8 @@ Public Class FrmInstaladorKubo
             Dim instalachocolatey = MessageBox.Show("Necesario Paquete Chocolatey. Disponible también en la pestaña Útiles. ¿Lo instalamos?", "Paquete Chocolatey necesario", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If instalachocolatey = DialogResult.Yes Then
                 ObtenerChocolatey()
-                Threading.Thread.Sleep(35000)
-                MessageBox.Show("Cuando finalice la instalación de Chocolatey puedes continuar con la instalación de Framework 4.6.2", "Choco para Framework 4.6.2", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Threading.Thread.Sleep(50000)
+                MessageBox.Show("Al finalizar la instalación de Chocolatey podrás instalar Framework 4.6.2. Aguarda unos segundos.", "Choco para Framework 4.6.2", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
             Else
                 Exit Sub
