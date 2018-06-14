@@ -74,12 +74,14 @@ Partial Class FrmInstaladorKubo
         Me.btExcepJava = New System.Windows.Forms.Button()
         Me.btJava = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
-        Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LbBetaNet = New System.Windows.Forms.Label()
         Me.BtBetax64 = New System.Windows.Forms.Button()
         Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.BtBlancosBD = New System.Windows.Forms.Button()
+        Me.BtRestaurarBak = New System.Windows.Forms.Button()
+        Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
         Me.BtConfWord2016ADRA = New System.Windows.Forms.Button()
@@ -146,8 +148,9 @@ Partial Class FrmInstaladorKubo
         Me.TlpISL = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpSQL2014 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpOffice2016x64 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtRestaurarBak = New System.Windows.Forms.Button()
-        Me.BtBlancosBD = New System.Windows.Forms.Button()
+        Me.LbUVersionMigrador = New System.Windows.Forms.Label()
+        Me.BtMigradorLOG = New System.Windows.Forms.Button()
+        Me.TbMigradorLog = New System.Windows.Forms.TextBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -792,21 +795,11 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
         '
-        'BtMigradorSQL
-        '
-        Me.BtMigradorSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtMigradorSQL.Location = New System.Drawing.Point(194, 10)
-        Me.BtMigradorSQL.Name = "BtMigradorSQL"
-        Me.BtMigradorSQL.Size = New System.Drawing.Size(167, 28)
-        Me.BtMigradorSQL.TabIndex = 1
-        Me.BtMigradorSQL.Text = "Migrador SQL"
-        Me.BtMigradorSQL.UseVisualStyleBackColor = True
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(193, 10)
+        Me.Label1.Location = New System.Drawing.Point(188, 10)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(167, 15)
         Me.Label1.TabIndex = 39
@@ -816,7 +809,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbBetaNet.AutoSize = True
         Me.LbBetaNet.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbBetaNet.Location = New System.Drawing.Point(193, 36)
+        Me.LbBetaNet.Location = New System.Drawing.Point(188, 36)
         Me.LbBetaNet.Name = "LbBetaNet"
         Me.LbBetaNet.Size = New System.Drawing.Size(99, 15)
         Me.LbBetaNet.TabIndex = 37
@@ -845,6 +838,9 @@ Partial Class FrmInstaladorKubo
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage7.Controls.Add(Me.TbMigradorLog)
+        Me.TabPage7.Controls.Add(Me.BtMigradorLOG)
+        Me.TabPage7.Controls.Add(Me.LbUVersionMigrador)
         Me.TabPage7.Controls.Add(Me.BtBlancosBD)
         Me.TabPage7.Controls.Add(Me.BtRestaurarBak)
         Me.TabPage7.Controls.Add(Me.BtMigradorSQL)
@@ -855,6 +851,37 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.Size = New System.Drawing.Size(378, 245)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
+        '
+        'BtBlancosBD
+        '
+        Me.BtBlancosBD.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtBlancosBD.Location = New System.Drawing.Point(8, 90)
+        Me.BtBlancosBD.Name = "BtBlancosBD"
+        Me.BtBlancosBD.Size = New System.Drawing.Size(167, 28)
+        Me.BtBlancosBD.TabIndex = 3
+        Me.BtBlancosBD.Text = "Datos Blancos"
+        Me.BtBlancosBD.UseVisualStyleBackColor = True
+        '
+        'BtRestaurarBak
+        '
+        Me.BtRestaurarBak.Enabled = False
+        Me.BtRestaurarBak.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtRestaurarBak.Location = New System.Drawing.Point(8, 50)
+        Me.BtRestaurarBak.Name = "BtRestaurarBak"
+        Me.BtRestaurarBak.Size = New System.Drawing.Size(167, 28)
+        Me.BtRestaurarBak.TabIndex = 2
+        Me.BtRestaurarBak.Text = "Restaurar BD"
+        Me.BtRestaurarBak.UseVisualStyleBackColor = True
+        '
+        'BtMigradorSQL
+        '
+        Me.BtMigradorSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtMigradorSQL.Location = New System.Drawing.Point(194, 10)
+        Me.BtMigradorSQL.Name = "BtMigradorSQL"
+        Me.BtMigradorSQL.Size = New System.Drawing.Size(167, 28)
+        Me.BtMigradorSQL.TabIndex = 1
+        Me.BtMigradorSQL.Text = "Migrador SQL"
+        Me.BtMigradorSQL.UseVisualStyleBackColor = True
         '
         'BtSQL2014
         '
@@ -1437,26 +1464,40 @@ Partial Class FrmInstaladorKubo
         Me.TlpOffice2016x64.IsBalloon = True
         Me.TlpOffice2016x64.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'BtRestaurarBak
+        'LbUVersionMigrador
         '
-        Me.BtRestaurarBak.Enabled = False
-        Me.BtRestaurarBak.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtRestaurarBak.Location = New System.Drawing.Point(8, 50)
-        Me.BtRestaurarBak.Name = "BtRestaurarBak"
-        Me.BtRestaurarBak.Size = New System.Drawing.Size(167, 28)
-        Me.BtRestaurarBak.TabIndex = 2
-        Me.BtRestaurarBak.Text = "Restaurar BD"
-        Me.BtRestaurarBak.UseVisualStyleBackColor = True
+        Me.LbUVersionMigrador.AutoSize = True
+        Me.LbUVersionMigrador.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.LbUVersionMigrador.Location = New System.Drawing.Point(191, 52)
+        Me.LbUVersionMigrador.Name = "LbUVersionMigrador"
+        Me.LbUVersionMigrador.Size = New System.Drawing.Size(143, 15)
+        Me.LbUVersionMigrador.TabIndex = 4
+        Me.LbUVersionMigrador.Text = "Versión en Sistema:"
+        Me.LbUVersionMigrador.Visible = False
         '
-        'BtBlancosBD
+        'BtMigradorLOG
         '
-        Me.BtBlancosBD.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtBlancosBD.Location = New System.Drawing.Point(8, 90)
-        Me.BtBlancosBD.Name = "BtBlancosBD"
-        Me.BtBlancosBD.Size = New System.Drawing.Size(167, 28)
-        Me.BtBlancosBD.TabIndex = 3
-        Me.BtBlancosBD.Text = "Datos Blancos"
-        Me.BtBlancosBD.UseVisualStyleBackColor = True
+        Me.BtMigradorLOG.BackColor = System.Drawing.SystemColors.Control
+        Me.BtMigradorLOG.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtMigradorLOG.Font = New System.Drawing.Font("Lucida Bright", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtMigradorLOG.Location = New System.Drawing.Point(254, 151)
+        Me.BtMigradorLOG.Name = "BtMigradorLOG"
+        Me.BtMigradorLOG.Size = New System.Drawing.Size(107, 28)
+        Me.BtMigradorLOG.TabIndex = 6
+        Me.BtMigradorLOG.Text = "Visualizar LOG"
+        Me.BtMigradorLOG.UseVisualStyleBackColor = False
+        Me.BtMigradorLOG.Visible = False
+        '
+        'TbMigradorLog
+        '
+        Me.TbMigradorLog.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TbMigradorLog.Location = New System.Drawing.Point(194, 74)
+        Me.TbMigradorLog.Multiline = True
+        Me.TbMigradorLog.Name = "TbMigradorLog"
+        Me.TbMigradorLog.ReadOnly = True
+        Me.TbMigradorLog.Size = New System.Drawing.Size(167, 70)
+        Me.TbMigradorLog.TabIndex = 7
+        Me.TbMigradorLog.Visible = False
         '
         'FrmInstaladorKubo
         '
@@ -1509,6 +1550,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.ResumeLayout(False)
         Me.TabPage11.PerformLayout()
         Me.TabPage7.ResumeLayout(False)
+        Me.TabPage7.PerformLayout()
         Me.TabPage10.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
@@ -1648,4 +1690,7 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents Label1 As Label
     Friend WithEvents BtBlancosBD As Button
     Friend WithEvents BtRestaurarBak As Button
+    Friend WithEvents BtMigradorLOG As Button
+    Friend WithEvents LbUVersionMigrador As Label
+    Friend WithEvents TbMigradorLog As TextBox
 End Class

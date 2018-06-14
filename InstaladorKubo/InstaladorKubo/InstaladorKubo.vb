@@ -56,6 +56,17 @@ Public Class FrmInstaladorKubo
 
         'Versiones Beta NET
         ObtenerVersionNet()
+
+        'Ejecución MigradorSQL
+        'LbMigrador.Text = cIniArray.IniGet(instaladorkuboini, "SQL", "FECHAMIGRADOR", "Sin determinar")
+
+        If File.Exists("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt") Then
+            LbUVersionMigrador.Visible = True
+            TbMigradorLog.Visible = True
+            BtMigradorLOG.Visible = True
+            ObtenerVersionMigrador()
+        End If
+
     End Sub
 
     Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
@@ -276,6 +287,11 @@ Public Class FrmInstaladorKubo
             BtBlancosBD.BackColor = Color.Salmon
         Else
             BtBlancosBD.BackColor = SystemColors.Control
+        End If
+        Dim migradorsql = cIniArray.IniGet(instaladorkuboini, "SQL", "MIGRADOR", "2")
+        If migradorsql = 1 Then
+            BtMigradorSQL.BackColor = Color.PaleGreen
+            BtMigradorLOG.Visible = True
         End If
 
     End Sub
@@ -3348,7 +3364,58 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtMigradorSQL_Click(sender As Object, e As EventArgs) Handles BtMigradorSQL.Click
         obtenerwget()
+        Directory.CreateDirectory(RutaDescargas & "NotinNet")
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.NormalFocus, True)
+        'Process.Start(RutaDescargas & "NotinNet\MigradorNotinSQL.exe", "/allowdataloss")
+        Try
+            File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLAllowDataLoss.bat", RutaDescargas & "NotinNet\MigradorNotinSQL.exe /allowdataloss")
+            Dim pmigrador As New ProcessStartInfo()
+            pmigrador.FileName = RutaDescargas & "NotinNet\MigradorNotinSQLAllowDataLoss.bat"
+            Dim migrador As Process = Process.Start(pmigrador)
+            migrador.WaitForExit()
+            RegistroInstalacion("ÉXITO: Ejecución de MigradorNotinSQL completada. Revisa el Log del mismo.")
+            BtMigradorSQL.BackColor = Color.PaleGreen
+            BtMigradorLOG.Visible = True
+            cIniArray.IniWrite(instaladorkuboini, "SQL", "MIGRADOR", "1")
+            cIniArray.IniWrite(instaladorkuboini, "SQL", "FECHAEJECUCIOMIGRADOR", DateTime.Now)
+            'LbMigrador.Text = cIniArray.IniGet(instaladorkuboini, "SQL", "FECHAMIGRADOR", "Sin determinar")
+            LbUVersionMigrador.Visible = True
+            TbMigradorLog.Visible = True
+            BtMigradorLOG.Visible = True
+            ObtenerVersionMigrador()
+        Catch ex As Exception
+            RegistroInstalacion("ERROR ejecución MigradorNotinSQL: " & ex.Message)
+            BtMigradorSQL.BackColor = Color.LightSalmon
+        End Try
 
+    End Sub
+
+    Private Sub BtMigradorLOG_Click(sender As Object, e As EventArgs) Handles BtMigradorLOG.Click
+        Process.Start("notepad.exe", "C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt")
+    End Sub
+
+    Private Sub ObtenerVersionMigrador()
+        Using fs As FileStream = New FileStream("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt", FileMode.Open, FileAccess.Read, FileShare.Read)
+            Using reader As StreamReader = New StreamReader(fs)
+                Const maxLines As Integer = 4
+                Dim lineNumber As Integer = 1
+                Dim text As String
+                While Not reader.EndOfStream AndAlso lineNumber < maxLines
+                    text = reader.ReadLine
+                    Select Case lineNumber
+                        'Case 2
+                        '    TextBox1.text = text
+                        Case 3
+                            TbMigradorLog.Text = text
+                            'Case 4
+                            '    TextBox3.text = text
+                            'Case 5
+                            '    TextBox4.text = text
+                    End Select
+                    lineNumber += 1
+                End While
+            End Using
+        End Using
     End Sub
 
     Private Sub ObtenerVersionNet()
@@ -3361,7 +3428,7 @@ Public Class FrmInstaladorKubo
             infoversion = sr.ReadToEnd()
             sr.Close()
             LbBetaNet.Text = infoversion
-            cIniArray.IniWrite(instaladorkuboini, "NET", "VERSION", infoversion)
+            cIniArray.IniWrite(instaladorkuboini, "NET", "FECHAEJECUCION", DateTime.Now)
             RegistroInstalacion("Beta Net: InfoVersión en el Sistema: " & infoversion)
         Catch ex As Exception
             RegistroInstalacion("Beta Net: No se pudo determinar Versión: " & ex.Message)
@@ -3454,6 +3521,7 @@ Public Class FrmInstaladorKubo
 
 
     End Sub
+
 
 
 
