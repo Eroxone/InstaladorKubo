@@ -325,6 +325,11 @@ Public Class FrmInstaladorKubo
             BtChocolatey.BackColor = SystemColors.Control
         End If
 
+        Dim focos = cIniArray.IniGet(instaladorkuboini, "ADRA", "FOCOS", "2")
+        If focos = 1 Then
+            BtFocos.BackColor = Color.PaleGreen
+        End If
+
     End Sub
 
     'Boton EXAMINAR
@@ -1526,7 +1531,6 @@ Public Class FrmInstaladorKubo
         TlpPaquetesFT.SetToolTip(CbPaquetesFT, "Descarga e Instala los Paquetes FT esenciales para el funcionamiento de Notin.")
         TlpPaquetesFT.ToolTipIcon = ToolTipIcon.Info
 
-
         TlpISL.ToolTipTitle = "Instalación automatizada ISL AlwaysON"
         TlpISL.SetToolTip(BtISL, "Añade este equipo para su futura conexión desde ISL Light de operador.")
 
@@ -1547,6 +1551,9 @@ Public Class FrmInstaladorKubo
 
         TlpChoco.ToolTipTitle = "Paquete Chocolatey"
         TlpChoco.SetToolTip(BtChocolatey, "Descarga e Instala la última versión del Manejador de Paquetes Chocolatey para Windows.")
+
+        TlpFocos.ToolTipTitle = "Downgrade versión Cliente RDP"
+        TlpFocos.SetToolTip(BtFocos, "Arregla bug versión 10.4 RDP para problema de Focos en Adra.")
 
     End Sub
 #End Region
@@ -3505,6 +3512,15 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtNotin8exe_Click(sender As Object, e As EventArgs) Handles BtNotin8exe.Click
+        If NotinRapp() = True Then
+            Dim notinrapp = MessageBox.Show("Se va a proceder a Descargar y Ejecutar NOTIN8.exe en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            RegistroInstalacion("ADRA: Ejecutando Notin8.exe en entorno NotinRapp. Se advierte al usuario.")
+            If notinrapp = DialogResult.No Then
+                RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
+                Exit Sub
+            End If
+        End If
+
         DescargarNotaria()
     End Sub
 
@@ -3550,6 +3566,15 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BtNetBeta_Click(sender As Object, e As EventArgs) Handles BtNetBeta.Click
+        If NotinRapp() = True Then
+            Dim notinrapp = MessageBox.Show("Se va a proceder a ejecutar NotinNetInstaller en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            RegistroInstalacion("ADRA: Ejecutando NotinNetInstaller en entorno NotinRapp. Se advierte al usuario.")
+            If notinrapp = DialogResult.No Then
+                RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
+                Exit Sub
+            End If
+
+        End If
         obtenerwget()
         Dim urlbeta As String = "http://static.unidata.es/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -3581,6 +3606,15 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtBetax64_Click(sender As Object, e As EventArgs) Handles BtBetax64.Click
+        If NotinRapp() = True Then
+            Dim notinrapp = MessageBox.Show("Se va a proceder a ejecutar NotinNetInstaller en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            RegistroInstalacion("ADRA: Ejecutando NotinNetInstaller en entorno NotinRapp. Se advierte al usuario.")
+            If notinrapp = DialogResult.No Then
+                RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
+                Exit Sub
+            End If
+        End If
+
         obtenerwget()
         Dim urlbeta64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -3609,6 +3643,15 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtEstableNet_Click(sender As Object, e As EventArgs) Handles BtEstableNet.Click
+        If NotinRapp() = True Then
+            Dim notinrapp = MessageBox.Show("Se va a proceder a ejecutar NotinNetInstaller en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            RegistroInstalacion("ADRA: Ejecutando NotinNetInstaller en entorno NotinRapp. Se advierte al usuario.")
+            If notinrapp = DialogResult.No Then
+                RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
+                Exit Sub
+            End If
+        End If
+
         obtenerwget()
         Dim urlestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -3709,17 +3752,48 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR lanzando Framework 4.6.2 desde Choco: " & ex.Message)
             BtFramework462.BackColor = Color.LightSalmon
         End Try
-
-
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtChocolatey.Click
+    Private Sub BtChocolatey_Click(sender As Object, e As EventArgs) Handles BtChocolatey.Click
         ObtenerChocolatey()
     End Sub
 
     Private Sub BtLogChoco_Click(sender As Object, e As EventArgs) Handles BtLogChoco.Click
         Process.Start("notepad.exe", "C:\ProgramData\chocolatey\logs\chocolatey.log")
     End Sub
+
+#Region "ADRA"
+    Private Function NotinRapp() As Boolean
+        Dim equipousuario As String = (My.User.Name)
+        Dim equipo As Integer = equipousuario.LastIndexOf("\")
+        Dim hostname = equipousuario.Substring(0, equipo).ToUpper
+        If hostname = "NOTINRAPP" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+
+    Private Sub BtFocos_Click(sender As Object, e As EventArgs) Handles BtFocos.Click
+        obtenerwget()
+        Directory.CreateDirectory(RutaDescargas & "ADRA")
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe http://static.unidata.es/focos.rar -O " & RutaDescargas & "\ADRA\focos.rar", AppWinStyle.NormalFocus, True)
+
+        obtenerunrar()
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -y " & RutaDescargas & "ADRA\focos.rar " & RutaDescargas & "ADRA\", AppWinStyle.Hide, True)
+        Try
+            Process.Start(RutaDescargas & "Adra\rdp_v1607.exe")
+            cIniArray.IniWrite(instaladorkuboini, "ADRA", "FOCOS", "1")
+            BtFocos.BackColor = Color.PaleGreen
+            RegistroInstalacion("ADRA: Ejecutado Downgrade RDP en versión 1607 para bug Focos.")
+        Catch ex As Exception
+            RegistroInstalacion("ADRA: Error ejecutando Downgrade RDP: " & ex.Message)
+            BtFocos.BackColor = Color.LightSalmon
+        End Try
+    End Sub
+
+#End Region
 
 
 

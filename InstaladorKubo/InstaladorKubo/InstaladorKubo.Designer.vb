@@ -93,6 +93,7 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.BtFocos = New System.Windows.Forms.Button()
         Me.BtConfWord2016ADRA = New System.Windows.Forms.Button()
         Me.BtDocRequisitos = New System.Windows.Forms.Button()
         Me.lbRuta = New System.Windows.Forms.Label()
@@ -162,7 +163,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpBDBlancos = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpMigrador = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpChoco = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtFocos = New System.Windows.Forms.Button()
+        Me.TlpFocos = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1022,6 +1023,16 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
+        'BtFocos
+        '
+        Me.BtFocos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtFocos.Location = New System.Drawing.Point(8, 50)
+        Me.BtFocos.Name = "BtFocos"
+        Me.BtFocos.Size = New System.Drawing.Size(167, 28)
+        Me.BtFocos.TabIndex = 1
+        Me.BtFocos.Text = "Downgrade RDP"
+        Me.BtFocos.UseVisualStyleBackColor = True
+        '
         'BtConfWord2016ADRA
         '
         Me.BtConfWord2016ADRA.Enabled = False
@@ -1608,15 +1619,10 @@ Partial Class FrmInstaladorKubo
         Me.TlpChoco.IsBalloon = True
         Me.TlpChoco.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'BtFocos
+        'TlpFocos
         '
-        Me.BtFocos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtFocos.Location = New System.Drawing.Point(8, 50)
-        Me.BtFocos.Name = "BtFocos"
-        Me.BtFocos.Size = New System.Drawing.Size(167, 28)
-        Me.BtFocos.TabIndex = 1
-        Me.BtFocos.Text = "Downgrade RDP"
-        Me.BtFocos.UseVisualStyleBackColor = True
+        Me.TlpFocos.IsBalloon = True
+        Me.TlpFocos.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
         'FrmInstaladorKubo
         '
@@ -1824,4 +1830,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TlpMigrador As ToolTip
     Friend WithEvents TlpChoco As ToolTip
     Friend WithEvents BtFocos As Button
+    Friend WithEvents TlpFocos As ToolTip
 End Class
