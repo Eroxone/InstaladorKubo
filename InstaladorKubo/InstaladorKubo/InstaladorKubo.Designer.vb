@@ -77,6 +77,7 @@ Partial Class FrmInstaladorKubo
         Me.btExcepJava = New System.Windows.Forms.Button()
         Me.btJava = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
+        Me.BtNotin8exe = New System.Windows.Forms.Button()
         Me.BtNotinNetF = New System.Windows.Forms.Button()
         Me.BtEstableNet = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -156,12 +157,12 @@ Partial Class FrmInstaladorKubo
         Me.TlpISL = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpSQL2014 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpOffice2016x64 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtNotin8exe = New System.Windows.Forms.Button()
         Me.TlpNotinNetaF = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpNotin8 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpBDBlancos = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpMigrador = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpChoco = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtFocos = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -846,6 +847,16 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
         '
+        'BtNotin8exe
+        '
+        Me.BtNotin8exe.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNotin8exe.Location = New System.Drawing.Point(8, 130)
+        Me.BtNotin8exe.Name = "BtNotin8exe"
+        Me.BtNotin8exe.Size = New System.Drawing.Size(167, 28)
+        Me.BtNotin8exe.TabIndex = 42
+        Me.BtNotin8exe.Text = "Descargar NOTIN"
+        Me.BtNotin8exe.UseVisualStyleBackColor = True
+        '
         'BtNotinNetF
         '
         Me.BtNotinNetF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
@@ -1003,6 +1014,7 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.BtFocos)
         Me.TabPage10.Controls.Add(Me.BtConfWord2016ADRA)
         Me.TabPage10.Location = New System.Drawing.Point(4, 27)
         Me.TabPage10.Name = "TabPage10"
@@ -1571,16 +1583,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpOffice2016x64.IsBalloon = True
         Me.TlpOffice2016x64.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'BtNotin8exe
-        '
-        Me.BtNotin8exe.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotin8exe.Location = New System.Drawing.Point(8, 130)
-        Me.BtNotin8exe.Name = "BtNotin8exe"
-        Me.BtNotin8exe.Size = New System.Drawing.Size(167, 28)
-        Me.BtNotin8exe.TabIndex = 42
-        Me.BtNotin8exe.Text = "Descargar NOTIN"
-        Me.BtNotin8exe.UseVisualStyleBackColor = True
-        '
         'TlpNotinNetaF
         '
         Me.TlpNotinNetaF.IsBalloon = True
@@ -1605,6 +1607,16 @@ Partial Class FrmInstaladorKubo
         '
         Me.TlpChoco.IsBalloon = True
         Me.TlpChoco.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'BtFocos
+        '
+        Me.BtFocos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtFocos.Location = New System.Drawing.Point(8, 50)
+        Me.BtFocos.Name = "BtFocos"
+        Me.BtFocos.Size = New System.Drawing.Size(167, 28)
+        Me.BtFocos.TabIndex = 1
+        Me.BtFocos.Text = "Downgrade RDP"
+        Me.BtFocos.UseVisualStyleBackColor = True
         '
         'FrmInstaladorKubo
         '
@@ -1811,4 +1823,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TlpBDBlancos As ToolTip
     Friend WithEvents TlpMigrador As ToolTip
     Friend WithEvents TlpChoco As ToolTip
+    Friend WithEvents BtFocos As Button
 End Class
