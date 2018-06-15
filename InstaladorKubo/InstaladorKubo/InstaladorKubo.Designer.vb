@@ -77,6 +77,8 @@ Partial Class FrmInstaladorKubo
         Me.btExcepJava = New System.Windows.Forms.Button()
         Me.btJava = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
+        Me.BtNotinNetF = New System.Windows.Forms.Button()
+        Me.BtEstableNet = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.LbBetaNet = New System.Windows.Forms.Label()
         Me.BtBetax64 = New System.Windows.Forms.Button()
@@ -154,8 +156,12 @@ Partial Class FrmInstaladorKubo
         Me.TlpISL = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpSQL2014 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpOffice2016x64 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtEstableNet = New System.Windows.Forms.Button()
-        Me.BtNotinNetF = New System.Windows.Forms.Button()
+        Me.BtNotin8exe = New System.Windows.Forms.Button()
+        Me.TlpNotinNetaF = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpNotin8 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpBDBlancos = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpMigrador = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpChoco = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -827,6 +833,7 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.BtNotin8exe)
         Me.TabPage11.Controls.Add(Me.BtNotinNetF)
         Me.TabPage11.Controls.Add(Me.BtEstableNet)
         Me.TabPage11.Controls.Add(Me.Label1)
@@ -838,6 +845,27 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Size = New System.Drawing.Size(378, 245)
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
+        '
+        'BtNotinNetF
+        '
+        Me.BtNotinNetF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNotinNetF.Location = New System.Drawing.Point(195, 90)
+        Me.BtNotinNetF.Name = "BtNotinNetF"
+        Me.BtNotinNetF.Size = New System.Drawing.Size(167, 28)
+        Me.BtNotinNetF.TabIndex = 41
+        Me.BtNotinNetF.Text = "NotinNet -> F: .."
+        Me.BtNotinNetF.UseVisualStyleBackColor = True
+        Me.BtNotinNetF.Visible = False
+        '
+        'BtEstableNet
+        '
+        Me.BtEstableNet.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtEstableNet.Location = New System.Drawing.Point(8, 90)
+        Me.BtEstableNet.Name = "BtEstableNet"
+        Me.BtEstableNet.Size = New System.Drawing.Size(167, 28)
+        Me.BtEstableNet.TabIndex = 40
+        Me.BtEstableNet.Text = "Estable Notin .NET"
+        Me.BtEstableNet.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -1543,26 +1571,40 @@ Partial Class FrmInstaladorKubo
         Me.TlpOffice2016x64.IsBalloon = True
         Me.TlpOffice2016x64.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'BtEstableNet
+        'BtNotin8exe
         '
-        Me.BtEstableNet.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtEstableNet.Location = New System.Drawing.Point(8, 90)
-        Me.BtEstableNet.Name = "BtEstableNet"
-        Me.BtEstableNet.Size = New System.Drawing.Size(167, 28)
-        Me.BtEstableNet.TabIndex = 40
-        Me.BtEstableNet.Text = "Estable Notin .NET"
-        Me.BtEstableNet.UseVisualStyleBackColor = True
+        Me.BtNotin8exe.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNotin8exe.Location = New System.Drawing.Point(8, 130)
+        Me.BtNotin8exe.Name = "BtNotin8exe"
+        Me.BtNotin8exe.Size = New System.Drawing.Size(167, 28)
+        Me.BtNotin8exe.TabIndex = 42
+        Me.BtNotin8exe.Text = "Descargar NOTIN"
+        Me.BtNotin8exe.UseVisualStyleBackColor = True
         '
-        'BtNotinNetF
+        'TlpNotinNetaF
         '
-        Me.BtNotinNetF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinNetF.Location = New System.Drawing.Point(195, 90)
-        Me.BtNotinNetF.Name = "BtNotinNetF"
-        Me.BtNotinNetF.Size = New System.Drawing.Size(167, 28)
-        Me.BtNotinNetF.TabIndex = 41
-        Me.BtNotinNetF.Text = "NotinNet -> F: .."
-        Me.BtNotinNetF.UseVisualStyleBackColor = True
-        Me.BtNotinNetF.Visible = False
+        Me.TlpNotinNetaF.IsBalloon = True
+        Me.TlpNotinNetaF.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'TlpNotin8
+        '
+        Me.TlpNotin8.IsBalloon = True
+        Me.TlpNotin8.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'TlpBDBlancos
+        '
+        Me.TlpBDBlancos.IsBalloon = True
+        Me.TlpBDBlancos.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'TlpMigrador
+        '
+        Me.TlpMigrador.IsBalloon = True
+        Me.TlpMigrador.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'TlpChoco
+        '
+        Me.TlpChoco.IsBalloon = True
+        Me.TlpChoco.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
         'FrmInstaladorKubo
         '
@@ -1763,4 +1805,10 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtLogChoco As Button
     Friend WithEvents BtEstableNet As Button
     Friend WithEvents BtNotinNetF As Button
+    Friend WithEvents BtNotin8exe As Button
+    Friend WithEvents TlpNotinNetaF As ToolTip
+    Friend WithEvents TlpNotin8 As ToolTip
+    Friend WithEvents TlpBDBlancos As ToolTip
+    Friend WithEvents TlpMigrador As ToolTip
+    Friend WithEvents TlpChoco As ToolTip
 End Class

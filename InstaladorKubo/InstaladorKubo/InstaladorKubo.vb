@@ -1530,6 +1530,21 @@ Public Class FrmInstaladorKubo
         TlpSQL2014.ToolTipTitle = "Descarga e Instala SQL 2014 Business"
         TlpSQL2014.SetToolTip(BtSQL2014, "Accederemos al formulario donde podrás personalizar la instalación de SQL Server 2014.")
 
+        TlpNotinNetaF.ToolTipTitle = "Copia NotinNetInstaller a F"
+        TlpNotinNetaF.SetToolTip(BtNotinNetF, "Copia NotinNetInstaller.exe previamente descargado a F:\Notawin.Net para su distribución al resto de equipos.")
+
+        TlpNotin8.ToolTipTitle = "Descargar Notaría"
+        TlpNotin8.SetToolTip(BtNotin8exe, "Descarga la última versión de Notin8.exe y lo ejecuta.")
+
+        TlpBDBlancos.ToolTipTitle = "Bases de Datos BLANCOS"
+        TlpBDBlancos.SetToolTip(BtBlancosBD, "Descarga los BD BLANCOS para SQL2014 o superior y muestra la carpeta. No los importa a tu Motor SQL.")
+
+        TlpMigrador.ToolTipTitle = "Ejecuta MigradorNotinSQL"
+        TlpMigrador.SetToolTip(BtMigradorSQL, "Descarga la última versión y lo lanza con el parámetro /allowdataloss")
+
+        TlpChoco.ToolTipTitle = "Paquete Chocolatey"
+        TlpChoco.SetToolTip(BtChocolatey, "Descarga e Instala la última versión del Manejador de Paquetes Chocolatey para Windows.")
+
     End Sub
 #End Region
 
@@ -3427,11 +3442,24 @@ Public Class FrmInstaladorKubo
             TbMigradorLog.Visible = True
             BtMigradorLOG.Visible = True
             ObtenerVersionMigrador()
+
+            Dim notin8 = cIniArray.IniGet(instaladorkuboini, "NET", "NOTIN8", "2")
+            If notin8 = 2 Then
+                Dim descarganotin8 = MessageBox.Show("¿Quieres Descargar Notaría (Notin8.exe)?", "Descarga Notaría", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If descarganotin8 = DialogResult.Yes Then
+                    DescargarNotaria()
+                    BtNotin8exe.BackColor = Color.PaleGreen
+                    cIniArray.IniWrite(instaladorkuboini, "NET", "NOTIN8", "1")
+                    If descarganotin8 = DialogResult.No Then
+                        cIniArray.IniWrite(instaladorkuboini, "NET", "NOTIN8", "0")
+                        Exit Sub
+                    End If
+                End If
+            End If
         Catch ex As Exception
             RegistroInstalacion("ERROR ejecución MigradorNotinSQL: " & ex.Message)
             BtMigradorSQL.BackColor = Color.LightSalmon
         End Try
-
     End Sub
 
     Private Sub BtMigradorLOG_Click(sender As Object, e As EventArgs) Handles BtMigradorLOG.Click
@@ -3439,28 +3467,53 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub ObtenerVersionMigrador()
-        Using fs As FileStream = New FileStream("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt", FileMode.Open, FileAccess.Read, FileShare.Read)
-            Using reader As StreamReader = New StreamReader(fs)
-                Const maxLines As Integer = 4
-                Dim lineNumber As Integer = 1
-                Dim text As String
-                While Not reader.EndOfStream AndAlso lineNumber < maxLines
-                    text = reader.ReadLine
-                    Select Case lineNumber
-                        'Case 2
-                        '    TextBox1.text = text
-                        Case 3
-                            TbMigradorLog.Text = text
-                            'Case 4
-                            '    TextBox3.text = text
-                            'Case 5
-                            '    TextBox4.text = text
-                    End Select
-                    lineNumber += 1
-                End While
-            End Using
-        End Using
+
+        ':::Creamos nuestro objeto de tipo StreamReader que nos permite leer archivos
+        Dim leer As New StreamReader("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt")
+        Try
+            ':::Indicamos mediante un While que mientras no sea el ultimo caracter repita el proceso
+            While leer.Peek <> -1
+                ':::Leemos cada linea del archivo TXT
+                Dim linea As String = leer.ReadLine()
+                ':::Validamos que la linea no este vacia
+                If String.IsNullOrEmpty(linea) Then
+                    Continue While
+                End If
+                ':::Agregramos los registros encontrados
+                TbMigradorLog.Text = linea
+            End While
+            leer.Close()
+        Catch ex As Exception
+            MsgBox("Se presento un problema al leer el archivo: " & ex.Message, MsgBoxStyle.Critical)
+        End Try
     End Sub
+
+    Private Sub BtNotin8exe_Click(sender As Object, e As EventArgs) Handles BtNotin8exe.Click
+        DescargarNotaria()
+    End Sub
+
+    Private Sub DescargarNotaria()
+        obtenerwget()
+        'Dim urlnotin8 = "http://static.unidata.es/notin8.exe"
+        'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
+        Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/actualizaciones/Defecto/notin8.exe " & "-O " & RutaDescargas & "NotinNet\Notin8.exe"
+        Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
+        Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
+
+        Try
+            Dim pnotin8 As New ProcessStartInfo()
+            pnotin8.FileName = RutaDescargas & "NotinNet\Notin8.exe"
+            Dim notin8 As Process = Process.Start(pnotin8)
+            notin8.WaitForExit()
+            RegistroInstalacion("ÉXITO: NOTIN8 ejecutado correctamente.")
+            BtNotin8exe.BackColor = Color.PaleGreen
+        Catch ex As Exception
+            BtNotin8exe.BackColor = Color.LightSalmon
+            RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
+        End Try
+
+    End Sub
+
 
     Private Sub ObtenerVersionNet()
         Try
@@ -3574,6 +3627,7 @@ Public Class FrmInstaladorKubo
             obtenerrobocopy()
             Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\Notawin.Net\ NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
             RegistroInstalacion("NotinNetInstaller copiado a F:\Notawin.Net para su distribución en el despacho.")
+            BtNotinNetF.BackColor = Color.PaleGreen
         Else
             MessageBox.Show("Hubo un problema al Copiar NotinNetInstaller a F. Revisa conexión con Unidad F y que hayas descargado el ejecutable.", "Error de Ruta o Ejecutable", MessageBoxButtons.OK, MessageBoxIcon.Error)
             RegistroInstalacion("ERROR Copiando NotinNetInstaller a F. Posible Unidad desconectada o archivo no descargado.")
@@ -3650,6 +3704,7 @@ Public Class FrmInstaladorKubo
     Private Sub BtLogChoco_Click(sender As Object, e As EventArgs) Handles BtLogChoco.Click
         Process.Start("notepad.exe", "C:\ProgramData\chocolatey\logs\chocolatey.log")
     End Sub
+
 
 
 
