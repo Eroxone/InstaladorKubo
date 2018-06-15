@@ -63,9 +63,6 @@ Public Class FrmInstaladorKubo
         'LbMigrador.Text = cIniArray.IniGet(instaladorkuboini, "SQL", "FECHAMIGRADOR", "Sin determinar")
 
         If File.Exists("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt") Then
-            LbUVersionMigrador.Visible = True
-            TbMigradorLog.Visible = True
-            BtMigradorLOG.Visible = True
             ObtenerVersionMigrador()
         End If
 
@@ -3486,6 +3483,10 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             MsgBox("Se presento un problema al leer el archivo: " & ex.Message, MsgBoxStyle.Critical)
         End Try
+        LbUVersionMigrador.Visible = True
+        TbMigradorLog.Visible = True
+        BtMigradorLOG.Visible = True
+
     End Sub
 
     Private Sub BtNotin8exe_Click(sender As Object, e As EventArgs) Handles BtNotin8exe.Click
@@ -3555,7 +3556,7 @@ Public Class FrmInstaladorKubo
             BtNetBeta.BackColor = Color.PaleGreen
             BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
-
+            BtNotinNetF.Visible = True
         Catch ex As Exception
             RegistroInstalacion("BETA Notin: Error instalando Beta: " & ex.Message)
             BtNetBeta.BackColor = Color.LightSalmon
@@ -3582,7 +3583,7 @@ Public Class FrmInstaladorKubo
             BtBetax64.BackColor = Color.PaleGreen
             BtNetBeta.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
-
+            BtNotinNetF.Visible = True
         Catch ex As Exception
             RegistroInstalacion("BETAx64 Notin: Error instalando Beta: " & ex.Message)
             BtBetax64.BackColor = Color.LightSalmon
@@ -3612,7 +3613,7 @@ Public Class FrmInstaladorKubo
             BtEstableNet.BackColor = Color.PaleGreen
             BtNetBeta.BackColor = SystemColors.Control
             BtBetax64.BackColor = SystemColors.Control
-
+            BtNotinNetF.Visible = True
         Catch ex As Exception
             RegistroInstalacion("ESTABLE Notin: Error instalando NotiNet: " & ex.Message)
             BtEstableNet.BackColor = Color.LightSalmon
