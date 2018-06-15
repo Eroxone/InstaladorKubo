@@ -1081,6 +1081,8 @@ Public Class FrmInstaladorKubo
                 Threading.Thread.Sleep(15000)
                 cIniArray.IniWrite(instaladorkuboini, "REQUISITOS", "NET", "1")
                 RegistroInstalacion("Instalados Pre-Requisitos .Net")
+            Else
+                RegistroInstalacion("Pre-Requisitos no instalados. Se detectó instalación previa.")
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1152,20 +1154,24 @@ Public Class FrmInstaladorKubo
 
         If UnidadF() = True Then
             Try
-                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe", True)
+                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller.exe", True)
                 RegistroInstalacion("NotinNetInstaller copiado correctamente desde F:\Notawin.Net\ para su ejecución.")
             Catch ex As Exception
                 RegistroInstalacion("NotinNetInstaller: No se pudo obtener de F:\Notawin.Net\ se procede a su decarga desde static.unidata")
             End Try
 
-            Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe")
-            Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
 
-            If notinnetinstaller.Length < "100000000" Then
-                RegistroInstalacion("NotinNetInstaller ocupa menos de 100Mb. Posible fichero corrupto. Se procede a su descarga.")
+
+
+            '    Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller.exe")
+            'Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
+            'If notinnetinstaller.Length < "100000000" Then
+
+            If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
+                'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
                 Try
                     Dim urlnotinnetestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
-                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe", AppWinStyle.NormalFocus, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
                 Catch ex As Exception
                     RegistroInstalacion("NotinNetInstaller: No se pudo obtener desde su url de descarga. Seguirán errores de Addins.")
                 End Try
@@ -1176,11 +1182,11 @@ Public Class FrmInstaladorKubo
         'Una vez obtenido procedemos a ejecutar NotinNetInstaller
         Try
             Dim pnotinnet As New ProcessStartInfo()
-            pnotinnet.FileName = RutaDescargas & "\NotinNet\NotinNetInstaller_ESTABLE.exe"
+            pnotinnet.FileName = RutaDescargas & "\NotinNet\NotinNetInstaller.exe"
             Dim notinnet As Process = Process.Start(pnotinnet)
             'notintaskpane.WaitForInputIdle()
             notinnet.WaitForExit()
-            RegistroInstalacion("Ejecutado instalador NotinNetInstaller_ESTABLE.exe desde " & RutaDescargas & "NotinNet\")
+            RegistroInstalacion("Ejecutado instalador NotinNetInstaller.exe desde " & RutaDescargas & "NotinNet\")
         Catch ex As Exception
             RegistroInstalacion("NotinNetInstaller: " & ex.Message)
         End Try
@@ -2125,6 +2131,8 @@ Public Class FrmInstaladorKubo
                 Threading.Thread.Sleep(15000)
                 cIniArray.IniWrite(instaladorkuboini, "REQUISITOS", "NET", "1")
                 RegistroInstalacion("Instalados Pre-Requisitos .Net")
+            Else
+                RegistroInstalacion("Pre-Requisitos no instalados. Se detectó instalación previa.")
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2144,20 +2152,22 @@ Public Class FrmInstaladorKubo
 
         If UnidadF() = True Then
             Try
-                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe", True)
+                File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller.exe", True)
                 RegistroInstalacion("NotinNetInstaller copiado correctamente desde F:\Notawin.Net\ para su ejecución.")
             Catch ex As Exception
                 RegistroInstalacion("NotinNetInstaller: No se pudo obtener de F:\Notawin.Net\ se procede a su decarga desde static.unidata")
             End Try
 
-            Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe")
-            Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
+            'TODO quitar esta comprobacion
+            'Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller.exe")
+            'Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
 
-            If notinnetinstaller.Length < "100000000" Then
-                RegistroInstalacion("NotinNetInstaller ocupa menos de 100Mb. Posible fichero corrupto. Se procede a su descarga.")
+            'If notinnetinstaller.Length < "100000000" Then
+            If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
+                'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
                 Try
                     Dim urlnotinnetestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
-                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_ESTABLE.exe", AppWinStyle.NormalFocus, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
                 Catch ex As Exception
                     RegistroInstalacion("NotinNetInstaller: No se pudo obtener desde su url de descarga. Seguirán errores de Addins.")
                 End Try
@@ -2167,11 +2177,11 @@ Public Class FrmInstaladorKubo
         'Una vez obtenido procedemos a ejecutar NotinNetInstaller
         Try
             Dim pnotinnet As New ProcessStartInfo()
-            pnotinnet.FileName = RutaDescargas & "\NotinNet\NotinNetInstaller_ESTABLE.exe"
+            pnotinnet.FileName = RutaDescargas & "\NotinNet\NotinNetInstaller.exe"
             Dim notinnet As Process = Process.Start(pnotinnet)
             'notintaskpane.WaitForInputIdle()
             notinnet.WaitForExit()
-            RegistroInstalacion("Ejecutado instalador NotinNetInstaller_ESTABLE.exe desde " & RutaDescargas & "NotinNet\")
+            RegistroInstalacion("Ejecutado instalador NotinNetInstaller.exe desde " & RutaDescargas & "NotinNet\")
         Catch ex As Exception
             RegistroInstalacion("NotinNetInstaller: " & ex.Message)
         End Try
@@ -3110,6 +3120,8 @@ Public Class FrmInstaladorKubo
                 Threading.Thread.Sleep(15000)
                 cIniArray.IniWrite(instaladorkuboini, "REQUISITOS", "NET", "1")
                 RegistroInstalacion("Instalados Pre-Requisitos .Net")
+            Else
+                RegistroInstalacion("Pre-Requisitos no instalados. Se detectó instalación previa.")
             End If
         Catch ex As Exception
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -3166,11 +3178,14 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener de F:\Notawin.Net\x64\ se procede a su decarga desde static.unidata")
             End Try
 
-            Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe")
-            Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
+            'Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe")
+            'Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
 
-            If notinnetinstaller.Length < "100000000" Then
-                RegistroInstalacion("NotinNetInstaller x64 ocupa menos de 100Mb. Posible fichero corrupto. Se procede a su descarga.")
+            'If notinnetinstaller.Length < "100000000" Then
+            '    RegistroInstalacion("NotinNetInstaller x64 ocupa menos de 100Mb. Posible fichero corrupto. Se procede a su descarga.")
+
+            If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
+                'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
                 Try
                     Dim urlnotinnetx64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
                     Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe", AppWinStyle.NormalFocus, True)
