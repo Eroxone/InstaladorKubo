@@ -13,12 +13,15 @@ Public Class FormPassword
     End Sub
 
 
+
     Private Sub TbPassword_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbPassword.KeyPress
         If TbPassword.Text = "b30330104b" Then
+            TbPassword.BackColor = Color.PaleGreen
             'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\instaladorkubo.ini", "LOGIN", "ENTRADA", 1)
             FrmInstaladorKubo.Show()
             Me.Close()
         End If
     End Sub
+
 
 End Class

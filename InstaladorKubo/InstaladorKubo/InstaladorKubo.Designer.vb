@@ -954,9 +954,9 @@ Partial Class FrmInstaladorKubo
         Me.LbVersionMigrador.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
         Me.LbVersionMigrador.Location = New System.Drawing.Point(191, 52)
         Me.LbVersionMigrador.Name = "LbVersionMigrador"
-        Me.LbVersionMigrador.Size = New System.Drawing.Size(143, 15)
+        Me.LbVersionMigrador.Size = New System.Drawing.Size(165, 15)
         Me.LbVersionMigrador.TabIndex = 4
-        Me.LbVersionMigrador.Text = "Log salida Migrador:"
+        Me.LbVersionMigrador.Text = "Salida Logger Migrador:"
         Me.LbVersionMigrador.Visible = False
         '
         'BtBlancosBD
@@ -1125,7 +1125,7 @@ Partial Class FrmInstaladorKubo
         Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
         Me.lbInstalando.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold)
         Me.lbInstalando.ForeColor = System.Drawing.Color.Green
-        Me.lbInstalando.Location = New System.Drawing.Point(550, 557)
+        Me.lbInstalando.Location = New System.Drawing.Point(407, 556)
         Me.lbInstalando.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbInstalando.Name = "lbInstalando"
         Me.lbInstalando.Size = New System.Drawing.Size(309, 25)
