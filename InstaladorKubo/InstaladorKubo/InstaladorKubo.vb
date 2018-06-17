@@ -56,15 +56,16 @@ Public Class FrmInstaladorKubo
         'Cargo correo anterior de notificaciones
         CBoxEmail.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
 
-        'Versiones Beta NET
+        'Version NET en Sistema
         ObtenerVersionNet()
+
 
         'Ejecución MigradorSQL
         'LbMigrador.Text = cIniArray.IniGet(instaladorkuboini, "SQL", "FECHAMIGRADOR", "Sin determinar")
 
-        If File.Exists("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt") Then
-            ObtenerVersionMigrador()
-        End If
+        'If File.Exists("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt") Then
+        LeerLogMigradorSQL()
+        'End If
 
     End Sub
 
@@ -137,6 +138,8 @@ Public Class FrmInstaladorKubo
         Dim equipo As Integer = equipousuario.LastIndexOf("\")
         Dim usuario = equipousuario.Remove(0, equipo + 1)
         lbUsuario.Text = "Usuario: " & usuario
+        Dim hostname = Environment.MachineName.ToUpper
+        LbHostname.Text = hostname
 
         Dim memoriaram = My.Computer.Info.TotalPhysicalMemory
         Dim memoriarammb As Integer = memoriaram / 1024 / 1024
@@ -303,11 +306,13 @@ Public Class FrmInstaladorKubo
             BtBlancosBD.BackColor = SystemColors.Control
         End If
 
-        Dim migradorsql = cIniArray.IniGet(instaladorkuboini, "SQL", "MIGRADOR", "2")
-        If migradorsql = 1 Then
-            BtMigradorSQL.BackColor = Color.PaleGreen
-            BtMigradorLOG.Visible = True
-        End If
+        'Dim migradorsql = cIniArray.IniGet(instaladorkuboini, "SQL", "MIGRADOR", "SINDATOS")
+        'If migradorsql = "EXITO" Then
+        '    BtMigradorSQL.BackColor = Color.PaleGreen
+        '    'BtMigradorLOG.Visible = True
+        'ElseIf migradorsql = "ERROR" Then
+        '    BtMigradorSQL.BackColor = Color.LightSalmon
+        'End If
 
         Dim framework462 = cIniArray.IniGet(instaladorkuboini, "CHOCOLATEY", "FRAMEWORK462", "2")
         If framework462 = 1 Then
@@ -1555,6 +1560,8 @@ Public Class FrmInstaladorKubo
         TlpFocos.ToolTipTitle = "Downgrade versión Cliente RDP"
         TlpFocos.SetToolTip(BtFocos, "Arregla bug versión 10.4 RDP para problema de Focos en Adra.")
 
+        TlpLogMigrador.ToolTipTitle = "Log MigradorNotinSQL"
+        TlpLogMigrador.SetToolTip(TbMigradorLog, "Haz Clic para Visualizar Log completo.")
     End Sub
 #End Region
 
@@ -3451,63 +3458,87 @@ Public Class FrmInstaladorKubo
             pmigrador.FileName = RutaDescargas & "NotinNet\MigradorNotinSQLAllowDataLoss.bat"
             Dim migrador As Process = Process.Start(pmigrador)
             migrador.WaitForExit()
-            RegistroInstalacion("ÉXITO: Ejecución de MigradorNotinSQL completada. Revisa el Log del mismo.")
-            BtMigradorSQL.BackColor = Color.PaleGreen
-            BtMigradorLOG.Visible = True
-            cIniArray.IniWrite(instaladorkuboini, "SQL", "MIGRADOR", "1")
-            cIniArray.IniWrite(instaladorkuboini, "SQL", "FECHAEJECUCIOMIGRADOR", DateTime.Now)
+            RegistroInstalacion("ÉXITO: Ejecución de MigradorNotinSQL completada. Revisa el Log del mismo para más detalle.")
+            'BtMigradorSQL.BackColor = Color.PaleGreen
+            'BtMigradorLOG.Visible = True
+            'cIniArray.IniWrite(instaladorkuboini, "SQL", "MIGRADOR", "1")
+            cIniArray.IniWrite(instaladorkuboini, "SQL", "EJECUCIONMIGRADOR", DateTime.Now)
             'LbMigrador.Text = cIniArray.IniGet(instaladorkuboini, "SQL", "FECHAMIGRADOR", "Sin determinar")
-            LbUVersionMigrador.Visible = True
+            LbVersionMigrador.Visible = True
             TbMigradorLog.Visible = True
-            BtMigradorLOG.Visible = True
-            ObtenerVersionMigrador()
+            'BtMigradorLOG.Visible = True
+            LeerLogMigradorSQL()
 
-            Dim notin8 = cIniArray.IniGet(instaladorkuboini, "NET", "NOTIN8", "2")
-            If notin8 = 2 Then
+
+            If TbMigradorLog.Text.Contains("EXITO") Then
+                'Dim notin8 = cIniArray.IniGet(instaladorkuboini, "NET", "NOTIN8", "2")
+                'If notin8 = 2 Then
                 Dim descarganotin8 = MessageBox.Show("¿Quieres Descargar Notaría (Notin8.exe)?", "Descarga Notaría", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                 If descarganotin8 = DialogResult.Yes Then
                     DescargarNotaria()
-                    BtNotin8exe.BackColor = Color.PaleGreen
-                    cIniArray.IniWrite(instaladorkuboini, "NET", "NOTIN8", "1")
+                    'BtNotin8exe.BackColor = Color.PaleGreen
+                    'cIniArray.IniWrite(instaladorkuboini, "NET", "NOTIN8", "1")
                     If descarganotin8 = DialogResult.No Then
-                        cIniArray.IniWrite(instaladorkuboini, "NET", "NOTIN8", "0")
+                        '       cIniArray.IniWrite(instaladorkuboini, "NET", "NOTIN8", "0")
                         Exit Sub
                     End If
                 End If
             End If
+
         Catch ex As Exception
-            RegistroInstalacion("ERROR ejecución MigradorNotinSQL: " & ex.Message)
+            RegistroInstalacion("ERROR ejecución MigradorSQL: " & ex.Message)
             BtMigradorSQL.BackColor = Color.LightSalmon
         End Try
     End Sub
 
-    Private Sub BtMigradorLOG_Click(sender As Object, e As EventArgs) Handles BtMigradorLOG.Click
+    Private Sub TbMigradorLog_MouseClick(sender As Object, e As MouseEventArgs) Handles TbMigradorLog.MouseClick
         Process.Start("notepad.exe", "C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt")
     End Sub
 
-    Private Sub ObtenerVersionMigrador()
 
-        ':::Creamos nuestro objeto de tipo StreamReader que nos permite leer archivos
-        Dim leer As New StreamReader("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt")
-        Try
-            ':::Indicamos mediante un While que mientras no sea el ultimo caracter repita el proceso
-            While leer.Peek <> -1
-                ':::Leemos cada linea del archivo TXT
-                Dim linea As String = leer.ReadLine()
-                ':::Validamos que la linea no este vacia
-                If String.IsNullOrEmpty(linea) Then
-                    Continue While
-                End If
-                ':::Agregramos los registros encontrados
-                TbMigradorLog.Text = linea
-            End While
-            leer.Close()
-        Catch ex As Exception
-            MsgBox("Se presento un problema al leer el archivo: " & ex.Message, MsgBoxStyle.Critical)
-        End Try
-        LbUVersionMigrador.Visible = True
-        TbMigradorLog.Visible = True
-        BtMigradorLOG.Visible = True
+    Private Sub LeerLogMigradorSQL()
+
+        Dim loggermigrador As String = "C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt"
+        If File.Exists(loggermigrador) Then
+            LbVersionMigrador.Visible = True
+            TbMigradorLog.Visible = True
+            'BtMigradorLOG.Visible = True
+
+            ':::Creamos nuestro objeto de tipo StreamReader que nos permite leer archivos
+            Dim leer As New StreamReader("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt")
+            Try
+                ':::Indicamos mediante un While que mientras no sea el ultimo caracter repita el proceso
+                While leer.Peek <> -1
+                    ':::Leemos cada linea del archivo TXT
+                    Dim linea As String = leer.ReadLine
+                    'Dim linea As String = leer.ReadToEnd()
+                    ':::Validamos que la linea no este vacia
+                    If String.IsNullOrEmpty(linea) Then
+                        Continue While
+                    End If
+                    ':::Agregramos los registros encontrados (nos quedamos con el último)
+                    TbMigradorLog.Text = linea.ToString
+                    If linea.Contains("EXITO") Then
+                        BtMigradorSQL.BackColor = Color.PaleGreen
+                    ElseIf linea.Contains("finalizado") Then
+                        BtMigradorSQL.BackColor = Color.LightSalmon
+                    Else
+                        BtMigradorSQL.BackColor = SystemColors.Control
+                    End If
+                End While
+
+                leer.Close()
+                RegistroInstalacion("MigradorSQL: Leído correctamente Log. Pasada última línea a TextBox.")
+            Catch ex As Exception
+                RegistroInstalacion("MigradorSQL: No se pudo leer el archivo LOG. No se puede mostrar resultado última ejecución.")
+            End Try
+            LbVersionMigrador.Visible = True
+            TbMigradorLog.Visible = True
+            'BtMigradorLOG.Visible = True
+        Else
+            RegistroInstalacion("MigradorSQL: No se pudo acceder a fichero Log. No se puede mostrar resultado última ejecución.")
+        End If
+
 
     End Sub
 
@@ -3525,10 +3556,19 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub DescargarNotaria()
+        If NotinRapp() = True Then
+            Dim notinrapp = MessageBox.Show("Se va a proceder a Descargar y Ejecutar NOTIN8.exe en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            RegistroInstalacion("ADRA: Ejecutando Notin8.exe en entorno NotinRapp. Se advierte al usuario.")
+            If notinrapp = DialogResult.No Then
+                RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
+                Exit Sub
+            End If
+        End If
+
         obtenerwget()
-        'Dim urlnotin8 = "http://static.unidata.es/notin8.exe"
+        Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/notin8.exe"
         'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
-        Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/actualizaciones/Defecto/notin8.exe " & "-O " & RutaDescargas & "NotinNet\Notin8.exe"
+        Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe"
         Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
         Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
 
@@ -3544,7 +3584,69 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
         End Try
 
+
+        Try
+            Dim pnotinnet As New ProcessStartInfo()
+            pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
+            Dim notinnet As Process = Process.Start(pnotinnet)
+            'notinnet.WaitForExit()
+            BtEstableNet.BackColor = Color.PaleGreen
+            RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+        Catch ex As Exception
+            BtEstableNet.BackColor = Color.LightSalmon
+            RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
+        End Try
+
     End Sub
+
+    Private Sub DescargarNotariaX64()
+        'TODO esto para mas adelante. Añadir comprobación del ini local/global para descargar 32 o 64bits y en esa funcion llamar a 32 o 64 según corresponda
+        obtenerwget()
+        Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/x64/notin8.exe"
+        'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
+        Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8x64.exe"
+        Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
+        Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
+
+        Try
+            Dim pnotin8 As New ProcessStartInfo()
+            pnotin8.FileName = RutaDescargas & "NotinNet\Notin8x64.exe"
+            Dim notin8 As Process = Process.Start(pnotin8)
+            notin8.WaitForExit()
+            RegistroInstalacion("ÉXITO: NOTIN8x64 ejecutado correctamente.")
+            ' BtNotin8exe.BackColor = Color.PaleGreen
+        Catch ex As Exception
+            'BtNotin8exe.BackColor = Color.LightSalmon
+            RegistroInstalacion("ERROR NOTIN8x64: " & ex.Message)
+        End Try
+
+    End Sub
+
+
+    'Private Function LeerFicheroDesdeLinea(ByVal numeroLinea As Integer, ByVal nombreFichero As String) As String
+    '    Dim fichero As New System.IO.FileInfo(nombreFichero)
+    '    LeerFicheroDesdeLinea = ""
+    '    If fichero.Exists Then
+    '        Dim sr As System.IO.StreamReader
+    '        Dim lineaActual As Integer = 1
+    '        Try
+    '            sr = New System.IO.StreamReader(fichero.FullName)
+    '            While lineaActual < numeroLinea And Not sr.EndOfStream
+    '                sr.ReadLine()
+    '                lineaActual += 1
+    '            End While
+    '            LeerFicheroDesdeLinea = sr.ReadToEnd
+    '        Catch ex As Exception
+    '            MsgBox("No se pudo ejecutar la operación")
+    '        Finally
+    '            If sr IsNot Nothing Then
+    '                sr.Close()
+    '                sr.Dispose()
+    '            End If
+    '        End Try
+    '    End If
+    'End Function
+
 
 
     Private Sub ObtenerVersionNet()
@@ -3554,13 +3656,15 @@ Public Class FrmInstaladorKubo
             Dim infoversion As String
 
             Dim sr As New System.IO.StreamReader(infoinstaller)
-            infoversion = sr.ReadToEnd()
+            infoversion = sr.ReadLine()
+            'infoversion = sr.ReadToEnd
             sr.Close()
             LbBetaNet.Text = infoversion
-            cIniArray.IniWrite(instaladorkuboini, "NET", "FECHAEJECUCION", DateTime.Now)
-            RegistroInstalacion("Beta Net: InfoVersión en el Sistema: " & infoversion)
+            cIniArray.IniWrite(instaladorkuboini, "NET", "NETSISTEMA", infoversion)
+            'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHAEJECUCION", DateTime.Now)
+            RegistroInstalacion("NOTIN .NET: InfoVersión en el Sistema: " & infoversion)
         Catch ex As Exception
-            RegistroInstalacion("Beta Net: No se pudo determinar Versión: " & ex.Message)
+            RegistroInstalacion("NOTIN .NET: No se pudo determinar Versión .Net en Sistema.")
         End Try
     End Sub
 
@@ -3741,7 +3845,7 @@ Public Class FrmInstaladorKubo
             End If
         End If
 
-        Dim framework462 As String = "choco install -y dotnet4.6.2"
+        Dim framework462 As String = "@echo off" & vbCrLf & "choco install -y dotnet4.6.2"
         File.WriteAllText(RutaDescargas & "Chocolatey\Framework462.bat", framework462)
         Try
             RunAsAdmin(RutaDescargas & "Chocolatey\Framework462.bat")
@@ -3764,9 +3868,10 @@ Public Class FrmInstaladorKubo
 
 #Region "ADRA"
     Private Function NotinRapp() As Boolean
-        Dim equipousuario As String = (My.User.Name)
-        Dim equipo As Integer = equipousuario.LastIndexOf("\")
-        Dim hostname = equipousuario.Substring(0, equipo).ToUpper
+        'Dim equipousuario As String = (My.User.Name)
+        'Dim equipo As Integer = equipousuario.LastIndexOf("\")
+        'Dim hostname = equipousuario.Substring(0, equipo).ToUpper
+        Dim hostname = Environment.MachineName.ToUpper
         If hostname = "NOTINRAPP" Then
             Return True
         Else

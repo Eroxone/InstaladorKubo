@@ -86,8 +86,7 @@ Partial Class FrmInstaladorKubo
         Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
         Me.TbMigradorLog = New System.Windows.Forms.TextBox()
-        Me.BtMigradorLOG = New System.Windows.Forms.Button()
-        Me.LbUVersionMigrador = New System.Windows.Forms.Label()
+        Me.LbVersionMigrador = New System.Windows.Forms.Label()
         Me.BtBlancosBD = New System.Windows.Forms.Button()
         Me.BtRestaurarBak = New System.Windows.Forms.Button()
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
@@ -164,6 +163,8 @@ Partial Class FrmInstaladorKubo
         Me.TlpMigrador = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpChoco = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpFocos = New System.Windows.Forms.ToolTip(Me.components)
+        Me.LbHostname = New System.Windows.Forms.Label()
+        Me.TlpLogMigrador = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -203,7 +204,7 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox4.BackColor = System.Drawing.Color.WhiteSmoke
         Me.GroupBox4.Controls.Add(Me.lbUnidadF)
         Me.GroupBox4.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox4.Location = New System.Drawing.Point(412, 18)
+        Me.GroupBox4.Location = New System.Drawing.Point(420, 18)
         Me.GroupBox4.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Padding = New System.Windows.Forms.Padding(2)
@@ -923,8 +924,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
         Me.TabPage7.Controls.Add(Me.TbMigradorLog)
-        Me.TabPage7.Controls.Add(Me.BtMigradorLOG)
-        Me.TabPage7.Controls.Add(Me.LbUVersionMigrador)
+        Me.TabPage7.Controls.Add(Me.LbVersionMigrador)
         Me.TabPage7.Controls.Add(Me.BtBlancosBD)
         Me.TabPage7.Controls.Add(Me.BtRestaurarBak)
         Me.TabPage7.Controls.Add(Me.BtMigradorSQL)
@@ -938,38 +938,26 @@ Partial Class FrmInstaladorKubo
         '
         'TbMigradorLog
         '
-        Me.TbMigradorLog.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TbMigradorLog.BackColor = System.Drawing.SystemColors.Control
+        Me.TbMigradorLog.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TbMigradorLog.Location = New System.Drawing.Point(194, 74)
         Me.TbMigradorLog.Multiline = True
         Me.TbMigradorLog.Name = "TbMigradorLog"
         Me.TbMigradorLog.ReadOnly = True
-        Me.TbMigradorLog.Size = New System.Drawing.Size(167, 70)
+        Me.TbMigradorLog.Size = New System.Drawing.Size(168, 62)
         Me.TbMigradorLog.TabIndex = 7
         Me.TbMigradorLog.Visible = False
         '
-        'BtMigradorLOG
+        'LbVersionMigrador
         '
-        Me.BtMigradorLOG.BackColor = System.Drawing.SystemColors.Control
-        Me.BtMigradorLOG.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtMigradorLOG.Font = New System.Drawing.Font("Lucida Bright", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtMigradorLOG.Location = New System.Drawing.Point(254, 151)
-        Me.BtMigradorLOG.Name = "BtMigradorLOG"
-        Me.BtMigradorLOG.Size = New System.Drawing.Size(107, 28)
-        Me.BtMigradorLOG.TabIndex = 6
-        Me.BtMigradorLOG.Text = "Visualizar LOG"
-        Me.BtMigradorLOG.UseVisualStyleBackColor = False
-        Me.BtMigradorLOG.Visible = False
-        '
-        'LbUVersionMigrador
-        '
-        Me.LbUVersionMigrador.AutoSize = True
-        Me.LbUVersionMigrador.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.LbUVersionMigrador.Location = New System.Drawing.Point(191, 52)
-        Me.LbUVersionMigrador.Name = "LbUVersionMigrador"
-        Me.LbUVersionMigrador.Size = New System.Drawing.Size(143, 15)
-        Me.LbUVersionMigrador.TabIndex = 4
-        Me.LbUVersionMigrador.Text = "Versión en Sistema:"
-        Me.LbUVersionMigrador.Visible = False
+        Me.LbVersionMigrador.AutoSize = True
+        Me.LbVersionMigrador.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.LbVersionMigrador.Location = New System.Drawing.Point(191, 52)
+        Me.LbVersionMigrador.Name = "LbVersionMigrador"
+        Me.LbVersionMigrador.Size = New System.Drawing.Size(143, 15)
+        Me.LbVersionMigrador.TabIndex = 4
+        Me.LbVersionMigrador.Text = "Log salida Migrador:"
+        Me.LbVersionMigrador.Visible = False
         '
         'BtBlancosBD
         '
@@ -1414,7 +1402,7 @@ Partial Class FrmInstaladorKubo
         Me.BtReconectar.Enabled = False
         Me.BtReconectar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtReconectar.Image = CType(resources.GetObject("BtReconectar.Image"), System.Drawing.Image)
-        Me.BtReconectar.Location = New System.Drawing.Point(650, 25)
+        Me.BtReconectar.Location = New System.Drawing.Point(650, 21)
         Me.BtReconectar.Name = "BtReconectar"
         Me.BtReconectar.Size = New System.Drawing.Size(57, 50)
         Me.BtReconectar.TabIndex = 45
@@ -1624,12 +1612,31 @@ Partial Class FrmInstaladorKubo
         Me.TlpFocos.IsBalloon = True
         Me.TlpFocos.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'LbHostname
+        '
+        Me.LbHostname.AutoSize = True
+        Me.LbHostname.BackColor = System.Drawing.SystemColors.Control
+        Me.LbHostname.Font = New System.Drawing.Font("Lucida Bright", 15.0!, System.Drawing.FontStyle.Bold)
+        Me.LbHostname.ForeColor = System.Drawing.Color.LightGray
+        Me.LbHostname.Location = New System.Drawing.Point(941, 18)
+        Me.LbHostname.Name = "LbHostname"
+        Me.LbHostname.Size = New System.Drawing.Size(150, 23)
+        Me.LbHostname.TabIndex = 51
+        Me.LbHostname.Text = "NombreHOST"
+        Me.LbHostname.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'TlpLogMigrador
+        '
+        Me.TlpLogMigrador.IsBalloon = True
+        Me.TlpLogMigrador.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1134, 653)
+        Me.Controls.Add(Me.LbHostname)
         Me.Controls.Add(Me.BtSubeBinario)
         Me.Controls.Add(Me.CBoxEmail)
         Me.Controls.Add(Me.BtExplorarRutas)
@@ -1815,8 +1822,7 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents Label1 As Label
     Friend WithEvents BtBlancosBD As Button
     Friend WithEvents BtRestaurarBak As Button
-    Friend WithEvents BtMigradorLOG As Button
-    Friend WithEvents LbUVersionMigrador As Label
+    Friend WithEvents LbVersionMigrador As Label
     Friend WithEvents TbMigradorLog As TextBox
     Friend WithEvents BtFramework462 As Button
     Friend WithEvents BtChocolatey As Button
@@ -1831,4 +1837,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TlpChoco As ToolTip
     Friend WithEvents BtFocos As Button
     Friend WithEvents TlpFocos As ToolTip
+    Friend WithEvents LbHostname As Label
+    Friend WithEvents TlpLogMigrador As ToolTip
 End Class
