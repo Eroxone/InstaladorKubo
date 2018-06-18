@@ -85,6 +85,8 @@ Partial Class FrmInstaladorKubo
         Me.BtBetax64 = New System.Windows.Forms.Button()
         Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.LbReducirDatosSQL = New System.Windows.Forms.Label()
+        Me.BtReducirDatos = New System.Windows.Forms.Button()
         Me.TbMigradorLog = New System.Windows.Forms.TextBox()
         Me.LbVersionMigrador = New System.Windows.Forms.Label()
         Me.BtBlancosBD = New System.Windows.Forms.Button()
@@ -923,6 +925,8 @@ Partial Class FrmInstaladorKubo
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage7.Controls.Add(Me.LbReducirDatosSQL)
+        Me.TabPage7.Controls.Add(Me.BtReducirDatos)
         Me.TabPage7.Controls.Add(Me.TbMigradorLog)
         Me.TabPage7.Controls.Add(Me.LbVersionMigrador)
         Me.TabPage7.Controls.Add(Me.BtBlancosBD)
@@ -935,6 +939,28 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.Size = New System.Drawing.Size(378, 245)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
+        '
+        'LbReducirDatosSQL
+        '
+        Me.LbReducirDatosSQL.AutoSize = True
+        Me.LbReducirDatosSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbReducirDatosSQL.ForeColor = System.Drawing.Color.Green
+        Me.LbReducirDatosSQL.Location = New System.Drawing.Point(5, 165)
+        Me.LbReducirDatosSQL.Name = "LbReducirDatosSQL"
+        Me.LbReducirDatosSQL.Size = New System.Drawing.Size(279, 19)
+        Me.LbReducirDatosSQL.TabIndex = 9
+        Me.LbReducirDatosSQL.Text = "Sentencia copiada al Portapapeles"
+        Me.LbReducirDatosSQL.Visible = False
+        '
+        'BtReducirDatos
+        '
+        Me.BtReducirDatos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtReducirDatos.Location = New System.Drawing.Point(8, 130)
+        Me.BtReducirDatos.Name = "BtReducirDatos"
+        Me.BtReducirDatos.Size = New System.Drawing.Size(167, 28)
+        Me.BtReducirDatos.TabIndex = 8
+        Me.BtReducirDatos.Text = "Reducir DATOS"
+        Me.BtReducirDatos.UseVisualStyleBackColor = True
         '
         'TbMigradorLog
         '
@@ -1839,4 +1865,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TlpFocos As ToolTip
     Friend WithEvents LbHostname As Label
     Friend WithEvents TlpLogMigrador As ToolTip
+    Friend WithEvents BtReducirDatos As Button
+    Friend WithEvents LbReducirDatosSQL As Label
 End Class

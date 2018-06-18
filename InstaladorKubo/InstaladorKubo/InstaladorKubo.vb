@@ -3898,6 +3898,21 @@ Public Class FrmInstaladorKubo
         End Try
     End Sub
 
+
+
+
+    Private Sub BtReducirDatos_MouseDown(sender As Object, e As MouseEventArgs) Handles BtReducirDatos.MouseDown
+        LbReducirDatosSQL.Visible = True
+    End Sub
+
+    Private Sub BtReducirDatos_Click(sender As Object, e As EventArgs) Handles BtReducirDatos.Click
+        Dim consulta As String = "USE DATOS" & vbCrLf & "ALTER DATABASE DATOS" & vbCrLf & "SET RECOVERY SIMPLE;" & vbCrLf & "GO" & vbCrLf & "DBCC SHRINKFILE (DATOS_log, 1);" & vbCrLf & "GO" & vbCrLf & "ALTER DATABASE DATOS" & vbCrLf & "SET RECOVERY FULL;" & vbCrLf & "GO"
+        My.Computer.Clipboard.SetText(consulta)
+        Threading.Thread.Sleep(2000)
+        LbReducirDatosSQL.Visible = False
+    End Sub
+
+
 #End Region
 
 
