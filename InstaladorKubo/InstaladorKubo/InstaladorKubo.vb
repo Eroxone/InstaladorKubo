@@ -192,28 +192,28 @@ Public Class FrmInstaladorKubo
     Private Sub FicheroINI()
         Dim odbc = cIniArray.IniGet(instaladorkuboini, "ODBC", "NOTINSQL", "2")
         If odbc = 1 Then
-            btOdbc.BackColor = Color.PaleGreen
+            BtOdbc.BackColor = Color.PaleGreen
         ElseIf odbc = 0 Then
-            btOdbc.BackColor = Color.LightSalmon
+            BtOdbc.BackColor = Color.LightSalmon
         End If
 
         Dim framework = cIniArray.IniGet(instaladorkuboini, "REQUISITOS", "FRAMEWORK35", "2")
         If framework = 1 Then
-            btFramework.BackColor = Color.PaleGreen
+            BtFramework.BackColor = Color.PaleGreen
         Else
-            btFramework.BackColor = SystemColors.Control
+            BtFramework.BackColor = SystemColors.Control
         End If
 
         Dim excepjava = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "EXCEPJAVA", "2")
         If excepjava = 1 Then
-            btExcepJava.BackColor = Color.PaleGreen
+            BtExcepJava.BackColor = Color.PaleGreen
         Else
-            btExcepJava.BackColor = SystemColors.Control
+            BtExcepJava.BackColor = SystemColors.Control
         End If
 
         Dim java = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "JAVA8", "2")
         If java = 1 Then
-            btJava.BackColor = Color.PaleGreen
+            BtJava.BackColor = Color.PaleGreen
         End If
 
         Dim uac = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "UAC", "2")
@@ -242,7 +242,7 @@ Public Class FrmInstaladorKubo
 
         Dim directivas = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "2")
         If directivas = 1 Then
-            btDirectivas.BackColor = Color.PaleGreen
+            BtDirectivas.BackColor = Color.PaleGreen
         End If
         Dim kmspico = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "KMSPICO10", "2")
         If kmspico = 1 Then
@@ -391,13 +391,13 @@ Public Class FrmInstaladorKubo
             Dim Archivo2003 As New FileInfo(RutaDescargas & "Office2003.exe")
             Dim Length2003 As Long = Archivo2003.Length
             If Archivo2003.Length = "517577131" Then
-                cbOffice2003.ForeColor = Color.DarkGreen
+                CbOffice2003.ForeColor = Color.DarkGreen
                 '         cbOffice2003.Enabled = False
             ElseIf Archivo2003.Length < "517577131" Then
-                cbOffice2003.ForeColor = Color.Red
+                CbOffice2003.ForeColor = Color.Red
             End If
         Else
-            cbOffice2003.ForeColor = SystemColors.ControlText
+            CbOffice2003.ForeColor = SystemColors.ControlText
             '     cbOffice2003.Enabled = True
         End If
 
@@ -405,11 +405,11 @@ Public Class FrmInstaladorKubo
             Dim ConfigNotin As New FileInfo(RutaDescargas & "Registro\ConfigAccess.reg")
             Dim LengthNotin As Long = ConfigNotin.Length
             If ConfigNotin.Length = "16688" Then
-                cbConfiguraNotin.ForeColor = Color.DarkGreen
+                CbConfiguraNotin.ForeColor = Color.DarkGreen
                 '        cbConfiguraNotin.Enabled = False
             End If
         Else
-            cbConfiguraNotin.ForeColor = SystemColors.ControlText
+            CbConfiguraNotin.ForeColor = SystemColors.ControlText
             '     cbConfiguraNotin.Enabled = True
         End If
 
@@ -417,16 +417,16 @@ Public Class FrmInstaladorKubo
             Dim Archivo2016 As New FileInfo(RutaDescargas & "Office2016.exe")
             Dim Length2016 As Long = Archivo2016.Length
             If Archivo2016.Length = "739967123" Then
-                cbOffice2016.ForeColor = Color.DarkGreen
-                cbOffice2016odt.ForeColor = Color.DarkGreen
+                CbOffice2016.ForeColor = Color.DarkGreen
+                CbOffice2016odt.ForeColor = Color.DarkGreen
                 '         cbOffice2016.Enabled = False
             ElseIf Archivo2016.Length < "739967123" Then
-                cbOffice2016.ForeColor = Color.Red
-                cbOffice2016odt.ForeColor = Color.Red
+                CbOffice2016.ForeColor = Color.Red
+                CbOffice2016odt.ForeColor = Color.Red
             End If
         Else
-            cbOffice2016.ForeColor = SystemColors.ControlText
-            cbOffice2016odt.ForeColor = SystemColors.ControlText
+            CbOffice2016.ForeColor = SystemColors.ControlText
+            CbOffice2016odt.ForeColor = SystemColors.ControlText
             '     cbOffice2016.Enabled = True
         End If
 
@@ -446,11 +446,11 @@ Public Class FrmInstaladorKubo
             Dim Config2016 As New FileInfo(RutaDescargas & "ConfWord2016.rar")
             Dim LengthConfig2016 As Long = Config2016.Length
             If Config2016.Length = "8211" Then
-                cbConfiguraWord2016.ForeColor = Color.DarkGreen
+                CbConfiguraWord2016.ForeColor = Color.DarkGreen
                 '        cbConfiguraWord2016.Enabled = False
             End If
         Else
-            cbConfiguraWord2016.ForeColor = SystemColors.ControlText
+            CbConfiguraWord2016.ForeColor = SystemColors.ControlText
             '      cbConfiguraWord2016.Enabled = True
         End If
 
@@ -458,22 +458,22 @@ Public Class FrmInstaladorKubo
             Dim Config2016x64 As New FileInfo(RutaDescargas & "ConfWord2016x64.rar")
             Dim LengthConfig2016x64 As Long = Config2016x64.Length
             If Config2016x64.Length = "8229" Then
-                cbConfiguraWord2016x64.ForeColor = Color.DarkGreen
+                CbConfiguraWord2016x64.ForeColor = Color.DarkGreen
             End If
         Else
-            cbConfiguraWord2016x64.ForeColor = SystemColors.ControlText
+            CbConfiguraWord2016x64.ForeColor = SystemColors.ControlText
         End If
 
         If System.IO.File.Exists(RutaDescargas & "jnemo-latest.exe") Then
             Dim jNemo As New FileInfo(RutaDescargas & "jnemo-latest.exe")
             Dim LengthjNemo As Long = jNemo.Length
             If jNemo.Length = "12672337" Then
-                cbNemo.ForeColor = Color.DarkGreen
+                CbNemo.ForeColor = Color.DarkGreen
 
                 '         cbNemo.Enabled = False
             End If
         Else
-            cbNemo.ForeColor = SystemColors.ControlText
+            CbNemo.ForeColor = SystemColors.ControlText
             '     cbNemo.Enabled = True
         End If
 
@@ -481,11 +481,11 @@ Public Class FrmInstaladorKubo
             Dim PuestoNotinC As New FileInfo(RutaDescargas & "PuestoNotinC.exe")
             Dim LengthPuestoNotinC As Long = PuestoNotinC.Length
             If PuestoNotinC.Length = "17034578" Then
-                cbPuestoNotin.ForeColor = Color.DarkGreen
+                CbPuestoNotin.ForeColor = Color.DarkGreen
                 '        cbPuestoNotin.Enabled = False
             End If
         Else
-            cbPuestoNotin.ForeColor = SystemColors.ControlText
+            CbPuestoNotin.ForeColor = SystemColors.ControlText
             '    cbPuestoNotin.Enabled = True
         End If
 
@@ -494,39 +494,39 @@ Public Class FrmInstaladorKubo
             Dim ArchivosenRequisitos = My.Computer.FileSystem.GetFiles(RutaDescargas & "\Requisitos")
 
             If ArchivosenRequisitos.Count >= 4 Then
-                cbRequisitos.ForeColor = Color.DarkGreen
+                CbRequisitos.ForeColor = Color.DarkGreen
                 '                cbRequisitos.Enabled = False
             Else
-                cbRequisitos.ForeColor = Color.Red
+                CbRequisitos.ForeColor = Color.Red
             End If
         Else
-            cbRequisitos.ForeColor = SystemColors.ControlText
+            CbRequisitos.ForeColor = SystemColors.ControlText
             '        cbRequisitos.Enabled = True
         End If
 
         'ANCERT Como puede variar el tamaño solo miro que exista el fichero
         If System.IO.File.Exists(RutaDescargas & "SFeren-2.8.exe") Then
-            cbSferen.ForeColor = Color.DarkGreen
+            CbSferen.ForeColor = Color.DarkGreen
             '            cbSferen.Enabled = False
         Else
-            cbSferen.ForeColor = SystemColors.ControlText
+            CbSferen.ForeColor = SystemColors.ControlText
             '          cbSferen.Enabled = True
         End If
 
         If System.IO.File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
-            cbPasarelaSigno.ForeColor = Color.DarkGreen
+            CbPasarelaSigno.ForeColor = Color.DarkGreen
             '       cbPasarelaSigno.Enabled = False
         Else
-            cbPasarelaSigno.ForeColor = SystemColors.ControlText
+            CbPasarelaSigno.ForeColor = SystemColors.ControlText
             '     cbPasarelaSigno.Enabled = True
         End If
 
         'SOFTWARE TERCEROS
         If System.IO.Directory.Exists(RutaDescargas & "\Software") Then
-            cbTerceros.ForeColor = Color.DarkGreen
+            CbTerceros.ForeColor = Color.DarkGreen
             BtExplorarRutas.Enabled = True
         Else
-            cbTerceros.ForeColor = SystemColors.ControlText
+            CbTerceros.ForeColor = SystemColors.ControlText
         End If
 
         'ABBYY Fine Reader
@@ -565,7 +565,7 @@ Public Class FrmInstaladorKubo
     Private Sub BtDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
 
         'Si no chequeas nada salimos
-        If (cbConfiguraNotin.Checked OrElse cbConfiguraWord2016.Checked OrElse cbNemo.Checked OrElse cbOffice2003.Checked OrElse cbOffice2016.Checked OrElse cbOffice2016odt.Checked OrElse cbPasarelaSigno.Checked OrElse cbPuestoNotin.Checked OrElse cbRequisitos.Checked OrElse cbSferen.Checked OrElse cbTerceros.Checked OrElse CbFineReader.Checked OrElse CbPaquetesFT.Checked OrElse CbOffice2016x64.Checked) = False Then
+        If (CbConfiguraNotin.Checked OrElse CbConfiguraWord2016.Checked OrElse CbNemo.Checked OrElse CbOffice2003.Checked OrElse CbOffice2016.Checked OrElse CbOffice2016odt.Checked OrElse CbPasarelaSigno.Checked OrElse CbPuestoNotin.Checked OrElse CbRequisitos.Checked OrElse CbSferen.Checked OrElse CbTerceros.Checked OrElse CbFineReader.Checked OrElse CbPaquetesFT.Checked OrElse CbOffice2016x64.Checked) = False Then
             MessageBox.Show("NINGUNA DESCARGA SELECCIONADA.", "Gestión Descargas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Exit Sub
         End If
@@ -617,21 +617,21 @@ Public Class FrmInstaladorKubo
 #Region "CREACIÓN FICHEROS RUTAS DESCARGAS"
 
         'Creación contenido del fichero
-        If cbOffice2003.Checked Then
+        If CbOffice2003.Checked Then
             texto = texto & PuestoNotin & "Office2003.exe" & vbCrLf
             texto = texto & PuestoNotin & "Setup.mst" & vbCrLf
             texto = texto & PuestoNotin & "Setup2003.mst" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2003", "1")
         End If
 
-        If cbOffice2016.Checked Then
+        If CbOffice2016.Checked Then
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016", "1")
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016ODT", "0")
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016X64", "0")
         End If
 
-        If cbOffice2016odt.Checked Then
+        If CbOffice2016odt.Checked Then
             texto = texto & PuestoNotin & "Office2016.exe" & vbCrLf
             texto = texto & PuestoNotin & "setup2016.MSP" & vbCrLf
             texto = texto & PuestoNotin & "Setup2016SinWord.MSP" & vbCrLf
@@ -648,12 +648,12 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "OFFICE2016X64", "1")
         End If
 
-        If cbNemo.Checked Then
+        If CbNemo.Checked Then
             texto = texto & "http://nemo.notin.net/jnemo-latest.exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "NEMO", "1")
         End If
 
-        If cbPuestoNotin.Checked Then
+        If CbPuestoNotin.Checked Then
             texto = texto & PuestoNotin & "PuestoNotinC.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos.exe" & vbCrLf
             texto = texto & PuestoNotin & "AccesosDirectos2003.exe" & vbCrLf
@@ -668,7 +668,7 @@ Public Class FrmInstaladorKubo
         End If
 
 
-        If cbRequisitos.Checked Then
+        If CbRequisitos.Checked Then
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "KryptonSuite300.msi" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "Office2003PrimaryInterop.msi" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "VisualTools2005.exe" & vbCrLf
@@ -677,17 +677,17 @@ Public Class FrmInstaladorKubo
             '   requisitos = requisitos & PuestoNotin & "Requisitos/" & "Framework35.bat" & vbCrLf
         End If
 
-        If cbSferen.Checked Then
+        If CbSferen.Checked Then
             texto = texto & PuestoNotin & "SFeren-2.8.exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "SFEREN", "1")
         End If
 
-        If cbPasarelaSigno.Checked Then
+        If CbPasarelaSigno.Checked Then
             texto = texto & PuestoNotin & "PasarelaSigno.exe" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "PASARELASIGNO", "1")
         End If
 
-        If cbTerceros.Checked Then
+        If CbTerceros.Checked Then
             terceros = terceros & PuestoNotin & "Software/" & "AcrobatReaderDC.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "FileZilla_3_win64-setup.exe" & vbCrLf
             terceros = terceros & PuestoNotin & "Software/" & "ChromeSetup.exe" & vbCrLf
@@ -698,7 +698,7 @@ Public Class FrmInstaladorKubo
         End If
 
         'Descagar configuradores del autochequeo
-        If cbConfiguraNotin.Checked Then
+        If CbConfiguraNotin.Checked Then
             registro = registro & PuestoNotin & "ConfigAccess.reg" & vbCrLf
             registro = registro & PuestoNotin & "FTComoAdministrador.reg" & vbCrLf
             registro = registro & PuestoNotin & "VentanasSigno.reg" & vbCrLf
@@ -707,12 +707,12 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "CLAVESREGISTRO", "1")
         End If
 
-        If cbConfiguraWord2016.Checked Then
+        If CbConfiguraWord2016.Checked Then
             'texto = texto & PuestoNotin & "ConfiguraWord2016.exe" & vbCrLf
             texto = texto & PuestoNotin & "ConfWord2016.rar" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "CONFIGURAWORD", "1")
         End If
-        If cbConfiguraWord2016x64.Checked Then
+        If CbConfiguraWord2016x64.Checked Then
             texto = texto & PuestoNotin & "ConfWord2016x64.rar" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "CONFIGURAWORDX64", "1")
         End If
@@ -739,7 +739,7 @@ Public Class FrmInstaladorKubo
         '    YaDescargados()
 
         'Ejecutar WGET Requisitos
-        If cbRequisitos.Checked Then
+        If CbRequisitos.Checked Then
             Dim WGETPANDORAREQUISITOS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "requisitos.txt"" -P " & RutaDescargas & "Requisitos\"
             Dim RutaCMDWgetRequisitos As String = RutaDescargas & WGETPANDORAREQUISITOS
 
@@ -748,7 +748,7 @@ Public Class FrmInstaladorKubo
         End If
 
         'Ejecutar WGET Terceros
-        If cbTerceros.Checked Then
+        If CbTerceros.Checked Then
             Dim WGETPANDORATERCEROS As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "terceros.txt"" -P " & RutaDescargas & "Software\"
             Dim RutaCMDWgetTerceros As String = RutaDescargas & WGETPANDORATERCEROS
 
@@ -764,7 +764,7 @@ Public Class FrmInstaladorKubo
         End If
 
         'Ejecutar WGET Registro
-        If cbConfiguraNotin.Checked Then
+        If CbConfiguraNotin.Checked Then
             Dim WGETPANDORREGISTRO As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 -i " & """" & RutaDescargas & "registro.txt"" -P " & RutaDescargas & "Registro\"
             Dim RutaCMDWgetRegistro As String = RutaDescargas & WGETPANDORREGISTRO
 
@@ -781,18 +781,18 @@ Public Class FrmInstaladorKubo
         System.IO.File.Delete(RutaDescargas & TERCEROS_DOWNLOAD)
         System.IO.File.Delete(RutaDescargas & REGISTRO_DOWNLOAD)
 
-        cbOffice2003.Checked = False
-        cbOffice2016.Checked = False
-        cbOffice2016odt.Checked = False
+        CbOffice2003.Checked = False
+        CbOffice2016.Checked = False
+        CbOffice2016odt.Checked = False
         CbOffice2016x64.Checked = False
-        cbNemo.Checked = False
-        cbRequisitos.Checked = False
-        cbPuestoNotin.Checked = False
-        cbSferen.Checked = False
-        cbPasarelaSigno.Checked = False
-        cbTerceros.Checked = False
-        cbConfiguraNotin.Checked = False
-        cbConfiguraWord2016.Checked = False
+        CbNemo.Checked = False
+        CbRequisitos.Checked = False
+        CbPuestoNotin.Checked = False
+        CbSferen.Checked = False
+        CbPasarelaSigno.Checked = False
+        CbTerceros.Checked = False
+        CbConfiguraNotin.Checked = False
+        CbConfiguraWord2016.Checked = False
         CbFineReader.Checked = False
         CbPaquetesFT.Checked = False
         lbProcesandoDescargas.Visible = False
@@ -821,31 +821,31 @@ Public Class FrmInstaladorKubo
     Private MarcarTodos As Integer = 0
     Private Sub BtTodo_Click(sender As Object, e As EventArgs) Handles btTodo.Click
         If MarcarTodos = 0 Then
-            cbOffice2003.Checked = True
-            cbOffice2016.Checked = False
-            cbOffice2016odt.Checked = True
+            CbOffice2003.Checked = True
+            CbOffice2016.Checked = False
+            CbOffice2016odt.Checked = True
             CbOffice2016x64.Checked = False
-            cbNemo.Checked = True
-            cbRequisitos.Checked = True
-            cbPuestoNotin.Checked = True
-            cbSferen.Checked = True
-            cbPasarelaSigno.Checked = True
-            cbTerceros.Checked = True
+            CbNemo.Checked = True
+            CbRequisitos.Checked = True
+            CbPuestoNotin.Checked = True
+            CbSferen.Checked = True
+            CbPasarelaSigno.Checked = True
+            CbTerceros.Checked = True
             CbPaquetesFT.Checked = True
             btTodo.Text = "Desmarcar"
             'sumar uno a la variable
             MarcarTodos = 1
         ElseIf MarcarTodos = 1 Then
-            cbOffice2003.Checked = False
-            cbOffice2016.Checked = False
-            cbOffice2016odt.Checked = False
+            CbOffice2003.Checked = False
+            CbOffice2016.Checked = False
+            CbOffice2016odt.Checked = False
             CbOffice2016x64.Checked = False
-            cbNemo.Checked = False
-            cbRequisitos.Checked = False
-            cbPuestoNotin.Checked = False
-            cbSferen.Checked = False
-            cbPasarelaSigno.Checked = False
-            cbTerceros.Checked = False
+            CbNemo.Checked = False
+            CbRequisitos.Checked = False
+            CbPuestoNotin.Checked = False
+            CbSferen.Checked = False
+            CbPasarelaSigno.Checked = False
+            CbTerceros.Checked = False
             CbFineReader.Checked = False
             CbPaquetesFT.Checked = False
             btTodo.Text = "Marcar todos"
@@ -854,29 +854,29 @@ Public Class FrmInstaladorKubo
     End Sub
 
     'Autochequear Configuradores Notin y Word 2016 <> Office 2016odt
-    Private Sub cbOffice2003_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2003.CheckedChanged
-        cbConfiguraNotin.CheckState = cbOffice2003.CheckState
-        CalcularTamanoDescarga(493, cbOffice2003.Checked)
+    Private Sub CbOffice2003_CheckedChanged(sender As Object, e As EventArgs) Handles CbOffice2003.CheckedChanged
+        CbConfiguraNotin.CheckState = CbOffice2003.CheckState
+        CalcularTamanoDescarga(493, CbOffice2003.Checked)
     End Sub
 
-    Private Sub cbOffice2016_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2016.CheckedChanged
-        CalcularTamanoDescarga(705, cbOffice2016.Checked)
-        cbConfiguraWord2016.CheckState = cbOffice2016.CheckState
-        cbOffice2016odt.Checked = False
+    Private Sub CbOffice2016_CheckedChanged(sender As Object, e As EventArgs) Handles CbOffice2016.CheckedChanged
+        CalcularTamanoDescarga(705, CbOffice2016.Checked)
+        CbConfiguraWord2016.CheckState = CbOffice2016.CheckState
+        CbOffice2016odt.Checked = False
         CbOffice2016x64.Checked = False
     End Sub
 
-    Private Sub cbOffice2016odt_CheckedChanged(sender As Object, e As EventArgs) Handles cbOffice2016odt.CheckedChanged
-        CalcularTamanoDescarga(705, cbOffice2016odt.Checked)
-        cbConfiguraWord2016.CheckState = cbOffice2016odt.CheckState
-        cbOffice2016.Checked = False
+    Private Sub CbOffice2016odt_CheckedChanged(sender As Object, e As EventArgs) Handles CbOffice2016odt.CheckedChanged
+        CalcularTamanoDescarga(705, CbOffice2016odt.Checked)
+        CbConfiguraWord2016.CheckState = CbOffice2016odt.CheckState
+        CbOffice2016.Checked = False
         CbOffice2016x64.Checked = False
     End Sub
     Private Sub CbOffice2016x64_CheckedChanged(sender As Object, e As EventArgs) Handles CbOffice2016x64.CheckedChanged
         CalcularTamanoDescarga(824, CbOffice2016x64.Checked)
-        cbConfiguraWord2016x64.CheckState = CbOffice2016x64.CheckState
-        cbOffice2016.Checked = False
-        cbOffice2016odt.Checked = False
+        CbConfiguraWord2016x64.CheckState = CbOffice2016x64.CheckState
+        CbOffice2016.Checked = False
+        CbOffice2016odt.Checked = False
     End Sub
 
 #End Region
@@ -1319,10 +1319,10 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("Software ANCERT no descargado. Se omite su instalación.")
             End If
         End If
-        jNemo()
+        JNemo()
     End Sub
 
-    Private Sub jNemo()
+    Private Sub JNemo()
         If Directory.Exists("c:\Program Files (x86)\Java") = False Then
             'Descarga de JAVA 1.8.171
             Directory.CreateDirectory(RutaDescargas & "Software")
@@ -1336,7 +1336,7 @@ Public Class FrmInstaladorKubo
                 Dim instalajava As Process = Process.Start(pinstalajava)
                 instalajava.WaitForExit()
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
-                btJava.BackColor = Color.PaleGreen
+                BtJava.BackColor = Color.PaleGreen
                 RegistroInstalacion("Instalada última versión de JAVA para jNemo.")
             Catch ex As Exception
                 MessageBox.Show("No se pudo instalar JAVA. Instálalo manualmente al terminar. Puedes usar este mismo Instalador.", "Error Java", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -1459,18 +1459,18 @@ Public Class FrmInstaladorKubo
 
         tlpOffice2016odt.ToolTipIcon = ToolTipIcon.Info
         tlpOffice2016odt.ToolTipTitle = "Office 2016 DESATENDIDO"
-        tlpOffice2016odt.SetToolTip(cbOffice2016odt, "Descarga el paquete Office 2016 con instalación automatizada.")
+        tlpOffice2016odt.SetToolTip(CbOffice2016odt, "Descarga el paquete Office 2016 con instalación automatizada.")
         tlpOffice2016odt.IsBalloon = True
 
         tlpOffice2016.ToolTipTitle = "Paquete Office 2016 PERSONALIZABLE"
-        tlpOffice2016.SetToolTip(cbOffice2016, "Descarga el paquete Office con instalación personalizable")
+        tlpOffice2016.SetToolTip(CbOffice2016, "Descarga el paquete Office con instalación personalizable")
 
         TlpOffice2016x64.ToolTipTitle = "Paquete Office 2016 x64 DESATENTIDO"
         TlpOffice2016x64.SetToolTip(CbOffice2016x64, "Descarga el paquete Office 2016 x64. Versiones Beta Nexus.")
 
         tlpTerceros.ToolTipIcon = ToolTipIcon.Info
         tlpTerceros.ToolTipTitle = "Software recomendado"
-        tlpTerceros.SetToolTip(cbTerceros, "Incluye Adobe Reader DC, FileZilla, Google Chrome y Notepad++")
+        tlpTerceros.SetToolTip(CbTerceros, "Incluye Adobe Reader DC, FileZilla, Google Chrome y Notepad++")
         tlpTerceros.IsBalloon = True
 
         tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones Notin y Word 2016 + Kubo"
@@ -1483,7 +1483,7 @@ Public Class FrmInstaladorKubo
         'tlpAncert.SetToolTip(lblAncert, "Acceder a url soporte.notariado.org")
 
         tlpOffice2003.ToolTipTitle = "Office 2003 DESATENDIDO"
-        tlpOffice2003.SetToolTip(cbOffice2003, "Instalación automatizada ACCESS y librerías Outlook.")
+        tlpOffice2003.SetToolTip(CbOffice2003, "Instalación automatizada ACCESS y librerías Outlook.")
 
         TlpRutaDescargas.ToolTipTitle = "Cambiar Carpeta Descargas"
         TlpRutaDescargas.SetToolTip(btDirDescargas, "Permite seleccionar una carpeta diferente para realizar las descargas.")
@@ -1492,7 +1492,7 @@ Public Class FrmInstaladorKubo
         TlpComenzarDescargas.SetToolTip(btDescargar, "Se descargarán/resumirán los paquetes seleccionados.")
 
         TlpJava.ToolTipTitle = "Instalación Desatendida JAVA 8"
-        TlpJava.SetToolTip(btJava, "Instalación silenciosa de Java. No requiere intervención del usuario")
+        TlpJava.SetToolTip(BtJava, "Instalación silenciosa de Java. No requiere intervención del usuario")
 
         TlpUac.SetToolTip(BtUac, "Exclusiones Windows Defender y Control Cuentas Usuario")
 
@@ -1512,7 +1512,7 @@ Public Class FrmInstaladorKubo
         TlpReconectarF.SetToolTip(BtReconectar, "Chequea la existencia Unidad F. Usa esto si la conectaste una vez arrancado el Instalador.")
 
         TlpDirectivas.ToolTipTitle = "Directivas de Windows"
-        TlpDirectivas.SetToolTip(btDirectivas, "Aplica las Directivas de Windows. Para más información lee la hoja de Requisitos.")
+        TlpDirectivas.SetToolTip(BtDirectivas, "Aplica las Directivas de Windows. Para más información lee la hoja de Requisitos.")
 
         TlpExplorerDescargas.ToolTipTitle = "Explorar carpeta Descargas"
         TlpExplorerDescargas.SetToolTip(BtExplorarRutas, "Muestra en el explorador de archivos la ruta " & RutaDescargas)
@@ -1521,7 +1521,7 @@ Public Class FrmInstaladorKubo
         TlpSistema.SetToolTip(GroupBox3, "Si alguna característica puede no cumplir los Requisitos se mostrará de color rojo.")
 
         TlpFramework.ToolTipTitle = "Instalación Framework 3.5"
-        TlpFramework.SetToolTip(btFramework, "Se procederá a la instalación del Paquete Framework 3.5 necesario para .Net. Se recomienda Reinciar tras su instalación.")
+        TlpFramework.SetToolTip(BtFramework, "Se procederá a la instalación del Paquete Framework 3.5 necesario para .Net. Se recomienda Reinciar tras su instalación.")
 
         TlpTuemail.ToolTipTitle = "Indica tu email para recibir un aviso"
         TlpTuemail.SetToolTip(CBoxEmail, "Se te remitirá un email de confirmación cuando finalicen las descargas seleccionadas.")
@@ -1562,11 +1562,14 @@ Public Class FrmInstaladorKubo
 
         TlpLogMigrador.ToolTipTitle = "Log MigradorNotinSQL"
         TlpLogMigrador.SetToolTip(TbMigradorLog, "Haz Clic para Visualizar Log completo.")
+
+        TlpConsultaDatosSQL.ToolTipTitle = "Consulta sql Reducir DATOS LDF"
+        TlpConsultaDatosSQL.SetToolTip(BtReducirDatos, "Copia la sentencia sql al portapapeles. Después dirígete al SQL Manager para ejecutarla.")
     End Sub
 #End Region
 
 #Region "ODBC"
-    Private Sub BtOdbc_Click(sender As Object, e As EventArgs) Handles btOdbc.Click
+    Private Sub BtOdbc_Click(sender As Object, e As EventArgs) Handles BtOdbc.Click
         If UnidadF() = True Then
             lbUnidadF.Text = "CONECTADA"
             lbUnidadF.ForeColor = Color.Green
@@ -1585,7 +1588,7 @@ Public Class FrmInstaladorKubo
 
                 RegistroInstalacion("ODBC NotinSQL Configurado hacia " & nombre_servidor & ".")
 
-                btOdbc.BackColor = Color.PaleGreen
+                BtOdbc.BackColor = Color.PaleGreen
 
                 MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor, "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'Process.Start("C:\Windows\SysWoW64\odbcad32.exe")
@@ -1602,7 +1605,7 @@ Public Class FrmInstaladorKubo
                 RunAsAdmin(RutaDescargas & "odbc32.bat")
                 'RunAsAdmin(RutaDescargas & "BDDatosNotinSQL.bat")
 
-                btOdbc.BackColor = Color.PaleGreen
+                BtOdbc.BackColor = Color.PaleGreen
                 RegistroInstalacion("ODBC NotinSQL Configurado hacia " & nombre_servidor & ".")
 
                 MessageBox.Show("NotinSQL configurado hacia: " & nombre_servidor & ". Revisa ODBC creado.", "ODBC NotinSQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1617,7 +1620,7 @@ Public Class FrmInstaladorKubo
         Else
             MessageBox.Show("No se puede conectar con el Servidor (F:)", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error)
             cIniArray.IniWrite(instaladorkuboini, "ODBC", "NOTINSQL", "0")
-            btOdbc.BackColor = Color.LightSalmon
+            BtOdbc.BackColor = Color.LightSalmon
             RegistroInstalacion("ERROR: ODBC NotinSQL NO Configurado. No se pudo leer el fichero NNotin.ini. ¿Unidad F desconectada?")
         End If
 
@@ -1636,7 +1639,7 @@ Public Class FrmInstaladorKubo
 
     End Sub
 
-    Private Sub BtFramework_Click(sender As Object, e As EventArgs) Handles btFramework.Click
+    Private Sub BtFramework_Click(sender As Object, e As EventArgs) Handles BtFramework.Click
         Dim framework As String = "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All"
         If File.Exists(RutaDescargas & "Requisitos\Framework35.bat") Then
             File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
@@ -1650,13 +1653,13 @@ Public Class FrmInstaladorKubo
         RunAsAdmin(RutaDescargas & "Requisitos\Framework35.bat")
 
         cIniArray.IniWrite(instaladorkuboini, "REQUISITOS", "FRAMEWORK35", "1")
-        btFramework.BackColor = Color.PaleGreen
+        BtFramework.BackColor = Color.PaleGreen
         RegistroInstalacion("Instalado FrameWord 3.5 en el Sistema.")
 
         ' Shell("cmd.exe /c " & """" & "DISM /Online /Enable-Feature /FeatureName:NetFx3 /All" & """", AppWinStyle.NormalFocus, True)
     End Sub
 
-    Private Sub BtDirectivas_Click(sender As Object, e As EventArgs) Handles btDirectivas.Click
+    Private Sub BtDirectivas_Click(sender As Object, e As EventArgs) Handles BtDirectivas.Click
         Directory.CreateDirectory(RutaDescargas & "Directivas")
 
         PbInstalaciones.Visible = True
@@ -1715,20 +1718,20 @@ Public Class FrmInstaladorKubo
             If File.Exists("C:\Windows\SysWOW64\gpupdate.exe") Then
                 RegistroInstalacion("Aplicando Directivas usando gpupdate 64bits.")
                 Process.Start("C:\Windows\SysWOW64\gpupdate.exe", "/force /boot")
-                btDirectivas.BackColor = Color.PaleGreen
+                BtDirectivas.BackColor = Color.PaleGreen
             ElseIf File.Exists("C:\Windows\System32\gpupdate.exe") Then
                 RegistroInstalacion("Aplicando Directivas usando gpupdate 32bits.")
                 Process.Start("C:\Windows\System32\gpupdate.exe", "/force /boot")
-                btDirectivas.BackColor = Color.PaleGreen
+                BtDirectivas.BackColor = Color.PaleGreen
             Else
                 RegistroInstalacion("ADVERTENCIA: No pude encontrar gpupdate.exe. Fuerzo reinicio a través de shutdown.")
                 Process.Start("shutdown", "/r /f /t 0")
-                btDirectivas.BackColor = Color.PaleGreen
+                BtDirectivas.BackColor = Color.PaleGreen
             End If
 
         ElseIf reiniciodirectivas = DialogResult.No Then
             RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Directivas.")
-            btDirectivas.BackColor = Color.LightSalmon
+            BtDirectivas.BackColor = Color.LightSalmon
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "DIRECTIVAS", "1")
         End If
 
@@ -1736,12 +1739,12 @@ Public Class FrmInstaladorKubo
     End Sub
 
 
-    Private Sub BtExcepJava_Click(sender As Object, e As EventArgs) Handles btExcepJava.Click
+    Private Sub BtExcepJava_Click(sender As Object, e As EventArgs) Handles BtExcepJava.Click
         My.Computer.Network.DownloadFile(PuestoNotin & "Utiles\ExcepcionesJava.bat", RutaDescargas & "Utiles\ExcepcionesJava.bat", "juanjo", "Palomeras24", False, 20000, True)
 
         RunAsAdmin(RutaDescargas & "Utiles\ExcepcionesJava.bat")
         cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "EXCEPJAVA", "1")
-        btExcepJava.BackColor = Color.PaleGreen
+        BtExcepJava.BackColor = Color.PaleGreen
         RegistroInstalacion("Añadidas excepciones JAVA.")
     End Sub
 
@@ -1749,7 +1752,7 @@ Public Class FrmInstaladorKubo
         System.Diagnostics.Process.Start("http://instalador.notin.net/publish.htm")
     End Sub
 
-    Private Sub BtJava_Click(sender As Object, e As EventArgs) Handles btJava.Click
+    Private Sub BtJava_Click(sender As Object, e As EventArgs) Handles BtJava.Click
         obtenerwget()
 
         'Descarga de JAVA 1.8.171
@@ -1763,7 +1766,7 @@ Public Class FrmInstaladorKubo
         instalajava.Start() 'iniciar el proceso
 
         cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
-        btJava.BackColor = Color.PaleGreen
+        BtJava.BackColor = Color.PaleGreen
         RegistroInstalacion("Instalada última versión de JAVA.")
         MessageBox.Show("JAVA se encuentra instalándose en segundo plano. Acabará en pocos minutos.", "Instalación desatendida JAVA", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
@@ -2236,10 +2239,10 @@ Public Class FrmInstaladorKubo
         Else
             RegistroInstalacion("Software ANCERT. No se descargó ningún Paquete. Se suprime su instalación.")
         End If
-        jNemo2003()
+        JNemo2003()
     End Sub
 
-    Private Sub jNemo2003()
+    Private Sub JNemo2003()
         'TODO añadir comprobación 32bits
         If Directory.Exists("c:\Program Files (x86)\Java") = False Then
             'Descarga de JAVA 1.8.171
@@ -2254,7 +2257,7 @@ Public Class FrmInstaladorKubo
                 Dim instalajava As Process = Process.Start(pinstalajava)
                 instalajava.WaitForExit()
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
-                btJava.BackColor = Color.PaleGreen
+                BtJava.BackColor = Color.PaleGreen
                 RegistroInstalacion("Instalada última versión de JAVA para jNemo.")
             Catch ex As Exception
                 MessageBox.Show("No se pudo instalar JAVA. Instálalo manualmente al terminar. Puedes usar este mismo Instalador.", "Error Java", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2278,10 +2281,10 @@ Public Class FrmInstaladorKubo
         Else
             RegistroInstalacion("ADVERTENCIA: Se encontró el ejecutable jNemo. Se omite su instalación.")
         End If
-        ft2003()
+        FT2003()
     End Sub
 
-    Private Sub ft2003()
+    Private Sub FT2003()
         Shell("cmd.exe /c " & "C:\Notawin.Net\FT.exe /actualizaciones", AppWinStyle.Hide, False)
         Threading.Thread.Sleep(10000)
         RegistroInstalacion("Instalados Paquetes desde FT /Actualizaciones")
@@ -2635,51 +2638,51 @@ Public Class FrmInstaladorKubo
     End Sub
 
     'Los checkbox de Office2003/16 están arriba ya que los usé para asociarlos a su configuración
-    Private Sub CbConfiguraNotin_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraNotin.CheckedChanged
-        CalcularTamanoDescarga(1, cbConfiguraNotin.Checked)
+    Private Sub CbConfiguraNotin_CheckedChanged(sender As Object, e As EventArgs) Handles CbConfiguraNotin.CheckedChanged
+        CalcularTamanoDescarga(1, CbConfiguraNotin.Checked)
     End Sub
 
-    Private Sub CbConfiguraWord2016_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraWord2016.CheckedChanged
-        CalcularTamanoDescarga(1, cbConfiguraWord2016.Checked)
+    Private Sub CbConfiguraWord2016_CheckedChanged(sender As Object, e As EventArgs) Handles CbConfiguraWord2016.CheckedChanged
+        CalcularTamanoDescarga(1, CbConfiguraWord2016.Checked)
     End Sub
 
-    Private Sub cbNemo_CheckedChanged(sender As Object, e As EventArgs) Handles cbNemo.CheckedChanged
-        CalcularTamanoDescarga(12, cbNemo.Checked)
+    Private Sub CbNemo_CheckedChanged(sender As Object, e As EventArgs) Handles CbNemo.CheckedChanged
+        CalcularTamanoDescarga(12, CbNemo.Checked)
     End Sub
 
-    Private Sub cbRequisitos_CheckedChanged(sender As Object, e As EventArgs) Handles cbRequisitos.CheckedChanged
-        CalcularTamanoDescarga(45.5, cbRequisitos.Checked)
+    Private Sub CbRequisitos_CheckedChanged(sender As Object, e As EventArgs) Handles CbRequisitos.CheckedChanged
+        CalcularTamanoDescarga(45.5, CbRequisitos.Checked)
     End Sub
 
-    Private Sub cbPuestoNotin_CheckedChanged(sender As Object, e As EventArgs) Handles cbPuestoNotin.CheckedChanged
-        CalcularTamanoDescarga(16.2, cbPuestoNotin.Checked)
+    Private Sub CbPuestoNotin_CheckedChanged(sender As Object, e As EventArgs) Handles CbPuestoNotin.CheckedChanged
+        CalcularTamanoDescarga(16.2, CbPuestoNotin.Checked)
     End Sub
 
-    Private Sub cbSferen_CheckedChanged(sender As Object, e As EventArgs) Handles cbSferen.CheckedChanged
-        CalcularTamanoDescarga(80.1, cbSferen.Checked)
+    Private Sub CbSferen_CheckedChanged(sender As Object, e As EventArgs) Handles CbSferen.CheckedChanged
+        CalcularTamanoDescarga(80.1, CbSferen.Checked)
     End Sub
 
-    Private Sub cbPasarelaSigno_CheckedChanged(sender As Object, e As EventArgs) Handles cbPasarelaSigno.CheckedChanged
-        CalcularTamanoDescarga(1, cbPasarelaSigno.Checked)
+    Private Sub CbPasarelaSigno_CheckedChanged(sender As Object, e As EventArgs) Handles CbPasarelaSigno.CheckedChanged
+        CalcularTamanoDescarga(1, CbPasarelaSigno.Checked)
     End Sub
     Private Sub CbFineReader_CheckedChanged(sender As Object, e As EventArgs) Handles CbFineReader.CheckedChanged
         CalcularTamanoDescarga(387, CbFineReader.Checked)
     End Sub
 
-    Private Sub cbTerceros_CheckedChanged(sender As Object, e As EventArgs) Handles cbTerceros.CheckedChanged
-        CalcularTamanoDescarga(94.9, cbTerceros.Checked)
+    Private Sub CbTerceros_CheckedChanged(sender As Object, e As EventArgs) Handles CbTerceros.CheckedChanged
+        CalcularTamanoDescarga(94.9, CbTerceros.Checked)
     End Sub
 
     Private Sub CbPaquetesFT_CheckedChanged(sender As Object, e As EventArgs) Handles CbPaquetesFT.CheckedChanged
         CalcularTamanoDescarga(1.94, CbPaquetesFT.Checked)
     End Sub
 
-    Private Sub CbConfiguraWord2016x64_CheckedChanged(sender As Object, e As EventArgs) Handles cbConfiguraWord2016x64.CheckedChanged
-        CalcularTamanoDescarga(1, cbConfiguraWord2016x64.Checked)
+    Private Sub CbConfiguraWord2016x64_CheckedChanged(sender As Object, e As EventArgs) Handles CbConfiguraWord2016x64.CheckedChanged
+        CalcularTamanoDescarga(1, CbConfiguraWord2016x64.Checked)
     End Sub
 
 #Region "ENVIO EMAIL"
-    Private Function validaremail()
+    Private Function Validaremail()
         If CBoxEmail.Text = Nothing Then
             Return False
         ElseIf System.Text.RegularExpressions.Regex.IsMatch(CBoxEmail.Text, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$") Then
@@ -2692,7 +2695,7 @@ Public Class FrmInstaladorKubo
 
     Public Sub EnvioMail()
         'TODO enviar email cuando termine la instalación con el log e info sistema
-        If validaremail() = True Then
+        If Validaremail() = True Then
 
             'Dim A As String = Tbtucorreo.Text
             Dim a As String = CBoxEmail.Text
@@ -2738,7 +2741,7 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub CBoxEmail_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBoxEmail.LostFocus
-        If validaremail() = True Then
+        If Validaremail() = True Then
             Dim destinatario As String = CBoxEmail.Text
             cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", destinatario)
             RegistroInstalacion("EMAIL: Dirección de correo establecida a " & destinatario)
@@ -3336,10 +3339,10 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("Software ANCERT no descargado. Se omite su instalación.")
             End If
         End If
-        jNemox64()
+        JNemox64()
     End Sub
 
-    Private Sub jNemox64()
+    Private Sub JNemox64()
         'TODO añadir comprobación 32bits aqui y en Office 2003
         If Directory.Exists("c:\Program Files (x86)\Java") = False Then
             'Descarga de JAVA 1.8.171
@@ -3354,7 +3357,7 @@ Public Class FrmInstaladorKubo
                 Dim instalajava As Process = Process.Start(pinstalajava)
                 instalajava.WaitForExit()
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "JAVA8", "1")
-                btJava.BackColor = Color.PaleGreen
+                BtJava.BackColor = Color.PaleGreen
                 RegistroInstalacion("Instalada última versión de JAVA para jNemo.")
             Catch ex As Exception
                 MessageBox.Show("No se pudo instalar JAVA. Instálalo manualmente al terminar. Puedes usar este mismo Instalador.", "Error Java", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -3522,6 +3525,8 @@ Public Class FrmInstaladorKubo
                         BtMigradorSQL.BackColor = Color.PaleGreen
                     ElseIf linea.Contains("finalizado") Then
                         BtMigradorSQL.BackColor = Color.LightSalmon
+                    ElseIf linea.Contains("horaria 4 - 6") Then
+                        BtMigradorSQL.BackColor = Color.Khaki
                     Else
                         BtMigradorSQL.BackColor = SystemColors.Control
                     End If

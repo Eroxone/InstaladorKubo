@@ -35,7 +35,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>253</ApplicationRevision>
+    <ApplicationRevision>255</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -138,7 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="CapturarVentanas.vb" />
     <Compile Include="Chocolatey.vb" />
     <Compile Include="ConfigurarISL.Designer.vb">
       <DependentUpon>ConfigurarISL.vb</DependentUpon>
