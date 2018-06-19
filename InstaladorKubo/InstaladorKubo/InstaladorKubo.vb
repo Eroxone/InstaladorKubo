@@ -29,6 +29,7 @@ Public Class FrmInstaladorKubo
         Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
         File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", vbCrLf & vbCrLf)
         RegistroInstalacion("=== NUEVA EJECUCION DEL INSTALADOR ===")
+        RegistroInstalacion("FECHA:" & DateTime.Now.Date)
 
         SistemaOperativo()
         lbRuta.Text = GetPathTemp()
