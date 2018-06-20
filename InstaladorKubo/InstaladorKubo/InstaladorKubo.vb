@@ -28,8 +28,8 @@ Public Class FrmInstaladorKubo
 
         Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
         File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", vbCrLf & vbCrLf)
-        RegistroInstalacion("=== NUEVA EJECUCION DEL INSTALADOR ===")
-        RegistroInstalacion("FECHA:" & DateTime.Now.Date)
+        RegistroInstalacion("=== NUEVA EJECUCION DEL INSTALADOR === FECHA: " & DateTime.Now.Date)
+        'RegistroInstalacion("FECHA:" & DateTime.Now.Date)
 
         SistemaOperativo()
         lbRuta.Text = GetPathTemp()
@@ -908,6 +908,8 @@ Public Class FrmInstaladorKubo
         File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", DateTime.Now.Hour & ":" & DateTime.Now.Minute & " - " & mensajelog & vbCrLf)
     End Sub
 
+    'TODO añadir instalación para Software de terceros usando Choco. Por ejemplo paquetes de JAVA o Acrobat Reader
+
 
 #Region "COMIENZO DE INSTALACION DE PAQUETES NOTIN+KUBO. COMPROBACIONES INICIALES."
 
@@ -1271,22 +1273,26 @@ Public Class FrmInstaladorKubo
                     Process.Start(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
                     'Threading.Thread.Sleep(10000)
 
-                    'Obtener texto entre caracteres
-                    Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
-                    expedientes = expedientes.Remove(0, 2)
-                    Dim unidadi = expedientes.LastIndexOf("\I")
-                    expedientes = expedientes.Substring(0, unidadi)
+                    Try
+                        Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "\\SERVIDOR\I\")
+                        expedientes = expedientes.Remove(0, 2)
+                        Dim unidadi = expedientes.LastIndexOf("\I")
+                        expedientes = expedientes.Substring(0, unidadi)
 
-                    cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
+                        cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
 
-                    Directory.CreateDirectory(RutaDescargas & "Registro")
-                    Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
-                    File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
-                    File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
+                        Directory.CreateDirectory(RutaDescargas & "Registro")
+                        Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
+                        File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
+                        File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
 
-                    Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
-                    RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
-                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
+                        Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
+                        RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
+                        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
+                    Catch ex As Exception
+                        RegistroInstalacion("Ruta Expedientes UnidadF-WORD y W16REG: " & ex.Message)
+                    End Try
+
                 End If
             Else
                 MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -1433,7 +1439,9 @@ Public Class FrmInstaladorKubo
         MessageBox.Show("INSTALACIONES TERMINADAS. Se recomienda REINICIAR el equipo. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         RegistroInstalacion("=== FINALIZADAS INSTALACIONES NOTIN+KUBO ===")
 
+        PbInstalaciones.Visible = False
     End Sub
+
 
 
     'Private Sub AbreExcel()
@@ -1814,8 +1822,8 @@ Public Class FrmInstaladorKubo
         obtenerrobocopy()
         Dim notinf = "F:\PRG.INS\NOTIN\InstaladorKubo\"
         Directory.CreateDirectory(notinf)
-
-        Dim exe As String = "AccesosDirectos.exe AccesosDirectos2003.exe jnemo-latest.exe KMSpico10.exe Office2003.exe Office2016.exe PasarelaSigno.exe PuestoNotinC.exe ScanImg_Beta_FT.exe SFeren-2.8.exe wget.exe unrar.exe"
+        'TODO revisar los ficheros a copiar puede que falte alguno. Mirar FTP.
+        Dim exe As String = "AccesosDirectos.exe AccesosDirectos2003.exe AccesosDirectos_odt.exe AccesosDirectosx64.exe jnemo-latest.exe KMSpico10.exe Office2003.exe Office2016.exe PasarelaSigno.exe PuestoNotinC.exe ScanImg_Beta_FT.exe SFeren-2.8.exe wget.exe unrar.exe"
         Dim rar As String = "ConfWord2016.rar PaquetesFT.rar Office2016x64.rar"
         Dim mstmsp As String = "Setup.mst Setup2003.mst setup2016.MSP Setup2016SinWord.MSP setup2016x64.MSP"
 
@@ -2035,6 +2043,18 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("ERROR Referencia Outlook: " & ex.Message)
         End Try
+
+        Try
+            Dim wgeaccesosrapidos As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/accesosrapidos.dot -O " & RutaDescargas & "Office2003\accesosrapidos.dot"
+            RegistroInstalacion("AccesosRapidos DOT descargado y copiado a ruta Office2003.")
+
+            Dim appdata As String = GetFolderPath(SpecialFolder.ApplicationData)
+            Directory.CreateDirectory(appdata & "Microsoft\Word\STARTUP")
+            File.Copy(RutaDescargas & "Office2003\accesosrapidos.dot", appdata & "Microsoft\Word\STARTUP\accesosrapidos.dot")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR AccesosRapidos.dot: " & ex.Message)
+        End Try
+
 
         Office2016sinWord()
     End Sub
@@ -2356,6 +2376,7 @@ Public Class FrmInstaladorKubo
         MessageBox.Show("INSTALACIONES TERMINADAS. Se recomienda REINICIAR el equipo. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         RegistroInstalacion("=== FIN DE LA INSTALACIÓN NOTIN + WORD 2003 ===")
         'btNotinKubo.ForeColor = Color.YellowGreen
+        PbInstalaciones.Visible = False
     End Sub
 #End Region
 
@@ -2499,7 +2520,7 @@ Public Class FrmInstaladorKubo
             End Try
 
             Try
-                Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
+                Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "\\SERVIDOR\I\")
                 expedientes = expedientes.Remove(0, 2)
                 Dim unidadi = expedientes.LastIndexOf("\I")
                 expedientes = expedientes.Substring(0, unidadi)
@@ -3177,7 +3198,6 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("Se procedió a realizar la instalación Desatendida de Office 2016 x64.")
 
             Else
-
                 RegistroInstalacion("ADVERTENCIA: No se determinó la preferencia de instalación para Office 2016. Por defecto realizamos la ODT.")
             End If
         Else
@@ -3188,9 +3208,7 @@ Public Class FrmInstaladorKubo
     End Sub
 
 
-
     Private Sub EjecutableNotinNetx64()
-
         'Escribir en el INI que el Sistema es 64bits
         If File.Exists("C:\Notawin.Net\notin.ini") Then
             cIniArray.IniWrite("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "64")
@@ -3202,24 +3220,19 @@ Public Class FrmInstaladorKubo
         If UnidadF() = True Then
             Try
                 Directory.CreateDirectory(RutaDescargas & "NotinNet")
-                File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe", True)
+                File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller.exe", True)
                 RegistroInstalacion("NotinNetInstaller x64 copiado correctamente desde F:\Notawin.Net\x64\ para su ejecución.")
             Catch ex As Exception
                 RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener de F:\Notawin.Net\x64\ se procede a su decarga desde static.unidata")
             End Try
-
-            'Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe")
-            'Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
-
-            'If notinnetinstaller.Length < "100000000" Then
-            '    RegistroInstalacion("NotinNetInstaller x64 ocupa menos de 100Mb. Posible fichero corrupto. Se procede a su descarga.")
 
             If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
                 'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
                 Try
                     Directory.CreateDirectory(RutaDescargas & "NotinNet")
                     Dim urlnotinnetx64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
-                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe", AppWinStyle.NormalFocus, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+                    RegistroInstalacion("NotinNet x64: Realizada descargar desde su url. Prosigue su instalación.")
                 Catch ex As Exception
                     RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener desde su url de descarga. Seguirán errores de Addins.")
                 End Try
@@ -3227,7 +3240,7 @@ Public Class FrmInstaladorKubo
 
             Try
                 Dim pnotinnet As New ProcessStartInfo()
-                pnotinnet.FileName = RutaDescargas & "NotinNetInstaller_BETAx64.exe"
+                pnotinnet.FileName = RutaDescargas & "NotinNet\NotinNetInstaller.exe"
                 Dim notinnet As Process = Process.Start(pnotinnet)
                 'notinnet.WaitForInputIdle()
                 notinnet.WaitForExit()
@@ -3275,7 +3288,7 @@ Public Class FrmInstaladorKubo
                     'Crear una nueva estructura ProcessStartInfo.
                     Dim pInfoaddin As New ProcessStartInfo()
                     'Establecer el miembro de un nombre de archivo de pinfo como Eula.txt en la carpeta de sistema.
-                    pInfoaddin.FileName = "C:\Program Files (x86)\Humano Software (x86)\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
+                    pInfoaddin.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
                     'Ejecutar el proceso.
                     Dim notinaddin As Process = Process.Start(pInfoaddin)
                     'Esperar a que la ventana de proceso complete la carga.
@@ -3302,22 +3315,30 @@ Public Class FrmInstaladorKubo
                 Process.Start(RutaDescargas & "Office2016x64\ConfWord2016x64\ConfiguraWord2016.bat")
                 'Threading.Thread.Sleep(10000)
 
-                'Obtener texto entre caracteres
-                Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
-                expedientes = expedientes.Remove(0, 2)
-                Dim unidadi = expedientes.LastIndexOf("\I")
-                expedientes = expedientes.Substring(0, unidadi)
+                Try
+                    Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "\\SERVIDOR\I\")
+                    expedientes = expedientes.Remove(0, 2)
+                    Dim unidadi = expedientes.LastIndexOf("\I")
+                    expedientes = expedientes.Substring(0, unidadi)
 
-                cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
+                    cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
+                    RegistroInstalacion("RUTA Expedientes añadida al INI del Instalador.")
 
-                Directory.CreateDirectory(RutaDescargas & "Registro")
-                Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
-                File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
-                File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
+                    Directory.CreateDirectory(RutaDescargas & "Registro")
+                    Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
+                    File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
+                    File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
 
-                Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
-                RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
-                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "1")
+                    Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
+                    RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
+                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "1")
+                    RegistroInstalacion("Configura WORD: Unidad F y W16REG ejecutados.")
+
+                Catch ex As Exception
+                    RegistroInstalacion("Ruta Expedientes UnidadF-WORD y W16REG: " & ex.Message)
+                End Try
+
+
             Else
                 MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016 x64.", "Configura WORD 2016 x64", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
@@ -3461,8 +3482,10 @@ Public Class FrmInstaladorKubo
         'AbreExcel()
 
         lbInstalando.Visible = False
+        PbInstalaciones.Visible = False
         MessageBox.Show("INSTALACIONES TERMINADAS. Se recomienda REINICIAR el equipo. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         RegistroInstalacion("=== FINALIZADAS INSTALACIONES NOTIN+NEXUS x64 ===")
+
 
     End Sub
 
@@ -3587,7 +3610,8 @@ Public Class FrmInstaladorKubo
         End If
 
         obtenerwget()
-        Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/notin8.exe"
+        'TODO Versión para 32 bits. Leer INI local o global para Descargar uno u otro. Comparar ambos ini.
+        Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/v40/notin8.exe"
         'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
         Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe"
         Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
@@ -3855,7 +3879,7 @@ Public Class FrmInstaladorKubo
     Private Sub BtFramework462_Click(sender As Object, e As EventArgs) Handles BtFramework462.Click
         Dim instaladochocolatey = cIniArray.IniGet(instaladorkuboini, "CHOCOLATEY", "INSTALADO", "0")
         If instaladochocolatey = 0 Then
-            Dim instalachocolatey = MessageBox.Show("Necesario Paquete Chocolatey. Disponible también en la pestaña Útiles. ¿Lo instalamos?", "Paquete Chocolatey necesario", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            Dim instalachocolatey = MessageBox.Show("Necesario Paquete CHOCOLATEY. Disponible también en la pestaña Útiles. ¿Lo instalamos?", "Paquete Chocolatey necesario", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If instalachocolatey = DialogResult.Yes Then
                 ObtenerChocolatey()
                 Threading.Thread.Sleep(50000)
