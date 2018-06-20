@@ -77,6 +77,9 @@ Partial Class FrmInstaladorKubo
         Me.BtExcepJava = New System.Windows.Forms.Button()
         Me.BtJava = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
+        Me.BtNetBetax64F462 = New System.Windows.Forms.Button()
+        Me.BtNetBetaF462 = New System.Windows.Forms.Button()
+        Me.LbSitienesF462 = New System.Windows.Forms.Label()
         Me.BtNotin8exe = New System.Windows.Forms.Button()
         Me.BtNotinNetF = New System.Windows.Forms.Button()
         Me.BtEstableNet = New System.Windows.Forms.Button()
@@ -839,6 +842,9 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.BtNetBetax64F462)
+        Me.TabPage11.Controls.Add(Me.BtNetBetaF462)
+        Me.TabPage11.Controls.Add(Me.LbSitienesF462)
         Me.TabPage11.Controls.Add(Me.BtNotin8exe)
         Me.TabPage11.Controls.Add(Me.BtNotinNetF)
         Me.TabPage11.Controls.Add(Me.BtEstableNet)
@@ -852,10 +858,42 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
         '
+        'BtNetBetax64F462
+        '
+        Me.BtNetBetax64F462.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNetBetax64F462.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtNetBetax64F462.Location = New System.Drawing.Point(8, 210)
+        Me.BtNetBetax64F462.Name = "BtNetBetax64F462"
+        Me.BtNetBetax64F462.Size = New System.Drawing.Size(167, 28)
+        Me.BtNetBetax64F462.TabIndex = 45
+        Me.BtNetBetax64F462.Text = "Beta x64 .NET x64"
+        Me.BtNetBetax64F462.UseVisualStyleBackColor = True
+        '
+        'BtNetBetaF462
+        '
+        Me.BtNetBetaF462.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNetBetaF462.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtNetBetaF462.Location = New System.Drawing.Point(8, 170)
+        Me.BtNetBetaF462.Name = "BtNetBetaF462"
+        Me.BtNetBetaF462.Size = New System.Drawing.Size(167, 28)
+        Me.BtNetBetaF462.TabIndex = 44
+        Me.BtNetBetaF462.Text = "Beta .NET x86"
+        Me.BtNetBetaF462.UseVisualStyleBackColor = True
+        '
+        'LbSitienesF462
+        '
+        Me.LbSitienesF462.AutoSize = True
+        Me.LbSitienesF462.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbSitienesF462.Location = New System.Drawing.Point(5, 143)
+        Me.LbSitienesF462.Name = "LbSitienesF462"
+        Me.LbSitienesF462.Size = New System.Drawing.Size(173, 17)
+        Me.LbSitienesF462.TabIndex = 43
+        Me.LbSitienesF462.Text = "Para Framework 4.6.2"
+        '
         'BtNotin8exe
         '
         Me.BtNotin8exe.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotin8exe.Location = New System.Drawing.Point(8, 130)
+        Me.BtNotin8exe.Location = New System.Drawing.Point(195, 90)
         Me.BtNotin8exe.Name = "BtNotin8exe"
         Me.BtNotin8exe.Size = New System.Drawing.Size(167, 28)
         Me.BtNotin8exe.TabIndex = 42
@@ -865,11 +903,11 @@ Partial Class FrmInstaladorKubo
         'BtNotinNetF
         '
         Me.BtNotinNetF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinNetF.Location = New System.Drawing.Point(195, 90)
+        Me.BtNotinNetF.Location = New System.Drawing.Point(195, 50)
         Me.BtNotinNetF.Name = "BtNotinNetF"
         Me.BtNotinNetF.Size = New System.Drawing.Size(167, 28)
         Me.BtNotinNetF.TabIndex = 41
-        Me.BtNotinNetF.Text = "NotinNet -> F: .."
+        Me.BtNotinNetF.Text = "NotinNet a F:\.."
         Me.BtNotinNetF.UseVisualStyleBackColor = True
         Me.BtNotinNetF.Visible = False
         '
@@ -897,7 +935,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbBetaNet.AutoSize = True
         Me.LbBetaNet.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbBetaNet.Location = New System.Drawing.Point(188, 36)
+        Me.LbBetaNet.Location = New System.Drawing.Point(188, 28)
         Me.LbBetaNet.Name = "LbBetaNet"
         Me.LbBetaNet.Size = New System.Drawing.Size(99, 15)
         Me.LbBetaNet.TabIndex = 37
@@ -1874,4 +1912,7 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtReducirDatos As Button
     Friend WithEvents LbReducirDatosSQL As Label
     Friend WithEvents TlpConsultaDatosSQL As ToolTip
+    Friend WithEvents BtNetBetax64F462 As Button
+    Friend WithEvents BtNetBetaF462 As Button
+    Friend WithEvents LbSitienesF462 As Label
 End Class

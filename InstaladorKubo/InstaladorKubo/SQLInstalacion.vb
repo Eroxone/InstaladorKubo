@@ -62,6 +62,14 @@ Public Class FrmSQLInstalacion
 
         TbBDUsuario.Text = cIniArray.IniGet(instaladorkuboini, "SQL2014", "BDUSUARIO", "G:\RESPALDO\F\NOTAWIN.NET")
         TbInstancia.Text = cIniArray.IniGet(instaladorkuboini, "SQL2014", "INSTANCIA", "MSSQLSERVER")
+
+        Dim estadospsql = cIniArray.IniGet(instaladorkuboini, "SQL", "SP2", "2")
+        If estadospsql = 1 Then
+            BtSPSQL.BackColor = Color.PaleGreen
+        ElseIf estadospsql = 0 Then
+            BtSPSQL.BackColor = Color.LightSalmon
+        End If
+
     End Sub
 
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
@@ -75,5 +83,31 @@ Public Class FrmSQLInstalacion
 
     Private Sub BtLogs_Click(sender As Object, e As EventArgs) Handles BtLogs.Click
         Process.Start("explorer.exe", "C:\Program Files\Microsoft SQL Server\120\Setup Bootstrap\Log")
+    End Sub
+
+    Private Sub SPSQL_Click(sender As Object, e As EventArgs) Handles BtSPSQL.Click
+        Dim rutadescargas = cIniArray.IniGet(instaladorkuboini, "RUTAS", "RUTADESCARGAS", "C:\NOTIN\")
+        Try
+            Directory.CreateDirectory(rutadescargas & "SQL")
+            Shell("cmd.exe /c" & rutadescargas & "wget.exe -c -q --show-progress https://download.microsoft.com/download/1/7/6/17672C60-A610-414F-81E4-F50B71C1161A/SQLServer2014SP2-KB3171021-x64-ESN.exe -O " & rutadescargas & "SQL\SQLServer2014SP2-KB3171021-x64-ESN.exe", AppWinStyle.NormalFocus, True)
+        Catch ex As Exception
+            RegistroInstalacion("ERROR descargando SP2 para SQL2014: " & ex.Message)
+        End Try
+
+        Try
+            'TODO instalación desatendida
+            Dim pspsql As New ProcessStartInfo With {
+            .FileName = rutadescargas & "SQL\SQLServer2014SP2-KB3171021-x64-ESN.exe"
+        }
+            Dim spsql As Process = Process.Start(pspsql)
+            spsql.WaitForExit()
+            RegistroInstalacion("PARCHE SP2 para SQL 2014 lanzado correctamente.")
+            cIniArray.IniWrite(instaladorkuboini, "SQL", "SP2", "1")
+            BtSPSQL.BackColor = Color.PaleGreen
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Parche SP2 SQL2014: " & ex.Message)
+            cIniArray.IniWrite(instaladorkuboini, "SQL", "SP2", "0")
+            BtSPSQL.BackColor = Color.LightSalmon
+        End Try
     End Sub
 End Class

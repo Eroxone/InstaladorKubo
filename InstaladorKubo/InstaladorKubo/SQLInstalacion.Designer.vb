@@ -37,13 +37,14 @@ Partial Class FrmSQLInstalacion
         Me.TlpInstalaSQL = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtSalir = New System.Windows.Forms.Button()
         Me.BtLogs = New System.Windows.Forms.Button()
+        Me.BtSPSQL = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'BtDescargarSQL
         '
         Me.BtDescargarSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtDescargarSQL.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.BtDescargarSQL.Location = New System.Drawing.Point(226, 230)
+        Me.BtDescargarSQL.Location = New System.Drawing.Point(160, 230)
         Me.BtDescargarSQL.Name = "BtDescargarSQL"
         Me.BtDescargarSQL.Size = New System.Drawing.Size(153, 50)
         Me.BtDescargarSQL.TabIndex = 3
@@ -176,11 +177,23 @@ Partial Class FrmSQLInstalacion
         Me.BtLogs.Text = "Visualizar Logs SQL"
         Me.BtLogs.UseVisualStyleBackColor = True
         '
+        'BtSPSQL
+        '
+        Me.BtSPSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtSPSQL.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtSPSQL.Location = New System.Drawing.Point(372, 230)
+        Me.BtSPSQL.Name = "BtSPSQL"
+        Me.BtSPSQL.Size = New System.Drawing.Size(103, 50)
+        Me.BtSPSQL.TabIndex = 8
+        Me.BtSPSQL.Text = "Instalar SP2 SQL2014"
+        Me.BtSPSQL.UseVisualStyleBackColor = True
+        '
         'FrmSQLInstalacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(603, 292)
+        Me.Controls.Add(Me.BtSPSQL)
         Me.Controls.Add(Me.BtLogs)
         Me.Controls.Add(Me.BtSalir)
         Me.Controls.Add(Me.TbInstancia)
@@ -217,4 +230,5 @@ Partial Class FrmSQLInstalacion
     Friend WithEvents TlpInstalaSQL As ToolTip
     Friend WithEvents BtSalir As Button
     Friend WithEvents BtLogs As Button
+    Friend WithEvents BtSPSQL As Button
 End Class
