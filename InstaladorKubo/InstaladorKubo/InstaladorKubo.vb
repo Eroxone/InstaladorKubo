@@ -1316,14 +1316,14 @@ Public Class FrmInstaladorKubo
                 End If
                 If File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
                     Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                    Shell("cmd.exe /c " & RutaDescargas & "\PasarelaSigno\setup.exe", AppWinStyle.Hide, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "PasarelaSigno\setup.exe", AppWinStyle.Hide, True)
                     RegistroInstalacion("PASARELA: Lanzado Instalador.")
                 Else
                     RegistroInstalacion("ADVERTENCIA: Instalable PasarelaSigno no encontrado. No se instalará.")
                 End If
-            Else
-                RegistroInstalacion("Software ANCERT no descargado. Se omite su instalación.")
             End If
+        Else
+            RegistroInstalacion("Software ANCERT no descargado. Se omite su instalación.")
         End If
         JNemo()
     End Sub
@@ -2237,14 +2237,14 @@ Public Class FrmInstaladorKubo
                     Shell("cmd.exe /c " & RutaDescargas & "SFeren-2.8.exe", AppWinStyle.Hide, True)
                     RegistroInstalacion("SFEREN: Lanzado Instalador.")
                 Else
-                    RegistroInstalacion("ERROR: Paquete Sferen no encontrado.")
+                    RegistroInstalacion("ADVERTENCIA: Paquete Sferen no encontrado. No se instalará.")
                 End If
                 If File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
                     Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                    Shell("cmd.exe /c " & RutaDescargas & """" & "\PasarelaSigno\setup.exe" & """", AppWinStyle.Hide, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "PasarelaSigno\setup.exe", AppWinStyle.Hide, True)
                     RegistroInstalacion("PASARELA: Lanzado Instalador.")
                 Else
-                    RegistroInstalacion("ERROR: Instalable PasarelaSigno no encontrado.")
+                    RegistroInstalacion("ADVERTENCIA: Instalable PasarelaSigno no encontrado. No se instalará.")
                 End If
             End If
         Else
@@ -3346,14 +3346,14 @@ Public Class FrmInstaladorKubo
                 End If
                 If File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
                     Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                    Shell("cmd.exe /c " & RutaDescargas & "\PasarelaSigno\setup.exe", AppWinStyle.Hide, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "PasarelaSigno\setup.exe", AppWinStyle.Hide, True)
                     RegistroInstalacion("PASARELA: Lanzado Instalador.")
                 Else
                     RegistroInstalacion("ADVERTENCIA: Instalable PasarelaSigno no encontrado. No se instalará.")
                 End If
-            Else
-                RegistroInstalacion("Software ANCERT no descargado. Se omite su instalación.")
             End If
+        Else
+            RegistroInstalacion("Software ANCERT no descargado. Se omite su instalación.")
         End If
         JNemox64()
     End Sub
