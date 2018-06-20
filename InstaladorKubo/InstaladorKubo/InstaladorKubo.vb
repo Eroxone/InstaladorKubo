@@ -969,6 +969,7 @@ Public Class FrmInstaladorKubo
                 MessageBox.Show("Continuamos con el resto de instalaciones.", "Reinicio cancelado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "0")
                 RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Claves de Registro.")
+                lbInstalando.Visible = False
             End If
         ElseIf claveinift = 1 OrElse claveinift = 0 Then
         End If
@@ -1929,6 +1930,7 @@ Public Class FrmInstaladorKubo
                 MessageBox.Show("Continuamos con el resto de instalaciones.", "Reinicio cancelado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "0")
                 RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Claves de Registro.")
+                lbInstalando.Visible = False
             End If
         ElseIf claveinift = 1 OrElse claveinift = 0 Then
         End If
@@ -3019,6 +3021,7 @@ Public Class FrmInstaladorKubo
                 MessageBox.Show("Continuamos con el resto de instalaciones.", "Reinicio cancelado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "REGFT", "0")
                 RegistroInstalacion("ADVERTENCIA: No se ejecutó el Reinicio tras importar las Claves de Registro.")
+                lbInstalando.Visible = False
             End If
         ElseIf claveinift = 1 OrElse claveinift = 0 Then
         End If
