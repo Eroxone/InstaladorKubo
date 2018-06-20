@@ -1166,6 +1166,7 @@ Public Class FrmInstaladorKubo
 
         If UnidadF() = True Then
             Try
+                Directory.CreateDirectory(RutaDescargas & "NotinNet")
                 File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller.exe", True)
                 RegistroInstalacion("NotinNetInstaller copiado correctamente desde F:\Notawin.Net\ para su ejecución.")
             Catch ex As Exception
@@ -1182,6 +1183,7 @@ Public Class FrmInstaladorKubo
             If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
                 'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
                 Try
+                    Directory.CreateDirectory(RutaDescargas & "NotinNet")
                     Dim urlnotinnetestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
                     Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
                 Catch ex As Exception
@@ -2028,7 +2030,7 @@ Public Class FrmInstaladorKubo
             File.WriteAllText(RutaDescargas & "Registro\msoutl.bat", msoutlxcopy & msoutlorigen & msoutldestino)
 
             RunAsAdmin(RutaDescargas & "Registro\msoutl.bat")
-            RegistroInstalacion("Copiada Referencia Outlook.")
+            RegistroInstalacion("Copiada Referencia Outlook para Notin.")
 
         Catch ex As Exception
             RegistroInstalacion("ERROR Referencia Outlook: " & ex.Message)
@@ -2058,7 +2060,7 @@ Public Class FrmInstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Office2003.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
 
             Shell("cmd.exe /C " & RutaDescargas & "Office2003\setup.exe", AppWinStyle.Hide, True)
-            RegistroInstalacion("OFFICE 2003. Ejecutado Setup Personalizdo.")
+            RegistroInstalacion("OFFICE 2003. Ejecutado Setup Personalizado.")
             Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\Office2003SP3-KB923618-FullFile-ESN.exe" & """" & " /q", AppWinStyle.Hide, True)
             Shell("cmd.exe /c " & """" & RutaDescargas & "Office2003\SP3 y Parche Access\MSACCESS.msp" & """" & " /passive", AppWinStyle.Hide, True)
             RegistroInstalacion("Instalados SP3 y Parche Access para Office 2003.")
@@ -2075,7 +2077,7 @@ Public Class FrmInstaladorKubo
             File.WriteAllText(RutaDescargas & "Registro\msoutl.bat", msoutlxcopy & msoutlorigen & msoutldestino)
 
             RunAsAdmin(RutaDescargas & "Registro\msoutl.bat")
-            RegistroInstalacion("Copiada Referencia Outlook.")
+            RegistroInstalacion("Copiada Referencia Outlook para Notin.")
 
         Catch ex As Exception
             RegistroInstalacion("ERROR Referencia Outlook: " & ex.Message)
@@ -2130,7 +2132,7 @@ Public Class FrmInstaladorKubo
                 End If
             End If
         Else
-            RegistroInstalacion("ERROR: No se encontró el Paquete OFFICE2016.EXE. Esto es un problema para realizar su instalación.")
+            RegistroInstalacion("ADVERTENCIA: No se encontró el Paquete OFFICE2016.EXE. Esto es un problema para realizar su instalación.")
         End If
 
         InstalarRequisitosNet2003()
@@ -2174,6 +2176,7 @@ Public Class FrmInstaladorKubo
 
         If UnidadF() = True Then
             Try
+                Directory.CreateDirectory(RutaDescargas & "NotinNet")
                 File.Copy("F:\NOTAWIN.NET\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller.exe", True)
                 RegistroInstalacion("NotinNetInstaller copiado correctamente desde F:\Notawin.Net\ para su ejecución.")
             Catch ex As Exception
@@ -2188,6 +2191,7 @@ Public Class FrmInstaladorKubo
             If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
                 'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
                 Try
+                    Directory.CreateDirectory(RutaDescargas & "NotinNet")
                     Dim urlnotinnetestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
                     Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
                 Catch ex As Exception
@@ -2237,7 +2241,7 @@ Public Class FrmInstaladorKubo
                 End If
                 If File.Exists(RutaDescargas & "PasarelaSigno.exe") Then
                     Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "PasarelaSigno.exe " & RutaDescargas, AppWinStyle.NormalFocus, True)
-                    Shell("cmd.exe /c " & RutaDescargas & """" & "\Pasarela 2.1\setup.exe" & """", AppWinStyle.Hide, True)
+                    Shell("cmd.exe /c " & RutaDescargas & """" & "\PasarelaSigno\setup.exe" & """", AppWinStyle.Hide, True)
                     RegistroInstalacion("PASARELA: Lanzado Instalador.")
                 Else
                     RegistroInstalacion("ERROR: Instalable PasarelaSigno no encontrado.")
@@ -3197,6 +3201,7 @@ Public Class FrmInstaladorKubo
 
         If UnidadF() = True Then
             Try
+                Directory.CreateDirectory(RutaDescargas & "NotinNet")
                 File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe", True)
                 RegistroInstalacion("NotinNetInstaller x64 copiado correctamente desde F:\Notawin.Net\x64\ para su ejecución.")
             Catch ex As Exception
@@ -3212,6 +3217,7 @@ Public Class FrmInstaladorKubo
             If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
                 'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
                 Try
+                    Directory.CreateDirectory(RutaDescargas & "NotinNet")
                     Dim urlnotinnetx64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
                     Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller_BETAx64.exe", AppWinStyle.NormalFocus, True)
                 Catch ex As Exception
