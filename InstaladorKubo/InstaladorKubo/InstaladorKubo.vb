@@ -2386,7 +2386,7 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BtConfiguraWord2016_Click(sender As Object, e As EventArgs) Handles BtConfiguraWord2016.Click
-        'TODO Preparar Configurador para Versión de 64bits
+        'TODO Añadir mas registros al LOG
         'If File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE") Then
         '    MessageBox.Show("Detectada Instalación Office 2016 x64. Configurador aún no preparado. En breve se publicará la actualización para ello.", "Configurador 64bits no operativo", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         '    RegistroInstalacion("ADVERTENCIA: Intento de Configurar Word2016 x64 desde la Utilidad. Aún no implementado.")
@@ -2399,18 +2399,23 @@ Public Class FrmInstaladorKubo
 
         If UnidadF() = True Then
             'TODO obtener nombre usuario para clave registro
+            RegistroInstalacion("CONF. WORD: Comenzamos la Configuración de Word 2016. Siguen resto de acciones.")
             Dim notindesktop As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
             If notindesktop = False Then
+                RegistroInstalacion("")
                 obtenerrobocopy()
-                Try
-                    Directory.CreateDirectory(RutaDescargas & "NotinNet")
-                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & "F:\Notawin.Net\NotinNetInstaller.exe " & RutaDescargas & "NotinNet\NotinNetInstaller.exe /R:2 /W:5", AppWinStyle.NormalFocus, True)
-                    'File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNetinstaller.exe", True)
-                Catch ex As Exception
-                    'MessageBox.Show("No se encontró el componente NotinNet instalado. No se ha podido acceder al ejecutable en F:\Notawin.Net para su instalación. Se procede a su Descarga.", "Error NotinNetInstaller no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    RegistroInstalacion("ERROR copiando NotinNetInstaller.exe desde F usando Robocopy. Procedemos a su descarga.")
-                End Try
 
+                Dim notinnet64 = cIniArray.IniGet("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "32")
+                If notinnet64 = 32 Then
+                    Try
+                        Directory.CreateDirectory(RutaDescargas & "NotinNet")
+                        Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & "F:\Notawin.Net\NotinNetInstaller.exe " & RutaDescargas & "NotinNet\NotinNetInstaller.exe /R:2 /W:5", AppWinStyle.NormalFocus, True)
+                        'File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNetinstaller.exe", True)
+                    Catch ex As Exception
+                        'MessageBox.Show("No se encontró el componente NotinNet instalado. No se ha podido acceder al ejecutable en F:\Notawin.Net para su instalación. Se procede a su Descarga.", "Error NotinNetInstaller no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        RegistroInstalacion("ERROR copiando NotinNetInstaller.exe desde F usando Robocopy. Procedemos a su descarga.")
+                    End Try
+                End If
 
                 If File.Exists("C:\Program Files\Microsoft Office (x86)\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE") Then
                     If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
@@ -2538,7 +2543,7 @@ Public Class FrmInstaladorKubo
                 'Ejecutar el proceso.
                 Dim notinaddin As Process = Process.Start(pInfoaddin)
                 'Esperar a que la ventana de proceso complete la carga.
-                notinaddin.WaitForInputIdle()
+                'notinaddin.WaitForInputIdle()
                 'Esperar a que el proceso termine.
                 notinaddin.WaitForExit()
                 'Continuar con el código.
@@ -2554,7 +2559,7 @@ Public Class FrmInstaladorKubo
                 Dim pInfotaskpane As New ProcessStartInfo()
                 pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
                 Dim notintaskpane As Process = Process.Start(pInfotaskpane)
-                notintaskpane.WaitForInputIdle()
+                'notintaskpane.WaitForInputIdle()
                 notintaskpane.WaitForExit()
             Catch ex As Exception
                 MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
