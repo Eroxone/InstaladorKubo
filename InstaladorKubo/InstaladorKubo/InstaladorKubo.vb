@@ -1019,8 +1019,8 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("Se encontró el paquete Office pero se procede a su reinstalación.")
                 InstalarNotinNet()
             Else
-                InstalarRequisitosNet()
                 RegistroInstalacion("Omitida instalación Office 2003. Pasamos a la instalación de los Pre-Requisitos.")
+                InstalarRequisitosNet()
             End If
         End If
 
@@ -2188,7 +2188,6 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR Requisitos Net: " & ex.Message)
         End Try
         EjecutableNotinNet2003()
-
     End Sub
 
     Private Sub EjecutableNotinNet2003()
@@ -2386,18 +2385,17 @@ Public Class FrmInstaladorKubo
 #End Region
 
 
-
     Private Sub BtConfiguraWord2016_Click(sender As Object, e As EventArgs) Handles BtConfiguraWord2016.Click
         'TODO Preparar Configurador para Versión de 64bits
-        If File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE") Then
-            MessageBox.Show("Detectada Instalación Office 2016 x64. Configurador aún no preparado. En breve se publicará la actualización para ello.", "Configurador 64bits no operativo", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            RegistroInstalacion("ADVERTENCIA: Intento de Configurar Word2016 x64 desde la Utilidad. Aún no implementado.")
-            Exit Sub
-        End If
+        'If File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE") Then
+        '    MessageBox.Show("Detectada Instalación Office 2016 x64. Configurador aún no preparado. En breve se publicará la actualización para ello.", "Configurador 64bits no operativo", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        '    RegistroInstalacion("ADVERTENCIA: Intento de Configurar Word2016 x64 desde la Utilidad. Aún no implementado.")
+        '    Exit Sub
+        'End If
 
-        If File.Exists("C:\Program Files\Microsoft Office (x86)\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE") = False Then
-            RegistroInstalacion("ADVERTENCIA: Configurar WORD 2016 no ha detectado Instalación previa de Office. Igualmente procedemos a ejecutarla.")
-        End If
+        'If File.Exists("C:\Program Files\Microsoft Office (x86)\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE") = False Then
+        '    RegistroInstalacion("ADVERTENCIA: Configurar WORD 2016 no ha detectado Instalación previa de Office. Igualmente procedemos a ejecutarla.")
+        'End If
 
         If UnidadF() = True Then
             'TODO obtener nombre usuario para clave registro
@@ -2405,43 +2403,101 @@ Public Class FrmInstaladorKubo
             If notindesktop = False Then
                 obtenerrobocopy()
                 Try
-                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & "F:\Notawin.Net\NotinNetInstaller.exe " & RutaDescargas & "NotinNetInstaller.exe /R:2 /W:5", AppWinStyle.NormalFocus, True)
+                    Directory.CreateDirectory(RutaDescargas & "NotinNet")
+                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & "F:\Notawin.Net\NotinNetInstaller.exe " & RutaDescargas & "NotinNet\NotinNetInstaller.exe /R:2 /W:5", AppWinStyle.NormalFocus, True)
                     'File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNetinstaller.exe", True)
                 Catch ex As Exception
                     'MessageBox.Show("No se encontró el componente NotinNet instalado. No se ha podido acceder al ejecutable en F:\Notawin.Net para su instalación. Se procede a su Descarga.", "Error NotinNetInstaller no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    RegistroInstalacion("ERROR copiando NotinNetInstaller.exe desde F usando Robocopy.")
+                    RegistroInstalacion("ERROR copiando NotinNetInstaller.exe desde F usando Robocopy. Procedemos a su descarga.")
                 End Try
 
-                If File.Exists(RutaDescargas & "NotinNetInstaller.exe") = False Then
+
+                If File.Exists("C:\Program Files\Microsoft Office (x86)\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\WINWORD.EXE") Then
+                    If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
+                        Try
+                            RegistroInstalacion("ADVERTENCIA: No se pudo obtener NotinNetInstaller para Configurar Word 2016 desde F:\Notawin.Net. Se procede a su Descarga.")
+                            obtenerwget()
+                            Dim urlestablenet As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
+                            'Shell("cmd /c " & RutaDescargas & "wget.exe -q --show-progress http://static.unidata.es/estable/NotinNetInstaller.exe -O " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+                        Catch ex As Exception
+                            RegistroInstalacion("ERROR NotinNet. No se pudo obtener desde su URL.")
+                        End Try
+
+
+                        Try
+                            Dim pnotinnetbeta As New ProcessStartInfo()
+                            pnotinnetbeta.FileName = RutaDescargas & "NotinNet\NotinNetInstaller.exe"
+                            Dim notinnetbeta As Process = Process.Start(pnotinnetbeta)
+                            'notinnet.WaitForInputIdle()
+                            notinnetbeta.WaitForExit()
+                        Catch ex As Exception
+                            RegistroInstalacion("No se ha podido obtener estable desde static.unidata.es. " & ex.Message)
+                            MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                            BtConfiguraWord2016.BackColor = Color.LightSalmon
+                            Exit Sub
+                        End Try
+                    End If
+                ElseIf File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE") Then
                     Try
-                        RegistroInstalacion("ADVERTENCIA: No se pudo obtener NotinNetInstaller para Configurar Word 2016 desde F:\Notawin.Net. Se procede a su Descarga.")
-                        obtenerwget()
-                        Dim urlestablenet As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
-                        Shell("cmd /c " & RutaDescargas & "wget.exe -q --show-progress http://static.unidata.es/estable/NotinNetInstaller.exe -O " & RutaDescargas & "NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+                        Dim urlbetaf462 As String = "https://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
+                        Directory.CreateDirectory(RutaDescargas & "NotinNet")
+                        Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbetaf462 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
                     Catch ex As Exception
-                        RegistroInstalacion("No se ha podido obtener estable desde static.unidata.es. " & ex.Message)
-                        MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
-                        BtConfiguraWord2016.BackColor = Color.LightSalmon
-                        Exit Sub
+                        RegistroInstalacion("ERROR NotinNet X64 F462. No se pudo obtener desde su URL.")
+                    End Try
+
+                    Try
+                        Dim pnotinnetbeta As New ProcessStartInfo()
+                        pnotinnetbeta.FileName = RutaDescargas & "NotinNet\NotinNetInstaller.exe"
+                        Dim notinnetbeta As Process = Process.Start(pnotinnetbeta)
+                        'notinnet.WaitForInputIdle()
+                        notinnetbeta.WaitForExit()
+
+                        RegistroInstalacion("BETA .NET X64 Framework462: Instalador NotinNetInstaller versión BETA X64 para Framework4.6.2 ejecutado correctamente. Fecha " & DateTime.Now.Date)
+
+                        'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
+                        cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAx64F462")
+
+                        BtNetBetax64F462.BackColor = Color.PaleGreen
+                        BtNetBetaF462.BackColor = SystemColors.Control
+                        BtNetBeta.BackColor = SystemColors.Control
+                        BtBetax64.BackColor = SystemColors.Control
+                        BtEstableNet.BackColor = SystemColors.Control
+                        BtNotinNetF.Visible = True
+                    Catch ex As Exception
+                        RegistroInstalacion("BETA Notin X64: Error instalando Beta .Net X64 para Framework4.6.2: " & ex.Message)
+                        BtNetBetax64F462.BackColor = Color.LightSalmon
+                        BtNetBetaF462.BackColor = SystemColors.Control
+                        BtNetBeta.BackColor = SystemColors.Control
+                        BtBetax64.BackColor = SystemColors.Control
+                        BtEstableNet.BackColor = SystemColors.Control
                     End Try
                 End If
-
-                Try
-                    Dim pInfonotinnet As New ProcessStartInfo()
-                    pInfonotinnet.FileName = RutaDescargas & "NotinNetinstaller.exe"
-                    Dim notinnet As Process = Process.Start(pInfonotinnet)
-                    'notinnet.WaitForInputIdle()
-                    notinnet.WaitForExit()
-                    RegistroInstalacion("ÉXITO: Instalado NotinNetInstaller.exe desde " & RutaDescargas)
-                Catch ex As Exception
-                    MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    RegistroInstalacion("ERROR: No se pudo ejecutar NotinNetInstaller: " & ex.Message)
-                    cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
-                    BtConfiguraWord2016.BackColor = Color.LightSalmon
-                    Exit Sub
-                End Try
+            Else
+                MessageBox.Show("No se pudo determinar versión de Office 2016 instalada. Se cancela la Configuración.", "Versión Office Word sin determinar", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("NotinNET: No se ha podido determinar Versión de Office 2016 instalada. No obtuvo NotinNetInstaller. Seguirán errores de Addin.")
+                Exit Sub
             End If
+
+            'Obtenemos versión de Net solo por refresco del formulario.
+            ObtenerVersionNet()
+
+            Try
+                Dim pInfonotinnet As New ProcessStartInfo()
+                pInfonotinnet.FileName = RutaDescargas & "NotinNet\NotinNetinstaller.exe"
+                Dim notinnet As Process = Process.Start(pInfonotinnet)
+                'notinnet.WaitForInputIdle()
+                notinnet.WaitForExit()
+                RegistroInstalacion("ÉXITO: Instalado NotinNetInstaller.exe desde " & RutaDescargas)
+            Catch ex As Exception
+                MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("ERROR: No se pudo ejecutar NotinNetInstaller: " & ex.Message)
+                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+                BtConfiguraWord2016.BackColor = Color.LightSalmon
+                Exit Sub
+            End Try
+
 
 
             Directory.CreateDirectory(RutaDescargas & "Office2016")
@@ -2524,29 +2580,29 @@ Public Class FrmInstaladorKubo
                 Exit Sub
             End Try
 
-            Try
-                Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "\\SERVIDOR\I\")
-                expedientes = expedientes.Remove(0, 2)
-                Dim unidadi = expedientes.LastIndexOf("\I")
-                expedientes = expedientes.Substring(0, unidadi)
+        Try
+            Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "\\SERVIDOR\I\")
+            expedientes = expedientes.Remove(0, 2)
+            Dim unidadi = expedientes.LastIndexOf("\I")
+            expedientes = expedientes.Substring(0, unidadi)
 
-                cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
+            cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
 
-                Directory.CreateDirectory(RutaDescargas & "Registro")
-                Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
-                File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
-                File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
-                RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
-            Catch ex As Exception
-                MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                RegistroInstalacion("ERROR UnidadFWord.bat: " & ex.Message)
-                cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
-                BtConfiguraWord2016.BackColor = Color.LightSalmon
-                Exit Sub
-            End Try
+            Directory.CreateDirectory(RutaDescargas & "Registro")
+            Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
+            File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
+            File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
+            RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
+        Catch ex As Exception
+            MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            RegistroInstalacion("ERROR UnidadFWord.bat: " & ex.Message)
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
+            BtConfiguraWord2016.BackColor = Color.LightSalmon
+            Exit Sub
+        End Try
 
-            'Si todo ha ido bien...
-            BtConfiguraWord2016.BackColor = Color.PaleGreen
+        'Si todo ha ido bien...
+        BtConfiguraWord2016.BackColor = Color.PaleGreen
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
         Else
             MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -3094,8 +3150,8 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("Se encontró el paquete Office pero se procede a su reinstalación.")
                 InstalarNotinNetx64()
             Else
-                InstalarRequisitosNetx64()
                 RegistroInstalacion("Omitida instalación Office 2003. Pasamos a la instalación de los Pre-Requisitos.")
+                InstalarRequisitosNetx64()
             End If
         End If
 
@@ -4047,7 +4103,6 @@ Public Class FrmInstaladorKubo
             BtNetBeta.BackColor = SystemColors.Control
             BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
-            BtNetBetax64F462.BackColor = SystemColors.Control
             BtNotinNetF.Visible = True
         Catch ex As Exception
             RegistroInstalacion("BETA Notin X64: Error instalando Beta .Net X64 para Framework4.6.2: " & ex.Message)
@@ -4056,7 +4111,6 @@ Public Class FrmInstaladorKubo
             BtNetBeta.BackColor = SystemColors.Control
             BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
-            BtNetBetax64F462.BackColor = SystemColors.Control
         End Try
     End Sub
 
