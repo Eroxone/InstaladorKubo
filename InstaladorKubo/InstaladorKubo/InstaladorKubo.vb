@@ -341,6 +341,13 @@ Public Class FrmInstaladorKubo
             BtFocos.BackColor = Color.PaleGreen
         End If
 
+        Dim nautilus = cIniArray.IniGet(instaladorkuboini, "NET", "NAUTILUS", "2")
+        If nautilus = 1 Then
+            BtNautilus.BackColor = Color.PaleGreen
+        ElseIf nautilus = 0 Then
+            BtNautilus.BackColor = Color.LightSalmon
+        End If
+
     End Sub
 
     'Boton EXAMINAR
@@ -819,6 +826,11 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtNotinKubo_MouseDown(sender As Object, e As MouseEventArgs) Handles btNotinKubo.MouseDown
         lbInstalando.Visible = True
+    End Sub
+
+    Private Sub LnkNemo_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs)
+        Dim urlnemo As String = "http://nemo.notin.net/jnemo-latest.exe"
+        My.Computer.Clipboard.SetText(urlnemo)
     End Sub
 
 
@@ -1584,6 +1596,10 @@ Public Class FrmInstaladorKubo
 
         TlpConsultaDatosSQL.ToolTipTitle = "Consulta sql Reducir DATOS LDF"
         TlpConsultaDatosSQL.SetToolTip(BtReducirDatos, "Copia la sentencia sql al portapapeles. Después dirígete al SQL Manager para ejecutarla.")
+
+        TlpUrlNemo.ToolTipTitle = "Check copia url descarga jNemo al Portapapeles"
+        TlpUrlNemo.SetToolTip(CbNemo, "URL: http://nemo.notin.net/jnemo-latest.exe")
+
     End Sub
 #End Region
 
@@ -2752,6 +2768,8 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub CbNemo_CheckedChanged(sender As Object, e As EventArgs) Handles CbNemo.CheckedChanged
+        Dim urlnemo As String = "http://nemo.notin.net/jnemo-latest.exe"
+        My.Computer.Clipboard.SetText(urlnemo)
         CalcularTamanoDescarga(12, CbNemo.Checked)
     End Sub
 
@@ -2856,8 +2874,13 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtDocRequisitos_Click(sender As Object, e As EventArgs) Handles BtDocRequisitos.Click
-        Process.Start("iexplore.exe", "https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing")
-        RegistroInstalacion("Hoja de Requisitos Notin abierta.")
+        Try
+            Process.Start("iexplore.exe", "https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing")
+            RegistroInstalacion("Hoja de Requisitos Notin visualizada.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Hoja Requisitos: " & ex.Message)
+        End Try
+
     End Sub
 
     Private Sub BtISL_Click(sender As Object, e As EventArgs) Handles BtISL.Click
@@ -4002,7 +4025,7 @@ Public Class FrmInstaladorKubo
         Process.Start("notepad.exe", "C:\ProgramData\chocolatey\logs\chocolatey.log")
     End Sub
 
-#Region "ADRA"
+    'Chequeo si trabajamos en NotinRapp
     Private Function NotinRapp() As Boolean
         'Dim equipousuario As String = (My.User.Name)
         'Dim equipo As Integer = equipousuario.LastIndexOf("\")
@@ -4136,9 +4159,44 @@ Public Class FrmInstaladorKubo
         End Try
     End Sub
 
+    Private Sub BtNautilus_Click(sender As Object, e As EventArgs) Handles BtNautilus.Click
+        RegistroInstalacion("Instalación Notin Control Center (NAUTILUS) ")
+        obtenerwget()
+        Directory.CreateDirectory(RutaDescargas & "NotinNet")
+        Shell("cmd /c " & RutaDescargas & "wget.exe -q --show-progress https://static.unidata.es/Nautilus/NautilusUpdater.exe -O " & RutaDescargas & "NotinNet\NautilusUpdater.exe", AppWinStyle.NormalFocus, True)
+        RegistroInstalacion("Nautilus: Obtenida versión desde Static-Unidata hacía " & RutaDescargas & "NotinNet\")
+
+        Try
+            Process.Start(RutaDescargas & "NotinNet\NautilusUpdater.exe")
+            cIniArray.IniWrite(instaladorkuboini, "NET", "NAUTILUS", "1")
+            BtNautilus.BackColor = Color.PaleGreen
+            RegistroInstalacion("Nautilus. Lanzado proceso de instalación. Revisa su Log de Salida para más información.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Nautilus: " & ex.Message)
+            cIniArray.IniWrite(instaladorkuboini, "NET", "NAUTILUS", "0")
+            BtNautilus.BackColor = Color.LightSalmon
+        End Try
+    End Sub
+
+    Private Sub BtNautilusLog_Click(sender As Object, e As EventArgs) Handles BtNautilusLog.Click
+        Try
+            Process.Start("explorer.exe", "C:\Program Files (x86)\Humano Software\Services\NotinControlCenter\Log")
+        Catch ex As Exception
+            RegistroInstalacion("Nautilus. No se pudo acceder a ruta Log: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub BtPaginaActiva_Click(sender As Object, e As EventArgs) Handles BtPaginaActiva.Click
+        'TODO cambiar icono
+        Try
+            Process.Start("iexplore.exe", "http://www.notin.net/portal/425r312x/pagina.asp")
+            RegistroInstalacion("Página activa lanzada a Internet Explorer.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Página Activa: " & ex.Message)
+        End Try
+    End Sub
 
 
-#End Region
 
 
 

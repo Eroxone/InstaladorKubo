@@ -171,6 +171,10 @@ Partial Class FrmInstaladorKubo
         Me.LbHostname = New System.Windows.Forms.Label()
         Me.TlpLogMigrador = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpConsultaDatosSQL = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtNautilus = New System.Windows.Forms.Button()
+        Me.BtNautilusLog = New System.Windows.Forms.Button()
+        Me.BtPaginaActiva = New System.Windows.Forms.Button()
+        Me.TlpUrlNemo = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -842,6 +846,8 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.BtNautilusLog)
+        Me.TabPage11.Controls.Add(Me.BtNautilus)
         Me.TabPage11.Controls.Add(Me.BtNetBetax64F462)
         Me.TabPage11.Controls.Add(Me.BtNetBetaF462)
         Me.TabPage11.Controls.Add(Me.LbSitienesF462)
@@ -1700,12 +1706,54 @@ Partial Class FrmInstaladorKubo
         Me.TlpConsultaDatosSQL.IsBalloon = True
         Me.TlpConsultaDatosSQL.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'BtNautilus
+        '
+        Me.BtNautilus.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNautilus.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtNautilus.Location = New System.Drawing.Point(195, 170)
+        Me.BtNautilus.Name = "BtNautilus"
+        Me.BtNautilus.Size = New System.Drawing.Size(167, 28)
+        Me.BtNautilus.TabIndex = 46
+        Me.BtNautilus.Text = "Nautilus (Updater)"
+        Me.BtNautilus.UseVisualStyleBackColor = True
+        '
+        'BtNautilusLog
+        '
+        Me.BtNautilusLog.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNautilusLog.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic)
+        Me.BtNautilusLog.Location = New System.Drawing.Point(287, 204)
+        Me.BtNautilusLog.Name = "BtNautilusLog"
+        Me.BtNautilusLog.Size = New System.Drawing.Size(75, 23)
+        Me.BtNautilusLog.TabIndex = 47
+        Me.BtNautilusLog.Text = "Ruta Logs"
+        Me.BtNautilusLog.UseVisualStyleBackColor = True
+        '
+        'BtPaginaActiva
+        '
+        Me.BtPaginaActiva.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtPaginaActiva.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.BtPaginaActiva.Image = CType(resources.GetObject("BtPaginaActiva.Image"), System.Drawing.Image)
+        Me.BtPaginaActiva.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
+        Me.BtPaginaActiva.Location = New System.Drawing.Point(412, 476)
+        Me.BtPaginaActiva.Name = "BtPaginaActiva"
+        Me.BtPaginaActiva.Size = New System.Drawing.Size(208, 35)
+        Me.BtPaginaActiva.TabIndex = 51
+        Me.BtPaginaActiva.Text = "Página Activa (Portal)"
+        Me.BtPaginaActiva.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtPaginaActiva.UseVisualStyleBackColor = True
+        '
+        'TlpUrlNemo
+        '
+        Me.TlpUrlNemo.IsBalloon = True
+        Me.TlpUrlNemo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1134, 653)
+        Me.Controls.Add(Me.BtPaginaActiva)
         Me.Controls.Add(Me.LbHostname)
         Me.Controls.Add(Me.BtSubeBinario)
         Me.Controls.Add(Me.CBoxEmail)
@@ -1915,4 +1963,8 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtNetBetax64F462 As Button
     Friend WithEvents BtNetBetaF462 As Button
     Friend WithEvents LbSitienesF462 As Label
+    Friend WithEvents BtNautilus As Button
+    Friend WithEvents BtNautilusLog As Button
+    Friend WithEvents BtPaginaActiva As Button
+    Friend WithEvents TlpUrlNemo As ToolTip
 End Class
