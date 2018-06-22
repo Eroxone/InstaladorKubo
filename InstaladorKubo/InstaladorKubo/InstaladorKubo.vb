@@ -1521,8 +1521,8 @@ Public Class FrmInstaladorKubo
         TlpTraerServidor.ToolTipTitle = "Recoge Paquetes desde el Servidor"
         TlpTraerServidor.SetToolTip(BtTraerdeF, "Trae hacia la ruta Local los Paquetes copiados previamente al Servidor para así no tener que obtenerlos de Internet.")
 
-        TlpConfigWord2016.ToolTipTitle = "Configurador independiente Word 2016"
-        TlpConfigWord2016.SetToolTip(BtConfiguraWord2016, "Instala Notin Addin y TaskPane para Word 2016. La instalación Notin+Kubo ya realiza esta acción.")
+        TlpConfigWord2016.ToolTipTitle = "Configurador independiente WORD 2016"
+        TlpConfigWord2016.SetToolTip(BtConfiguraWord2016, "Instala Notin Addin y TaskPane para Word 2016. Se ha añadido soporte para Word X64.")
 
         TlpKmspico.ToolTipTitle = "Instalación de KMSpico 10.2 FINAL"
         TlpKmspico.SetToolTip(BtKmsPico, "Descarga, descomprime e Instala KMSpico 10. Revisa antes las Excepciones del Antivirus.")
@@ -3563,6 +3563,16 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtMigradorSQL_Click(sender As Object, e As EventArgs) Handles BtMigradorSQL.Click
+        Dim SistemaO = (My.Computer.Info.OSFullName)
+        RegistroInstalacion("MigradorSQL ejecutado en entorno " & SistemaO)
+        If SistemaO.Contains("2003") Then
+            Dim win2003 = MessageBox.Show("MigradorSQL no compatible con Windows 2003 Server. ¿Quieres continuar?", "Posible Windows 2003 Server", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If win2003 = DialogResult.No Then
+                RegistroInstalacion("MigradorSQL: Ejecución en Windows 2003 Server. Usuario cancela la operación.")
+                Exit Sub
+            End If
+        End If
+
         obtenerwget()
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
         Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.NormalFocus, True)
