@@ -77,6 +77,8 @@ Partial Class FrmInstaladorKubo
         Me.BtExcepJava = New System.Windows.Forms.Button()
         Me.BtJava = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
+        Me.BtNautilusLog = New System.Windows.Forms.Button()
+        Me.BtNautilus = New System.Windows.Forms.Button()
         Me.BtNetBetax64F462 = New System.Windows.Forms.Button()
         Me.BtNetBetaF462 = New System.Windows.Forms.Button()
         Me.LbSitienesF462 = New System.Windows.Forms.Label()
@@ -171,10 +173,9 @@ Partial Class FrmInstaladorKubo
         Me.LbHostname = New System.Windows.Forms.Label()
         Me.TlpLogMigrador = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpConsultaDatosSQL = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtNautilus = New System.Windows.Forms.Button()
-        Me.BtNautilusLog = New System.Windows.Forms.Button()
         Me.BtPaginaActiva = New System.Windows.Forms.Button()
         Me.TlpUrlNemo = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtSQL2008R2 = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -864,6 +865,28 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
         '
+        'BtNautilusLog
+        '
+        Me.BtNautilusLog.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNautilusLog.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic)
+        Me.BtNautilusLog.Location = New System.Drawing.Point(287, 204)
+        Me.BtNautilusLog.Name = "BtNautilusLog"
+        Me.BtNautilusLog.Size = New System.Drawing.Size(75, 23)
+        Me.BtNautilusLog.TabIndex = 47
+        Me.BtNautilusLog.Text = "Ruta Logs"
+        Me.BtNautilusLog.UseVisualStyleBackColor = True
+        '
+        'BtNautilus
+        '
+        Me.BtNautilus.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNautilus.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtNautilus.Location = New System.Drawing.Point(195, 170)
+        Me.BtNautilus.Name = "BtNautilus"
+        Me.BtNautilus.Size = New System.Drawing.Size(167, 28)
+        Me.BtNautilus.TabIndex = 46
+        Me.BtNautilus.Text = "Nautilus (Updater)"
+        Me.BtNautilus.UseVisualStyleBackColor = True
+        '
         'BtNetBetax64F462
         '
         Me.BtNetBetax64F462.FlatStyle = System.Windows.Forms.FlatStyle.Popup
@@ -970,6 +993,7 @@ Partial Class FrmInstaladorKubo
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage7.Controls.Add(Me.BtSQL2008R2)
         Me.TabPage7.Controls.Add(Me.LbReducirDatosSQL)
         Me.TabPage7.Controls.Add(Me.BtReducirDatos)
         Me.TabPage7.Controls.Add(Me.TbMigradorLog)
@@ -1706,28 +1730,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpConsultaDatosSQL.IsBalloon = True
         Me.TlpConsultaDatosSQL.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'BtNautilus
-        '
-        Me.BtNautilus.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNautilus.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtNautilus.Location = New System.Drawing.Point(195, 170)
-        Me.BtNautilus.Name = "BtNautilus"
-        Me.BtNautilus.Size = New System.Drawing.Size(167, 28)
-        Me.BtNautilus.TabIndex = 46
-        Me.BtNautilus.Text = "Nautilus (Updater)"
-        Me.BtNautilus.UseVisualStyleBackColor = True
-        '
-        'BtNautilusLog
-        '
-        Me.BtNautilusLog.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNautilusLog.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic)
-        Me.BtNautilusLog.Location = New System.Drawing.Point(287, 204)
-        Me.BtNautilusLog.Name = "BtNautilusLog"
-        Me.BtNautilusLog.Size = New System.Drawing.Size(75, 23)
-        Me.BtNautilusLog.TabIndex = 47
-        Me.BtNautilusLog.Text = "Ruta Logs"
-        Me.BtNautilusLog.UseVisualStyleBackColor = True
-        '
         'BtPaginaActiva
         '
         Me.BtPaginaActiva.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -1746,6 +1748,17 @@ Partial Class FrmInstaladorKubo
         '
         Me.TlpUrlNemo.IsBalloon = True
         Me.TlpUrlNemo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'BtSQL2008R2
+        '
+        Me.BtSQL2008R2.Enabled = False
+        Me.BtSQL2008R2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtSQL2008R2.Location = New System.Drawing.Point(8, 210)
+        Me.BtSQL2008R2.Name = "BtSQL2008R2"
+        Me.BtSQL2008R2.Size = New System.Drawing.Size(167, 28)
+        Me.BtSQL2008R2.TabIndex = 10
+        Me.BtSQL2008R2.Text = "SQL 2008 R2"
+        Me.BtSQL2008R2.UseVisualStyleBackColor = True
         '
         'FrmInstaladorKubo
         '
@@ -1967,4 +1980,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtNautilusLog As Button
     Friend WithEvents BtPaginaActiva As Button
     Friend WithEvents TlpUrlNemo As ToolTip
+    Friend WithEvents BtSQL2008R2 As Button
 End Class
