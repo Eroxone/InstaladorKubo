@@ -1570,8 +1570,8 @@ Public Class FrmInstaladorKubo
         TlpISL.ToolTipTitle = "Instalación automatizada ISL AlwaysON"
         TlpISL.SetToolTip(BtISL, "Añade este equipo para su futura conexión desde ISL Light de operador.")
 
-        TlpSQL2014.ToolTipTitle = "Descarga e Instala SQL 2014 Business"
-        TlpSQL2014.SetToolTip(BtSQL2014, "Accederemos al formulario donde podrás personalizar la instalación de SQL Server 2014.")
+        TlpSQL2014.ToolTipTitle = "Muestra Formulario para Descarga e Instalación de SQL 2014 Business"
+        TlpSQL2014.SetToolTip(BtSQL2014, "Accederemos al formulario donde podrás personalizar la instalación de SQL Server 2014 o aplicar el último Update.")
 
         TlpNotinNetaF.ToolTipTitle = "Copia NotinNetInstaller a F"
         TlpNotinNetaF.SetToolTip(BtNotinNetF, "Copia NotinNetInstaller.exe previamente descargado a F:\Notawin.Net para su distribución al resto de equipos.")
@@ -3996,7 +3996,7 @@ Public Class FrmInstaladorKubo
             Dim instalachocolatey = MessageBox.Show("Necesario Paquete CHOCOLATEY. Disponible también en la pestaña Útiles. ¿Lo instalamos?", "Paquete Chocolatey necesario", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If instalachocolatey = DialogResult.Yes Then
                 ObtenerChocolatey()
-                Threading.Thread.Sleep(50000)
+                Threading.Thread.Sleep(10000)
                 MessageBox.Show("Al finalizar la instalación de Chocolatey podrás instalar Framework 4.6.2. Aguarda unos segundos.", "Choco para Framework 4.6.2", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
             Else
