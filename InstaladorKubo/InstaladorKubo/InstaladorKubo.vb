@@ -1604,7 +1604,7 @@ Public Class FrmInstaladorKubo
         TlpUrlNemo.SetToolTip(CbNemo, "URL: http://nemo.notin.net/jnemo-latest.exe")
 
         TlpVisorImagenes.ToolTipTitle = "Asocia Imágenes al Visor de Imágenes de Windows"
-        TlpVisorImagenes.SetToolTip(BtVisorImagenes, "Cambia FOTOS por Visor de Imágenes en asociación de Archivos para Windows 10.")
+        TlpVisorImagenes.SetToolTip(BtVisorImagenes, "Cambia FOTOS por Visor de Imágenes en asociación de archivos para Windows 10.")
 
 
     End Sub
