@@ -90,6 +90,7 @@ Partial Class FrmInstaladorKubo
         Me.BtBetax64 = New System.Windows.Forms.Button()
         Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.BtSQL2008R2 = New System.Windows.Forms.Button()
         Me.LbReducirDatosSQL = New System.Windows.Forms.Label()
         Me.BtReducirDatos = New System.Windows.Forms.Button()
         Me.TbMigradorLog = New System.Windows.Forms.TextBox()
@@ -175,7 +176,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpConsultaDatosSQL = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtPaginaActiva = New System.Windows.Forms.Button()
         Me.TlpUrlNemo = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtSQL2008R2 = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1009,6 +1009,17 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
         '
+        'BtSQL2008R2
+        '
+        Me.BtSQL2008R2.Enabled = False
+        Me.BtSQL2008R2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtSQL2008R2.Location = New System.Drawing.Point(8, 210)
+        Me.BtSQL2008R2.Name = "BtSQL2008R2"
+        Me.BtSQL2008R2.Size = New System.Drawing.Size(167, 28)
+        Me.BtSQL2008R2.TabIndex = 10
+        Me.BtSQL2008R2.Text = "SQL 2008 R2"
+        Me.BtSQL2008R2.UseVisualStyleBackColor = True
+        '
         'LbReducirDatosSQL
         '
         Me.LbReducirDatosSQL.AutoSize = True
@@ -1024,7 +1035,7 @@ Partial Class FrmInstaladorKubo
         'BtReducirDatos
         '
         Me.BtReducirDatos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtReducirDatos.Location = New System.Drawing.Point(8, 130)
+        Me.BtReducirDatos.Location = New System.Drawing.Point(8, 50)
         Me.BtReducirDatos.Name = "BtReducirDatos"
         Me.BtReducirDatos.Size = New System.Drawing.Size(167, 28)
         Me.BtReducirDatos.TabIndex = 8
@@ -1057,7 +1068,7 @@ Partial Class FrmInstaladorKubo
         'BtBlancosBD
         '
         Me.BtBlancosBD.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtBlancosBD.Location = New System.Drawing.Point(8, 90)
+        Me.BtBlancosBD.Location = New System.Drawing.Point(8, 130)
         Me.BtBlancosBD.Name = "BtBlancosBD"
         Me.BtBlancosBD.Size = New System.Drawing.Size(167, 28)
         Me.BtBlancosBD.TabIndex = 3
@@ -1068,7 +1079,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtRestaurarBak.Enabled = False
         Me.BtRestaurarBak.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtRestaurarBak.Location = New System.Drawing.Point(8, 50)
+        Me.BtRestaurarBak.Location = New System.Drawing.Point(8, 90)
         Me.BtRestaurarBak.Name = "BtRestaurarBak"
         Me.BtRestaurarBak.Size = New System.Drawing.Size(167, 28)
         Me.BtRestaurarBak.TabIndex = 2
@@ -1748,17 +1759,6 @@ Partial Class FrmInstaladorKubo
         '
         Me.TlpUrlNemo.IsBalloon = True
         Me.TlpUrlNemo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        '
-        'BtSQL2008R2
-        '
-        Me.BtSQL2008R2.Enabled = False
-        Me.BtSQL2008R2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtSQL2008R2.Location = New System.Drawing.Point(8, 210)
-        Me.BtSQL2008R2.Name = "BtSQL2008R2"
-        Me.BtSQL2008R2.Size = New System.Drawing.Size(167, 28)
-        Me.BtSQL2008R2.TabIndex = 10
-        Me.BtSQL2008R2.Text = "SQL 2008 R2"
-        Me.BtSQL2008R2.UseVisualStyleBackColor = True
         '
         'FrmInstaladorKubo
         '
