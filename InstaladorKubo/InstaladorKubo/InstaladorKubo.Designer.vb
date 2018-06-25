@@ -1172,11 +1172,11 @@ Partial Class FrmInstaladorKubo
         Me.BtDocRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BtDocRequisitos.Image = CType(resources.GetObject("BtDocRequisitos.Image"), System.Drawing.Image)
         Me.BtDocRequisitos.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.BtDocRequisitos.Location = New System.Drawing.Point(590, 496)
+        Me.BtDocRequisitos.Location = New System.Drawing.Point(615, 495)
         Me.BtDocRequisitos.Name = "BtDocRequisitos"
-        Me.BtDocRequisitos.Size = New System.Drawing.Size(208, 35)
+        Me.BtDocRequisitos.Size = New System.Drawing.Size(180, 35)
         Me.BtDocRequisitos.TabIndex = 50
-        Me.BtDocRequisitos.Text = "Hoja Requisitos Notin"
+        Me.BtDocRequisitos.Text = "Requisitos Notin"
         Me.BtDocRequisitos.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtDocRequisitos.UseVisualStyleBackColor = True
         '
@@ -1774,9 +1774,9 @@ Partial Class FrmInstaladorKubo
         Me.BtPaginaActiva.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BtPaginaActiva.Image = CType(resources.GetObject("BtPaginaActiva.Image"), System.Drawing.Image)
         Me.BtPaginaActiva.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.BtPaginaActiva.Location = New System.Drawing.Point(387, 495)
+        Me.BtPaginaActiva.Location = New System.Drawing.Point(420, 495)
         Me.BtPaginaActiva.Name = "BtPaginaActiva"
-        Me.BtPaginaActiva.Size = New System.Drawing.Size(182, 35)
+        Me.BtPaginaActiva.Size = New System.Drawing.Size(180, 35)
         Me.BtPaginaActiva.TabIndex = 51
         Me.BtPaginaActiva.Text = "Página Activa"
         Me.BtPaginaActiva.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1796,7 +1796,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbEnlacesWeb.AutoSize = True
         Me.LbEnlacesWeb.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbEnlacesWeb.Location = New System.Drawing.Point(383, 473)
+        Me.LbEnlacesWeb.Location = New System.Drawing.Point(416, 470)
         Me.LbEnlacesWeb.Name = "LbEnlacesWeb"
         Me.LbEnlacesWeb.Size = New System.Drawing.Size(266, 19)
         Me.LbEnlacesWeb.TabIndex = 52

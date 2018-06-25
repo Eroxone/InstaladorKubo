@@ -4045,7 +4045,7 @@ Public Class FrmInstaladorKubo
     Private Sub BtFocos_Click(sender As Object, e As EventArgs) Handles BtFocos.Click
         obtenerwget()
         Directory.CreateDirectory(RutaDescargas & "ADRA")
-        Shell("cmd.exe /c " & RutaDescargas & "wget.exe http://static.unidata.es/focos.rar -O " & RutaDescargas & "\ADRA\focos.rar", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress http://static.unidata.es/focos.rar -O " & RutaDescargas & "\ADRA\focos.rar", AppWinStyle.NormalFocus, True)
 
         obtenerunrar()
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -y " & RutaDescargas & "ADRA\focos.rar " & RutaDescargas & "ADRA\", AppWinStyle.Hide, True)
