@@ -1597,6 +1597,9 @@ Public Class FrmInstaladorKubo
         TlpConsultaDatosSQL.ToolTipTitle = "Consulta sql Reducir DATOS LDF"
         TlpConsultaDatosSQL.SetToolTip(BtReducirDatos, "Copia la sentencia sql al portapapeles. Después dirígete al SQL Manager para ejecutarla.")
 
+        TlpConsultaTriggers.ToolTipTitle = "Consulta sql Eliminar Triggers (Desencadenadores)"
+        TlpConsultaTriggers.SetToolTip(BtTriggers, "Copia la sentencia sql al portapapeles. Después dirígete al SQL Manager para ejecutarla.")
+
         TlpUrlNemo.ToolTipTitle = "Check copia url descarga jNemo al Portapapeles"
         TlpUrlNemo.SetToolTip(CbNemo, "URL: http://nemo.notin.net/jnemo-latest.exe")
 
@@ -4058,17 +4061,27 @@ Public Class FrmInstaladorKubo
     End Sub
 
 
-
-
     Private Sub BtReducirDatos_MouseDown(sender As Object, e As MouseEventArgs) Handles BtReducirDatos.MouseDown
-        LbReducirDatosSQL.Visible = True
+        LbSentenciaSQL.Visible = True
     End Sub
 
     Private Sub BtReducirDatos_Click(sender As Object, e As EventArgs) Handles BtReducirDatos.Click
         Dim consulta As String = "USE DATOS" & vbCrLf & "ALTER DATABASE DATOS" & vbCrLf & "SET RECOVERY SIMPLE;" & vbCrLf & "GO" & vbCrLf & "DBCC SHRINKFILE (DATOS_log, 1);" & vbCrLf & "GO" & vbCrLf & "ALTER DATABASE DATOS" & vbCrLf & "SET RECOVERY FULL;" & vbCrLf & "GO"
         My.Computer.Clipboard.SetText(consulta)
         Threading.Thread.Sleep(2000)
-        LbReducirDatosSQL.Visible = False
+        LbSentenciaSQL.Visible = False
+    End Sub
+
+
+    Private Sub BtTriggers_MouseDown(sender As Object, e As MouseEventArgs) Handles BtTriggers.MouseDown
+        LbSentenciaSQL.Visible = True
+    End Sub
+
+    Private Sub BtTriggers_Click(sender As Object, e As EventArgs) Handles BtTriggers.Click
+        Dim consulta As String = "USE DATOS" & vbCrLf & "DROP TRIGGER Actualizar_Tramite" & vbCrLf & "DROP TRIGGER insertar_Tramite" & vbCrLf & "DROP TRIGGER Borrar_Tramite" & vbCrLf & "DROP TRIGGER Actualizar_Cif_Representante" & vbCrLf & "DROP TRIGGER Actualizar_Tramite_Clientes" & vbCrLf & "DROP TRIGGER Actualizar" & vbCrLf & "DROP TRIGGER Borrar" & vbCrLf & "DROP TRIGGER Actualizar_Escrituras_Operaciones" & vbCrLf & "DROP TRIGGER insertar_Numero_Operaciones"
+        My.Computer.Clipboard.SetText(consulta)
+        Threading.Thread.Sleep(2000)
+        LbSentenciaSQL.Visible = False
     End Sub
 
     Private Sub BtNetBetaF462_Click(sender As Object, e As EventArgs) Handles BtNetBetaF462.Click
@@ -4195,11 +4208,6 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR Página Activa: " & ex.Message)
         End Try
     End Sub
-
-
-
-
-
 
 
 

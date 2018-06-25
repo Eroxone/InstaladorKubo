@@ -90,8 +90,10 @@ Partial Class FrmInstaladorKubo
         Me.BtBetax64 = New System.Windows.Forms.Button()
         Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.BtTriggers = New System.Windows.Forms.Button()
+        Me.LbConsultasSQL = New System.Windows.Forms.Label()
         Me.BtSQL2008R2 = New System.Windows.Forms.Button()
-        Me.LbReducirDatosSQL = New System.Windows.Forms.Label()
+        Me.LbSentenciaSQL = New System.Windows.Forms.Label()
         Me.BtReducirDatos = New System.Windows.Forms.Button()
         Me.TbMigradorLog = New System.Windows.Forms.TextBox()
         Me.LbVersionMigrador = New System.Windows.Forms.Label()
@@ -176,6 +178,8 @@ Partial Class FrmInstaladorKubo
         Me.TlpConsultaDatosSQL = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtPaginaActiva = New System.Windows.Forms.Button()
         Me.TlpUrlNemo = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpConsultaTriggers = New System.Windows.Forms.ToolTip(Me.components)
+        Me.LbEnlacesWeb = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -633,13 +637,12 @@ Partial Class FrmInstaladorKubo
         '
         Me.GroupBox2.BackColor = System.Drawing.SystemColors.Control
         Me.GroupBox2.Controls.Add(Me.TabSistema)
-        Me.GroupBox2.Controls.Add(Me.BtDocRequisitos)
         Me.GroupBox2.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(412, 110)
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(398, 361)
+        Me.GroupBox2.Size = New System.Drawing.Size(398, 352)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Utilidades Sistema"
@@ -656,7 +659,7 @@ Partial Class FrmInstaladorKubo
         Me.TabSistema.Margin = New System.Windows.Forms.Padding(2)
         Me.TabSistema.Name = "TabSistema"
         Me.TabSistema.SelectedIndex = 0
-        Me.TabSistema.Size = New System.Drawing.Size(386, 276)
+        Me.TabSistema.Size = New System.Drawing.Size(386, 318)
         Me.TabSistema.TabIndex = 35
         '
         'TabPage5
@@ -671,7 +674,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage5.Size = New System.Drawing.Size(378, 245)
+        Me.TabPage5.Size = New System.Drawing.Size(378, 287)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
@@ -749,7 +752,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage6.Size = New System.Drawing.Size(378, 245)
+        Me.TabPage6.Size = New System.Drawing.Size(378, 287)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
         '
@@ -861,7 +864,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Controls.Add(Me.BtNetBeta)
         Me.TabPage11.Location = New System.Drawing.Point(4, 27)
         Me.TabPage11.Name = "TabPage11"
-        Me.TabPage11.Size = New System.Drawing.Size(378, 245)
+        Me.TabPage11.Size = New System.Drawing.Size(378, 287)
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
         '
@@ -993,8 +996,10 @@ Partial Class FrmInstaladorKubo
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage7.Controls.Add(Me.BtTriggers)
+        Me.TabPage7.Controls.Add(Me.LbConsultasSQL)
         Me.TabPage7.Controls.Add(Me.BtSQL2008R2)
-        Me.TabPage7.Controls.Add(Me.LbReducirDatosSQL)
+        Me.TabPage7.Controls.Add(Me.LbSentenciaSQL)
         Me.TabPage7.Controls.Add(Me.BtReducirDatos)
         Me.TabPage7.Controls.Add(Me.TbMigradorLog)
         Me.TabPage7.Controls.Add(Me.LbVersionMigrador)
@@ -1005,37 +1010,59 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.Location = New System.Drawing.Point(4, 27)
         Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(378, 245)
+        Me.TabPage7.Size = New System.Drawing.Size(378, 287)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
+        '
+        'BtTriggers
+        '
+        Me.BtTriggers.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtTriggers.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtTriggers.Location = New System.Drawing.Point(195, 204)
+        Me.BtTriggers.Name = "BtTriggers"
+        Me.BtTriggers.Size = New System.Drawing.Size(167, 28)
+        Me.BtTriggers.TabIndex = 12
+        Me.BtTriggers.Text = "Limpiar Triggers"
+        Me.BtTriggers.UseVisualStyleBackColor = True
+        '
+        'LbConsultasSQL
+        '
+        Me.LbConsultasSQL.AutoSize = True
+        Me.LbConsultasSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbConsultasSQL.Location = New System.Drawing.Point(191, 149)
+        Me.LbConsultasSQL.Name = "LbConsultasSQL"
+        Me.LbConsultasSQL.Size = New System.Drawing.Size(125, 18)
+        Me.LbConsultasSQL.TabIndex = 11
+        Me.LbConsultasSQL.Text = "Consultas SQL"
         '
         'BtSQL2008R2
         '
         Me.BtSQL2008R2.Enabled = False
         Me.BtSQL2008R2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtSQL2008R2.Location = New System.Drawing.Point(8, 210)
+        Me.BtSQL2008R2.Location = New System.Drawing.Point(8, 130)
         Me.BtSQL2008R2.Name = "BtSQL2008R2"
         Me.BtSQL2008R2.Size = New System.Drawing.Size(167, 28)
         Me.BtSQL2008R2.TabIndex = 10
         Me.BtSQL2008R2.Text = "SQL 2008 R2"
         Me.BtSQL2008R2.UseVisualStyleBackColor = True
         '
-        'LbReducirDatosSQL
+        'LbSentenciaSQL
         '
-        Me.LbReducirDatosSQL.AutoSize = True
-        Me.LbReducirDatosSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbReducirDatosSQL.ForeColor = System.Drawing.Color.Green
-        Me.LbReducirDatosSQL.Location = New System.Drawing.Point(5, 165)
-        Me.LbReducirDatosSQL.Name = "LbReducirDatosSQL"
-        Me.LbReducirDatosSQL.Size = New System.Drawing.Size(279, 19)
-        Me.LbReducirDatosSQL.TabIndex = 9
-        Me.LbReducirDatosSQL.Text = "Sentencia copiada al Portapapeles"
-        Me.LbReducirDatosSQL.Visible = False
+        Me.LbSentenciaSQL.AutoSize = True
+        Me.LbSentenciaSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbSentenciaSQL.ForeColor = System.Drawing.Color.Green
+        Me.LbSentenciaSQL.Location = New System.Drawing.Point(83, 263)
+        Me.LbSentenciaSQL.Name = "LbSentenciaSQL"
+        Me.LbSentenciaSQL.Size = New System.Drawing.Size(279, 19)
+        Me.LbSentenciaSQL.TabIndex = 9
+        Me.LbSentenciaSQL.Text = "Sentencia copiada al Portapapeles"
+        Me.LbSentenciaSQL.Visible = False
         '
         'BtReducirDatos
         '
         Me.BtReducirDatos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtReducirDatos.Location = New System.Drawing.Point(8, 50)
+        Me.BtReducirDatos.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtReducirDatos.Location = New System.Drawing.Point(195, 170)
         Me.BtReducirDatos.Name = "BtReducirDatos"
         Me.BtReducirDatos.Size = New System.Drawing.Size(167, 28)
         Me.BtReducirDatos.TabIndex = 8
@@ -1068,7 +1095,7 @@ Partial Class FrmInstaladorKubo
         'BtBlancosBD
         '
         Me.BtBlancosBD.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtBlancosBD.Location = New System.Drawing.Point(8, 130)
+        Me.BtBlancosBD.Location = New System.Drawing.Point(8, 50)
         Me.BtBlancosBD.Name = "BtBlancosBD"
         Me.BtBlancosBD.Size = New System.Drawing.Size(167, 28)
         Me.BtBlancosBD.TabIndex = 3
@@ -1114,7 +1141,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Controls.Add(Me.BtConfWord2016ADRA)
         Me.TabPage10.Location = New System.Drawing.Point(4, 27)
         Me.TabPage10.Name = "TabPage10"
-        Me.TabPage10.Size = New System.Drawing.Size(378, 245)
+        Me.TabPage10.Size = New System.Drawing.Size(378, 287)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
@@ -1145,7 +1172,7 @@ Partial Class FrmInstaladorKubo
         Me.BtDocRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BtDocRequisitos.Image = CType(resources.GetObject("BtDocRequisitos.Image"), System.Drawing.Image)
         Me.BtDocRequisitos.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.BtDocRequisitos.Location = New System.Drawing.Point(0, 321)
+        Me.BtDocRequisitos.Location = New System.Drawing.Point(590, 496)
         Me.BtDocRequisitos.Name = "BtDocRequisitos"
         Me.BtDocRequisitos.Size = New System.Drawing.Size(208, 35)
         Me.BtDocRequisitos.TabIndex = 50
@@ -1747,11 +1774,11 @@ Partial Class FrmInstaladorKubo
         Me.BtPaginaActiva.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BtPaginaActiva.Image = CType(resources.GetObject("BtPaginaActiva.Image"), System.Drawing.Image)
         Me.BtPaginaActiva.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.BtPaginaActiva.Location = New System.Drawing.Point(412, 476)
+        Me.BtPaginaActiva.Location = New System.Drawing.Point(387, 495)
         Me.BtPaginaActiva.Name = "BtPaginaActiva"
-        Me.BtPaginaActiva.Size = New System.Drawing.Size(208, 35)
+        Me.BtPaginaActiva.Size = New System.Drawing.Size(182, 35)
         Me.BtPaginaActiva.TabIndex = 51
-        Me.BtPaginaActiva.Text = "Página Activa (Portal)"
+        Me.BtPaginaActiva.Text = "Página Activa"
         Me.BtPaginaActiva.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtPaginaActiva.UseVisualStyleBackColor = True
         '
@@ -1760,12 +1787,29 @@ Partial Class FrmInstaladorKubo
         Me.TlpUrlNemo.IsBalloon = True
         Me.TlpUrlNemo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'TlpConsultaTriggers
+        '
+        Me.TlpConsultaTriggers.IsBalloon = True
+        Me.TlpConsultaTriggers.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'LbEnlacesWeb
+        '
+        Me.LbEnlacesWeb.AutoSize = True
+        Me.LbEnlacesWeb.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbEnlacesWeb.Location = New System.Drawing.Point(383, 473)
+        Me.LbEnlacesWeb.Name = "LbEnlacesWeb"
+        Me.LbEnlacesWeb.Size = New System.Drawing.Size(266, 19)
+        Me.LbEnlacesWeb.TabIndex = 52
+        Me.LbEnlacesWeb.Text = "Enlaces web relacionados Notin:"
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1134, 653)
+        Me.Controls.Add(Me.LbEnlacesWeb)
+        Me.Controls.Add(Me.BtDocRequisitos)
         Me.Controls.Add(Me.BtPaginaActiva)
         Me.Controls.Add(Me.LbHostname)
         Me.Controls.Add(Me.BtSubeBinario)
@@ -1971,7 +2015,7 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbHostname As Label
     Friend WithEvents TlpLogMigrador As ToolTip
     Friend WithEvents BtReducirDatos As Button
-    Friend WithEvents LbReducirDatosSQL As Label
+    Friend WithEvents LbSentenciaSQL As Label
     Friend WithEvents TlpConsultaDatosSQL As ToolTip
     Friend WithEvents BtNetBetax64F462 As Button
     Friend WithEvents BtNetBetaF462 As Button
@@ -1981,4 +2025,8 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtPaginaActiva As Button
     Friend WithEvents TlpUrlNemo As ToolTip
     Friend WithEvents BtSQL2008R2 As Button
+    Friend WithEvents BtTriggers As Button
+    Friend WithEvents LbConsultasSQL As Label
+    Friend WithEvents TlpConsultaTriggers As ToolTip
+    Friend WithEvents LbEnlacesWeb As Label
 End Class
