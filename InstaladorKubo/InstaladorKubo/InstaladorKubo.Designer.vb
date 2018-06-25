@@ -180,6 +180,8 @@ Partial Class FrmInstaladorKubo
         Me.TlpUrlNemo = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpConsultaTriggers = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbEnlacesWeb = New System.Windows.Forms.Label()
+        Me.BtVisorImagenes = New System.Windows.Forms.Button()
+        Me.TlpVisorImagenes = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -740,6 +742,7 @@ Partial Class FrmInstaladorKubo
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage6.Controls.Add(Me.BtVisorImagenes)
         Me.TabPage6.Controls.Add(Me.BtLogChoco)
         Me.TabPage6.Controls.Add(Me.BtChocolatey)
         Me.TabPage6.Controls.Add(Me.BtKmsPico)
@@ -1802,6 +1805,24 @@ Partial Class FrmInstaladorKubo
         Me.LbEnlacesWeb.TabIndex = 52
         Me.LbEnlacesWeb.Text = "Enlaces web relacionados Notin:"
         '
+        'BtVisorImagenes
+        '
+        Me.BtVisorImagenes.Enabled = False
+        Me.BtVisorImagenes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtVisorImagenes.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BtVisorImagenes.Location = New System.Drawing.Point(195, 90)
+        Me.BtVisorImagenes.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtVisorImagenes.Name = "BtVisorImagenes"
+        Me.BtVisorImagenes.Size = New System.Drawing.Size(167, 28)
+        Me.BtVisorImagenes.TabIndex = 38
+        Me.BtVisorImagenes.Text = "Visor de Imágenes"
+        Me.BtVisorImagenes.UseVisualStyleBackColor = True
+        '
+        'TlpVisorImagenes
+        '
+        Me.TlpVisorImagenes.IsBalloon = True
+        Me.TlpVisorImagenes.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2029,4 +2050,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbConsultasSQL As Label
     Friend WithEvents TlpConsultaTriggers As ToolTip
     Friend WithEvents LbEnlacesWeb As Label
+    Friend WithEvents BtVisorImagenes As Button
+    Friend WithEvents TlpVisorImagenes As ToolTip
 End Class

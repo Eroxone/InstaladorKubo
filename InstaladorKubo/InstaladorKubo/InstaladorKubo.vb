@@ -1603,6 +1603,10 @@ Public Class FrmInstaladorKubo
         TlpUrlNemo.ToolTipTitle = "Check copia url descarga jNemo al Portapapeles"
         TlpUrlNemo.SetToolTip(CbNemo, "URL: http://nemo.notin.net/jnemo-latest.exe")
 
+        TlpVisorImagenes.ToolTipTitle = "Asocia Imágenes al Visor de Imágenes de Windows"
+        TlpVisorImagenes.SetToolTip(BtVisorImagenes, "Cambia FOTOS por Visor de Imágenes en asociación de Archivos para Windows 10.")
+
+
     End Sub
 #End Region
 
@@ -4203,6 +4207,7 @@ Public Class FrmInstaladorKubo
         'TODO cambiar icono
         Try
             Process.Start("iexplore.exe", "http://www.notin.net/portal/425r312x/pagina.asp")
+            'Shell("cmd /k start /d " & """" & "" & """" & " IEXPLORE.EXE http://www.notin.net/portal/425r312x/pagina.asp", AppWinStyle.Hide, False)
             RegistroInstalacion("Página activa lanzada a Internet Explorer.")
         Catch ex As Exception
             RegistroInstalacion("ERROR Página Activa: " & ex.Message)
