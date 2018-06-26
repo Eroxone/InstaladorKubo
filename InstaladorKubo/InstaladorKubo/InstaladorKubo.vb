@@ -348,6 +348,11 @@ Public Class FrmInstaladorKubo
             BtNautilus.BackColor = Color.LightSalmon
         End If
 
+        Dim visorimagenes = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "VISORIMAGENES", "2")
+        If visorimagenes = 1 Then
+            BtVisorImagenes.BackColor = Color.PaleGreen
+        End If
+
     End Sub
 
     'Boton EXAMINAR
@@ -1603,8 +1608,8 @@ Public Class FrmInstaladorKubo
         TlpUrlNemo.ToolTipTitle = "Check copia url descarga jNemo al Portapapeles"
         TlpUrlNemo.SetToolTip(CbNemo, "URL: http://nemo.notin.net/jnemo-latest.exe")
 
-        TlpVisorImagenes.ToolTipTitle = "Asocia Imágenes al Visor de Imágenes de Windows"
-        TlpVisorImagenes.SetToolTip(BtVisorImagenes, "Cambia FOTOS por Visor de Imágenes en asociación de archivos para Windows 10.")
+        TlpVisorImagenes.ToolTipTitle = "Visor de Imágenes de Windows"
+        TlpVisorImagenes.SetToolTip(BtVisorImagenes, "Habilita selección del Visor de Imágenes en asociación de archivos para Windows 10.")
 
 
     End Sub
@@ -3748,12 +3753,18 @@ Public Class FrmInstaladorKubo
             pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
             Dim notinnet As Process = Process.Start(pnotinnet)
             'notinnet.WaitForExit()
-            BtEstableNet.BackColor = Color.PaleGreen
             RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
         Catch ex As Exception
             BtEstableNet.BackColor = Color.LightSalmon
             RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
         End Try
+
+        'Como no puedo comprobar que versión de Net tiene dejo todas en gris
+        BtNetBeta.BackColor = SystemColors.Control
+        BtBetax64.BackColor = SystemColors.Control
+        BtEstableNet.BackColor = SystemColors.Control
+        BtNetBetax64F462.BackColor = SystemColors.Control
+        BtNetBetaF462.BackColor = SystemColors.Control
 
     End Sub
 
@@ -4176,6 +4187,11 @@ Public Class FrmInstaladorKubo
         End Try
     End Sub
 
+    Private Sub BtLogNet_Click(sender As Object, e As EventArgs) Handles BtLogNet.Click
+        Dim appdata As String = GetFolderPath(SpecialFolder.ApplicationData)
+        Process.Start("explorer.exe", appdata & "\Notin\Addins\NotinTaskPane\Log")
+    End Sub
+
     Private Sub BtNautilus_Click(sender As Object, e As EventArgs) Handles BtNautilus.Click
         RegistroInstalacion("Instalación Notin Control Center (NAUTILUS) ")
         obtenerwget()
@@ -4213,6 +4229,26 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR Página Activa: " & ex.Message)
         End Try
     End Sub
+
+    Private Sub BtVisorImagenes_Click(sender As Object, e As EventArgs) Handles BtVisorImagenes.Click
+        obtenerunrar()
+        Directory.CreateDirectory(RutaDescargas & "Registro")
+        Dim wgetvisor As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 "
+        Shell("cmd.exe /c " & RutaDescargas & wgetvisor & PuestoNotin & "VisorDeImagenes.reg" & " -O" & RutaDescargas & "Registro\VisorDeImagenes.reg", AppWinStyle.NormalFocus, True)
+        Try
+            Process.Start("regedit.exe", "/s " & RutaDescargas & "Registro\VisorDeImagenes.reg")
+            RegistroInstalacion("Visor Imágenes: Clave Registro Importada correctamente.")
+            BtVisorImagenes.BackColor = Color.PaleGreen
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "VISORIMAGENES", "1")
+            Dim visorpredeterminado As String = "Configuración de aplicaciones predeterminadas"
+            My.Computer.Clipboard.SetText(visorpredeterminado)
+            MessageBox.Show("Accede ahora a Configuración de Aplicaciones Predeterminadas y cambia FOTOS por el Visor de Imágenes. (Menú Inicio y Ctrl V para hacer la búsqueda).", "Predeterminar Visor Imágenes Windows", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Visor Imágenes: " & ex.Message)
+            BtVisorImagenes.BackColor = Color.LightSalmon
+        End Try
+    End Sub
+
 
 
 

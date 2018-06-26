@@ -68,6 +68,7 @@ Partial Class FrmInstaladorKubo
         Me.BtUac = New System.Windows.Forms.Button()
         Me.BtDirectivas = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.BtVisorImagenes = New System.Windows.Forms.Button()
         Me.BtLogChoco = New System.Windows.Forms.Button()
         Me.BtChocolatey = New System.Windows.Forms.Button()
         Me.BtKmsPico = New System.Windows.Forms.Button()
@@ -77,6 +78,7 @@ Partial Class FrmInstaladorKubo
         Me.BtExcepJava = New System.Windows.Forms.Button()
         Me.BtJava = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
+        Me.BtLogNet = New System.Windows.Forms.Button()
         Me.BtNautilusLog = New System.Windows.Forms.Button()
         Me.BtNautilus = New System.Windows.Forms.Button()
         Me.BtNetBetax64F462 = New System.Windows.Forms.Button()
@@ -180,7 +182,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpUrlNemo = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpConsultaTriggers = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbEnlacesWeb = New System.Windows.Forms.Label()
-        Me.BtVisorImagenes = New System.Windows.Forms.Button()
         Me.TlpVisorImagenes = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -295,10 +296,10 @@ Partial Class FrmInstaladorKubo
         '
         Me.btSalir.BackColor = System.Drawing.SystemColors.Control
         Me.btSalir.Font = New System.Drawing.Font("Lucida Bright", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.btSalir.Location = New System.Drawing.Point(1019, 607)
+        Me.btSalir.Location = New System.Drawing.Point(1002, 607)
         Me.btSalir.Margin = New System.Windows.Forms.Padding(2)
         Me.btSalir.Name = "btSalir"
-        Me.btSalir.Size = New System.Drawing.Size(72, 33)
+        Me.btSalir.Size = New System.Drawing.Size(89, 37)
         Me.btSalir.TabIndex = 33
         Me.btSalir.Text = "Salir"
         Me.btSalir.UseVisualStyleBackColor = False
@@ -759,6 +760,18 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
         '
+        'BtVisorImagenes
+        '
+        Me.BtVisorImagenes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtVisorImagenes.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BtVisorImagenes.Location = New System.Drawing.Point(195, 90)
+        Me.BtVisorImagenes.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtVisorImagenes.Name = "BtVisorImagenes"
+        Me.BtVisorImagenes.Size = New System.Drawing.Size(167, 28)
+        Me.BtVisorImagenes.TabIndex = 38
+        Me.BtVisorImagenes.Text = "Visor de Imágenes"
+        Me.BtVisorImagenes.UseVisualStyleBackColor = True
+        '
         'BtLogChoco
         '
         Me.BtLogChoco.FlatStyle = System.Windows.Forms.FlatStyle.Popup
@@ -853,6 +866,7 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.BtLogNet)
         Me.TabPage11.Controls.Add(Me.BtNautilusLog)
         Me.TabPage11.Controls.Add(Me.BtNautilus)
         Me.TabPage11.Controls.Add(Me.BtNetBetax64F462)
@@ -871,15 +885,24 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
         '
+        'BtLogNet
+        '
+        Me.BtLogNet.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic)
+        Me.BtLogNet.Location = New System.Drawing.Point(60, 244)
+        Me.BtLogNet.Name = "BtLogNet"
+        Me.BtLogNet.Size = New System.Drawing.Size(115, 25)
+        Me.BtLogNet.TabIndex = 48
+        Me.BtLogNet.Text = "Logs TaskPane"
+        Me.BtLogNet.UseVisualStyleBackColor = True
+        '
         'BtNautilusLog
         '
-        Me.BtNautilusLog.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtNautilusLog.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic)
-        Me.BtNautilusLog.Location = New System.Drawing.Point(287, 204)
+        Me.BtNautilusLog.Location = New System.Drawing.Point(247, 204)
         Me.BtNautilusLog.Name = "BtNautilusLog"
-        Me.BtNautilusLog.Size = New System.Drawing.Size(75, 23)
+        Me.BtNautilusLog.Size = New System.Drawing.Size(115, 25)
         Me.BtNautilusLog.TabIndex = 47
-        Me.BtNautilusLog.Text = "Ruta Logs"
+        Me.BtNautilusLog.Text = "Logs Nautilus"
         Me.BtNautilusLog.UseVisualStyleBackColor = True
         '
         'BtNautilus
@@ -1054,7 +1077,7 @@ Partial Class FrmInstaladorKubo
         Me.LbSentenciaSQL.AutoSize = True
         Me.LbSentenciaSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbSentenciaSQL.ForeColor = System.Drawing.Color.Green
-        Me.LbSentenciaSQL.Location = New System.Drawing.Point(83, 263)
+        Me.LbSentenciaSQL.Location = New System.Drawing.Point(83, 235)
         Me.LbSentenciaSQL.Name = "LbSentenciaSQL"
         Me.LbSentenciaSQL.Size = New System.Drawing.Size(279, 19)
         Me.LbSentenciaSQL.TabIndex = 9
@@ -1805,19 +1828,6 @@ Partial Class FrmInstaladorKubo
         Me.LbEnlacesWeb.TabIndex = 52
         Me.LbEnlacesWeb.Text = "Enlaces web relacionados Notin:"
         '
-        'BtVisorImagenes
-        '
-        Me.BtVisorImagenes.Enabled = False
-        Me.BtVisorImagenes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtVisorImagenes.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtVisorImagenes.Location = New System.Drawing.Point(195, 90)
-        Me.BtVisorImagenes.Margin = New System.Windows.Forms.Padding(2)
-        Me.BtVisorImagenes.Name = "BtVisorImagenes"
-        Me.BtVisorImagenes.Size = New System.Drawing.Size(167, 28)
-        Me.BtVisorImagenes.TabIndex = 38
-        Me.BtVisorImagenes.Text = "Visor de Imágenes"
-        Me.BtVisorImagenes.UseVisualStyleBackColor = True
-        '
         'TlpVisorImagenes
         '
         Me.TlpVisorImagenes.IsBalloon = True
@@ -2052,4 +2062,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbEnlacesWeb As Label
     Friend WithEvents BtVisorImagenes As Button
     Friend WithEvents TlpVisorImagenes As ToolTip
+    Friend WithEvents BtLogNet As Button
 End Class
