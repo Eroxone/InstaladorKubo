@@ -3819,8 +3819,6 @@ Public Class FrmInstaladorKubo
     '    End If
     'End Function
 
-
-
     Private Sub ObtenerVersionNet()
         Try
             Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
