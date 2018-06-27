@@ -3841,7 +3841,12 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub ObtenerVersionFW()
-        Shell("cmd /c reg Query " & """" & "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client" & """" & " /v Version > " & RutaDescargas & "fwversion.txt")
+        Try
+            Directory.CreateDirectory(RutaDescargas)
+            Shell("cmd /c reg Query " & """" & "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client" & """" & " /v Version > " & RutaDescargas & "fwversion.txt")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Obtener versión FW: " & ex.Message)
+        End Try
 
         Try
             Dim versionfw As String = RutaDescargas & "fwversion.txt"
@@ -3855,6 +3860,9 @@ Public Class FrmInstaladorKubo
                 numerolinea = numerolinea + 1
             End While
             sr.Close()
+
+            TlpVersionFW.ToolTipTitle = "REG Query para Versión Framework:"
+            TlpVersionFW.SetToolTip(LbVersionFW, infoversion)
 
             Dim numeroversion As String = infoversion.Substring(25)
 

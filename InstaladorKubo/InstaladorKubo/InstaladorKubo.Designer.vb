@@ -185,6 +185,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpConsultaTriggers = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbEnlacesWeb = New System.Windows.Forms.Label()
         Me.TlpVisorImagenes = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpVersionFW = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1857,6 +1858,11 @@ Partial Class FrmInstaladorKubo
         Me.TlpVisorImagenes.IsBalloon = True
         Me.TlpVisorImagenes.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'TlpVersionFW
+        '
+        Me.TlpVersionFW.IsBalloon = True
+        Me.TlpVersionFW.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2089,4 +2095,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtLogNet As Button
     Friend WithEvents LbVersionFW As Label
     Friend WithEvents LbInfoVersionFW As Label
+    Friend WithEvents TlpVersionFW As ToolTip
 End Class
