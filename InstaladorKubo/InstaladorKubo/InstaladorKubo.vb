@@ -25,11 +25,15 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub FrmInstaladorNotin_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Try
+            Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
+            File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", vbCrLf & vbCrLf)
+            RegistroInstalacion("=== NUEVA EJECUCION DEL INSTALADOR === FECHA: " & DateTime.Now.Date)
+            'RegistroInstalacion("FECHA:" & DateTime.Now.Date)
+        Catch ex As Exception
+            MessageBox.Show("Error creando ruta Temporal. Pueden seguir mas errores en el Instalador.", "Error Ruta TEMP", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
-        Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
-        File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", vbCrLf & vbCrLf)
-        RegistroInstalacion("=== NUEVA EJECUCION DEL INSTALADOR === FECHA: " & DateTime.Now.Date)
-        'RegistroInstalacion("FECHA:" & DateTime.Now.Date)
 
         SistemaOperativo()
         lbRuta.Text = GetPathTemp()
