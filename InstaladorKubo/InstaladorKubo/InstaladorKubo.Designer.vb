@@ -648,7 +648,7 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(398, 412)
+        Me.GroupBox2.Size = New System.Drawing.Size(398, 391)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Utilidades Sistema"
@@ -665,7 +665,7 @@ Partial Class FrmInstaladorKubo
         Me.TabSistema.Margin = New System.Windows.Forms.Padding(2)
         Me.TabSistema.Name = "TabSistema"
         Me.TabSistema.SelectedIndex = 0
-        Me.TabSistema.Size = New System.Drawing.Size(386, 375)
+        Me.TabSistema.Size = New System.Drawing.Size(386, 354)
         Me.TabSistema.TabIndex = 35
         '
         'TabPage5
@@ -886,7 +886,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Controls.Add(Me.BtNetBeta)
         Me.TabPage11.Location = New System.Drawing.Point(4, 27)
         Me.TabPage11.Name = "TabPage11"
-        Me.TabPage11.Size = New System.Drawing.Size(378, 344)
+        Me.TabPage11.Size = New System.Drawing.Size(378, 323)
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
         '
@@ -1847,7 +1847,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbEnlacesWeb.AutoSize = True
         Me.LbEnlacesWeb.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbEnlacesWeb.Location = New System.Drawing.Point(408, 551)
+        Me.LbEnlacesWeb.Location = New System.Drawing.Point(416, 539)
         Me.LbEnlacesWeb.Name = "LbEnlacesWeb"
         Me.LbEnlacesWeb.Size = New System.Drawing.Size(266, 19)
         Me.LbEnlacesWeb.TabIndex = 52
