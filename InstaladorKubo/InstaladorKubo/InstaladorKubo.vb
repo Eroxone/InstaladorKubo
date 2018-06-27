@@ -68,6 +68,9 @@ Public Class FrmInstaladorKubo
         LeerLogMigradorSQL()
         'End If
 
+        'Version FrameWork Sistema
+        ObtenerVersionFW()
+
     End Sub
 
     Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
@@ -3837,6 +3840,34 @@ Public Class FrmInstaladorKubo
         End Try
     End Sub
 
+    Private Sub ObtenerVersionFW()
+        Shell("cmd /c reg Query " & """" & "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client" & """" & " /v Version > " & RutaDescargas & "fwversion.txt")
+
+        Try
+            Dim versionfw As String = RutaDescargas & "fwversion.txt"
+            Dim infoversion As String = "Sin información."
+
+            Dim sr As New System.IO.StreamReader(versionfw)
+            Dim numerolinea As Integer = 0
+            'TODO Sandraaaaaaaa ayudame con esto. While seguro es cutre jaja
+            While numerolinea < 3
+                infoversion = sr.ReadLine()
+                numerolinea = numerolinea + 1
+            End While
+            sr.Close()
+
+            Dim numeroversion As String = infoversion.Substring(25)
+
+            LbVersionFW.Text = "Versión " & numeroversion
+
+            cIniArray.IniWrite(instaladorkuboini, "NET", "FWSISTEMA", numeroversion)
+            RegistroInstalacion("INFO FRAMEWORK: InfoVersión en el Sistema: " & numeroversion)
+        Catch ex As Exception
+            RegistroInstalacion("INFO FRAMEWORK: No se pudo determinar Versión FW en Sistema.")
+        End Try
+    End Sub
+
+
 
     Private Sub BtNetBeta_Click(sender As Object, e As EventArgs) Handles BtNetBeta.Click
         If NotinRapp() = True Then
@@ -4248,6 +4279,7 @@ Public Class FrmInstaladorKubo
             BtVisorImagenes.BackColor = Color.LightSalmon
         End Try
     End Sub
+
 
 
 

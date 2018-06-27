@@ -78,6 +78,8 @@ Partial Class FrmInstaladorKubo
         Me.BtExcepJava = New System.Windows.Forms.Button()
         Me.BtJava = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
+        Me.LbVersionFW = New System.Windows.Forms.Label()
+        Me.LbInfoVersionFW = New System.Windows.Forms.Label()
         Me.BtLogNet = New System.Windows.Forms.Button()
         Me.BtNautilusLog = New System.Windows.Forms.Button()
         Me.BtNautilus = New System.Windows.Forms.Button()
@@ -296,7 +298,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.btSalir.BackColor = System.Drawing.SystemColors.Control
         Me.btSalir.Font = New System.Drawing.Font("Lucida Bright", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.btSalir.Location = New System.Drawing.Point(1002, 607)
+        Me.btSalir.Location = New System.Drawing.Point(1002, 686)
         Me.btSalir.Margin = New System.Windows.Forms.Padding(2)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(89, 37)
@@ -645,7 +647,7 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(398, 352)
+        Me.GroupBox2.Size = New System.Drawing.Size(398, 412)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Utilidades Sistema"
@@ -662,7 +664,7 @@ Partial Class FrmInstaladorKubo
         Me.TabSistema.Margin = New System.Windows.Forms.Padding(2)
         Me.TabSistema.Name = "TabSistema"
         Me.TabSistema.SelectedIndex = 0
-        Me.TabSistema.Size = New System.Drawing.Size(386, 318)
+        Me.TabSistema.Size = New System.Drawing.Size(386, 375)
         Me.TabSistema.TabIndex = 35
         '
         'TabPage5
@@ -677,7 +679,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage5.Size = New System.Drawing.Size(378, 287)
+        Me.TabPage5.Size = New System.Drawing.Size(378, 344)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
@@ -756,7 +758,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage6.Size = New System.Drawing.Size(378, 287)
+        Me.TabPage6.Size = New System.Drawing.Size(378, 344)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
         '
@@ -866,6 +868,8 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.LbVersionFW)
+        Me.TabPage11.Controls.Add(Me.LbInfoVersionFW)
         Me.TabPage11.Controls.Add(Me.BtLogNet)
         Me.TabPage11.Controls.Add(Me.BtNautilusLog)
         Me.TabPage11.Controls.Add(Me.BtNautilus)
@@ -881,9 +885,29 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Controls.Add(Me.BtNetBeta)
         Me.TabPage11.Location = New System.Drawing.Point(4, 27)
         Me.TabPage11.Name = "TabPage11"
-        Me.TabPage11.Size = New System.Drawing.Size(378, 287)
+        Me.TabPage11.Size = New System.Drawing.Size(378, 344)
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
+        '
+        'LbVersionFW
+        '
+        Me.LbVersionFW.AutoSize = True
+        Me.LbVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbVersionFW.Location = New System.Drawing.Point(8, 296)
+        Me.LbVersionFW.Name = "LbVersionFW"
+        Me.LbVersionFW.Size = New System.Drawing.Size(99, 15)
+        Me.LbVersionFW.TabIndex = 50
+        Me.LbVersionFW.Text = "Sin información"
+        '
+        'LbInfoVersionFW
+        '
+        Me.LbInfoVersionFW.AutoSize = True
+        Me.LbInfoVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.LbInfoVersionFW.Location = New System.Drawing.Point(8, 277)
+        Me.LbInfoVersionFW.Name = "LbInfoVersionFW"
+        Me.LbInfoVersionFW.Size = New System.Drawing.Size(166, 15)
+        Me.LbInfoVersionFW.TabIndex = 49
+        Me.LbInfoVersionFW.Text = "Framework en Sistema:"
         '
         'BtLogNet
         '
@@ -1036,7 +1060,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.Location = New System.Drawing.Point(4, 27)
         Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(378, 287)
+        Me.TabPage7.Size = New System.Drawing.Size(378, 344)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
         '
@@ -1167,7 +1191,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Controls.Add(Me.BtConfWord2016ADRA)
         Me.TabPage10.Location = New System.Drawing.Point(4, 27)
         Me.TabPage10.Name = "TabPage10"
-        Me.TabPage10.Size = New System.Drawing.Size(378, 287)
+        Me.TabPage10.Size = New System.Drawing.Size(378, 344)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
@@ -1198,7 +1222,7 @@ Partial Class FrmInstaladorKubo
         Me.BtDocRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BtDocRequisitos.Image = CType(resources.GetObject("BtDocRequisitos.Image"), System.Drawing.Image)
         Me.BtDocRequisitos.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.BtDocRequisitos.Location = New System.Drawing.Point(615, 495)
+        Me.BtDocRequisitos.Location = New System.Drawing.Point(607, 576)
         Me.BtDocRequisitos.Name = "BtDocRequisitos"
         Me.BtDocRequisitos.Size = New System.Drawing.Size(180, 35)
         Me.BtDocRequisitos.TabIndex = 50
@@ -1212,7 +1236,7 @@ Partial Class FrmInstaladorKubo
         Me.lbRuta.BackColor = System.Drawing.SystemColors.Control
         Me.lbRuta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lbRuta.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRuta.Location = New System.Drawing.Point(13, 591)
+        Me.lbRuta.Location = New System.Drawing.Point(13, 670)
         Me.lbRuta.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbRuta.Name = "lbRuta"
         Me.lbRuta.Size = New System.Drawing.Size(70, 17)
@@ -1223,7 +1247,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.btDescargar.BackColor = System.Drawing.Color.Azure
         Me.btDescargar.Font = New System.Drawing.Font("Lucida Bright", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btDescargar.Location = New System.Drawing.Point(205, 560)
+        Me.btDescargar.Location = New System.Drawing.Point(205, 639)
         Me.btDescargar.Margin = New System.Windows.Forms.Padding(2)
         Me.btDescargar.Name = "btDescargar"
         Me.btDescargar.Size = New System.Drawing.Size(121, 58)
@@ -1266,7 +1290,7 @@ Partial Class FrmInstaladorKubo
         Me.lbProcesandoDescargas.AutoSize = True
         Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.Green
-        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(407, 557)
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(407, 636)
         Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
         Me.lbProcesandoDescargas.Size = New System.Drawing.Size(283, 25)
         Me.lbProcesandoDescargas.TabIndex = 36
@@ -1285,7 +1309,7 @@ Partial Class FrmInstaladorKubo
         Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
         Me.lbInstalando.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold)
         Me.lbInstalando.ForeColor = System.Drawing.Color.Green
-        Me.lbInstalando.Location = New System.Drawing.Point(407, 556)
+        Me.lbInstalando.Location = New System.Drawing.Point(407, 635)
         Me.lbInstalando.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbInstalando.Name = "lbInstalando"
         Me.lbInstalando.Size = New System.Drawing.Size(309, 25)
@@ -1313,7 +1337,7 @@ Partial Class FrmInstaladorKubo
         Me.btDirDescargas.BackColor = System.Drawing.SystemColors.Control
         Me.btDirDescargas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btDirDescargas.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btDirDescargas.Location = New System.Drawing.Point(13, 560)
+        Me.btDirDescargas.Location = New System.Drawing.Point(13, 639)
         Me.btDirDescargas.Margin = New System.Windows.Forms.Padding(2)
         Me.btDirDescargas.Name = "btDirDescargas"
         Me.btDirDescargas.Size = New System.Drawing.Size(114, 24)
@@ -1479,7 +1503,7 @@ Partial Class FrmInstaladorKubo
         '
         'PbInstalaciones
         '
-        Me.PbInstalaciones.Location = New System.Drawing.Point(412, 592)
+        Me.PbInstalaciones.Location = New System.Drawing.Point(412, 671)
         Me.PbInstalaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.PbInstalaciones.MarqueeAnimationSpeed = 50
         Me.PbInstalaciones.Maximum = 50
@@ -1498,7 +1522,7 @@ Partial Class FrmInstaladorKubo
         Me.BtLogin.BackColor = System.Drawing.Color.Gold
         Me.BtLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtLogin.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtLogin.Location = New System.Drawing.Point(1002, 570)
+        Me.BtLogin.Location = New System.Drawing.Point(1002, 649)
         Me.BtLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.BtLogin.Name = "BtLogin"
         Me.BtLogin.Size = New System.Drawing.Size(89, 27)
@@ -1572,7 +1596,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbNotificacionemail.AutoSize = True
         Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbNotificacionemail.Location = New System.Drawing.Point(121, 625)
+        Me.LbNotificacionemail.Location = New System.Drawing.Point(121, 704)
         Me.LbNotificacionemail.Name = "LbNotificacionemail"
         Me.LbNotificacionemail.Size = New System.Drawing.Size(78, 15)
         Me.LbNotificacionemail.TabIndex = 48
@@ -1584,7 +1608,7 @@ Partial Class FrmInstaladorKubo
         Me.BtExplorarRutas.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtExplorarRutas.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtExplorarRutas.Image = CType(resources.GetObject("BtExplorarRutas.Image"), System.Drawing.Image)
-        Me.BtExplorarRutas.Location = New System.Drawing.Point(13, 611)
+        Me.BtExplorarRutas.Location = New System.Drawing.Point(13, 690)
         Me.BtExplorarRutas.Name = "BtExplorarRutas"
         Me.BtExplorarRutas.Size = New System.Drawing.Size(37, 32)
         Me.BtExplorarRutas.TabIndex = 23
@@ -1598,7 +1622,7 @@ Partial Class FrmInstaladorKubo
         Me.CBoxEmail.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
         Me.CBoxEmail.FormattingEnabled = True
         Me.CBoxEmail.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
-        Me.CBoxEmail.Location = New System.Drawing.Point(204, 622)
+        Me.CBoxEmail.Location = New System.Drawing.Point(204, 701)
         Me.CBoxEmail.Name = "CBoxEmail"
         Me.CBoxEmail.Size = New System.Drawing.Size(139, 22)
         Me.CBoxEmail.TabIndex = 49
@@ -1717,7 +1741,7 @@ Partial Class FrmInstaladorKubo
         Me.BtSubeBinario.BackColor = System.Drawing.Color.Gold
         Me.BtSubeBinario.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtSubeBinario.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtSubeBinario.Location = New System.Drawing.Point(873, 539)
+        Me.BtSubeBinario.Location = New System.Drawing.Point(873, 618)
         Me.BtSubeBinario.Margin = New System.Windows.Forms.Padding(2)
         Me.BtSubeBinario.Name = "BtSubeBinario"
         Me.BtSubeBinario.Size = New System.Drawing.Size(104, 28)
@@ -1800,7 +1824,7 @@ Partial Class FrmInstaladorKubo
         Me.BtPaginaActiva.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BtPaginaActiva.Image = CType(resources.GetObject("BtPaginaActiva.Image"), System.Drawing.Image)
         Me.BtPaginaActiva.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.BtPaginaActiva.Location = New System.Drawing.Point(420, 495)
+        Me.BtPaginaActiva.Location = New System.Drawing.Point(412, 576)
         Me.BtPaginaActiva.Name = "BtPaginaActiva"
         Me.BtPaginaActiva.Size = New System.Drawing.Size(180, 35)
         Me.BtPaginaActiva.TabIndex = 51
@@ -1822,7 +1846,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbEnlacesWeb.AutoSize = True
         Me.LbEnlacesWeb.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbEnlacesWeb.Location = New System.Drawing.Point(416, 470)
+        Me.LbEnlacesWeb.Location = New System.Drawing.Point(408, 551)
         Me.LbEnlacesWeb.Name = "LbEnlacesWeb"
         Me.LbEnlacesWeb.Size = New System.Drawing.Size(266, 19)
         Me.LbEnlacesWeb.TabIndex = 52
@@ -1838,7 +1862,7 @@ Partial Class FrmInstaladorKubo
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1134, 653)
+        Me.ClientSize = New System.Drawing.Size(1134, 729)
         Me.Controls.Add(Me.LbEnlacesWeb)
         Me.Controls.Add(Me.BtDocRequisitos)
         Me.Controls.Add(Me.BtPaginaActiva)
@@ -2063,4 +2087,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtVisorImagenes As Button
     Friend WithEvents TlpVisorImagenes As ToolTip
     Friend WithEvents BtLogNet As Button
+    Friend WithEvents LbVersionFW As Label
+    Friend WithEvents LbInfoVersionFW As Label
 End Class
