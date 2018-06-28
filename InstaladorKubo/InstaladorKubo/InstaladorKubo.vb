@@ -3712,14 +3712,14 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtNotin8exe_Click(sender As Object, e As EventArgs) Handles BtNotin8exe.Click
-        If NotinRapp() = True Then
-            Dim notinrapp = MessageBox.Show("Se va a proceder a Descargar y Ejecutar NOTIN8.exe en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-            RegistroInstalacion("ADRA: Ejecutando Notin8.exe en entorno NotinRapp. Se advierte al usuario.")
-            If notinrapp = DialogResult.No Then
-                RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
-                Exit Sub
-            End If
-        End If
+        'If NotinRapp() = True Then
+        '    Dim notinrapp = MessageBox.Show("Se va a proceder a Descargar y Ejecutar NOTIN8.exe en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        '    RegistroInstalacion("ADRA: Ejecutando Notin8.exe en entorno NotinRapp. Se advierte al usuario.")
+        '    If notinrapp = DialogResult.No Then
+        '        RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
+        '        Exit Sub
+        '    End If
+        'End If
 
         DescargarNotaria()
     End Sub
@@ -3752,6 +3752,15 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             BtNotin8exe.BackColor = Color.LightSalmon
             RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
+        End Try
+
+        Try
+            obtenerrobocopy()
+            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.NormalFocus, True)
+            RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Notin8.exe no se pudo copiar a F:\. Causa: " & ex.Message)
+            BtNotin8exe.BackColor = Color.LightSalmon
         End Try
 
 

@@ -631,12 +631,15 @@ Partial Class FrmInstaladorKubo
         '
         Me.btNotinKubo.BackColor = System.Drawing.Color.BlanchedAlmond
         Me.btNotinKubo.Font = New System.Drawing.Font("Lucida Bright", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btNotinKubo.Image = CType(resources.GetObject("btNotinKubo.Image"), System.Drawing.Image)
+        Me.btNotinKubo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btNotinKubo.Location = New System.Drawing.Point(14, 10)
         Me.btNotinKubo.Margin = New System.Windows.Forms.Padding(2)
         Me.btNotinKubo.Name = "btNotinKubo"
-        Me.btNotinKubo.Size = New System.Drawing.Size(178, 41)
+        Me.btNotinKubo.Size = New System.Drawing.Size(200, 45)
         Me.btNotinKubo.TabIndex = 26
         Me.btNotinKubo.Text = "NOTIN + KUBO"
+        Me.btNotinKubo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btNotinKubo.UseVisualStyleBackColor = False
         '
         'GroupBox2
@@ -680,7 +683,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage5.Size = New System.Drawing.Size(378, 344)
+        Me.TabPage5.Size = New System.Drawing.Size(378, 323)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
@@ -759,7 +762,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage6.Size = New System.Drawing.Size(378, 344)
+        Me.TabPage6.Size = New System.Drawing.Size(378, 323)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
         '
@@ -949,7 +952,7 @@ Partial Class FrmInstaladorKubo
         Me.BtNetBetax64F462.Name = "BtNetBetax64F462"
         Me.BtNetBetax64F462.Size = New System.Drawing.Size(167, 28)
         Me.BtNetBetax64F462.TabIndex = 45
-        Me.BtNetBetax64F462.Text = "Beta x64 .NET x64"
+        Me.BtNetBetax64F462.Text = "Beta .NET x64"
         Me.BtNetBetax64F462.UseVisualStyleBackColor = True
         '
         'BtNetBetaF462
@@ -960,7 +963,7 @@ Partial Class FrmInstaladorKubo
         Me.BtNetBetaF462.Name = "BtNetBetaF462"
         Me.BtNetBetaF462.Size = New System.Drawing.Size(167, 28)
         Me.BtNetBetaF462.TabIndex = 44
-        Me.BtNetBetaF462.Text = "Beta .NET x86"
+        Me.BtNetBetaF462.Text = "Beta .NET"
         Me.BtNetBetaF462.UseVisualStyleBackColor = True
         '
         'LbSitienesF462
@@ -986,6 +989,7 @@ Partial Class FrmInstaladorKubo
         'BtNotinNetF
         '
         Me.BtNotinNetF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNotinNetF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtNotinNetF.Location = New System.Drawing.Point(195, 50)
         Me.BtNotinNetF.Name = "BtNotinNetF"
         Me.BtNotinNetF.Size = New System.Drawing.Size(167, 28)
@@ -997,7 +1001,7 @@ Partial Class FrmInstaladorKubo
         'BtEstableNet
         '
         Me.BtEstableNet.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtEstableNet.Location = New System.Drawing.Point(8, 90)
+        Me.BtEstableNet.Location = New System.Drawing.Point(8, 10)
         Me.BtEstableNet.Name = "BtEstableNet"
         Me.BtEstableNet.Size = New System.Drawing.Size(167, 28)
         Me.BtEstableNet.TabIndex = 40
@@ -1027,7 +1031,7 @@ Partial Class FrmInstaladorKubo
         'BtBetax64
         '
         Me.BtBetax64.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtBetax64.Location = New System.Drawing.Point(8, 50)
+        Me.BtBetax64.Location = New System.Drawing.Point(8, 90)
         Me.BtBetax64.Name = "BtBetax64"
         Me.BtBetax64.Size = New System.Drawing.Size(167, 28)
         Me.BtBetax64.TabIndex = 38
@@ -1037,7 +1041,7 @@ Partial Class FrmInstaladorKubo
         'BtNetBeta
         '
         Me.BtNetBeta.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNetBeta.Location = New System.Drawing.Point(8, 10)
+        Me.BtNetBeta.Location = New System.Drawing.Point(8, 50)
         Me.BtNetBeta.Name = "BtNetBeta"
         Me.BtNetBeta.Size = New System.Drawing.Size(167, 28)
         Me.BtNetBeta.TabIndex = 36
@@ -1061,7 +1065,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.Location = New System.Drawing.Point(4, 27)
         Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(378, 344)
+        Me.TabPage7.Size = New System.Drawing.Size(378, 323)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
         '
@@ -1192,7 +1196,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Controls.Add(Me.BtConfWord2016ADRA)
         Me.TabPage10.Location = New System.Drawing.Point(4, 27)
         Me.TabPage10.Name = "TabPage10"
-        Me.TabPage10.Size = New System.Drawing.Size(378, 344)
+        Me.TabPage10.Size = New System.Drawing.Size(378, 323)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
@@ -1396,7 +1400,7 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox5.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox5.Size = New System.Drawing.Size(236, 275)
+        Me.GroupBox5.Size = New System.Drawing.Size(252, 275)
         Me.GroupBox5.TabIndex = 41
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Software DN"
@@ -1423,7 +1427,7 @@ Partial Class FrmInstaladorKubo
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(218, 210)
+        Me.TabControl1.Size = New System.Drawing.Size(234, 210)
         Me.TabControl1.TabIndex = 51
         '
         'TabPage8
@@ -1436,32 +1440,38 @@ Partial Class FrmInstaladorKubo
         Me.TabPage8.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage8.Size = New System.Drawing.Size(210, 179)
+        Me.TabPage8.Size = New System.Drawing.Size(226, 179)
         Me.TabPage8.TabIndex = 0
         Me.TabPage8.Text = "Instalación"
         '
         'BtNexus64
         '
         Me.BtNexus64.BackColor = System.Drawing.Color.GhostWhite
-        Me.BtNexus64.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BtNexus64.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
+        Me.BtNexus64.Image = CType(resources.GetObject("BtNexus64.Image"), System.Drawing.Image)
+        Me.BtNexus64.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtNexus64.Location = New System.Drawing.Point(14, 130)
         Me.BtNexus64.Margin = New System.Windows.Forms.Padding(2)
         Me.BtNexus64.Name = "BtNexus64"
-        Me.BtNexus64.Size = New System.Drawing.Size(178, 41)
+        Me.BtNexus64.Size = New System.Drawing.Size(200, 45)
         Me.BtNexus64.TabIndex = 52
         Me.BtNexus64.Text = "NOTIN+NEXUS x64"
+        Me.BtNexus64.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtNexus64.UseVisualStyleBackColor = False
         '
         'BtNotinWord2003
         '
         Me.BtNotinWord2003.BackColor = System.Drawing.Color.MistyRose
-        Me.BtNotinWord2003.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtNotinWord2003.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
+        Me.BtNotinWord2003.Image = CType(resources.GetObject("BtNotinWord2003.Image"), System.Drawing.Image)
+        Me.BtNotinWord2003.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtNotinWord2003.Location = New System.Drawing.Point(14, 70)
         Me.BtNotinWord2003.Margin = New System.Windows.Forms.Padding(2)
         Me.BtNotinWord2003.Name = "BtNotinWord2003"
-        Me.BtNotinWord2003.Size = New System.Drawing.Size(178, 41)
+        Me.BtNotinWord2003.Size = New System.Drawing.Size(200, 45)
         Me.BtNotinWord2003.TabIndex = 27
-        Me.BtNotinWord2003.Text = "NOTIN+WORD2003"
+        Me.BtNotinWord2003.Text = "NOTIN+W2003"
+        Me.BtNotinWord2003.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtNotinWord2003.UseVisualStyleBackColor = False
         '
         'TabPage9
@@ -1868,7 +1878,7 @@ Partial Class FrmInstaladorKubo
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1134, 692)
+        Me.ClientSize = New System.Drawing.Size(1148, 692)
         Me.Controls.Add(Me.LbEnlacesWeb)
         Me.Controls.Add(Me.BtDocRequisitos)
         Me.Controls.Add(Me.BtPaginaActiva)
