@@ -629,8 +629,8 @@ Partial Class FrmInstaladorKubo
         '
         'btNotinKubo
         '
-        Me.btNotinKubo.BackColor = System.Drawing.Color.BlanchedAlmond
-        Me.btNotinKubo.Font = New System.Drawing.Font("Lucida Bright", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btNotinKubo.BackColor = System.Drawing.Color.GhostWhite
+        Me.btNotinKubo.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
         Me.btNotinKubo.Image = CType(resources.GetObject("btNotinKubo.Image"), System.Drawing.Image)
         Me.btNotinKubo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btNotinKubo.Location = New System.Drawing.Point(14, 10)
@@ -1461,7 +1461,7 @@ Partial Class FrmInstaladorKubo
         '
         'BtNotinWord2003
         '
-        Me.BtNotinWord2003.BackColor = System.Drawing.Color.MistyRose
+        Me.BtNotinWord2003.BackColor = System.Drawing.Color.GhostWhite
         Me.BtNotinWord2003.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
         Me.BtNotinWord2003.Image = CType(resources.GetObject("BtNotinWord2003.Image"), System.Drawing.Image)
         Me.BtNotinWord2003.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1483,7 +1483,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage9.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage9.Size = New System.Drawing.Size(210, 179)
+        Me.TabPage9.Size = New System.Drawing.Size(226, 179)
         Me.TabPage9.TabIndex = 1
         Me.TabPage9.Text = "Limpieza"
         '

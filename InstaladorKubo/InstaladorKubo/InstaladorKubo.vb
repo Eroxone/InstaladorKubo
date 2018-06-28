@@ -1589,7 +1589,7 @@ Public Class FrmInstaladorKubo
         TlpNotinNetaF.SetToolTip(BtNotinNetF, "Copia NotinNetInstaller.exe previamente descargado a F:\Notawin.Net para su distribución al resto de equipos.")
 
         TlpNotin8.ToolTipTitle = "Descargar Notaría"
-        TlpNotin8.SetToolTip(BtNotin8exe, "Descarga la última versión de Notin8.exe y lo ejecuta.")
+        TlpNotin8.SetToolTip(BtNotin8exe, "Descarga la última versión de Notin8.exe. Lo ejecuta y deja en F raíz.")
 
         TlpBDBlancos.ToolTipTitle = "Bases de Datos BLANCOS"
         TlpBDBlancos.SetToolTip(BtBlancosBD, "Descarga los BD BLANCOS para SQL2014 o superior y muestra la carpeta. No los importa a tu Motor SQL.")
@@ -3754,14 +3754,18 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
         End Try
 
-        Try
-            obtenerrobocopy()
-            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.NormalFocus, True)
-            RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
-        Catch ex As Exception
-            RegistroInstalacion("ERROR Notin8.exe no se pudo copiar a F:\. Causa: " & ex.Message)
-            BtNotin8exe.BackColor = Color.LightSalmon
-        End Try
+        If UnidadF() = True Then
+            Try
+                obtenerrobocopy()
+                Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.NormalFocus, True)
+                RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
+            Catch ex As Exception
+                RegistroInstalacion("ERROR Notin8.exe no se pudo copiar a F. Causa: " & ex.Message)
+                BtNotin8exe.BackColor = Color.LightSalmon
+            End Try
+        Else
+            RegistroInstalacion("Notin8 no copiado a F: al no encontrarse la Unidad disponible.")
+        End If
 
 
         Try
@@ -3771,7 +3775,7 @@ Public Class FrmInstaladorKubo
             'notinnet.WaitForExit()
             RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
         Catch ex As Exception
-            BtEstableNet.BackColor = Color.LightSalmon
+            'BtEstableNet.BackColor = Color.LightSalmon
             RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
         End Try
 
@@ -4132,10 +4136,16 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtReducirDatos_Click(sender As Object, e As EventArgs) Handles BtReducirDatos.Click
-        Dim consulta As String = "USE DATOS" & vbCrLf & "ALTER DATABASE DATOS" & vbCrLf & "SET RECOVERY SIMPLE;" & vbCrLf & "GO" & vbCrLf & "DBCC SHRINKFILE (DATOS_log, 1);" & vbCrLf & "GO" & vbCrLf & "ALTER DATABASE DATOS" & vbCrLf & "SET RECOVERY FULL;" & vbCrLf & "GO"
-        My.Computer.Clipboard.SetText(consulta)
-        Threading.Thread.Sleep(2000)
-        LbSentenciaSQL.Visible = False
+        Try
+            Dim consulta As String = "USE DATOS" & vbCrLf & "ALTER DATABASE DATOS" & vbCrLf & "SET RECOVERY SIMPLE;" & vbCrLf & "GO" & vbCrLf & "DBCC SHRINKFILE (DATOS_log, 1);" & vbCrLf & "GO" & vbCrLf & "ALTER DATABASE DATOS" & vbCrLf & "SET RECOVERY FULL;" & vbCrLf & "GO"
+            My.Computer.Clipboard.SetText(consulta)
+            Threading.Thread.Sleep(2000)
+            LbSentenciaSQL.Visible = False
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Consulta Reducir Datos: " & ex.Message)
+            BtReducirDatos.BackColor = Color.LightSalmon
+        End Try
+
     End Sub
 
 
@@ -4144,10 +4154,15 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtTriggers_Click(sender As Object, e As EventArgs) Handles BtTriggers.Click
-        Dim consulta As String = "USE DATOS" & vbCrLf & "DROP TRIGGER Actualizar_Tramite" & vbCrLf & "DROP TRIGGER insertar_Tramite" & vbCrLf & "DROP TRIGGER Borrar_Tramite" & vbCrLf & "DROP TRIGGER Actualizar_Cif_Representante" & vbCrLf & "DROP TRIGGER Actualizar_Tramite_Clientes" & vbCrLf & "DROP TRIGGER Actualizar" & vbCrLf & "DROP TRIGGER Borrar" & vbCrLf & "DROP TRIGGER Actualizar_Escrituras_Operaciones" & vbCrLf & "DROP TRIGGER insertar_Numero_Operaciones"
-        My.Computer.Clipboard.SetText(consulta)
-        Threading.Thread.Sleep(2000)
-        LbSentenciaSQL.Visible = False
+        Try
+            Dim consulta As String = "USE DATOS" & vbCrLf & "DROP TRIGGER Actualizar_Tramite" & vbCrLf & "DROP TRIGGER insertar_Tramite" & vbCrLf & "DROP TRIGGER Borrar_Tramite" & vbCrLf & "DROP TRIGGER Actualizar_Cif_Representante" & vbCrLf & "DROP TRIGGER Actualizar_Tramite_Clientes" & vbCrLf & "DROP TRIGGER Actualizar" & vbCrLf & "DROP TRIGGER Borrar" & vbCrLf & "DROP TRIGGER Actualizar_Escrituras_Operaciones" & vbCrLf & "DROP TRIGGER insertar_Numero_Operaciones"
+            My.Computer.Clipboard.SetText(consulta)
+            Threading.Thread.Sleep(2000)
+            LbSentenciaSQL.Visible = False
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Consulta Triggers: " & ex.Message)
+            BtTriggers.BackColor = Color.LightSalmon
+        End Try
     End Sub
 
     Private Sub BtNetBetaF462_Click(sender As Object, e As EventArgs) Handles BtNetBetaF462.Click
