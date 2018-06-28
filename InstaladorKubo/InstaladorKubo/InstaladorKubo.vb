@@ -1604,7 +1604,7 @@ Public Class FrmInstaladorKubo
         TlpFocos.SetToolTip(BtFocos, "Arregla bug versión 10.4 RDP para problema de Focos en Adra.")
 
         TlpLogMigrador.ToolTipTitle = "Log MigradorNotinSQL"
-        TlpLogMigrador.SetToolTip(TbMigradorLog, "Haz Clic para Visualizar Log completo.")
+        TlpLogMigrador.SetToolTip(TbMigradorLog, "Haz clic para visualizar Log completo.")
 
         TlpConsultaDatosSQL.ToolTipTitle = "Consulta sql Reducir DATOS LDF"
         TlpConsultaDatosSQL.SetToolTip(BtReducirDatos, "Copia la sentencia sql al portapapeles. Después dirígete al SQL Manager para ejecutarla.")
