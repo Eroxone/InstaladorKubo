@@ -3735,6 +3735,7 @@ Public Class FrmInstaladorKubo
         End If
 
         obtenerwget()
+        Directory.CreateDirectory(RutaDescargas & "NotinNet")
         'TODO Versión para 32 bits. Leer INI local o global para Descargar uno u otro. Comparar ambos ini.
         Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/v40/notin8.exe"
         'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
