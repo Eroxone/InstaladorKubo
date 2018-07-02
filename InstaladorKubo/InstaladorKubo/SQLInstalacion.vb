@@ -49,6 +49,7 @@ Public Class FrmSQLInstalacion
         End Try
 
         cIniArray.IniWrite(instaladorkuboini, "SQL2014", "INSTALADO", "1")
+        MessageBox.Show("Finalizado instalador desatendido SQL 2014. Revisa Log para ver los detalles.", "Fin instalación desatendida SQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
         FrmInstaladorKubo.Show()
         Me.Close()
     End Sub
