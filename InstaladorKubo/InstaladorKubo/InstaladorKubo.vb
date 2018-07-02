@@ -3979,7 +3979,27 @@ Public Class FrmInstaladorKubo
 
     End Sub
 
+    Private Function ProcesosActivos() As Boolean
+        Dim procesoword() As Process
+        procesoword = Process.GetProcessesByName("winword.exe")
+        Dim procesonotin() As Process
+        procesonotin = Process.GetProcessesByName("msaccess.exe")
+        Dim procesonet() As Process
+        procesonet = Process.GetProcessesByName("notinnetdesktop.exe")
+        Dim procesonexus() As Process
+        procesonexus = Process.GetProcessesByName("nexus.exe")
+
+        If procesoword.Count > 1 OrElse procesonotin.Count > 1 OrElse procesonet.Count > 1 OrElse procesonexus.Count > 1 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+
+
     Private Sub BtEstableNet_Click(sender As Object, e As EventArgs) Handles BtEstableNet.Click
+
         If NotinRapp() = True Then
             Dim notinrapp = MessageBox.Show("Se va a proceder a ejecutar NotinNetInstaller en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             RegistroInstalacion("ADRA: Ejecutando NotinNetInstaller en entorno NotinRapp. Se advierte al usuario.")
@@ -3988,6 +4008,23 @@ Public Class FrmInstaladorKubo
                 Exit Sub
             End If
         End If
+
+
+        'If ProcesosActivos() = True Then
+        '        Dim procesosactivos = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        '        If DialogResult.Yes Then
+        '            Dim procesoword() As Process
+        '            procesoword = Process.GetProcessesByName("winword.exe")
+        '            Process.Kill("winword.exe")
+
+        '        End If
+        'Else
+        'Exit Sub
+        '        End If
+        '    End If
+        'End Sub
+
+
 
         obtenerwget()
         Dim urlestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
