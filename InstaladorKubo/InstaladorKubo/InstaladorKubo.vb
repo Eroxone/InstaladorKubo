@@ -3932,6 +3932,8 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETA")
 
             ObtenerVersionNet()
+            ObtenerVersionFW()
+
             BtNetBeta.BackColor = Color.PaleGreen
             BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
@@ -3983,6 +3985,8 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAX64")
 
             ObtenerVersionNet()
+            ObtenerVersionFW()
+
             BtBetax64.BackColor = Color.PaleGreen
             BtNetBeta.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
@@ -4057,6 +4061,8 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "ESTABLE")
 
             ObtenerVersionNet()
+            ObtenerVersionFW()
+
             BtEstableNet.BackColor = Color.PaleGreen
             BtNetBeta.BackColor = SystemColors.Control
             BtBetax64.BackColor = SystemColors.Control
@@ -4257,6 +4263,8 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAx86F462")
 
             ObtenerVersionNet()
+            ObtenerVersionFW()
+
             BtNetBetaF462.BackColor = Color.PaleGreen
             BtNetBeta.BackColor = SystemColors.Control
             BtBetax64.BackColor = SystemColors.Control
@@ -4312,6 +4320,8 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAx64F462")
 
             ObtenerVersionNet()
+            ObtenerVersionFW()
+
             BtNetBetax64F462.BackColor = Color.PaleGreen
             BtNetBetaF462.BackColor = SystemColors.Control
             BtNetBeta.BackColor = SystemColors.Control
