@@ -3712,15 +3712,6 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtNotin8exe_Click(sender As Object, e As EventArgs) Handles BtNotin8exe.Click
-        'If NotinRapp() = True Then
-        '    Dim notinrapp = MessageBox.Show("Se va a proceder a Descargar y Ejecutar NOTIN8.exe en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-        '    RegistroInstalacion("ADRA: Ejecutando Notin8.exe en entorno NotinRapp. Se advierte al usuario.")
-        '    If notinrapp = DialogResult.No Then
-        '        RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
-        '        Exit Sub
-        '    End If
-        'End If
-
         DescargarNotaria()
     End Sub
 
@@ -3768,17 +3759,25 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("Notin8 no copiado a F: al no encontrarse la Unidad disponible.")
         End If
 
-
-        Try
-            Dim pnotinnet As New ProcessStartInfo()
-            pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
-            Dim notinnet As Process = Process.Start(pnotinnet)
-            'notinnet.WaitForExit()
-            RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
-        Catch ex As Exception
-            'BtEstableNet.BackColor = Color.LightSalmon
-            RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
-        End Try
+        If ProcesosActivos() = True Then
+            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If procesosactivos = DialogResult.Yes Then
+                Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
+                Try
+                    Dim pnotinnet As New ProcessStartInfo()
+                    pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
+                    Dim notinnet As Process = Process.Start(pnotinnet)
+                    'notinnet.WaitForExit()
+                    RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+                Catch ex As Exception
+                    'BtEstableNet.BackColor = Color.LightSalmon
+                    RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
+                End Try
+            Else
+                BtNotin8exe.BackColor = Color.LightSalmon
+                Exit Sub
+            End If
+        End If
 
         'Como no puedo comprobar que versión de Net tiene dejo todas en gris
         BtNetBeta.BackColor = SystemColors.Control
@@ -3902,8 +3901,19 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
                 Exit Sub
             End If
-
         End If
+
+        If ProcesosActivos() = True Then
+            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If procesosactivos = DialogResult.Yes Then
+                Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
+            Else
+                BtNetBeta.BackColor = Color.LightSalmon
+                RegistroInstalacion("ADVERTENCIA NOTINNET: No se ejecutó la instalación ya que existían procesos en ejecución. El usuario cancela.")
+                Exit Sub
+            End If
+        End If
+
         obtenerwget()
         Dim urlbeta As String = "http://static.unidata.es/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -3948,6 +3958,17 @@ Public Class FrmInstaladorKubo
             End If
         End If
 
+        If ProcesosActivos() = True Then
+            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If procesosactivos = DialogResult.Yes Then
+                Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
+            Else
+                BtBetax64.BackColor = Color.LightSalmon
+                RegistroInstalacion("ADVERTENCIA NOTINNET: No se ejecutó la instalación ya que existían procesos en ejecución. El usuario cancela.")
+                Exit Sub
+            End If
+        End If
+
         obtenerwget()
         Dim urlbeta64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -3981,15 +4002,15 @@ Public Class FrmInstaladorKubo
 
     Private Function ProcesosActivos() As Boolean
         Dim procesoword() As Process
-        procesoword = Process.GetProcessesByName("winword.exe")
+        procesoword = Process.GetProcessesByName("winword")
         Dim procesonotin() As Process
-        procesonotin = Process.GetProcessesByName("msaccess.exe")
+        procesonotin = Process.GetProcessesByName("msaccess")
         Dim procesonet() As Process
-        procesonet = Process.GetProcessesByName("notinnetdesktop.exe")
+        procesonet = Process.GetProcessesByName("notinnetdesktop")
         Dim procesonexus() As Process
-        procesonexus = Process.GetProcessesByName("nexus.exe")
+        procesonexus = Process.GetProcessesByName("nexus")
 
-        If procesoword.Count > 1 OrElse procesonotin.Count > 1 OrElse procesonet.Count > 1 OrElse procesonexus.Count > 1 Then
+        If procesoword.Count > 0 OrElse procesonotin.Count > 0 OrElse procesonet.Count > 0 OrElse procesonexus.Count > 0 Then
             Return True
         Else
             Return False
@@ -4009,22 +4030,16 @@ Public Class FrmInstaladorKubo
             End If
         End If
 
-
-        'If ProcesosActivos() = True Then
-        '        Dim procesosactivos = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-        '        If DialogResult.Yes Then
-        '            Dim procesoword() As Process
-        '            procesoword = Process.GetProcessesByName("winword.exe")
-        '            Process.Kill("winword.exe")
-
-        '        End If
-        'Else
-        'Exit Sub
-        '        End If
-        '    End If
-        'End Sub
-
-
+        If ProcesosActivos() = True Then
+            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If procesosactivos = DialogResult.Yes Then
+                Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
+            Else
+                BtEstableNet.BackColor = Color.LightSalmon
+                RegistroInstalacion("ADVERTENCIA NOTINNET: No se ejecutó la instalación ya que existían procesos en ejecución. El usuario cancela.")
+                Exit Sub
+            End If
+        End If
 
         obtenerwget()
         Dim urlestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
@@ -4066,8 +4081,6 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR Copiando NotinNetInstaller a F. Posible Unidad desconectada o archivo no descargado.")
         End If
     End Sub
-
-
 
     Private Sub BtBlancosBD_Click(sender As Object, e As EventArgs) Handles BtBlancosBD.Click
         obtenerwget()
@@ -4121,9 +4134,11 @@ Public Class FrmInstaladorKubo
             RunAsAdmin(RutaDescargas & "Chocolatey\Framework462.bat")
             RegistroInstalacion("Lanzado Paquete Choco para Framework 4.6.2")
             cIniArray.IniWrite(instaladorkuboini, "CHOCOLATEY", "FRAMEWORK462", "1")
+            ObtenerVersionFW()
             BtFramework462.BackColor = Color.PaleGreen
         Catch ex As Exception
             RegistroInstalacion("ERROR lanzando Framework 4.6.2 desde Choco: " & ex.Message)
+            ObtenerVersionFW()
             BtFramework462.BackColor = Color.LightSalmon
         End Try
     End Sub
@@ -4211,8 +4226,19 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
                 Exit Sub
             End If
-
         End If
+
+        If ProcesosActivos() = True Then
+            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If procesosactivos = DialogResult.Yes Then
+                Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
+            Else
+                BtNetBetaF462.BackColor = Color.LightSalmon
+                RegistroInstalacion("ADVERTENCIA NOTINNET: No se ejecutó la instalación ya que existían procesos en ejecución. El usuario cancela.")
+                Exit Sub
+            End If
+        End If
+
         obtenerwget()
         Dim urlbetaf462 As String = "https://static.unidata.es/NotinNetInstaller/v47/beta/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -4255,8 +4281,19 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
                 Exit Sub
             End If
-
         End If
+
+        If ProcesosActivos() = True Then
+            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If procesosactivos = DialogResult.Yes Then
+                Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
+            Else
+                BtNetBetax64F462.BackColor = Color.LightSalmon
+                RegistroInstalacion("ADVERTENCIA NOTINNET: No se ejecutó la instalación ya que existían procesos en ejecución. El usuario cancela.")
+                Exit Sub
+            End If
+        End If
+
         obtenerwget()
         Dim urlbetaf462 As String = "https://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
