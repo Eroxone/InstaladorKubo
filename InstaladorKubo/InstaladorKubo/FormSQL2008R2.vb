@@ -3,11 +3,16 @@ Imports InstaladorKubo.LeerFicherosINI
 Imports System.IO
 
 
-Public Class FormSQL2008R2
+Public Class SQL2008R2
     Dim rutadescargas = cIniArray.IniGet(instaladorkuboini, "RUTAS", "RUTADESCARGAS", "C:\NOTIN\")
+
 
     Private Sub FormSQL2008R2_Load(sender As Object, e As EventArgs) Handles Me.Load
         FrmInstaladorKubo.Hide()
+        LbRutaSQL.Text = "Carpeta: " & rutadescargas & "SQL\SQL2008R2"
+        TlpRutaSQL.ToolTipTitle = "Ruta de trabajo SQL 2008R2"
+        TlpRutaSQL.SetToolTip(LbRutaSQL, "Clic para mostrar la carpeta en el explorador de archivos.")
+
 
         TlpDescargarSQL.ToolTipTitle = "Descarga y Descomprime Paquete SQL"
         TlpDescargarSQL.SetToolTip(BtDescargar, "Descarga y Descomprime paquete SQL. No lo ejecuta.")
@@ -102,5 +107,7 @@ Public Class FormSQL2008R2
         Me.Close()
     End Sub
 
-
+    Private Sub LbRutaSQL_Click(sender As Object, e As EventArgs) Handles LbRutaSQL.Click
+        Process.Start("explorer.exe", rutadescargas & "SQL\SQL2008R2")
+    End Sub
 End Class

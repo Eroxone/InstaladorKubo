@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FormSQL2008R2
+Partial Class SQL2008R2
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -33,6 +33,8 @@ Partial Class FormSQL2008R2
         Me.TlpUpgradeLuegoSQL = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtManualSQL = New System.Windows.Forms.Button()
         Me.TlpManualSQL = New System.Windows.Forms.ToolTip(Me.components)
+        Me.LbRutaSQL = New System.Windows.Forms.Label()
+        Me.TlpRutaSQL = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'BtDescargar
@@ -120,18 +122,35 @@ Partial Class FormSQL2008R2
         Me.TlpManualSQL.IsBalloon = True
         Me.TlpManualSQL.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'FormSQL2008R2
+        'LbRutaSQL
+        '
+        Me.LbRutaSQL.AutoSize = True
+        Me.LbRutaSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.LbRutaSQL.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbRutaSQL.Location = New System.Drawing.Point(13, 231)
+        Me.LbRutaSQL.Name = "LbRutaSQL"
+        Me.LbRutaSQL.Size = New System.Drawing.Size(111, 15)
+        Me.LbRutaSQL.TabIndex = 6
+        Me.LbRutaSQL.Text = "Ruta de trabajo"
+        '
+        'TlpRutaSQL
+        '
+        Me.TlpRutaSQL.IsBalloon = True
+        Me.TlpRutaSQL.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
+        'SQL2008R2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(541, 278)
+        Me.Controls.Add(Me.LbRutaSQL)
         Me.Controls.Add(Me.BtManualSQL)
         Me.Controls.Add(Me.BtSalir)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BtUpgradeLuego)
         Me.Controls.Add(Me.BtUpgrade)
         Me.Controls.Add(Me.BtDescargar)
-        Me.Name = "FormSQL2008R2"
+        Me.Name = "SQL2008R2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormSQL2008R2"
         Me.ResumeLayout(False)
@@ -149,4 +168,6 @@ Partial Class FormSQL2008R2
     Friend WithEvents TlpUpgradeLuegoSQL As ToolTip
     Friend WithEvents BtManualSQL As Button
     Friend WithEvents TlpManualSQL As ToolTip
+    Friend WithEvents LbRutaSQL As Label
+    Friend WithEvents TlpRutaSQL As ToolTip
 End Class
