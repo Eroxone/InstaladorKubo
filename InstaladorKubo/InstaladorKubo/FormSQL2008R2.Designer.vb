@@ -23,7 +23,7 @@ Partial Class FormSQL2008R2
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.BtDescargar = New System.Windows.Forms.Button()
+        Me.BtDescargarSQL = New System.Windows.Forms.Button()
         Me.BtUpgrade = New System.Windows.Forms.Button()
         Me.BtUpgradeLuego = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -37,16 +37,16 @@ Partial Class FormSQL2008R2
         Me.TlpRutaSQL = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
-        'BtDescargar
+        'BtDescargarSQL
         '
-        Me.BtDescargar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtDescargar.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtDescargar.Location = New System.Drawing.Point(12, 79)
-        Me.BtDescargar.Name = "BtDescargar"
-        Me.BtDescargar.Size = New System.Drawing.Size(140, 50)
-        Me.BtDescargar.TabIndex = 0
-        Me.BtDescargar.Text = "Descargar SQL"
-        Me.BtDescargar.UseVisualStyleBackColor = True
+        Me.BtDescargarSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtDescargarSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BtDescargarSQL.Location = New System.Drawing.Point(12, 79)
+        Me.BtDescargarSQL.Name = "BtDescargarSQL"
+        Me.BtDescargarSQL.Size = New System.Drawing.Size(140, 50)
+        Me.BtDescargarSQL.TabIndex = 0
+        Me.BtDescargarSQL.Text = "Descargar SQL"
+        Me.BtDescargarSQL.UseVisualStyleBackColor = True
         '
         'BtUpgrade
         '
@@ -149,7 +149,7 @@ Partial Class FormSQL2008R2
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BtUpgradeLuego)
         Me.Controls.Add(Me.BtUpgrade)
-        Me.Controls.Add(Me.BtDescargar)
+        Me.Controls.Add(Me.BtDescargarSQL)
         Me.Name = "FormSQL2008R2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Actualización SQL 2008R2"
@@ -158,7 +158,7 @@ Partial Class FormSQL2008R2
 
     End Sub
 
-    Friend WithEvents BtDescargar As Button
+    Friend WithEvents BtDescargarSQL As Button
     Friend WithEvents BtUpgrade As Button
     Friend WithEvents BtUpgradeLuego As Button
     Friend WithEvents Label1 As Label

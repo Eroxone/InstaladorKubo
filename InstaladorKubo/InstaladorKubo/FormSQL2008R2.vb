@@ -10,12 +10,19 @@ Public Class FormSQL2008R2
     Private Sub FormSQL2008R2_Load(sender As Object, e As EventArgs) Handles Me.Load
         FrmInstaladorKubo.Hide()
         LbRutaSQL.Text = "Carpeta: " & rutadescargas & "SQL\SQL2008R2"
+        Dim descargadosql = cIniArray.IniGet(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "2")
+        If descargadosql = 1 Then
+            BtDescargarSQL.BackColor = Color.PaleGreen
+        ElseIf descargadosql = 0 Then
+            BtDescargarSQL.BackColor = Color.LightSalmon
+        End If
+
+
         TlpRutaSQL.ToolTipTitle = "Ruta de trabajo SQL 2008R2"
         TlpRutaSQL.SetToolTip(LbRutaSQL, "Clic para mostrar la carpeta en el explorador de archivos.")
 
-
         TlpDescargarSQL.ToolTipTitle = "Descarga y Descomprime Paquete SQL"
-        TlpDescargarSQL.SetToolTip(BtDescargar, "Descarga y Descomprime paquete SQL. No lo ejecuta.")
+        TlpDescargarSQL.SetToolTip(BtDescargarSQL, "Descarga y Descomprime paquete SQL. No lo ejecuta.")
 
         TlpUpgradeSQL.ToolTipTitle = "Ejecuta la Actualización a SQL2008R2"
         TlpUpgradeSQL.SetToolTip(BtUpgrade, "Ejecuta la Actualización desatendida. Si el paquete SQL no se encuentra lo descargará.")
@@ -45,15 +52,19 @@ Public Class FormSQL2008R2
         Try
             Shell("cmd.exe /c " & rutadescargas & "unrar.exe x -u -y " & rutadescargas & "SQL\SQL2008R2.rar " & rutadescargas & "SQL\", AppWinStyle.NormalFocus, True)
             RegistroInstalacion("SQL2008R2 descomprimida correctamente en " & rutadescargas & "SQL\SQL2008R2")
+            cIniArray.IniWrite(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "1")
+            BtDescargarSQL.BackColor = Color.PaleGreen
         Catch ex As Exception
             RegistroInstalacion("ERROR SQL2008R2. No se pudo descomprimir el paquete: " & ex.Message)
+            cIniArray.IniWrite(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "0")
+            BtDescargarSQL.BackColor = Color.LightSalmon
         End Try
 
         Dim wgetini As String = "wget.exe -q -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
         Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.NormalFocus, True)
     End Sub
 
-    Private Sub BtDescargar_Click(sender As Object, e As EventArgs) Handles BtDescargar.Click
+    Private Sub BtDescargarSQL_Click(sender As Object, e As EventArgs) Handles BtDescargarSQL.Click
         DescargarSQL()
     End Sub
 
