@@ -1092,7 +1092,6 @@ Partial Class FrmInstaladorKubo
         '
         'BtSQL2008R2
         '
-        Me.BtSQL2008R2.Enabled = False
         Me.BtSQL2008R2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtSQL2008R2.Location = New System.Drawing.Point(8, 130)
         Me.BtSQL2008R2.Name = "BtSQL2008R2"
