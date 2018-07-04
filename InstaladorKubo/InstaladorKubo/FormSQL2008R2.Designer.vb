@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class SQL2008R2
+Partial Class FormSQL2008R2
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -126,10 +126,10 @@ Partial Class SQL2008R2
         '
         Me.LbRutaSQL.AutoSize = True
         Me.LbRutaSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.LbRutaSQL.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbRutaSQL.Location = New System.Drawing.Point(13, 231)
+        Me.LbRutaSQL.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbRutaSQL.Location = New System.Drawing.Point(9, 242)
         Me.LbRutaSQL.Name = "LbRutaSQL"
-        Me.LbRutaSQL.Size = New System.Drawing.Size(111, 15)
+        Me.LbRutaSQL.Size = New System.Drawing.Size(108, 15)
         Me.LbRutaSQL.TabIndex = 6
         Me.LbRutaSQL.Text = "Ruta de trabajo"
         '
@@ -138,7 +138,7 @@ Partial Class SQL2008R2
         Me.TlpRutaSQL.IsBalloon = True
         Me.TlpRutaSQL.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'SQL2008R2
+        'FormSQL2008R2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -150,9 +150,9 @@ Partial Class SQL2008R2
         Me.Controls.Add(Me.BtUpgradeLuego)
         Me.Controls.Add(Me.BtUpgrade)
         Me.Controls.Add(Me.BtDescargar)
-        Me.Name = "SQL2008R2"
+        Me.Name = "FormSQL2008R2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FormSQL2008R2"
+        Me.Text = "Actualización SQL 2008R2"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

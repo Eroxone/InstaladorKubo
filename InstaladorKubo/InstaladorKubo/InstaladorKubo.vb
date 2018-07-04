@@ -4403,7 +4403,7 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BtSQL2008R2_Click(sender As Object, e As EventArgs) Handles BtSQL2008R2.Click
-        SQL2008R2.Show()
+        FormSQL2008R2.Show()
     End Sub
 
 

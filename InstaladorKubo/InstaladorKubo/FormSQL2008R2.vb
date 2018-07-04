@@ -3,7 +3,7 @@ Imports InstaladorKubo.LeerFicherosINI
 Imports System.IO
 
 
-Public Class SQL2008R2
+Public Class FormSQL2008R2
     Dim rutadescargas = cIniArray.IniGet(instaladorkuboini, "RUTAS", "RUTADESCARGAS", "C:\NOTIN\")
 
 
@@ -108,6 +108,11 @@ Public Class SQL2008R2
     End Sub
 
     Private Sub LbRutaSQL_Click(sender As Object, e As EventArgs) Handles LbRutaSQL.Click
-        Process.Start("explorer.exe", rutadescargas & "SQL\SQL2008R2")
+        If Directory.Exists(rutadescargas & "SQL\SQL2008R2") Then
+            Process.Start("explorer.exe", rutadescargas & "SQL\SQL2008R2")
+        Else
+            MessageBox.Show("No existe la Carpeta. Comprueba que se haya descargado y descomprimido el paquete.", "Error de acceso a Ruta", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
     End Sub
 End Class
