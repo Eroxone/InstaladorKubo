@@ -38,6 +38,7 @@ Partial Class FormSQL2008R2
         Me.BtLogSQLR2 = New System.Windows.Forms.Button()
         Me.LbUpgradeLuego = New System.Windows.Forms.Label()
         Me.LbUpgradeLuego2 = New System.Windows.Forms.Label()
+        Me.LbUptime = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'BtDescargarSQL
@@ -177,11 +178,23 @@ Partial Class FormSQL2008R2
         Me.LbUpgradeLuego2.Text = "NO CIERRES ESTA VENTANA"
         Me.LbUpgradeLuego2.Visible = False
         '
+        'LbUptime
+        '
+        Me.LbUptime.AutoSize = True
+        Me.LbUptime.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbUptime.Location = New System.Drawing.Point(211, 221)
+        Me.LbUptime.Name = "LbUptime"
+        Me.LbUptime.Size = New System.Drawing.Size(118, 15)
+        Me.LbUptime.TabIndex = 10
+        Me.LbUptime.Text = "Uptime Servidor"
+        Me.LbUptime.Visible = False
+        '
         'FormSQL2008R2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(623, 278)
+        Me.Controls.Add(Me.LbUptime)
         Me.Controls.Add(Me.LbUpgradeLuego2)
         Me.Controls.Add(Me.LbUpgradeLuego)
         Me.Controls.Add(Me.BtLogSQLR2)
@@ -215,4 +228,5 @@ Partial Class FormSQL2008R2
     Friend WithEvents BtLogSQLR2 As Button
     Friend WithEvents LbUpgradeLuego As Label
     Friend WithEvents LbUpgradeLuego2 As Label
+    Friend WithEvents LbUptime As Label
 End Class

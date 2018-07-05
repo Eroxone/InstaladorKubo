@@ -32,7 +32,7 @@ Public Class FormSQL2008R2
         TlpManualSQL.ToolTipTitle = "Descarga y ofrece instalación Manual"
         TlpManualSQL.SetToolTip(BtManualSQL, "Ejecuta Setup de SQL 2008R2 para que el usuario realice el proceso manualente.")
 
-
+        'UpTimeServidor()
     End Sub
 
     Private Sub FormSQL2008R2_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -64,6 +64,14 @@ Public Class FormSQL2008R2
         Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.NormalFocus, True)
     End Sub
 
+    'TODO arreglar ajuste de tiempo y mostrar entonces label
+    Private Sub UpTimeServidor()
+        Dim uptime = Environment.TickCount
+        Dim uptimedias As String = (uptime / "3600") / "24" / "365"
+        Dim uptimesimple = uptimedias.Substring(0, 3)
+        LbUptime.Text = "UpTime: " & uptimesimple & " día/s."
+    End Sub
+
     Private Sub BtDescargarSQL_Click(sender As Object, e As EventArgs) Handles BtDescargarSQL.Click
         DescargarSQL()
         MessageBox.Show("PROCESO COMPLETADO. Revisa el Log si has tenido algún error en la descarga/descompresión del paquete.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -89,7 +97,7 @@ Public Class FormSQL2008R2
             DescargarSQL()
         End If
 
-        Dim actualizarr2 = MessageBox.Show("A continuación se procederá a realizar la Instalación desatendida de SQL 2008R2. Verifica los Servicios SQL del Sistema, no debe haber ninguno Deshabilitado. Se recomienda Reiniciar el Servidor antes de la Actualización.", "¿Empezamos la actualización a SQL 2008R2?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim actualizarr2 = MessageBox.Show("A continuación se procederá a realizar la Instalación desatendida de SQL 2008R2." & vbCrLf & "- Verifica los Servicios SQL del Sistema, no debe haber ninguno Deshabilitado." & vbCrLf & "- Se recomienda Reiniciar el Servidor antes de la Actualización.", "¿Empezamos la actualización a SQL 2008R2?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If actualizarr2 = DialogResult.Yes Then
             RegistroInstalacion("SQL2008R2. El usuario confirma la ejecución del Upgrade. Empieza el proceso.")
             UpgradeSQL()
