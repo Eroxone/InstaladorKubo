@@ -4,8 +4,8 @@ Imports System.IO
 
 
 Public Class FormSQL2008R2
-    Dim rutadescargas = cIniArray.IniGet(instaladorkuboini, "RUTAS", "RUTADESCARGAS", "C:\NOTIN\")
-
+    Private rutadescargas = cIniArray.IniGet(instaladorkuboini, "RUTAS", "RUTADESCARGAS", "C:\NOTIN\")
+    Private Const PuestoNotin As String = "ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/"
 
     Private Sub FormSQL2008R2_Load(sender As Object, e As EventArgs) Handles Me.Load
         FrmInstaladorKubo.Hide()
@@ -16,7 +16,6 @@ Public Class FormSQL2008R2
         ElseIf descargadosql = 0 Then
             BtDescargarSQL.BackColor = Color.LightSalmon
         End If
-
 
         TlpRutaSQL.ToolTipTitle = "Ruta de trabajo SQL 2008R2"
         TlpRutaSQL.SetToolTip(LbRutaSQL, "Clic para mostrar la carpeta en el explorador de archivos.")
@@ -32,6 +31,7 @@ Public Class FormSQL2008R2
 
         TlpManualSQL.ToolTipTitle = "Descarga y ofrece instalación Manual"
         TlpManualSQL.SetToolTip(BtManualSQL, "Ejecuta Setup de SQL 2008R2 para que el usuario realice el proceso manualente.")
+
 
     End Sub
 
@@ -66,6 +66,7 @@ Public Class FormSQL2008R2
 
     Private Sub BtDescargarSQL_Click(sender As Object, e As EventArgs) Handles BtDescargarSQL.Click
         DescargarSQL()
+        MessageBox.Show("PROCESO COMPLETADO. Revisa el Log si has tenido algún error en la descarga/descompresión del paquete.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub UpgradeSQL()
@@ -81,7 +82,6 @@ Public Class FormSQL2008R2
             MessageBox.Show("No se encuentra Setup para la instalación SQL 2008. Revisa la Descarga.", "ERROR Setup SQL2008 R2", MessageBoxButtons.OK, MessageBoxIcon.Error)
             RegistroInstalacion("ERROR SQL2008R2: No se encontró el ejecutable Setup. Revisa la descarga y descompresión del paquete.")
         End If
-
     End Sub
 
     Private Sub BtUpgrade_Click(sender As Object, e As EventArgs) Handles BtUpgrade.Click
@@ -89,10 +89,24 @@ Public Class FormSQL2008R2
             DescargarSQL()
         End If
 
-        UpgradeSQL()
+        Dim actualizarr2 = MessageBox.Show("A continuación se procederá a realizar la Instalación desatendida de SQL 2008R2. Verifica los Servicios SQL del Sistema, no debe haber ninguno Deshabilitado. Se recomienda Reiniciar el Servidor antes de la Actualización.", "¿Empezamos la actualización a SQL 2008R2?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If actualizarr2 = DialogResult.Yes Then
+            RegistroInstalacion("SQL2008R2. El usuario confirma la ejecución del Upgrade. Empieza el proceso.")
+            UpgradeSQL()
+        Else
+            RegistroInstalacion("SQL2008R2. El usuario canceló el Upgrade. Revisar Servicios y recomendado Reiniciar el Equipo.")
+            Exit Sub
+        End If
     End Sub
 
     Private Sub BtUpgradeLuego_Click(sender As Object, e As EventArgs) Handles BtUpgradeLuego.Click
+        Dim horaejecucion As String = "22:0"
+        Dim horaactual As String = DateTime.Now.Hour & ":" & DateTime.Now.Minute
+        While horaactual <> horaejecucion
+            horaactual = DateTime.Now.Hour & ":" & DateTime.Now.Minute
+            Threading.Thread.Sleep(20000)
+        End While
+
         If Directory.Exists(rutadescargas & "SQL\SQL2008R2") = False Then
             DescargarSQL()
         End If
@@ -107,10 +121,10 @@ Public Class FormSQL2008R2
         Try
             Process.Start(rutadescargas & "SQL\SQL2008R2\Setup.exe")
             RegistroInstalacion("SQL2008R2. Ejecutada Instalación/Actualización Manual SQL.")
+            'MessageBox.Show("Lanzada instalación desatendida de SQL. Puedes cerrar el InstaladorKubo si quieres")
         Catch ex As Exception
             RegistroInstalacion("ERROR SQL2008R2. No se pudo ejecutar la Instalación/Actualización Manual SQL." & ex.Message)
         End Try
-
     End Sub
 
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
@@ -125,5 +139,15 @@ Public Class FormSQL2008R2
             MessageBox.Show("No existe la Carpeta. Comprueba que se haya descargado y descomprimido el paquete.", "Error de acceso a Ruta", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
+    End Sub
+
+    Private Sub BtLogSQLR2_Click(sender As Object, e As EventArgs) Handles BtLogSQLR2.Click
+        Process.Start("explorer.exe", "C:\Archivos de programa\Microsoft SQL Server\100\Setup Bootstrap\Log")
+    End Sub
+
+    Private Sub BtUpgradeLuego_MouseDown(sender As Object, e As MouseEventArgs) Handles BtUpgradeLuego.MouseDown
+        LbUpgradeLuego.Visible = True
+        LbUpgradeLuego2.Visible = True
+        BtUpgradeLuego.BackColor = Color.PaleGreen
     End Sub
 End Class

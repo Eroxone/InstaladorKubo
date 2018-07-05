@@ -35,6 +35,9 @@ Partial Class FormSQL2008R2
         Me.TlpManualSQL = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbRutaSQL = New System.Windows.Forms.Label()
         Me.TlpRutaSQL = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtLogSQLR2 = New System.Windows.Forms.Button()
+        Me.LbUpgradeLuego = New System.Windows.Forms.Label()
+        Me.LbUpgradeLuego2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'BtDescargarSQL
@@ -56,12 +59,12 @@ Partial Class FormSQL2008R2
         Me.BtUpgrade.Name = "BtUpgrade"
         Me.BtUpgrade.Size = New System.Drawing.Size(127, 50)
         Me.BtUpgrade.TabIndex = 1
-        Me.BtUpgrade.Text = "Ejecutar el Upgrade"
+        Me.BtUpgrade.Text = " Upgrade desatendido"
         Me.BtUpgrade.UseVisualStyleBackColor = True
         '
         'BtUpgradeLuego
         '
-        Me.BtUpgradeLuego.Enabled = False
+        Me.BtUpgradeLuego.BackColor = System.Drawing.SystemColors.Control
         Me.BtUpgradeLuego.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtUpgradeLuego.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
         Me.BtUpgradeLuego.Location = New System.Drawing.Point(399, 79)
@@ -69,7 +72,7 @@ Partial Class FormSQL2008R2
         Me.BtUpgradeLuego.Size = New System.Drawing.Size(127, 50)
         Me.BtUpgradeLuego.TabIndex = 2
         Me.BtUpgradeLuego.Text = "Upgrade a las 22:00 horas"
-        Me.BtUpgradeLuego.UseVisualStyleBackColor = True
+        Me.BtUpgradeLuego.UseVisualStyleBackColor = False
         '
         'Label1
         '
@@ -84,7 +87,7 @@ Partial Class FormSQL2008R2
         'BtSalir
         '
         Me.BtSalir.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtSalir.Location = New System.Drawing.Point(423, 231)
+        Me.BtSalir.Location = New System.Drawing.Point(495, 231)
         Me.BtSalir.Name = "BtSalir"
         Me.BtSalir.Size = New System.Drawing.Size(103, 35)
         Me.BtSalir.TabIndex = 4
@@ -138,11 +141,50 @@ Partial Class FormSQL2008R2
         Me.TlpRutaSQL.IsBalloon = True
         Me.TlpRutaSQL.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'BtLogSQLR2
+        '
+        Me.BtLogSQLR2.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtLogSQLR2.Location = New System.Drawing.Point(12, 155)
+        Me.BtLogSQLR2.Name = "BtLogSQLR2"
+        Me.BtLogSQLR2.Size = New System.Drawing.Size(90, 45)
+        Me.BtLogSQLR2.TabIndex = 7
+        Me.BtLogSQLR2.Text = "Visualizar Logs"
+        Me.BtLogSQLR2.UseVisualStyleBackColor = True
+        '
+        'LbUpgradeLuego
+        '
+        Me.LbUpgradeLuego.AutoSize = True
+        Me.LbUpgradeLuego.BackColor = System.Drawing.SystemColors.Control
+        Me.LbUpgradeLuego.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbUpgradeLuego.ForeColor = System.Drawing.Color.Maroon
+        Me.LbUpgradeLuego.Location = New System.Drawing.Point(396, 141)
+        Me.LbUpgradeLuego.Name = "LbUpgradeLuego"
+        Me.LbUpgradeLuego.Size = New System.Drawing.Size(184, 15)
+        Me.LbUpgradeLuego.TabIndex = 8
+        Me.LbUpgradeLuego.Text = "EJECUCIÓN PROGRAMADA"
+        Me.LbUpgradeLuego.Visible = False
+        '
+        'LbUpgradeLuego2
+        '
+        Me.LbUpgradeLuego2.AutoSize = True
+        Me.LbUpgradeLuego2.BackColor = System.Drawing.SystemColors.Control
+        Me.LbUpgradeLuego2.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbUpgradeLuego2.ForeColor = System.Drawing.Color.Maroon
+        Me.LbUpgradeLuego2.Location = New System.Drawing.Point(396, 169)
+        Me.LbUpgradeLuego2.Name = "LbUpgradeLuego2"
+        Me.LbUpgradeLuego2.Size = New System.Drawing.Size(195, 15)
+        Me.LbUpgradeLuego2.TabIndex = 9
+        Me.LbUpgradeLuego2.Text = "NO CIERRES ESTA VENTANA"
+        Me.LbUpgradeLuego2.Visible = False
+        '
         'FormSQL2008R2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(541, 278)
+        Me.ClientSize = New System.Drawing.Size(623, 278)
+        Me.Controls.Add(Me.LbUpgradeLuego2)
+        Me.Controls.Add(Me.LbUpgradeLuego)
+        Me.Controls.Add(Me.BtLogSQLR2)
         Me.Controls.Add(Me.LbRutaSQL)
         Me.Controls.Add(Me.BtManualSQL)
         Me.Controls.Add(Me.BtSalir)
@@ -170,4 +212,7 @@ Partial Class FormSQL2008R2
     Friend WithEvents TlpManualSQL As ToolTip
     Friend WithEvents LbRutaSQL As Label
     Friend WithEvents TlpRutaSQL As ToolTip
+    Friend WithEvents BtLogSQLR2 As Button
+    Friend WithEvents LbUpgradeLuego As Label
+    Friend WithEvents LbUpgradeLuego2 As Label
 End Class
