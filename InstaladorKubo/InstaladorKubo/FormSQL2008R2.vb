@@ -46,7 +46,6 @@ Public Class FormSQL2008R2
         Directory.CreateDirectory(rutadescargas & "SQL")
         Dim wgetsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SQL2008R2.rar -O " & rutadescargas & "SQL\SQL2008R2.rar"
 
-        'ConfigurationFileR2.ini
         Shell("cmd /c " & rutadescargas & wgetsql, AppWinStyle.NormalFocus, True)
         RegistroInstalacion("SQL2008R2: Terminada descarga del Paquete en RAR. Se procede a descomprimir la imagen.")
         Try
@@ -60,8 +59,9 @@ Public Class FormSQL2008R2
             BtDescargarSQL.BackColor = Color.LightSalmon
         End Try
 
-        Dim wgetini As String = "wget.exe -q -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
+        Dim wgetini As String = "wget.exe -q -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
         Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.NormalFocus, True)
+        RegistroInstalacion("SQL2008R. Obtenido fichero INI para instalación desatendida.")
     End Sub
 
     'TODO arreglar ajuste de tiempo y mostrar entonces label
@@ -93,9 +93,8 @@ Public Class FormSQL2008R2
     End Sub
 
     Private Sub BtUpgrade_Click(sender As Object, e As EventArgs) Handles BtUpgrade.Click
-        If Directory.Exists(rutadescargas & "SQL\SQL2008R2") = False Then
-            DescargarSQL()
-        End If
+        'Siempre descargo por lo que pueda pasar.
+        DescargarSQL()
 
         Dim actualizarr2 = MessageBox.Show("A continuación se procederá a realizar la Instalación desatendida de SQL 2008R2." & vbCrLf & "- Verifica los Servicios SQL del Sistema, no debe haber ninguno Deshabilitado." & vbCrLf & "- Se recomienda Reiniciar el Servidor antes de la Actualización.", "¿Empezamos la actualización a SQL 2008R2?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If actualizarr2 = DialogResult.Yes Then
@@ -115,11 +114,16 @@ Public Class FormSQL2008R2
             Threading.Thread.Sleep(20000)
         End While
 
-        If Directory.Exists(rutadescargas & "SQL\SQL2008R2") = False Then
-            DescargarSQL()
-        End If
+        DescargarSQL()
 
         UpgradeSQL()
+
+        LbUpgradeLuego.ForeColor = Color.Green
+        LbUpgradeLuego2.ForeColor = Color.Green
+
+        LbUpgradeLuego.Text = "== PROCESO COMPLETADO =="
+        LbUpgradeLuego2.Text = "REVISA LOGS. RECOMENDADO REINCIAR."
+
     End Sub
 
     Private Sub BtManualSQL_Click(sender As Object, e As EventArgs) Handles BtManualSQL.Click
