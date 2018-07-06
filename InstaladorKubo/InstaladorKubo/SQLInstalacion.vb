@@ -4,7 +4,6 @@ Imports InstaladorKubo.LeerFicherosINI
 
 
 
-
 Public Class FrmSQLInstalacion
 
     Private Sub BtDescargarSQL_Click(sender As Object, e As EventArgs) Handles BtDescargarSQL.Click

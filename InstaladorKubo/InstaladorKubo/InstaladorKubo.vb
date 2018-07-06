@@ -360,6 +360,11 @@ Public Class FrmInstaladorKubo
             BtVisorImagenes.BackColor = Color.PaleGreen
         End If
 
+        Dim sql2008r2 = cIniArray.IniGet(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "2")
+        If sql2008r2 = 1 Then
+            BtSQL2008R2.BackColor = Color.PaleGreen
+        End If
+
     End Sub
 
     'Boton EXAMINAR
