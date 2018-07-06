@@ -26,7 +26,7 @@ Partial Class FormSQL2008R2
         Me.BtDescargarSQL = New System.Windows.Forms.Button()
         Me.BtUpgrade = New System.Windows.Forms.Button()
         Me.BtUpgradeLuego = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LbTitulo = New System.Windows.Forms.Label()
         Me.BtSalir = New System.Windows.Forms.Button()
         Me.TlpDescargarSQL = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpUpgradeSQL = New System.Windows.Forms.ToolTip(Me.components)
@@ -77,15 +77,15 @@ Partial Class FormSQL2008R2
         Me.BtUpgradeLuego.Text = "Upgrade a las 22:00 horas"
         Me.BtUpgradeLuego.UseVisualStyleBackColor = False
         '
-        'Label1
+        'LbTitulo
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Lucida Bright", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.Label1.Location = New System.Drawing.Point(8, 26)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(518, 24)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "INSTALACIÓN DESATENDIDA SQL 2008 R2 X86"
+        Me.LbTitulo.AutoSize = True
+        Me.LbTitulo.Font = New System.Drawing.Font("Lucida Bright", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.LbTitulo.Location = New System.Drawing.Point(8, 26)
+        Me.LbTitulo.Name = "LbTitulo"
+        Me.LbTitulo.Size = New System.Drawing.Size(410, 24)
+        Me.LbTitulo.TabIndex = 3
+        Me.LbTitulo.Text = "ACTUALIZACIÓN A SQL 2008 R2 X86"
         '
         'BtSalir
         '
@@ -227,7 +227,7 @@ Partial Class FormSQL2008R2
         Me.Controls.Add(Me.LbRutaSQL)
         Me.Controls.Add(Me.BtManualSQL)
         Me.Controls.Add(Me.BtSalir)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.LbTitulo)
         Me.Controls.Add(Me.BtUpgradeLuego)
         Me.Controls.Add(Me.BtUpgrade)
         Me.Controls.Add(Me.BtDescargarSQL)
@@ -242,7 +242,7 @@ Partial Class FormSQL2008R2
     Friend WithEvents BtDescargarSQL As Button
     Friend WithEvents BtUpgrade As Button
     Friend WithEvents BtUpgradeLuego As Button
-    Friend WithEvents Label1 As Label
+    Friend WithEvents LbTitulo As Label
     Friend WithEvents BtSalir As Button
     Friend WithEvents TlpDescargarSQL As ToolTip
     Friend WithEvents TlpUpgradeSQL As ToolTip
