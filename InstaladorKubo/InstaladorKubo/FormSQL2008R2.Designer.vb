@@ -39,6 +39,8 @@ Partial Class FormSQL2008R2
         Me.LbUpgradeLuego = New System.Windows.Forms.Label()
         Me.LbUpgradeLuego2 = New System.Windows.Forms.Label()
         Me.LbUptime = New System.Windows.Forms.Label()
+        Me.CBoxEmail = New System.Windows.Forms.ComboBox()
+        Me.LbEmail = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'BtDescargarSQL
@@ -88,7 +90,7 @@ Partial Class FormSQL2008R2
         'BtSalir
         '
         Me.BtSalir.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtSalir.Location = New System.Drawing.Point(495, 231)
+        Me.BtSalir.Location = New System.Drawing.Point(508, 257)
         Me.BtSalir.Name = "BtSalir"
         Me.BtSalir.Size = New System.Drawing.Size(103, 35)
         Me.BtSalir.TabIndex = 4
@@ -131,7 +133,7 @@ Partial Class FormSQL2008R2
         Me.LbRutaSQL.AutoSize = True
         Me.LbRutaSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.LbRutaSQL.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbRutaSQL.Location = New System.Drawing.Point(9, 242)
+        Me.LbRutaSQL.Location = New System.Drawing.Point(9, 227)
         Me.LbRutaSQL.Name = "LbRutaSQL"
         Me.LbRutaSQL.Size = New System.Drawing.Size(108, 15)
         Me.LbRutaSQL.TabIndex = 6
@@ -181,19 +183,43 @@ Partial Class FormSQL2008R2
         'LbUptime
         '
         Me.LbUptime.AutoSize = True
-        Me.LbUptime.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbUptime.Location = New System.Drawing.Point(211, 221)
+        Me.LbUptime.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.LbUptime.Location = New System.Drawing.Point(396, 226)
         Me.LbUptime.Name = "LbUptime"
-        Me.LbUptime.Size = New System.Drawing.Size(118, 15)
+        Me.LbUptime.Size = New System.Drawing.Size(125, 16)
         Me.LbUptime.TabIndex = 10
         Me.LbUptime.Text = "Uptime Servidor"
-        Me.LbUptime.Visible = False
+        '
+        'CBoxEmail
+        '
+        Me.CBoxEmail.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CBoxEmail.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CBoxEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.CBoxEmail.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
+        Me.CBoxEmail.FormattingEnabled = True
+        Me.CBoxEmail.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
+        Me.CBoxEmail.Location = New System.Drawing.Point(199, 270)
+        Me.CBoxEmail.Name = "CBoxEmail"
+        Me.CBoxEmail.Size = New System.Drawing.Size(139, 22)
+        Me.CBoxEmail.TabIndex = 50
+        '
+        'LbEmail
+        '
+        Me.LbEmail.AutoSize = True
+        Me.LbEmail.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbEmail.Location = New System.Drawing.Point(66, 272)
+        Me.LbEmail.Name = "LbEmail"
+        Me.LbEmail.Size = New System.Drawing.Size(127, 20)
+        Me.LbEmail.TabIndex = 51
+        Me.LbEmail.Text = "Indica tu Email:"
         '
         'FormSQL2008R2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(623, 278)
+        Me.ClientSize = New System.Drawing.Size(623, 301)
+        Me.Controls.Add(Me.LbEmail)
+        Me.Controls.Add(Me.CBoxEmail)
         Me.Controls.Add(Me.LbUptime)
         Me.Controls.Add(Me.LbUpgradeLuego2)
         Me.Controls.Add(Me.LbUpgradeLuego)
@@ -229,4 +255,6 @@ Partial Class FormSQL2008R2
     Friend WithEvents LbUpgradeLuego As Label
     Friend WithEvents LbUpgradeLuego2 As Label
     Friend WithEvents LbUptime As Label
+    Friend WithEvents CBoxEmail As ComboBox
+    Friend WithEvents LbEmail As Label
 End Class

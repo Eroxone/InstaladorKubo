@@ -1,7 +1,7 @@
 ﻿Imports InstaladorKubo.FrmInstaladorKubo
 Imports InstaladorKubo.LeerFicherosINI
 Imports System.IO
-
+Imports System.Net.Mail
 
 Public Class FormSQL2008R2
     Private rutadescargas = cIniArray.IniGet(instaladorkuboini, "RUTAS", "RUTADESCARGAS", "C:\NOTIN\")
@@ -32,7 +32,9 @@ Public Class FormSQL2008R2
         TlpManualSQL.ToolTipTitle = "Descarga y ofrece instalación Manual"
         TlpManualSQL.SetToolTip(BtManualSQL, "Ejecuta Setup de SQL 2008R2 para que el usuario realice el proceso manualente.")
 
-        'UpTimeServidor()
+        UpTimeServidor()
+
+        CBoxEmail.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
     End Sub
 
     Private Sub FormSQL2008R2_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -43,21 +45,23 @@ Public Class FormSQL2008R2
         ObtenerEjecutables.obtenerwget()
         ObtenerEjecutables.obtenerunrar()
 
-        Directory.CreateDirectory(rutadescargas & "SQL")
-        Dim wgetsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SQL2008R2.rar -O " & rutadescargas & "SQL\SQL2008R2.rar"
+        If File.Exists(rutadescargas & "SQL\SQL2008R2\Setup.exe") = False Then
+            Directory.CreateDirectory(rutadescargas & "SQL")
+            Dim wgetsql As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/SQL2008R2.rar -O " & rutadescargas & "SQL\SQL2008R2.rar"
 
-        Shell("cmd /c " & rutadescargas & wgetsql, AppWinStyle.NormalFocus, True)
-        RegistroInstalacion("SQL2008R2: Terminada descarga del Paquete en RAR. Se procede a descomprimir la imagen.")
-        Try
-            Shell("cmd.exe /c " & rutadescargas & "unrar.exe x -u -y " & rutadescargas & "SQL\SQL2008R2.rar " & rutadescargas & "SQL\", AppWinStyle.NormalFocus, True)
-            RegistroInstalacion("SQL2008R2 descomprimida correctamente en " & rutadescargas & "SQL\SQL2008R2")
-            cIniArray.IniWrite(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "1")
-            BtDescargarSQL.BackColor = Color.PaleGreen
-        Catch ex As Exception
-            RegistroInstalacion("ERROR SQL2008R2. No se pudo descomprimir el paquete: " & ex.Message)
-            cIniArray.IniWrite(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "0")
-            BtDescargarSQL.BackColor = Color.LightSalmon
-        End Try
+            Shell("cmd /c " & rutadescargas & wgetsql, AppWinStyle.NormalFocus, True)
+            RegistroInstalacion("SQL2008R2: Terminada descarga del Paquete en RAR. Se procede a descomprimir la imagen.")
+            Try
+                Shell("cmd.exe /c " & rutadescargas & "unrar.exe x -u -y " & rutadescargas & "SQL\SQL2008R2.rar " & rutadescargas & "SQL\", AppWinStyle.NormalFocus, True)
+                RegistroInstalacion("SQL2008R2 descomprimida correctamente en " & rutadescargas & "SQL\SQL2008R2")
+                cIniArray.IniWrite(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "1")
+                BtDescargarSQL.BackColor = Color.PaleGreen
+            Catch ex As Exception
+                RegistroInstalacion("ERROR SQL2008R2. No se pudo descomprimir el paquete: " & ex.Message)
+                cIniArray.IniWrite(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "0")
+                BtDescargarSQL.BackColor = Color.LightSalmon
+            End Try
+        End If
 
         Dim wgetini As String = "wget.exe -q -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
         Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.NormalFocus, True)
@@ -66,15 +70,21 @@ Public Class FormSQL2008R2
 
     'TODO arreglar ajuste de tiempo y mostrar entonces label
     Private Sub UpTimeServidor()
-        Dim uptime = Environment.TickCount
-        Dim uptimedias As String = (uptime / "3600") / "24" / "365"
-        Dim uptimesimple = uptimedias.Substring(0, 3)
-        LbUptime.Text = "UpTime: " & uptimesimple & " día/s."
+        Try
+            Dim uptime = Environment.TickCount
+            Dim uptimedias As String = (uptime / 1000) / 3600 / 24
+            Dim uptimesolodias As Integer = uptimedias.LastIndexOf(",")
+            Dim uptimesimple = uptimedias.Substring(0, uptimesolodias)
+            LbUptime.Text = "UpTime: " & uptimesimple & " día/s."
+        Catch ex As Exception
+            LbUptime.Text = "Uptime: Inferior 1 día"
+        End Try
+
     End Sub
 
     Private Sub BtDescargarSQL_Click(sender As Object, e As EventArgs) Handles BtDescargarSQL.Click
         DescargarSQL()
-        MessageBox.Show("PROCESO COMPLETADO. Revisa el Log si has tenido algún error en la descarga/descompresión del paquete.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("DESCARGA COMPLETADA. Puedes lanzar la Atualización a SQL 2008R2.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub UpgradeSQL()
@@ -90,6 +100,7 @@ Public Class FormSQL2008R2
             MessageBox.Show("No se encuentra Setup para la instalación SQL 2008. Revisa la Descarga.", "ERROR Setup SQL2008 R2", MessageBoxButtons.OK, MessageBoxIcon.Error)
             RegistroInstalacion("ERROR SQL2008R2: No se encontró el ejecutable Setup. Revisa la descarga y descompresión del paquete.")
         End If
+        EnvioMail()
     End Sub
 
     Private Sub BtUpgrade_Click(sender As Object, e As EventArgs) Handles BtUpgrade.Click
@@ -122,7 +133,7 @@ Public Class FormSQL2008R2
         LbUpgradeLuego2.ForeColor = Color.Green
 
         LbUpgradeLuego.Text = "== PROCESO COMPLETADO =="
-        LbUpgradeLuego2.Text = "REVISA LOGS. RECOMENDADO REINCIAR."
+        LbUpgradeLuego2.Text = "REVISA LOGS. REINCIA."
 
     End Sub
 
@@ -162,4 +173,68 @@ Public Class FormSQL2008R2
         LbUpgradeLuego2.Visible = True
         BtUpgradeLuego.BackColor = Color.PaleGreen
     End Sub
+
+#Region "ENVIO EMAIL"
+    Private Function Validaremail()
+        If CBoxEmail.Text = Nothing Then
+            Return False
+        ElseIf System.Text.RegularExpressions.Regex.IsMatch(CBoxEmail.Text, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$") Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Public Sub EnvioMail()
+        'TODO enviar email cuando termine la instalación con el log e info sistema
+        If Validaremail() = True Then
+
+            'Dim A As String = Tbtucorreo.Text
+            Dim a As String = CBoxEmail.Text
+            Dim Destinatario As MailAddress = New MailAddress(a)
+
+            Dim correo As New MailMessage
+            Dim smtp As New SmtpClient()
+
+            correo.From = New MailAddress("instalador@notin.net", "Instalador Kubo", System.Text.Encoding.UTF8)
+            correo.To.Add(Destinatario)
+            correo.SubjectEncoding = System.Text.Encoding.UTF8
+            correo.Subject = "Finalizada Actualización a SQL 2008 R2"
+            Dim sumario As String = File.ReadAllText("C:\Archivos de programa\Microsoft SQL Server\100\Setup Bootstrap\Log\Summary.txt")
+            correo.Body = "" & vbCrLf & "La Actualización se completó a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos." & vbCrLf & " == RESUMEN ACTUALIZACIÓN ==" & vbCrLf & sumario
+            correo.BodyEncoding = System.Text.Encoding.UTF8
+            'correo.IsBodyHtml = False(formato tipo web o normal:  true = web)
+            correo.IsBodyHtml = False
+            correo.Priority = MailPriority.Normal
+
+            smtp.Credentials = New System.Net.NetworkCredential("instalador@notin.net", "insta24")
+            smtp.Port = 587
+            smtp.Host = "smtp.notin.net"
+            smtp.EnableSsl = True
+            Try
+                smtp.Send(correo)
+                RegistroInstalacion("SQL2008R2: Correo de notificación enviado a " & CBoxEmail.Text)
+            Catch ex As Exception
+                RegistroInstalacion("ERROR Email: " & ex.Message)
+
+            End Try
+        Else
+            RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & CBoxEmail.Text & " no se consideró válida o no se indicó ningunta dirección.")
+        End If
+    End Sub
+
+    Private Sub CBoxEmail_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBoxEmail.LostFocus
+        If Validaremail() = True Then
+            Dim destinatario As String = CBoxEmail.Text
+            cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", destinatario)
+            RegistroInstalacion("EMAIL: Dirección de correo establecida a " & destinatario)
+        Else
+            cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
+        End If
+    End Sub
+
+#End Region
+
+
+
 End Class

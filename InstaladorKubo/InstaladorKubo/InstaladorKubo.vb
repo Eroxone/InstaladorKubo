@@ -4411,11 +4411,6 @@ Public Class FrmInstaladorKubo
 
 
 
-
-
-
-
-
     'Private Sub AbreExcel()
     '    'TODO establecer asociacion de archivos.
     '    Try
