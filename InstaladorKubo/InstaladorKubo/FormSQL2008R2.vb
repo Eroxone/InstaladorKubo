@@ -64,7 +64,7 @@ Public Class FormSQL2008R2
         End If
 
         Dim wgetini As String = "wget.exe -q -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
-        Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.NormalFocus, True)
+        Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.Hide, True)
         RegistroInstalacion("SQL2008R. Obtenido fichero INI para instalación desatendida.")
     End Sub
 
@@ -72,12 +72,20 @@ Public Class FormSQL2008R2
     Private Sub UpTimeServidor()
         Try
             Dim uptime = Environment.TickCount
-            Dim uptimedias As String = (uptime / 1000) / 3600 / 24
+            Dim uptimedias As String = (uptime / 1000) / 3600 / 24 / 365
+            Dim uptimehoras As String = (uptime / 1000) / 3600
             Dim uptimesolodias As Integer = uptimedias.LastIndexOf(",")
             Dim uptimesimple = uptimedias.Substring(0, uptimesolodias)
-            LbUptime.Text = "UpTime: " & uptimesimple & " día/s."
+            If uptimesimple < 1 OrElse uptimesimple = 1 Then
+                LbUptime.Text = "UpTime: Inferior a 1 día."
+            ElseIf uptimesimple < 0 Then
+                LbUptime.Text = "Uptime: No se pudo determinar."
+            Else
+                LbUptime.Text = "UpTime: " & uptimesimple & " días"
+            End If
+            RegistroInstalacion("Determinado Uptime Servidor en " & uptime & " milisegundos.")
         Catch ex As Exception
-            LbUptime.Text = "Uptime: Inferior 1 día"
+            LbUptime.Text = "Uptime: No se pudo determinar."
         End Try
 
     End Sub
