@@ -1867,7 +1867,6 @@ Public Class FrmInstaladorKubo
         obtenerrobocopy()
         Dim notinf = "F:\PRG.INS\NOTIN\InstaladorKubo\"
         Directory.CreateDirectory(notinf)
-        'TODO revisar los ficheros a copiar puede que falte alguno. Mirar FTP.
         Dim exe As String = "AccesosDirectos.exe AccesosDirectos2003.exe AccesosDirectos_odt.exe AccesosDirectosx64.exe jnemo-latest.exe KMSpico10.exe Office2003.exe Office2016.exe PasarelaSigno.exe PuestoNotinC.exe ScanImg_Beta_FT.exe SFeren-2.8.exe wget.exe unrar.exe"
         Dim rar As String = "ConfWord2016.rar PaquetesFT.rar Office2016x64.rar"
         Dim mstmsp As String = "Setup.mst Setup2003.mst setup2016.MSP Setup2016SinWord.MSP setup2016x64.MSP"
@@ -2247,7 +2246,6 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("NotinNetInstaller: No se pudo obtener de F:\Notawin.Net\ se procede a su decarga desde static.unidata")
             End Try
 
-            'TODO quitar esta comprobacion
             'Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller.exe")
             'Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
 
@@ -2474,6 +2472,7 @@ Public Class FrmInstaladorKubo
                             Dim notinnetbeta As Process = Process.Start(pnotinnetbeta)
                             'notinnet.WaitForInputIdle()
                             notinnetbeta.WaitForExit()
+                            RegistroInstalacion("ÉXITO: Lanzado correctamente instalador de NotinNet.")
                         Catch ex As Exception
                             RegistroInstalacion("No se ha podido obtener estable desde static.unidata.es. " & ex.Message)
                             MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2611,6 +2610,7 @@ Public Class FrmInstaladorKubo
 
             Try
                 Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016\w16recopregjj.reg")
+                RegistroInstalacion("Importadas claves de Registro JJ para Configurar Word 2016.")
             Catch ex As Exception
                 MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 RegistroInstalacion("Claves Registro Word 2016: " & ex.Message)
@@ -2621,6 +2621,7 @@ Public Class FrmInstaladorKubo
 
             Try
                 Process.Start(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
+                RegistroInstalacion("Lanzado proceso por lotes para Configurar Word 2016.")
             Catch ex As Exception
                 MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 RegistroInstalacion("ERROR ConfiguraWord2016.bat: " & ex.Message)
@@ -2634,7 +2635,7 @@ Public Class FrmInstaladorKubo
                 expedientes = expedientes.Remove(0, 2)
                 Dim unidadi = expedientes.LastIndexOf("\I")
                 expedientes = expedientes.Substring(0, unidadi)
-
+                RegistroInstalacion("EXPEDIENTES. Ruta obtenida: " & expedientes)
                 cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
 
                 Directory.CreateDirectory(RutaDescargas & "Registro")
@@ -2654,6 +2655,7 @@ Public Class FrmInstaladorKubo
             'Si todo ha ido bien...
             BtConfiguraWord2016.BackColor = Color.PaleGreen
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "1")
+            RegistroInstalacion("ÉXITO: Terminada Configuración de Word 2016. Verifícalo.")
         Else
             MessageBox.Show("Unidad F desconectada. No se puede configurar Word 2016.", "Configura WORD 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
@@ -4376,7 +4378,6 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtPaginaActiva_Click(sender As Object, e As EventArgs) Handles BtPaginaActiva.Click
-        'TODO cambiar icono
         Try
             Process.Start("iexplore.exe", "http://www.notin.net/portal/425r312x/pagina.asp")
             'Shell("cmd /k start /d " & """" & "" & """" & " IEXPLORE.EXE http://www.notin.net/portal/425r312x/pagina.asp", AppWinStyle.Hide, False)
@@ -4388,6 +4389,7 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtVisorImagenes_Click(sender As Object, e As EventArgs) Handles BtVisorImagenes.Click
         obtenerunrar()
+        obtenerwget()
         Directory.CreateDirectory(RutaDescargas & "Registro")
         Dim wgetvisor As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 "
         Shell("cmd.exe /c " & RutaDescargas & wgetvisor & PuestoNotin & "VisorDeImagenes.reg" & " -O" & RutaDescargas & "Registro\VisorDeImagenes.reg", AppWinStyle.NormalFocus, True)
@@ -4398,11 +4400,27 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "VISORIMAGENES", "1")
             Dim visorpredeterminado As String = "Configuración de aplicaciones predeterminadas"
             My.Computer.Clipboard.SetText(visorpredeterminado)
-            MessageBox.Show("Accede ahora a Configuración de Aplicaciones Predeterminadas y cambia FOTOS por el Visor de Imágenes. (Menú Inicio y Ctrl V para hacer la búsqueda).", "Predeterminar Visor Imágenes Windows", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Establece ahora Visor de Imágenes como Aplicación Predeterminada en Visualizador de fotos.", "Predeterminar Visor Imágenes Windows", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             RegistroInstalacion("ERROR Visor Imágenes: " & ex.Message)
             BtVisorImagenes.BackColor = Color.LightSalmon
         End Try
+
+        'Dim ProcID As Integer
+        '' Start the Calculator application, and store the process id.
+        'ProcID = Shell("CALC.EXE", AppWinStyle.NormalFocus)
+        '' Activate the Calculator application.
+        'AppActivate(ProcID)
+        '' Send the keystrokes to the Calculator application.
+        'My.Computer.Keyboard.SendKeys("22", True)
+        'My.Computer.Keyboard.SendKeys("*", True)
+        'My.Computer.Keyboard.SendKeys("44", True)
+        'My.Computer.Keyboard.SendKeys("=", True)
+        '' The result is 22 * 44 = 968.
+
+        My.Computer.Keyboard.SendKeys("^{ESC}", True)
+        SendKeys.SendWait("^V")
+        SendKeys.SendWait("{ENTER}")
     End Sub
 
 

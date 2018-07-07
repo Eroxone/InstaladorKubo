@@ -68,7 +68,6 @@ Public Class FormSQL2008R2
         RegistroInstalacion("SQL2008R. Obtenido fichero INI para instalación desatendida.")
     End Sub
 
-    'TODO arreglar ajuste de tiempo y mostrar entonces label
     Private Sub UpTimeServidor()
         Try
             Dim uptime = Environment.TickCount
@@ -78,6 +77,8 @@ Public Class FormSQL2008R2
             Dim uptimesimple = uptimedias.Substring(0, uptimesolodias)
             If uptimesimple < 1 OrElse uptimesimple = 1 Then
                 LbUptime.Text = "UpTime: Inferior a 1 día."
+            ElseIf uptimesimple > 1 And uptimesimple < 2 Then
+                LbUptime.Text = "UpTime: Algo más de 1 día."
             ElseIf uptimesimple < 0 Then
                 LbUptime.Text = "Uptime: No se pudo determinar."
             Else
@@ -194,7 +195,6 @@ Public Class FormSQL2008R2
     End Function
 
     Public Sub EnvioMail()
-        'TODO enviar email cuando termine la instalación con el log e info sistema
         If Validaremail() = True Then
 
             'Dim A As String = Tbtucorreo.Text
