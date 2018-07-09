@@ -126,7 +126,17 @@ Public Class FormSQL2008R2
     End Sub
 
     Private Sub BtUpgradeLuego_Click(sender As Object, e As EventArgs) Handles BtUpgradeLuego.Click
-        Dim actualizarr2 = MessageBox.Show("Se ha progarmado la Descarga/Instalación desatendida de SQL 2008R2." & vbCrLf & "- Verifica los Servicios SQL del Sistema, no debe haber ninguno Deshabilitado." & vbCrLf & "- Se recomienda Reiniciar el Servidor antes de la Actualización (revisa uptime).", "Recomendaciones previo a Actualizar SQL2008R2", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim actualizarr2 = MessageBox.Show("Se ha programado la Descarga/Instalación desatendida de SQL 2008R2." & vbCrLf & "- Verifica los Servicios SQL del Sistema, no debe haber ninguno Deshabilitado." & vbCrLf & "- Se recomienda Reiniciar el Servidor antes de la Actualización (revisa uptime).", "¿Programamos la actualización a SQL 2008R2?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If actualizarr2 = DialogResult.Yes Then
+            RegistroInstalacion("SQL2008R2. El usuario confirma la ejecución del Upgrade Programado. Empieza el proceso.")
+        Else
+            RegistroInstalacion("SQL2008R2. El usuario canceló el Upgrade Progarmado. Revisar Servicios y recomendado Reiniciar el Equipo.")
+            BtUpgradeLuego.BackColor = SystemColors.Control
+            LbUpgradeLuego.Visible = False
+            LbUpgradeLuego2.Visible = False
+            Exit Sub
+        End If
+
         Dim horaejecucion As String = "22:0"
         Dim horaactual As String = DateTime.Now.Hour & ":" & DateTime.Now.Minute
         While horaactual <> horaejecucion

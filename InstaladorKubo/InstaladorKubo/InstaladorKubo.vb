@@ -4400,7 +4400,7 @@ Public Class FrmInstaladorKubo
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "VISORIMAGENES", "1")
             Dim visorpredeterminado As String = "Configuración de aplicaciones predeterminadas"
             My.Computer.Clipboard.SetText(visorpredeterminado)
-            MessageBox.Show("Establece ahora Visor de Imágenes como Aplicación Predeterminada en Visualizador de fotos.", "Predeterminar Visor Imágenes Windows", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Establece ahora Visor de Imágenes como Aplicación Predeterminada en Visualizador de fotos." & vbCrLf & "Acepta e intentaremos abrir la Configuración.", "Predeterminar Visor Imágenes Windows", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             RegistroInstalacion("ERROR Visor Imágenes: " & ex.Message)
             BtVisorImagenes.BackColor = Color.LightSalmon
@@ -4419,8 +4419,10 @@ Public Class FrmInstaladorKubo
         '' The result is 22 * 44 = 968.
 
         My.Computer.Keyboard.SendKeys("^{ESC}", True)
-        SendKeys.SendWait("^V")
-        SendKeys.SendWait("{ENTER}")
+        Threading.Thread.Sleep(500)
+        SendKeys.Send("^V")
+        Threading.Thread.Sleep(2000)
+        SendKeys.Send("{ENTER}")
     End Sub
 
 
