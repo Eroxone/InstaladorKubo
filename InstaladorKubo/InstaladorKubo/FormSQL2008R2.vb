@@ -115,7 +115,7 @@ Public Class FormSQL2008R2
         'Siempre descargo por lo que pueda pasar.
         DescargarSQL()
 
-        Dim actualizarr2 = MessageBox.Show("A continuación se procederá a realizar la Instalación desatendida de SQL 2008R2." & vbCrLf & "- Verifica los Servicios SQL del Sistema, no debe haber ninguno Deshabilitado." & vbCrLf & "- Se recomienda Reiniciar el Servidor antes de la Actualización.", "¿Empezamos la actualización a SQL 2008R2?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        Dim actualizarr2 = MessageBox.Show("A continuación se procederá a realizar la Instalación desatendida de SQL 2008R2." & vbCrLf & "- Verifica los Servicios SQL del Sistema, no debe haber ninguno Deshabilitado." & vbCrLf & "- Se recomienda Reiniciar el Servidor antes de la Actualización (revisa uptime).", "¿Empezamos la actualización a SQL 2008R2?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If actualizarr2 = DialogResult.Yes Then
             RegistroInstalacion("SQL2008R2. El usuario confirma la ejecución del Upgrade. Empieza el proceso.")
             UpgradeSQL()
@@ -126,6 +126,7 @@ Public Class FormSQL2008R2
     End Sub
 
     Private Sub BtUpgradeLuego_Click(sender As Object, e As EventArgs) Handles BtUpgradeLuego.Click
+        Dim actualizarr2 = MessageBox.Show("Se ha progarmado la Descarga/Instalación desatendida de SQL 2008R2." & vbCrLf & "- Verifica los Servicios SQL del Sistema, no debe haber ninguno Deshabilitado." & vbCrLf & "- Se recomienda Reiniciar el Servidor antes de la Actualización (revisa uptime).", "Recomendaciones previo a Actualizar SQL2008R2", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         Dim horaejecucion As String = "22:0"
         Dim horaactual As String = DateTime.Now.Hour & ":" & DateTime.Now.Minute
         While horaactual <> horaejecucion
