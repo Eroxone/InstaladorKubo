@@ -9,7 +9,7 @@ Public Class FormSQL2008R2
 
     Private Sub FormSQL2008R2_Load(sender As Object, e As EventArgs) Handles Me.Load
         FrmInstaladorKubo.Hide()
-        LbRutaSQL.Text = "Carpeta: " & rutadescargas & "SQL\SQL2008R2"
+        LbRutaSQL.Text = "Explorar " & rutadescargas & "SQL\SQL2008R2"
         Dim descargadosql = cIniArray.IniGet(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "2")
         If descargadosql = 1 Then
             BtDescargarSQL.BackColor = Color.PaleGreen
@@ -71,14 +71,13 @@ Public Class FormSQL2008R2
     Private Sub UpTimeServidor()
         Try
             Dim uptime = Environment.TickCount
-            Dim uptimedias As String = (uptime / 1000) / 3600 / 24 / 365
-            Dim uptimehoras As String = (uptime / 1000) / 3600
+            Dim uptimedias As String = (uptime / 1000) / 3600 / 24
             Dim uptimesolodias As Integer = uptimedias.LastIndexOf(",")
             Dim uptimesimple = uptimedias.Substring(0, uptimesolodias)
             If uptimesimple < 1 OrElse uptimesimple = 1 Then
                 LbUptime.Text = "UpTime: Inferior a 1 día."
             ElseIf uptimesimple > 1 And uptimesimple < 2 Then
-                LbUptime.Text = "UpTime: Algo más de 1 día."
+                LbUptime.Text = "UpTime: Más de 1 día."
             ElseIf uptimesimple < 0 Then
                 LbUptime.Text = "Uptime: No se pudo determinar."
             Else
