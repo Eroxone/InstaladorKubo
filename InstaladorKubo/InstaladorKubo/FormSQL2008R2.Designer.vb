@@ -41,16 +41,17 @@ Partial Class FormSQL2008R2
         Me.LbUptime = New System.Windows.Forms.Label()
         Me.CBoxEmail = New System.Windows.Forms.ComboBox()
         Me.LbEmail = New System.Windows.Forms.Label()
+        Me.BtEditarINI = New System.Windows.Forms.Button()
+        Me.TlpEditarINI = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'BtDescargarSQL
         '
         Me.BtDescargarSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtDescargarSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtDescargarSQL.Location = New System.Drawing.Point(16, 97)
-        Me.BtDescargarSQL.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtDescargarSQL.Location = New System.Drawing.Point(12, 79)
         Me.BtDescargarSQL.Name = "BtDescargarSQL"
-        Me.BtDescargarSQL.Size = New System.Drawing.Size(187, 62)
+        Me.BtDescargarSQL.Size = New System.Drawing.Size(140, 50)
         Me.BtDescargarSQL.TabIndex = 0
         Me.BtDescargarSQL.Text = "Descargar SQL"
         Me.BtDescargarSQL.UseVisualStyleBackColor = True
@@ -59,10 +60,9 @@ Partial Class FormSQL2008R2
         '
         Me.BtUpgrade.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtUpgrade.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtUpgrade.Location = New System.Drawing.Point(281, 97)
-        Me.BtUpgrade.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtUpgrade.Location = New System.Drawing.Point(211, 79)
         Me.BtUpgrade.Name = "BtUpgrade"
-        Me.BtUpgrade.Size = New System.Drawing.Size(169, 62)
+        Me.BtUpgrade.Size = New System.Drawing.Size(127, 50)
         Me.BtUpgrade.TabIndex = 1
         Me.BtUpgrade.Text = " Upgrade desatendido"
         Me.BtUpgrade.UseVisualStyleBackColor = True
@@ -72,10 +72,9 @@ Partial Class FormSQL2008R2
         Me.BtUpgradeLuego.BackColor = System.Drawing.SystemColors.Control
         Me.BtUpgradeLuego.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtUpgradeLuego.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtUpgradeLuego.Location = New System.Drawing.Point(532, 97)
-        Me.BtUpgradeLuego.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtUpgradeLuego.Location = New System.Drawing.Point(399, 79)
         Me.BtUpgradeLuego.Name = "BtUpgradeLuego"
-        Me.BtUpgradeLuego.Size = New System.Drawing.Size(169, 62)
+        Me.BtUpgradeLuego.Size = New System.Drawing.Size(127, 50)
         Me.BtUpgradeLuego.TabIndex = 2
         Me.BtUpgradeLuego.Text = "Upgrade a las 22:00 horas"
         Me.BtUpgradeLuego.UseVisualStyleBackColor = False
@@ -84,20 +83,18 @@ Partial Class FormSQL2008R2
         '
         Me.LbTitulo.AutoSize = True
         Me.LbTitulo.Font = New System.Drawing.Font("Lucida Bright", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.LbTitulo.Location = New System.Drawing.Point(11, 32)
-        Me.LbTitulo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LbTitulo.Location = New System.Drawing.Point(8, 26)
         Me.LbTitulo.Name = "LbTitulo"
-        Me.LbTitulo.Size = New System.Drawing.Size(529, 32)
+        Me.LbTitulo.Size = New System.Drawing.Size(410, 24)
         Me.LbTitulo.TabIndex = 3
         Me.LbTitulo.Text = "ACTUALIZACIÓN A SQL 2008 R2 X86"
         '
         'BtSalir
         '
         Me.BtSalir.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtSalir.Location = New System.Drawing.Point(677, 316)
-        Me.BtSalir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtSalir.Location = New System.Drawing.Point(508, 257)
         Me.BtSalir.Name = "BtSalir"
-        Me.BtSalir.Size = New System.Drawing.Size(137, 43)
+        Me.BtSalir.Size = New System.Drawing.Size(103, 35)
         Me.BtSalir.TabIndex = 4
         Me.BtSalir.Text = "SALIR"
         Me.BtSalir.UseVisualStyleBackColor = True
@@ -121,10 +118,9 @@ Partial Class FormSQL2008R2
         '
         Me.BtManualSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtManualSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtManualSQL.Location = New System.Drawing.Point(281, 185)
-        Me.BtManualSQL.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtManualSQL.Location = New System.Drawing.Point(211, 150)
         Me.BtManualSQL.Name = "BtManualSQL"
-        Me.BtManualSQL.Size = New System.Drawing.Size(169, 62)
+        Me.BtManualSQL.Size = New System.Drawing.Size(127, 50)
         Me.BtManualSQL.TabIndex = 5
         Me.BtManualSQL.Text = "Actualización Manual"
         Me.BtManualSQL.UseVisualStyleBackColor = True
@@ -139,10 +135,9 @@ Partial Class FormSQL2008R2
         Me.LbRutaSQL.AutoSize = True
         Me.LbRutaSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.LbRutaSQL.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbRutaSQL.Location = New System.Drawing.Point(12, 279)
-        Me.LbRutaSQL.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LbRutaSQL.Location = New System.Drawing.Point(9, 252)
         Me.LbRutaSQL.Name = "LbRutaSQL"
-        Me.LbRutaSQL.Size = New System.Drawing.Size(142, 19)
+        Me.LbRutaSQL.Size = New System.Drawing.Size(108, 15)
         Me.LbRutaSQL.TabIndex = 6
         Me.LbRutaSQL.Text = "Ruta de trabajo"
         '
@@ -154,10 +149,9 @@ Partial Class FormSQL2008R2
         'BtLogSQLR2
         '
         Me.BtLogSQLR2.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtLogSQLR2.Location = New System.Drawing.Point(16, 191)
-        Me.BtLogSQLR2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.BtLogSQLR2.Location = New System.Drawing.Point(12, 155)
         Me.BtLogSQLR2.Name = "BtLogSQLR2"
-        Me.BtLogSQLR2.Size = New System.Drawing.Size(120, 55)
+        Me.BtLogSQLR2.Size = New System.Drawing.Size(90, 45)
         Me.BtLogSQLR2.TabIndex = 7
         Me.BtLogSQLR2.Text = "Visualizar Logs"
         Me.BtLogSQLR2.UseVisualStyleBackColor = True
@@ -168,10 +162,9 @@ Partial Class FormSQL2008R2
         Me.LbUpgradeLuego.BackColor = System.Drawing.SystemColors.Control
         Me.LbUpgradeLuego.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbUpgradeLuego.ForeColor = System.Drawing.Color.Maroon
-        Me.LbUpgradeLuego.Location = New System.Drawing.Point(528, 174)
-        Me.LbUpgradeLuego.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LbUpgradeLuego.Location = New System.Drawing.Point(396, 141)
         Me.LbUpgradeLuego.Name = "LbUpgradeLuego"
-        Me.LbUpgradeLuego.Size = New System.Drawing.Size(247, 19)
+        Me.LbUpgradeLuego.Size = New System.Drawing.Size(184, 15)
         Me.LbUpgradeLuego.TabIndex = 8
         Me.LbUpgradeLuego.Text = "EJECUCIÓN PROGRAMADA"
         Me.LbUpgradeLuego.Visible = False
@@ -182,10 +175,9 @@ Partial Class FormSQL2008R2
         Me.LbUpgradeLuego2.BackColor = System.Drawing.SystemColors.Control
         Me.LbUpgradeLuego2.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbUpgradeLuego2.ForeColor = System.Drawing.Color.Maroon
-        Me.LbUpgradeLuego2.Location = New System.Drawing.Point(528, 208)
-        Me.LbUpgradeLuego2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LbUpgradeLuego2.Location = New System.Drawing.Point(396, 169)
         Me.LbUpgradeLuego2.Name = "LbUpgradeLuego2"
-        Me.LbUpgradeLuego2.Size = New System.Drawing.Size(258, 19)
+        Me.LbUpgradeLuego2.Size = New System.Drawing.Size(195, 15)
         Me.LbUpgradeLuego2.TabIndex = 9
         Me.LbUpgradeLuego2.Text = "NO CIERRES ESTA VENTANA"
         Me.LbUpgradeLuego2.Visible = False
@@ -194,10 +186,9 @@ Partial Class FormSQL2008R2
         '
         Me.LbUptime.AutoSize = True
         Me.LbUptime.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.LbUptime.Location = New System.Drawing.Point(528, 278)
-        Me.LbUptime.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LbUptime.Location = New System.Drawing.Point(396, 226)
         Me.LbUptime.Name = "LbUptime"
-        Me.LbUptime.Size = New System.Drawing.Size(153, 19)
+        Me.LbUptime.Size = New System.Drawing.Size(125, 16)
         Me.LbUptime.TabIndex = 10
         Me.LbUptime.Text = "Uptime Servidor"
         '
@@ -209,28 +200,47 @@ Partial Class FormSQL2008R2
         Me.CBoxEmail.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
         Me.CBoxEmail.FormattingEnabled = True
         Me.CBoxEmail.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
-        Me.CBoxEmail.Location = New System.Drawing.Point(265, 332)
-        Me.CBoxEmail.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CBoxEmail.Location = New System.Drawing.Point(199, 270)
         Me.CBoxEmail.Name = "CBoxEmail"
-        Me.CBoxEmail.Size = New System.Drawing.Size(184, 24)
+        Me.CBoxEmail.Size = New System.Drawing.Size(139, 22)
         Me.CBoxEmail.TabIndex = 50
+        Me.CBoxEmail.Visible = False
         '
         'LbEmail
         '
         Me.LbEmail.AutoSize = True
         Me.LbEmail.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbEmail.Location = New System.Drawing.Point(49, 329)
-        Me.LbEmail.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LbEmail.Location = New System.Drawing.Point(37, 267)
         Me.LbEmail.Name = "LbEmail"
-        Me.LbEmail.Size = New System.Drawing.Size(208, 23)
+        Me.LbEmail.Size = New System.Drawing.Size(156, 20)
         Me.LbEmail.TabIndex = 51
         Me.LbEmail.Text = "Envíame resumen a:"
+        Me.LbEmail.Visible = False
+        '
+        'BtEditarINI
+        '
+        Me.BtEditarINI.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtEditarINI.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtEditarINI.Location = New System.Drawing.Point(211, 206)
+        Me.BtEditarINI.Name = "BtEditarINI"
+        Me.BtEditarINI.Size = New System.Drawing.Size(102, 25)
+        Me.BtEditarINI.TabIndex = 52
+        Me.BtEditarINI.Text = "Editar INI"
+        Me.BtEditarINI.UseVisualStyleBackColor = True
+        '
+        'TlpEditarINI
+        '
+        Me.TlpEditarINI.IsBalloon = True
+        Me.TlpEditarINI.Tag = "Muestra fichero INI para su edición. Al editarlo ya no se volverá a decargar."
+        Me.TlpEditarINI.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Warning
+        Me.TlpEditarINI.ToolTipTitle = "Editar archivo Configuracion"
         '
         'FormSQL2008R2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(831, 370)
+        Me.ClientSize = New System.Drawing.Size(623, 301)
+        Me.Controls.Add(Me.BtEditarINI)
         Me.Controls.Add(Me.LbEmail)
         Me.Controls.Add(Me.CBoxEmail)
         Me.Controls.Add(Me.LbUptime)
@@ -244,7 +254,6 @@ Partial Class FormSQL2008R2
         Me.Controls.Add(Me.BtUpgradeLuego)
         Me.Controls.Add(Me.BtUpgrade)
         Me.Controls.Add(Me.BtDescargarSQL)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormSQL2008R2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Actualización SQL 2008R2"
@@ -271,4 +280,6 @@ Partial Class FormSQL2008R2
     Friend WithEvents LbUptime As Label
     Friend WithEvents CBoxEmail As ComboBox
     Friend WithEvents LbEmail As Label
+    Friend WithEvents BtEditarINI As Button
+    Friend WithEvents TlpEditarINI As ToolTip
 End Class

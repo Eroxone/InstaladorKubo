@@ -32,9 +32,18 @@ Public Class FormSQL2008R2
         TlpManualSQL.ToolTipTitle = "Descarga y ofrece instalación Manual"
         TlpManualSQL.SetToolTip(BtManualSQL, "Ejecuta Setup de SQL 2008R2 para que el usuario realice el proceso manualente.")
 
+        TlpEditarINI.SetToolTip(BtEditarINI, "Edita fichero INI de Configuración. Una vez revisado no se volverá a descargar.")
+
         UpTimeServidor()
 
         CBoxEmail.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
+
+        Dim editarini = cIniArray.IniGet(instaladorkuboini, "SQL", "INI2008R2", "2")
+        If editarini = 1 Then
+            BtEditarINI.BackColor = Color.PaleGreen
+            BtEditarINI.Text = "Editado INI"
+        End If
+
     End Sub
 
     Private Sub FormSQL2008R2_Closed(sender As Object, e As EventArgs) Handles Me.Closed
@@ -63,9 +72,12 @@ Public Class FormSQL2008R2
             End Try
         End If
 
-        Dim wgetini As String = "wget.exe -q -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
-        Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.Hide, True)
-        RegistroInstalacion("SQL2008R. Obtenido fichero INI para instalación desatendida.")
+        Dim editadoini = cIniArray.IniGet(instaladorkuboini, "SQL", "INI2008R2", "2")
+        If editadoini = 2 Then
+            Dim wgetini As String = "wget.exe -q -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
+            Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.Hide, True)
+            RegistroInstalacion("SQL2008R. Obtenido fichero INI para instalación desatendida.")
+        End If
     End Sub
 
     Private Sub UpTimeServidor()
@@ -77,7 +89,7 @@ Public Class FormSQL2008R2
             If uptimesimple < 1 OrElse uptimesimple = 1 Then
                 LbUptime.Text = "UpTime: Inferior a 1 día."
             ElseIf uptimesimple > 1 And uptimesimple < 2 Then
-                LbUptime.Text = "UpTime: Más de 1 día."
+                LbUptime.Text = "UpTime: Inferior a 2 días."
             ElseIf uptimesimple < 0 Then
                 LbUptime.Text = "Uptime: No se pudo determinar."
             Else
@@ -108,7 +120,6 @@ Public Class FormSQL2008R2
             MessageBox.Show("No se encuentra Setup para la instalación SQL 2008. Revisa la Descarga.", "ERROR Setup SQL2008 R2", MessageBoxButtons.OK, MessageBoxIcon.Error)
             RegistroInstalacion("ERROR SQL2008R2: No se encontró el ejecutable Setup. Revisa la descarga y descompresión del paquete.")
         End If
-        EnvioMail()
     End Sub
 
     Private Sub BtUpgrade_Click(sender As Object, e As EventArgs) Handles BtUpgrade.Click
@@ -152,7 +163,7 @@ Public Class FormSQL2008R2
         LbUpgradeLuego2.ForeColor = Color.Green
 
         LbUpgradeLuego.Text = "== PROCESO COMPLETADO =="
-        LbUpgradeLuego2.Text = "REVISA LOGS. REINCIA."
+        LbUpgradeLuego2.Text = "REVISA LOGS."
 
     End Sub
 
@@ -254,6 +265,16 @@ Public Class FormSQL2008R2
         Else
             cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
         End If
+    End Sub
+
+    Private Sub BtEditarINI_Click(sender As Object, e As EventArgs) Handles BtEditarINI.Click
+        Dim wgetini As String = "wget.exe -q -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
+        Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.Hide, True)
+        cIniArray.IniWrite(instaladorkuboini, "SQL", "INI2008R2", "1")
+        Process.Start("notepad.exe", rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini")
+        BtEditarINI.BackColor = Color.PaleGreen
+        BtEditarINI.Text = "Editado INI"
+        RegistroInstalacion("SQL2008R2. Edtiado manualmente fichero INI. No se volverá a descargar.")
     End Sub
 
 #End Region
