@@ -268,14 +268,17 @@ Public Class FormSQL2008R2
     End Sub
 
     Private Sub BtEditarINI_Click(sender As Object, e As EventArgs) Handles BtEditarINI.Click
-        Directory.CreateDirectory(rutadescargas & "SQL\SQL2008R2")
-        Dim wgetini As String = "wget.exe -q -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
-        Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.Hide, True)
+        If File.Exists(rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini") = False Then
+            Directory.CreateDirectory(rutadescargas & "SQL\SQL2008R2")
+            Dim wgetini As String = "wget.exe -q -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
+            Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.Hide, True)
+        End If
+
         cIniArray.IniWrite(instaladorkuboini, "SQL", "INI2008R2", "1")
         Process.Start("notepad.exe", rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini")
         BtEditarINI.BackColor = Color.PaleGreen
         BtEditarINI.Text = "Editado INI"
-        RegistroInstalacion("SQL2008R2. Edtiado manualmente fichero INI. No se volverá a descargar.")
+        RegistroInstalacion("SQL2008R2. Editado manualmente fichero INI. No se volverá a descargar.")
     End Sub
 
 #End Region
