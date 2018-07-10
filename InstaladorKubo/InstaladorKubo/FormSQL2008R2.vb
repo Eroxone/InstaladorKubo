@@ -268,6 +268,7 @@ Public Class FormSQL2008R2
     End Sub
 
     Private Sub BtEditarINI_Click(sender As Object, e As EventArgs) Handles BtEditarINI.Click
+        Directory.CreateDirectory(rutadescargas & "SQL\SQL2008R2")
         Dim wgetini As String = "wget.exe -q -t 5 --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/SQL/ConfigurationFileR2.ini -O " & rutadescargas & "SQL\SQL2008R2\ConfigurationFileR2.ini"
         Shell("cmd /c " & rutadescargas & wgetini, AppWinStyle.Hide, True)
         cIniArray.IniWrite(instaladorkuboini, "SQL", "INI2008R2", "1")
