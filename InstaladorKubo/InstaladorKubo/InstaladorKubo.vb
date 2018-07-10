@@ -365,6 +365,10 @@ Public Class FrmInstaladorKubo
             BtSQL2008R2.BackColor = Color.PaleGreen
         End If
 
+        Dim dynamicsolar = cIniArray.IniGet(instaladorkuboini, "ADRA", "DYNAMICSOLAR", "2")
+        If dynamicsolar = 1 Then
+            BtDynamic.BackColor = Color.PaleGreen
+        End If
     End Sub
 
     'Boton EXAMINAR
@@ -3669,6 +3673,61 @@ Public Class FrmInstaladorKubo
         Process.Start("notepad.exe", "C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt")
     End Sub
 
+    Private Sub BtMigradorDeploy_Click(sender As Object, e As EventArgs) Handles BtMigradorDeploy.Click
+        Dim SistemaO = (My.Computer.Info.OSFullName)
+        RegistroInstalacion("MigradorSQL ejecutado en entorno " & SistemaO)
+        If SistemaO.Contains("2003") Then
+            Dim win2003 = MessageBox.Show("MigradorSQL no compatible con Windows 2003 Server. ¿Quieres continuar?", "Posible Windows 2003 Server", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If win2003 = DialogResult.No Then
+                RegistroInstalacion("MigradorSQL: Ejecución en Windows 2003 Server. Usuario cancela la operación.")
+                Exit Sub
+            End If
+        End If
+
+        obtenerwget()
+        Directory.CreateDirectory(RutaDescargas & "NotinNet")
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.NormalFocus, True)
+        'Process.Start(RutaDescargas & "NotinNet\MigradorNotinSQL.exe", "/allowdataloss")
+        Try
+            File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat", RutaDescargas & "NotinNet\MigradorNotinSQL.exe /forceautomaticdeploy")
+            Dim pmigrador As New ProcessStartInfo()
+            pmigrador.FileName = RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat"
+            Dim migrador As Process = Process.Start(pmigrador)
+            migrador.WaitForExit()
+            RegistroInstalacion("ÉXITO: Ejecución de MigradorNotinSQL ForceAutomaticDeploy completada. Revisa el Log del mismo para más detalle.")
+            'BtMigradorSQL.BackColor = Color.PaleGreen
+            'BtMigradorLOG.Visible = True
+            'cIniArray.IniWrite(instaladorkuboini, "SQL", "MIGRADOR", "1")
+            'cIniArray.IniWrite(instaladorkuboini, "SQL", "EJECUCIONMIGRADOR", DateTime.Now)
+            'LbMigrador.Text = cIniArray.IniGet(instaladorkuboini, "SQL", "FECHAMIGRADOR", "Sin determinar")
+            LbVersionMigrador.Visible = True
+            TbMigradorLog.Visible = True
+            'BtMigradorLOG.Visible = True
+            BtMigradorDeploy.BackColor = Color.PaleGreen
+            LeerLogMigradorSQL()
+
+
+            If TbMigradorLog.Text.Contains("EXITO") Then
+                'Dim notin8 = cIniArray.IniGet(instaladorkuboini, "NET", "NOTIN8", "2")
+                'If notin8 = 2 Then
+                Dim descarganotin8 = MessageBox.Show("¿Quieres Descargar Notaría (Notin8.exe)?", "Descarga Notaría", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If descarganotin8 = DialogResult.Yes Then
+                    DescargarNotaria()
+                    'BtNotin8exe.BackColor = Color.PaleGreen
+                    'cIniArray.IniWrite(instaladorkuboini, "NET", "NOTIN8", "1")
+                    If descarganotin8 = DialogResult.No Then
+                        '       cIniArray.IniWrite(instaladorkuboini, "NET", "NOTIN8", "0")
+                        Exit Sub
+                    End If
+                End If
+            End If
+
+        Catch ex As Exception
+            RegistroInstalacion("ERROR ejecución MigradorSQL: " & ex.Message)
+            BtMigradorDeploy.BackColor = Color.LightSalmon
+        End Try
+    End Sub
+
 
     Private Sub LeerLogMigradorSQL()
 
@@ -4196,6 +4255,24 @@ Public Class FrmInstaladorKubo
         End Try
     End Sub
 
+    Private Sub BtDynamic_Click(sender As Object, e As EventArgs) Handles BtDynamic.Click
+        obtenerwget()
+
+        Directory.CreateDirectory(RutaDescargas & "ADRA")
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/Adra/DynamicSolar.exe -O " & RutaDescargas & "ADRA\DynamicSolar.exe", AppWinStyle.NormalFocus, True)
+
+        Try
+            Process.Start(RutaDescargas & "ADRA\DynamicSolar.exe")
+            BtDynamic.BackColor = Color.PaleGreen
+            RegistroInstalacion("DynamicSolar ejecutado correctamente.")
+            cIniArray.IniWrite(instaladorkuboini, "ADRA", "DYNAMICSOLAR", "1")
+        Catch ex As Exception
+            BtDynamic.BackColor = Color.LightSalmon
+            RegistroInstalacion("ERROR DynamicSolar: " & ex.Message)
+        End Try
+
+
+    End Sub
 
     Private Sub BtReducirDatos_MouseDown(sender As Object, e As MouseEventArgs) Handles BtReducirDatos.MouseDown
         LbSentenciaSQL.Visible = True
@@ -4430,6 +4507,10 @@ Public Class FrmInstaladorKubo
     Private Sub BtSQL2008R2_Click(sender As Object, e As EventArgs) Handles BtSQL2008R2.Click
         FormSQL2008R2.Show()
     End Sub
+
+
+
+
 
 
 

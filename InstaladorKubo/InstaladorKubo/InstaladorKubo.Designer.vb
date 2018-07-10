@@ -94,6 +94,7 @@ Partial Class FrmInstaladorKubo
         Me.BtBetax64 = New System.Windows.Forms.Button()
         Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.BtMigradorDeploy = New System.Windows.Forms.Button()
         Me.BtTriggers = New System.Windows.Forms.Button()
         Me.LbConsultasSQL = New System.Windows.Forms.Label()
         Me.BtSQL2008R2 = New System.Windows.Forms.Button()
@@ -186,6 +187,7 @@ Partial Class FrmInstaladorKubo
         Me.LbEnlacesWeb = New System.Windows.Forms.Label()
         Me.TlpVisorImagenes = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpVersionFW = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtDynamic = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1051,6 +1053,7 @@ Partial Class FrmInstaladorKubo
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage7.Controls.Add(Me.BtMigradorDeploy)
         Me.TabPage7.Controls.Add(Me.BtTriggers)
         Me.TabPage7.Controls.Add(Me.LbConsultasSQL)
         Me.TabPage7.Controls.Add(Me.BtSQL2008R2)
@@ -1069,11 +1072,22 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
         '
+        'BtMigradorDeploy
+        '
+        Me.BtMigradorDeploy.BackColor = System.Drawing.SystemColors.Control
+        Me.BtMigradorDeploy.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtMigradorDeploy.Location = New System.Drawing.Point(195, 50)
+        Me.BtMigradorDeploy.Name = "BtMigradorDeploy"
+        Me.BtMigradorDeploy.Size = New System.Drawing.Size(167, 28)
+        Me.BtMigradorDeploy.TabIndex = 13
+        Me.BtMigradorDeploy.Text = "Migrador Deploy"
+        Me.BtMigradorDeploy.UseVisualStyleBackColor = False
+        '
         'BtTriggers
         '
         Me.BtTriggers.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtTriggers.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtTriggers.Location = New System.Drawing.Point(195, 204)
+        Me.BtTriggers.Location = New System.Drawing.Point(195, 250)
         Me.BtTriggers.Name = "BtTriggers"
         Me.BtTriggers.Size = New System.Drawing.Size(167, 28)
         Me.BtTriggers.TabIndex = 12
@@ -1084,7 +1098,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbConsultasSQL.AutoSize = True
         Me.LbConsultasSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbConsultasSQL.Location = New System.Drawing.Point(191, 149)
+        Me.LbConsultasSQL.Location = New System.Drawing.Point(191, 186)
         Me.LbConsultasSQL.Name = "LbConsultasSQL"
         Me.LbConsultasSQL.Size = New System.Drawing.Size(125, 18)
         Me.LbConsultasSQL.TabIndex = 11
@@ -1105,7 +1119,7 @@ Partial Class FrmInstaladorKubo
         Me.LbSentenciaSQL.AutoSize = True
         Me.LbSentenciaSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbSentenciaSQL.ForeColor = System.Drawing.Color.Green
-        Me.LbSentenciaSQL.Location = New System.Drawing.Point(83, 235)
+        Me.LbSentenciaSQL.Location = New System.Drawing.Point(88, 289)
         Me.LbSentenciaSQL.Name = "LbSentenciaSQL"
         Me.LbSentenciaSQL.Size = New System.Drawing.Size(279, 19)
         Me.LbSentenciaSQL.TabIndex = 9
@@ -1116,7 +1130,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtReducirDatos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtReducirDatos.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtReducirDatos.Location = New System.Drawing.Point(195, 170)
+        Me.BtReducirDatos.Location = New System.Drawing.Point(195, 210)
         Me.BtReducirDatos.Name = "BtReducirDatos"
         Me.BtReducirDatos.Size = New System.Drawing.Size(167, 28)
         Me.BtReducirDatos.TabIndex = 8
@@ -1127,7 +1141,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.TbMigradorLog.BackColor = System.Drawing.SystemColors.Control
         Me.TbMigradorLog.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TbMigradorLog.Location = New System.Drawing.Point(194, 74)
+        Me.TbMigradorLog.Location = New System.Drawing.Point(194, 117)
         Me.TbMigradorLog.Multiline = True
         Me.TbMigradorLog.Name = "TbMigradorLog"
         Me.TbMigradorLog.ReadOnly = True
@@ -1139,7 +1153,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbVersionMigrador.AutoSize = True
         Me.LbVersionMigrador.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.LbVersionMigrador.Location = New System.Drawing.Point(191, 52)
+        Me.LbVersionMigrador.Location = New System.Drawing.Point(192, 90)
         Me.LbVersionMigrador.Name = "LbVersionMigrador"
         Me.LbVersionMigrador.Size = New System.Drawing.Size(165, 15)
         Me.LbVersionMigrador.TabIndex = 4
@@ -1191,6 +1205,7 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.BtDynamic)
         Me.TabPage10.Controls.Add(Me.BtFocos)
         Me.TabPage10.Controls.Add(Me.BtConfWord2016ADRA)
         Me.TabPage10.Location = New System.Drawing.Point(4, 27)
@@ -1872,6 +1887,16 @@ Partial Class FrmInstaladorKubo
         Me.TlpVersionFW.IsBalloon = True
         Me.TlpVersionFW.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
+        'BtDynamic
+        '
+        Me.BtDynamic.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtDynamic.Location = New System.Drawing.Point(8, 90)
+        Me.BtDynamic.Name = "BtDynamic"
+        Me.BtDynamic.Size = New System.Drawing.Size(167, 28)
+        Me.BtDynamic.TabIndex = 2
+        Me.BtDynamic.Text = "DynamicSolar"
+        Me.BtDynamic.UseVisualStyleBackColor = True
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2105,4 +2130,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbVersionFW As Label
     Friend WithEvents LbInfoVersionFW As Label
     Friend WithEvents TlpVersionFW As ToolTip
+    Friend WithEvents BtMigradorDeploy As Button
+    Friend WithEvents BtDynamic As Button
 End Class
