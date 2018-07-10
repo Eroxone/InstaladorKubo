@@ -4257,12 +4257,14 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtDynamic_Click(sender As Object, e As EventArgs) Handles BtDynamic.Click
         obtenerwget()
+        obtenerunrar()
 
         Directory.CreateDirectory(RutaDescargas & "ADRA")
         Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/Adra/DynamicSolar.exe -O " & RutaDescargas & "ADRA\DynamicSolar.exe", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -y -pb30330104b " & RutaDescargas & "ADRA\DynamicSolar.exe " & RutaDescargas & "ADRA\", AppWinStyle.Hide, True)
 
         Try
-            Process.Start(RutaDescargas & "ADRA\DynamicSolar.exe")
+            Process.Start(RutaDescargas & "ADRA\DynamicSolar.bat")
             BtDynamic.BackColor = Color.PaleGreen
             RegistroInstalacion("DynamicSolar ejecutado correctamente.")
             cIniArray.IniWrite(instaladorkuboini, "ADRA", "DYNAMICSOLAR", "1")
