@@ -3648,7 +3648,7 @@ Public Class FrmInstaladorKubo
             LeerLogMigradorSQL()
 
 
-            If TbMigradorLog.Text.Contains("EXITO") Then
+            If TbMigradorLog.Text.Contains("EXITO") OrElse TbMigradorLog.Text.Contains("ExitCode = 0") Then
                 'Dim notin8 = cIniArray.IniGet(instaladorkuboini, "NET", "NOTIN8", "2")
                 'If notin8 = 2 Then
                 Dim descarganotin8 = MessageBox.Show("¿Quieres Descargar Notaría (Notin8.exe)?", "Descarga Notaría", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -3707,7 +3707,7 @@ Public Class FrmInstaladorKubo
             LeerLogMigradorSQL()
 
 
-            If TbMigradorLog.Text.Contains("EXITO") Then
+            If TbMigradorLog.Text.Contains("EXITO") OrElse TbMigradorLog.Text.Contains("ExitCode = 0") Then
                 'Dim notin8 = cIniArray.IniGet(instaladorkuboini, "NET", "NOTIN8", "2")
                 'If notin8 = 2 Then
                 Dim descarganotin8 = MessageBox.Show("¿Quieres Descargar Notaría (Notin8.exe)?", "Descarga Notaría", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -3751,7 +3751,7 @@ Public Class FrmInstaladorKubo
                     End If
                     ':::Agregramos los registros encontrados (nos quedamos con el último)
                     TbMigradorLog.Text = linea.ToString
-                    If linea.Contains("EXITO") Then
+                    If linea.Contains("EXITO") OrElse linea.Contains("ExitCode = 0") Then
                         BtMigradorSQL.BackColor = Color.PaleGreen
                     ElseIf linea.Contains("finalizado") Then
                         BtMigradorSQL.BackColor = Color.LightSalmon
@@ -4512,6 +4512,18 @@ Public Class FrmInstaladorKubo
     Private Sub BtSQL2008R2_Click(sender As Object, e As EventArgs) Handles BtSQL2008R2.Click
         FormSQL2008R2.Show()
     End Sub
+
+
+    Private Sub CboxWUpdate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboxWUpdate.SelectedIndexChanged
+        If CboxWUpdate.SelectedIndex = 0 Then
+            Directory.CreateDirectory(RutaDescargas & "Registro")
+            My.Computer.Network.DownloadFile(PuestoNotin & "wu_enable.reg", RutaDescargas & "Registro\wu_enable.reg", "juanjo", "Palomeras24", False, 20000, False)
+            MessageBox.Show("Seleccionada opción 1")
+        ElseIf CboxWUpdate.SelectedIndex = 1 Then
+            MessageBox.Show("Seleccionada opción 2")
+        End If
+    End Sub
+
 
 
 
