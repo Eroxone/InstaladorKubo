@@ -3826,7 +3826,7 @@ Public Class FrmInstaladorKubo
         End If
 
         If ProcesosActivos() = True Then
-            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos .Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             If procesosactivos = DialogResult.Yes Then
                 Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
                 Try
