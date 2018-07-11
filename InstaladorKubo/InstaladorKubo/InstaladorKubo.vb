@@ -4263,6 +4263,9 @@ Public Class FrmInstaladorKubo
         Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 --ftp-user=tecnicos --ftp-password=20070401 ftp://ftp.pandora.notin.net/Juanjo/Adra/DynamicSolar.exe -O " & RutaDescargas & "ADRA\DynamicSolar.exe", AppWinStyle.NormalFocus, True)
         Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -y -pb30330104b " & RutaDescargas & "ADRA\DynamicSolar.exe " & RutaDescargas & "ADRA\", AppWinStyle.Hide, True)
 
+        Dim batdynamic As String = "%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -File " & RutaDescargas & "ADRA\DynamicSolar.ps1"
+        File.WriteAllText(RutaDescargas & "ADRA\DynamicSolar.bat", batdynamic)
+
         Try
             Process.Start(RutaDescargas & "ADRA\DynamicSolar.bat")
             BtDynamic.BackColor = Color.PaleGreen
