@@ -4429,6 +4429,7 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub CboxWUpdate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboxWUpdate.SelectedIndexChanged
+        'TODO Cambiar esto por un desplegable de verdad
         If CboxWUpdate.SelectedIndex = 0 Then
             Try
                 Directory.CreateDirectory(RutaDescargas & "Registro")
