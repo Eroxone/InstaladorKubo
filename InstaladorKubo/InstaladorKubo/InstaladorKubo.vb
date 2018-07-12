@@ -2936,8 +2936,10 @@ Public Class FrmInstaladorKubo
             'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
             My.Computer.Network.DownloadFile(PuestoNotin & "ConfiguraWord2016_RAPP.exe", RutaDescargas & "Office2016\ConfiguraWord2016_RAPP.exe", "juanjo", "Palomeras24", False, 20000, True)
             obtenerrobocopy()
-            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Office2016\ \\NOTINRAPP\F\PRG.INS\notaria.local\ ConfiguraWord2016_RAPP.exe /R:2 /W:5", AppWinStyle.NormalFocus, True)
-            MessageBox.Show("Se ha copiado en distribución ConfiguraWord 2016_ADRA en NotinRapp." & vbCrLf & "Se procede a intentar ejecutarlo automáticamente. Si el proceso falla accede a los recursos (NR) del Puesto y ejecutalo manualmente.", "Ejecución de ConfiguraWord2016 ADRA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Office2016\ \\NOTINRAPP\F\PRG.INS\notaria.local\ ConfiguraWord2016_RAPP.exe /R:1 /W:1", AppWinStyle.Hide, True)
+            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Office2016\ \\NOTINRAPP\C$\apps_remoteapp\ ConfiguraWord2016_RAPP.exe /R:1 /W:1", AppWinStyle.Hide, True)
+            RegistroInstalacion("CONFIGURA WORD2016 ADRA. Realizada copia hacia notaria.local / apps_remoteapp de NotinRapp.")
+            MessageBox.Show("Se ha copiado en distribución ConfiguraWord 2016_ADRA en NotinRapp." & vbCrLf & "Te mostramos la Ruta NR (RDAC). Procede a realizar la ejecución manual del ConfiguraWord2016_ADRA.", "Ejecución de ConfiguraWord2016 ADRA", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             MessageBox.Show("Se produjo un error al obtener ConfiguraWord 2016 ADRA. Revisa Log para más detalles.", "Error ConfiguraWord ADRA", MessageBoxButtons.OK, MessageBoxIcon.Error)
             RegistroInstalacion("ERROR ConfiguraWord 2016 ADRA: " & ex.Message)
@@ -2953,16 +2955,21 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("WORD 2016 ADRA: Obtenido nombre Usuario Adra: " & usuario)
 
         Try
-            Dim rutaconfword As String = """" & "\\NOTINRAPP\Z\" & usuario & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\Configura Word 2016 (NR).rdp" & """"
-            Shell("cmd /c " & rutaconfword, AppWinStyle.NormalFocus, True)
+            Dim rutaconfword As String = """" & "\\NOTINRAPP\Z\" & usuario & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\" & """"
+            '%systemroot%\system32\mstsc.exe "\\NOTINRAPP\Z\rosa\AppData\Roaming\Microsoft\Workspaces\{CE4B537B-B510-4C8C-80DE-CEACE84BD4B2}\Resource\Configura Word 2016 (NR).rdp"
+            If Directory.Exists(rutaconfword) Then
+                Process.Start("explorer.exe", rutaconfword)
+            Else
+                MessageBox.Show("No se pudo determinar/acceder a la ruta NR (RADC) del Usuario " & usuario & ". Intenta acceder manualmente.", "Error acceso Ruta NR", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
         Catch ex As Exception
-            RegistroInstalacion("ERROR ConfiguraWord2016 ADRA. No se pudo ejecutar. Detalle: " & ex.Message)
+            RegistroInstalacion("ERROR de acceso a Ruta NR (RADC):" & ex.Message)
         End Try
 
         'Si todo ha ido bien..
         cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "1")
         BtConfWord2016ADRA.BackColor = Color.PaleGreen
-        RegistroInstalacion("WORD 2016 ADRA: Proceso ejecutado correctamente. Revisar configuración de Word.")
+        RegistroInstalacion("WORD 2016 ADRA: Proceso ejecutado correctamente. Pendiente ejecución manual del usuario.")
     End Sub
 
 
