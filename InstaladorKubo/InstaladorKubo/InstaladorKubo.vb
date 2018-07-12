@@ -369,6 +369,13 @@ Public Class FrmInstaladorKubo
         If dynamicsolar = 1 Then
             BtDynamic.BackColor = Color.PaleGreen
         End If
+
+        Dim word2016adra = cIniArray.IniGet(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "2")
+        If word2016adra = 1 Then
+            BtConfWord2016ADRA.BackColor = Color.PaleGreen
+        ElseIf word2016adra = 0 Then
+            BtConfWord2016ADRA.BackColor = Color.LightSalmon
+        End If
     End Sub
 
     'Boton EXAMINAR
@@ -1627,7 +1634,7 @@ Public Class FrmInstaladorKubo
         TlpVisorImagenes.ToolTipTitle = "Visor de Imágenes de Windows"
         TlpVisorImagenes.SetToolTip(BtVisorImagenes, "Habilita selección del Visor de Imágenes en asociación de archivos para Windows 10.")
 
-
+        TlpConfiguraWordAdra.SetToolTip(BtConfWord2016ADRA, "Distribuye y Ejecuta ConfiguraWord2016 en entorno ADRA.")
     End Sub
 #End Region
 
@@ -2927,129 +2934,29 @@ Public Class FrmInstaladorKubo
         Directory.CreateDirectory(RutaDescargas & "Office2016")
         Try
             'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-            My.Computer.Network.DownloadFile(PuestoNotin & "ConfWord2016Adra.rar", RutaDescargas & "ConfWord2016Adra.rar", "juanjo", "Palomeras24", False, 20000, True)
+            My.Computer.Network.DownloadFile(PuestoNotin & "ConfiguraWord2016_RAPP.exe", RutaDescargas & "Office2016\ConfiguraWord2016_RAPP.exe", "juanjo", "Palomeras24", False, 20000, True)
+            obtenerrobocopy()
+            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Office2016\ConfiguraWord2016_RAPP.exe \\NOTINRAPP\F\PRG.INS\notaria.local\ConfiguraWord2016_RAPP.exe /R:2 /W:5", AppWinStyle.NormalFocus, True)
+            MessageBox.Show("Se ha copiado en distribución ConfiguraWord 2016_ADRA en NotinRapp." & vbCrLf & "Se procede a intentar ejecutarlo automáticamente. Si el proceso falla accede a los recursos (NR) del Puesto y ejecutalo manualmente.", "Ejecución de ConfiguraWord2016 ADRA", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
-            MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            RegistroInstalacion("ERROR Configurar Word 2016: " & ex.Message)
-            cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-            MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016 AdRA", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
-        End Try
-
-        'obtenerunrar()
-        'Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "ConfWord2016Adra.rar " & RutaDescargas & "Office2016\", AppWinStyle.Hide, True)
-
-        'Try
-        '    Process.Start("C:\Program Files (x86)\Humano Software\Notin\Compatibilidad\ReferNet.exe")
-        '    Threading.Thread.Sleep(5000)
-        'Catch ex As Exception
-        '    MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    RegistroInstalacion("ERROR ReferNet:" & ex.Message)
-        '    cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-        '    BtConfWord2016ADRA.BackColor = Color.LightSalmon
-        '    Exit Sub
-        'End Try
-
-        'Instalacion de los Addins. Hay que forzarlo.
-        'Try
-        '    Dim pInfoaddin As New ProcessStartInfo()
-        '    pInfoaddin.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinAddin\NotinAddinInstaller.exe"
-        '    Dim notinaddin As Process = Process.Start(pInfoaddin)
-        '    notinaddin.WaitForExit()
-        'Catch ex As Exception
-        '    MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    RegistroInstalacion("ERROR NotinAddin: " & ex.Message)
-        '    cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-        '    BtConfWord2016ADRA.BackColor = Color.LightSalmon
-        '    Exit Sub
-        'End Try
-        'Try
-        '    Dim pInfotaskpane As New ProcessStartInfo()
-        '    pInfotaskpane.FileName = "C:\Program Files (x86)\Humano Software\Notin\Addins\NotinTaskPane\NotinTaskPaneInstaller.exe"
-        '    Dim notintaskpane As Process = Process.Start(pInfotaskpane)
-        '    'notintaskpane.WaitForInputIdle()
-        '    notintaskpane.WaitForExit()
-        'Catch ex As Exception
-        '    MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    RegistroInstalacion("ERROR NotinTaskPane: " & ex.Message)
-        '    cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-        '    BtConfWord2016ADRA.BackColor = Color.LightSalmon
-        '    Exit Sub
-        'End Try
-
-
-        Try
-            Process.Start("regedit", "/s " & RutaDescargas & "Office2016\ConfWord2016Adra\w16recopregjjAdra.reg")
-            Threading.Thread.Sleep(3000)
-            Process.Start(RutaDescargas & "Office2016\ConfWord2016Adra\ConfiguraWord2016Adra.bat")
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, "Revisa Instalacion de NotinNET. Más info en el Log.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            RegistroInstalacion("ERROR Scritps ADRA: " & ex.Message)
+            MessageBox.Show("Se produjo un error al obtener ConfiguraWord 2016 ADRA. Revisa Log para más detalles.", "Error ConfiguraWord ADRA", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            RegistroInstalacion("ERROR ConfiguraWord 2016 ADRA: " & ex.Message)
             cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
             BtConfWord2016ADRA.BackColor = Color.LightSalmon
             Exit Sub
         End Try
 
-        'Convertir todo necesario de w16recopregjjAdra a reg add
-        Shell("cmd.exe /c \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\Security ")
-
-
-
-
-
-
-        'Obtener texto entre caracteres
-        'Try
-        '    Dim expedientes As String = cIniArray.IniGet("F:\WINDOWS\NNotin.ini", "Expedientes", "Ruta", "Servidor")
-        '    expedientes = expedientes.Remove(0, 2)
-        '    Dim unidadi = expedientes.LastIndexOf("\I")
-        '    expedientes = expedientes.Substring(0, unidadi)
-
-        '    cIniArray.IniWrite(instaladorkuboini, "RUTAS", "EXPEDIENTES", expedientes)
-
-        '    Directory.CreateDirectory(RutaDescargas & "Registro")
-        '    Dim claveregistroservidor As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location3" & """" & " /v Path /t REG_SZ /d \\" & expedientes & "\F" & " /f"
-        '    File.WriteAllText(RutaDescargas & "Registro\unidadfword.bat", "reg add ")
-        '    File.AppendAllText(RutaDescargas & "Registro\unidadfword.bat", claveregistroservidor)
-        '    RunAsAdmin(RutaDescargas & "Registro\unidadfword.bat")
-        'Catch ex As Exception
-        '    MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016 AdRA", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    RegistroInstalacion("UnidadFWord.bat: " & ex.Message)
-        '    cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-        '    BtConfWord2016ADRA.BackColor = Color.LightSalmon
-        '    Exit Sub
-        'End Try
+        'Obtener nombre Usuario
+        Dim equipousuario As String = (My.User.Name)
+        Dim equipo As Integer = equipousuario.LastIndexOf("\")
+        Dim usuario = equipousuario.Remove(0, equipo + 1)
+        RegistroInstalacion("WORD 2016 ADRA: Obtenido nombre Usuario Adra: " & usuario)
 
         Try
-            Dim equipousuario As String = (My.User.Name)
-            Dim equipo As Integer = equipousuario.LastIndexOf("\")
-            Dim usuario = equipousuario.Remove(0, equipo + 1)
-            RegistroInstalacion("WORD 2016 ADRA: Obtenido nombre usuario para Ruta Plantillas: " & usuario)
-
-
-            'Dim seguridadplantillas As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Word\Security\Trusted Locations\Location5" & """" & " /v Path /t REG_SZ /d Z:\" & usuario & "\DOCUMENTS\NOTIN\PLANTILLAS" & "\F" & " /f" & vbCrLf
-            'File.WriteAllText(RutaDescargas & "Registro\plantillasz.bat", "reg add ")
-            'File.AppendAllText(RutaDescargas & "Registro\plantillasz.bat", seguridadplantillas)
-            'Dim plantillasusuario As String = """" & "HKEY_CURRENT_USER\SOFTWARE\Microsoft\Office\16.0\Common\General" & """" & " /v UserTemplates /t REG_SZ /d Z:\" & usuario & "\DOCUMENTS\NOTIN\PLANTILLAS /f"
-            'File.AppendAllText(RutaDescargas & "Registro\plantillasz.bat", "reg add ")
-            'File.AppendAllText(RutaDescargas & "Registro\plantillasz.bat", plantillasusuario)
-            'RunAsAdmin(RutaDescargas & "Registro\plantillasz.bat")
-
-            Shell("cmd.exe /c reg add \\NOTINRAPP\HKCU\\SOFTWARE\Microsoft\Office\16.0\Common\General /v UserTemplates /t REG_SZ /d Z:\" & usuario & "\DOCUMENTS\NOTIN\PLANTILLAS /f")
-
-
-            ''Escribir nombre Usuario en Word
-            'Shell("cmd.exe /c reg delete \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\UserInfo /v UserInitials /f")
-            'Shell("cmd.exe /c reg add \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\UserInfo /v UserInitials /t REG_SZ /d " & usuario & " /f")
-            'Shell("cmd.exe /c reg delete \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\UserInfo /v UserName /f")
-            'Shell("cmd.exe /c reg add \\NOTINRAPP\HKCU\Software\Microsoft\Office\Common\UserInfo /v UserName /t REG_SZ /d " & usuario & " /f")
-
+            Dim rutaconfword As String = """" & "\\NOTINRAPP\Z\" & usuario & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\Configura Word 2016 (NR).rdp" & """"
+            Shell("cmd /c " & rutaconfword, AppWinStyle.NormalFocus, True)
         Catch ex As Exception
-            MessageBox.Show("Se ha producido un Error. Revisa el Log para mas información.", "Error Configurando Word 2016 AdRA", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            RegistroInstalacion("Claves Registro Word 2016: " & ex.Message)
-            cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "0")
-            BtConfWord2016ADRA.BackColor = Color.LightSalmon
-            Exit Sub
+            RegistroInstalacion("ERROR ConfiguraWord2016 ADRA. No se pudo ejecutar. Detalle: " & ex.Message)
         End Try
 
         'Si todo ha ido bien..
@@ -4516,11 +4423,32 @@ Public Class FrmInstaladorKubo
 
     Private Sub CboxWUpdate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboxWUpdate.SelectedIndexChanged
         If CboxWUpdate.SelectedIndex = 0 Then
-            Directory.CreateDirectory(RutaDescargas & "Registro")
-            My.Computer.Network.DownloadFile(PuestoNotin & "wu_enable.reg", RutaDescargas & "Registro\wu_enable.reg", "juanjo", "Palomeras24", False, 20000, False)
-            MessageBox.Show("Seleccionada opción 1")
+            Try
+                Directory.CreateDirectory(RutaDescargas & "Registro")
+                My.Computer.Network.DownloadFile(PuestoNotin & "wu_enable.reg", RutaDescargas & "Registro\wu_enable.reg", "juanjo", "Palomeras24", False, 20000, True)
+                Dim enable As String = "regedit.exe /s " & RutaDescargas & "Registro\wu_enable.reg"
+                File.WriteAllText(RutaDescargas & "Registro\wu_enable.bat", enable)
+                RunAsAdmin(RutaDescargas & "Registro\wu_enable.bat")
+                RegistroInstalacion("ÉXITO: Habilitado Windows Update.")
+                MessageBox.Show("ACTIVADO Windows Update en este equipo. Reinicia para aplicar los cambios.", "Activado WU", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                MessageBox.Show("No se pudieron Activar los Updates. Revisa el Log para más información.", "Error WUpdate", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("ERROR: No se pudo Habilitar WU: " & ex.Message)
+            End Try
+
         ElseIf CboxWUpdate.SelectedIndex = 1 Then
-            MessageBox.Show("Seleccionada opción 2")
+            Try
+                Directory.CreateDirectory(RutaDescargas & "Registro")
+                My.Computer.Network.DownloadFile(PuestoNotin & "wu_disable.reg", RutaDescargas & "Registro\wu_disable.reg", "juanjo", "Palomeras24", False, 20000, True)
+                Dim disable As String = "regedit.exe /s " & RutaDescargas & "Registro\wu_disable.reg"
+                File.WriteAllText(RutaDescargas & "Registro\wu_disable.bat", disable)
+                RunAsAdmin(RutaDescargas & "Registro\wu_disable.bat")
+                RegistroInstalacion("ÉXITO: Deshabilitado Windows Update.")
+                MessageBox.Show("DESACTIVADO Windows Update en este equipo. Reinicia para aplicar los cambios.", "Desactivado WU", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                MessageBox.Show("No se pudieron Desactivar los Updates. Revisa el Log para más información.", "Error WUpdate", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("ERROR: No se pudo Deshabilitar WU: " & ex.Message)
+            End Try
         End If
     End Sub
 
