@@ -2936,7 +2936,7 @@ Public Class FrmInstaladorKubo
             'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
             My.Computer.Network.DownloadFile(PuestoNotin & "ConfiguraWord2016_RAPP.exe", RutaDescargas & "Office2016\ConfiguraWord2016_RAPP.exe", "juanjo", "Palomeras24", False, 20000, True)
             obtenerrobocopy()
-            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Office2016\ConfiguraWord2016_RAPP.exe \\NOTINRAPP\F\PRG.INS\notaria.local\ConfiguraWord2016_RAPP.exe /R:2 /W:5", AppWinStyle.NormalFocus, True)
+            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "Office2016\ \\NOTINRAPP\F\PRG.INS\notaria.local\ ConfiguraWord2016_RAPP.exe /R:2 /W:5", AppWinStyle.NormalFocus, True)
             MessageBox.Show("Se ha copiado en distribución ConfiguraWord 2016_ADRA en NotinRapp." & vbCrLf & "Se procede a intentar ejecutarlo automáticamente. Si el proceso falla accede a los recursos (NR) del Puesto y ejecutalo manualmente.", "Ejecución de ConfiguraWord2016 ADRA", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
             MessageBox.Show("Se produjo un error al obtener ConfiguraWord 2016 ADRA. Revisa Log para más detalles.", "Error ConfiguraWord ADRA", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -2962,7 +2962,7 @@ Public Class FrmInstaladorKubo
         'Si todo ha ido bien..
         cIniArray.IniWrite(instaladorkuboini, "ADRA", "CONFIGURAWORD2016", "1")
         BtConfWord2016ADRA.BackColor = Color.PaleGreen
-        RegistroInstalacion("WORD 2016 ADRA configurado correctamente.")
+        RegistroInstalacion("WORD 2016 ADRA: Proceso ejecutado correctamente. Revisar configuración de Word.")
     End Sub
 
 
