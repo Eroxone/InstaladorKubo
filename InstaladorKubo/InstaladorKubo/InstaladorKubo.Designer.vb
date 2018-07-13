@@ -62,6 +62,8 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TabSistema = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.LbVersionFW = New System.Windows.Forms.Label()
+        Me.LbInfoVersionFW = New System.Windows.Forms.Label()
         Me.BtFramework462 = New System.Windows.Forms.Button()
         Me.BtOdbc = New System.Windows.Forms.Button()
         Me.BtFramework = New System.Windows.Forms.Button()
@@ -188,8 +190,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpVisorImagenes = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpVersionFW = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpConfiguraWordAdra = New System.Windows.Forms.ToolTip(Me.components)
-        Me.LbVersionFW = New System.Windows.Forms.Label()
-        Me.LbInfoVersionFW = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -692,6 +692,26 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.Size = New System.Drawing.Size(378, 323)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
+        '
+        'LbVersionFW
+        '
+        Me.LbVersionFW.AutoSize = True
+        Me.LbVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbVersionFW.Location = New System.Drawing.Point(196, 69)
+        Me.LbVersionFW.Name = "LbVersionFW"
+        Me.LbVersionFW.Size = New System.Drawing.Size(99, 15)
+        Me.LbVersionFW.TabIndex = 52
+        Me.LbVersionFW.Text = "Sin información"
+        '
+        'LbInfoVersionFW
+        '
+        Me.LbInfoVersionFW.AutoSize = True
+        Me.LbInfoVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.LbInfoVersionFW.Location = New System.Drawing.Point(196, 50)
+        Me.LbInfoVersionFW.Name = "LbInfoVersionFW"
+        Me.LbInfoVersionFW.Size = New System.Drawing.Size(166, 15)
+        Me.LbInfoVersionFW.TabIndex = 51
+        Me.LbInfoVersionFW.Text = "Framework en Sistema:"
         '
         'BtFramework462
         '
@@ -1897,26 +1917,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpConfiguraWordAdra.IsBalloon = True
         Me.TlpConfiguraWordAdra.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpConfiguraWordAdra.ToolTipTitle = "Distribuye Configura Word 2016 en ADRA"
-        '
-        'LbVersionFW
-        '
-        Me.LbVersionFW.AutoSize = True
-        Me.LbVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbVersionFW.Location = New System.Drawing.Point(196, 69)
-        Me.LbVersionFW.Name = "LbVersionFW"
-        Me.LbVersionFW.Size = New System.Drawing.Size(99, 15)
-        Me.LbVersionFW.TabIndex = 52
-        Me.LbVersionFW.Text = "Sin información"
-        '
-        'LbInfoVersionFW
-        '
-        Me.LbInfoVersionFW.AutoSize = True
-        Me.LbInfoVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.LbInfoVersionFW.Location = New System.Drawing.Point(196, 50)
-        Me.LbInfoVersionFW.Name = "LbInfoVersionFW"
-        Me.LbInfoVersionFW.Size = New System.Drawing.Size(166, 15)
-        Me.LbInfoVersionFW.TabIndex = 51
-        Me.LbInfoVersionFW.Text = "Framework en Sistema:"
         '
         'FrmInstaladorKubo
         '

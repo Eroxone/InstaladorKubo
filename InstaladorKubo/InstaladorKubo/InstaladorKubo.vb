@@ -4434,11 +4434,12 @@ Public Class FrmInstaladorKubo
             Try
                 Directory.CreateDirectory(RutaDescargas & "Registro")
                 My.Computer.Network.DownloadFile(PuestoNotin & "wu_enable.reg", RutaDescargas & "Registro\wu_enable.reg", "juanjo", "Palomeras24", False, 20000, True)
-                Dim enable As String = "regedit.exe /s " & RutaDescargas & "Registro\wu_enable.reg"
+                Dim enable As String = "@echo off" & vbCrLf & "regedit.exe /s " & RutaDescargas & "Registro\wu_enable.reg"
                 File.WriteAllText(RutaDescargas & "Registro\wu_enable.bat", enable)
                 RunAsAdmin(RutaDescargas & "Registro\wu_enable.bat")
+                Shell("gpupdate.exe /force", AppWinStyle.Hide, False)
                 RegistroInstalacion("ÉXITO: Habilitado Windows Update.")
-                MessageBox.Show("ACTIVADO Windows Update en este equipo. Reinicia para aplicar los cambios.", "Activado WU", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("ACTIVADO Windows Update en este equipo. Reinicia para aplicar los cambios.", "Activar Windows Update", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show("No se pudieron Activar los Updates. Revisa el Log para más información.", "Error WUpdate", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 RegistroInstalacion("ERROR: No se pudo Habilitar WU: " & ex.Message)
@@ -4448,11 +4449,12 @@ Public Class FrmInstaladorKubo
             Try
                 Directory.CreateDirectory(RutaDescargas & "Registro")
                 My.Computer.Network.DownloadFile(PuestoNotin & "wu_disable.reg", RutaDescargas & "Registro\wu_disable.reg", "juanjo", "Palomeras24", False, 20000, True)
-                Dim disable As String = "regedit.exe /s " & RutaDescargas & "Registro\wu_disable.reg"
+                Dim disable As String = "@echo off" & vbCrLf & "regedit.exe /s " & RutaDescargas & "Registro\wu_disable.reg"
                 File.WriteAllText(RutaDescargas & "Registro\wu_disable.bat", disable)
                 RunAsAdmin(RutaDescargas & "Registro\wu_disable.bat")
+                Shell("gpupdate.exe /force", AppWinStyle.Hide, False)
                 RegistroInstalacion("ÉXITO: Deshabilitado Windows Update.")
-                MessageBox.Show("DESACTIVADO Windows Update en este equipo. Reinicia para aplicar los cambios.", "Desactivado WU", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("DESACTIVADO Windows Update en este equipo. Reinicia para aplicar los cambios.", "Desactivar Windows Update", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
                 MessageBox.Show("No se pudieron Desactivar los Updates. Revisa el Log para más información.", "Error WUpdate", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 RegistroInstalacion("ERROR: No se pudo Deshabilitar WU: " & ex.Message)
