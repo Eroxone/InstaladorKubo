@@ -37,6 +37,7 @@ Public Class FrmInstaladorKubo
 
         SistemaOperativo()
         lbRuta.Text = GetPathTemp()
+        UpTimeServidor()
         YaDescargados()
         Tooltips()
         FicheroINI()
@@ -416,6 +417,26 @@ Public Class FrmInstaladorKubo
         'End If
     End Sub
 
+    Private Sub UpTimeServidor()
+        Try
+            Dim uptime = Environment.TickCount
+            Dim uptimedias As String = (uptime / 1000) / 3600 / 24
+            Dim uptimesolodias As Integer = uptimedias.LastIndexOf(",")
+            Dim uptimesimple = uptimedias.Substring(0, uptimesolodias)
+            If uptimesimple < 1 OrElse uptimesimple = 1 Then
+                LbUptime.Text = "UpTime: < 1 día."
+            ElseIf uptimesimple > 1 And uptimesimple < 2 Then
+                LbUptime.Text = "UpTime: < 2 días."
+            ElseIf uptimesimple < 0 Then
+                LbUptime.Text = "Uptime: Sin determinar."
+            Else
+                LbUptime.Text = "UpTime: " & uptimesimple & " días"
+            End If
+            RegistroInstalacion("Determinado Uptime Servidor en " & uptime & " milisegundos.")
+        Catch ex As Exception
+            LbUptime.Text = "Uptime: No se pudo determinar."
+        End Try
+    End Sub
 
 
     'Recarga formulario tras salir de la eleccion de ruta
@@ -4461,6 +4482,7 @@ Public Class FrmInstaladorKubo
             End Try
         End If
     End Sub
+
 
 
 
