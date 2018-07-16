@@ -3692,7 +3692,7 @@ Public Class FrmInstaladorKubo
                     TbMigradorLog.Text = linea.ToString
                     If linea.Contains("EXITO") OrElse linea.Contains("ExitCode = 0") Then
                         BtMigradorSQL.BackColor = Color.PaleGreen
-                    ElseIf linea.Contains("finalizado") Then
+                    ElseIf linea.Contains("finalizado") OrElse linea.Contains("ExitCode = 1") Then
                         BtMigradorSQL.BackColor = Color.LightSalmon
                     ElseIf linea.Contains("horaria 4 - 6") Then
                         BtMigradorSQL.BackColor = Color.Khaki
