@@ -3930,7 +3930,7 @@ Public Class FrmInstaladorKubo
             'notinnet.WaitForInputIdle()
             notinnetbeta.WaitForExit()
 
-            RegistroInstalacion("BETA Notin: Instalador NotinNetInstaller versión BETA ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            RegistroInstalacion("BETA Notin: Instalador NotinNetInstaller versión BETA v40 ejecutado correctamente. Fecha " & DateTime.Now.Date)
 
             'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETA")
@@ -3987,7 +3987,7 @@ Public Class FrmInstaladorKubo
             Dim notinnetbetax64 As Process = Process.Start(pnotinnetbetax64)
             'notinnet.WaitForInputIdle()
             notinnetbetax64.WaitForExit()
-            RegistroInstalacion("ESTABLEx64 Notin FW462: Instalador NotinNetInstaller versión BETAx64 ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            RegistroInstalacion("ESTABLEx64 Notin FW462: Instalador NotinNetInstaller versión ESTABLEx64 para FW462 ejecutado correctamente. Fecha " & DateTime.Now.Date)
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "ESTABLEX64F462")
 
             ObtenerVersionNet()
@@ -4065,7 +4065,7 @@ Public Class FrmInstaladorKubo
             'notinnet.WaitForInputIdle()
             notinnetestable.WaitForExit()
 
-            RegistroInstalacion("ESTABLE Notin: Instalador NotinNetInstaller versión ESTABLE ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            RegistroInstalacion("ESTABLE Notin: Instalador NotinNetInstaller versión ESTABLE v40 ejecutado correctamente. Fecha " & DateTime.Now.Date)
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "ESTABLE")
 
             ObtenerVersionNet()
@@ -4294,7 +4294,7 @@ Public Class FrmInstaladorKubo
             'notinnet.WaitForInputIdle()
             notinnetbeta.WaitForExit()
 
-            RegistroInstalacion("ESTABLE .NET Framework462: Instalador NotinNetInstaller versión BETA para Framework4.6.2 ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            RegistroInstalacion("ESTABLE .NET Framework462: Instalador NotinNetInstaller versión ESTABLE para FW462 ejecutado correctamente. Fecha " & DateTime.Now.Date)
 
             'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "ESTABLEW32F462")
@@ -4354,7 +4354,7 @@ Public Class FrmInstaladorKubo
             'notinnet.WaitForInputIdle()
             notinnetbeta.WaitForExit()
 
-            RegistroInstalacion("BETA .NET Framework462: Instalador NotinNetInstaller versión BETA para Framework4.6.2 ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            RegistroInstalacion("BETA .NET Framework462: Instalador NotinNetInstaller versión BETA para FW462 ejecutado correctamente. Fecha " & DateTime.Now.Date)
 
             'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAW32F462")
@@ -4413,7 +4413,7 @@ Public Class FrmInstaladorKubo
             'notinnet.WaitForInputIdle()
             notinnetbeta.WaitForExit()
 
-            RegistroInstalacion("BETA .NET X64 Framework462: Instalador NotinNetInstaller versión BETA X64 para Framework4.6.2 ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            RegistroInstalacion("BETA .NET X64 Framework462: Instalador NotinNetInstaller versión BETAx64 para FW462 ejecutado correctamente. Fecha " & DateTime.Now.Date)
 
             'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
             cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAx64F462")

@@ -1081,7 +1081,7 @@ Partial Class FrmInstaladorKubo
         Me.BtEstablex64F462.Name = "BtEstablex64F462"
         Me.BtEstablex64F462.Size = New System.Drawing.Size(167, 28)
         Me.BtEstablex64F462.TabIndex = 38
-        Me.BtEstablex64F462.Text = "Estable x64 .NET"
+        Me.BtEstablex64F462.Text = "Estable .NET x64"
         Me.BtEstablex64F462.UseVisualStyleBackColor = True
         '
         'BtNetBeta
