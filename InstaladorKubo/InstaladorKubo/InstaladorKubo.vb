@@ -297,14 +297,17 @@ Public Class FrmInstaladorKubo
         Dim notinnet = cIniArray.IniGet(instaladorkuboini, "NET", "NOTINNET", "FALSE")
         If notinnet = "BETA" Then
             BtNetBeta.BackColor = Color.PaleGreen
-        ElseIf notinnet = "BETAX64" Then
-            BtBetax64.BackColor = Color.PaleGreen
+        ElseIf notinnet = "ESTABLEX64F462" Then
+            BtEstablex64F462.BackColor = Color.PaleGreen
         ElseIf notinnet = "ESTABLE" Then
             BtEstableNet.BackColor = Color.PaleGreen
         ElseIf notinnet = "BETAx64F462" Then
             BtNetBetax64F462.BackColor = Color.PaleGreen
-        ElseIf notinnet = "BETAx86F462" Then
-            BtNetBetaF462.BackColor = Color.PaleGreen
+        ElseIf notinnet = "BETAW32F462" Then
+            BtNetBetaW32F462.BackColor = Color.PaleGreen
+        ElseIf notinnet = "ESTABLEW32F462" Then
+            BtEstablew32F462.BackColor = Color.PaleGreen
+
         End If
 
         If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") Then
@@ -424,17 +427,17 @@ Public Class FrmInstaladorKubo
             Dim uptimesolodias As Integer = uptimedias.LastIndexOf(",")
             Dim uptimesimple = uptimedias.Substring(0, uptimesolodias)
             If uptimesimple < 1 OrElse uptimesimple = 1 Then
-                LbUptime.Text = "UpTime: < 1 día."
+                LbUptime.Text = "UpTime < 1 día."
             ElseIf uptimesimple > 1 And uptimesimple < 2 Then
-                LbUptime.Text = "UpTime: < 2 días."
+                LbUptime.Text = "UpTime < 2 días."
             ElseIf uptimesimple < 0 Then
-                LbUptime.Text = "Uptime: Sin determinar."
+                LbUptime.Text = "Uptime Sin determinar."
             Else
-                LbUptime.Text = "UpTime: " & uptimesimple & " días"
+                LbUptime.Text = "UpTime " & uptimesimple & " días"
             End If
             RegistroInstalacion("Determinado Uptime Servidor en " & uptime & " milisegundos.")
         Catch ex As Exception
-            LbUptime.Text = "Uptime: No se pudo determinar."
+            LbUptime.Text = "Uptime No se pudo determinar."
         End Try
     End Sub
 
@@ -2537,17 +2540,17 @@ Public Class FrmInstaladorKubo
                         cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAx64F462")
 
                         BtNetBetax64F462.BackColor = Color.PaleGreen
-                        BtNetBetaF462.BackColor = SystemColors.Control
+                        BtNetBetaW32F462.BackColor = SystemColors.Control
                         BtNetBeta.BackColor = SystemColors.Control
-                        BtBetax64.BackColor = SystemColors.Control
+                        BtEstablex64F462.BackColor = SystemColors.Control
                         BtEstableNet.BackColor = SystemColors.Control
                         BtNotinNetF.Visible = True
                     Catch ex As Exception
                         RegistroInstalacion("BETA Notin X64: Error instalando Beta .Net X64 para Framework4.6.2: " & ex.Message)
                         BtNetBetax64F462.BackColor = Color.LightSalmon
-                        BtNetBetaF462.BackColor = SystemColors.Control
+                        BtNetBetaW32F462.BackColor = SystemColors.Control
                         BtNetBeta.BackColor = SystemColors.Control
-                        BtBetax64.BackColor = SystemColors.Control
+                        BtEstablex64F462.BackColor = SystemColors.Control
                         BtEstableNet.BackColor = SystemColors.Control
                     End Try
 
@@ -3782,10 +3785,10 @@ Public Class FrmInstaladorKubo
 
         'Como no puedo comprobar que versión de Net tiene dejo todas en gris
         BtNetBeta.BackColor = SystemColors.Control
-        BtBetax64.BackColor = SystemColors.Control
+        BtEstablex64F462.BackColor = SystemColors.Control
         BtEstableNet.BackColor = SystemColors.Control
         BtNetBetax64F462.BackColor = SystemColors.Control
-        BtNetBetaF462.BackColor = SystemColors.Control
+        BtNetBetaW32F462.BackColor = SystemColors.Control
 
     End Sub
 
@@ -3916,7 +3919,7 @@ Public Class FrmInstaladorKubo
         End If
 
         obtenerwget()
-        Dim urlbeta As String = "http://static.unidata.es/NotinNetInstaller.exe"
+        Dim urlbeta As String = "https://static.unidata.es/NotinNetInstaller/v40/beta/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
         Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbeta & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
 
@@ -3935,23 +3938,25 @@ Public Class FrmInstaladorKubo
             ObtenerVersionNet()
             ObtenerVersionFW()
 
-            BtNetBeta.BackColor = Color.PaleGreen
-            BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = Color.PaleGreen
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = SystemColors.Control
             BtNetBetax64F462.BackColor = SystemColors.Control
-            BtNetBetaF462.BackColor = SystemColors.Control
             BtNotinNetF.Visible = True
         Catch ex As Exception
             RegistroInstalacion("BETA Notin: Error instalando Beta: " & ex.Message)
-            BtNetBeta.BackColor = Color.LightSalmon
-            BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = Color.LightSalmon
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = SystemColors.Control
             BtNetBetax64F462.BackColor = SystemColors.Control
-            BtNetBetaF462.BackColor = SystemColors.Control
         End Try
     End Sub
 
-    Private Sub BtBetax64_Click(sender As Object, e As EventArgs) Handles BtBetax64.Click
+    Private Sub BtEstablex64F462_Click(sender As Object, e As EventArgs) Handles BtEstablex64F462.Click
         If NotinRapp() = True Then
             Dim notinrapp = MessageBox.Show("Se va a proceder a ejecutar NotinNetInstaller en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             RegistroInstalacion("ADRA: Ejecutando NotinNetInstaller en entorno NotinRapp. Se advierte al usuario.")
@@ -3966,14 +3971,14 @@ Public Class FrmInstaladorKubo
             If procesosactivos = DialogResult.Yes Then
                 Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
             Else
-                BtBetax64.BackColor = Color.LightSalmon
+                BtEstablex64F462.BackColor = Color.LightSalmon
                 RegistroInstalacion("ADVERTENCIA NOTINNET: No se ejecutó la instalación ya que existían procesos en ejecución. El usuario cancela.")
                 Exit Sub
             End If
         End If
 
         obtenerwget()
-        Dim urlbeta64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
+        Dim urlbeta64 As String = "https://static.unidata.es/NotinNetInstaller/x64/estable/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
         Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbeta64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
         Try
@@ -3982,25 +3987,27 @@ Public Class FrmInstaladorKubo
             Dim notinnetbetax64 As Process = Process.Start(pnotinnetbetax64)
             'notinnet.WaitForInputIdle()
             notinnetbetax64.WaitForExit()
-            RegistroInstalacion("BETAx64 Notin: Instalador NotinNetInstaller versión BETAx64 ejecutado correctamente. Fecha " & DateTime.Now.Date)
-            cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAX64")
+            RegistroInstalacion("ESTABLEx64 Notin FW462: Instalador NotinNetInstaller versión BETAx64 ejecutado correctamente. Fecha " & DateTime.Now.Date)
+            cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "ESTABLEX64F462")
 
             ObtenerVersionNet()
             ObtenerVersionFW()
 
-            BtBetax64.BackColor = Color.PaleGreen
-            BtNetBeta.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = Color.PaleGreen
             BtNetBetax64F462.BackColor = SystemColors.Control
-            BtNetBetaF462.BackColor = SystemColors.Control
             BtNotinNetF.Visible = True
         Catch ex As Exception
             RegistroInstalacion("BETAx64 Notin: Error instalando Beta: " & ex.Message)
-            BtBetax64.BackColor = Color.LightSalmon
-            BtNetBeta.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = Color.LightSalmon
             BtNetBetax64F462.BackColor = SystemColors.Control
-            BtNetBetaF462.BackColor = SystemColors.Control
         End Try
 
     End Sub
@@ -4047,7 +4054,7 @@ Public Class FrmInstaladorKubo
         End If
 
         obtenerwget()
-        Dim urlestable As String = "http://static.unidata.es/estable/NotinNetInstaller.exe"
+        Dim urlestable As String = "https://static.unidata.es/NotinNetInstaller/v40/estable/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
         Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlestable & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
 
@@ -4066,13 +4073,19 @@ Public Class FrmInstaladorKubo
 
             BtEstableNet.BackColor = Color.PaleGreen
             BtNetBeta.BackColor = SystemColors.Control
-            BtBetax64.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = SystemColors.Control
+            BtNetBetax64F462.BackColor = SystemColors.Control
             BtNotinNetF.Visible = True
         Catch ex As Exception
             RegistroInstalacion("ESTABLE Notin: Error instalando NotiNet: " & ex.Message)
             BtEstableNet.BackColor = Color.LightSalmon
             BtNetBeta.BackColor = SystemColors.Control
-            BtBetax64.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = SystemColors.Control
+            BtNetBetax64F462.BackColor = SystemColors.Control
         End Try
     End Sub
 
@@ -4248,7 +4261,7 @@ Public Class FrmInstaladorKubo
         End Try
     End Sub
 
-    Private Sub BtNetBetaF462_Click(sender As Object, e As EventArgs) Handles BtNetBetaF462.Click
+    Private Sub BtEstablew32F462_Click(sender As Object, e As EventArgs) Handles BtEstablew32F462.Click
         If NotinRapp() = True Then
             Dim notinrapp = MessageBox.Show("Se va a proceder a ejecutar NotinNetInstaller en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             RegistroInstalacion("ADRA: Ejecutando NotinNetInstaller en entorno NotinRapp. Se advierte al usuario.")
@@ -4263,7 +4276,67 @@ Public Class FrmInstaladorKubo
             If procesosactivos = DialogResult.Yes Then
                 Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
             Else
-                BtNetBetaF462.BackColor = Color.LightSalmon
+                BtNetBetaW32F462.BackColor = Color.LightSalmon
+                RegistroInstalacion("ADVERTENCIA NOTINNET: No se ejecutó la instalación ya que existían procesos en ejecución. El usuario cancela.")
+                Exit Sub
+            End If
+        End If
+
+        obtenerwget()
+        Dim urlestablef462 As String = "https://static.unidata.es/NotinNetInstaller/W32/estable/NotinNetInstaller.exe"
+        Directory.CreateDirectory(RutaDescargas & "NotinNet")
+        Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlestablef462 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+
+        Try
+            Dim pnotinnetbeta As New ProcessStartInfo()
+            pnotinnetbeta.FileName = RutaDescargas & "NotinNet\NotinNetInstaller.exe"
+            Dim notinnetbeta As Process = Process.Start(pnotinnetbeta)
+            'notinnet.WaitForInputIdle()
+            notinnetbeta.WaitForExit()
+
+            RegistroInstalacion("ESTABLE .NET Framework462: Instalador NotinNetInstaller versión BETA para Framework4.6.2 ejecutado correctamente. Fecha " & DateTime.Now.Date)
+
+            'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
+            cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "ESTABLEW32F462")
+
+            ObtenerVersionNet()
+            ObtenerVersionFW()
+
+            BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = Color.PaleGreen
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = SystemColors.Control
+            BtNetBetax64F462.BackColor = SystemColors.Control
+            BtNotinNetF.Visible = True
+        Catch ex As Exception
+            RegistroInstalacion("ESTABLE Notin: Error instalando Beta .Net para Framework4.6.2: " & ex.Message)
+            BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = Color.LightSalmon
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = SystemColors.Control
+            BtNetBetax64F462.BackColor = SystemColors.Control
+        End Try
+    End Sub
+
+
+    Private Sub BtNetBetaW32F462_Click(sender As Object, e As EventArgs) Handles BtNetBetaW32F462.Click
+        If NotinRapp() = True Then
+            Dim notinrapp = MessageBox.Show("Se va a proceder a ejecutar NotinNetInstaller en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            RegistroInstalacion("ADRA: Ejecutando NotinNetInstaller en entorno NotinRapp. Se advierte al usuario.")
+            If notinrapp = DialogResult.No Then
+                RegistroInstalacion("ADRA: Operación Cancelada. Hice bien en preguntar... (Gracias DPerez).")
+                Exit Sub
+            End If
+        End If
+
+        If ProcesosActivos() = True Then
+            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos activos Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If procesosactivos = DialogResult.Yes Then
+                Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
+            Else
+                BtNetBetaW32F462.BackColor = Color.LightSalmon
                 RegistroInstalacion("ADVERTENCIA NOTINNET: No se ejecutó la instalación ya que existían procesos en ejecución. El usuario cancela.")
                 Exit Sub
             End If
@@ -4284,23 +4357,25 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("BETA .NET Framework462: Instalador NotinNetInstaller versión BETA para Framework4.6.2 ejecutado correctamente. Fecha " & DateTime.Now.Date)
 
             'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHABETA", "Ejecución:" & DateTime.Now)
-            cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAx86F462")
+            cIniArray.IniWrite(instaladorkuboini, "NET", "NOTINNET", "BETAW32F462")
 
             ObtenerVersionNet()
             ObtenerVersionFW()
 
-            BtNetBetaF462.BackColor = Color.PaleGreen
-            BtNetBeta.BackColor = SystemColors.Control
-            BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = Color.PaleGreen
+            BtEstablex64F462.BackColor = SystemColors.Control
             BtNetBetax64F462.BackColor = SystemColors.Control
             BtNotinNetF.Visible = True
         Catch ex As Exception
             RegistroInstalacion("BETA Notin: Error instalando Beta .Net para Framework4.6.2: " & ex.Message)
-            BtNetBetaF462.BackColor = Color.LightSalmon
-            BtNetBeta.BackColor = SystemColors.Control
-            BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = Color.LightSalmon
+            BtEstablex64F462.BackColor = SystemColors.Control
             BtNetBetax64F462.BackColor = SystemColors.Control
         End Try
     End Sub
@@ -4346,19 +4421,21 @@ Public Class FrmInstaladorKubo
             ObtenerVersionNet()
             ObtenerVersionFW()
 
-            BtNetBetax64F462.BackColor = Color.PaleGreen
-            BtNetBetaF462.BackColor = SystemColors.Control
-            BtNetBeta.BackColor = SystemColors.Control
-            BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = SystemColors.Control
+            BtNetBetax64F462.BackColor = Color.PaleGreen
             BtNotinNetF.Visible = True
         Catch ex As Exception
             RegistroInstalacion("BETA Notin X64: Error instalando Beta .Net X64 para Framework4.6.2: " & ex.Message)
-            BtNetBetax64F462.BackColor = Color.LightSalmon
-            BtNetBetaF462.BackColor = SystemColors.Control
-            BtNetBeta.BackColor = SystemColors.Control
-            BtBetax64.BackColor = SystemColors.Control
             BtEstableNet.BackColor = SystemColors.Control
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = SystemColors.Control
+            BtNetBetax64F462.BackColor = Color.LightSalmon
         End Try
     End Sub
 
@@ -4482,6 +4559,8 @@ Public Class FrmInstaladorKubo
             End Try
         End If
     End Sub
+
+
 
 
 
