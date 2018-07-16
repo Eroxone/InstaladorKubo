@@ -147,7 +147,8 @@ Public Class FrmInstaladorKubo
         Dim equipo As Integer = equipousuario.LastIndexOf("\")
         Dim usuario = equipousuario.Remove(0, equipo + 1)
         lbUsuario.Text = "Usuario: " & usuario
-        Dim hostname = Environment.MachineName.ToUpper
+
+        Dim hostname = Environment.MachineName
         LbHostname.Text = hostname
 
         Dim memoriaram = My.Computer.Info.TotalPhysicalMemory
@@ -4560,6 +4561,80 @@ Public Class FrmInstaladorKubo
         End If
     End Sub
 
+
+    Private Sub BtLimpiarPerfil_Click(sender As Object, e As EventArgs) Handles BtLimpiarPerfil.Click
+        RegistroInstalacion("Ejecutadio proceso LIMPIEZA USUARIO ADRA")
+        Dim equipousuario As String = (My.User.Name)
+        Dim equipo As Integer = equipousuario.LastIndexOf("\")
+        Dim usuario = equipousuario.Remove(0, equipo + 1).ToUpper
+
+        If usuario <> "USUARIO" Then
+            Dim sesionusuario As DialogResult = MessageBox.Show("== Debes Iniciar Sesión con el perfil USUARIO ==" & vbCrLf & "Para ello cerraremos sesión y en Otros Usuarios escribe .\USUARIO sin contraseña." & vbCrLf & "Tras el Cierre de Sesión deberás volver a ejecutar este Instalador. ¿Continuamos?", "Sesión de " & usuario & " no válida.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If sesionusuario = DialogResult.Yes Then
+                RegistroInstalacion("Se inició sesión con " & usuario & ". Se cierra su sesión para iniciar como Usuario.")
+                Shell("shutdown /l /f /t 0", AppWinStyle.Hide, False)
+            Else
+                RegistroInstalacion("Iniciada sesión como Usuario. Se omite esta comprobación.")
+                Exit Sub
+            End If
+        End If
+        NotinrappZ()
+    End Sub
+
+    Private Sub NotinrappZ()
+        'Advertir de las carpetas que se van a borrar.
+        If unidadZ() = False Then
+            MessageBox.Show("No se pudo conectar a \\NotinRAPP\Z. A continuación te dirigimos para que realices la conexión manualmente.", "Conexión Manual a Z del Rapp", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Try
+                My.Computer.Clipboard.SetText("\\NOTINRAPP\Z")
+                My.Computer.Keyboard.SendKeys("^{ESC}", True)
+                Threading.Thread.Sleep(500)
+                SendKeys.Send("^V")
+                Threading.Thread.Sleep(2000)
+                SendKeys.Send("{ENTER}")
+            Catch ex As Exception
+            End Try
+        End If
+
+        Threading.Thread.Sleep(5000)
+        While unidadZ() = False
+            Dim QueHacerZ As DialogResult = MessageBox.Show("Unidad NotinRapp\Z no conectada. No se puede limpiar el Perfil del Usuario.", "Advertencia Unidad F", MessageBoxButtons.RetryCancel, MessageBoxIcon.Warning)
+            If QueHacerZ = DialogResult.Cancel Then
+                MessageBox.Show("Operación cancelada por el usuario. No se sigue con el resto de automatizaciones.", "Proceso cancelado.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("Operación cancelada por el usuario. No se sigue con el resto de automatizaciones.")
+                Exit Sub
+                Exit While
+            End If
+        End While
+        LimpiarCarpetas()
+    End Sub
+
+    Private Function unidadZ() As Boolean
+        Shell("NET USE Z: \\NOTINRAPP\Z b30330104b /user:NOTARIA\ADMINISTRADOR /p:no", AppWinStyle.Hide, True)
+        If Directory.Exists("Z:\rapp_control") = False Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
+    Private Sub LimpiarCarpetas()
+
+    End Sub
+
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim carpetas = Directory.GetDirectories("C:\Notawin.Net\")
+        Console.Write(carpetas)
+        Dim aaa = ""
+    End Sub
+
+
+
+    'Limpiar Iconos Escritorio
+
+    'Mostrar el Perfil para que el usuario lo limpie.
 
 
 

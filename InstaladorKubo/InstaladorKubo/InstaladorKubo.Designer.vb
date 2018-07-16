@@ -192,6 +192,8 @@ Partial Class FrmInstaladorKubo
         Me.TlpVisorImagenes = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpVersionFW = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpConfiguraWordAdra = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BtLimpiarPerfil = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1249,6 +1251,8 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.Button1)
+        Me.TabPage10.Controls.Add(Me.BtLimpiarPerfil)
         Me.TabPage10.Controls.Add(Me.BtDynamic)
         Me.TabPage10.Controls.Add(Me.BtFocos)
         Me.TabPage10.Controls.Add(Me.BtConfWord2016ADRA)
@@ -1946,6 +1950,28 @@ Partial Class FrmInstaladorKubo
         Me.TlpConfiguraWordAdra.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpConfiguraWordAdra.ToolTipTitle = "Distribuye Configura Word 2016 en ADRA"
         '
+        'BtLimpiarPerfil
+        '
+        Me.BtLimpiarPerfil.Enabled = False
+        Me.BtLimpiarPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtLimpiarPerfil.Location = New System.Drawing.Point(8, 130)
+        Me.BtLimpiarPerfil.Name = "BtLimpiarPerfil"
+        Me.BtLimpiarPerfil.Size = New System.Drawing.Size(167, 28)
+        Me.BtLimpiarPerfil.TabIndex = 3
+        Me.BtLimpiarPerfil.Text = "Limpiar Perfil"
+        Me.BtLimpiarPerfil.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button1.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(176, 283)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(191, 28)
+        Me.Button1.TabIndex = 4
+        Me.Button1.Text = "Test Adra (no usar)"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2186,4 +2212,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbInfoVersionFW As Label
     Friend WithEvents LbUptime As Label
     Friend WithEvents BtEstablew32F462 As Button
+    Friend WithEvents BtLimpiarPerfil As Button
+    Friend WithEvents Button1 As Button
 End Class
