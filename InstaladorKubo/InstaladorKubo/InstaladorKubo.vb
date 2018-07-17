@@ -4606,7 +4606,7 @@ Public Class FrmInstaladorKubo
                 Exit While
             End If
         End While
-        LimpiarCarpetas()
+        FormUsuarioAdra.ShowDialog()
     End Sub
 
     Private Function unidadZ() As Boolean
@@ -4618,16 +4618,19 @@ Public Class FrmInstaladorKubo
         End If
     End Function
 
-    Private Sub LimpiarCarpetas()
-
-    End Sub
-
-
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim carpetas = Directory.GetDirectories("C:\Notawin.Net\")
-        Console.Write(carpetas)
-        Dim aaa = ""
+        'Dim carpetasperfil = Directory.GetDirectories("C:\Notawin.Net\")
+        'Dim totalcarpetas As Integer = carpetasperfil.Count - 1
+        'Dim numcarpeta = 0
+        'File.WriteAllText("C:\TEMP\carpetas.txt", "")
+        'While numcarpeta < totalcarpetas
+        '    File.AppendAllText("C:\TEMP\carpetas.txt", " " & """" & carpetasperfil(numcarpeta) & """")
+        '    numcarpeta = numcarpeta + 1
+        '    Directory.Delete(numcarpeta, True)
+        'End While
+
+        FormUsuarioAdra.ShowDialog()
     End Sub
 
 

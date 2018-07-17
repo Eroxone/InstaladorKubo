@@ -110,6 +110,8 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.BtLimpiarPerfil = New System.Windows.Forms.Button()
         Me.BtDynamic = New System.Windows.Forms.Button()
         Me.BtFocos = New System.Windows.Forms.Button()
         Me.BtConfWord2016ADRA = New System.Windows.Forms.Button()
@@ -192,8 +194,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpVisorImagenes = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpVersionFW = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpConfiguraWordAdra = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtLimpiarPerfil = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -964,7 +964,7 @@ Partial Class FrmInstaladorKubo
         'BtLogNet
         '
         Me.BtLogNet.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic)
-        Me.BtLogNet.Location = New System.Drawing.Point(60, 291)
+        Me.BtLogNet.Location = New System.Drawing.Point(247, 249)
         Me.BtLogNet.Name = "BtLogNet"
         Me.BtLogNet.Size = New System.Drawing.Size(115, 25)
         Me.BtLogNet.TabIndex = 48
@@ -1037,10 +1037,10 @@ Partial Class FrmInstaladorKubo
         'BtNotinNetF
         '
         Me.BtNotinNetF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinNetF.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtNotinNetF.Location = New System.Drawing.Point(195, 50)
+        Me.BtNotinNetF.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtNotinNetF.Location = New System.Drawing.Point(247, 285)
         Me.BtNotinNetF.Name = "BtNotinNetF"
-        Me.BtNotinNetF.Size = New System.Drawing.Size(167, 28)
+        Me.BtNotinNetF.Size = New System.Drawing.Size(111, 28)
         Me.BtNotinNetF.TabIndex = 41
         Me.BtNotinNetF.Text = "NotinNet a F:\.."
         Me.BtNotinNetF.UseVisualStyleBackColor = True
@@ -1261,6 +1261,27 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Size = New System.Drawing.Size(378, 323)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
+        '
+        'Button1
+        '
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.Button1.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.Location = New System.Drawing.Point(176, 283)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(191, 28)
+        Me.Button1.TabIndex = 4
+        Me.Button1.Text = "Test Adra (no usar)"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'BtLimpiarPerfil
+        '
+        Me.BtLimpiarPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtLimpiarPerfil.Location = New System.Drawing.Point(8, 130)
+        Me.BtLimpiarPerfil.Name = "BtLimpiarPerfil"
+        Me.BtLimpiarPerfil.Size = New System.Drawing.Size(167, 28)
+        Me.BtLimpiarPerfil.TabIndex = 3
+        Me.BtLimpiarPerfil.Text = "Limpiar Perfil"
+        Me.BtLimpiarPerfil.UseVisualStyleBackColor = True
         '
         'BtDynamic
         '
@@ -1949,28 +1970,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpConfiguraWordAdra.IsBalloon = True
         Me.TlpConfiguraWordAdra.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpConfiguraWordAdra.ToolTipTitle = "Distribuye Configura Word 2016 en ADRA"
-        '
-        'BtLimpiarPerfil
-        '
-        Me.BtLimpiarPerfil.Enabled = False
-        Me.BtLimpiarPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtLimpiarPerfil.Location = New System.Drawing.Point(8, 130)
-        Me.BtLimpiarPerfil.Name = "BtLimpiarPerfil"
-        Me.BtLimpiarPerfil.Size = New System.Drawing.Size(167, 28)
-        Me.BtLimpiarPerfil.TabIndex = 3
-        Me.BtLimpiarPerfil.Text = "Limpiar Perfil"
-        Me.BtLimpiarPerfil.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(176, 283)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(191, 28)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Test Adra (no usar)"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'FrmInstaladorKubo
         '
