@@ -4563,7 +4563,7 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BtLimpiarPerfil_Click(sender As Object, e As EventArgs) Handles BtLimpiarPerfil.Click
-        RegistroInstalacion("Ejecutadio proceso LIMPIEZA USUARIO ADRA")
+        RegistroInstalacion("Ejecutado proceso LIMPIEZA USUARIO ADRA")
         Dim equipousuario As String = (My.User.Name)
         Dim equipo As Integer = equipousuario.LastIndexOf("\")
         Dim usuario = equipousuario.Remove(0, equipo + 1).ToUpper
@@ -4572,7 +4572,9 @@ Public Class FrmInstaladorKubo
             Dim sesionusuario As DialogResult = MessageBox.Show("== Debes Iniciar Sesión con el perfil USUARIO ==" & vbCrLf & "Para ello cerraremos sesión y en Otros Usuarios escribe .\USUARIO sin contraseña." & vbCrLf & "Tras el Cierre de Sesión deberás volver a ejecutar este Instalador. ¿Continuamos?", "Sesión de " & usuario & " no válida.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             If sesionusuario = DialogResult.Yes Then
                 RegistroInstalacion("Se inició sesión con " & usuario & ". Se cierra su sesión para iniciar como Usuario.")
-                Shell("shutdown /l /f /t 0", AppWinStyle.Hide, False)
+                Shell("shutdown /l /f /t 0", AppWinStyle.Hide, True)
+                Exit Sub
+                Me.Close()
             Else
                 RegistroInstalacion("Iniciada sesión como Usuario. Se omite esta comprobación.")
                 Exit Sub
@@ -4610,7 +4612,7 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Function unidadZ() As Boolean
-        Shell("NET USE Z: \\NOTINRAPP\Z b30330104b /user:NOTARIA\ADMINISTRADOR /p:no", AppWinStyle.Hide, True)
+        Shell("NET USE Z: \\NOTINRAPP\Z b30330104b /user:NOTARIA\ADMINISTRADOR /p:no", AppWinStyle.NormalFocus, True)
         If Directory.Exists("Z:\rapp_control") = False Then
             Return False
         Else
