@@ -971,6 +971,7 @@ Public Class FrmInstaladorKubo
         '    File.Delete(RutaDescargas & "reiniciodirectivas.bat")
         'Catch ex As Exception
         'End Try
+        'Me.Dispose()
         Me.Close()
     End Sub
 
@@ -4581,7 +4582,7 @@ Public Class FrmInstaladorKubo
                 Exit Sub
                 Me.Close()
             ElseIf sesionusuario = DialogResult.no Then
-                RegistroInstalacion("Usuario cancela el Cierre de Sesión.")
+                RegistroInstalacion("Usuario cancela el Cierre de Sesión del perfil actual. Se omite el muestreo del formulario.")
                 Exit Sub
             Else
                 RegistroInstalacion("Iniciada sesión como Usuario. Se omite esta comprobación.")
@@ -4604,6 +4605,10 @@ Public Class FrmInstaladorKubo
                 Threading.Thread.Sleep(2000)
                 SendKeys.Send("{ENTER}")
             Catch ex As Exception
+                MessageBox.Show("No se pudo llamar a la utilidad de Unidades de Red. Debes conectar la Unidad Z manualmente hacia \\NotinRapp\Z y entonces volver a ejecutar esta utilidad.", "Sin conxión con NotinRapp\Z", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                RegistroInstalacion("No se pudo llamar a la utilidad de Unidades de Red. Debes conectar la Unidad Z manualmente hacia \\NotinRapp\Z y entonces volver a ejecutar esta utilidad.")
+                RegistroInstalacion("Motivo Error anterior: " & ex.Message)
+                Exit Sub
             End Try
         End If
 

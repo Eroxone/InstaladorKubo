@@ -49,7 +49,7 @@ Public Class FormUsuarioAdra
             Dim carpetaactual As String = carpetasperfil(numcarpeta)
             Try
                 'Directory.Delete(carpetaactual, True)
-                Shell("cmd /c RD /S /Q " & """" & carpetaactual & """", AppWinStyle.Hide, True)
+                Shell("cmd /c RD /S /Q " & """" & carpetaactual & """", AppWinStyle.NormalFocus, True)
                 FrmInstaladorKubo.RegistroInstalacion("Eliminada Ruta del Perfil con ID " & carpetaactual)
             Catch ex As Exception
                 MessageBox.Show("No se pudieron eliminar carpetas del Perfil. Mas info en el Logger.", "Error Borrado Carpetas Perfil", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -72,9 +72,9 @@ Public Class FormUsuarioAdra
             Dim archivoactual As String = archivosnr(numarchivo)
             Try
                 'File.Delete(archivoactual)
-                Shell("del /F /Q " & """" & archivoactual & """", AppWinStyle.Hide, True)
+                Shell("cmd /c del /F /Q " & """" & archivoactual & """", AppWinStyle.NormalFocus, True)
             Catch ex As Exception
-                MessageBox.Show("No se pudieron eliminar archivos de NR (RADC). Mas info en el Logger.", "Error borrado NR (RADC)", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                'MessageBox.Show("No se pudieron eliminar archivos de NR (RADC). Mas info en el Logger.", "Error borrado NR (RADC)", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza archivos NR (RADC): " & ex.Message)
                 FrmInstaladorKubo.RegistroInstalacion("Se procedió a eliminar Perfil con ID " & archivoactual & ". No se pudo eliminar.")
                 BtLimpiar.BackColor = Color.LightSalmon

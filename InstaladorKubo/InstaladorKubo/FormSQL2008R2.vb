@@ -182,7 +182,8 @@ Public Class FormSQL2008R2
 
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
         FrmInstaladorKubo.Show()
-        Me.Close()
+        'Me.Close()
+        Me.Dispose()
     End Sub
 
     Private Sub LbRutaSQL_Click(sender As Object, e As EventArgs) Handles LbRutaSQL.Click
