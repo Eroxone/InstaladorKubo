@@ -381,6 +381,11 @@ Public Class FrmInstaladorKubo
         ElseIf word2016adra = 0 Then
             BtConfWord2016ADRA.BackColor = Color.LightSalmon
         End If
+
+        Dim limpiarperfiladra = cIniArray.IniGet(FrmInstaladorKubo.instaladorkuboini, "ADRA", "LIMPIARPERFIL", "2")
+        If limpiarperfiladra = 1 Then
+            BtLimpiarPerfil.BackColor = Color.PaleGreen
+        End If
     End Sub
 
     'Boton EXAMINAR
