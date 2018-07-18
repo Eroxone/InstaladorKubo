@@ -22,6 +22,7 @@ Partial Class FormUsuarioAdra
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormUsuarioAdra))
         Me.LBoxUsuarios = New System.Windows.Forms.ListBox()
         Me.LbUsuario = New System.Windows.Forms.Label()
         Me.BtLimpiar = New System.Windows.Forms.Button()
@@ -29,6 +30,7 @@ Partial Class FormUsuarioAdra
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BtSalir = New System.Windows.Forms.Button()
         Me.BtRegistroInstalaciones = New System.Windows.Forms.Button()
+        Me.BtCerrarsesion = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'LBoxUsuarios
@@ -110,11 +112,24 @@ Partial Class FormUsuarioAdra
         Me.BtRegistroInstalaciones.Text = "Visualizar Log"
         Me.BtRegistroInstalaciones.UseVisualStyleBackColor = False
         '
+        'BtCerrarsesion
+        '
+        Me.BtCerrarsesion.BackColor = System.Drawing.Color.Bisque
+        Me.BtCerrarsesion.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtCerrarsesion.Location = New System.Drawing.Point(279, 225)
+        Me.BtCerrarsesion.Name = "BtCerrarsesion"
+        Me.BtCerrarsesion.Size = New System.Drawing.Size(112, 57)
+        Me.BtCerrarsesion.TabIndex = 7
+        Me.BtCerrarsesion.Text = "Cerrar Sesión"
+        Me.BtCerrarsesion.UseVisualStyleBackColor = False
+        Me.BtCerrarsesion.Visible = False
+        '
         'FormUsuarioAdra
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(505, 294)
+        Me.Controls.Add(Me.BtCerrarsesion)
         Me.Controls.Add(Me.BtRegistroInstalaciones)
         Me.Controls.Add(Me.BtSalir)
         Me.Controls.Add(Me.Label1)
@@ -122,6 +137,7 @@ Partial Class FormUsuarioAdra
         Me.Controls.Add(Me.BtLimpiar)
         Me.Controls.Add(Me.LbUsuario)
         Me.Controls.Add(Me.LBoxUsuarios)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormUsuarioAdra"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormUsuarioAdra"
@@ -137,4 +153,5 @@ Partial Class FormUsuarioAdra
     Friend WithEvents Label1 As Label
     Friend WithEvents BtSalir As Button
     Friend WithEvents BtRegistroInstalaciones As Button
+    Friend WithEvents BtCerrarsesion As Button
 End Class

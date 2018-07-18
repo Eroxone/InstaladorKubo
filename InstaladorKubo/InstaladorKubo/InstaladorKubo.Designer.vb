@@ -1272,6 +1272,7 @@ Partial Class FrmInstaladorKubo
         Me.Button1.TabIndex = 4
         Me.Button1.Text = "Test Adra (no usar)"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'BtLimpiarPerfil
         '

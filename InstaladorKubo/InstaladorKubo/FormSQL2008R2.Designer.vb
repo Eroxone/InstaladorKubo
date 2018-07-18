@@ -23,6 +23,7 @@ Partial Class FormSQL2008R2
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSQL2008R2))
         Me.BtDescargarSQL = New System.Windows.Forms.Button()
         Me.BtUpgrade = New System.Windows.Forms.Button()
         Me.BtUpgradeLuego = New System.Windows.Forms.Button()
@@ -254,6 +255,7 @@ Partial Class FormSQL2008R2
         Me.Controls.Add(Me.BtUpgradeLuego)
         Me.Controls.Add(Me.BtUpgrade)
         Me.Controls.Add(Me.BtDescargarSQL)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormSQL2008R2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Actualización SQL 2008R2"
