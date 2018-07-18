@@ -4641,21 +4641,6 @@ Public Class FrmInstaladorKubo
 
 
 
-    'Limpiar Iconos Escritorio
-
-    'Mostrar el Perfil para que el usuario lo limpie.
-
-
-
-
-
-
-
-
-
-
-
-
 
     'Private Sub AbreExcel()
     '    'TODO establecer asociacion de archivos.

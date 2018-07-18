@@ -57,6 +57,7 @@ Public Class FormUsuarioAdra
                 MessageBox.Show("No se pudieron eliminar carpetas del Perfil. Mas info en el Logger.", "Error Borrado Carpetas Perfil", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza Perfil Usuario: " & ex.Message)
                 FrmInstaladorKubo.RegistroInstalacion("Se buscó la Ruta " & carpetaactual & ". No se pudo eliminar.")
+                BtLimpiar.BackColor = Color.LightSalmon
             End Try
             numcarpeta = numcarpeta + 1
         End While
@@ -78,6 +79,7 @@ Public Class FormUsuarioAdra
                 MessageBox.Show("No se pudieron eliminar archivos de NR (RADC). Mas info en el Logger.", "Error borrado NR (RADC)", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza archivos NR (RADC): " & ex.Message)
                 FrmInstaladorKubo.RegistroInstalacion("Se procedió a eliminar Perfil con ID " & archivoactual & ". No se pudo eliminar.")
+                BtLimpiar.BackColor = Color.LightSalmon
             End Try
             numarchivo = numarchivo + 1
         End While
@@ -85,32 +87,39 @@ Public Class FormUsuarioAdra
         'Limpiar carpeta RAPP_Control
         Try
             Dim hostname = Environment.MachineName
-            Directory.Delete("\\NotinRapp\Z\rapp_control\" & hostname, True)
-            FrmInstaladorKubo.RegistroInstalacion("Eliminada ruta en Rapp_Control para " & hostname & ".")
+            Try
+                Directory.Delete("\\NotinRapp\Z\rapp_control\" & hostname, True)
+                FrmInstaladorKubo.RegistroInstalacion("Eliminada ruta en Rapp_Control para " & hostname & ".")
+            Catch ex As Exception
+                FrmInstaladorKubo.RegistroInstalacion("No se pudo eliminar Rapp Control para " & hostname & ". " & ex.Message)
+                BtLimpiar.BackColor = Color.LightSalmon
+            End Try
+
         Catch ex As Exception
             MessageBox.Show("No se limpiar Rapp_Control para este Equipo. Mas info en el Logger.", "Error borrado RAPP_CONTROL", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Dim hostname = Environment.MachineName
             FrmInstaladorKubo.RegistroInstalacion("ERROR eliminando Rapp_Control para " & hostname & "." & ex.Message)
+            BtLimpiar.BackColor = Color.LightSalmon
         End Try
 
-        'TODO limpiar iconos Escritorio
-        Dim vinculosnr = Directory.GetFiles("\\NotinRapp\Z\" & userseleccionado & "\Favorites\Vínculos")
-        FrmInstaladorKubo.RegistroInstalacion("Se procede a limpiar los Vínculos para" & userseleccionado & ". Mas info en TXT VinculosNR.txt en " & rutadescargas & "ADRA\")
-        Dim totalvinculos As Integer = vinculosnr.Count
-        Dim numvinculos As Integer = 0
-        File.WriteAllText(rutadescargas & "ADRA\VinculosNR.txt", "")
-        While numvinculos < totalvinculos
-            File.AppendAllText(rutadescargas & "ADRA\ArchivosNR.txt", archivosnr(numarchivo) & vbCrLf)
-            Dim vinculoactual As String = vinculosnr(numvinculos)
-            Try
-                'File.Delete(archivoactual)
-                Shell("del /F /Q " & """" & vinculoactual & """", AppWinStyle.Hide, True)
-            Catch ex As Exception
-                MessageBox.Show("No se pudieron eliminar archivos de NR (RADC). Mas info en el Logger.", "Error borrado Vínculos NR", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza archivos en Vínculos NR): " & ex.Message)
-            End Try
-            numvinculos = numvinculos + 1
-        End While
+        'TODO limpiar iconos Escritorio y Vínculos
+        'Dim vinculosnr = Directory.GetFiles("\\NotinRapp\Z\" & userseleccionado & "\Favorites\Vínculos")
+        'FrmInstaladorKubo.RegistroInstalacion("Se procede a limpiar los Vínculos para" & userseleccionado & ". Mas info en TXT VinculosNR.txt en " & rutadescargas & "ADRA\")
+        'Dim totalvinculos As Integer = vinculosnr.Count
+        'Dim numvinculos As Integer = 0
+        'File.WriteAllText(rutadescargas & "ADRA\VinculosNR.txt", "")
+        'While numvinculos < totalvinculos
+        '    File.AppendAllText(rutadescargas & "ADRA\ArchivosNR.txt", archivosnr(numarchivo) & vbCrLf)
+        '    Dim vinculoactual As String = vinculosnr(numvinculos)
+        '    Try
+        '        'File.Delete(archivoactual)
+        '        Shell("del /F /Q " & """" & vinculoactual & """", AppWinStyle.Hide, True)
+        '    Catch ex As Exception
+        '        MessageBox.Show("No se pudieron eliminar archivos de NR (RADC). Mas info en el Logger.", "Error borrado Vínculos NR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '        FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza archivos en Vínculos NR): " & ex.Message)
+        '    End Try
+        '    numvinculos = numvinculos + 1
+        'End While
 
         Try
             'Process.Start("control userpasswords2")
@@ -119,10 +128,13 @@ Public Class FormUsuarioAdra
             BtCerrarsesion.Visible = True
         Catch ex As Exception
             FrmInstaladorKubo.RegistroInstalacion("ERROR. No se pudo llamar a Control UserPasswords2: " & ex.Message)
+            BtLimpiar.BackColor = Color.LightSalmon
         End Try
-
+        Threading.Thread.Sleep(5000)
         MessageBox.Show("Limpieza del Perfil Completada. Cierra sesión e Inicia con tu usuario NOTARIA\" & userseleccionado & " para terminar la operación.", "== PROCESO TERMINADO ==")
         FrmInstaladorKubo.RegistroInstalacion("Terminada Limpieza del Perfil " & userseleccionado & " en entorno ADRA.")
+        BtLimpiar.BackColor = Color.PaleGreen
+        cIniArray.IniWrite(FrmInstaladorKubo.instaladorkuboini, "ADRA", "LIMPIARPERFIL", "1")
     End Sub
 
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
