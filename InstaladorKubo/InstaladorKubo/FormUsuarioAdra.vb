@@ -10,8 +10,6 @@ Public Class FormUsuarioAdra
         Dim totalcarpetas As Integer = carpetasperfil.Count - 1
         Dim numcarpeta = 0
         While numcarpeta < totalcarpetas
-            'File.AppendAllText("C:\TEMP\carpetas.txt", " " & """" & carpetasperfil(numcarpeta) & """")
-            'nomusuario = numcarpeta + 1
             Dim nombrelista = carpetasperfil(numcarpeta)
             Dim lenghtnombre As Integer = carpetasperfil(numcarpeta).Length - 9
             Dim solonombre = nombrelista.Substring(9, lenghtnombre)
@@ -37,7 +35,7 @@ Public Class FormUsuarioAdra
             FrmInstaladorKubo.RegistroInstalacion("No se seleccionó un usuario válido para Limpiar. Se cancela la operación. (eso o coincide que se llama UsuarioAdra y me pego un tiro...")
             Exit Sub
         End If
-
+        'TODO confirmar que los TXT guarden las rutas.
         Directory.CreateDirectory(rutadescargas & "ADRA")
 
         Dim carpetasperfil = Directory.GetDirectories("\\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Workspaces")
@@ -45,7 +43,7 @@ Public Class FormUsuarioAdra
         'Dim carpetasperfil = Directory.GetDirectories("C:\TEMP\Prueba")
         Dim totalcarpetas As Integer = carpetasperfil.Count
         Dim numcarpeta As Integer = 0
-        File.WriteAllText(rutadescargas & "ADRA\CarpetasPerfil.txt", "")
+        'File.WriteAllText(rutadescargas & "ADRA\CarpetasPerfil.txt", "")
         While numcarpeta < totalcarpetas
             File.AppendAllText(rutadescargas & "ADRA\CarpetasPerfil.txt", carpetasperfil(numcarpeta) & vbCrLf)
             Dim carpetaactual As String = carpetasperfil(numcarpeta)
@@ -68,7 +66,7 @@ Public Class FormUsuarioAdra
         'Dim archivosnr = Directory.GetFiles("C:\TEMP\Prueba")
         Dim totalarchivos As Integer = archivosnr.Count
         Dim numarchivo As Integer = 0
-        File.WriteAllText(rutadescargas & "ADRA\ArchivosNR.txt", "")
+        'File.WriteAllText(rutadescargas & "ADRA\ArchivosNR.txt", "")
         While numarchivo < totalarchivos
             File.AppendAllText(rutadescargas & "ADRA\ArchivosNR.txt", archivosnr(numarchivo) & vbCrLf)
             Dim archivoactual As String = archivosnr(numarchivo)
@@ -131,7 +129,7 @@ Public Class FormUsuarioAdra
             BtLimpiar.BackColor = Color.LightSalmon
         End Try
         Threading.Thread.Sleep(5000)
-        MessageBox.Show("Limpieza del Perfil Completada. Cierra sesión e Inicia con tu usuario NOTARIA\" & userseleccionado & " para terminar la operación.", "== PROCESO TERMINADO ==")
+        MessageBox.Show("Limpieza del Perfil Completada. Cierra sesión e Inicia con tu usuario NOTARIA\" & userseleccionado & " para terminar la operación. Limpia el Escritorio y Vínculos manualmente. Lo automatizaré en las siguientes versiones.", "== PROCESO TERMINADO ==")
         FrmInstaladorKubo.RegistroInstalacion("Terminada Limpieza del Perfil " & userseleccionado & " en entorno ADRA.")
         BtLimpiar.BackColor = Color.PaleGreen
         cIniArray.IniWrite(FrmInstaladorKubo.instaladorkuboini, "ADRA", "LIMPIARPERFIL", "1")
