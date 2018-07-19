@@ -107,7 +107,7 @@ Partial Class FormUsuarioAdra
         Me.BtRegistroInstalaciones.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.BtRegistroInstalaciones.Font = New System.Drawing.Font("Lucida Bright", 10.2!)
         Me.BtRegistroInstalaciones.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtRegistroInstalaciones.Location = New System.Drawing.Point(364, 42)
+        Me.BtRegistroInstalaciones.Location = New System.Drawing.Point(25, 191)
         Me.BtRegistroInstalaciones.Name = "BtRegistroInstalaciones"
         Me.BtRegistroInstalaciones.Size = New System.Drawing.Size(129, 28)
         Me.BtRegistroInstalaciones.TabIndex = 6
@@ -130,7 +130,7 @@ Partial Class FormUsuarioAdra
         '
         Me.BtLimpiarIconos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtLimpiarIconos.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtLimpiarIconos.Location = New System.Drawing.Point(364, 76)
+        Me.BtLimpiarIconos.Location = New System.Drawing.Point(364, 42)
         Me.BtLimpiarIconos.Name = "BtLimpiarIconos"
         Me.BtLimpiarIconos.Size = New System.Drawing.Size(108, 57)
         Me.BtLimpiarIconos.TabIndex = 8
@@ -141,7 +141,7 @@ Partial Class FormUsuarioAdra
         '
         Me.BtCopiarIconosNR.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtCopiarIconosNR.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtCopiarIconosNR.Location = New System.Drawing.Point(364, 143)
+        Me.BtCopiarIconosNR.Location = New System.Drawing.Point(364, 114)
         Me.BtCopiarIconosNR.Name = "BtCopiarIconosNR"
         Me.BtCopiarIconosNR.Size = New System.Drawing.Size(108, 57)
         Me.BtCopiarIconosNR.TabIndex = 9
