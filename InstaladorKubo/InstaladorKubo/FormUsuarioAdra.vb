@@ -215,7 +215,7 @@ Public Class FormUsuarioAdra
             File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ScanImg.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Nexus.lnk")
 
-            FrmInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos.")
+            FrmInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos sobre iconos (NR).")
         End If
     End Sub
 
