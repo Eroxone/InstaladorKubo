@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormUsuarioAdra
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FormUsuarioAdra
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormUsuarioAdra))
         Me.LBoxUsuarios = New System.Windows.Forms.ListBox()
@@ -31,6 +31,8 @@ Partial Class FormUsuarioAdra
         Me.BtSalir = New System.Windows.Forms.Button()
         Me.BtRegistroInstalaciones = New System.Windows.Forms.Button()
         Me.BtCerrarsesion = New System.Windows.Forms.Button()
+        Me.BtLimpiarIconos = New System.Windows.Forms.Button()
+        Me.BtCopiarIconosNR = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'LBoxUsuarios
@@ -124,11 +126,35 @@ Partial Class FormUsuarioAdra
         Me.BtCerrarsesion.UseVisualStyleBackColor = False
         Me.BtCerrarsesion.Visible = False
         '
+        'BtLimpiarIconos
+        '
+        Me.BtLimpiarIconos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtLimpiarIconos.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtLimpiarIconos.Location = New System.Drawing.Point(364, 76)
+        Me.BtLimpiarIconos.Name = "BtLimpiarIconos"
+        Me.BtLimpiarIconos.Size = New System.Drawing.Size(108, 57)
+        Me.BtLimpiarIconos.TabIndex = 8
+        Me.BtLimpiarIconos.Text = "LIMPIEZA Escritorio y Vínculos"
+        Me.BtLimpiarIconos.UseVisualStyleBackColor = True
+        '
+        'BtCopiarIconosNR
+        '
+        Me.BtCopiarIconosNR.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtCopiarIconosNR.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtCopiarIconosNR.Location = New System.Drawing.Point(364, 143)
+        Me.BtCopiarIconosNR.Name = "BtCopiarIconosNR"
+        Me.BtCopiarIconosNR.Size = New System.Drawing.Size(108, 57)
+        Me.BtCopiarIconosNR.TabIndex = 9
+        Me.BtCopiarIconosNR.Text = "COPIADO iconos NR al nuevo Perfil"
+        Me.BtCopiarIconosNR.UseVisualStyleBackColor = True
+        '
         'FormUsuarioAdra
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(505, 294)
+        Me.Controls.Add(Me.BtCopiarIconosNR)
+        Me.Controls.Add(Me.BtLimpiarIconos)
         Me.Controls.Add(Me.BtCerrarsesion)
         Me.Controls.Add(Me.BtRegistroInstalaciones)
         Me.Controls.Add(Me.BtSalir)
@@ -140,7 +166,7 @@ Partial Class FormUsuarioAdra
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FormUsuarioAdra"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FormUsuarioAdra"
+        Me.Text = "Gestión Usuario Adra"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -154,4 +180,6 @@ Partial Class FormUsuarioAdra
     Friend WithEvents BtSalir As Button
     Friend WithEvents BtRegistroInstalaciones As Button
     Friend WithEvents BtCerrarsesion As Button
+    Friend WithEvents BtLimpiarIconos As Button
+    Friend WithEvents BtCopiarIconosNR As Button
 End Class

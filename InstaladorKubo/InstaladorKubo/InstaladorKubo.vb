@@ -1666,6 +1666,8 @@ Public Class FrmInstaladorKubo
         TlpVisorImagenes.SetToolTip(BtVisorImagenes, "Habilita selección del Visor de Imágenes en asociación de archivos para Windows 10.")
 
         TlpConfiguraWordAdra.SetToolTip(BtConfWord2016ADRA, "Distribuye y Ejecuta ConfiguraWord2016 en entorno ADRA.")
+
+        TlpPerfilAdra.SetToolTip(BtLimpiarPerfil, "Permite Limpiar el Perfil de usuario en Adra y gestionar los vínculos hacia aplicaciones (NR). Se irán añadiendo más opciones...")
     End Sub
 #End Region
 
@@ -4574,15 +4576,16 @@ Public Class FrmInstaladorKubo
         Dim equipo As Integer = equipousuario.LastIndexOf("\")
         Dim usuario = equipousuario.Remove(0, equipo + 1).ToUpper
 
-        If usuario <> "USUARIO" Then
-            Dim sesionusuario As DialogResult = MessageBox.Show("== Debes Iniciar Sesión con el perfil USUARIO ==" & vbCrLf & "Para ello cerraremos sesión y en Otros Usuarios escribe .\USUARIO sin contraseña." & vbCrLf & "Tras el Cierre de Sesión deberás volver a ejecutar este Instalador. ¿Continuamos?", "Sesión de " & usuario & " no válida.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If usuario <> "USUARIO" OrElse "ADMINISTRADOR" Then
+            Dim sesionusuario As DialogResult = MessageBox.Show("== Debes Iniciar Sesión con el perfil USUARIO ==" & vbCrLf & "Para ello debemos Cerrar Sesión y en Otros Usuarios escribe .\USUARIO sin contraseña." & vbCrLf & "Tras el Cierre de Sesión deberás volver a ejecutar este Instalador." & vbCrLf & "Si deséas realizar otras tareas haz clic en NO. Te mostraremos el formulario igualmente pero habrá funciones que no podrás usar.", "Sesión de " & usuario & " no válida.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             If sesionusuario = DialogResult.Yes Then
                 RegistroInstalacion("Se inició sesión con " & usuario & ". Se cierra su sesión para iniciar como .\USUARIO local.")
                 Shell("shutdown /l /f", AppWinStyle.Hide, True)
                 Exit Sub
                 Me.Close()
-            ElseIf sesionusuario = DialogResult.no Then
-                RegistroInstalacion("Usuario cancela el Cierre de Sesión del perfil actual. Se omite el muestreo del formulario.")
+            ElseIf sesionusuario = DialogResult.No Then
+                FormUsuarioAdra.ShowDialog()
+                RegistroInstalacion("Usuario cancela el Cierre de Sesión del perfil actual. Se muestra el formulario con botones deshabilitados.")
                 Exit Sub
             Else
                 RegistroInstalacion("Iniciada sesión como Usuario. Se omite esta comprobación.")
@@ -4635,7 +4638,39 @@ Public Class FrmInstaladorKubo
     End Function
 
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+
+    ' -----------------------------------------------------
+    '-----------------------TEST ADRA ---------------------
+    Private Sub BTTESTADRA_Click(sender As Object, e As EventArgs) Handles BTTESTADRA.Click
+        'Process.Start("C:\WINDOWS\system32\systempropertiesadvanced.exe")
+        Shell("cmd.exe /c %WINDIR%\system32\systempropertiesadvanced.exe", AppWinStyle.Hide, True)
+
+
+        'Shell("control system", AppWinStyle.NormalFocus, False)
+        Threading.Thread.Sleep(2000)
+        'AppActivate("Sistema")
+
+        'Dim vecestab As Integer = 0
+        'While 11 > vecestab
+        AppActivate("Propiedades del sistema")
+        Threading.Thread.Sleep(1000)
+        SendKeys.Send("{TAB}")
+        '    vecestab = vecestab + 1
+        'End While
+        ''Entramos a las Opciones Avanzadas del Sistema
+        'SendKeys.Send("{ENTER}")
+        'Threading.Thread.Sleep(1000)
+
+
+        'Threading.Thread.Sleep(1000)
+        'SendKeys.Send("{TAB}")
+        SendKeys.Send("{ENTER}")
+
+
+
+
+
         'Dim carpetasperfil = Directory.GetDirectories("C:\Notawin.Net\")
         'Dim totalcarpetas As Integer = carpetasperfil.Count - 1
         'Dim numcarpeta = 0
@@ -4646,7 +4681,11 @@ Public Class FrmInstaladorKubo
         '    Directory.Delete(numcarpeta, True)
         'End While
 
-        FormUsuarioAdra.ShowDialog()
+        'FormUsuarioAdra.ShowDialog()
+    End Sub
+
+    Private Sub BtLimpiarEscritorio_Click(sender As Object, e As EventArgs)
+
     End Sub
 
 

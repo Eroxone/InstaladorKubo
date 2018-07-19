@@ -9,9 +9,9 @@ Imports System.Runtime.InteropServices
 ' Revisar los valores de los atributos del ensamblado
 
 <Assembly: AssemblyTitle("InstaladorKubo")>
-<Assembly: AssemblyDescription("Instalador Kubo")>
-<Assembly: AssemblyCompany("Instalador")>
-<Assembly: AssemblyProduct("InstaladorKubo")>
+<Assembly: AssemblyDescription("Instalación de Paquetes y Automatización de Tareas")>
+<Assembly: AssemblyCompany("Instalador Kubo")>
+<Assembly: AssemblyProduct("Instalador")>
 <Assembly: AssemblyCopyright("Copyright ©  2018")>
 <Assembly: AssemblyTrademark("Instalador")>
 

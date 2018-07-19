@@ -26,7 +26,7 @@ Public Class FormSQL2008R2
         TlpUpgradeSQL.ToolTipTitle = "Ejecuta la Actualización a SQL2008R2"
         TlpUpgradeSQL.SetToolTip(BtUpgrade, "Ejecuta la Actualización desatendida. Si el paquete SQL no se encuentra lo descargará.")
 
-        TlpUpgradeLuegoSQL.ToolTipTitle = "Ejecuta la Actualiación a SQL2008R2"
+        TlpUpgradeLuegoSQL.ToolTipTitle = "Ejecuta la Actualización a SQL2008R2"
         TlpUpgradeLuegoSQL.SetToolTip(BtUpgradeLuego, "Ejecuta la Actualización desatendida a las 22h del mismo día. Si el paquete SQL no se encuentra lo descargará.")
 
         TlpManualSQL.ToolTipTitle = "Descarga y ofrece instalación Manual"
@@ -141,7 +141,7 @@ Public Class FormSQL2008R2
         If actualizarr2 = DialogResult.Yes Then
             RegistroInstalacion("SQL2008R2. El usuario confirma la ejecución del Upgrade Programado. Empieza el proceso.")
         Else
-            RegistroInstalacion("SQL2008R2. El usuario canceló el Upgrade Progarmado. Revisar Servicios y recomendado Reiniciar el Equipo.")
+            RegistroInstalacion("SQL2008R2. El usuario canceló el Upgrade Programado. Revisar Servicios y recomendado Reiniciar el Equipo.")
             BtUpgradeLuego.BackColor = SystemColors.Control
             LbUpgradeLuego.Visible = False
             LbUpgradeLuego2.Visible = False

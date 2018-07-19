@@ -110,7 +110,7 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.BTTESTADRA = New System.Windows.Forms.Button()
         Me.BtLimpiarPerfil = New System.Windows.Forms.Button()
         Me.BtDynamic = New System.Windows.Forms.Button()
         Me.BtFocos = New System.Windows.Forms.Button()
@@ -194,6 +194,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpVisorImagenes = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpVersionFW = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpConfiguraWordAdra = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpPerfilAdra = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -299,7 +300,7 @@ Partial Class FrmInstaladorKubo
         Me.LbUptime.BackColor = System.Drawing.SystemColors.Control
         Me.LbUptime.Font = New System.Drawing.Font("Lucida Bright", 7.8!)
         Me.LbUptime.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.LbUptime.Location = New System.Drawing.Point(210, 21)
+        Me.LbUptime.Location = New System.Drawing.Point(219, 21)
         Me.LbUptime.Name = "LbUptime"
         Me.LbUptime.Size = New System.Drawing.Size(47, 14)
         Me.LbUptime.TabIndex = 53
@@ -1251,7 +1252,7 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage10.Controls.Add(Me.Button1)
+        Me.TabPage10.Controls.Add(Me.BTTESTADRA)
         Me.TabPage10.Controls.Add(Me.BtLimpiarPerfil)
         Me.TabPage10.Controls.Add(Me.BtDynamic)
         Me.TabPage10.Controls.Add(Me.BtFocos)
@@ -1262,17 +1263,16 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
-        'Button1
+        'BTTESTADRA
         '
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.Button1.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.Location = New System.Drawing.Point(176, 283)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(191, 28)
-        Me.Button1.TabIndex = 4
-        Me.Button1.Text = "Test Adra (no usar)"
-        Me.Button1.UseVisualStyleBackColor = True
-        Me.Button1.Visible = False
+        Me.BTTESTADRA.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BTTESTADRA.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BTTESTADRA.Location = New System.Drawing.Point(176, 283)
+        Me.BTTESTADRA.Name = "BTTESTADRA"
+        Me.BTTESTADRA.Size = New System.Drawing.Size(191, 28)
+        Me.BTTESTADRA.TabIndex = 4
+        Me.BTTESTADRA.Text = "Test Adra (no usar)"
+        Me.BTTESTADRA.UseVisualStyleBackColor = True
         '
         'BtLimpiarPerfil
         '
@@ -1281,7 +1281,7 @@ Partial Class FrmInstaladorKubo
         Me.BtLimpiarPerfil.Name = "BtLimpiarPerfil"
         Me.BtLimpiarPerfil.Size = New System.Drawing.Size(167, 28)
         Me.BtLimpiarPerfil.TabIndex = 3
-        Me.BtLimpiarPerfil.Text = "Limpiar Perfil"
+        Me.BtLimpiarPerfil.Text = "Gest. Perfil AdRa"
         Me.BtLimpiarPerfil.UseVisualStyleBackColor = True
         '
         'BtDynamic
@@ -1972,6 +1972,12 @@ Partial Class FrmInstaladorKubo
         Me.TlpConfiguraWordAdra.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpConfiguraWordAdra.ToolTipTitle = "Distribuye Configura Word 2016 en ADRA"
         '
+        'TlpPerfilAdra
+        '
+        Me.TlpPerfilAdra.IsBalloon = True
+        Me.TlpPerfilAdra.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpPerfilAdra.ToolTipTitle = "Gestión Perfiles para Adra"
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2213,5 +2219,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbUptime As Label
     Friend WithEvents BtEstablew32F462 As Button
     Friend WithEvents BtLimpiarPerfil As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents BTTESTADRA As Button
+    Friend WithEvents TlpPerfilAdra As ToolTip
 End Class
