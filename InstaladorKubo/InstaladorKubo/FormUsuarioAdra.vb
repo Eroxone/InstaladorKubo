@@ -22,7 +22,7 @@ Public Class FormUsuarioAdra
         Dim equipo As Integer = equipousuario.LastIndexOf("\")
         Dim usuario = equipousuario.Remove(0, equipo + 1).ToUpper
 
-        If usuario <> "USUARIO" OrElse "ADMINISTRADOR" Then
+        If usuario <> "USUARIO" Then
             BtLimpiar.Enabled = False
             BtCerrarsesion.Visible = True
         Else
@@ -146,7 +146,7 @@ Public Class FormUsuarioAdra
         'Threading.Thread.Sleep(10000)
 
         'Limpiar iconos
-        MessageBox.Show("A continuación se procede a limpiar Iconos en el Escritorio y Vínculos del anterior Perfil.", "Limpieza Escritorio y Vínculos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'MessageBox.Show("A continuación se procede a limpiar Iconos en el Escritorio y Vínculos del anterior Perfil.", "Limpieza Escritorio y Vínculos", MessageBoxButtons.OK, MessageBoxIcon.Information)
         LimpiarIconos()
 
         MessageBox.Show("== LIMPIEZA DE PERFIL COMPLETADA ==" & vbCrLf & "Nota: Si el botón Limpiar está en rojo revisa Logs. En caso contrario Cierra Sesión e inicia con tu usuario NOTARIA\" & userseleccionado & " para terminar la operación. Limpia el Escritorio y Vínculos manualmente. Lo automatizaré en las siguientes versiones.", "== LIMPIEZA USUARIO FINALIZADA ==", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -176,6 +176,19 @@ Public Class FormUsuarioAdra
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Agenda.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\reload (NR).lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\ScanImg.lnk")
+            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Nexus.lnk")
+
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Notin 8.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Word 2016.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\NotinControlClient (NR).lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\ABBYY FineReader 11.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Excel 2016.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Outlook 2016.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Administrador de Tareas (NR).lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Agenda.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\reload (NR).lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\ScanImg.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Nexus.lnk")
 
             'LIMPIAR VINCULOS
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Notin 8.lnk")
@@ -188,6 +201,19 @@ Public Class FormUsuarioAdra
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Agenda.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\reload (NR).lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\ScanImg.lnk")
+            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Nexus.lnk")
+
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Notin 8.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Word 2016.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\NotinControlClient (NR).lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ABBYY FineReader 11.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Excel 2016.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Outlook 2016.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Administrador de Tareas (NR).lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Agenda.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\reload (NR).lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ScanImg.lnk")
+            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Nexus.lnk")
 
             FrmInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos.")
         End If
@@ -199,7 +225,8 @@ Public Class FormUsuarioAdra
             MessageBox.Show("Selecciona previamente el Usuario sobre el que realizar la Copia de iconos NR.", "Usuario no seleccionado o no válido.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         Else
-            Dim origennr As String = "\\Notinrapp\z\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)"
+            'C:\Users\amparo\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)
+            Dim origennr As String = "C:\Users\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\"
             Dim escritorio As String = "\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\"
             Dim vinculos As String = "\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\"
             Try
@@ -222,6 +249,7 @@ Public Class FormUsuarioAdra
                 BtCopiarIconosNR.BackColor = Color.PaleGreen
             Catch ex As Exception
                 BtCopiarIconosNR.BackColor = Color.LightSalmon
+                FrmInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos NR: " & ex.Message)
             End Try
         End If
 

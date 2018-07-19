@@ -4576,7 +4576,7 @@ Public Class FrmInstaladorKubo
         Dim equipo As Integer = equipousuario.LastIndexOf("\")
         Dim usuario = equipousuario.Remove(0, equipo + 1).ToUpper
 
-        If usuario <> "USUARIO" OrElse "ADMINISTRADOR" Then
+        If usuario <> "USUARIO" Then
             Dim sesionusuario As DialogResult = MessageBox.Show("== Debes Iniciar Sesión con el perfil USUARIO ==" & vbCrLf & "Para ello debemos Cerrar Sesión y en Otros Usuarios escribe .\USUARIO sin contraseña." & vbCrLf & "Tras el Cierre de Sesión deberás volver a ejecutar este Instalador." & vbCrLf & "Si deséas realizar otras tareas haz clic en NO. Te mostraremos el formulario igualmente pero habrá funciones que no podrás usar.", "Sesión de " & usuario & " no válida.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             If sesionusuario = DialogResult.Yes Then
                 RegistroInstalacion("Se inició sesión con " & usuario & ". Se cierra su sesión para iniciar como .\USUARIO local.")
