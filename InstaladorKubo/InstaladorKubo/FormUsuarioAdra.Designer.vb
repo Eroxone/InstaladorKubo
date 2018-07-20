@@ -61,12 +61,15 @@ Partial Class FormUsuarioAdra
         'BtLimpiar
         '
         Me.BtLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtLimpiar.Font = New System.Drawing.Font("Lucida Bright", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtLimpiar.Font = New System.Drawing.Font("Lucida Bright", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtLimpiar.Image = CType(resources.GetObject("BtLimpiar.Image"), System.Drawing.Image)
+        Me.BtLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtLimpiar.Location = New System.Drawing.Point(25, 225)
         Me.BtLimpiar.Name = "BtLimpiar"
-        Me.BtLimpiar.Size = New System.Drawing.Size(116, 57)
+        Me.BtLimpiar.Size = New System.Drawing.Size(166, 57)
         Me.BtLimpiar.TabIndex = 2
         Me.BtLimpiar.Text = "LIMPIAR"
+        Me.BtLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtLimpiar.UseVisualStyleBackColor = True
         '
         'LbNotaria
