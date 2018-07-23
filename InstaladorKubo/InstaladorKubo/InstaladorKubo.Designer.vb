@@ -195,6 +195,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpVersionFW = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpConfiguraWordAdra = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpPerfilAdra = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpDeploy = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1978,6 +1979,12 @@ Partial Class FrmInstaladorKubo
         Me.TlpPerfilAdra.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpPerfilAdra.ToolTipTitle = "Gestión Perfiles para Adra"
         '
+        'TlpDeploy
+        '
+        Me.TlpDeploy.IsBalloon = True
+        Me.TlpDeploy.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpDeploy.ToolTipTitle = "Migrador Force-Deploy"
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2221,4 +2228,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtLimpiarPerfil As Button
     Friend WithEvents BTTESTADRA As Button
     Friend WithEvents TlpPerfilAdra As ToolTip
+    Friend WithEvents TlpDeploy As ToolTip
 End Class

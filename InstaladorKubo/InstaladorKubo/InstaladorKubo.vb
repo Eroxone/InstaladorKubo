@@ -1668,6 +1668,8 @@ Public Class FrmInstaladorKubo
         TlpConfiguraWordAdra.SetToolTip(BtConfWord2016ADRA, "Distribuye y Ejecuta ConfiguraWord2016 en entorno ADRA.")
 
         TlpPerfilAdra.SetToolTip(BtLimpiarPerfil, "Permite Limpiar el Perfil de usuario en Adra y gestionar los vínculos hacia aplicaciones (NR). Se irán añadiendo más opciones...")
+
+        TlpDeploy.SetToolTip(BtMigradorDeploy, "Descarga y Ejecuta Migrador forzando Deploy. Aplicando así las Actualizaciones en la BD. Esto no afecta a la bitácora de SQL.")
     End Sub
 #End Region
 
