@@ -3704,7 +3704,7 @@ Public Class FrmInstaladorKubo
                         BtMigradorSQL.BackColor = Color.PaleGreen
                     ElseIf linea.Contains("finalizado") OrElse linea.Contains("ExitCode = 1") Then
                         BtMigradorSQL.BackColor = Color.LightSalmon
-                    ElseIf linea.Contains("horaria 4 - 6") Then
+                    ElseIf linea.Contains("horaria 4 - 6") OrElse linea.Contains("horaria 0 - 7") OrElse linea.Contains("ExitCode = -1") Then
                         BtMigradorSQL.BackColor = Color.Khaki
                     Else
                         BtMigradorSQL.BackColor = SystemColors.Control
@@ -3784,6 +3784,7 @@ Public Class FrmInstaladorKubo
                     Dim notinnet As Process = Process.Start(pnotinnet)
                     'notinnet.WaitForExit()
                     RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+                    LeerLogMigradorSQL()
                 Catch ex As Exception
                     'BtEstableNet.BackColor = Color.LightSalmon
                     RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
@@ -3793,6 +3794,7 @@ Public Class FrmInstaladorKubo
                 Exit Sub
             End If
         End If
+
 
         'Como no puedo comprobar que versión de Net tiene dejo todas en gris
         BtNetBeta.BackColor = SystemColors.Control
