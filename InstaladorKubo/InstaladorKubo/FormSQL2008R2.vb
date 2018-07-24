@@ -196,7 +196,9 @@ Public Class FormSQL2008R2
     End Sub
 
     Private Sub BtLogSQLR2_Click(sender As Object, e As EventArgs) Handles BtLogSQLR2.Click
-        If Directory.Exists("C:\Archivos de programa\Microsoft SQL Server\100\Setup Bootstrap\Log") Then
+        If Directory.Exists("C:\Program Files (x86)\Microsoft SQL Server\100\Setup Bootstrap\Log") Then
+            Process.Start("explorer.exe", "C:\Program Files (x86)\Microsoft SQL Server\100\Setup Bootstrap\Log")
+        ElseIf Directory.Exists("C:\Archivos de programa\Microsoft SQL Server\100\Setup Bootstrap\Log") Then
             Process.Start("explorer.exe", "C:\Archivos de programa\Microsoft SQL Server\100\Setup Bootstrap\Log")
         Else
             MessageBox.Show("No existe la Carpeta de Log.", "Error de acceso a Ruta", MessageBoxButtons.OK, MessageBoxIcon.Error)
