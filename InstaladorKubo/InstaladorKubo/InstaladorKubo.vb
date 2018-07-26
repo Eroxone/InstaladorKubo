@@ -1670,6 +1670,8 @@ Public Class FrmInstaladorKubo
         TlpPerfilAdra.SetToolTip(BtLimpiarPerfil, "Permite Limpiar el Perfil de usuario en Adra y gestionar los vínculos hacia aplicaciones (NR). Se irán añadiendo más opciones...")
 
         TlpDeploy.SetToolTip(BtMigradorDeploy, "Descarga y Ejecuta Migrador forzando Deploy. Aplicando así las Actualizaciones en la BD. Esto no afecta a la bitácora de SQL.")
+
+        TlpNotin8Forzar.SetToolTip(BtNotin8exeForzar, "Fuerza la Descarga e Instalación de Notin .Net en cualquier entorno. Clic para leer las advertencias.")
     End Sub
 #End Region
 
@@ -3806,6 +3808,102 @@ Public Class FrmInstaladorKubo
 
     End Sub
 
+    Private Sub BtNotin8exeForzar_Click(sender As Object, e As EventArgs) Handles BtNotin8exeForzar.Click
+        Dim forzarnotin8 As DialogResult = MessageBox.Show("Se procede a Forzar la Descarga y Ejecución de NOTIN8. Ten en cuenta las siguientes advertencias:" & vbCrLf & "-Se forzará ejecución del MigradorSQL en Deploy (no es necesario que se hubiera ejecutado antes)." & vbCrLf & "-Se lanzará Notin8.exe y se procederá a la instalación de .Net" & vbCrLf & "-En entorno ADRA se terminarán procesos en ejecución tales como Notin o Word." & vbCrLf & "¿DESEAS CONTINUAR?", "Forzar ejecución NOTIN8", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If forzarnotin8 = DialogResult.Yes Then
+
+            'Primero el Migrador...
+            obtenerwget()
+            Directory.CreateDirectory(RutaDescargas & "NotinNet")
+            Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.Hide, True)
+            'Process.Start(RutaDescargas & "NotinNet\MigradorNotinSQL.exe", "/allowdataloss")
+            RegistroInstalacion("= FORZAR Instalación de NOTIN. Se lanza MigradorSQL y ejecución de .Net =")
+
+            Try
+                RegistroInstalacion("Lanzamos el Migrador con ForceAutomaticDeploy lo cual nos aplicará el diseño necesario para esta ejecución de Notin8.")
+                File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat", "@echo off" & vbCrLf & RutaDescargas & "NotinNet\MigradorNotinSQL.exe /forceautomaticdeploy")
+                Dim pmigrador As New ProcessStartInfo()
+                pmigrador.FileName = RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat"
+                Dim migrador As Process = Process.Start(pmigrador)
+                migrador.WaitForExit()
+                'RegistroInstalacion("ÉXITO: Ejecución de MigradorNotinSQL ForceAutomaticDeploy completada. Revisa el Log del mismo para más detalle.")
+                LbVersionMigrador.Visible = True
+                TbMigradorLog.Visible = True
+                BtMigradorDeploy.BackColor = Color.PaleGreen
+                LeerLogMigradorSQL()
+            Catch ex As Exception
+                RegistroInstalacion("ERROR ejecución MigradorSQL: " & ex.Message)
+                BtMigradorDeploy.BackColor = Color.LightSalmon
+            End Try
+
+            RegistroInstalacion("Comenzamos la Descarga y Ejecución de NOTIN8.EXE")
+            'TODO Versión para 32 bits. Leer INI local o global para Descargar uno u otro. Comparar ambos ini.
+            Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/v40/notin8.exe"
+            'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
+            Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe"
+            Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
+            Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
+
+            Try
+                Dim pnotin8 As New ProcessStartInfo()
+                pnotin8.FileName = RutaDescargas & "NotinNet\Notin8.exe"
+                Dim notin8 As Process = Process.Start(pnotin8)
+                notin8.WaitForExit()
+                'RegistroInstalacion("ÉXITO: NOTIN8 ejecutado correctamente.")
+                BtNotin8exeForzar.BackColor = Color.PaleGreen
+                LeerLogMigradorSQL()
+            Catch ex As Exception
+                BtNotin8exeForzar.BackColor = Color.LightSalmon
+                RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
+            End Try
+
+            If UnidadF() = True Then
+                Try
+                    obtenerrobocopy()
+                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.NormalFocus, True)
+                    RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR Notin8.exe no se pudo copiar a F. Causa: " & ex.Message)
+                    BtNotin8exeForzar.BackColor = Color.LightSalmon
+                End Try
+            Else
+                RegistroInstalacion("Notin8 no copiado a F: al no encontrarse la Unidad disponible.")
+            End If
+
+            If ProcesosActivos() = True Then
+                RegistroInstalacion("Terminamos los procesos que puedan afectar a la Instalación de .Net. Se enviará un KILL.")
+                Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
+                Try
+                    Dim pnotinnet As New ProcessStartInfo()
+                    pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
+                    Dim notinnet As Process = Process.Start(pnotinnet)
+                    'notinnet.WaitForExit()
+                    'RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+                    ObtenerVersionNet()
+                Catch ex As Exception
+                    'BtEstableNet.BackColor = Color.LightSalmon
+                    RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
+                End Try
+            Else
+                BtNotin8exeForzar.BackColor = Color.LightSalmon
+                Exit Sub
+            End If
+
+            'Como no puedo comprobar que versión de Net tiene dejo todas en gris
+            BtNetBeta.BackColor = SystemColors.Control
+            BtEstablex64F462.BackColor = SystemColors.Control
+            BtEstableNet.BackColor = SystemColors.Control
+            BtNetBetax64F462.BackColor = SystemColors.Control
+            BtNetBetaW32F462.BackColor = SystemColors.Control
+            RegistroInstalacion("TERMINADO. Proceso Notin8 aplicando forzado finalizó. Revisa resultados.")
+        Else
+            RegistroInstalacion("El Usuario cancela el Forzado para Instalar Notin8.exe")
+        End If
+
+    End Sub
+
+
+
     Private Sub DescargarNotariaX64()
         'TODO esto para mas adelante. Añadir comprobación del ini local/global para descargar 32 o 64bits y en esa funcion llamar a 32 o 64 según corresponda
         obtenerwget()
@@ -4688,11 +4786,6 @@ Public Class FrmInstaladorKubo
 
         'FormUsuarioAdra.ShowDialog()
     End Sub
-
-    Private Sub BtLimpiarEscritorio_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
 
 
 

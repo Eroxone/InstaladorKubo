@@ -82,6 +82,7 @@ Partial Class FrmInstaladorKubo
         Me.BtExcepJava = New System.Windows.Forms.Button()
         Me.BtJava = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
+        Me.BtNotin8exeForzar = New System.Windows.Forms.Button()
         Me.BtEstablew32F462 = New System.Windows.Forms.Button()
         Me.BtLogNet = New System.Windows.Forms.Button()
         Me.BtNautilusLog = New System.Windows.Forms.Button()
@@ -196,6 +197,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpConfiguraWordAdra = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpPerfilAdra = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpDeploy = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpNotin8Forzar = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -932,6 +934,7 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.BtNotin8exeForzar)
         Me.TabPage11.Controls.Add(Me.BtEstablew32F462)
         Me.TabPage11.Controls.Add(Me.BtLogNet)
         Me.TabPage11.Controls.Add(Me.BtNautilusLog)
@@ -951,6 +954,16 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Size = New System.Drawing.Size(378, 323)
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
+        '
+        'BtNotin8exeForzar
+        '
+        Me.BtNotin8exeForzar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNotin8exeForzar.Location = New System.Drawing.Point(195, 130)
+        Me.BtNotin8exeForzar.Name = "BtNotin8exeForzar"
+        Me.BtNotin8exeForzar.Size = New System.Drawing.Size(167, 28)
+        Me.BtNotin8exeForzar.TabIndex = 50
+        Me.BtNotin8exeForzar.Text = "Fozar NOTIN8"
+        Me.BtNotin8exeForzar.UseVisualStyleBackColor = True
         '
         'BtEstablew32F462
         '
@@ -1985,6 +1998,12 @@ Partial Class FrmInstaladorKubo
         Me.TlpDeploy.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpDeploy.ToolTipTitle = "Migrador Force-Deploy"
         '
+        'TlpNotin8Forzar
+        '
+        Me.TlpNotin8Forzar.IsBalloon = True
+        Me.TlpNotin8Forzar.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpNotin8Forzar.ToolTipTitle = "Fuerza Descarga/Instalación NOTIN8"
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2229,4 +2248,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BTTESTADRA As Button
     Friend WithEvents TlpPerfilAdra As ToolTip
     Friend WithEvents TlpDeploy As ToolTip
+    Friend WithEvents BtNotin8exeForzar As Button
+    Friend WithEvents TlpNotin8Forzar As ToolTip
 End Class

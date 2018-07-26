@@ -165,9 +165,9 @@ Partial Class FormSQL2008R2
         Me.LbUpgradeLuego.ForeColor = System.Drawing.Color.Maroon
         Me.LbUpgradeLuego.Location = New System.Drawing.Point(396, 141)
         Me.LbUpgradeLuego.Name = "LbUpgradeLuego"
-        Me.LbUpgradeLuego.Size = New System.Drawing.Size(184, 15)
+        Me.LbUpgradeLuego.Size = New System.Drawing.Size(200, 15)
         Me.LbUpgradeLuego.TabIndex = 8
-        Me.LbUpgradeLuego.Text = "EJECUCIÓN PROGRAMADA"
+        Me.LbUpgradeLuego.Text = "=EJECUCIÓN PROGRAMADA="
         Me.LbUpgradeLuego.Visible = False
         '
         'LbUpgradeLuego2
