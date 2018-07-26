@@ -3577,10 +3577,10 @@ Public Class FrmInstaladorKubo
 
         obtenerwget()
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
-        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.Hide, True)
         'Process.Start(RutaDescargas & "NotinNet\MigradorNotinSQL.exe", "/allowdataloss")
         Try
-            File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLAllowDataLoss.bat", RutaDescargas & "NotinNet\MigradorNotinSQL.exe /allowdataloss")
+            File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLAllowDataLoss.bat", "@echo off" & vbCrLf & RutaDescargas & "NotinNet\MigradorNotinSQL.exe /allowdataloss")
             Dim pmigrador As New ProcessStartInfo()
             pmigrador.FileName = RutaDescargas & "NotinNet\MigradorNotinSQLAllowDataLoss.bat"
             Dim migrador As Process = Process.Start(pmigrador)
@@ -3635,10 +3635,10 @@ Public Class FrmInstaladorKubo
 
         obtenerwget()
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
-        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.Hide, True)
         'Process.Start(RutaDescargas & "NotinNet\MigradorNotinSQL.exe", "/allowdataloss")
         Try
-            File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat", RutaDescargas & "NotinNet\MigradorNotinSQL.exe /forceautomaticdeploy")
+            File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat", "@echo off" & vbCrLf & RutaDescargas & "NotinNet\MigradorNotinSQL.exe /forceautomaticdeploy")
             Dim pmigrador As New ProcessStartInfo()
             pmigrador.FileName = RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat"
             Dim migrador As Process = Process.Start(pmigrador)
