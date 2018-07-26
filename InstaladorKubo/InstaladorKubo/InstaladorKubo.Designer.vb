@@ -962,7 +962,7 @@ Partial Class FrmInstaladorKubo
         Me.BtNotin8exeForzar.Name = "BtNotin8exeForzar"
         Me.BtNotin8exeForzar.Size = New System.Drawing.Size(167, 28)
         Me.BtNotin8exeForzar.TabIndex = 50
-        Me.BtNotin8exeForzar.Text = "Fozar NOTIN8"
+        Me.BtNotin8exeForzar.Text = "Forzar NOTIN 8"
         Me.BtNotin8exeForzar.UseVisualStyleBackColor = True
         '
         'BtEstablew32F462
