@@ -3785,6 +3785,7 @@ Public Class FrmInstaladorKubo
                     Dim notinnet As Process = Process.Start(pnotinnet)
                     'notinnet.WaitForExit()
                     RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+                    ObtenerVersionNet()
                 Catch ex As Exception
                     'BtEstableNet.BackColor = Color.LightSalmon
                     RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
