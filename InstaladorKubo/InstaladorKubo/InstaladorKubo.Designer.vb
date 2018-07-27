@@ -958,7 +958,7 @@ Partial Class FrmInstaladorKubo
         'BtNotin8exeForzar
         '
         Me.BtNotin8exeForzar.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotin8exeForzar.Location = New System.Drawing.Point(195, 130)
+        Me.BtNotin8exeForzar.Location = New System.Drawing.Point(195, 90)
         Me.BtNotin8exeForzar.Name = "BtNotin8exeForzar"
         Me.BtNotin8exeForzar.Size = New System.Drawing.Size(167, 28)
         Me.BtNotin8exeForzar.TabIndex = 50
@@ -1042,7 +1042,7 @@ Partial Class FrmInstaladorKubo
         'BtNotin8exe
         '
         Me.BtNotin8exe.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotin8exe.Location = New System.Drawing.Point(195, 90)
+        Me.BtNotin8exe.Location = New System.Drawing.Point(195, 50)
         Me.BtNotin8exe.Name = "BtNotin8exe"
         Me.BtNotin8exe.Size = New System.Drawing.Size(167, 28)
         Me.BtNotin8exe.TabIndex = 42

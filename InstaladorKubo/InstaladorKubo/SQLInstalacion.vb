@@ -30,7 +30,7 @@ Public Class FrmSQLInstalacion
         RegistroInstalacion("SQL2014: Terminada descarga del Paquete en RAR. Se procede a descomprimir la imagen.")
 
         Shell("cmd.exe /c " & rutadescargas & "unrar.exe x -u -y " & rutadescargas & "SQL\SQLServer2014.exe " & rutadescargas & "SQL\", AppWinStyle.NormalFocus, True)
-        Dim parametrossql As String = "/IAcceptSQLServerLicenseTerms=True /Action=Install /ENU=False /QUIETSIMPLE=True /UpdateEnabled=True /ERRORREPORTING=False /USEMICROSOFTUPDATE=False /FEATURES=SQLENGINE,SSMS,ADV_SSMS /UpdateSource=MU /HELP=False /INDICATEPROGRESS=True /X86=False" & " /INSTALLSHAREDDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /INSTALLSHAREDWOWDIR=" & """" & "C:\Program Files (x86)\Microsoft SQL" & """" & " /INSTANCENAME=" & """" & instancia & """" & " /SQMREPORTING=False /INSTANCEID=" & """" & instancia & """" & " /INSTANCEDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /AGTSVCSTARTUPTYPE=Manual /COMMFABRICPORT=0 /COMMFABRICNETWORKLEVEL=0 /COMMFABRICENCRYPTION=0 /MATRIXCMBRICKCOMMPORT=0 /SQLSVCSTARTUPTYPE=Automatic /FILESTREAMLEVEL=1 /ENABLERANU=False /SQLCOLLATION=Modern_Spanish_CI_AS /SECURITYMODE=SQL /SAPWD=03071997" & " /SQLBACKUPDIR=" & """" & rutabdusuario & "\Backup" & """" & " /SQLUSERDBDIR=" & """" & rutabdusuario & """" & " /TCPENABLED=1 /NPENABLED=1 /BROWSERSVCSTARTUPTYPE=Automatic /SQLSYSADMINACCOUNTS=Administrador"
+        Dim parametrossql As String = "/IAcceptSQLServerLicenseTerms=True /Action=Install /ENU=False /QUIETSIMPLE=True /UpdateEnabled=False /ERRORREPORTING=False /USEMICROSOFTUPDATE=False /FEATURES=SQLENGINE,SSMS,ADV_SSMS /UpdateSource=MU /HELP=False /INDICATEPROGRESS=True /X86=False" & " /INSTALLSHAREDDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /INSTALLSHAREDWOWDIR=" & """" & "C:\Program Files (x86)\Microsoft SQL" & """" & " /INSTANCENAME=" & """" & instancia & """" & " /SQMREPORTING=False /INSTANCEID=" & """" & instancia & """" & " /INSTANCEDIR=" & """" & "C:\Program Files\Microsoft SQL Server" & """" & " /AGTSVCSTARTUPTYPE=Manual /COMMFABRICPORT=0 /COMMFABRICNETWORKLEVEL=0 /COMMFABRICENCRYPTION=0 /MATRIXCMBRICKCOMMPORT=0 /SQLSVCSTARTUPTYPE=Automatic /FILESTREAMLEVEL=1 /ENABLERANU=False /SQLCOLLATION=Modern_Spanish_CI_AS /SECURITYMODE=SQL /SAPWD=03071997" & " /SQLBACKUPDIR=" & """" & rutabdusuario & "\Backup" & """" & " /SQLUSERDBDIR=" & """" & rutabdusuario & """" & " /TCPENABLED=1 /NPENABLED=1 /BROWSERSVCSTARTUPTYPE=Automatic /SQLSYSADMINACCOUNTS=Administrador"
 
         Try
             Directory.CreateDirectory(rutabdusuario)
@@ -48,7 +48,7 @@ Public Class FrmSQLInstalacion
         End Try
 
         cIniArray.IniWrite(instaladorkuboini, "SQL2014", "INSTALADO", "1")
-        MessageBox.Show("Finalizado instalador desatendido SQL 2014. Revisa Log para ver los detalles.", "Fin instalación desatendida SQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Lanzada instalación desatendida de SQL2014 x64. Revisa Log para ver los detalles.", "Fin instalación desatendida SQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
         FrmInstaladorKubo.Show()
         Me.Close()
     End Sub
