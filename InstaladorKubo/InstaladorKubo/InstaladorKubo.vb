@@ -1671,7 +1671,8 @@ Public Class FrmInstaladorKubo
 
         TlpDeploy.SetToolTip(BtMigradorDeploy, "Descarga y Ejecuta Migrador forzando Deploy. Aplicando así las Actualizaciones en la BD. Esto no afecta a la bitácora de SQL.")
 
-        TlpNotin8Forzar.SetToolTip(BtNotin8exeForzar, "Fuerza la Descarga e Instalación de Notin .Net en cualquier entorno. Clic para leer las advertencias.")
+        TlpNotin8Forzar.ToolTipTitle = "Fuerza requisitos para Instalación del paquete Notin8.exe"
+        TlpNotin8Forzar.SetToolTip(BtNotin8exeForzar, "Descarga y realiza y fuerza los requisitos necesarios para que se provoque la Instalación de Notin8.exe y .Net en cualquier entorno. Clic para leer las advertencias.")
     End Sub
 #End Region
 
@@ -3809,7 +3810,7 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtNotin8exeForzar_Click(sender As Object, e As EventArgs) Handles BtNotin8exeForzar.Click
-        Dim forzarnotin8 As DialogResult = MessageBox.Show("Se procede a Forzar la Descarga y Ejecución de NOTIN8. Ten en cuenta las siguientes advertencias:" & vbCrLf & "-Se forzará ejecución del MigradorSQL en Deploy (no es necesario que se hubiera ejecutado antes)." & vbCrLf & "-Se lanzará Notin8.exe y se procederá a la instalación de .Net" & vbCrLf & "-En entorno ADRA se terminarán procesos en ejecución tales como Notin o Word." & vbCrLf & "¿DESEAS CONTINUAR?", "Forzar ejecución NOTIN8", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        Dim forzarnotin8 As DialogResult = MessageBox.Show("Se procede a Forzar la Descarga y Ejecución de NOTIN8. Ten en cuenta las siguientes advertencias:" & vbCrLf & "-Se forzará ejecución del MigradorSQL en Deploy (no es necesario que se hubiera ejecutado antes)." & vbCrLf & "-Si se requiere un cambio de diseño en la Base de Datos se debe advertir a los usuarios y forzar la actualización o readjunte del Notaría." & vbCrLf & "-Se lanzará Notin8.exe y se procederá a la instalación de .Net" & vbCrLf & "-En entorno ADRA se terminarán procesos en ejecución tales como Notin o Word." & vbCrLf & "¿DESEAS CONTINUAR?", "Forzar ejecución NOTIN8", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If forzarnotin8 = DialogResult.Yes Then
 
             'Primero el Migrador...
@@ -3885,7 +3886,7 @@ Public Class FrmInstaladorKubo
                     RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
                 End Try
             Else
-                BtNotin8exeForzar.BackColor = Color.LightSalmon
+                RegistroInstalacion("No hay procesos que afecten a la instalación de NotinNet. Se procede a su ejecución.")
                 Exit Sub
             End If
 
