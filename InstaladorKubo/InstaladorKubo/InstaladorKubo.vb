@@ -2993,7 +2993,10 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("WORD 2016 ADRA: Obtenido nombre Usuario Adra: " & usuario)
 
         Try
-            Dim rutaconfword As String = """" & "\\NOTINRAPP\Z\" & usuario & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\" & """"
+            'Esta ruta es la antigua. No añado comprobación tiro de la Local.
+            'Dim rutaconfword As String = """" & "\\NOTINRAPP\Z\" & usuario & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\" & """"
+            Dim rutaconfword As String = """" & "C:\Users\" & usuario & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\" & """"
+
             '%systemroot%\system32\mstsc.exe "\\NOTINRAPP\Z\rosa\AppData\Roaming\Microsoft\Workspaces\{CE4B537B-B510-4C8C-80DE-CEACE84BD4B2}\Resource\Configura Word 2016 (NR).rdp"
             If Directory.Exists(rutaconfword) Then
                 Process.Start("explorer.exe", rutaconfword)
