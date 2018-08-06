@@ -3864,10 +3864,12 @@ Public Class FrmInstaladorKubo
             If UnidadF() = True Then
                 Try
                     obtenerrobocopy()
-                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.NormalFocus, True)
+                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe /R:1 /W:1", AppWinStyle.NormalFocus, True)
                     RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
+                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & "F:\ C:\NOTAWIN.NET\ Notin8.mde /R:1 /W:1", AppWinStyle.NormalFocus, True)
+                    RegistroInstalacion("Notin8 MDE copiado a Notawin.Net local del usuario.")
                 Catch ex As Exception
-                    RegistroInstalacion("ERROR Notin8.exe no se pudo copiar a F. Causa: " & ex.Message)
+                    RegistroInstalacion("ERROR Notin8 EXE/MDE no se pudo copiar. Causa: " & ex.Message)
                     BtNotin8exeForzar.BackColor = Color.LightSalmon
                 End Try
             Else
