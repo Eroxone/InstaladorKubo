@@ -2138,12 +2138,13 @@ Public Class FrmInstaladorKubo
         End Try
 
         Try
-            Dim wgeaccesosrapidos As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/accesosrapidos.dot -O " & RutaDescargas & "Office2003\accesosrapidos.dot"
-            RegistroInstalacion("AccesosRapidos DOT descargado y copiado a ruta Office2003.")
+            Dim wgetaccesosrapidos As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/accesosrapidos.dot -O " & RutaDescargas & "Office2003\accesosrapidos.dot"
+            Shell("cmd /c " & RutaDescargas & wgetaccesosrapidos)
 
             Dim appdata As String = GetFolderPath(SpecialFolder.ApplicationData)
             Directory.CreateDirectory(appdata & "Microsoft\Word\STARTUP")
             File.Copy(RutaDescargas & "Office2003\accesosrapidos.dot", appdata & "Microsoft\Word\STARTUP\accesosrapidos.dot")
+            RegistroInstalacion("AccesosRapidos DOT descargado y copiado a ruta Office2003.")
         Catch ex As Exception
             RegistroInstalacion("ERROR AccesosRapidos.dot: " & ex.Message)
         End Try
@@ -3879,21 +3880,21 @@ Public Class FrmInstaladorKubo
             If ProcesosActivos() = True Then
                 RegistroInstalacion("Terminamos los procesos que puedan afectar a la Instalación de .Net. Se enviará un KILL.")
                 Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
-                Try
-                    Dim pnotinnet As New ProcessStartInfo()
-                    pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
-                    Dim notinnet As Process = Process.Start(pnotinnet)
-                    'notinnet.WaitForExit()
-                    'RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
-                    ObtenerVersionNet()
-                Catch ex As Exception
-                    'BtEstableNet.BackColor = Color.LightSalmon
-                    RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
-                End Try
             Else
                 RegistroInstalacion("No hay procesos que afecten a la instalación de NotinNet. Se procede a su ejecución.")
-                Exit Sub
             End If
+
+            Try
+                Dim pnotinnet As New ProcessStartInfo()
+                pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
+                Dim notinnet As Process = Process.Start(pnotinnet)
+                notinnet.WaitForExit()
+                RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+                ObtenerVersionNet()
+            Catch ex As Exception
+                'BtEstableNet.BackColor = Color.LightSalmon
+                RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
+            End Try
 
             'Como no puedo comprobar que versión de Net tiene dejo todas en gris
             BtNetBeta.BackColor = SystemColors.Control
@@ -3901,7 +3902,7 @@ Public Class FrmInstaladorKubo
             BtEstableNet.BackColor = SystemColors.Control
             BtNetBetax64F462.BackColor = SystemColors.Control
             BtNetBetaW32F462.BackColor = SystemColors.Control
-            RegistroInstalacion("TERMINADO. Proceso Notin8 aplicando forzado finalizó. Revisa resultados.")
+            RegistroInstalacion("TERMINADO. Proceso Notin8 aplicando Deploy finalizó. Revisa resultados.")
         Else
             RegistroInstalacion("El Usuario cancela el Forzado para Instalar Notin8.exe")
         End If
