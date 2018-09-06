@@ -233,7 +233,7 @@ Public Class FormSQL2008R2
             Dim correo As New MailMessage
             Dim smtp As New SmtpClient()
 
-            correo.From = New MailAddress("instalador@notin.net", "Instalador Kubo", System.Text.Encoding.UTF8)
+            correo.From = New MailAddress("instaladorkubo@gmail.com", "Instalador Kubo", System.Text.Encoding.UTF8)
             correo.To.Add(Destinatario)
             correo.SubjectEncoding = System.Text.Encoding.UTF8
             correo.Subject = "Finalizada Actualización a SQL 2008 R2"
@@ -244,9 +244,9 @@ Public Class FormSQL2008R2
             correo.IsBodyHtml = False
             correo.Priority = MailPriority.Normal
 
-            smtp.Credentials = New System.Net.NetworkCredential("instalador@notin.net", "insta24")
+            smtp.Credentials = New System.Net.NetworkCredential("instaladorkubo@gmail.com", "juanmola2017")
             smtp.Port = 587
-            smtp.Host = "smtp.notin.net"
+            smtp.Host = "smtp.gmail.com"
             smtp.EnableSsl = True
             Try
                 smtp.Send(correo)

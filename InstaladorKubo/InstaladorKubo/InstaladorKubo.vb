@@ -636,7 +636,7 @@ Public Class FrmInstaladorKubo
     Private Sub BtDescargar_Click(sender As Object, e As EventArgs) Handles btDescargar.Click
 
         'Si no chequeas nada salimos
-        If (CbConfiguraNotin.Checked OrElse CbConfiguraWord2016.Checked OrElse CbNemo.Checked OrElse CbOffice2003.Checked OrElse CbOffice2016.Checked OrElse CbOffice2016odt.Checked OrElse CbPasarelaSigno.Checked OrElse CbPuestoNotin.Checked OrElse CbRequisitos.Checked OrElse CbSferen.Checked OrElse CbTerceros.Checked OrElse CbFineReader.Checked OrElse CbPaquetesFT.Checked OrElse CbOffice2016x64.Checked) = False Then
+        If (CbConfiguraNotin.Checked OrElse CbConfiguraWord2016.Checked OrElse CbNemo.Checked OrElse CbOffice2003.Checked OrElse CbOffice2016.Checked OrElse CbOffice2016odt.Checked OrElse CbPasarelaSigno.Checked OrElse CbPuestoNotin.Checked OrElse CbRequisitos.Checked OrElse CbSferen.Checked OrElse CbTerceros.Checked OrElse CbFineReader.Checked OrElse CbPaquetesFT.Checked OrElse CbOffice2016x64.Checked OrElse CbConfiguraWord2016x64.Checked) = False Then
             MessageBox.Show("NINGUNA DESCARGA SELECCIONADA.", "Gestión Descargas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Exit Sub
         End If
@@ -1673,6 +1673,10 @@ Public Class FrmInstaladorKubo
 
         TlpNotin8Forzar.ToolTipTitle = "Fuerza requisitos para Instalación del paquete Notin8.exe"
         TlpNotin8Forzar.SetToolTip(BtNotin8exeForzar, "Descarga y realiza y fuerza los requisitos necesarios para que se provoque la Instalación de Notin8.exe y .Net en cualquier entorno. Clic para leer las advertencias.")
+
+        TlpPuestoC.SetToolTip(CbPuestoNotin, "Descarga y descomprime en C raíz carpetas como Notawin.Net, Plantillas, Accesos directos al Escritorio.." & vbCrLf & "Este proceso se realizará tras una instalación Notin-Kubo-Nexus.")
+        TlpPuestoC.AutoPopDelay = 10000
+        TlpPuestoC.IsBalloon = True
     End Sub
 #End Region
 
@@ -2903,7 +2907,7 @@ Public Class FrmInstaladorKubo
             Dim correo As New MailMessage
             Dim smtp As New SmtpClient()
 
-            correo.From = New MailAddress("instalador@notin.net", "Instalador Kubo", System.Text.Encoding.UTF8)
+            correo.From = New MailAddress("instaladorkubo@gmail.com", "Instalador Kubo", System.Text.Encoding.UTF8)
             correo.To.Add(Destinatario)
             correo.SubjectEncoding = System.Text.Encoding.UTF8
             correo.Subject = "Descargas InstaladorKubo Finalizadas"
@@ -2913,9 +2917,9 @@ Public Class FrmInstaladorKubo
             correo.IsBodyHtml = False
             correo.Priority = MailPriority.Normal
 
-            smtp.Credentials = New System.Net.NetworkCredential("instalador@notin.net", "insta24")
+            smtp.Credentials = New System.Net.NetworkCredential("instaladorkubo@gmail.com", "juanmola2017")
             smtp.Port = 587
-            smtp.Host = "smtp.notin.net"
+            smtp.Host = "smtp.gmail.com"
             smtp.EnableSsl = True
             Try
                 smtp.Send(correo)
@@ -4753,6 +4757,7 @@ Public Class FrmInstaladorKubo
     ' -----------------------------------------------------
     '-----------------------TEST ADRA ---------------------
     Private Sub BTTESTADRA_Click(sender As Object, e As EventArgs) Handles BTTESTADRA.Click
+        RegistroInstalacion("Ejecutado TEST ADRA. Botón solo habilitado para pruebas.")
         'Process.Start("C:\WINDOWS\system32\systempropertiesadvanced.exe")
         Shell("cmd.exe /c %WINDIR%\system32\systempropertiesadvanced.exe", AppWinStyle.Hide, True)
 
