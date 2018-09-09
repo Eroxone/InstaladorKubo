@@ -4751,7 +4751,30 @@ Public Class FrmInstaladorKubo
         End If
     End Function
 
+    Private Sub BtCopiaNotario_Click(sender As Object, e As EventArgs) Handles BtCopiaNotario.Click
+        obtenerwget()
+        Directory.CreateDirectory(RutaDescargas & "Scripts")
+        Dim entregaprotocolo As String = "http://tecnicos.notin.net/descargas/comunicados/979//Entrega_Protocolo.rar"
+        Shell("cmd.exe /c " & RutaDescargas & "wget.exe --show-progress -t 5 " & """" & entregaprotocolo & """" & " -O " & RutaDescargas & "Scripts\Entrega_Protocolo.rar", AppWinStyle.Hide, True)
 
+        obtenerunrar()
+        Shell("cmd.exe /c " & RutaDescargas & "unrar.exe x -u -y " & RutaDescargas & "Scripts\Entrega_Protocolo.rar " & RutaDescargas & "Scripts\", AppWinStyle.NormalFocus, True)
+        Try
+            Process.Start(RutaDescargas & "Scripts\entregafinal.bat")
+        Catch ex As Exception
+            MessageBox.Show("Se ha producido un error. Consulta el Log para mas información.", "Error abriendo proceso", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            RegistroInstalacion("ERROR Entrega Protocolo: " & ex.Message)
+        End Try
+
+        'Threading.Thread.Sleep(10000)
+        'TODO Preguntar si mostrar ruta para visualizar el acta
+        Try
+            Process.Start("explorer.exe", RutaDescargas & "Scripts\")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Ruta Scripts: " & ex.Message)
+        End Try
+
+    End Sub
 
 
     ' -----------------------------------------------------
@@ -4798,6 +4821,11 @@ Public Class FrmInstaladorKubo
 
         'FormUsuarioAdra.ShowDialog()
     End Sub
+
+
+
+
+
 
 
 

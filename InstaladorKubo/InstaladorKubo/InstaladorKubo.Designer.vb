@@ -117,6 +117,9 @@ Partial Class FrmInstaladorKubo
         Me.BtDynamic = New System.Windows.Forms.Button()
         Me.BtFocos = New System.Windows.Forms.Button()
         Me.BtConfWord2016ADRA = New System.Windows.Forms.Button()
+        Me.TabPage12 = New System.Windows.Forms.TabPage()
+        Me.BtCopiaNotario = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.BtDocRequisitos = New System.Windows.Forms.Button()
         Me.lbRuta = New System.Windows.Forms.Label()
         Me.btDescargar = New System.Windows.Forms.Button()
@@ -200,8 +203,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpDeploy = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpNotin8Forzar = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpPuestoC = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TabPage12 = New System.Windows.Forms.TabPage()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -215,6 +216,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.TabPage10.SuspendLayout()
+        Me.TabPage12.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage8.SuspendLayout()
@@ -222,7 +224,6 @@ Partial Class FrmInstaladorKubo
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabGestion.SuspendLayout()
-        Me.TabPage12.SuspendLayout()
         Me.SuspendLayout()
         '
         'lbUnidadF
@@ -1349,6 +1350,37 @@ Partial Class FrmInstaladorKubo
         Me.BtConfWord2016ADRA.Text = "Conf.Word-AdRA"
         Me.BtConfWord2016ADRA.UseVisualStyleBackColor = True
         '
+        'TabPage12
+        '
+        Me.TabPage12.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage12.Controls.Add(Me.BtCopiaNotario)
+        Me.TabPage12.Controls.Add(Me.Label2)
+        Me.TabPage12.Location = New System.Drawing.Point(4, 27)
+        Me.TabPage12.Name = "TabPage12"
+        Me.TabPage12.Size = New System.Drawing.Size(408, 323)
+        Me.TabPage12.TabIndex = 5
+        Me.TabPage12.Text = "Notaría"
+        '
+        'BtCopiaNotario
+        '
+        Me.BtCopiaNotario.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtCopiaNotario.Location = New System.Drawing.Point(8, 50)
+        Me.BtCopiaNotario.Name = "BtCopiaNotario"
+        Me.BtCopiaNotario.Size = New System.Drawing.Size(167, 28)
+        Me.BtCopiaNotario.TabIndex = 2
+        Me.BtCopiaNotario.Text = "Entrega Protocolo"
+        Me.BtCopiaNotario.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(8, 10)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(347, 18)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "Recopilación scripts batch creados por Jaime"
+        '
         'BtDocRequisitos
         '
         Me.BtDocRequisitos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -2031,26 +2063,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpPuestoC.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpPuestoC.ToolTipTitle = "Puesto Notin C"
         '
-        'TabPage12
-        '
-        Me.TabPage12.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage12.Controls.Add(Me.Label2)
-        Me.TabPage12.Location = New System.Drawing.Point(4, 27)
-        Me.TabPage12.Name = "TabPage12"
-        Me.TabPage12.Size = New System.Drawing.Size(408, 323)
-        Me.TabPage12.TabIndex = 5
-        Me.TabPage12.Text = "Batchs"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(8, 10)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(347, 18)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Recopilación scripts batch creados por Jaime"
-        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2109,6 +2121,8 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.ResumeLayout(False)
         Me.TabPage7.PerformLayout()
         Me.TabPage10.ResumeLayout(False)
+        Me.TabPage12.ResumeLayout(False)
+        Me.TabPage12.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
@@ -2117,8 +2131,6 @@ Partial Class FrmInstaladorKubo
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabGestion.ResumeLayout(False)
-        Me.TabPage12.ResumeLayout(False)
-        Me.TabPage12.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2303,4 +2315,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TlpPuestoC As ToolTip
     Friend WithEvents TabPage12 As TabPage
     Friend WithEvents Label2 As Label
+    Friend WithEvents BtCopiaNotario As Button
 End Class
