@@ -168,7 +168,7 @@ Partial Class FormUsuarioAdra
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(260, 146)
+        Me.Label3.Location = New System.Drawing.Point(243, 146)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(79, 15)
         Me.Label3.TabIndex = 11
@@ -177,13 +177,11 @@ Partial Class FormUsuarioAdra
         'Label4
         '
         Me.Label4.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(345, 147)
+        Me.Label4.Location = New System.Drawing.Point(328, 147)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(205, 88)
+        Me.Label4.Size = New System.Drawing.Size(222, 95)
         Me.Label4.TabIndex = 12
-        Me.Label4.Text = "Tras Limpiar Perfil desde la cuenta Usuario inicia con tu Usuario del Dominio y e" &
-    "jecuta estas dos funciones de tal forma que se reparen los iconos en tu Escritor" &
-    "io. No afectará a otro proceso."
+        Me.Label4.Text = resources.GetString("Label4.Text")
         '
         'FormUsuarioAdra
         '

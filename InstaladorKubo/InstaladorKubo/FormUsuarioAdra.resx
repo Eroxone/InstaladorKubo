@@ -209,6 +209,9 @@
         rkJggg==
 </value>
   </data>
+  <data name="Label4.Text" xml:space="preserve">
+    <value>Tras Limpiar Perfil desde la cuenta Local inicia sesión con tu Usuario del Dominio. Seleccionalo en el listado de la izquierda y ejecuta estas dos funciones de tal forma que se reparen los iconos en tu Escritorio.</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAamUAAAEAIADArQAAFgAAACgAAABqAAAAygAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
