@@ -181,9 +181,9 @@ Partial Class FormUsuarioAdra
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(205, 88)
         Me.Label4.TabIndex = 12
-        Me.Label4.Text = "Tras Limpiar Perfil desde la cuenta Administrador inicia con tu Usuario del Domin" &
-    "io y ejecuta estas dos funciones de tal forma que se reparen los iconos en tu Es" &
-    "critorio. No afectará a otro proceso."
+        Me.Label4.Text = "Tras Limpiar Perfil desde la cuenta Usuario inicia con tu Usuario del Dominio y e" &
+    "jecuta estas dos funciones de tal forma que se reparen los iconos en tu Escritor" &
+    "io. No afectará a otro proceso."
         '
         'FormUsuarioAdra
         '
