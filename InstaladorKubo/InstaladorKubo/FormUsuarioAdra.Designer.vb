@@ -42,10 +42,11 @@ Partial Class FormUsuarioAdra
         '
         Me.LBoxUsuarios.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBoxUsuarios.FormattingEnabled = True
-        Me.LBoxUsuarios.ItemHeight = 17
-        Me.LBoxUsuarios.Location = New System.Drawing.Point(25, 42)
+        Me.LBoxUsuarios.ItemHeight = 22
+        Me.LBoxUsuarios.Location = New System.Drawing.Point(33, 52)
+        Me.LBoxUsuarios.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.LBoxUsuarios.Name = "LBoxUsuarios"
-        Me.LBoxUsuarios.Size = New System.Drawing.Size(210, 89)
+        Me.LBoxUsuarios.Size = New System.Drawing.Size(279, 92)
         Me.LBoxUsuarios.TabIndex = 0
         '
         'LbUsuario
@@ -54,9 +55,10 @@ Partial Class FormUsuarioAdra
         Me.LbUsuario.BackColor = System.Drawing.SystemColors.Control
         Me.LbUsuario.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
         Me.LbUsuario.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.LbUsuario.Location = New System.Drawing.Point(113, 143)
+        Me.LbUsuario.Location = New System.Drawing.Point(151, 176)
+        Me.LbUsuario.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LbUsuario.Name = "LbUsuario"
-        Me.LbUsuario.Size = New System.Drawing.Size(109, 18)
+        Me.LbUsuario.Size = New System.Drawing.Size(136, 23)
         Me.LbUsuario.TabIndex = 1
         Me.LbUsuario.Text = "UsuarioAdra"
         Me.LbUsuario.Visible = False
@@ -67,9 +69,10 @@ Partial Class FormUsuarioAdra
         Me.BtLimpiar.Font = New System.Drawing.Font("Lucida Bright", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtLimpiar.Image = CType(resources.GetObject("BtLimpiar.Image"), System.Drawing.Image)
         Me.BtLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtLimpiar.Location = New System.Drawing.Point(25, 243)
+        Me.BtLimpiar.Location = New System.Drawing.Point(33, 299)
+        Me.BtLimpiar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtLimpiar.Name = "BtLimpiar"
-        Me.BtLimpiar.Size = New System.Drawing.Size(166, 57)
+        Me.BtLimpiar.Size = New System.Drawing.Size(221, 70)
         Me.BtLimpiar.TabIndex = 2
         Me.BtLimpiar.Text = "LIMPIAR"
         Me.BtLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -81,9 +84,10 @@ Partial Class FormUsuarioAdra
         Me.LbNotaria.BackColor = System.Drawing.SystemColors.Control
         Me.LbNotaria.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
         Me.LbNotaria.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.LbNotaria.Location = New System.Drawing.Point(22, 143)
+        Me.LbNotaria.Location = New System.Drawing.Point(29, 176)
+        Me.LbNotaria.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LbNotaria.Name = "LbNotaria"
-        Me.LbNotaria.Size = New System.Drawing.Size(95, 18)
+        Me.LbNotaria.Size = New System.Drawing.Size(117, 23)
         Me.LbNotaria.TabIndex = 3
         Me.LbNotaria.Text = "NOTARIA\"
         Me.LbNotaria.Visible = False
@@ -92,18 +96,20 @@ Partial Class FormUsuarioAdra
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(25, 12)
+        Me.Label1.Location = New System.Drawing.Point(33, 15)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(304, 18)
+        Me.Label1.Size = New System.Drawing.Size(382, 23)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Selecciona usuario AdRA del Equipo:"
         '
         'BtSalir
         '
         Me.BtSalir.Font = New System.Drawing.Font("Lucida Bright", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtSalir.Location = New System.Drawing.Point(469, 265)
+        Me.BtSalir.Location = New System.Drawing.Point(625, 326)
+        Me.BtSalir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtSalir.Name = "BtSalir"
-        Me.BtSalir.Size = New System.Drawing.Size(81, 37)
+        Me.BtSalir.Size = New System.Drawing.Size(108, 46)
         Me.BtSalir.TabIndex = 5
         Me.BtSalir.Text = "Salir"
         Me.BtSalir.UseVisualStyleBackColor = True
@@ -113,9 +119,10 @@ Partial Class FormUsuarioAdra
         Me.BtRegistroInstalaciones.BackColor = System.Drawing.SystemColors.InactiveCaption
         Me.BtRegistroInstalaciones.Font = New System.Drawing.Font("Lucida Bright", 10.2!)
         Me.BtRegistroInstalaciones.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.BtRegistroInstalaciones.Location = New System.Drawing.Point(25, 201)
+        Me.BtRegistroInstalaciones.Location = New System.Drawing.Point(33, 247)
+        Me.BtRegistroInstalaciones.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtRegistroInstalaciones.Name = "BtRegistroInstalaciones"
-        Me.BtRegistroInstalaciones.Size = New System.Drawing.Size(129, 28)
+        Me.BtRegistroInstalaciones.Size = New System.Drawing.Size(172, 34)
         Me.BtRegistroInstalaciones.TabIndex = 6
         Me.BtRegistroInstalaciones.Text = "Visualizar Log"
         Me.BtRegistroInstalaciones.UseVisualStyleBackColor = False
@@ -124,9 +131,10 @@ Partial Class FormUsuarioAdra
         '
         Me.BtCerrarsesion.BackColor = System.Drawing.Color.Bisque
         Me.BtCerrarsesion.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtCerrarsesion.Location = New System.Drawing.Point(260, 245)
+        Me.BtCerrarsesion.Location = New System.Drawing.Point(347, 302)
+        Me.BtCerrarsesion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtCerrarsesion.Name = "BtCerrarsesion"
-        Me.BtCerrarsesion.Size = New System.Drawing.Size(125, 57)
+        Me.BtCerrarsesion.Size = New System.Drawing.Size(167, 70)
         Me.BtCerrarsesion.TabIndex = 7
         Me.BtCerrarsesion.Text = "Cerrar Sesión"
         Me.BtCerrarsesion.UseVisualStyleBackColor = False
@@ -136,9 +144,10 @@ Partial Class FormUsuarioAdra
         '
         Me.BtLimpiarIconos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtLimpiarIconos.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtLimpiarIconos.Location = New System.Drawing.Point(260, 74)
+        Me.BtLimpiarIconos.Location = New System.Drawing.Point(347, 91)
+        Me.BtLimpiarIconos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtLimpiarIconos.Name = "BtLimpiarIconos"
-        Me.BtLimpiarIconos.Size = New System.Drawing.Size(125, 57)
+        Me.BtLimpiarIconos.Size = New System.Drawing.Size(167, 70)
         Me.BtLimpiarIconos.TabIndex = 8
         Me.BtLimpiarIconos.Text = "1. LIMPIEZA Escritorio y Vínculos"
         Me.BtLimpiarIconos.UseVisualStyleBackColor = True
@@ -147,9 +156,10 @@ Partial Class FormUsuarioAdra
         '
         Me.BtCopiarIconosNR.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtCopiarIconosNR.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtCopiarIconosNR.Location = New System.Drawing.Point(425, 74)
+        Me.BtCopiarIconosNR.Location = New System.Drawing.Point(567, 91)
+        Me.BtCopiarIconosNR.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.BtCopiarIconosNR.Name = "BtCopiarIconosNR"
-        Me.BtCopiarIconosNR.Size = New System.Drawing.Size(125, 57)
+        Me.BtCopiarIconosNR.Size = New System.Drawing.Size(167, 70)
         Me.BtCopiarIconosNR.TabIndex = 9
         Me.BtCopiarIconosNR.Text = "2. COPIADO iconos NR al nuevo Perfil"
         Me.BtCopiarIconosNR.UseVisualStyleBackColor = True
@@ -158,9 +168,10 @@ Partial Class FormUsuarioAdra
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(257, 45)
+        Me.Label2.Location = New System.Drawing.Point(343, 55)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(293, 15)
+        Me.Label2.Size = New System.Drawing.Size(389, 19)
         Me.Label2.TabIndex = 10
         Me.Label2.Text = "Tras Limpiar Perfil e Iniciar con tu Usuario:"
         '
@@ -168,26 +179,28 @@ Partial Class FormUsuarioAdra
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(243, 146)
+        Me.Label3.Location = New System.Drawing.Point(343, 179)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(79, 15)
+        Me.Label3.Size = New System.Drawing.Size(110, 20)
         Me.Label3.TabIndex = 11
         Me.Label3.Text = "Explicación:"
         '
         'Label4
         '
         Me.Label4.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(328, 147)
+        Me.Label4.Location = New System.Drawing.Point(466, 181)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(222, 95)
+        Me.Label4.Size = New System.Drawing.Size(268, 100)
         Me.Label4.TabIndex = 12
         Me.Label4.Text = resources.GetString("Label4.Text")
         '
         'FormUsuarioAdra
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(579, 322)
+        Me.ClientSize = New System.Drawing.Size(772, 396)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -202,6 +215,7 @@ Partial Class FormUsuarioAdra
         Me.Controls.Add(Me.LbUsuario)
         Me.Controls.Add(Me.LBoxUsuarios)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormUsuarioAdra"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Gestión Usuario Adra"
