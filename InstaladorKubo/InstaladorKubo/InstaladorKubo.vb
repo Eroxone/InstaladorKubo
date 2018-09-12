@@ -4823,6 +4823,124 @@ Public Class FrmInstaladorKubo
     End Sub
 
 
+    Private Sub BtNotinAdraDiferido_Click(sender As Object, e As EventArgs) Handles BtNotinAdraDiferido.Click
+        'MENSAJE ADVERTENCIA
+        Dim adradiferido As DialogResult = MessageBox.Show("Procederemos a terminar los procesos que afecten a la actualización tales como Notin o Word. Se ejecutará el Migrador y se descargará versión de Notin y Net." & vbCrLf & "El Instalador se quedará en espera hasta las 22.00 horas que se procederá a la ejecución." & vbCrLf & "¿Deseas continuar?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If adradiferido = DialogResult.Yes Then
+            RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA. Se irán logeando el resto de eventos producidos tras la hora de la ejecución. =")
+
+            'SI SE ACEPTA MOSTRAR ALGUN COLOR O LABEL MIENTRAS LA APP ESPERA LA HORA DE EJECUCIÓN.
+
+
+            'PARADA HASTA LAS 22.00 HORAS
+            Dim horaejecucion As String = "22:0"
+            'Dim horaejecucion As String = "10:51"
+            Dim horaactual As String = DateTime.Now.Hour & ":" & DateTime.Now.Minute
+            While horaactual <> horaejecucion
+                horaactual = DateTime.Now.Hour & ":" & DateTime.Now.Minute
+                Threading.Thread.Sleep(20000)
+            End While
+
+
+            'TERMINAR PROCESOS NOTIN NET
+            If ProcesosActivos() = True Then
+                Try
+                    RegistroInstalacion("-PROCESOS: Se encontraron procesos que afectan a la actualización. Se procede a su finalización.")
+                    Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
+                Catch ex As Exception
+                    RegistroInstalacion("-ERROR PROCESOS: " & ex.Message)
+                    BtNotinAdraDiferido.BackColor = Color.LightSalmon
+                End Try
+            Else
+                RegistroInstalacion("-PROCESOS: No hay procesos que afecten a la instalación. Se prosigue sin ejecutar KILL.")
+            End If
+
+
+            'MIGRADOR
+            obtenerwget()
+            Directory.CreateDirectory(RutaDescargas & "NotinNet")
+            Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.Hide, True)
+
+            Try
+                File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat", "@echo off" & vbCrLf & RutaDescargas & "NotinNet\MigradorNotinSQL.exe /forceautomaticdeploy")
+                Dim pmigrador As New ProcessStartInfo()
+                pmigrador.FileName = RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat"
+                Dim migrador As Process = Process.Start(pmigrador)
+                migrador.WaitForExit()
+                LbVersionMigrador.Visible = True
+                TbMigradorLog.Visible = True
+                BtMigradorDeploy.BackColor = Color.PaleGreen
+                RegistroInstalacion("-MIGRADORSQL: Ejecutado Migrador correctamente pasando ForceAutomaticDeploy.")
+
+                LeerLogMigradorSQL()
+
+            Catch ex As Exception
+                RegistroInstalacion("-ERROR MIGRADOR: " & ex.Message)
+                BtNotinAdraDiferido.BackColor = Color.LightSalmon
+            End Try
+
+            'NOTIN 8
+            Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/v40/notin8.exe"
+            Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe"
+            Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
+            Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.Hide, True)
+
+            Try
+                Dim pnotin8 As New ProcessStartInfo()
+                pnotin8.FileName = RutaDescargas & "NotinNet\Notin8.exe"
+                Dim notin8 As Process = Process.Start(pnotin8)
+                notin8.WaitForExit()
+                RegistroInstalacion("-NOTIN8: Notin8.exe Ejecutado correctamente.")
+                BtNotin8exe.BackColor = Color.PaleGreen
+            Catch ex As Exception
+                BtNotin8exe.BackColor = Color.LightSalmon
+                RegistroInstalacion("-ERROR NOTIN8: " & ex.Message)
+                BtNotinAdraDiferido.BackColor = Color.LightSalmon
+            End Try
+
+            If UnidadF() = True Then
+                Try
+                    obtenerrobocopy()
+                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.Hide, True)
+                    RegistroInstalacion("-NOTIN8: Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
+                Catch ex As Exception
+                    RegistroInstalacion("-ERROR: Notin8.exe no se pudo copiar a F. Causa: " & ex.Message)
+                    BtNotin8exe.BackColor = Color.LightSalmon
+                End Try
+            Else
+                RegistroInstalacion("-ADVERTENCIA: NOTIN8 no copiado a F: al no encontrarse la Unidad disponible.")
+            End If
+
+            'EJECUCIÓN .NET DESCARGADO
+            Try
+                Dim pnotinnet As New ProcessStartInfo()
+                pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
+                Dim notinnet As Process = Process.Start(pnotinnet)
+                'notinnet.WaitForExit()
+                RegistroInstalacion("-NOTIN NET: Ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+                ObtenerVersionNet()
+            Catch ex As Exception
+                'BtEstableNet.BackColor = Color.LightSalmon
+                RegistroInstalacion("-ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe. " & ex.Message)
+                BtNotinAdraDiferido.BackColor = Color.LightSalmon
+            End Try
+
+            'SI TODO HA IDO BIEN
+            BtNotinAdraDiferido.BackColor = Color.PaleGreen
+        Else
+            BtNotinAdraDiferido.BackColor = SystemColors.Control
+            LBAdraDiferido.Visible = False
+            Exit Sub
+        End If
+
+    End Sub
+
+    Private Sub BtNotinAdraDiferido_MouseDown(sender As Object, e As MouseEventArgs) Handles BtNotinAdraDiferido.MouseDown
+        BtNotinAdraDiferido.BackColor = Color.NavajoWhite
+        LBAdraDiferido.Visible = True
+    End Sub
+
+
 
 
 

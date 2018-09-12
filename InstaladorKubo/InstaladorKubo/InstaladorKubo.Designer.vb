@@ -112,6 +112,7 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.BtNotinAdraDiferido = New System.Windows.Forms.Button()
         Me.BTTESTADRA = New System.Windows.Forms.Button()
         Me.BtLimpiarPerfil = New System.Windows.Forms.Button()
         Me.BtDynamic = New System.Windows.Forms.Button()
@@ -203,6 +204,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpDeploy = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpNotin8Forzar = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpPuestoC = New System.Windows.Forms.ToolTip(Me.components)
+        Me.LBAdraDiferido = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1287,6 +1289,8 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.LBAdraDiferido)
+        Me.TabPage10.Controls.Add(Me.BtNotinAdraDiferido)
         Me.TabPage10.Controls.Add(Me.BTTESTADRA)
         Me.TabPage10.Controls.Add(Me.BtLimpiarPerfil)
         Me.TabPage10.Controls.Add(Me.BtDynamic)
@@ -1297,6 +1301,17 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Size = New System.Drawing.Size(408, 323)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
+        '
+        'BtNotinAdraDiferido
+        '
+        Me.BtNotinAdraDiferido.BackColor = System.Drawing.SystemColors.Control
+        Me.BtNotinAdraDiferido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(195, 10)
+        Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
+        Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(195, 45)
+        Me.BtNotinAdraDiferido.TabIndex = 5
+        Me.BtNotinAdraDiferido.Text = "Actualización Diferida Migrador-Notin-.Net"
+        Me.BtNotinAdraDiferido.UseVisualStyleBackColor = False
         '
         'BTTESTADRA
         '
@@ -2063,6 +2078,18 @@ Partial Class FrmInstaladorKubo
         Me.TlpPuestoC.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpPuestoC.ToolTipTitle = "Puesto Notin C"
         '
+        'LBAdraDiferido
+        '
+        Me.LBAdraDiferido.BackColor = System.Drawing.SystemColors.Control
+        Me.LBAdraDiferido.ForeColor = System.Drawing.Color.SaddleBrown
+        Me.LBAdraDiferido.Location = New System.Drawing.Point(195, 70)
+        Me.LBAdraDiferido.Name = "LBAdraDiferido"
+        Me.LBAdraDiferido.Size = New System.Drawing.Size(195, 45)
+        Me.LBAdraDiferido.TabIndex = 6
+        Me.LBAdraDiferido.Text = "Ejecución programada a las 22.00 horas"
+        Me.LBAdraDiferido.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.LBAdraDiferido.Visible = False
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2316,4 +2343,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TabPage12 As TabPage
     Friend WithEvents Label2 As Label
     Friend WithEvents BtCopiaNotario As Button
+    Friend WithEvents BtNotinAdraDiferido As Button
+    Friend WithEvents LBAdraDiferido As Label
 End Class
