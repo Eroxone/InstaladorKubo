@@ -4825,7 +4825,7 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtNotinAdraDiferido_Click(sender As Object, e As EventArgs) Handles BtNotinAdraDiferido.Click
         'MENSAJE ADVERTENCIA
-        Dim adradiferido As DialogResult = MessageBox.Show("Procederemos a terminar los procesos que afecten a la actualización tales como Notin o Word. Se ejecutará el Migrador con AllowDataLoss y se Descargará versión de Notin y Net." & vbCrLf & "El Instalador se quedará en espera hasta las 22.00 horas que se procederá a la ejecución." & vbCrLf & "¿Deseas continuar?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        Dim adradiferido As DialogResult = MessageBox.Show("A LAS 22:00 HORAS: Se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net." & vbCrLf & "El Instalador se quedará en espera hasta las 22.00 horas. Previamente no se realizará ninguna acción." & vbCrLf & "Si deseas Cancelar termina el proceso del Instalador." & vbCrLf & "¿Deseas continuar?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If adradiferido = DialogResult.Yes Then
             RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA. Se irán logeando el resto de eventos producidos tras la hora de la ejecución. =")
 
@@ -4928,6 +4928,7 @@ Public Class FrmInstaladorKubo
 
             'SI TODO HA IDO BIEN
             BtNotinAdraDiferido.BackColor = Color.PaleGreen
+            MessageBox.Show("Instalación diferida ADRA finalizada. Revisa Log para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             BtNotinAdraDiferido.BackColor = SystemColors.Control
             LBAdraDiferido.Visible = False
