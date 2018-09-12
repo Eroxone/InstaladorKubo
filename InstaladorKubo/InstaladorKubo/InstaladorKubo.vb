@@ -4825,7 +4825,7 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtNotinAdraDiferido_Click(sender As Object, e As EventArgs) Handles BtNotinAdraDiferido.Click
         'MENSAJE ADVERTENCIA
-        Dim adradiferido As DialogResult = MessageBox.Show("Procederemos a terminar los procesos que afecten a la actualización tales como Notin o Word. Se ejecutará el Migrador y se descargará versión de Notin y Net." & vbCrLf & "El Instalador se quedará en espera hasta las 22.00 horas que se procederá a la ejecución." & vbCrLf & "¿Deseas continuar?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        Dim adradiferido As DialogResult = MessageBox.Show("Procederemos a terminar los procesos que afecten a la actualización tales como Notin o Word. Se ejecutará el Migrador con AllowDataLoss y se Descargará versión de Notin y Net." & vbCrLf & "El Instalador se quedará en espera hasta las 22.00 horas que se procederá a la ejecución." & vbCrLf & "¿Deseas continuar?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If adradiferido = DialogResult.Yes Then
             RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA. Se irán logeando el resto de eventos producidos tras la hora de la ejecución. =")
 
@@ -4862,15 +4862,16 @@ Public Class FrmInstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress -t 5 https://static.unidata.es/MigradorNotinSQL.exe -O " & RutaDescargas & "NotinNet\MigradorNotinSQL.exe", AppWinStyle.Hide, True)
 
             Try
-                File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat", "@echo off" & vbCrLf & RutaDescargas & "NotinNet\MigradorNotinSQL.exe /forceautomaticdeploy")
+                File.WriteAllText(RutaDescargas & "NotinNet\MigradorNotinSQLAllowDataLoss.bat", "@echo off" & vbCrLf & RutaDescargas & "NotinNet\MigradorNotinSQL.exe /allowdataloss")
                 Dim pmigrador As New ProcessStartInfo()
-                pmigrador.FileName = RutaDescargas & "NotinNet\MigradorNotinSQLForceAutomaticDeploy.bat"
+                pmigrador.FileName = RutaDescargas & "NotinNet\MigradorNotinSQLAllowDataLoss.bat"
                 Dim migrador As Process = Process.Start(pmigrador)
                 migrador.WaitForExit()
+                cIniArray.IniWrite(instaladorkuboini, "SQL", "EJECUCIONMIGRADOR", DateTime.Now)
                 LbVersionMigrador.Visible = True
                 TbMigradorLog.Visible = True
-                BtMigradorDeploy.BackColor = Color.PaleGreen
-                RegistroInstalacion("-MIGRADORSQL: Ejecutado Migrador correctamente pasando ForceAutomaticDeploy.")
+
+                RegistroInstalacion("-MIGRADORSQL: Ejecutado Migrador correctamente pasando AllowDataLoss.")
 
                 LeerLogMigradorSQL()
 
