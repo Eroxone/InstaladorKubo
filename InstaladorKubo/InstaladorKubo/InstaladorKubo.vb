@@ -4824,10 +4824,11 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BtNotinAdraDiferido_Click(sender As Object, e As EventArgs) Handles BtNotinAdraDiferido.Click
+
         'MENSAJE ADVERTENCIA
-        Dim adradiferido As DialogResult = MessageBox.Show("A LAS 22:00 HORAS: Se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net." & vbCrLf & "El Instalador se quedará en espera hasta las 22.00 horas. Previamente no se realizará ninguna acción." & vbCrLf & "Si deseas Cancelar termina el proceso del Instalador." & vbCrLf & "¿Deseas continuar?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        Dim adradiferido As DialogResult = MessageBox.Show("A LAS 22:00 HORAS: Se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net." & vbCrLf & "Si has indicando una dirección de Correo en la parte inferior izquierda de la aplicación se te notificará al terminar." & vbCrLf & "El Instalador se quedará en espera hasta las 22.00 horas. Previamente no se realizará ninguna acción." & vbCrLf & "Si deseas Cancelar termina el proceso del Instalador." & vbCrLf & "¿Deseas continuar?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If adradiferido = DialogResult.Yes Then
-            RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA. Se irán logeando el resto de eventos producidos tras la hora de la ejecución. =")
+            RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA =" & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
 
             'SI SE ACEPTA MOSTRAR ALGUN COLOR O LABEL MIENTRAS LA APP ESPERA LA HORA DE EJECUCIÓN.
 
@@ -4845,10 +4846,10 @@ Public Class FrmInstaladorKubo
             'TERMINAR PROCESOS NOTIN NET
             If ProcesosActivos() = True Then
                 Try
-                    RegistroInstalacion("-PROCESOS: Se encontraron procesos que afectan a la actualización. Se procede a su finalización.")
+                    RegistroInstalacion("PROCESOS: Se encontraron procesos que afectan a la actualización. Se procede a su finalización.")
                     Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
                 Catch ex As Exception
-                    RegistroInstalacion("-ERROR PROCESOS: " & ex.Message)
+                    RegistroInstalacion("ERROR PROCESOS: " & ex.Message)
                     BtNotinAdraDiferido.BackColor = Color.LightSalmon
                 End Try
             Else
@@ -4871,12 +4872,12 @@ Public Class FrmInstaladorKubo
                 LbVersionMigrador.Visible = True
                 TbMigradorLog.Visible = True
 
-                RegistroInstalacion("-MIGRADORSQL: Ejecutado Migrador correctamente pasando AllowDataLoss.")
+                RegistroInstalacion("MIGRADORSQL: Ejecutado Migrador correctamente pasando AllowDataLoss.")
 
                 LeerLogMigradorSQL()
 
             Catch ex As Exception
-                RegistroInstalacion("-ERROR MIGRADOR: " & ex.Message)
+                RegistroInstalacion("ERROR MIGRADOR: " & ex.Message)
                 BtNotinAdraDiferido.BackColor = Color.LightSalmon
             End Try
 
@@ -4885,17 +4886,17 @@ Public Class FrmInstaladorKubo
             Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe"
             Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
             Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.Hide, True)
-
+            RegistroInstalacion("NOTIN8 descargado correctamente desde static.unidata.es")
             Try
                 Dim pnotin8 As New ProcessStartInfo()
                 pnotin8.FileName = RutaDescargas & "NotinNet\Notin8.exe"
                 Dim notin8 As Process = Process.Start(pnotin8)
                 notin8.WaitForExit()
-                RegistroInstalacion("-NOTIN8: Notin8.exe Ejecutado correctamente.")
+                RegistroInstalacion("NOTIN8: Ejecutado correctamente su Instalador.")
                 BtNotin8exe.BackColor = Color.PaleGreen
             Catch ex As Exception
                 BtNotin8exe.BackColor = Color.LightSalmon
-                RegistroInstalacion("-ERROR NOTIN8: " & ex.Message)
+                RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
                 BtNotinAdraDiferido.BackColor = Color.LightSalmon
             End Try
 
@@ -4903,13 +4904,13 @@ Public Class FrmInstaladorKubo
                 Try
                     obtenerrobocopy()
                     Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.Hide, True)
-                    RegistroInstalacion("-NOTIN8: Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
+                    RegistroInstalacion("NOTIN8: Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
                 Catch ex As Exception
-                    RegistroInstalacion("-ERROR: Notin8.exe no se pudo copiar a F. Causa: " & ex.Message)
+                    RegistroInstalacion("ERROR: Notin8.exe no se pudo copiar a F. Causa: " & ex.Message)
                     BtNotin8exe.BackColor = Color.LightSalmon
                 End Try
             Else
-                RegistroInstalacion("-ADVERTENCIA: NOTIN8 no copiado a F: al no encontrarse la Unidad disponible.")
+                RegistroInstalacion("ADVERTENCIA: NOTIN8 no copiado a F: al no encontrarse la Unidad disponible.")
             End If
 
             'EJECUCIÓN .NET DESCARGADO
@@ -4917,21 +4918,24 @@ Public Class FrmInstaladorKubo
                 Dim pnotinnet As New ProcessStartInfo()
                 pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
                 Dim notinnet As Process = Process.Start(pnotinnet)
-                'notinnet.WaitForExit()
-                RegistroInstalacion("-NOTIN NET: Ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+                notinnet.WaitForExit()
+                RegistroInstalacion("NOTIN .NET: Ejecutado correctamente desde F:\Notawin.Net. Se procede a obtener versión instalada.")
                 ObtenerVersionNet()
             Catch ex As Exception
                 'BtEstableNet.BackColor = Color.LightSalmon
-                RegistroInstalacion("-ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe. " & ex.Message)
+                RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe. " & ex.Message)
                 BtNotinAdraDiferido.BackColor = Color.LightSalmon
             End Try
 
             'SI TODO HA IDO BIEN
+            RegistroInstalacion("= ACTUALIZACIÓN DIFERIDA ADRA FINALIZADA.=")
+            EnvioMailADRA()
             BtNotinAdraDiferido.BackColor = Color.PaleGreen
-            MessageBox.Show("Instalación diferida ADRA finalizada. Revisa Log para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             BtNotinAdraDiferido.BackColor = SystemColors.Control
             LBAdraDiferido.Visible = False
+            EnvioMailADRA()
             Exit Sub
         End If
 
@@ -4942,7 +4946,45 @@ Public Class FrmInstaladorKubo
         LBAdraDiferido.Visible = True
     End Sub
 
+    Public Sub EnvioMailADRA()
+        'TODO enviar email cuando termine la instalación con el log e info sistema
+        If Validaremail() = True Then
 
+            'Dim A As String = Tbtucorreo.Text
+            Dim a As String = CBoxEmail.Text
+            Dim Destinatario As MailAddress = New MailAddress(a)
+
+            Dim correo As New MailMessage
+            Dim smtp As New SmtpClient()
+
+            correo.From = New MailAddress("instaladorkubo@gmail.com", "Instalador Kubo", System.Text.Encoding.UTF8)
+            correo.To.Add(Destinatario)
+            correo.SubjectEncoding = System.Text.Encoding.UTF8
+            correo.Subject = "Actualización Diferida ADRA " & TbIdentificaNotaria.Text
+            'correo.Body = "" & vbCrLf & "Las descargas finalizaron a las " & DateTime.Now.Hour & " horas " & "y " & DateTime.Now.Minute & " minutos." & vbCrLf & "Puedes proceder a realizar las instalaciones cuando quieras." & vbCrLf & "Cualquier duda tienes disponible el Comunicado 1573: http://tecnicos.notin.net/detalles.asp?id=1573" & vbCrLf & "Muchas gracias"
+            Dim loggerinstalador As String = File.ReadAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt")
+            correo.Body = loggerinstalador
+            correo.BodyEncoding = System.Text.Encoding.UTF8
+            'correo.IsBodyHtml = False(formato tipo web o normal:  true = web)
+            correo.IsBodyHtml = False
+            correo.Priority = MailPriority.Normal
+
+            smtp.Credentials = New System.Net.NetworkCredential("instaladorkubo@gmail.com", "juanmola2017")
+            smtp.Port = 587
+            smtp.Host = "smtp.gmail.com"
+            smtp.EnableSsl = True
+            Try
+                smtp.Send(correo)
+                RegistroInstalacion("Correo de notificación enviado a " & CBoxEmail.Text)
+            Catch ex As Exception
+                RegistroInstalacion("ERROR Email: " & ex.Message)
+
+            End Try
+        Else
+            RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & CBoxEmail.Text & " no se consideró válida o no se indicó ningunta dirección.")
+        End If
+
+    End Sub
 
 
 
