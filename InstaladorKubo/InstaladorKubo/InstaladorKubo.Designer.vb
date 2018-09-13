@@ -112,6 +112,9 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TbIdentificaNotaria = New System.Windows.Forms.TextBox()
         Me.LBAdraDiferido = New System.Windows.Forms.Label()
         Me.BtNotinAdraDiferido = New System.Windows.Forms.Button()
         Me.BTTESTADRA = New System.Windows.Forms.Button()
@@ -205,9 +208,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpDeploy = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpNotin8Forzar = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpPuestoC = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TbIdentificaNotaria = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1308,13 +1308,42 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(191, 12)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(207, 22)
+        Me.Label4.TabIndex = 9
+        Me.Label4.Text = "Actualización ADRA"
+        '
+        'Label3
+        '
+        Me.Label3.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(195, 37)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(203, 81)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "PREVIO: Indica en el margen inferior izquierdo tu Email. Añade en la siguiente ca" &
+    "silla un identificador de la Notaría (esto solo se usará para mostarlo en el Asu" &
+    "nto del correo):"
+        '
+        'TbIdentificaNotaria
+        '
+        Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(195, 121)
+        Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
+        Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 26)
+        Me.TbIdentificaNotaria.TabIndex = 7
+        '
         'LBAdraDiferido
         '
         Me.LBAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.LBAdraDiferido.ForeColor = System.Drawing.Color.Red
-        Me.LBAdraDiferido.Location = New System.Drawing.Point(195, 233)
+        Me.LBAdraDiferido.Location = New System.Drawing.Point(195, 224)
         Me.LBAdraDiferido.Name = "LBAdraDiferido"
-        Me.LBAdraDiferido.Size = New System.Drawing.Size(198, 42)
+        Me.LBAdraDiferido.Size = New System.Drawing.Size(203, 42)
         Me.LBAdraDiferido.TabIndex = 6
         Me.LBAdraDiferido.Text = "Ejecución programada a las 22.00 horas"
         Me.LBAdraDiferido.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -1324,9 +1353,9 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtNotinAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.BtNotinAdraDiferido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(195, 174)
+        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(195, 163)
         Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
-        Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(194, 45)
+        Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(200, 45)
         Me.BtNotinAdraDiferido.TabIndex = 5
         Me.BtNotinAdraDiferido.Text = "Programar ejecución a las 22:00 horas"
         Me.BtNotinAdraDiferido.UseVisualStyleBackColor = False
@@ -2096,35 +2125,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpPuestoC.IsBalloon = True
         Me.TlpPuestoC.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpPuestoC.ToolTipTitle = "Puesto Notin C"
-        '
-        'TbIdentificaNotaria
-        '
-        Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(198, 130)
-        Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
-        Me.TbIdentificaNotaria.Size = New System.Drawing.Size(194, 26)
-        Me.TbIdentificaNotaria.TabIndex = 7
-        '
-        'Label3
-        '
-        Me.Label3.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(195, 37)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(195, 90)
-        Me.Label3.TabIndex = 8
-        Me.Label3.Text = "PREVIO: Indica en el margen inferior izquierdo tu Email. Añade en la siguiente ca" &
-    "silla un identificador de la Notaría (esto solo se usará para mostarlo en el Asu" &
-    "nto del correo):"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(191, 12)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(207, 22)
-        Me.Label4.TabIndex = 9
-        Me.Label4.Text = "Actualización ADRA"
         '
         'FrmInstaladorKubo
         '
