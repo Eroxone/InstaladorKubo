@@ -1357,7 +1357,7 @@ Partial Class FrmInstaladorKubo
         Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
         Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(200, 45)
         Me.BtNotinAdraDiferido.TabIndex = 5
-        Me.BtNotinAdraDiferido.Text = "Programar ejecución a las 22:00 horas"
+        Me.BtNotinAdraDiferido.Text = "Programar ejecución para las 22:00 horas"
         Me.BtNotinAdraDiferido.UseVisualStyleBackColor = False
         '
         'BTTESTADRA
