@@ -32,12 +32,12 @@
     <ProductName>InstaladorKubo</ProductName>
     <PublisherName>InstaladorKubo</PublisherName>
     <SuiteName>Instalador</SuiteName>
-    <MinimumRequiredVersion>1.0.1.0</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.2.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>130</ApplicationRevision>
-    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -307,7 +307,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Deeeeebug" (powershell.exe -File  "D:\ConfuserEX\confuserps.ps1"  $(TargetDir) $(TargetDir) $(TargetPath) $(ProjectDir)confuser.crproj $(SolutionDir)BaseProjectbin $(SolutionDir)BaseProject2bin)</PostBuildEvent>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Debug" (powershell.exe -File  "D:\ConfuserEX\confuserps.ps1"  $(TargetDir) $(TargetDir) $(TargetPath) $(ProjectDir)confuser.crproj $(SolutionDir)BaseProjectbin $(SolutionDir)BaseProject2bin)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
