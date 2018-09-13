@@ -1340,12 +1340,13 @@ Partial Class FrmInstaladorKubo
         'LBAdraDiferido
         '
         Me.LBAdraDiferido.BackColor = System.Drawing.SystemColors.Control
+        Me.LBAdraDiferido.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
         Me.LBAdraDiferido.ForeColor = System.Drawing.Color.Red
         Me.LBAdraDiferido.Location = New System.Drawing.Point(195, 224)
         Me.LBAdraDiferido.Name = "LBAdraDiferido"
         Me.LBAdraDiferido.Size = New System.Drawing.Size(203, 42)
         Me.LBAdraDiferido.TabIndex = 6
-        Me.LBAdraDiferido.Text = "Ejecución programada a las 22.00 horas"
+        Me.LBAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN "
         Me.LBAdraDiferido.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.LBAdraDiferido.Visible = False
         '
@@ -1355,7 +1356,7 @@ Partial Class FrmInstaladorKubo
         Me.BtNotinAdraDiferido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(195, 163)
         Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
-        Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(200, 45)
+        Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(203, 45)
         Me.BtNotinAdraDiferido.TabIndex = 5
         Me.BtNotinAdraDiferido.Text = "Programar ejecución para las 22:00 horas"
         Me.BtNotinAdraDiferido.UseVisualStyleBackColor = False
