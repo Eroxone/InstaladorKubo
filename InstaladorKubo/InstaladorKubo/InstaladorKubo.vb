@@ -4935,7 +4935,7 @@ Public Class FrmInstaladorKubo
         Else
             BtNotinAdraDiferido.BackColor = SystemColors.Control
             LBAdraDiferido.Visible = False
-            EnvioMailADRA()
+            'EnvioMailADRA()
             Exit Sub
         End If
 
