@@ -112,6 +112,11 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.LboxMinutoAdraDiferido = New System.Windows.Forms.ListBox()
+        Me.LboxHoraAdraDiferido = New System.Windows.Forms.ListBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TbIdentificaNotaria = New System.Windows.Forms.TextBox()
@@ -688,7 +693,7 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Padding = New System.Windows.Forms.Padding(2)
-        Me.GroupBox2.Size = New System.Drawing.Size(427, 391)
+        Me.GroupBox2.Size = New System.Drawing.Size(427, 418)
         Me.GroupBox2.TabIndex = 32
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Utilidades Sistema"
@@ -706,7 +711,7 @@ Partial Class FrmInstaladorKubo
         Me.TabSistema.Margin = New System.Windows.Forms.Padding(2)
         Me.TabSistema.Name = "TabSistema"
         Me.TabSistema.SelectedIndex = 0
-        Me.TabSistema.Size = New System.Drawing.Size(416, 354)
+        Me.TabSistema.Size = New System.Drawing.Size(416, 386)
         Me.TabSistema.TabIndex = 35
         '
         'TabPage5
@@ -723,7 +728,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage5.Size = New System.Drawing.Size(408, 323)
+        Me.TabPage5.Size = New System.Drawing.Size(408, 355)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
@@ -824,7 +829,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage6.Size = New System.Drawing.Size(408, 323)
+        Me.TabPage6.Size = New System.Drawing.Size(408, 355)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
         '
@@ -977,7 +982,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Controls.Add(Me.BtNetBeta)
         Me.TabPage11.Location = New System.Drawing.Point(4, 27)
         Me.TabPage11.Name = "TabPage11"
-        Me.TabPage11.Size = New System.Drawing.Size(408, 323)
+        Me.TabPage11.Size = New System.Drawing.Size(408, 355)
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
         '
@@ -1155,7 +1160,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.Location = New System.Drawing.Point(4, 27)
         Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(408, 323)
+        Me.TabPage7.Size = New System.Drawing.Size(408, 355)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
         '
@@ -1292,6 +1297,11 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.Label7)
+        Me.TabPage10.Controls.Add(Me.Label6)
+        Me.TabPage10.Controls.Add(Me.Label5)
+        Me.TabPage10.Controls.Add(Me.LboxMinutoAdraDiferido)
+        Me.TabPage10.Controls.Add(Me.LboxHoraAdraDiferido)
         Me.TabPage10.Controls.Add(Me.Label4)
         Me.TabPage10.Controls.Add(Me.Label3)
         Me.TabPage10.Controls.Add(Me.TbIdentificaNotaria)
@@ -1304,15 +1314,62 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Controls.Add(Me.BtConfWord2016ADRA)
         Me.TabPage10.Location = New System.Drawing.Point(4, 27)
         Me.TabPage10.Name = "TabPage10"
-        Me.TabPage10.Size = New System.Drawing.Size(408, 323)
+        Me.TabPage10.Size = New System.Drawing.Size(408, 355)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(288, 164)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(12, 18)
+        Me.Label7.TabIndex = 14
+        Me.Label7.Text = ":"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(306, 164)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(64, 18)
+        Me.Label6.TabIndex = 13
+        Me.Label6.Text = "Minuto"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(227, 164)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(48, 18)
+        Me.Label5.TabIndex = 12
+        Me.Label5.Text = "Hora"
+        '
+        'LboxMinutoAdraDiferido
+        '
+        Me.LboxMinutoAdraDiferido.FormattingEnabled = True
+        Me.LboxMinutoAdraDiferido.ItemHeight = 18
+        Me.LboxMinutoAdraDiferido.Items.AddRange(New Object() {"0", "15", "30", "45"})
+        Me.LboxMinutoAdraDiferido.Location = New System.Drawing.Point(309, 185)
+        Me.LboxMinutoAdraDiferido.Name = "LboxMinutoAdraDiferido"
+        Me.LboxMinutoAdraDiferido.Size = New System.Drawing.Size(58, 58)
+        Me.LboxMinutoAdraDiferido.TabIndex = 11
+        '
+        'LboxHoraAdraDiferido
+        '
+        Me.LboxHoraAdraDiferido.FormattingEnabled = True
+        Me.LboxHoraAdraDiferido.ItemHeight = 18
+        Me.LboxHoraAdraDiferido.Items.AddRange(New Object() {"22", "15", "8", "7", "16", "17", "18", "19"})
+        Me.LboxHoraAdraDiferido.Location = New System.Drawing.Point(229, 185)
+        Me.LboxHoraAdraDiferido.Name = "LboxHoraAdraDiferido"
+        Me.LboxHoraAdraDiferido.Size = New System.Drawing.Size(58, 58)
+        Me.LboxHoraAdraDiferido.TabIndex = 10
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(191, 12)
+        Me.Label4.Location = New System.Drawing.Point(191, 10)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(207, 22)
         Me.Label4.TabIndex = 9
@@ -1342,11 +1399,11 @@ Partial Class FrmInstaladorKubo
         Me.LBAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.LBAdraDiferido.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
         Me.LBAdraDiferido.ForeColor = System.Drawing.Color.Red
-        Me.LBAdraDiferido.Location = New System.Drawing.Point(195, 224)
+        Me.LBAdraDiferido.Location = New System.Drawing.Point(194, 302)
         Me.LBAdraDiferido.Name = "LBAdraDiferido"
         Me.LBAdraDiferido.Size = New System.Drawing.Size(203, 42)
         Me.LBAdraDiferido.TabIndex = 6
-        Me.LBAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN "
+        Me.LBAdraDiferido.Text = "PROGRAMADO A LAS"
         Me.LBAdraDiferido.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.LBAdraDiferido.Visible = False
         '
@@ -1354,11 +1411,11 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtNotinAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.BtNotinAdraDiferido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(195, 163)
+        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(194, 249)
         Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
         Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(203, 45)
         Me.BtNotinAdraDiferido.TabIndex = 5
-        Me.BtNotinAdraDiferido.Text = "Programar ejecución para las 22:00 horas"
+        Me.BtNotinAdraDiferido.Text = "Programar ejecución a la hora seleccionada"
         Me.BtNotinAdraDiferido.UseVisualStyleBackColor = False
         '
         'BTTESTADRA
@@ -1366,9 +1423,9 @@ Partial Class FrmInstaladorKubo
         Me.BTTESTADRA.Enabled = False
         Me.BTTESTADRA.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BTTESTADRA.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BTTESTADRA.Location = New System.Drawing.Point(195, 281)
+        Me.BTTESTADRA.Location = New System.Drawing.Point(3, 289)
         Me.BTTESTADRA.Name = "BTTESTADRA"
-        Me.BTTESTADRA.Size = New System.Drawing.Size(191, 28)
+        Me.BTTESTADRA.Size = New System.Drawing.Size(128, 28)
         Me.BTTESTADRA.TabIndex = 4
         Me.BTTESTADRA.Text = "Test Adra (no usar)"
         Me.BTTESTADRA.UseVisualStyleBackColor = True
@@ -1421,7 +1478,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage12.Controls.Add(Me.Label2)
         Me.TabPage12.Location = New System.Drawing.Point(4, 27)
         Me.TabPage12.Name = "TabPage12"
-        Me.TabPage12.Size = New System.Drawing.Size(408, 323)
+        Me.TabPage12.Size = New System.Drawing.Size(408, 355)
         Me.TabPage12.TabIndex = 5
         Me.TabPage12.Text = "Notaría"
         '
@@ -2386,4 +2443,9 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents Label3 As Label
     Friend WithEvents TbIdentificaNotaria As TextBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents LboxMinutoAdraDiferido As ListBox
+    Friend WithEvents LboxHoraAdraDiferido As ListBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label5 As Label
 End Class
