@@ -122,7 +122,6 @@ Partial Class FrmInstaladorKubo
         Me.TbIdentificaNotaria = New System.Windows.Forms.TextBox()
         Me.LBAdraDiferido = New System.Windows.Forms.Label()
         Me.BtNotinAdraDiferido = New System.Windows.Forms.Button()
-        Me.BTTESTADRA = New System.Windows.Forms.Button()
         Me.BtLimpiarPerfil = New System.Windows.Forms.Button()
         Me.BtDynamic = New System.Windows.Forms.Button()
         Me.BtFocos = New System.Windows.Forms.Button()
@@ -213,6 +212,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpDeploy = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpNotin8Forzar = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpPuestoC = New System.Windows.Forms.ToolTip(Me.components)
+        Me.CbBetaAdra = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1297,6 +1297,7 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.CbBetaAdra)
         Me.TabPage10.Controls.Add(Me.Label7)
         Me.TabPage10.Controls.Add(Me.Label6)
         Me.TabPage10.Controls.Add(Me.Label5)
@@ -1307,7 +1308,6 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Controls.Add(Me.TbIdentificaNotaria)
         Me.TabPage10.Controls.Add(Me.LBAdraDiferido)
         Me.TabPage10.Controls.Add(Me.BtNotinAdraDiferido)
-        Me.TabPage10.Controls.Add(Me.BTTESTADRA)
         Me.TabPage10.Controls.Add(Me.BtLimpiarPerfil)
         Me.TabPage10.Controls.Add(Me.BtDynamic)
         Me.TabPage10.Controls.Add(Me.BtFocos)
@@ -1399,11 +1399,11 @@ Partial Class FrmInstaladorKubo
         Me.LBAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.LBAdraDiferido.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
         Me.LBAdraDiferido.ForeColor = System.Drawing.Color.Red
-        Me.LBAdraDiferido.Location = New System.Drawing.Point(194, 302)
+        Me.LBAdraDiferido.Location = New System.Drawing.Point(4, 185)
         Me.LBAdraDiferido.Name = "LBAdraDiferido"
-        Me.LBAdraDiferido.Size = New System.Drawing.Size(203, 42)
+        Me.LBAdraDiferido.Size = New System.Drawing.Size(185, 90)
         Me.LBAdraDiferido.TabIndex = 6
-        Me.LBAdraDiferido.Text = "PROGRAMADO A LAS"
+        Me.LBAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS"
         Me.LBAdraDiferido.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.LBAdraDiferido.Visible = False
         '
@@ -1411,25 +1411,12 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtNotinAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.BtNotinAdraDiferido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(194, 249)
+        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(195, 281)
         Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
         Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(203, 45)
         Me.BtNotinAdraDiferido.TabIndex = 5
         Me.BtNotinAdraDiferido.Text = "Programar ejecución a la hora seleccionada"
         Me.BtNotinAdraDiferido.UseVisualStyleBackColor = False
-        '
-        'BTTESTADRA
-        '
-        Me.BTTESTADRA.Enabled = False
-        Me.BTTESTADRA.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BTTESTADRA.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BTTESTADRA.Location = New System.Drawing.Point(3, 289)
-        Me.BTTESTADRA.Name = "BTTESTADRA"
-        Me.BTTESTADRA.Size = New System.Drawing.Size(128, 28)
-        Me.BTTESTADRA.TabIndex = 4
-        Me.BTTESTADRA.Text = "Test Adra (no usar)"
-        Me.BTTESTADRA.UseVisualStyleBackColor = True
-        Me.BTTESTADRA.Visible = False
         '
         'BtLimpiarPerfil
         '
@@ -2184,6 +2171,17 @@ Partial Class FrmInstaladorKubo
         Me.TlpPuestoC.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpPuestoC.ToolTipTitle = "Puesto Notin C"
         '
+        'CbBetaAdra
+        '
+        Me.CbBetaAdra.AutoSize = True
+        Me.CbBetaAdra.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CbBetaAdra.Location = New System.Drawing.Point(195, 256)
+        Me.CbBetaAdra.Name = "CbBetaAdra"
+        Me.CbBetaAdra.Size = New System.Drawing.Size(159, 21)
+        Me.CbBetaAdra.TabIndex = 15
+        Me.CbBetaAdra.Text = "Instalar Beta .Net"
+        Me.CbBetaAdra.UseVisualStyleBackColor = True
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2428,7 +2426,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbUptime As Label
     Friend WithEvents BtEstablew32F462 As Button
     Friend WithEvents BtLimpiarPerfil As Button
-    Friend WithEvents BTTESTADRA As Button
     Friend WithEvents TlpPerfilAdra As ToolTip
     Friend WithEvents TlpDeploy As ToolTip
     Friend WithEvents BtNotin8exeForzar As Button
@@ -2448,4 +2445,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
+    Friend WithEvents CbBetaAdra As CheckBox
 End Class

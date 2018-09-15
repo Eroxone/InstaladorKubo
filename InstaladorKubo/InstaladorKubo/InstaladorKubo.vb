@@ -4779,7 +4779,7 @@ Public Class FrmInstaladorKubo
 
     ' -----------------------------------------------------
     '-----------------------TEST ADRA ---------------------
-    Private Sub BTTESTADRA_Click(sender As Object, e As EventArgs) Handles BTTESTADRA.Click
+    Private Sub BTTESTADRA_Click(sender As Object, e As EventArgs)
         RegistroInstalacion("Ejecutado TEST ADRA. Botón solo habilitado para pruebas.")
         'Process.Start("C:\WINDOWS\system32\systempropertiesadvanced.exe")
         Shell("cmd.exe /c %WINDIR%\system32\systempropertiesadvanced.exe", AppWinStyle.Hide, True)
@@ -4846,7 +4846,6 @@ Public Class FrmInstaladorKubo
             End If
 
             If minutoseleccionado = Nothing Then
-                'minutoseleccionado = "0"
                 'MessageBox.Show("Selecciona un MINUTO válido en el listado.", "Sin selección en lista", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un minuto válido. Se aplica valor por defecto a en punto :00")
                 minutoseleccionado = 0
@@ -4880,7 +4879,7 @@ Public Class FrmInstaladorKubo
                 BtNotinAdraDiferido.BackColor = Color.LightSalmon
             End Try
         Else
-            RegistroInstalacion("-PROCESOS: No hay procesos que afecten a la instalación. Se prosigue sin ejecutar KILL.")
+            RegistroInstalacion("PROCESOS: No hay procesos que afecten a la instalación. Se prosigue sin ejecutar KILL.")
         End If
 
 
@@ -4941,25 +4940,61 @@ Public Class FrmInstaladorKubo
         End If
 
         'EJECUCIÓN .NET DESCARGADO
-        Try
-            Dim pnotinnet As New ProcessStartInfo()
-            pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
-            Dim notinnet As Process = Process.Start(pnotinnet)
-            notinnet.WaitForExit()
-            RegistroInstalacion("NOTIN .NET: Ejecutado correctamente desde F:\Notawin.Net. Se procede a obtener versión instalada.")
-            ObtenerVersionNet()
-        Catch ex As Exception
-            'BtEstableNet.BackColor = Color.LightSalmon
-            RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe. " & ex.Message)
-            BtNotinAdraDiferido.BackColor = Color.LightSalmon
-        End Try
+        If CbBetaAdra.Checked = True Then
+            Dim urlbeta As String = "https://static.unidata.es/NotinNetInstaller/v40/beta/NotinNetInstaller.exe"
+            Directory.CreateDirectory(RutaDescargas & "NotinNet")
+            Shell("cmd /c " & RutaDescargas & "wget.exe -q - --show-progress " & urlbeta & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.Hide, True)
+
+            'INSTALACION BETA NET
+            Try
+                Dim pnotinnetbeta As New ProcessStartInfo()
+                pnotinnetbeta.FileName = RutaDescargas & "NotinNet\NotinNetInstaller.exe"
+                Dim notinnetbeta As Process = Process.Start(pnotinnetbeta)
+                notinnetbeta.WaitForExit()
+
+                RegistroInstalacion("NOTIN .NET BETA: Ejecutado correctamente desde F:\Notawin.Net. Se procede a obtener versión instalada.")
+
+                ObtenerVersionNet()
+                'BtNotinNetF.Visible = True
+            Catch ex As Exception
+                RegistroInstalacion("ERROR NOTIN NET BETA: No se pudo ejecutar NotinNetInstaller Beta. " & ex.Message)
+                BtNotinAdraDiferido.BackColor = Color.LightSalmon
+            End Try
+
+            'COPIAR BETA A F:\NOTAWIN.NET
+            Try
+                File.Copy(RutaDescargas & "NotinNet\NotinNetInstaller.exe", "F:\Notawin.Net\NotinNetInstaller.exe", True)
+                RegistroInstalacion("BETA NET copiada correctamente a F:\Notawin.Net")
+            Catch ex As Exception
+                RegistroInstalacion("BETA NET. ERROR: No se pudo copiar a F:\Notawin.Net. " & ex.Message)
+                BtNotinAdraDiferido.BackColor = Color.LightSalmon
+            End Try
+
+
+            'INSTALACION ESTABLE NET
+        Else
+            Try
+                Dim pnotinnet As New ProcessStartInfo()
+                pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
+                Dim notinnet As Process = Process.Start(pnotinnet)
+                notinnet.WaitForExit()
+
+                RegistroInstalacion("NOTIN .NET: Ejecutado correctamente desde F:\Notawin.Net. Se procede a obtener versión instalada.")
+
+                ObtenerVersionNet()
+                'BtNotinNetF.Visible = True
+            Catch ex As Exception
+                RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe. " & ex.Message)
+                BtNotinAdraDiferido.BackColor = Color.LightSalmon
+            End Try
+        End If
 
         'SI TODO HA IDO BIEN
         RegistroInstalacion("= ACTUALIZACIÓN DIFERIDA ADRA FINALIZADA.=")
         EnvioMailADRA()
         BtNotinAdraDiferido.BackColor = Color.PaleGreen
         MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
+        'TODO AÑADIR ALGO EN EL INI PARA INDICAR QUE SE HIZO O NO BIEN
     End Sub
 
     Private Sub BtNotinAdraDiferido_MouseDown(sender As Object, e As MouseEventArgs) Handles BtNotinAdraDiferido.MouseDown
@@ -4973,7 +5008,7 @@ Public Class FrmInstaladorKubo
             minutoseleccionado = "00"
         End If
 
-        LBAdraDiferido.Text = "PROGRAMADO A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS."
+        LBAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS."
     End Sub
 
     Public Sub EnvioMailADRA()
