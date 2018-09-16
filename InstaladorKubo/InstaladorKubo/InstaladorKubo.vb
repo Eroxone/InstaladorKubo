@@ -5020,8 +5020,9 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("= ACTUALIZACIÓN DIFERIDA ADRA FINALIZADA.=")
         BtNotinAdraDiferido.BackColor = Color.PaleGreen
         LBAdraDiferido.Visible = False
-        EnvioMailADRA()
-        MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'EnvioMailADRA()
+        'MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "En verde todo correcto. Rojo indicará algún error. Revisa Log para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'TODO AÑADIR ALGO EN EL INI PARA INDICAR QUE SE HIZO O NO BIEN
     End Sub
 

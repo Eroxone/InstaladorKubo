@@ -1392,16 +1392,17 @@ Partial Class FrmInstaladorKubo
         Me.Label3.Font = New System.Drawing.Font("Lucida Bright", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(195, 37)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(203, 57)
+        Me.Label3.Size = New System.Drawing.Size(203, 70)
         Me.Label3.TabIndex = 8
-        Me.Label3.Text = "PREVIO: Indica en el margen inferior izquierdo tu Email. Añade en la siguiente ca" &
-    "silla un identificador de la Notaría (esto solo se usará para mostarlo en el Asu" &
-    "nto del correo):"
+        Me.Label3.Text = "EXPLICACIÓN: Selecciona una hora/minuto en los listados inferiores y clic en Prog" &
+    "ramar ejecucuón para activar el contador. A la hora seleccionada se actualizará " &
+    "la version en el despacho."
         '
         'TbIdentificaNotaria
         '
         Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(195, 97)
+        Me.TbIdentificaNotaria.Enabled = False
+        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(195, 110)
         Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
         Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 26)
         Me.TbIdentificaNotaria.TabIndex = 7
@@ -1909,6 +1910,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CBoxEmail.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CBoxEmail.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CBoxEmail.Enabled = False
         Me.CBoxEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.CBoxEmail.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
         Me.CBoxEmail.FormattingEnabled = True
