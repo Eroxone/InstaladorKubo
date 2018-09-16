@@ -158,6 +158,9 @@
         eT0xhvkHUsZ7QF0d5GIAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="Label3.Text" xml:space="preserve">
+    <value>EXPLICACIÓN: Selecciona una hora/minuto en los listados inferiores y clic en Programar ejecución para activar el contador. A la hora seleccionada se actualizará la version en el despacho. Más info al ejecutar la tarea.</value>
+  </data>
   <data name="BtDocRequisitos.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABkAAAAZCAYAAADE6YVjAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu

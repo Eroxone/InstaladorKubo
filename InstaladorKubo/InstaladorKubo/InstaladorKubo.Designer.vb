@@ -1394,9 +1394,7 @@ Partial Class FrmInstaladorKubo
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(203, 70)
         Me.Label3.TabIndex = 8
-        Me.Label3.Text = "EXPLICACIÓN: Selecciona una hora/minuto en los listados inferiores y clic en Prog" &
-    "ramar ejecucuón para activar el contador. A la hora seleccionada se actualizará " &
-    "la version en el despacho."
+        Me.Label3.Text = resources.GetString("Label3.Text")
         '
         'TbIdentificaNotaria
         '
