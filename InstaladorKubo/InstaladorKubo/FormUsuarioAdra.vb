@@ -165,9 +165,11 @@ Public Class FormUsuarioAdra
             MessageBox.Show("Selecciona previamente el Usuario sobre el que realizar la Limpieza.", "Usuario no seleccionado o no válido.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Exit Sub
         Else
+
             'LIMPIAR ESCRITORIO
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Notin 8.lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Word 2016.lnk")
+            Try
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Notin 8.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Word 2016.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\NotinControlClient (NR).lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\ABBYY FineReader 11.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Excel 2016.lnk")
@@ -215,7 +217,11 @@ Public Class FormUsuarioAdra
             File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ScanImg.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Nexus.lnk")
 
-            FrmInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos sobre iconos (NR).")
+                FrmInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos sobre iconos (NR).")
+
+            Catch ex As Exception
+                FrmInstaladorKubo.RegistroInstalacion("NO SE PUDO LIMPIAR EL PERFIL ADRA: " & ex.Message)
+            End Try
         End If
     End Sub
 

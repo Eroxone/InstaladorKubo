@@ -112,6 +112,7 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.CbBetaAdra = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -212,7 +213,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpDeploy = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpNotin8Forzar = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpPuestoC = New System.Windows.Forms.ToolTip(Me.components)
-        Me.CbBetaAdra = New System.Windows.Forms.CheckBox()
+        Me.TlpBetaNetAdra = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1318,10 +1319,21 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
+        'CbBetaAdra
+        '
+        Me.CbBetaAdra.AutoSize = True
+        Me.CbBetaAdra.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CbBetaAdra.Location = New System.Drawing.Point(195, 256)
+        Me.CbBetaAdra.Name = "CbBetaAdra"
+        Me.CbBetaAdra.Size = New System.Drawing.Size(159, 21)
+        Me.CbBetaAdra.TabIndex = 15
+        Me.CbBetaAdra.Text = "Instalar Beta .Net"
+        Me.CbBetaAdra.UseVisualStyleBackColor = True
+        '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(288, 164)
+        Me.Label7.Location = New System.Drawing.Point(288, 142)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(12, 18)
         Me.Label7.TabIndex = 14
@@ -1330,7 +1342,7 @@ Partial Class FrmInstaladorKubo
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(306, 164)
+        Me.Label6.Location = New System.Drawing.Point(306, 142)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(64, 18)
         Me.Label6.TabIndex = 13
@@ -1339,7 +1351,7 @@ Partial Class FrmInstaladorKubo
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(227, 164)
+        Me.Label5.Location = New System.Drawing.Point(215, 142)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(48, 18)
         Me.Label5.TabIndex = 12
@@ -1349,20 +1361,20 @@ Partial Class FrmInstaladorKubo
         '
         Me.LboxMinutoAdraDiferido.FormattingEnabled = True
         Me.LboxMinutoAdraDiferido.ItemHeight = 18
-        Me.LboxMinutoAdraDiferido.Items.AddRange(New Object() {"0", "15", "30", "45"})
-        Me.LboxMinutoAdraDiferido.Location = New System.Drawing.Point(309, 185)
+        Me.LboxMinutoAdraDiferido.Items.AddRange(New Object() {"0", "15", "30", "45", "5", "10", "20", "25", "35", "40", "50", "55"})
+        Me.LboxMinutoAdraDiferido.Location = New System.Drawing.Point(309, 167)
         Me.LboxMinutoAdraDiferido.Name = "LboxMinutoAdraDiferido"
-        Me.LboxMinutoAdraDiferido.Size = New System.Drawing.Size(58, 58)
+        Me.LboxMinutoAdraDiferido.Size = New System.Drawing.Size(69, 76)
         Me.LboxMinutoAdraDiferido.TabIndex = 11
         '
         'LboxHoraAdraDiferido
         '
         Me.LboxHoraAdraDiferido.FormattingEnabled = True
         Me.LboxHoraAdraDiferido.ItemHeight = 18
-        Me.LboxHoraAdraDiferido.Items.AddRange(New Object() {"22", "15", "8", "7", "16", "17", "18", "19"})
-        Me.LboxHoraAdraDiferido.Location = New System.Drawing.Point(229, 185)
+        Me.LboxHoraAdraDiferido.Items.AddRange(New Object() {"22", "15", "8", "7", "14", "16", "17", "18", "19", "20", "0", "3", "5", "6", "9", "10", "11", "12", "13", "21", "23"})
+        Me.LboxHoraAdraDiferido.Location = New System.Drawing.Point(218, 167)
         Me.LboxHoraAdraDiferido.Name = "LboxHoraAdraDiferido"
-        Me.LboxHoraAdraDiferido.Size = New System.Drawing.Size(58, 58)
+        Me.LboxHoraAdraDiferido.Size = New System.Drawing.Size(69, 76)
         Me.LboxHoraAdraDiferido.TabIndex = 10
         '
         'Label4
@@ -1377,10 +1389,10 @@ Partial Class FrmInstaladorKubo
         '
         'Label3
         '
-        Me.Label3.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Lucida Bright", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(195, 37)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(203, 81)
+        Me.Label3.Size = New System.Drawing.Size(203, 57)
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "PREVIO: Indica en el margen inferior izquierdo tu Email. Añade en la siguiente ca" &
     "silla un identificador de la Notaría (esto solo se usará para mostarlo en el Asu" &
@@ -1389,7 +1401,7 @@ Partial Class FrmInstaladorKubo
         'TbIdentificaNotaria
         '
         Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(195, 121)
+        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(195, 97)
         Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
         Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 26)
         Me.TbIdentificaNotaria.TabIndex = 7
@@ -2171,16 +2183,10 @@ Partial Class FrmInstaladorKubo
         Me.TlpPuestoC.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpPuestoC.ToolTipTitle = "Puesto Notin C"
         '
-        'CbBetaAdra
+        'TlpBetaNetAdra
         '
-        Me.CbBetaAdra.AutoSize = True
-        Me.CbBetaAdra.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CbBetaAdra.Location = New System.Drawing.Point(195, 256)
-        Me.CbBetaAdra.Name = "CbBetaAdra"
-        Me.CbBetaAdra.Size = New System.Drawing.Size(159, 21)
-        Me.CbBetaAdra.TabIndex = 15
-        Me.CbBetaAdra.Text = "Instalar Beta .Net"
-        Me.CbBetaAdra.UseVisualStyleBackColor = True
+        Me.TlpBetaNetAdra.IsBalloon = True
+        Me.TlpBetaNetAdra.ToolTipTitle = "Descargará e Instalará Beta de .Net"
         '
         'FrmInstaladorKubo
         '
@@ -2446,4 +2452,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents CbBetaAdra As CheckBox
+    Friend WithEvents TlpBetaNetAdra As ToolTip
 End Class

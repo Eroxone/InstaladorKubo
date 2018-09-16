@@ -1677,6 +1677,8 @@ Public Class FrmInstaladorKubo
         TlpPuestoC.SetToolTip(CbPuestoNotin, "Descarga y descomprime en C raíz carpetas como Notawin.Net, Plantillas, Accesos directos al Escritorio.." & vbCrLf & "Este proceso se realizará tras una instalación Notin-Kubo-Nexus.")
         TlpPuestoC.AutoPopDelay = 10000
         TlpPuestoC.IsBalloon = True
+
+        TlpBetaNetAdra.SetToolTip(CbBetaAdra, "Marcando esta casilla se descargará la última Beta de Net. En caso contrario se forzará la instalación de la versión Estable.")
     End Sub
 #End Region
 
@@ -4824,18 +4826,33 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BtNotinAdraDiferido_Click(sender As Object, e As EventArgs) Handles BtNotinAdraDiferido.Click
+        'COMPROBAR QUE TRABAJAMOS EN UN SERVIDOR NOTINRAPP.
+        If NotinRapp() = False Then
+            MessageBox.Show("Por seguridad solo se permite la ejecución en Entornos ADRA bajo el host NotinRapp. Se cancela la ejecución.", "Ejecución fuera de AdRa", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            RegistroInstalacion("ADRA: Se cancela la actualización diferida de Adra. El Host no coincide.")
+            BtNotinAdraDiferido.BackColor = SystemColors.Control
+            LBAdraDiferido.Visible = False
+            Exit Sub
+        Else
+            RegistroInstalacion("Detectado entorno ADRA. Se permite la ejecución de Actualización Adra Diferida.")
+        End If
 
-        'MENSAJE ADVERTENCIA
-        Dim adradiferido As DialogResult = MessageBox.Show("A LA HORA SELECCIONADA: Se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net." & vbCrLf & "Si has indicando una dirección de Correo en la parte inferior izquierda de la aplicación se te notificará al terminar." & vbCrLf & "Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        'MENSAJE ADVERTENCIA PROCESOS
+        Dim horaseleccionada = LboxHoraAdraDiferido.SelectedItem
+        Dim minutoseleccionado = LboxMinutoAdraDiferido.SelectedItem
+        If minutoseleccionado = Nothing Then
+            minutoseleccionado = "00"
+        End If
+
+
+        Dim adradiferido As DialogResult = MessageBox.Show("PROGRAMAR EJECUCIÓN A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS." & vbCrLf & "En ese momento se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net Estable o Beta según se marque." & vbCrLf & "Bajo un entorno estándar completar este proceso llevará quince minutos. Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If adradiferido = DialogResult.Yes Then
-            RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA =" & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
+            RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA = HORA: " & horaseleccionada & ":" & minutoseleccionado & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
 
             'PARADA HASTA LAS 22.00 HORAS
             'Dim horaejecucion As String = "22:0"
             'Dim horaejecucion As String = "10:51"
 
-            Dim horaseleccionada = LboxHoraAdraDiferido.SelectedItem
-            Dim minutoseleccionado = LboxMinutoAdraDiferido.SelectedItem
 
             If horaseleccionada = Nothing Then
                 'horaseleccionada = "22"
@@ -4847,7 +4864,7 @@ Public Class FrmInstaladorKubo
 
             If minutoseleccionado = Nothing Then
                 'MessageBox.Show("Selecciona un MINUTO válido en el listado.", "Sin selección en lista", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un minuto válido. Se aplica valor por defecto a en punto :00")
+                RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un minuto válido. Se aplica valor por defecto a las en punto.")
                 minutoseleccionado = 0
             End If
 
@@ -4858,6 +4875,8 @@ Public Class FrmInstaladorKubo
                 horaactual = DateTime.Now.Hour & ":" & DateTime.Now.Minute
                 Threading.Thread.Sleep(20000)
             End While
+            LBAdraDiferido.Text = "PROCESO DE ACTUALIZACION EN EJECUCIÓN. ESPERA..."
+            LBAdraDiferido.ForeColor = Color.ForestGreen
             ActualizacionDiferidaAdra()
         Else
             BtNotinAdraDiferido.BackColor = SystemColors.Control
@@ -4913,6 +4932,14 @@ Public Class FrmInstaladorKubo
         Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
         Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.Hide, True)
         RegistroInstalacion("NOTIN8 descargado correctamente desde static.unidata.es")
+
+        Try
+            File.Delete("F:\Notawin.Net\NotinNetInstaller.exe")
+            RegistroInstalacion("LIMPIAR VERSION NET en F:\Notawin.Net para evitar conflictos de versión Estable/Beta")
+        Catch ex As Exception
+            RegistroInstalacion("ADVERTENCIA. No se pudo limpiar Versión de Net en F:\Notawin.Net. " & ex.Message)
+        End Try
+
         Try
             Dim pnotin8 As New ProcessStartInfo()
             pnotin8.FileName = RutaDescargas & "NotinNet\Notin8.exe"
@@ -4989,10 +5016,11 @@ Public Class FrmInstaladorKubo
             End Try
         End If
 
-        'SI TODO HA IDO BIEN
+        'TERMINAMOS PROCESO Y AVISAMOS
         RegistroInstalacion("= ACTUALIZACIÓN DIFERIDA ADRA FINALIZADA.=")
-        EnvioMailADRA()
         BtNotinAdraDiferido.BackColor = Color.PaleGreen
+        LBAdraDiferido.Visible = False
+        EnvioMailADRA()
         MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'TODO AÑADIR ALGO EN EL INI PARA INDICAR QUE SE HIZO O NO BIEN
     End Sub
@@ -5052,6 +5080,7 @@ Public Class FrmInstaladorKubo
         End If
 
     End Sub
+
 
     '    Private Sub LboxHoraAdraDiferido_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LboxHoraAdraDiferido.SelectedIndexChanged
     '       BtNotinAdraDiferido.Text = "Programar ejecución a las " & LboxHoraAdraDiferido.SelectedItem & ":" & LboxMinutoAdraDiferido.SelectedItem & " horas."
