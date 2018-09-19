@@ -32,11 +32,11 @@
     <ProductName>InstaladorKubo</ProductName>
     <PublisherName>InstaladorKubo</PublisherName>
     <SuiteName>Instalador</SuiteName>
-    <MinimumRequiredVersion>1.0.3.20</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.3.25</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>22</ApplicationRevision>
+    <ApplicationRevision>26</ApplicationRevision>
     <ApplicationVersion>1.0.3.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

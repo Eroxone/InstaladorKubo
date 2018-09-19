@@ -5044,7 +5044,7 @@ Public Class FrmInstaladorKubo
             horaseleccionada = "22"
         End If
         If minutoseleccionado = Nothing Then
-            minutoseleccionado = "00"
+            minutoseleccionado = "0"
         End If
 
         LBAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS."
