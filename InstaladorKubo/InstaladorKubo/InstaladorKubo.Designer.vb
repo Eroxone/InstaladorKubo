@@ -2194,7 +2194,7 @@ Partial Class FrmInstaladorKubo
         Me.LbVersionApp.AutoSize = True
         Me.LbVersionApp.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbVersionApp.ForeColor = System.Drawing.Color.Silver
-        Me.LbVersionApp.Location = New System.Drawing.Point(1046, 56)
+        Me.LbVersionApp.Location = New System.Drawing.Point(942, 56)
         Me.LbVersionApp.Name = "LbVersionApp"
         Me.LbVersionApp.Size = New System.Drawing.Size(52, 15)
         Me.LbVersionApp.TabIndex = 53

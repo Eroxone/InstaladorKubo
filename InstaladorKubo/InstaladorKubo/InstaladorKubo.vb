@@ -82,7 +82,15 @@ Public Class FrmInstaladorKubo
         'TODO Muestre versión
         Try
             'LbVersionApp.Text = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString
-            LbVersionApp.Text = My.Application.Info.Version.Revision
+            'LbVersionApp.Text = My.Application.Info.Version.Revision
+            Dim myVersion As Version
+
+            If ApplicationDeployment.IsNetworkDeployed Then
+                myVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion
+                LbVersionApp.Text = String.Concat("ClickOnce: v", myVersion)
+            End If
+
+
         Catch ex As Exception
 
         End Try
