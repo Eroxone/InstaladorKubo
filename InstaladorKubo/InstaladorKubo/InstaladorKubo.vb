@@ -4840,8 +4840,14 @@ Public Class FrmInstaladorKubo
         'MENSAJE ADVERTENCIA PROCESOS
         Dim horaseleccionada = LboxHoraAdraDiferido.SelectedItem
         Dim minutoseleccionado = LboxMinutoAdraDiferido.SelectedItem
+
+        If horaseleccionada = Nothing Then
+            horaseleccionada = "22"
+            RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado una HORA válida. Se aplica valor por defecto a las 22 horas.")
+        End If
         If minutoseleccionado = Nothing Then
-            minutoseleccionado = "00"
+            minutoseleccionado = "0"
+            RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un MINUTO válido. Se aplica valor por defecto a las en punto.")
         End If
 
 
@@ -4854,19 +4860,19 @@ Public Class FrmInstaladorKubo
             'Dim horaejecucion As String = "10:51"
 
 
-            If horaseleccionada = Nothing Then
-                'horaseleccionada = "22"
-                MessageBox.Show("Selecciona una HORA válida en el listado.", "Sin selección en lista", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                BtNotinAdraDiferido.BackColor = SystemColors.Control
-                LBAdraDiferido.Visible = False
-                Exit Sub
-            End If
+            'If horaseleccionada = Nothing Then
+            '    'horaseleccionada = "22"
+            '    MessageBox.Show("Selecciona una HORA válida en el listado.", "Sin selección en lista", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            '    BtNotinAdraDiferido.BackColor = SystemColors.Control
+            '    LBAdraDiferido.Visible = False
+            '    Exit Sub
+            'End If
 
-            If minutoseleccionado = Nothing Then
-                'MessageBox.Show("Selecciona un MINUTO válido en el listado.", "Sin selección en lista", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un minuto válido. Se aplica valor por defecto a las en punto.")
-                minutoseleccionado = 0
-            End If
+            'If minutoseleccionado = Nothing Then
+            '    'MessageBox.Show("Selecciona un MINUTO válido en el listado.", "Sin selección en lista", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            '    RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un minuto válido. Se aplica valor por defecto a las en punto.")
+            '    minutoseleccionado = "0"
+            'End If
 
 
             Dim horaprogramada = horaseleccionada & ":" & minutoseleccionado
@@ -5033,6 +5039,10 @@ Public Class FrmInstaladorKubo
 
         Dim horaseleccionada = LboxHoraAdraDiferido.SelectedItem
         Dim minutoseleccionado = LboxMinutoAdraDiferido.SelectedItem
+
+        If horaseleccionada = Nothing Then
+            horaseleccionada = "22"
+        End If
         If minutoseleccionado = Nothing Then
             minutoseleccionado = "00"
         End If
