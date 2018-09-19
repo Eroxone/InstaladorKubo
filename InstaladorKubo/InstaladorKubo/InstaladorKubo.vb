@@ -7,6 +7,7 @@ Imports InstaladorKubo.FrmConfigurarISL
 Imports InstaladorKubo.ObtenerEjecutables
 Imports System.Environment
 Imports InstaladorKubo.Chocolatey
+Imports System.Deployment.Application
 
 
 'WEB DE INSTALACIÓN
@@ -75,6 +76,17 @@ Public Class FrmInstaladorKubo
 
         'Version FrameWork Sistema
         ObtenerVersionFW()
+
+        'Mostrar versión de Aplicación
+
+        'TODO Muestre versión
+        Try
+            'LbVersionApp.Text = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString
+            LbVersionApp.Text = My.Application.Info.Version.Revision
+        Catch ex As Exception
+
+        End Try
+
 
     End Sub
 
@@ -5080,7 +5092,7 @@ Public Class FrmInstaladorKubo
 
 
             Try
-            smtp.Send(correo)
+                smtp.Send(correo)
                 RegistroInstalacion("Correo de notificación enviado a " & CBoxEmail.Text)
             Catch ex As Exception
                 RegistroInstalacion("ERROR Email: " & ex.Message)

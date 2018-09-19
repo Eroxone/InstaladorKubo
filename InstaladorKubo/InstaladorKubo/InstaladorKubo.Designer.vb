@@ -214,6 +214,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpNotin8Forzar = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpPuestoC = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpBetaNetAdra = New System.Windows.Forms.ToolTip(Me.components)
+        Me.LbVersionApp = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -2188,12 +2189,24 @@ Partial Class FrmInstaladorKubo
         Me.TlpBetaNetAdra.IsBalloon = True
         Me.TlpBetaNetAdra.ToolTipTitle = "Descargará e Instalará Beta de .Net"
         '
+        'LbVersionApp
+        '
+        Me.LbVersionApp.AutoSize = True
+        Me.LbVersionApp.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbVersionApp.ForeColor = System.Drawing.Color.Silver
+        Me.LbVersionApp.Location = New System.Drawing.Point(1046, 56)
+        Me.LbVersionApp.Name = "LbVersionApp"
+        Me.LbVersionApp.Size = New System.Drawing.Size(52, 15)
+        Me.LbVersionApp.TabIndex = 53
+        Me.LbVersionApp.Text = "Versión"
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1172, 692)
+        Me.Controls.Add(Me.LbVersionApp)
         Me.Controls.Add(Me.LbEnlacesWeb)
         Me.Controls.Add(Me.BtDocRequisitos)
         Me.Controls.Add(Me.BtPaginaActiva)
@@ -2453,4 +2466,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents Label5 As Label
     Friend WithEvents CbBetaAdra As CheckBox
     Friend WithEvents TlpBetaNetAdra As ToolTip
+    Friend WithEvents LbVersionApp As Label
 End Class
