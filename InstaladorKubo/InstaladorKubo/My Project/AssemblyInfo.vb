@@ -15,7 +15,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCopyright("Copyright ©  2018")>
 <Assembly: AssemblyTrademark("Instalador")>
 
-<Assembly: ComVisible(False)>
+<Assembly: ComVisible(True)>
 
 'El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
 <Assembly: Guid("e45223a7-ffc2-42f2-a99f-8e99e57188be")>
