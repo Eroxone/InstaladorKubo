@@ -3832,7 +3832,6 @@ Public Class FrmInstaladorKubo
                     notinnet.WaitForExit()
                     RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
                     ObtenerVersionNet()
-                    BtNotin8exe.BackColor = Color.PaleGreen
                 Catch ex As Exception
                     'BtEstableNet.BackColor = Color.LightSalmon
                     RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
@@ -3846,6 +3845,8 @@ Public Class FrmInstaladorKubo
         End If
 
         MessageBox.Show("Actualización Versión Notin8 finalizada correctamente.", "Actualizar Notaría", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        BtNotin8exe.BackColor = Color.PaleGreen
+
         'Como no puedo comprobar que versión de Net tiene dejo todas en gris
         BtNetBeta.BackColor = SystemColors.Control
         BtEstablex64F462.BackColor = SystemColors.Control
@@ -3932,7 +3933,6 @@ Public Class FrmInstaladorKubo
                 notinnet.WaitForExit()
                 RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
                 ObtenerVersionNet()
-                BtNotin8exeForzar.BackColor = Color.PaleGreen
             Catch ex As Exception
                 'BtEstableNet.BackColor = Color.LightSalmon
                 RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
@@ -3947,7 +3947,10 @@ Public Class FrmInstaladorKubo
             BtNetBetax64F462.BackColor = SystemColors.Control
             BtNetBetaW32F462.BackColor = SystemColors.Control
             RegistroInstalacion("TERMINADO. Proceso Notin8 aplicando Deploy finalizó. Revisa resultados.")
+
             MessageBox.Show("Actualización Versión Notin8 finalizada correctamente.", "Actualizar Notaría Deploy", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            BtNotin8exeForzar.BackColor = Color.PaleGreen
+
         Else
             RegistroInstalacion("El Usuario cancela el Forzado para Instalar Notin8.exe")
         End If
