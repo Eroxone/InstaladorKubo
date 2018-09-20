@@ -32,7 +32,7 @@ Partial Class FormPassword
         Me.TbPassword.Font = New System.Drawing.Font("Lucida Bright", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TbPassword.ForeColor = System.Drawing.Color.Blue
         Me.TbPassword.Location = New System.Drawing.Point(19, 54)
-        Me.TbPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TbPassword.Margin = New System.Windows.Forms.Padding(2)
         Me.TbPassword.Name = "TbPassword"
         Me.TbPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TbPassword.Size = New System.Drawing.Size(175, 36)
@@ -58,7 +58,7 @@ Partial Class FormPassword
         Me.Controls.Add(Me.TbPassword)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPassword"

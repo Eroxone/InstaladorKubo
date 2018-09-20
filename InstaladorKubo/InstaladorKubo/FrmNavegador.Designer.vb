@@ -33,7 +33,7 @@ Partial Class FrmNavegador
         Me.Navegador.AllowWebBrowserDrop = False
         Me.Navegador.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Navegador.Location = New System.Drawing.Point(0, 0)
-        Me.Navegador.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Navegador.Margin = New System.Windows.Forms.Padding(2)
         Me.Navegador.MinimumSize = New System.Drawing.Size(15, 16)
         Me.Navegador.Name = "Navegador"
         Me.Navegador.ScrollBarsEnabled = False
@@ -61,7 +61,7 @@ Partial Class FrmNavegador
         Me.Controls.Add(Me.Navegador)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FrmNavegador"
