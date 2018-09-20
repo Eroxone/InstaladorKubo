@@ -3802,7 +3802,6 @@ Public Class FrmInstaladorKubo
             Dim notin8 As Process = Process.Start(pnotin8)
             notin8.WaitForExit()
             RegistroInstalacion("ÉXITO: NOTIN8 ejecutado correctamente.")
-            BtNotin8exe.BackColor = Color.PaleGreen
             LeerLogMigradorSQL()
         Catch ex As Exception
             BtNotin8exe.BackColor = Color.LightSalmon
@@ -3833,9 +3832,11 @@ Public Class FrmInstaladorKubo
                     notinnet.WaitForExit()
                     RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
                     ObtenerVersionNet()
+                    BtNotin8exe.BackColor = Color.PaleGreen
                 Catch ex As Exception
                     'BtEstableNet.BackColor = Color.LightSalmon
                     RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
+                    BtNotin8exe.BackColor = Color.LightSalmon
                 End Try
             Else
                 BtNotin8exe.BackColor = Color.LightSalmon
@@ -3896,7 +3897,6 @@ Public Class FrmInstaladorKubo
                 Dim notin8 As Process = Process.Start(pnotin8)
                 notin8.WaitForExit()
                 'RegistroInstalacion("ÉXITO: NOTIN8 ejecutado correctamente.")
-                BtNotin8exeForzar.BackColor = Color.PaleGreen
                 LeerLogMigradorSQL()
             Catch ex As Exception
                 BtNotin8exeForzar.BackColor = Color.LightSalmon
@@ -3932,10 +3932,12 @@ Public Class FrmInstaladorKubo
                 notinnet.WaitForExit()
                 RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
                 ObtenerVersionNet()
+                BtNotin8exeForzar.BackColor = Color.PaleGreen
             Catch ex As Exception
                 'BtEstableNet.BackColor = Color.LightSalmon
                 RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
                 MessageBox.Show("Actualización Versión Notin8 finalizada con errores." & vbCrLf & "Consulta Logger para mas detalles.", "Actualizar Notaría Deploy", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                BtNotin8exeForzar.BackColor = Color.LightSalmon
             End Try
 
             'Como no puedo comprobar que versión de Net tiene dejo todas en gris
