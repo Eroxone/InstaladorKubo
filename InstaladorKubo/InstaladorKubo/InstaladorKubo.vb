@@ -89,12 +89,25 @@ Public Class FrmInstaladorKubo
                 myVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion
                 LbVersionApp.Text = String.Concat("ClickOnce: v", myVersion)
             End If
-
-
         Catch ex As Exception
-
+            RegistroInstalacion("No se detectó la versión de ClciOnce Publicada. Esto no es un error en la App")
         End Try
 
+        'Comprobar si existe Office 2016 x64 para mostrar .Net con x64
+
+        If File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") Then
+            BtEstablex64F462.Enabled = True
+            BtNetBetax64F462.Enabled = True
+            'LbWordx64.Text = "Versión Office2016 x64"
+
+            BtEstableNet.Enabled = False
+            BtNetBeta.Enabled = False
+            BtEstablew32F462.Enabled = False
+            BtNetBetaW32F462.Enabled = False
+        Else
+            LbWordx64.Enabled = False
+
+        End If
 
     End Sub
 

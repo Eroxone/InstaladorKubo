@@ -215,6 +215,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpPuestoC = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpBetaNetAdra = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbVersionApp = New System.Windows.Forms.Label()
+        Me.LbWordx64 = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -967,6 +968,7 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.LbWordx64)
         Me.TabPage11.Controls.Add(Me.BtNotin8exeForzar)
         Me.TabPage11.Controls.Add(Me.BtEstablew32F462)
         Me.TabPage11.Controls.Add(Me.BtLogNet)
@@ -1042,9 +1044,10 @@ Partial Class FrmInstaladorKubo
         '
         'BtNetBetax64F462
         '
+        Me.BtNetBetax64F462.Enabled = False
         Me.BtNetBetax64F462.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtNetBetax64F462.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtNetBetax64F462.Location = New System.Drawing.Point(8, 250)
+        Me.BtNetBetax64F462.Location = New System.Drawing.Point(8, 290)
         Me.BtNetBetax64F462.Name = "BtNetBetax64F462"
         Me.BtNetBetax64F462.Size = New System.Drawing.Size(167, 28)
         Me.BtNetBetax64F462.TabIndex = 45
@@ -1126,8 +1129,9 @@ Partial Class FrmInstaladorKubo
         '
         'BtEstablex64F462
         '
+        Me.BtEstablex64F462.Enabled = False
         Me.BtEstablex64F462.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtEstablex64F462.Location = New System.Drawing.Point(8, 210)
+        Me.BtEstablex64F462.Location = New System.Drawing.Point(8, 250)
         Me.BtEstablex64F462.Name = "BtEstablex64F462"
         Me.BtEstablex64F462.Size = New System.Drawing.Size(167, 28)
         Me.BtEstablex64F462.TabIndex = 38
@@ -2200,6 +2204,16 @@ Partial Class FrmInstaladorKubo
         Me.LbVersionApp.TabIndex = 53
         Me.LbVersionApp.Text = "Versión"
         '
+        'LbWordx64
+        '
+        Me.LbWordx64.AutoSize = True
+        Me.LbWordx64.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.LbWordx64.Location = New System.Drawing.Point(5, 224)
+        Me.LbWordx64.Name = "LbWordx64"
+        Me.LbWordx64.Size = New System.Drawing.Size(186, 17)
+        Me.LbWordx64.TabIndex = 51
+        Me.LbWordx64.Text = "Versión Office2016 x64"
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2467,4 +2481,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents CbBetaAdra As CheckBox
     Friend WithEvents TlpBetaNetAdra As ToolTip
     Friend WithEvents LbVersionApp As Label
+    Friend WithEvents LbWordx64 As Label
 End Class
