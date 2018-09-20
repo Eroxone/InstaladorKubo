@@ -31,31 +31,34 @@ Partial Class FormPassword
         '
         Me.TbPassword.Font = New System.Drawing.Font("Lucida Bright", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TbPassword.ForeColor = System.Drawing.Color.Blue
-        Me.TbPassword.Location = New System.Drawing.Point(25, 67)
+        Me.TbPassword.Location = New System.Drawing.Point(19, 54)
+        Me.TbPassword.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.TbPassword.Name = "TbPassword"
         Me.TbPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TbPassword.Size = New System.Drawing.Size(232, 43)
+        Me.TbPassword.Size = New System.Drawing.Size(175, 36)
         Me.TbPassword.TabIndex = 0
         '
         'LbPassword
         '
         Me.LbPassword.AutoSize = True
         Me.LbPassword.Font = New System.Drawing.Font("Lucida Bright", 18.0!, System.Drawing.FontStyle.Bold)
-        Me.LbPassword.Location = New System.Drawing.Point(35, 18)
+        Me.LbPassword.Location = New System.Drawing.Point(26, 15)
+        Me.LbPassword.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LbPassword.Name = "LbPassword"
-        Me.LbPassword.Size = New System.Drawing.Size(193, 34)
+        Me.LbPassword.Size = New System.Drawing.Size(154, 27)
         Me.LbPassword.TabIndex = 1
         Me.LbPassword.Text = "Contraseña:"
         '
         'FormPassword
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(281, 125)
+        Me.ClientSize = New System.Drawing.Size(211, 102)
         Me.Controls.Add(Me.LbPassword)
         Me.Controls.Add(Me.TbPassword)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPassword"

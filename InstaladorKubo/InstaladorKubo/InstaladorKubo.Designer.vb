@@ -83,6 +83,7 @@ Partial Class FrmInstaladorKubo
         Me.BtExcepJava = New System.Windows.Forms.Button()
         Me.BtJava = New System.Windows.Forms.Button()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
+        Me.LbWordx64 = New System.Windows.Forms.Label()
         Me.BtNotin8exeForzar = New System.Windows.Forms.Button()
         Me.BtEstablew32F462 = New System.Windows.Forms.Button()
         Me.BtLogNet = New System.Windows.Forms.Button()
@@ -215,7 +216,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpPuestoC = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpBetaNetAdra = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbVersionApp = New System.Windows.Forms.Label()
-        Me.LbWordx64 = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -989,6 +989,16 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Size = New System.Drawing.Size(408, 355)
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = ".Net"
+        '
+        'LbWordx64
+        '
+        Me.LbWordx64.AutoSize = True
+        Me.LbWordx64.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.LbWordx64.Location = New System.Drawing.Point(5, 224)
+        Me.LbWordx64.Name = "LbWordx64"
+        Me.LbWordx64.Size = New System.Drawing.Size(186, 17)
+        Me.LbWordx64.TabIndex = 51
+        Me.LbWordx64.Text = "Versión Office2016 x64"
         '
         'BtNotin8exeForzar
         '
@@ -2203,16 +2213,6 @@ Partial Class FrmInstaladorKubo
         Me.LbVersionApp.Size = New System.Drawing.Size(52, 15)
         Me.LbVersionApp.TabIndex = 53
         Me.LbVersionApp.Text = "Versión"
-        '
-        'LbWordx64
-        '
-        Me.LbWordx64.AutoSize = True
-        Me.LbWordx64.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.LbWordx64.Location = New System.Drawing.Point(5, 224)
-        Me.LbWordx64.Name = "LbWordx64"
-        Me.LbWordx64.Size = New System.Drawing.Size(186, 17)
-        Me.LbWordx64.TabIndex = 51
-        Me.LbWordx64.Text = "Versión Office2016 x64"
         '
         'FrmInstaladorKubo
         '
