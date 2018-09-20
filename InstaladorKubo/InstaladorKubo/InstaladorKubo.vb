@@ -104,9 +104,10 @@ Public Class FrmInstaladorKubo
             BtNetBeta.Enabled = False
             BtEstablew32F462.Enabled = False
             BtNetBetaW32F462.Enabled = False
+
+            LbSitienesF462.Enabled = False
         Else
             LbWordx64.Enabled = False
-
         End If
 
     End Sub
@@ -3832,18 +3833,18 @@ Public Class FrmInstaladorKubo
                     notinnet.WaitForExit()
                     RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
                     ObtenerVersionNet()
-                    MessageBox.Show("Actualización Versión Notin8 finalizada.", "Actualizar Notaría", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Catch ex As Exception
                     'BtEstableNet.BackColor = Color.LightSalmon
                     RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
                 End Try
             Else
                 BtNotin8exe.BackColor = Color.LightSalmon
+                MessageBox.Show("Actualización Versión Notin8 finalizada con errores." & vbCrLf & "Consulta Logger para mas detalles.", "Actualizar Notaría", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Exit Sub
             End If
         End If
 
-
+        MessageBox.Show("Actualización Versión Notin8 finalizada correctamente.", "Actualizar Notaría", MessageBoxButtons.OK, MessageBoxIcon.Information)
         'Como no puedo comprobar que versión de Net tiene dejo todas en gris
         BtNetBeta.BackColor = SystemColors.Control
         BtEstablex64F462.BackColor = SystemColors.Control
@@ -3934,6 +3935,7 @@ Public Class FrmInstaladorKubo
             Catch ex As Exception
                 'BtEstableNet.BackColor = Color.LightSalmon
                 RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
+                MessageBox.Show("Actualización Versión Notin8 finalizada con errores." & vbCrLf & "Consulta Logger para mas detalles.", "Actualizar Notaría Deploy", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End Try
 
             'Como no puedo comprobar que versión de Net tiene dejo todas en gris
@@ -3943,10 +3945,12 @@ Public Class FrmInstaladorKubo
             BtNetBetax64F462.BackColor = SystemColors.Control
             BtNetBetaW32F462.BackColor = SystemColors.Control
             RegistroInstalacion("TERMINADO. Proceso Notin8 aplicando Deploy finalizó. Revisa resultados.")
+            MessageBox.Show("Actualización Versión Notin8 finalizada correctamente.", "Actualizar Notaría Deploy", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             RegistroInstalacion("El Usuario cancela el Forzado para Instalar Notin8.exe")
         End If
 
+        BtNotin8exe.BackColor = SystemColors.Control
     End Sub
 
 
