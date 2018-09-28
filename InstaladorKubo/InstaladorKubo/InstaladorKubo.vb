@@ -4086,6 +4086,8 @@ Public Class FrmInstaladorKubo
             End If
         End If
 
+        BackupNotinNet()
+
         obtenerwget()
         Dim urlbeta As String = "https://static.unidata.es/NotinNetInstaller/v40/beta/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -4145,6 +4147,8 @@ Public Class FrmInstaladorKubo
             End If
         End If
 
+        BackupNotinNet()
+
         obtenerwget()
         Dim urlbeta64 As String = "https://static.unidata.es/NotinNetInstaller/x64/estable/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -4198,6 +4202,40 @@ Public Class FrmInstaladorKubo
     End Function
 
 
+    Private Sub BackupNotinNet()
+        'Copiar el de NOTIN NET de la Carpeta Descargas
+        If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") Then
+            Try
+                Directory.CreateDirectory(RutaDescargas & "NotinNet\BackupNet")
+            Catch ex As Exception
+            End Try
+
+            Dim Fechahoy As String = DateTime.Now.Date
+            Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
+            Try
+                File.Copy(RutaDescargas & "NotinNet\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & notinnetfecha & ".exe", True)
+            Catch ex As Exception
+                RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
+            End Try
+        End If
+
+        'Copiar el de F NOTAWIN.NET
+        Try
+            Directory.CreateDirectory("F:\Notawin.Net\BackupNet")
+        Catch ex As Exception
+        End Try
+
+        If File.Exists("F:\Notawin.Net\NotinNetInstaller.exe") Then
+            Dim Fechahoy As String = DateTime.Now.Date
+            Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
+            Try
+                File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", "F:\Notawin.Net\BackupNet\NotinNetInstaller_" & notinnetfecha & ".exe", True)
+            Catch ex As Exception
+                RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller de F NotawinNet. " & ex.Message)
+            End Try
+        End If
+    End Sub
+
 
     Private Sub BtEstableNet_Click(sender As Object, e As EventArgs) Handles BtEstableNet.Click
 
@@ -4220,6 +4258,8 @@ Public Class FrmInstaladorKubo
                 Exit Sub
             End If
         End If
+
+        BackupNotinNet()
 
         obtenerwget()
         Dim urlestable As String = "https://static.unidata.es/NotinNetInstaller/v40/estable/NotinNetInstaller.exe"
@@ -4450,6 +4490,8 @@ Public Class FrmInstaladorKubo
             End If
         End If
 
+        BackupNotinNet()
+
         obtenerwget()
         Dim urlestablef462 As String = "https://static.unidata.es/NotinNetInstaller/W32/estable/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -4510,6 +4552,8 @@ Public Class FrmInstaladorKubo
             End If
         End If
 
+        BackupNotinNet()
+
         obtenerwget()
         Dim urlbetaf462 As String = "https://static.unidata.es/NotinNetInstaller/v47/beta/NotinNetInstaller.exe"
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -4568,6 +4612,8 @@ Public Class FrmInstaladorKubo
                 Exit Sub
             End If
         End If
+
+        BackupNotinNet()
 
         obtenerwget()
         Dim urlbetaf462 As String = "https://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
@@ -5133,6 +5179,16 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & CBoxEmail.Text & " no se consideró válida o no se indicó ningunta dirección.")
         End If
 
+    End Sub
+
+    Private Sub BtBackupNet_Click(sender As Object, e As EventArgs) Handles BtBackupNet.Click
+        If Directory.Exists(RutaDescargas & "NotinNet\BackupNet") Then
+            Process.Start("explorer.exe", RutaDescargas & "NotinNet\BackupNet")
+        ElseIf Directory.Exists("F:\NOTAWIN.NET\BackupNet") Then
+            Process.Start("explorer.exe", "F:\NOTAWIN.NET\BackupNet")
+        Else
+            MessageBox.Show("No se encontraron las Rutas de Backup para NotinNet. ¿Seguro realizaste una instalación previa con este Instalador?", "Ruta BackupNet no accesible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
     End Sub
 
 
