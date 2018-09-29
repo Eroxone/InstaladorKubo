@@ -216,6 +216,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpPuestoC = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpBetaNetAdra = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbVersionApp = New System.Windows.Forms.Label()
+        Me.BtBackupNet = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -968,6 +969,7 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.BtBackupNet)
         Me.TabPage11.Controls.Add(Me.LbWordx64)
         Me.TabPage11.Controls.Add(Me.BtNotin8exeForzar)
         Me.TabPage11.Controls.Add(Me.BtEstablew32F462)
@@ -2214,6 +2216,17 @@ Partial Class FrmInstaladorKubo
         Me.LbVersionApp.TabIndex = 53
         Me.LbVersionApp.Text = "Versión"
         '
+        'BtBackupNet
+        '
+        Me.BtBackupNet.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtBackupNet.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtBackupNet.Location = New System.Drawing.Point(247, 319)
+        Me.BtBackupNet.Name = "BtBackupNet"
+        Me.BtBackupNet.Size = New System.Drawing.Size(111, 28)
+        Me.BtBackupNet.TabIndex = 52
+        Me.BtBackupNet.Text = "Ver BackupNet"
+        Me.BtBackupNet.UseVisualStyleBackColor = True
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2482,4 +2495,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TlpBetaNetAdra As ToolTip
     Friend WithEvents LbVersionApp As Label
     Friend WithEvents LbWordx64 As Label
+    Friend WithEvents BtBackupNet As Button
 End Class
