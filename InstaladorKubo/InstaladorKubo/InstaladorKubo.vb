@@ -1713,6 +1713,8 @@ Public Class FrmInstaladorKubo
         TlpPuestoC.IsBalloon = True
 
         TlpBetaNetAdra.SetToolTip(CbBetaAdra, "Marcando esta casilla se descargará la última Beta de Net. En caso contrario se forzará la instalación de la versión Estable.")
+
+        TlpBackupNet.SetToolTip(BtBackupNet, "Además de explorar las carpeta de BackupNet se limpiarán las versiones de mas de 15 días.")
     End Sub
 #End Region
 
@@ -5182,6 +5184,21 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtBackupNet_Click(sender As Object, e As EventArgs) Handles BtBackupNet.Click
+        If Directory.Exists(RutaDescargas & "NotinNet\BackupNet") OrElse Directory.Exists("F:\Notawin.Net\BackupNet") Then
+            Try
+                Dim limpiezanet As String = "@echo off" & vbCrLf & "FORFILES /P " & RutaDescargas & "NotinNet\BackupNet /S /D -15 /M *.exe /c " & """" & "CMD /c DEL /Q @PATH" & """"
+                Dim limpiezanetf As String = vbCrLf & "FORFILES /P F:\Notawin.Net\BackupNet /S /D -15 /M *.exe /c " & """" & "CMD /c DEL /Q @PATH" & """"
+                File.WriteAllText(RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat", limpiezanet)
+                File.AppendAllText(RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat", limpiezanetf)
+                'Process.Start(RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat")
+                Shell("cmd /c " & RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat", AppWinStyle.Hide, True)
+                RegistroInstalacion("INFO. Limpiados ficheros en BackupNet de mas de 15 días.")
+                File.Delete(RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat")
+            Catch ex As Exception
+                RegistroInstalacion("INFO. No se limpiaron los ficheros de BackupNet." & ex.Message)
+            End Try
+        End If
+
         If Directory.Exists(RutaDescargas & "NotinNet\BackupNet") Then
             Process.Start("explorer.exe", RutaDescargas & "NotinNet\BackupNet")
         ElseIf Directory.Exists("F:\NOTAWIN.NET\BackupNet") Then
@@ -5189,8 +5206,8 @@ Public Class FrmInstaladorKubo
         Else
             MessageBox.Show("No se encontraron las Rutas de Backup para NotinNet. ¿Seguro realizaste una instalación previa con este Instalador?", "Ruta BackupNet no accesible", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
-    End Sub
 
+    End Sub
 
     '    Private Sub LboxHoraAdraDiferido_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LboxHoraAdraDiferido.SelectedIndexChanged
     '       BtNotinAdraDiferido.Text = "Programar ejecución a las " & LboxHoraAdraDiferido.SelectedItem & ":" & LboxMinutoAdraDiferido.SelectedItem & " horas."
