@@ -46,7 +46,6 @@ Public Class FormUsuarioAdra
             FrmInstaladorKubo.RegistroInstalacion("No se seleccionó un usuario válido para Limpiar. Se cancela la operación. (eso o coincide que se llama UsuarioAdra y me pego un tiro...")
             Exit Sub
         End If
-        'TODO confirmar que los TXT guarden las rutas.
         Directory.CreateDirectory(rutadescargas & "ADRA")
 
         Dim carpetasperfil = Directory.GetDirectories("\\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Workspaces")

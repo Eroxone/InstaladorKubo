@@ -78,8 +78,6 @@ Public Class FrmInstaladorKubo
         ObtenerVersionFW()
 
         'Mostrar versión de Aplicación
-
-        'TODO Muestre versión
         Try
             'LbVersionApp.Text = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString
             'LbVersionApp.Text = My.Application.Info.Version.Revision
@@ -2516,7 +2514,6 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BtConfiguraWord2016_Click(sender As Object, e As EventArgs) Handles BtConfiguraWord2016.Click
-        'TODO Añadir mas registros al LOG
         'If File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE") Then
         '    MessageBox.Show("Detectada Instalación Office 2016 x64. Configurador aún no preparado. En breve se publicará la actualización para ello.", "Configurador 64bits no operativo", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         '    RegistroInstalacion("ADVERTENCIA: Intento de Configurar Word2016 x64 desde la Utilidad. Aún no implementado.")
@@ -2532,7 +2529,7 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("CONF. WORD: Comenzamos la Configuración de Word 2016. Siguen resto de acciones.")
             Dim notindesktop As Boolean = File.Exists("C:\Program Files (x86)\Humano Software\Notin\NotinNetDesktop.exe")
             If notindesktop = False Then
-                RegistroInstalacion("")
+                'RegistroInstalacion("")
                 obtenerrobocopy()
 
                 Dim notinnet64 = cIniArray.IniGet("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "32")
@@ -3791,9 +3788,21 @@ Public Class FrmInstaladorKubo
 
         obtenerwget()
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
-        'TODO Versión para 32 bits. Leer INI local o global para Descargar uno u otro. Comparar ambos ini.
-        Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/v40/notin8.exe"
-        'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
+
+        'Obtener Version Notin8 según versión Plataforma
+        Dim urlnotin8 As String
+
+        Dim plataformaaddinlocal = cIniArray.IniGet("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "32")
+        Dim plataformaaddinf = cIniArray.IniGet("F:\Windows\Nnotin.ini", "Sistema", "PlataformaAddin", "32")
+
+        If plataformaaddinlocal < 64 AndAlso plataformaaddinf < 64 Then
+            urlnotin8 = "http://static.unidata.es/NotariaEvo/v40/notin8.exe"
+            RegistroInstalacion("PlataformaAddin de 32 bits. Se procede a obtener dicha versión del instalador Notin8.")
+        Else
+            urlnotin8 = "https://static.unidata.es/NotariaEvo/x64/notin8.exe"
+            RegistroInstalacion("PlataformaAddin de 64 bits. Se procede a obtener dicha versión del instalador Notin8.")
+        End If
+
         Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe"
         Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
         Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
@@ -3811,6 +3820,12 @@ Public Class FrmInstaladorKubo
         End Try
 
         If UnidadF() = True Then
+            Try
+                File.Copy("F:\Notin8.exe", "F:\Notin8_previo.exe", True)
+            Catch ex As Exception
+                RegistroInstalacion("ADVERTENCIA: No se pudo realizar backup del Notin8.exe en F raíz. " & ex.Message)
+            End Try
+
             Try
                 obtenerrobocopy()
                 Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.NormalFocus, True)
@@ -3887,9 +3902,21 @@ Public Class FrmInstaladorKubo
             End Try
 
             RegistroInstalacion("Comenzamos la Descarga y Ejecución de NOTIN8.EXE")
-            'TODO Versión para 32 bits. Leer INI local o global para Descargar uno u otro. Comparar ambos ini.
-            Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/v40/notin8.exe"
-            'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
+
+
+            Dim urlnotin8 As String
+
+            Dim plataformaaddinlocal = cIniArray.IniGet("C:\Notawin.Net\notin.ini", "Sistema", "PlataformaAddin", "32")
+            Dim plataformaaddinf = cIniArray.IniGet("F:\Windows\Nnotin.ini", "Sistema", "PlataformaAddin", "32")
+
+            If plataformaaddinlocal < 64 AndAlso plataformaaddinf < 64 Then
+                urlnotin8 = "http://static.unidata.es/NotariaEvo/v40/notin8.exe"
+                RegistroInstalacion("PlataformaAddin de 32 bits. Se procede a obtener dicha versión del instalador Notin8.")
+            Else
+                urlnotin8 = "https://static.unidata.es/NotariaEvo/x64/notin8.exe"
+                RegistroInstalacion("PlataformaAddin de 64 bits. Se procede a obtener dicha versión del instalador Notin8.")
+            End If
+
             Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe"
             Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
             Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
@@ -3962,28 +3989,28 @@ Public Class FrmInstaladorKubo
 
 
 
-    Private Sub DescargarNotariaX64()
-        'TODO esto para mas adelante. Añadir comprobación del ini local/global para descargar 32 o 64bits y en esa funcion llamar a 32 o 64 según corresponda
-        obtenerwget()
-        Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/x64/notin8.exe"
-        'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
-        Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8x64.exe"
-        Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
-        Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
+    'Private Sub DescargarNotariaX64()
+    '    'TODO esto para mas adelante. Añadir comprobación del ini local/global para descargar 32 o 64bits y en esa funcion llamar a 32 o 64 según corresponda
+    '    obtenerwget()
+    '    Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/x64/notin8.exe"
+    '    'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
+    '    Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8x64.exe"
+    '    Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
+    '    Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
 
-        Try
-            Dim pnotin8 As New ProcessStartInfo()
-            pnotin8.FileName = RutaDescargas & "NotinNet\Notin8x64.exe"
-            Dim notin8 As Process = Process.Start(pnotin8)
-            notin8.WaitForExit()
-            RegistroInstalacion("ÉXITO: NOTIN8x64 ejecutado correctamente.")
-            ' BtNotin8exe.BackColor = Color.PaleGreen
-        Catch ex As Exception
-            'BtNotin8exe.BackColor = Color.LightSalmon
-            RegistroInstalacion("ERROR NOTIN8x64: " & ex.Message)
-        End Try
+    '    Try
+    '        Dim pnotin8 As New ProcessStartInfo()
+    '        pnotin8.FileName = RutaDescargas & "NotinNet\Notin8x64.exe"
+    '        Dim notin8 As Process = Process.Start(pnotin8)
+    '        notin8.WaitForExit()
+    '        RegistroInstalacion("ÉXITO: NOTIN8x64 ejecutado correctamente.")
+    '        ' BtNotin8exe.BackColor = Color.PaleGreen
+    '    Catch ex As Exception
+    '        'BtNotin8exe.BackColor = Color.LightSalmon
+    '        RegistroInstalacion("ERROR NOTIN8x64: " & ex.Message)
+    '    End Try
 
-    End Sub
+    'End Sub
 
 
     'Private Function LeerFicheroDesdeLinea(ByVal numeroLinea As Integer, ByVal nombreFichero As String) As String
@@ -4205,20 +4232,35 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BackupNotinNet()
-        'Copiar el de NOTIN NET de la Carpeta Descargas
+        'Copiar el de NOTIN NET INSTALLER de la Carpeta Descargas
         If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") Then
             Try
                 Directory.CreateDirectory(RutaDescargas & "NotinNet\BackupNet")
             Catch ex As Exception
             End Try
 
-            Dim Fechahoy As String = DateTime.Now.Date
-            Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
-            Try
-                File.Copy(RutaDescargas & "NotinNet\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & notinnetfecha & ".exe", True)
-            Catch ex As Exception
-                RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
-            End Try
+            ObtenerVersionNet()
+
+            Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
+            Dim infoinstaller As String = appData & "\Notin\InfoInstaller.txt"
+
+            If File.Exists(infoinstaller) Then
+                Dim infoversion = cIniArray.IniGet(instaladorkuboini, "NET", "NETSISTEMA", "Version X.X.X.XXXX")
+                Dim numeroversion = infoversion.Substring(8, 10)
+                Try
+                    File.Copy(RutaDescargas & "NotinNet\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & numeroversion & ".exe", True)
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
+                End Try
+            Else
+                Dim Fechahoy As String = DateTime.Now.Date
+                Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
+                Try
+                    File.Copy(RutaDescargas & "NotinNet\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & notinnetfecha & ".exe", True)
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
+                End Try
+            End If
         End If
 
         'Copiar el de F NOTAWIN.NET
@@ -4228,10 +4270,10 @@ Public Class FrmInstaladorKubo
         End Try
 
         If File.Exists("F:\Notawin.Net\NotinNetInstaller.exe") Then
-            Dim Fechahoy As String = DateTime.Now.Date
-            Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
+            'Dim Fechahoy As String = DateTime.Now.Date
+            'Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
             Try
-                File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", "F:\Notawin.Net\BackupNet\NotinNetInstaller_" & notinnetfecha & ".exe", True)
+                File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", "F:\Notawin.Net\BackupNet\NotinNetInstaller_BackupNet.exe", True)
             Catch ex As Exception
                 RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller de F NotawinNet. " & ex.Message)
             End Try
@@ -4743,7 +4785,6 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub CboxWUpdate_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboxWUpdate.SelectedIndexChanged
-        'TODO Cambiar esto por un desplegable de verdad
         If CboxWUpdate.SelectedIndex = 0 Then
             Try
                 Directory.CreateDirectory(RutaDescargas & "Registro")
@@ -4835,7 +4876,7 @@ Public Class FrmInstaladorKubo
         FormUsuarioAdra.ShowDialog()
     End Sub
 
-    Private Function unidadZ() As Boolean
+    Private Function UnidadZ() As Boolean
         Shell("NET USE Z: \\NOTINRAPP\Z b30330104b /user:NOTARIA\ADMINISTRADOR /p:no", AppWinStyle.NormalFocus, True)
         If Directory.Exists("Z:\rapp_control") = False Then
             Return False
@@ -5120,7 +5161,6 @@ Public Class FrmInstaladorKubo
         'EnvioMailADRA()
         'MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "En verde todo correcto. Rojo indicará algún error. Revisa Log para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        'TODO AÑADIR ALGO EN EL INI PARA INDICAR QUE SE HIZO O NO BIEN
     End Sub
 
     Private Sub BtNotinAdraDiferido_MouseDown(sender As Object, e As MouseEventArgs) Handles BtNotinAdraDiferido.MouseDown
