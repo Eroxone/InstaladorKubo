@@ -6,9 +6,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7A785120-BDBE-4C4F-82F0-D6597A21BBFA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>InstaladorKubo.My.MyApplication</StartupObject>
-    <RootNamespace>InstaladorKubo</RootNamespace>
-    <AssemblyName>InstaladorKubo</AssemblyName>
+    <StartupObject>Instalador.My.MyApplication</StartupObject>
+    <RootNamespace>Instalador</RootNamespace>
+    <AssemblyName>Instalador</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -27,18 +27,18 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://instalador.notin.net/</InstallUrl>
-    <SupportUrl>http://instalador.notin.net/InstaladorKubo.exe</SupportUrl>
+    <SupportUrl>http://instalador.notin.net/Instalador.exe</SupportUrl>
     <ErrorReportUrl>http://tecnicos.notin.net/detalles.asp%3fid=1573</ErrorReportUrl>
-    <ProductName>InstaladorKubo</ProductName>
-    <PublisherName>InstaladorKubo</PublisherName>
+    <ProductName>Instalador</ProductName>
+    <PublisherName>Instalador</PublisherName>
     <SuiteName>Instalador</SuiteName>
-    <MinimumRequiredVersion>1.0.4.0</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.5.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.4.%2a</ApplicationVersion>
-    <UseApplicationTrust>true</UseApplicationTrust>
+    <ApplicationVersion>1.0.5.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>false</BootstrapperEnabled>
@@ -50,7 +50,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>InstaladorKubo.xml</DocumentationFile>
+    <DocumentationFile>Instalador.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
     <RunCodeAnalysis>false</RunCodeAnalysis>
@@ -62,7 +62,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>InstaladorKubo.xml</DocumentationFile>
+    <DocumentationFile>Instalador.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -79,7 +79,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>instaladorsoftware.ico</ApplicationIcon>
+    <ApplicationIcon>GameIOS.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -140,10 +140,10 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Chocolatey.vb" />
-    <Compile Include="ConfigurarISL.Designer.vb">
-      <DependentUpon>ConfigurarISL.vb</DependentUpon>
+    <Compile Include="FormConfigurarISL.Designer.vb">
+      <DependentUpon>FormConfigurarISL.vb</DependentUpon>
     </Compile>
-    <Compile Include="ConfigurarISL.vb">
+    <Compile Include="FormConfigurarISL.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSQL2008R2.Designer.vb">
@@ -158,25 +158,25 @@
     <Compile Include="FormUsuarioAdra.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmNavegador.Designer.vb">
-      <DependentUpon>FrmNavegador.vb</DependentUpon>
+    <Compile Include="FormNavegador.Designer.vb">
+      <DependentUpon>FormNavegador.vb</DependentUpon>
     </Compile>
-    <Compile Include="FrmNavegador.vb">
+    <Compile Include="FormNavegador.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ObtenerEjecutables.vb" />
-    <Compile Include="Password.Designer.vb">
-      <DependentUpon>Password.vb</DependentUpon>
+    <Compile Include="FormPassword.Designer.vb">
+      <DependentUpon>FormPassword.vb</DependentUpon>
     </Compile>
-    <Compile Include="Password.vb">
+    <Compile Include="FormPassword.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LeerFicherosINI.vb" />
-    <Compile Include="InstaladorKubo.vb">
+    <Compile Include="FormInstalador.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InstaladorKubo.Designer.vb">
-      <DependentUpon>InstaladorKubo.vb</DependentUpon>
+    <Compile Include="FormInstalador.Designer.vb">
+      <DependentUpon>FormInstalador.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -194,16 +194,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="SQLInstalacion.Designer.vb">
-      <DependentUpon>SQLInstalacion.vb</DependentUpon>
+    <Compile Include="FormSQLInstalacion.Designer.vb">
+      <DependentUpon>FormSQLInstalacion.vb</DependentUpon>
     </Compile>
-    <Compile Include="SQLInstalacion.vb">
+    <Compile Include="FormSQLInstalacion.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ConfigurarISL.resx">
-      <DependentUpon>ConfigurarISL.vb</DependentUpon>
+    <EmbeddedResource Include="FormConfigurarISL.resx">
+      <DependentUpon>FormConfigurarISL.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSQL2008R2.resx">
       <DependentUpon>FormSQL2008R2.vb</DependentUpon>
@@ -211,11 +211,11 @@
     <EmbeddedResource Include="FormUsuarioAdra.resx">
       <DependentUpon>FormUsuarioAdra.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmNavegador.resx">
-      <DependentUpon>FrmNavegador.vb</DependentUpon>
+    <EmbeddedResource Include="FormNavegador.resx">
+      <DependentUpon>FormNavegador.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InstaladorKubo.resx">
-      <DependentUpon>InstaladorKubo.vb</DependentUpon>
+    <EmbeddedResource Include="FormInstalador.resx">
+      <DependentUpon>FormInstalador.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -223,11 +223,11 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Password.resx">
-      <DependentUpon>Password.vb</DependentUpon>
+    <EmbeddedResource Include="FormPassword.resx">
+      <DependentUpon>FormPassword.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SQLInstalacion.resx">
-      <DependentUpon>SQLInstalacion.vb</DependentUpon>
+    <EmbeddedResource Include="FormSQLInstalacion.resx">
+      <DependentUpon>FormSQLInstalacion.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +249,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GameIOS.ico" />
     <Content Include="instaladorsoftware.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -264,6 +265,46 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <PublishFile Include="GameIOS.ico">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Instalador.exe">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>ManifestEntryPoint</FileType>
+    </PublishFile>
+    <PublishFile Include="Instalador.exe.config">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Instalador.exe.manifest">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
+      <FileType>ManifestEntryPoint</FileType>
+    </PublishFile>
     <PublishFile Include="InstaladorKubo.exe">
       <Visible>False</Visible>
       <Group>

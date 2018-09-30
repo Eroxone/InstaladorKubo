@@ -1,6 +1,6 @@
 ﻿Imports System.IO
-Imports InstaladorKubo.FrmInstaladorKubo
-Imports InstaladorKubo.LeerFicherosINI
+Imports Instalador.FrmInstaladorKubo
+Imports Instalador.LeerFicherosINI
 
 
 

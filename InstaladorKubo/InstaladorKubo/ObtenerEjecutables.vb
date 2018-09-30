@@ -1,4 +1,4 @@
-﻿Imports InstaladorKubo.LeerFicherosINI
+﻿Imports Instalador.LeerFicherosINI
 
 Public Class ObtenerEjecutables
     Private Shared RutaDescargas = cIniArray.IniGet("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "RUTAS", "RUTADESCARGAS", "C:\NOTIN\")

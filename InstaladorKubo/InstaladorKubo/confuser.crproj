@@ -1,6 +1,6 @@
 ﻿<project outputDir="C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\app.publish\" baseDir="C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\app.publish\" xmlns="http://confuser.codeplex.com">
   <rule pattern="true" preset="aggressive" />
-  <module path="C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\app.publish\InstaladorKubo.exe">
+  <module path="C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\app.publish\Instalador.exe">
     <rule pattern="true" preset="aggressive" />
   </module>
   <probePath>{ProbePath1}</probePath>

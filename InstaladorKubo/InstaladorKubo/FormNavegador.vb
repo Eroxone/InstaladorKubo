@@ -1,7 +1,7 @@
-﻿Imports InstaladorKubo.LeerFicherosINI
-Imports InstaladorKubo.FrmInstaladorKubo
+﻿Imports Instalador.LeerFicherosINI
+Imports Instalador.FrmInstaladorKubo
 
-Public Class FrmNavegador
+Public Class FormNavegador
     Private Sub FrmNavegador_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim islnombre As String = FrmConfigurarISL.TbISLNombre.Text
         Dim islgrupo As String = FrmConfigurarISL.TbISLGrupo.Text

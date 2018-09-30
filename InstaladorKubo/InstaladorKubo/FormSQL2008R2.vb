@@ -1,5 +1,5 @@
-﻿Imports InstaladorKubo.FrmInstaladorKubo
-Imports InstaladorKubo.LeerFicherosINI
+﻿Imports Instalador.FrmInstaladorKubo
+Imports Instalador.LeerFicherosINI
 Imports System.IO
 Imports System.Net.Mail
 

@@ -1,4 +1,4 @@
-﻿Imports InstaladorKubo.LeerFicherosINI
+﻿Imports Instalador.LeerFicherosINI
 
 
 

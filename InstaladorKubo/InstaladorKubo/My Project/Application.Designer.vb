@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.InstaladorKubo.FormPassword
+            Me.MainForm = Global.Instalador.FormPassword
         End Sub
     End Class
 End Namespace

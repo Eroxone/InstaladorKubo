@@ -1,12 +1,12 @@
 ﻿Imports System.IO
 Imports System.Text
-Imports InstaladorKubo.LeerFicherosINI
+Imports Instalador.LeerFicherosINI
 Imports System.Threading
 Imports System.Net.Mail
-Imports InstaladorKubo.FrmConfigurarISL
-Imports InstaladorKubo.ObtenerEjecutables
+Imports Instalador.FrmConfigurarISL
+Imports Instalador.ObtenerEjecutables
 Imports System.Environment
-Imports InstaladorKubo.Chocolatey
+Imports Instalador.Chocolatey
 Imports System.Deployment.Application
 
 
@@ -2363,6 +2363,7 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("NotinNetInstaller: " & ex.Message)
         End Try
+
         'Ademas me traigo las Plantillas y el MDE
         Try
             File.Copy("F:\NOTIN8.mde", "C:\Notawin.Net\notin8.mde", True)
@@ -3058,8 +3059,8 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtSubeBinario_Click(sender As Object, e As EventArgs) Handles BtSubeBinario.Click
         Try
-            Dim original As String = "C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\app.publish\InstaladorKubo.exe"
-            My.Computer.Network.UploadFile(original, "ftp://instalador.notin.net/InstaladorKubo.exe", "instalador", "4a9P1dK", True, 20000)
+            Dim original As String = "C:\Users\inxid\source\repos\InstaladorKubo\InstaladorKubo\InstaladorKubo\bin\Debug\app.publish\Instalador.exe"
+            My.Computer.Network.UploadFile(original, "ftp://instalador.notin.net/Instalador.exe", "instalador", "4a9P1dK", True, 20000)
             RegistroInstalacion("Subido binario al FTP para su ejecución en entornos con problemas ClickOnce.")
         Catch ex As Exception
             RegistroInstalacion("Error subida Binario: " & ex.Message & ".")

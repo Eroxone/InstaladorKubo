@@ -10,7 +10,7 @@ Public Class FrmConfigurarISL
         ElseIf TbISLNombre.Text = "" Then
             MessageBox.Show("No se admiten campos vacíos", "Información incompleta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         Else
-            FrmNavegador.Show()
+            FormNavegador.Show()
             Me.Close()
         End If
     End Sub

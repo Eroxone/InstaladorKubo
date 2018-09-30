@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmNavegador
+Partial Class FormNavegador
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -22,7 +22,7 @@ Partial Class FrmNavegador
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmNavegador))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormNavegador))
         Me.Navegador = New System.Windows.Forms.WebBrowser()
         Me.LBNavegador = New System.Windows.Forms.Label()
         Me.SuspendLayout()
@@ -52,7 +52,7 @@ Partial Class FrmNavegador
         Me.LBNavegador.TabIndex = 1
         Me.LBNavegador.Text = "Cierra esta ventana al completar la descarga"
         '
-        'FrmNavegador
+        'FormNavegador
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -64,7 +64,7 @@ Partial Class FrmNavegador
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FrmNavegador"
+        Me.Name = "FormNavegador"
         Me.Opacity = 0.9R
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

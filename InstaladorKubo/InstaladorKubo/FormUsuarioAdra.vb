@@ -1,5 +1,5 @@
 ﻿Imports System.IO
-Imports InstaladorKubo.LeerFicherosINI
+Imports Instalador.LeerFicherosINI
 
 
 Public Class FormUsuarioAdra
