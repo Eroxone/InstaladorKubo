@@ -88,11 +88,10 @@ Public Class FrmInstaladorKubo
                 LbVersionApp.Text = String.Concat("ClickOnce: v", myVersion)
             End If
         Catch ex As Exception
-            RegistroInstalacion("No se detectó la versión de ClciOnce Publicada. Esto no es un error en la App")
+            RegistroInstalacion("INFO: No se detectó la versión de ClickOnce Publicada. Esto no es un error en la App.")
         End Try
 
         'Comprobar si existe Office 2016 x64 para mostrar .Net con x64
-
         If File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") Then
             BtEstablex64F462.Enabled = True
             BtNetBetax64F462.Enabled = True
@@ -117,6 +116,12 @@ Public Class FrmInstaladorKubo
         End Try
 
     End Sub
+
+    'NOVEDADES INSTALADOR
+    Private Sub BtNovedades_Click(sender As Object, e As EventArgs) Handles BtNovedades.Click
+        FormNovedades.ShowDialog()
+    End Sub
+
 
     Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
         If e.Control And e.KeyCode = Keys.J Then
@@ -4992,7 +4997,7 @@ Public Class FrmInstaladorKubo
         End If
 
 
-        Dim adradiferido As DialogResult = MessageBox.Show("PROGRAMAR EJECUCIÓN A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS." & vbCrLf & "En ese momento se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net Estable o Beta según se marque." & vbCrLf & "Bajo un entorno estándar completar este proceso llevará quince minutos. Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        Dim adradiferido As DialogResult = MessageBox.Show("PROGRAMAR EJECUCIÓN A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS." & vbCrLf & "En ese momento se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net Estable o Beta según se marque." & vbCrLf & "Bajo un entorno estándar completar este proceso llevará quince minutos. Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador. El Instalador quedará en la barra de tareas a la espera de la hora programada." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If adradiferido = DialogResult.Yes Then
             RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA = HORA: " & horaseleccionada & ":" & minutoseleccionado & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
 
@@ -5015,6 +5020,10 @@ Public Class FrmInstaladorKubo
             '    minutoseleccionado = "0"
             'End If
 
+            'Minimizar aplicación
+            'Me.WindowState = FormWindowState.Minimized
+            Me.Visible = False
+            Icononotificacion.Visible = True
 
             Dim horaprogramada = horaseleccionada & ":" & minutoseleccionado
             Dim horaactual As String = DateTime.Now.Hour & ":" & DateTime.Now.Minute
@@ -5163,6 +5172,10 @@ Public Class FrmInstaladorKubo
             End Try
         End If
 
+        'Restauramos la ventana
+        Me.Visible = True
+        Icononotificacion.Visible = False
+
         'TERMINAMOS PROCESO Y AVISAMOS
         RegistroInstalacion("= ACTUALIZACIÓN DIFERIDA ADRA FINALIZADA.=")
         BtNotinAdraDiferido.BackColor = Color.PaleGreen
@@ -5257,6 +5270,9 @@ Public Class FrmInstaladorKubo
         End If
 
     End Sub
+
+
+
 
     '    Private Sub LboxHoraAdraDiferido_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LboxHoraAdraDiferido.SelectedIndexChanged
     '       BtNotinAdraDiferido.Text = "Programar ejecución a las " & LboxHoraAdraDiferido.SelectedItem & ":" & LboxMinutoAdraDiferido.SelectedItem & " horas."

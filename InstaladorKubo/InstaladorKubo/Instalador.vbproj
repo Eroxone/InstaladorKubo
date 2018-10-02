@@ -36,7 +36,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -146,6 +146,12 @@
     <Compile Include="FormConfigurarISL.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormNovedades.Designer.vb">
+      <DependentUpon>FormNovedades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormNovedades.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSQL2008R2.Designer.vb">
       <DependentUpon>FormSQL2008R2.vb</DependentUpon>
     </Compile>
@@ -163,6 +169,11 @@
     </Compile>
     <Compile Include="FormNavegador.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ObtenerEjecutables.vb" />
     <Compile Include="FormPassword.Designer.vb">
@@ -184,11 +195,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
     </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -205,6 +211,9 @@
     <EmbeddedResource Include="FormConfigurarISL.resx">
       <DependentUpon>FormConfigurarISL.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormNovedades.resx">
+      <DependentUpon>FormNovedades.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSQL2008R2.resx">
       <DependentUpon>FormSQL2008R2.vb</DependentUpon>
     </EmbeddedResource>
@@ -219,9 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPassword.resx">
       <DependentUpon>FormPassword.vb</DependentUpon>
@@ -251,6 +260,8 @@
   <ItemGroup>
     <Content Include="GameIOS.ico" />
     <Content Include="instaladorsoftware.ico" />
+    <None Include="Resources\icono-novedades_orig.png" />
+    <None Include="Resources\icononovedades.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6">
