@@ -108,6 +108,14 @@ Public Class FrmInstaladorKubo
             LbWordx64.Enabled = False
         End If
 
+        'Limpiar Icono versión anterior
+        Try
+            Dim Escritorio As String = "" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & ""
+            File.Delete(Escritorio & "InstaladorKubo.appref-ms")
+        Catch ex As Exception
+            RegistroInstalacion("INFO Limpiar InstaladorKubo: " & ex.Message)
+        End Try
+
     End Sub
 
     Private Sub InstaladorKubo_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles MyBase.KeyDown
