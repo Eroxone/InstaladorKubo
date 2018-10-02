@@ -51,9 +51,7 @@ Partial Class FormNovedades
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(562, 56)
         Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Cuando se programe la hora el Instalador se minimizará al Tray de Windows y segui" &
-    "rá en memoria para no ser una ventana bloqueante. Al terminar se maximizará para" &
-    " poder comprobar el resultado."
+        Me.Label2.Text = resources.GetString("Label2.Text")
         '
         'Label3
         '
