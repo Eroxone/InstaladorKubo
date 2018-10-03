@@ -67,7 +67,7 @@ Partial Class FormNovedades
         '
         Me.BtCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtCerrar.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtCerrar.Location = New System.Drawing.Point(494, 337)
+        Me.BtCerrar.Location = New System.Drawing.Point(494, 320)
         Me.BtCerrar.Name = "BtCerrar"
         Me.BtCerrar.Size = New System.Drawing.Size(83, 33)
         Me.BtCerrar.TabIndex = 3
@@ -86,7 +86,7 @@ Partial Class FormNovedades
         'Label5
         '
         Me.Label5.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(12, 280)
+        Me.Label5.Location = New System.Drawing.Point(12, 263)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(562, 54)
         Me.Label5.TabIndex = 5
@@ -126,7 +126,7 @@ Partial Class FormNovedades
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.ClientSize = New System.Drawing.Size(589, 385)
+        Me.ClientSize = New System.Drawing.Size(589, 365)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
