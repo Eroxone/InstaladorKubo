@@ -3333,18 +3333,18 @@
   </metadata>
   <data name="BtNovedades.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
   </data>
   <data name="BtDocRequisitos.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -5024,6 +5024,7 @@ Public Class FrmInstaladorKubo
             'Me.WindowState = FormWindowState.Minimized
             Me.Visible = False
             Icononotificacion.Visible = True
+            Icononotificacion.Text = "Programada actualización AdRa. Instalador en espera..."
 
             Dim horaprogramada = horaseleccionada & ":" & minutoseleccionado
             Dim horaactual As String = DateTime.Now.Hour & ":" & DateTime.Now.Minute
@@ -5044,6 +5045,7 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub ActualizacionDiferidaAdra()
+        Icononotificacion.Text = "Ejecutando Actualización AdRa. Se mostrará el Instalador al terminar la actualización."
         'TERMINAR PROCESOS NOTIN NET
         If ProcesosActivos() = True Then
             Try
@@ -5270,7 +5272,6 @@ Public Class FrmInstaladorKubo
         End If
 
     End Sub
-
 
 
 
