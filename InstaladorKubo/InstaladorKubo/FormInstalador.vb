@@ -4984,15 +4984,17 @@ Public Class FrmInstaladorKubo
         End If
 
         'MENSAJE ADVERTENCIA PROCESOS
-        Dim horaseleccionada = LboxHoraAdraDiferido.SelectedItem
-        Dim minutoseleccionado = LboxMinutoAdraDiferido.SelectedItem
+        Dim horaseleccionada = NumHoraAdra.Value
+        Dim minutoseleccionado = NumMinutoAdra.Value
+        'Dim horaseleccionada = LboxHoraAdraDiferido.SelectedItem
+        'Dim minutoseleccionado = LboxMinutoAdraDiferido.SelectedItem
 
         If horaseleccionada = Nothing Then
-            horaseleccionada = "22"
+            horaseleccionada = "7"
             RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado una HORA válida. Se aplica valor por defecto a las 22 horas.")
         End If
         If minutoseleccionado = Nothing Then
-            minutoseleccionado = "0"
+            minutoseleccionado = "30"
             RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un MINUTO válido. Se aplica valor por defecto a las en punto.")
         End If
 
@@ -5000,25 +5002,6 @@ Public Class FrmInstaladorKubo
         Dim adradiferido As DialogResult = MessageBox.Show("PROGRAMAR EJECUCIÓN A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS." & vbCrLf & "En ese momento se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net Estable o Beta según se marque." & vbCrLf & "Bajo un entorno estándar completar este proceso llevará quince minutos. Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador. El Instalador quedará en la barra de tareas a la espera de la hora programada." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If adradiferido = DialogResult.Yes Then
             RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA = HORA: " & horaseleccionada & ":" & minutoseleccionado & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
-
-            'PARADA HASTA LAS 22.00 HORAS
-            'Dim horaejecucion As String = "22:0"
-            'Dim horaejecucion As String = "10:51"
-
-
-            'If horaseleccionada = Nothing Then
-            '    'horaseleccionada = "22"
-            '    MessageBox.Show("Selecciona una HORA válida en el listado.", "Sin selección en lista", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            '    BtNotinAdraDiferido.BackColor = SystemColors.Control
-            '    LBAdraDiferido.Visible = False
-            '    Exit Sub
-            'End If
-
-            'If minutoseleccionado = Nothing Then
-            '    'MessageBox.Show("Selecciona un MINUTO válido en el listado.", "Sin selección en lista", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            '    RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un minuto válido. Se aplica valor por defecto a las en punto.")
-            '    minutoseleccionado = "0"
-            'End If
 
             'Minimizar aplicación
             'Me.WindowState = FormWindowState.Minimized
@@ -5030,7 +5013,7 @@ Public Class FrmInstaladorKubo
             Dim horaactual As String = DateTime.Now.Hour & ":" & DateTime.Now.Minute
             While horaactual <> horaprogramada
                 horaactual = DateTime.Now.Hour & ":" & DateTime.Now.Minute
-                Threading.Thread.Sleep(20000)
+                Threading.Thread.Sleep(10000)
             End While
             LBAdraDiferido.Text = "PROCESO DE ACTUALIZACION EN EJECUCIÓN. ESPERA..."
             LBAdraDiferido.ForeColor = Color.ForestGreen
@@ -5192,19 +5175,19 @@ Public Class FrmInstaladorKubo
 
         LBAdraDiferido.Visible = True
 
-        Dim horaseleccionada = LboxHoraAdraDiferido.SelectedItem
-        Dim minutoseleccionado = LboxMinutoAdraDiferido.SelectedItem
+        Dim horaseleccionada = NumHoraAdra.Value
+        Dim minutoseleccionado = NumMinutoAdra.Value
 
         If horaseleccionada = Nothing Then
-            horaseleccionada = "22"
+            horaseleccionada = "7"
         End If
         If minutoseleccionado = Nothing Then
-            minutoseleccionado = "0"
+            minutoseleccionado = "30"
         End If
 
         LBAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS."
 
-        Icononotificacion.Text = "Programada actualización AdRa. Instalador en espera."
+        Icononotificacion.Text = "Programada Actualización AdRa. Instalador en espera."
     End Sub
 
     Public Sub EnvioMailADRA()
@@ -5273,6 +5256,17 @@ Public Class FrmInstaladorKubo
             MessageBox.Show("No se encontraron las Rutas de Backup para NotinNet. ¿Seguro realizaste una instalación previa con este Instalador?", "Ruta BackupNet no accesible", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
+    End Sub
+
+    Private Sub Label7_Click(sender As Object, e As EventArgs) Handles Label7.Click
+
+    End Sub
+
+    Private Sub Icononotificacion_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Icononotificacion.MouseDoubleClick
+        'Esto no hace mucho pero ahí queda por si algún dia necesito algo parecido
+        Icononotificacion.Visible = False
+        Me.Visible = True
+        WindowState = FormWindowState.Normal
     End Sub
 
 

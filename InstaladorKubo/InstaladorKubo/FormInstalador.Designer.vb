@@ -219,6 +219,8 @@ Partial Class FrmInstaladorKubo
         Me.BtPaginaActiva = New System.Windows.Forms.Button()
         Me.BtExplorarRutas = New System.Windows.Forms.Button()
         Me.BtReconectar = New System.Windows.Forms.Button()
+        Me.NumHoraAdra = New System.Windows.Forms.NumericUpDown()
+        Me.NumMinutoAdra = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -240,6 +242,8 @@ Partial Class FrmInstaladorKubo
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabGestion.SuspendLayout()
+        CType(Me.NumHoraAdra, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumMinutoAdra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lbUnidadF
@@ -347,7 +351,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.btSalir.BackColor = System.Drawing.SystemColors.Control
         Me.btSalir.Font = New System.Drawing.Font("Lucida Bright", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.btSalir.Location = New System.Drawing.Point(1055, 631)
+        Me.btSalir.Location = New System.Drawing.Point(1055, 621)
         Me.btSalir.Margin = New System.Windows.Forms.Padding(2)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(89, 37)
@@ -1313,6 +1317,8 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.NumMinutoAdra)
+        Me.TabPage10.Controls.Add(Me.NumHoraAdra)
         Me.TabPage10.Controls.Add(Me.CbBetaAdra)
         Me.TabPage10.Controls.Add(Me.Label7)
         Me.TabPage10.Controls.Add(Me.Label6)
@@ -1338,7 +1344,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbBetaAdra.AutoSize = True
         Me.CbBetaAdra.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CbBetaAdra.Location = New System.Drawing.Point(195, 256)
+        Me.CbBetaAdra.Location = New System.Drawing.Point(210, 166)
         Me.CbBetaAdra.Name = "CbBetaAdra"
         Me.CbBetaAdra.Size = New System.Drawing.Size(159, 21)
         Me.CbBetaAdra.TabIndex = 15
@@ -1348,7 +1354,7 @@ Partial Class FrmInstaladorKubo
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(288, 142)
+        Me.Label7.Location = New System.Drawing.Point(290, 132)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(12, 18)
         Me.Label7.TabIndex = 14
@@ -1357,7 +1363,7 @@ Partial Class FrmInstaladorKubo
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(306, 142)
+        Me.Label6.Location = New System.Drawing.Point(303, 109)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(64, 18)
         Me.Label6.TabIndex = 13
@@ -1366,7 +1372,7 @@ Partial Class FrmInstaladorKubo
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(215, 142)
+        Me.Label5.Location = New System.Drawing.Point(233, 107)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(48, 18)
         Me.Label5.TabIndex = 12
@@ -1377,20 +1383,22 @@ Partial Class FrmInstaladorKubo
         Me.LboxMinutoAdraDiferido.FormattingEnabled = True
         Me.LboxMinutoAdraDiferido.ItemHeight = 18
         Me.LboxMinutoAdraDiferido.Items.AddRange(New Object() {"0", "15", "30", "45", "5", "10", "20", "25", "35", "40", "50", "55"})
-        Me.LboxMinutoAdraDiferido.Location = New System.Drawing.Point(309, 167)
+        Me.LboxMinutoAdraDiferido.Location = New System.Drawing.Point(103, 277)
         Me.LboxMinutoAdraDiferido.Name = "LboxMinutoAdraDiferido"
         Me.LboxMinutoAdraDiferido.Size = New System.Drawing.Size(69, 58)
         Me.LboxMinutoAdraDiferido.TabIndex = 11
+        Me.LboxMinutoAdraDiferido.Visible = False
         '
         'LboxHoraAdraDiferido
         '
         Me.LboxHoraAdraDiferido.FormattingEnabled = True
         Me.LboxHoraAdraDiferido.ItemHeight = 18
         Me.LboxHoraAdraDiferido.Items.AddRange(New Object() {"22", "15", "8", "7", "14", "16", "17", "18", "19", "20", "0", "3", "5", "6", "9", "10", "11", "12", "13", "21", "23"})
-        Me.LboxHoraAdraDiferido.Location = New System.Drawing.Point(218, 167)
+        Me.LboxHoraAdraDiferido.Location = New System.Drawing.Point(8, 289)
         Me.LboxHoraAdraDiferido.Name = "LboxHoraAdraDiferido"
         Me.LboxHoraAdraDiferido.Size = New System.Drawing.Size(69, 58)
         Me.LboxHoraAdraDiferido.TabIndex = 10
+        Me.LboxHoraAdraDiferido.Visible = False
         '
         'Label4
         '
@@ -1415,10 +1423,11 @@ Partial Class FrmInstaladorKubo
         '
         Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.TbIdentificaNotaria.Enabled = False
-        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(195, 110)
+        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(178, 309)
         Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
         Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 26)
         Me.TbIdentificaNotaria.TabIndex = 7
+        Me.TbIdentificaNotaria.Visible = False
         '
         'LBAdraDiferido
         '
@@ -1437,7 +1446,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtNotinAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.BtNotinAdraDiferido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(195, 281)
+        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(195, 193)
         Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
         Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(203, 45)
         Me.BtNotinAdraDiferido.TabIndex = 5
@@ -2187,7 +2196,7 @@ Partial Class FrmInstaladorKubo
         Me.BtNovedades.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtNovedades.Image = CType(resources.GetObject("BtNovedades.Image"), System.Drawing.Image)
         Me.BtNovedades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtNovedades.Location = New System.Drawing.Point(896, 631)
+        Me.BtNovedades.Location = New System.Drawing.Point(896, 624)
         Me.BtNovedades.Name = "BtNovedades"
         Me.BtNovedades.Size = New System.Drawing.Size(135, 37)
         Me.BtNovedades.TabIndex = 54
@@ -2246,12 +2255,35 @@ Partial Class FrmInstaladorKubo
         Me.BtReconectar.TabIndex = 45
         Me.BtReconectar.UseVisualStyleBackColor = True
         '
+        'NumHoraAdra
+        '
+        Me.NumHoraAdra.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.NumHoraAdra.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.NumHoraAdra.Location = New System.Drawing.Point(236, 130)
+        Me.NumHoraAdra.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
+        Me.NumHoraAdra.Name = "NumHoraAdra"
+        Me.NumHoraAdra.Size = New System.Drawing.Size(51, 26)
+        Me.NumHoraAdra.TabIndex = 16
+        Me.NumHoraAdra.Value = New Decimal(New Integer() {7, 0, 0, 0})
+        '
+        'NumMinutoAdra
+        '
+        Me.NumMinutoAdra.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.NumMinutoAdra.Increment = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.NumMinutoAdra.Location = New System.Drawing.Point(308, 130)
+        Me.NumMinutoAdra.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        Me.NumMinutoAdra.Name = "NumMinutoAdra"
+        Me.NumMinutoAdra.Size = New System.Drawing.Size(51, 26)
+        Me.NumMinutoAdra.TabIndex = 17
+        Me.NumMinutoAdra.Tag = ""
+        Me.NumMinutoAdra.Value = New Decimal(New Integer() {30, 0, 0, 0})
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
-        Me.ClientSize = New System.Drawing.Size(1172, 692)
+        Me.ClientSize = New System.Drawing.Size(1172, 674)
         Me.Controls.Add(Me.BtNovedades)
         Me.Controls.Add(Me.LbVersionApp)
         Me.Controls.Add(Me.LbEnlacesWeb)
@@ -2317,6 +2349,8 @@ Partial Class FrmInstaladorKubo
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabGestion.ResumeLayout(False)
+        CType(Me.NumHoraAdra, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumMinutoAdra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2518,4 +2552,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtBackupNet As Button
     Friend WithEvents TlpBackupNet As ToolTip
     Friend WithEvents BtNovedades As Button
+    Friend WithEvents NumHoraAdra As NumericUpDown
+    Friend WithEvents NumMinutoAdra As NumericUpDown
 End Class
