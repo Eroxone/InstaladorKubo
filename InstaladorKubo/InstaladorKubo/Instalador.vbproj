@@ -32,11 +32,11 @@
     <ProductName>Instalador</ProductName>
     <PublisherName>Instalador</PublisherName>
     <SuiteName>Instalador</SuiteName>
-    <MinimumRequiredVersion>1.0.5.0</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.5.20</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>21</ApplicationRevision>
     <ApplicationVersion>1.0.5.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

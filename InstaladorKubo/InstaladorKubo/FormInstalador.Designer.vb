@@ -113,6 +113,8 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.NumMinutoAdra = New System.Windows.Forms.NumericUpDown()
+        Me.NumHoraAdra = New System.Windows.Forms.NumericUpDown()
         Me.CbBetaAdra = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -219,8 +221,6 @@ Partial Class FrmInstaladorKubo
         Me.BtPaginaActiva = New System.Windows.Forms.Button()
         Me.BtExplorarRutas = New System.Windows.Forms.Button()
         Me.BtReconectar = New System.Windows.Forms.Button()
-        Me.NumHoraAdra = New System.Windows.Forms.NumericUpDown()
-        Me.NumMinutoAdra = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -234,6 +234,8 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.SuspendLayout()
         Me.TabPage7.SuspendLayout()
         Me.TabPage10.SuspendLayout()
+        CType(Me.NumMinutoAdra, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NumHoraAdra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage12.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -242,8 +244,6 @@ Partial Class FrmInstaladorKubo
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabGestion.SuspendLayout()
-        CType(Me.NumHoraAdra, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NumMinutoAdra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lbUnidadF
@@ -351,7 +351,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.btSalir.BackColor = System.Drawing.SystemColors.Control
         Me.btSalir.Font = New System.Drawing.Font("Lucida Bright", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.btSalir.Location = New System.Drawing.Point(1055, 621)
+        Me.btSalir.Location = New System.Drawing.Point(1055, 624)
         Me.btSalir.Margin = New System.Windows.Forms.Padding(2)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(89, 37)
@@ -1340,6 +1340,29 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
+        'NumMinutoAdra
+        '
+        Me.NumMinutoAdra.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.NumMinutoAdra.Increment = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.NumMinutoAdra.Location = New System.Drawing.Point(308, 130)
+        Me.NumMinutoAdra.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
+        Me.NumMinutoAdra.Name = "NumMinutoAdra"
+        Me.NumMinutoAdra.Size = New System.Drawing.Size(51, 26)
+        Me.NumMinutoAdra.TabIndex = 17
+        Me.NumMinutoAdra.Tag = ""
+        Me.NumMinutoAdra.Value = New Decimal(New Integer() {30, 0, 0, 0})
+        '
+        'NumHoraAdra
+        '
+        Me.NumHoraAdra.BackColor = System.Drawing.SystemColors.InactiveBorder
+        Me.NumHoraAdra.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.NumHoraAdra.Location = New System.Drawing.Point(236, 130)
+        Me.NumHoraAdra.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
+        Me.NumHoraAdra.Name = "NumHoraAdra"
+        Me.NumHoraAdra.Size = New System.Drawing.Size(51, 26)
+        Me.NumHoraAdra.TabIndex = 16
+        Me.NumHoraAdra.Value = New Decimal(New Integer() {7, 0, 0, 0})
+        '
         'CbBetaAdra
         '
         Me.CbBetaAdra.AutoSize = True
@@ -2255,29 +2278,6 @@ Partial Class FrmInstaladorKubo
         Me.BtReconectar.TabIndex = 45
         Me.BtReconectar.UseVisualStyleBackColor = True
         '
-        'NumHoraAdra
-        '
-        Me.NumHoraAdra.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.NumHoraAdra.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.NumHoraAdra.Location = New System.Drawing.Point(236, 130)
-        Me.NumHoraAdra.Maximum = New Decimal(New Integer() {23, 0, 0, 0})
-        Me.NumHoraAdra.Name = "NumHoraAdra"
-        Me.NumHoraAdra.Size = New System.Drawing.Size(51, 26)
-        Me.NumHoraAdra.TabIndex = 16
-        Me.NumHoraAdra.Value = New Decimal(New Integer() {7, 0, 0, 0})
-        '
-        'NumMinutoAdra
-        '
-        Me.NumMinutoAdra.BackColor = System.Drawing.SystemColors.InactiveBorder
-        Me.NumMinutoAdra.Increment = New Decimal(New Integer() {5, 0, 0, 0})
-        Me.NumMinutoAdra.Location = New System.Drawing.Point(308, 130)
-        Me.NumMinutoAdra.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
-        Me.NumMinutoAdra.Name = "NumMinutoAdra"
-        Me.NumMinutoAdra.Size = New System.Drawing.Size(51, 26)
-        Me.NumMinutoAdra.TabIndex = 17
-        Me.NumMinutoAdra.Tag = ""
-        Me.NumMinutoAdra.Value = New Decimal(New Integer() {30, 0, 0, 0})
-        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2339,6 +2339,8 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.PerformLayout()
         Me.TabPage10.ResumeLayout(False)
         Me.TabPage10.PerformLayout()
+        CType(Me.NumMinutoAdra, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NumHoraAdra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage12.ResumeLayout(False)
         Me.TabPage12.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
@@ -2349,8 +2351,6 @@ Partial Class FrmInstaladorKubo
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabGestion.ResumeLayout(False)
-        CType(Me.NumHoraAdra, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NumMinutoAdra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
