@@ -5045,7 +5045,7 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub ActualizacionDiferidaAdra()
-        Icononotificacion.Text = "Ejecutando Actualización AdRa. Se mostrará el Instalador al terminar la actualización."
+        Icononotificacion.Text = "Ejecutando Actualización AdRa..."
         'TERMINAR PROCESOS NOTIN NET
         If ProcesosActivos() = True Then
             Try
