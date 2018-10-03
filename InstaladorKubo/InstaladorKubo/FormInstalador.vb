@@ -5015,7 +5015,7 @@ Public Class FrmInstaladorKubo
                 horaactual = DateTime.Now.Hour & ":" & DateTime.Now.Minute
                 Threading.Thread.Sleep(10000)
             End While
-            LBAdraDiferido.Text = "PROCESO DE ACTUALIZACION EN EJECUCIÓN. ESPERA..."
+            LBAdraDiferido.Text = "PROCESO DE ACTUALIZACION EN CURSO. ESPERA..."
             LBAdraDiferido.ForeColor = Color.ForestGreen
             ActualizacionDiferidaAdra()
         Else
