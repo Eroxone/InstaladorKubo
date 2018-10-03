@@ -5024,7 +5024,7 @@ Public Class FrmInstaladorKubo
             'Me.WindowState = FormWindowState.Minimized
             Me.Visible = False
             Icononotificacion.Visible = True
-            Icononotificacion.Text = "Programada actualización AdRa. Instalador en espera..."
+            ' Texto del icono en Down del botón
 
             Dim horaprogramada = horaseleccionada & ":" & minutoseleccionado
             Dim horaactual As String = DateTime.Now.Hour & ":" & DateTime.Now.Minute
@@ -5203,6 +5203,8 @@ Public Class FrmInstaladorKubo
         End If
 
         LBAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS."
+
+        Icononotificacion.Text = "Programada actualización AdRa. Instalador en espera."
     End Sub
 
     Public Sub EnvioMailADRA()
