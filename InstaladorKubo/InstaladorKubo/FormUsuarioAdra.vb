@@ -190,9 +190,9 @@ Public Class FormUsuarioAdra
             Try
                 File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Notin 8.lnk")
                 File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Word 2016.lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\NotinControlClient (NR).lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\ABBYY FineReader 11.lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Excel 2016.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\NotinControlClient (NR).lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\ABBYY FineReader 11.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Excel 2016.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Outlook 2016.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Administrador de Tareas (NR).lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Agenda.lnk")
@@ -241,6 +241,7 @@ Public Class FormUsuarioAdra
 
             Catch ex As Exception
                 FrmInstaladorKubo.RegistroInstalacion("NO SE PUDO LIMPIAR EL PERFIL ADRA: " & ex.Message)
+                BtLimpiarIconos.BackColor = Color.LightSalmon
             End Try
         End If
     End Sub
