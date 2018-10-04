@@ -46,51 +46,72 @@ Public Class FormUsuarioAdra
             FrmInstaladorKubo.RegistroInstalacion("No se seleccionó un usuario válido para Limpiar. Se cancela la operación. (eso o coincide que se llama UsuarioAdra y me pego un tiro...")
             Exit Sub
         End If
-        Directory.CreateDirectory(rutadescargas & "ADRA")
 
-        Dim carpetasperfil = Directory.GetDirectories("\\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Workspaces")
-        FrmInstaladorKubo.RegistroInstalacion("Se procede a limpiar la Ruta \\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Workspaces. Mas info en TXT CarpetasPerfil en " & rutadescargas & "ADRA\")
-        'Dim carpetasperfil = Directory.GetDirectories("C:\TEMP\Prueba")
-        Dim totalcarpetas As Integer = carpetasperfil.Count
-        Dim numcarpeta As Integer = 0
-        'File.WriteAllText(rutadescargas & "ADRA\CarpetasPerfil.txt", "")
-        While numcarpeta < totalcarpetas
-            File.AppendAllText(rutadescargas & "ADRA\CarpetasPerfil.txt", carpetasperfil(numcarpeta) & vbCrLf)
-            Dim carpetaactual As String = carpetasperfil(numcarpeta)
-            Try
-                'Directory.Delete(carpetaactual, True)
-                Shell("cmd /c RD /S /Q " & """" & carpetaactual & """", AppWinStyle.NormalFocus, True)
-                FrmInstaladorKubo.RegistroInstalacion("Eliminada Ruta del Perfil con ID " & carpetaactual)
-            Catch ex As Exception
-                MessageBox.Show("No se pudieron eliminar carpetas del Perfil. Mas info en el Logger.", "Error Borrado Carpetas Perfil", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza Perfil Usuario: " & ex.Message)
-                FrmInstaladorKubo.RegistroInstalacion("Se buscó la Ruta " & carpetaactual & ". No se pudo eliminar.")
-                BtLimpiar.BackColor = Color.LightSalmon
-            End Try
-            numcarpeta = numcarpeta + 1
-        End While
+        Try
+            Directory.CreateDirectory(rutadescargas & "ADRA")
+        Catch ex As Exception
+            MessageBox.Show("No se puede crear la ruta " & rutadescargas & "ADRA. Se cancela la operación.", "Ruta no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            FrmInstaladorKubo.RegistroInstalacion("ERROR: No se puede crear la ruta " & rutadescargas & "ADRA. Se cabcela la operación.")
+            BtLimpiar.BackColor = Color.LightSalmon
+            Exit Sub
+        End Try
+
+        Try
+            Dim carpetasperfil = Directory.GetDirectories("\\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Workspaces")
+            FrmInstaladorKubo.RegistroInstalacion("Se procede a limpiar la Ruta \\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Workspaces. Mas info en TXT CarpetasPerfil en " & rutadescargas & "ADRA\")
+            'Dim carpetasperfil = Directory.GetDirectories("C:\TEMP\Prueba")
+            Dim totalcarpetas As Integer = carpetasperfil.Count
+            Dim numcarpeta As Integer = 0
+            'File.WriteAllText(rutadescargas & "ADRA\CarpetasPerfil.txt", "")
+            While numcarpeta < totalcarpetas
+                File.AppendAllText(rutadescargas & "ADRA\CarpetasPerfil.txt", carpetasperfil(numcarpeta) & vbCrLf)
+                Dim carpetaactual As String = carpetasperfil(numcarpeta)
+                Try
+                    'Directory.Delete(carpetaactual, True)
+                    Shell("cmd /c RD /S /Q " & """" & carpetaactual & """", AppWinStyle.NormalFocus, True)
+                    FrmInstaladorKubo.RegistroInstalacion("Eliminada Ruta del Perfil con ID " & carpetaactual)
+                Catch ex As Exception
+                    MessageBox.Show("No se pudieron eliminar carpetas del Perfil. Mas info en el Logger.", "Error Borrado Carpetas Perfil", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza Perfil Usuario: " & ex.Message)
+                    FrmInstaladorKubo.RegistroInstalacion("Se buscó la Ruta " & carpetaactual & ". No se pudo eliminar.")
+                    BtLimpiar.BackColor = Color.LightSalmon
+                End Try
+                numcarpeta = numcarpeta + 1
+            End While
+        Catch ex As Exception
+            FrmInstaladorKubo.RegistroInstalacion("ERROR: No se puede acceder a la ruta Workspaces del usuario. " & ex.Message)
+            MessageBox.Show("No se puede acceder al Workspaces del usuario seleccionado. Se prosigue con el resto de procesos.", "Ruta WorksPaces", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            BtLimpiar.BackColor = Color.LightSalmon
+        End Try
 
         'Limpieza de recursos NR del Adra
-        Dim archivosnr = Directory.GetFiles("\\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)")
-        FrmInstaladorKubo.RegistroInstalacion("Se procede a limpiar la Ruta \\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC). Mas info en TXT ArchivosNR.txt en " & rutadescargas & "ADRA\")
-        'Dim archivosnr = Directory.GetFiles("C:\TEMP\Prueba")
-        Dim totalarchivos As Integer = archivosnr.Count
-        Dim numarchivo As Integer = 0
-        'File.WriteAllText(rutadescargas & "ADRA\ArchivosNR.txt", "")
-        While numarchivo < totalarchivos
-            File.AppendAllText(rutadescargas & "ADRA\ArchivosNR.txt", archivosnr(numarchivo) & vbCrLf)
-            Dim archivoactual As String = archivosnr(numarchivo)
-            Try
-                'File.Delete(archivoactual)
-                Shell("cmd /c del /F /Q " & """" & archivoactual & """", AppWinStyle.NormalFocus, True)
-            Catch ex As Exception
-                'MessageBox.Show("No se pudieron eliminar archivos de NR (RADC). Mas info en el Logger.", "Error borrado NR (RADC)", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza archivos NR (RADC): " & ex.Message)
-                FrmInstaladorKubo.RegistroInstalacion("Se procedió a eliminar Perfil con ID " & archivoactual & ". No se pudo eliminar.")
-                BtLimpiar.BackColor = Color.LightSalmon
-            End Try
-            numarchivo = numarchivo + 1
-        End While
+        Try
+            Dim archivosnr = Directory.GetFiles("\\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)")
+            FrmInstaladorKubo.RegistroInstalacion("Se procede a limpiar la Ruta \\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC). Mas info en TXT ArchivosNR.txt en " & rutadescargas & "ADRA\")
+            'Dim archivosnr = Directory.GetFiles("C:\TEMP\Prueba")
+            Dim totalarchivos As Integer = archivosnr.Count
+            Dim numarchivo As Integer = 0
+            'File.WriteAllText(rutadescargas & "ADRA\ArchivosNR.txt", "")
+
+            While numarchivo < totalarchivos
+                File.AppendAllText(rutadescargas & "ADRA\ArchivosNR.txt", archivosnr(numarchivo) & vbCrLf)
+                Dim archivoactual As String = archivosnr(numarchivo)
+                Try
+                    'File.Delete(archivoactual)
+                    Shell("cmd /c del /F /Q " & """" & archivoactual & """", AppWinStyle.NormalFocus, True)
+                Catch ex As Exception
+                    'MessageBox.Show("No se pudieron eliminar archivos de NR (RADC). Mas info en el Logger.", "Error borrado NR (RADC)", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza archivos NR (RADC): " & ex.Message)
+                    FrmInstaladorKubo.RegistroInstalacion("Se procedió a eliminar Perfil con ID " & archivoactual & ". No se pudo eliminar.")
+                    BtLimpiar.BackColor = Color.LightSalmon
+                End Try
+                numarchivo = numarchivo + 1
+            End While
+        Catch ex As Exception
+            FrmInstaladorKubo.RegistroInstalacion("ERROR: No se puede acceder a la ruta NR (RADC) del usuario. " & ex.Message)
+            MessageBox.Show("No se puede acceder al NR (RADC) del usuario seleccionado. Se prosigue con el resto de procesos.", "Objetos en NR (RADC)", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            BtLimpiar.BackColor = Color.LightSalmon
+        End Try
 
         'Limpiar carpeta RAPP_Control
         Try
