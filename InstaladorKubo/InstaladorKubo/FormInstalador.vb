@@ -107,14 +107,6 @@ Public Class FrmInstaladorKubo
             LbWordx64.Enabled = False
         End If
 
-        'Limpiar Icono versión anterior
-        Try
-            Dim Escritorio As String = "" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & ""
-            File.Delete(Escritorio & "InstaladorKubo.appref-ms")
-        Catch ex As Exception
-            RegistroInstalacion("INFO Limpiar InstaladorKubo: " & ex.Message)
-        End Try
-
     End Sub
 
     'NOVEDADES INSTALADOR
@@ -4991,17 +4983,17 @@ Public Class FrmInstaladorKubo
 
         If horaseleccionada = Nothing Then
             horaseleccionada = "7"
-            RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado una HORA válida. Se aplica valor por defecto a las 22 horas.")
+            'RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado una HORA válida. Se aplica valor por defecto a las 7 horas.")
         End If
         If minutoseleccionado = Nothing Then
             minutoseleccionado = "30"
-            RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un MINUTO válido. Se aplica valor por defecto a las en punto.")
+            'RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un MINUTO válido. Se aplica valor por defecto a las en punto.")
         End If
 
 
         Dim adradiferido As DialogResult = MessageBox.Show("PROGRAMAR EJECUCIÓN A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS." & vbCrLf & "En ese momento se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net Estable o Beta según se marque." & vbCrLf & "Bajo un entorno estándar completar este proceso llevará quince minutos. Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador. El Instalador quedará en la barra de tareas a la espera de la hora programada." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If adradiferido = DialogResult.Yes Then
-            RegistroInstalacion("= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA = HORA: " & horaseleccionada & ":" & minutoseleccionado & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
+            RegistroInstalacion(vbCrLf & "= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA = HORA: " & horaseleccionada & ":" & minutoseleccionado & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
 
             'Minimizar aplicación
             'Me.WindowState = FormWindowState.Minimized
@@ -5167,7 +5159,7 @@ Public Class FrmInstaladorKubo
         LBAdraDiferido.Visible = False
         'EnvioMailADRA()
         'MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "En verde todo correcto. Rojo indicará algún error. Revisa Log para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "En verde todo correcto. Rojo indicará algún error." & vbCrLf & "Revisa Log para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub BtNotinAdraDiferido_MouseDown(sender As Object, e As MouseEventArgs) Handles BtNotinAdraDiferido.MouseDown
