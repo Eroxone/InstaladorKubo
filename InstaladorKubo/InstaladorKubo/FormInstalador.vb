@@ -119,12 +119,13 @@ Public Class FrmInstaladorKubo
             Dim compilacionanterior() = Split(versionanterior, ".")
             Dim compilacinactual() = Split(versionactual, ".")
 
-            If compilacinactual(2) > compilacionanterior(2) Then
+            If compilacinactual(0) & compilacinactual(1) & compilacinactual(2) > compilacionanterior(0) & compilacionanterior(1) & compilacionanterior(2) Then
                 FormNovedades.ShowDialog()
-                cIniArray.IniWrite(instaladorkuboini, "VERSION", "CLICKONCE", versionactual)
             End If
         Catch ex As Exception
         End Try
+
+        cIniArray.IniWrite(instaladorkuboini, "VERSION", "CLICKONCE", versionactual)
 
     End Sub
 
