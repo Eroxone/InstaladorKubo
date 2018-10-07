@@ -70,6 +70,7 @@ Partial Class FrmInstaladorKubo
         Me.BtUac = New System.Windows.Forms.Button()
         Me.BtDirectivas = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.BtAbreExcel = New System.Windows.Forms.Button()
         Me.BtPanda = New System.Windows.Forms.Button()
         Me.CboxWUpdate = New System.Windows.Forms.ComboBox()
         Me.BtVisorImagenes = New System.Windows.Forms.Button()
@@ -809,6 +810,7 @@ Partial Class FrmInstaladorKubo
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage6.Controls.Add(Me.BtAbreExcel)
         Me.TabPage6.Controls.Add(Me.BtPanda)
         Me.TabPage6.Controls.Add(Me.CboxWUpdate)
         Me.TabPage6.Controls.Add(Me.BtVisorImagenes)
@@ -828,12 +830,24 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
         '
+        'BtAbreExcel
+        '
+        Me.BtAbreExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtAbreExcel.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.BtAbreExcel.Location = New System.Drawing.Point(8, 290)
+        Me.BtAbreExcel.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtAbreExcel.Name = "BtAbreExcel"
+        Me.BtAbreExcel.Size = New System.Drawing.Size(167, 28)
+        Me.BtAbreExcel.TabIndex = 41
+        Me.BtAbreExcel.Text = "AbreExcel"
+        Me.BtAbreExcel.UseVisualStyleBackColor = True
+        '
         'BtPanda
         '
         Me.BtPanda.Enabled = False
         Me.BtPanda.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtPanda.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.BtPanda.Location = New System.Drawing.Point(8, 253)
+        Me.BtPanda.Location = New System.Drawing.Point(8, 250)
         Me.BtPanda.Margin = New System.Windows.Forms.Padding(2)
         Me.BtPanda.Name = "BtPanda"
         Me.BtPanda.Size = New System.Drawing.Size(167, 28)
@@ -2204,9 +2218,9 @@ Partial Class FrmInstaladorKubo
         Me.LbVersionApp.ForeColor = System.Drawing.Color.Silver
         Me.LbVersionApp.Location = New System.Drawing.Point(942, 56)
         Me.LbVersionApp.Name = "LbVersionApp"
-        Me.LbVersionApp.Size = New System.Drawing.Size(52, 15)
+        Me.LbVersionApp.Size = New System.Drawing.Size(118, 15)
         Me.LbVersionApp.TabIndex = 53
-        Me.LbVersionApp.Text = "Versión"
+        Me.LbVersionApp.Text = "ClickOnce: v0.0.0.0"
         '
         'TlpBackupNet
         '
@@ -2554,4 +2568,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtNovedades As Button
     Friend WithEvents NumHoraAdra As NumericUpDown
     Friend WithEvents NumMinutoAdra As NumericUpDown
+    Friend WithEvents BtAbreExcel As Button
 End Class

@@ -123,6 +123,9 @@
   <data name="Label4.Text" xml:space="preserve">
     <value>En la pestaña ADRA se incorporan las utilidades de Gestión de Perfil orientada a limpiar el Perfil de Adra existente. Por  problema de asociación de archivos de windows,  por cambio de usuario para el Puesto o simplemente por problemas en el Perfil.</value>
   </data>
+  <data name="Label10.Text" xml:space="preserve">
+    <value>Desde la pestaña ÚTILES disponemos de la nueva opción AbreExcel la cual generará el ejecutable AbreExcel.exe teniendo en cuenta el entorno del equipo. Ya no serán necesarios varios AbreExcel. Si la ruta de Office cambia tendrás que volver a generarlo.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

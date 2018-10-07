@@ -1,6 +1,6 @@
 ﻿Imports Instalador.LeerFicherosINI
-
-
+Imports System.IO
+Imports Instalador.FrmInstaladorKubo
 
 Public Class FormPassword
 

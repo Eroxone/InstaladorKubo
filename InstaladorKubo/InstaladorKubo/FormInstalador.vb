@@ -35,7 +35,6 @@ Public Class FrmInstaladorKubo
             MessageBox.Show("Error creando ruta Temporal. Pueden seguir mas errores en el Instalador.", "Error Ruta TEMP", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
-
         SistemaOperativo()
         lbRuta.Text = GetPathTemp()
         UpTimeServidor()
@@ -86,7 +85,9 @@ Public Class FrmInstaladorKubo
             If ApplicationDeployment.IsNetworkDeployed Then
                 myVersion = ApplicationDeployment.CurrentDeployment.CurrentVersion
                 LbVersionApp.Text = String.Concat("ClickOnce: v", myVersion)
+                'cIniArray.IniWrite(instaladorkuboini, "VERSION", "CLICKONCE", LbVersionApp.Text.Substring(12))
             End If
+
         Catch ex As Exception
             RegistroInstalacion("INFO: No se detectó la versión de ClickOnce Publicada. Esto no es un error en la App.")
         End Try
@@ -107,9 +108,27 @@ Public Class FrmInstaladorKubo
             LbWordx64.Enabled = False
         End If
 
+        ' === MUESTREO NOVEDADES ===
+        Dim versionanterior = cIniArray.IniGet(instaladorkuboini, "VERSION", "CLICKONCE", "0.0.0.0")
+        'Dim versionactual = LbVersionApp.Text
+        'Dim versionactual = "ClickOnce: v1.0.5.2"
+        Dim versionactual As String = LbVersionApp.Text.Substring(12)
+
+        'Obtener número Compilación
+        Try
+            Dim compilacionanterior() = Split(versionanterior, ".")
+            Dim compilacinactual() = Split(versionactual, ".")
+
+            If compilacinactual(2) > compilacionanterior(2) Then
+                FormNovedades.ShowDialog()
+                cIniArray.IniWrite(instaladorkuboini, "VERSION", "CLICKONCE", versionactual)
+            End If
+        Catch ex As Exception
+        End Try
+
     End Sub
 
-    'NOVEDADES INSTALADOR
+    'BOTÓN NOVEDADES INSTALADOR
     Private Sub BtNovedades_Click(sender As Object, e As EventArgs) Handles BtNovedades.Click
         FormNovedades.ShowDialog()
     End Sub
@@ -423,6 +442,13 @@ Public Class FrmInstaladorKubo
         If limpiarperfiladra = 1 Then
             BtLimpiarPerfil.BackColor = Color.PaleGreen
         End If
+        Dim abreexcel = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "ABREEXCEL", 2)
+        If abreexcel = 0 Then
+            BtAbreExcel.BackColor = Color.LightSalmon
+        ElseIf abreexcel = 1 Then
+            BtAbreExcel.BackColor = Color.PaleGreen
+        End If
+
     End Sub
 
     'Boton EXAMINAR
@@ -4750,7 +4776,7 @@ Public Class FrmInstaladorKubo
         obtenerwget()
         Directory.CreateDirectory(RutaDescargas & "Registro")
         Dim wgetvisor As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 "
-        Shell("cmd.exe /c " & RutaDescargas & wgetvisor & PuestoNotin & "VisorDeImagenes.reg" & " -O" & RutaDescargas & "Registro\VisorDeImagenes.reg", AppWinStyle.NormalFocus, True)
+        Shell("cmd.exe /c " & RutaDescargas & wgetvisor & PuestoNotin & "VisorDeImagenes.reg" & " -O " & RutaDescargas & "Registro\VisorDeImagenes.reg", AppWinStyle.NormalFocus, True)
         Try
             Process.Start("regedit.exe", "/s " & RutaDescargas & "Registro\VisorDeImagenes.reg")
             RegistroInstalacion("Visor Imágenes: Clave Registro Importada correctamente.")
@@ -5259,6 +5285,106 @@ Public Class FrmInstaladorKubo
         Icononotificacion.Visible = False
         Me.Visible = True
         WindowState = FormWindowState.Normal
+    End Sub
+
+    Private Sub BtAbreExcel_Click(sender As Object, e As EventArgs) Handles BtAbreExcel.Click
+
+        MessageBox.Show("Se va a proceder a generar el ejecutable ABREEXCEL.EXE personalizado para este equipo." & vbCrLf & "Es posible que tu antivirus interfiera en esta ejecución. Si tienes algún error prueba a deshabilitarlo temporalmente o añadir una excepción. Siempre puedes consultar el Log del Instalador para obtener más detalles.", "Generando AbreExcel en este equipo.", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        PbInstalaciones.Visible = True
+        PbInstalaciones.Value = 0
+
+
+        Dim rutaexcel As String
+        If File.Exists("C:\Program Files\Microsoft Office\Office16\EXCEL.EXE") Then
+            rutaexcel = "C:\Program Files\Microsoft Office\Office16\EXCEL.EXE"
+        ElseIf File.Exists("C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE") Then
+            rutaexcel = "C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE"
+        ElseIf File.Exists("C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE") Then
+            rutaexcel = "C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE"
+        ElseIf File.Exists("C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.EXE") Then
+            rutaexcel = "C:\Program Files (x86)\Microsoft Office\root\Office16\EXCEL.EXE"
+        Else
+            MessageBox.Show("No se pudo determinar ruta ejecutable Microsoft Excel", "Excel no encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            rutaexcel = Nothing
+        End If
+
+        PbInstalaciones.Step = 5
+        PbInstalaciones.PerformStep()
+
+        RegistroInstalacion("Configurando ABREEXCEL. Examinando entorno..." & vbCrLf & "Ruta Excel determinada hacia " & rutaexcel)
+        'Creamos el BAT
+
+        Dim rutaabreexcel As String = RutaDescargas & "Scripts\AbreExcel\"
+        Try
+            Directory.CreateDirectory(RutaDescargas & "Scripts\AbreExcel")
+            File.WriteAllText(RutaDescargas & "Scripts\AbreExcel\AbreExcel.bat", """" & rutaexcel & """" & " %1")
+            PbInstalaciones.PerformStep()
+            PbInstalaciones.Step = 5
+        Catch ex As Exception
+            MessageBox.Show("Se ha producido un error. Revisa Logs para más información.", "Error ejecutando scripts AbreExcel", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            BtAbreExcel.BackColor = Color.LightSalmon
+            RegistroInstalacion("ERROR Creando Script AbreExcel. " & ex.Message)
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "ABREEXCEL", "0")
+            Exit Sub
+        End Try
+
+        'TODO obtener archivos del ftp
+        obtenerwget()
+        Dim wgetscripts As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 "
+        Shell("cmd.exe /c " & RutaDescargas & wgetscripts & PuestoNotin & "Scripts\BatToExeConverter.exe" & " -O " & rutaabreexcel & "BatToExeConverter.exe", AppWinStyle.Hide, True)
+        Shell("cmd.exe /c " & RutaDescargas & wgetscripts & PuestoNotin & "Scripts\Excelicon.ico" & " -O " & rutaabreexcel & "Excelicon.ico", AppWinStyle.Hide, True)
+        PbInstalaciones.PerformStep()
+        PbInstalaciones.Step = 10
+        'Creamos el ejecutable
+        Try
+            Dim parametros As String = "/bat " & rutaabreexcel & "AbreExcel.bat" & " /exe " & rutaabreexcel & "AbreExcel.exe" & " /icon " & rutaabreexcel & "Excelicon.ico" & " /invisible /overwrite /productname InstaladorAbreExcel /deleteonexit"
+            Process.Start(RutaDescargas & "Scripts\AbreExcel\BatToExeConverter.exe", parametros)
+            PbInstalaciones.PerformStep()
+            PbInstalaciones.Step = 5
+        Catch ex As Exception
+            RegistroInstalacion("ERROR. No se pudo lanzar el proceso para generar ejecutable AbreExcel.exe. Código: " & ex.Message)
+            BtAbreExcel.BackColor = Color.LightSalmon
+            cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "ABREEXCEL", "0")
+            Exit Sub
+        End Try
+
+
+
+        PbInstalaciones.Step = 5
+        Dim p As Integer
+        While p < 6
+            p = p + 1
+            Threading.Thread.Sleep(1000)
+            PbInstalaciones.PerformStep()
+        End While
+
+
+        'Copiar AbreExcel a C:\Notawin.Net y Limpiar archivos
+        Try
+            File.Delete(rutaabreexcel & "AbreExcel.bat")
+            File.Delete(rutaabreexcel & "Excelicon.ico")
+            File.Delete(rutaabreexcel & "BatToExeConverter.exe")
+            RegistroInstalacion("ABREEXCEL: Limpiados ficheros temporales para la ejecución de los Scripts.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR AbreExcel. No se pudieron limpiar algunos ficheros. " & ex.Message)
+        End Try
+
+        Try
+            Directory.CreateDirectory("C:\Notawin.Net")
+            File.Copy(rutaabreexcel & "AbreExcel.exe", "C:\Notawin.Net\AbreExcel.exe", True)
+        Catch ex As Exception
+            RegistroInstalacion("ERROR. No se pudo copiar AbreExcel a C:\Notawin.Net. " & ex.Message)
+            BtAbreExcel.BackColor = Color.LightSalmon
+            Process.Start("explorer.exe", rutaabreexcel)
+            Exit Sub
+        End Try
+
+        PbInstalaciones.Visible = False
+
+        MessageBox.Show("Encontrarás ABREEXCEL.EXE en C:\Notawin.Net. Establécelo como Programa predeterminado para las extensiones XLS y XLSX.", "Generación de AbreExcel finalizada.", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        BtAbreExcel.BackColor = Color.PaleGreen
+        cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "ABREEXCEL", "1")
     End Sub
 
 
