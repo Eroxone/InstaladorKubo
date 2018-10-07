@@ -39,10 +39,10 @@ Partial Class FormNovedades
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(160, 9)
+        Me.Label1.Font = New System.Drawing.Font("Calisto MT", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(129, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(269, 22)
+        Me.Label1.Size = New System.Drawing.Size(294, 24)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "NOVEDADES INSTALADOR"
         '
@@ -98,16 +98,16 @@ Partial Class FormNovedades
         '
         'Label6
         '
-        Me.Label6.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
         Me.Label6.Location = New System.Drawing.Point(12, 126)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(293, 21)
         Me.Label6.TabIndex = 6
-        Me.Label6.Text = "Mejorada utilidad Actualizar Adra Diferido"
+        Me.Label6.Text = "Mejorada gestión Actualizar Adra Diferido"
         '
         'Label7
         '
-        Me.Label7.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
         Me.Label7.Location = New System.Drawing.Point(12, 203)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(293, 21)
@@ -116,7 +116,7 @@ Partial Class FormNovedades
         '
         'Label8
         '
-        Me.Label8.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
         Me.Label8.Location = New System.Drawing.Point(12, 271)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(293, 21)
@@ -125,12 +125,12 @@ Partial Class FormNovedades
         '
         'Label9
         '
-        Me.Label9.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(12, 41)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(293, 21)
         Me.Label9.TabIndex = 9
-        Me.Label9.Text = "Utilidad ABREEXCEL"
+        Me.Label9.Text = "Utilidad ""ABREEXCEL"""
         '
         'Label10
         '

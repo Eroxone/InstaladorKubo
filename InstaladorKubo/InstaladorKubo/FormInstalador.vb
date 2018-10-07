@@ -158,6 +158,7 @@ Public Class FrmInstaladorKubo
                 PbInstalaciones.PerformStep()
             End While
             PbInstalaciones.Visible = False
+            PbInstalaciones.Value = 0
         Catch ex As Exception
             RegistroInstalacion("Limpieza ficheros: " & ex.Message)
         End Try
@@ -176,6 +177,7 @@ Public Class FrmInstaladorKubo
             PbInstalaciones.PerformStep()
         End While
         PbInstalaciones.Visible = False
+        PbInstalaciones.Value = 0
     End Sub
 
     Private Sub BtLimpiarPaquetes_Click(sender As Object, e As EventArgs) Handles BtLimpiarPaquetes.Click
@@ -1580,6 +1582,7 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("=== FINALIZADAS INSTALACIONES NOTIN+KUBO ===")
 
         PbInstalaciones.Visible = False
+        PbInstalaciones.Value = 0
     End Sub
 
 
@@ -1663,7 +1666,7 @@ Public Class FrmInstaladorKubo
         TlpKmspico.SetToolTip(BtKmsPico, "Descarga, descomprime e Instala KMSpico 10. Revisa antes las Excepciones del Antivirus.")
 
         TlpReconectarF.ToolTipTitle = "Reconectar Unidad F"
-        TlpReconectarF.SetToolTip(BtReconectar, "Chequea la existencia Unidad F. Usa esto si la conectaste una vez arrancado el Instalador.")
+        TlpReconectarF.SetToolTip(BtReconectar, "Chequea la existencia Unidad F. Si no existe intentará conectarla. Si la conectaste manualmente tras iniciar el Instalador haz clic aquí.")
 
         TlpDirectivas.ToolTipTitle = "Directivas de Windows"
         TlpDirectivas.SetToolTip(BtDirectivas, "Aplica las Directivas de Windows. Para más información lee la hoja de Requisitos.")
@@ -1890,6 +1893,8 @@ Public Class FrmInstaladorKubo
 
         Threading.Thread.Sleep(1000)
         PbInstalaciones.Visible = False
+        PbInstalaciones.Value = 0
+
 
         Dim reiniciodirectivas As DialogResult
         reiniciodirectivas = MessageBox.Show("Se procede a aplicar las Directivas. El equipo solo se reiniciará si es necesario.", "¿Aplicamos Update a Directivas?", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
@@ -2542,6 +2547,7 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("=== FIN DE LA INSTALACIÓN NOTIN + WORD 2003 ===")
         'btNotinKubo.ForeColor = Color.YellowGreen
         PbInstalaciones.Visible = False
+        PbInstalaciones.Value = 0
     End Sub
 #End Region
 
@@ -2855,15 +2861,32 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BtReconectar_Click(sender As Object, e As EventArgs) Handles BtReconectar.Click
-
         PbInstalaciones.Visible = True
-        PbInstalaciones.Step = 25
-        Dim p As Integer
-        While p < 5
-            p = p + 1
-            Threading.Thread.Sleep(500)
+        PbInstalaciones.Maximum = 50
+        PbInstalaciones.Step = 10
+        PbInstalaciones.PerformStep()
+        'Dim p As Integer
+        'While p < 5
+        '    p = p + 1
+        '    Threading.Thread.Sleep(500)
+        'PbInstalaciones.PerformStep()
+        'End While
+
+        Try
+            Shell("NET USE F: \\SERVIDOR\F", AppWinStyle.Hide, True)
+            PbInstalaciones.Step = 20
             PbInstalaciones.PerformStep()
-        End While
+            Shell("NET USE F: \\SERVIDORNOTIN\F", AppWinStyle.Hide, True)
+            PbInstalaciones.Step = 20
+            PbInstalaciones.PerformStep()
+            Shell("NET USE F: \\SERVNOTIN\F", AppWinStyle.Hide, True)
+            PbInstalaciones.Step = 20
+            PbInstalaciones.PerformStep()
+            Shell("NET USE F: \\NOTINRAPP\F", AppWinStyle.Hide, True)
+            PbInstalaciones.Step = 20
+            PbInstalaciones.PerformStep()
+        Catch ex As Exception
+        End Try
 
         Try
             If UnidadF() = True Then
@@ -2890,6 +2913,9 @@ Public Class FrmInstaladorKubo
             BtTraerdeF.Enabled = False
         End If
         PbInstalaciones.Visible = False
+        PbInstalaciones.Value = 0
+
+        UseWaitCursor = False
     End Sub
 
 
@@ -3637,6 +3663,7 @@ Public Class FrmInstaladorKubo
 
         lbInstalando.Visible = False
         PbInstalaciones.Visible = False
+        PbInstalaciones.Value = 0
         MessageBox.Show("INSTALACIONES TERMINADAS. Se recomienda REINICIAR el equipo. Consulta el Registro de Instalación para más detalles.", "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
         RegistroInstalacion("=== FINALIZADAS INSTALACIONES NOTIN+NEXUS x64 ===")
 
@@ -5382,6 +5409,7 @@ Public Class FrmInstaladorKubo
         End Try
 
         PbInstalaciones.Visible = False
+        PbInstalaciones.Value = 0
 
         MessageBox.Show("Encontrarás ABREEXCEL.EXE en C:\Notawin.Net. Establécelo como Programa predeterminado para las extensiones XLS y XLSX.", "Generación de AbreExcel finalizada.", MessageBoxButtons.OK, MessageBoxIcon.Information)
         BtAbreExcel.BackColor = Color.PaleGreen
