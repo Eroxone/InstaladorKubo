@@ -4293,6 +4293,13 @@ Public Class FrmInstaladorKubo
 
     Private Sub BackupNotinNet()
 
+        Try
+            Directory.CreateDirectory(RutaDescargas & "NotinNet\BackupNet")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR. No se pudo crear " & RutaDescargas & "NotinNet\BackupNet." & ex.Message)
+            Exit Sub
+        End Try
+
         If NotinRapp() = True Then
             ObtenerVersionNet()
             Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
@@ -4302,7 +4309,6 @@ Public Class FrmInstaladorKubo
                 Dim infoversion = cIniArray.IniGet(instaladorkuboini, "NET", "NETSISTEMA", "Version X.X.X.XXXX")
                 Dim numeroversion = infoversion.Substring(8, 10)
                 Try
-                    Directory.CreateDirectory(RutaDescargas & "NotinNet\BackupNet")
                     File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & numeroversion & ".exe", True)
                 Catch ex As Exception
                     RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
@@ -4333,10 +4339,6 @@ Public Class FrmInstaladorKubo
         'PARA NO ADRA
         'Copiar el de NOTIN NET INSTALLER de la Carpeta Descargas
         If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") Then
-            Try
-                Directory.CreateDirectory(RutaDescargas & "NotinNet\BackupNet")
-            Catch ex As Exception
-            End Try
 
             ObtenerVersionNet()
 
@@ -4366,6 +4368,8 @@ Public Class FrmInstaladorKubo
         Try
             Directory.CreateDirectory("F:\Notawin.Net\BackupNet")
         Catch ex As Exception
+            RegistroInstalacion("ERROR. No se pudo crear F:\Notawin.Net\BackupNet. " & ex.Message)
+            Exit Sub
         End Try
 
         If File.Exists("F:\Notawin.Net\NotinNetInstaller.exe") Then
