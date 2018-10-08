@@ -4300,7 +4300,6 @@ Public Class FrmInstaladorKubo
             Directory.CreateDirectory(RutaDescargas & "NotinNet\BackupNet")
         Catch ex As Exception
             RegistroInstalacion("ERROR. No se pudo crear " & RutaDescargas & "NotinNet\BackupNet." & ex.Message)
-            Exit Sub
         End Try
 
         If NotinRapp() = True Then
@@ -4342,8 +4341,9 @@ Public Class FrmInstaladorKubo
             'Copiar el de F NOTAWIN.NET
             Try
                 Directory.CreateDirectory("F:\Notawin.Net\BackupNet")
+                File.Copy("F:\Notin8.exe", "F:\Notawin.Net\BackupNet\Notin8_BackupNet.exe", True)
             Catch ex As Exception
-                RegistroInstalacion("ERROR. No se pudo crear F:\Notawin.Net\BackupNet. " & ex.Message)
+                RegistroInstalacion("ERROR. No se pudo copiar Notin8.exe a F:\Notawin.Net\BackupNet. " & ex.Message)
                 Exit Sub
             End Try
 
@@ -4388,11 +4388,26 @@ Public Class FrmInstaladorKubo
             End If
         End If
 
+        'Copiar Notin8
+        If File.Exists("F:\Notin8.exe") Then
+            Try
+                Dim Fechahoy As String = DateTime.Now.Date
+                Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
+                File.Copy("F:\Notin8.exe", RutaDescargas & "NotinNet\BackupNet\Notin8_" & notinnetfecha & ".exe", True)
+                RegistroInstalacion("INFO: Realizado Backup de Notin8 de F raíz en BackupNet.")
+            Catch ex As Exception
+                RegistroInstalacion("INFO: No se pudo realizar el Backup de Notin8 de F raíz en BackupNet. " & ex.Message)
+            End Try
+        End If
+
         'Copiar el de F NOTAWIN.NET
         Try
             Directory.CreateDirectory("F:\Notawin.Net\BackupNet")
+            Dim Fechahoy As String = DateTime.Now.Date
+            Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
+            File.Copy("F:\Notin8.exe", "F:\Notawin.Net\BackupNet\Notin8_BackupNet.exe", True)
         Catch ex As Exception
-            RegistroInstalacion("ERROR. No se pudo crear F:\Notawin.Net\BackupNet. " & ex.Message)
+            RegistroInstalacion("ERROR. No se pudo copiar Notin8.exe F:\Notawin.Net\BackupNet. " & ex.Message)
             Exit Sub
         End Try
 
@@ -4406,17 +4421,6 @@ Public Class FrmInstaladorKubo
             End Try
         End If
 
-        'Copiar Notin8
-        If File.Exists("F:\Notin8.exe") Then
-            Try
-                Dim Fechahoy As String = DateTime.Now.Date
-                Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
-                File.Copy("F:\Notin8.exe", RutaDescargas & "NotinNet\BackupNet\Notin8_" & notinnetfecha & ".exe", True)
-                RegistroInstalacion("INFO: Realizado Backup de Notin8 de F raíz en BackupNet.")
-            Catch ex As Exception
-                RegistroInstalacion("INFO: No se pudo realizar el Backup de Notin8 de F raíz en BackupNet. " & ex.Message)
-            End Try
-        End If
     End Sub
 
 
@@ -5364,13 +5368,13 @@ Public Class FrmInstaladorKubo
     Private Sub BtBackupNet_Click(sender As Object, e As EventArgs) Handles BtBackupNet.Click
         If Directory.Exists(RutaDescargas & "NotinNet\BackupNet") OrElse Directory.Exists("F:\Notawin.Net\BackupNet") Then
             Try
-                Dim limpiezanet As String = "@echo off" & vbCrLf & "FORFILES /P " & RutaDescargas & "NotinNet\BackupNet /S /D -15 /M *.exe /c " & """" & "CMD /c DEL /Q @PATH" & """"
-                Dim limpiezanetf As String = vbCrLf & "FORFILES /P F:\Notawin.Net\BackupNet /S /D -15 /M *.exe /c " & """" & "CMD /c DEL /Q @PATH" & """"
+                Dim limpiezanet As String = "@echo off" & vbCrLf & "FORFILES /P " & RutaDescargas & "NotinNet\BackupNet /S /D -30 /M *.exe /c " & """" & "CMD /c DEL /Q @PATH" & """"
+                Dim limpiezanetf As String = vbCrLf & "FORFILES /P F:\Notawin.Net\BackupNet /S /D -30 /M *.exe /c " & """" & "CMD /c DEL /Q @PATH" & """"
                 File.WriteAllText(RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat", limpiezanet)
                 File.AppendAllText(RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat", limpiezanetf)
                 'Process.Start(RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat")
                 Shell("cmd /c " & RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat", AppWinStyle.Hide, True)
-                RegistroInstalacion("INFO. Limpiados ficheros en BackupNet de mas de 15 días.")
+                RegistroInstalacion("INFO. Limpiados ficheros en BackupNet de mas de 30 días.")
                 File.Delete(RutaDescargas & "NotinNet\BackupNet\LimpiarNet.bat")
             Catch ex As Exception
                 RegistroInstalacion("INFO. No se limpiaron los ficheros de BackupNet." & ex.Message)
