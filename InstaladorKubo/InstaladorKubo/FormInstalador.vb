@@ -4292,6 +4292,45 @@ Public Class FrmInstaladorKubo
 
 
     Private Sub BackupNotinNet()
+
+        If NotinRapp() = True Then
+            ObtenerVersionNet()
+            Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
+            Dim infoinstaller As String = appData & "\Notin\InfoInstaller.txt"
+
+            If File.Exists(infoinstaller) Then
+                Dim infoversion = cIniArray.IniGet(instaladorkuboini, "NET", "NETSISTEMA", "Version X.X.X.XXXX")
+                Dim numeroversion = infoversion.Substring(8, 10)
+                Try
+                    Directory.CreateDirectory(RutaDescargas & "NotinNet\BackupNet")
+                    File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & numeroversion & ".exe", True)
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
+                End Try
+            Else
+                Dim Fechahoy As String = DateTime.Now.Date
+                Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
+                Try
+                    File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & notinnetfecha & ".exe", True)
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
+                End Try
+            End If
+
+            If File.Exists("F:\Notin8.exe") Then
+                Try
+                    Dim Fechahoy As String = DateTime.Now.Date
+                    Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
+                    File.Copy("F:\Notin8.exe", RutaDescargas & "NotinNet\BackupNet\Notin8_" & notinnetfecha & ".exe", True)
+                    RegistroInstalacion("INFO: Realizado Backup de Notin8 de F raíz en BackupNet.")
+                Catch ex As Exception
+                    RegistroInstalacion("INFO: No se pudo realizar el Backup de Notin8 de F raíz en BackupNet. " & ex.Message)
+                End Try
+            End If
+            Exit Sub
+        End If
+
+        'PARA NO ADRA
         'Copiar el de NOTIN NET INSTALLER de la Carpeta Descargas
         If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") Then
             Try
@@ -4320,38 +4359,8 @@ Public Class FrmInstaladorKubo
                 Catch ex As Exception
                     RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
                 End Try
-
-            End If
-        ElseIf File.Exists("F:\Notawin.Net\NotinNetInstaller.exe") Then
-            Try
-                Directory.CreateDirectory(RutaDescargas & "NotinNet\BackupNet")
-            Catch ex As Exception
-            End Try
-
-            ObtenerVersionNet()
-
-            Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
-            Dim infoinstaller As String = appData & "\Notin\InfoInstaller.txt"
-
-            If File.Exists(infoinstaller) Then
-                Dim infoversion = cIniArray.IniGet(instaladorkuboini, "NET", "NETSISTEMA", "Version X.X.X.XXXX")
-                Dim numeroversion = infoversion.Substring(8, 10)
-                Try
-                    File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & numeroversion & ".exe", True)
-                Catch ex As Exception
-                    RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller de F en RutaDescargas. " & ex.Message)
-                End Try
-            Else
-                Dim Fechahoy As String = DateTime.Now.Date
-                Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
-                Try
-                    File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & notinnetfecha & ".exe", True)
-                Catch ex As Exception
-                    RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller de F en RutaDescargas. " & ex.Message)
-                End Try
             End If
         End If
-
 
         'Copiar el de F NOTAWIN.NET
         Try
@@ -4366,6 +4375,18 @@ Public Class FrmInstaladorKubo
                 File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", "F:\Notawin.Net\BackupNet\NotinNetInstaller_BackupNet.exe", True)
             Catch ex As Exception
                 RegistroInstalacion("ERROR: No se puedo crear el Backup de NotinNetInstaller de F NotawinNet. " & ex.Message)
+            End Try
+        End If
+
+        'Copiar Notin8
+        If File.Exists("F:\Notin8.exe") Then
+            Try
+                Dim Fechahoy As String = DateTime.Now.Date
+                Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
+                File.Copy("F:\Notin8.exe", RutaDescargas & "NotinNet\BackupNet\Notin8_" & notinnetfecha & ".exe", True)
+                RegistroInstalacion("INFO: Realizado Backup de Notin8 de F raíz en BackupNet.")
+            Catch ex As Exception
+                RegistroInstalacion("INFO: No se pudo realizar el Backup de Notin8 de F raíz en BackupNet. " & ex.Message)
             End Try
         End If
     End Sub
@@ -5143,6 +5164,9 @@ Public Class FrmInstaladorKubo
             BtNotinAdraDiferido.BackColor = Color.LightSalmon
         End Try
 
+        'Copiar las Versiones de Net y Notin8
+        BackupNotinNet()
+
         'NOTIN 8
         Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/v40/notin8.exe"
         Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe"
@@ -5185,7 +5209,6 @@ Public Class FrmInstaladorKubo
 
         'EJECUCIÓN .NET DESCARGADO
         If CbBetaAdra.Checked = True Then
-            BackupNotinNet()
 
             Dim urlbeta As String = "https://static.unidata.es/NotinNetInstaller/v40/beta/NotinNetInstaller.exe"
             Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -5219,8 +5242,6 @@ Public Class FrmInstaladorKubo
 
             'INSTALACION ESTABLE NET
         Else
-            BackupNotinNet()
-
             Try
                 Dim pnotinnet As New ProcessStartInfo()
                 pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
