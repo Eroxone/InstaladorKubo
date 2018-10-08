@@ -999,6 +999,7 @@ Partial Class FrmInstaladorKubo
         '
         'BtBackupNet
         '
+        Me.BtBackupNet.BackColor = System.Drawing.Color.MistyRose
         Me.BtBackupNet.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtBackupNet.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtBackupNet.Location = New System.Drawing.Point(247, 319)
@@ -1006,7 +1007,7 @@ Partial Class FrmInstaladorKubo
         Me.BtBackupNet.Size = New System.Drawing.Size(111, 28)
         Me.BtBackupNet.TabIndex = 52
         Me.BtBackupNet.Text = "Ver BackupNet"
-        Me.BtBackupNet.UseVisualStyleBackColor = True
+        Me.BtBackupNet.UseVisualStyleBackColor = False
         '
         'LbWordx64
         '

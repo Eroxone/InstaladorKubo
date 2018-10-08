@@ -34,6 +34,8 @@ Partial Class FormNovedades
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
@@ -49,7 +51,7 @@ Partial Class FormNovedades
         'Label2
         '
         Me.Label2.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(12, 147)
+        Me.Label2.Location = New System.Drawing.Point(12, 220)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(562, 56)
         Me.Label2.TabIndex = 1
@@ -58,7 +60,7 @@ Partial Class FormNovedades
         'Label3
         '
         Me.Label3.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(12, 224)
+        Me.Label3.Location = New System.Drawing.Point(12, 297)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(562, 35)
         Me.Label3.TabIndex = 2
@@ -69,7 +71,7 @@ Partial Class FormNovedades
         '
         Me.BtCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtCerrar.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtCerrar.Location = New System.Drawing.Point(491, 401)
+        Me.BtCerrar.Location = New System.Drawing.Point(505, 474)
         Me.BtCerrar.Name = "BtCerrar"
         Me.BtCerrar.Size = New System.Drawing.Size(83, 33)
         Me.BtCerrar.TabIndex = 3
@@ -79,7 +81,7 @@ Partial Class FormNovedades
         'Label4
         '
         Me.Label4.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(12, 292)
+        Me.Label4.Location = New System.Drawing.Point(12, 365)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(562, 52)
         Me.Label4.TabIndex = 4
@@ -88,7 +90,7 @@ Partial Class FormNovedades
         'Label5
         '
         Me.Label5.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(12, 344)
+        Me.Label5.Location = New System.Drawing.Point(12, 417)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(562, 54)
         Me.Label5.TabIndex = 5
@@ -99,7 +101,7 @@ Partial Class FormNovedades
         'Label6
         '
         Me.Label6.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.Label6.Location = New System.Drawing.Point(12, 126)
+        Me.Label6.Location = New System.Drawing.Point(12, 199)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(293, 21)
         Me.Label6.TabIndex = 6
@@ -108,7 +110,7 @@ Partial Class FormNovedades
         'Label7
         '
         Me.Label7.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.Label7.Location = New System.Drawing.Point(12, 203)
+        Me.Label7.Location = New System.Drawing.Point(12, 276)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(293, 21)
         Me.Label7.TabIndex = 7
@@ -117,7 +119,7 @@ Partial Class FormNovedades
         'Label8
         '
         Me.Label8.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.Label8.Location = New System.Drawing.Point(12, 271)
+        Me.Label8.Location = New System.Drawing.Point(12, 344)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(293, 21)
         Me.Label8.TabIndex = 8
@@ -141,12 +143,32 @@ Partial Class FormNovedades
         Me.Label10.TabIndex = 10
         Me.Label10.Text = resources.GetString("Label10.Text")
         '
+        'Label11
+        '
+        Me.Label11.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.Label11.Location = New System.Drawing.Point(12, 115)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(293, 21)
+        Me.Label11.TabIndex = 12
+        Me.Label11.Text = "Backup de NET y NOTIN8"
+        '
+        'Label12
+        '
+        Me.Label12.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Location = New System.Drawing.Point(12, 136)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(562, 63)
+        Me.Label12.TabIndex = 11
+        Me.Label12.Text = resources.GetString("Label12.Text")
+        '
         'FormNovedades
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.ClientSize = New System.Drawing.Size(600, 448)
+        Me.ClientSize = New System.Drawing.Size(600, 519)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label8)
@@ -181,4 +203,6 @@ Partial Class FormNovedades
     Friend WithEvents Label8 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
 End Class
