@@ -5102,15 +5102,15 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtNotinAdraDiferido_Click(sender As Object, e As EventArgs) Handles BtNotinAdraDiferido.Click
         'COMPROBAR QUE TRABAJAMOS EN UN SERVIDOR NOTINRAPP.
-        'If NotinRapp() = False Then
-        '    MessageBox.Show("Por seguridad solo se permite la ejecución en Entornos ADRA bajo el host NotinRapp. Se cancela la ejecución.", "Ejecución fuera de AdRa", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-        '    RegistroInstalacion("ADRA: Se cancela la actualización diferida de Adra. El Host no coincide.")
-        '    BtNotinAdraDiferido.BackColor = SystemColors.Control
-        '    LBAdraDiferido.Visible = False
-        '    Exit Sub
-        'Else
-        '    RegistroInstalacion("Detectado entorno ADRA. Se permite la ejecución de Actualización Adra Diferida.")
-        'End If
+        If NotinRapp() = False Then
+            MessageBox.Show("Por seguridad solo se permite la ejecución en Entornos ADRA bajo el host NotinRapp. Se cancela la ejecución.", "Ejecución fuera de AdRa", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            RegistroInstalacion("ADRA: Se cancela la actualización diferida de Adra. El Host no coincide.")
+            BtNotinAdraDiferido.BackColor = SystemColors.Control
+            LBAdraDiferido.Visible = False
+            Exit Sub
+        Else
+            RegistroInstalacion("Detectado entorno ADRA. Se permite la ejecución de Actualización Adra Diferida.")
+        End If
 
         'MENSAJE ADVERTENCIA PROCESOS
         Dim horaseleccionada = NumHoraAdra.Value
@@ -5301,16 +5301,9 @@ Public Class FrmInstaladorKubo
         Dim horaseleccionada = NumHoraAdra.Value
         Dim minutoseleccionado = NumMinutoAdra.Value
 
-        If horaseleccionada = Nothing Then
-            horaseleccionada = "7"
-        End If
-        If minutoseleccionado = Nothing Then
-            minutoseleccionado = "30"
-        End If
-
         LBAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS."
 
-        Icononotificacion.Text = "Programada Actualización AdRa. Instalador en espera."
+        Icononotificacion.Text = "Programada Actualización AdRa a las " & horaseleccionada & ":" & minutoseleccionado & " horas."
     End Sub
 
     Public Sub EnvioMailADRA()
