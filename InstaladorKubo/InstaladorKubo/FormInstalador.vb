@@ -5102,31 +5102,21 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtNotinAdraDiferido_Click(sender As Object, e As EventArgs) Handles BtNotinAdraDiferido.Click
         'COMPROBAR QUE TRABAJAMOS EN UN SERVIDOR NOTINRAPP.
-        If NotinRapp() = False Then
-            MessageBox.Show("Por seguridad solo se permite la ejecución en Entornos ADRA bajo el host NotinRapp. Se cancela la ejecución.", "Ejecución fuera de AdRa", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            RegistroInstalacion("ADRA: Se cancela la actualización diferida de Adra. El Host no coincide.")
-            BtNotinAdraDiferido.BackColor = SystemColors.Control
-            LBAdraDiferido.Visible = False
-            Exit Sub
-        Else
-            RegistroInstalacion("Detectado entorno ADRA. Se permite la ejecución de Actualización Adra Diferida.")
-        End If
+        'If NotinRapp() = False Then
+        '    MessageBox.Show("Por seguridad solo se permite la ejecución en Entornos ADRA bajo el host NotinRapp. Se cancela la ejecución.", "Ejecución fuera de AdRa", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+        '    RegistroInstalacion("ADRA: Se cancela la actualización diferida de Adra. El Host no coincide.")
+        '    BtNotinAdraDiferido.BackColor = SystemColors.Control
+        '    LBAdraDiferido.Visible = False
+        '    Exit Sub
+        'Else
+        '    RegistroInstalacion("Detectado entorno ADRA. Se permite la ejecución de Actualización Adra Diferida.")
+        'End If
 
         'MENSAJE ADVERTENCIA PROCESOS
         Dim horaseleccionada = NumHoraAdra.Value
         Dim minutoseleccionado = NumMinutoAdra.Value
         'Dim horaseleccionada = LboxHoraAdraDiferido.SelectedItem
         'Dim minutoseleccionado = LboxMinutoAdraDiferido.SelectedItem
-
-        If horaseleccionada = Nothing Then
-            horaseleccionada = "7"
-            'RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado una HORA válida. Se aplica valor por defecto a las 7 horas.")
-        End If
-        If minutoseleccionado = Nothing Then
-            minutoseleccionado = "30"
-            'RegistroInstalacion("HORA EJECUCIÓN: No se ha indicado un MINUTO válido. Se aplica valor por defecto a las en punto.")
-        End If
-
 
         Dim adradiferido As DialogResult = MessageBox.Show("PROGRAMAR EJECUCIÓN A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS." & vbCrLf & "En ese momento se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net Estable o Beta según se marque." & vbCrLf & "Bajo un entorno estándar completar este proceso llevará quince minutos. Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador. El Instalador quedará en la barra de tareas a la espera de la hora programada." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If adradiferido = DialogResult.Yes Then

@@ -1365,7 +1365,6 @@ Partial Class FrmInstaladorKubo
         Me.NumMinutoAdra.Size = New System.Drawing.Size(51, 26)
         Me.NumMinutoAdra.TabIndex = 17
         Me.NumMinutoAdra.Tag = ""
-        Me.NumMinutoAdra.Value = New Decimal(New Integer() {30, 0, 0, 0})
         '
         'NumHoraAdra
         '
