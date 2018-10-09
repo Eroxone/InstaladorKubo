@@ -126,7 +126,6 @@ Public Class FrmInstaladorKubo
         End Try
 
         cIniArray.IniWrite(instaladorkuboini, "VERSION", "CLICKONCE", versionactual)
-
     End Sub
 
     'BOTÓN NOVEDADES INSTALADOR
@@ -141,6 +140,10 @@ Public Class FrmInstaladorKubo
             BtLogin.Visible = True
             BtSubeBinario.Visible = True
         End If
+        If e.Control And e.KeyCode = Keys.L Then
+            Process.Start("notepad.exe", "C:\TEMP\InstaladorKubo\RegistroInstalacion.txt")
+        End If
+
     End Sub
 
     Private Sub BtLimpiar_Click(sender As Object, e As EventArgs) Handles BtLimpiar.Click
@@ -1045,7 +1048,7 @@ Public Class FrmInstaladorKubo
         btSalir.BackColor = SystemColors.ControlLightLight
     End Sub
 
-    'Control de registro de instalación
+    'LOG del Instalador
     Public Shared Sub RegistroInstalacion(ByVal mensajelog As String)
         File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", DateTime.Now.Hour & ":" & DateTime.Now.Minute & " - " & mensajelog & vbCrLf)
     End Sub
@@ -1739,7 +1742,7 @@ Public Class FrmInstaladorKubo
         TlpDeploy.SetToolTip(BtMigradorDeploy, "Descarga y Ejecuta Migrador forzando Deploy. Aplicando así las Actualizaciones en la BD. Esto no afecta a la bitácora de SQL.")
 
         TlpNotin8Forzar.ToolTipTitle = "Fuerza requisitos para Instalación del paquete Notin8.exe"
-        TlpNotin8Forzar.SetToolTip(BtNotin8exeForzar, "Descarga y realiza y fuerza los requisitos necesarios para que se provoque la Instalación de Notin8.exe y .Net en cualquier entorno. Clic para leer las advertencias.")
+        TlpNotin8Forzar.SetToolTip(BtNotin8exeDeploy, "Descarga y realiza y fuerza los requisitos necesarios para que se provoque la Instalación de Notin8.exe y .Net en cualquier entorno. Clic para leer las advertencias.")
 
         TlpPuestoC.SetToolTip(CbPuestoNotin, "Descarga y descomprime en C raíz carpetas como Notawin.Net, Plantillas, Accesos directos al Escritorio.." & vbCrLf & "Este proceso se realizará tras una instalación Notin-Kubo-Nexus.")
         TlpPuestoC.AutoPopDelay = 10000
@@ -1748,6 +1751,8 @@ Public Class FrmInstaladorKubo
         TlpBetaNetAdra.SetToolTip(CbBetaAdra, "Marcando esta casilla se descargará la última Beta de Net. En caso contrario se forzará la instalación de la versión Estable.")
 
         TlpBackupNet.SetToolTip(BtBackupNet, "Además de explorar las carpeta de BackupNet se limpiarán las versiones de mas de 15 días.")
+
+        TlpVersionNet.SetToolTip(BtVersionNet, "Obtiene la versión Net instalada en el Sistema. Usa esto si en primera instancia no pudo obtenerla el Instalador.")
     End Sub
 #End Region
 
@@ -3893,7 +3898,7 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
             Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe F:\ C:\Notawin.Net Notin8.mde", AppWinStyle.NormalFocus, True)
         Catch ex As Exception
-            RegistroInstalacion("ERROR Notin8.exe no se pudo copiar a F. Causa: " & ex.Message)
+            RegistroInstalacion("ERROR Notin8.exe no se pudo copiar a UnidadF. " & ex.Message)
             BtNotin8exe.BackColor = Color.LightSalmon
         End Try
 
@@ -3901,7 +3906,7 @@ Public Class FrmInstaladorKubo
             Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe F:\ C:\Notawin.Net\ Notin8.mde /R:1 /W:1", AppWinStyle.NormalFocus, True)
             RegistroInstalacion("Notin8 MDE copiado correctamente a C:\Notawin.Net para evitar autoupdate de Notin.")
         Catch ex As Exception
-            RegistroInstalacion("ERROR Notin8 MDE no se pudo copiar desde  UnidadF. Causa: " & ex.Message)
+            RegistroInstalacion("ERROR Notin8 MDE no se pudo copiar desde  UnidadF. " & ex.Message)
             BtNotin8exe.BackColor = Color.LightSalmon
         End Try
 
@@ -3911,7 +3916,7 @@ Public Class FrmInstaladorKubo
                 Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
             Else
                 BtNotin8exe.BackColor = Color.LightSalmon
-                MessageBox.Show("Se encontraron procesos en ejecución que afectan a la instalación de .Net. Resto de procesos completados.", "Actualizar Notaría", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Se encontraron procesos en ejecución que afectan a la instalación de .Net por lo que no se instalará la versión. Terminamos con la Descarga.", "Usuario cancela actualizar NotinNet", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 RegistroInstalacion("Se encontraron procesos en ejecución que afectan a la instalación de .Net. Resto de procesos completados.")
                 Exit Sub
             End If
@@ -3922,11 +3927,11 @@ Public Class FrmInstaladorKubo
             pnotinnet.FileName = "F:\NOTAWIN.NET\NotinNetInstaller.exe"
             Dim notinnet As Process = Process.Start(pnotinnet)
             notinnet.WaitForExit()
-            RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+            RegistroInstalacion("ÉXITO: NotinNet ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
             ObtenerVersionNet()
         Catch ex As Exception
             'BtEstableNet.BackColor = Color.LightSalmon
-            RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
+            RegistroInstalacion("ERROR NotinNet: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
             BtNotin8exe.BackColor = Color.LightSalmon
         End Try
 
@@ -3942,7 +3947,7 @@ Public Class FrmInstaladorKubo
         BtEstablew32F462.BackColor = SystemColors.Control
     End Sub
 
-    Private Sub BtNotin8exeForzar_Click(sender As Object, e As EventArgs) Handles BtNotin8exeForzar.Click
+    Private Sub BtNotin8exeDeploy_Click(sender As Object, e As EventArgs) Handles BtNotin8exeDeploy.Click
         If UnidadF() = False Then
             MessageBox.Show("Unidad F no disponible. No se puede proceder a Descargar Notaría.", "Unidad F no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
@@ -4004,7 +4009,7 @@ Public Class FrmInstaladorKubo
                 'RegistroInstalacion("ÉXITO: NOTIN8 ejecutado correctamente.")
                 LeerLogMigradorSQL()
             Catch ex As Exception
-                BtNotin8exeForzar.BackColor = Color.LightSalmon
+                BtNotin8exeDeploy.BackColor = Color.LightSalmon
                 RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
             End Try
 
@@ -4013,15 +4018,15 @@ Public Class FrmInstaladorKubo
                 Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe /R:1 /W:1", AppWinStyle.NormalFocus, True)
                 RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
             Catch ex As Exception
-                RegistroInstalacion("ERROR Notin8 EXE no se pudo copiar. Causa: " & ex.Message)
-                BtNotin8exeForzar.BackColor = Color.LightSalmon
+                RegistroInstalacion("ERROR: Notin8 EXE no se pudo copiar. " & ex.Message)
+                BtNotin8exeDeploy.BackColor = Color.LightSalmon
             End Try
 
             Try
                 Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe F:\ C:\Notawin.Net\ Notin8.mde /R:1 /W:1", AppWinStyle.NormalFocus, True)
                 RegistroInstalacion("Notin8 MDE copiado correctamente a C:\Notawin.Net para evitar autoupdate de Notin.")
             Catch ex As Exception
-                RegistroInstalacion("ERROR Notin8 MDE no se pudo copiar desde  UnidadF. Causa: " & ex.Message)
+                RegistroInstalacion("ERROR: Notin8 MDE no se pudo copiar desde UnidadF. " & ex.Message)
                 BtNotin8exe.BackColor = Color.LightSalmon
             End Try
 
@@ -4044,7 +4049,7 @@ Public Class FrmInstaladorKubo
                 'BtEstableNet.BackColor = Color.LightSalmon
                 RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
                 MessageBox.Show("Actualización Versión Notin8 finalizada con errores." & vbCrLf & "Consulta Logger para mas detalles.", "Actualizar Notaría Deploy", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                BtNotin8exeForzar.BackColor = Color.LightSalmon
+                BtNotin8exeDeploy.BackColor = Color.LightSalmon
             End Try
 
             'Como no puedo comprobar que versión de Net tiene dejo todas en gris
@@ -4055,67 +4060,18 @@ Public Class FrmInstaladorKubo
             BtNetBetaW32F462.BackColor = SystemColors.Control
             BtEstablew32F462.BackColor = SystemColors.Control
 
-            RegistroInstalacion("TERMINADO. Proceso Notin8 aplicando Deploy finalizó. Revisa resultados.")
+            RegistroInstalacion("TERMINADO. Proceso Notin8 aplicando Deploy finalizó correctamente. Revisa resultados.")
 
             MessageBox.Show("Actualización Versión Notin8 finalizada correctamente.", "Actualizar Notaría Deploy", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            BtNotin8exeForzar.BackColor = Color.PaleGreen
+            BtNotin8exeDeploy.BackColor = Color.PaleGreen
 
         Else
-            RegistroInstalacion("El Usuario cancela el Forzado para Instalar Notin8.exe")
+            RegistroInstalacion("El Usuario cancela el Forzado para Instalar Notin8.")
         End If
 
         BtNotin8exe.BackColor = SystemColors.Control
     End Sub
 
-
-
-    'Private Sub DescargarNotariaX64()
-    '    'TODO esto para mas adelante. Añadir comprobación del ini local/global para descargar 32 o 64bits y en esa funcion llamar a 32 o 64 según corresponda
-    '    obtenerwget()
-    '    Dim urlnotin8 = "http://static.unidata.es/NotariaEvo/x64/notin8.exe"
-    '    'Shell("cmd.exe /c " & RutaDescargas & "wget.exe " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8.exe")
-    '    Dim WGETNOTIN8 As String = "wget.exe -q --show-progress -t 5 " & urlnotin8 & " -O " & RutaDescargas & "NotinNet\Notin8x64.exe"
-    '    Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTIN8
-    '    Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
-
-    '    Try
-    '        Dim pnotin8 As New ProcessStartInfo()
-    '        pnotin8.FileName = RutaDescargas & "NotinNet\Notin8x64.exe"
-    '        Dim notin8 As Process = Process.Start(pnotin8)
-    '        notin8.WaitForExit()
-    '        RegistroInstalacion("ÉXITO: NOTIN8x64 ejecutado correctamente.")
-    '        ' BtNotin8exe.BackColor = Color.PaleGreen
-    '    Catch ex As Exception
-    '        'BtNotin8exe.BackColor = Color.LightSalmon
-    '        RegistroInstalacion("ERROR NOTIN8x64: " & ex.Message)
-    '    End Try
-
-    'End Sub
-
-
-    'Private Function LeerFicheroDesdeLinea(ByVal numeroLinea As Integer, ByVal nombreFichero As String) As String
-    '    Dim fichero As New System.IO.FileInfo(nombreFichero)
-    '    LeerFicheroDesdeLinea = ""
-    '    If fichero.Exists Then
-    '        Dim sr As System.IO.StreamReader
-    '        Dim lineaActual As Integer = 1
-    '        Try
-    '            sr = New System.IO.StreamReader(fichero.FullName)
-    '            While lineaActual < numeroLinea And Not sr.EndOfStream
-    '                sr.ReadLine()
-    '                lineaActual += 1
-    '            End While
-    '            LeerFicheroDesdeLinea = sr.ReadToEnd
-    '        Catch ex As Exception
-    '            MsgBox("No se pudo ejecutar la operación")
-    '        Finally
-    '            If sr IsNot Nothing Then
-    '                sr.Close()
-    '                sr.Dispose()
-    '            End If
-    '        End Try
-    '    End If
-    'End Function
 
     Private Sub ObtenerVersionNet()
         Try
@@ -5508,6 +5464,10 @@ Public Class FrmInstaladorKubo
         MessageBox.Show("Encontrarás ABREEXCEL.EXE en C:\Notawin.Net. Establécelo como Programa predeterminado para las extensiones XLS y XLSX.", "Generación de AbreExcel finalizada.", MessageBoxButtons.OK, MessageBoxIcon.Information)
         BtAbreExcel.BackColor = Color.PaleGreen
         cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "ABREEXCEL", "1")
+    End Sub
+
+    Private Sub BtVersionNet_Click(sender As Object, e As EventArgs) Handles BtVersionNet.Click
+        ObtenerVersionNet()
     End Sub
 
 
