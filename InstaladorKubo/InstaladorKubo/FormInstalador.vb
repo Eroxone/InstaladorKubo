@@ -3883,12 +3883,6 @@ Public Class FrmInstaladorKubo
 
         If UnidadF() = True Then
             Try
-                File.Copy("F:\Notin8.exe", "F:\Notin8_previo.exe", True)
-            Catch ex As Exception
-                RegistroInstalacion("ADVERTENCIA: No se pudo realizar backup del Notin8.exe en F raíz. " & ex.Message)
-            End Try
-
-            Try
                 obtenerrobocopy()
                 Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.NormalFocus, True)
                 RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
@@ -3934,7 +3928,7 @@ Public Class FrmInstaladorKubo
         BtEstableNet.BackColor = SystemColors.Control
         BtNetBetax64F462.BackColor = SystemColors.Control
         BtNetBetaW32F462.BackColor = SystemColors.Control
-
+        BtEstablew32F462.BackColor = SystemColors.Control
     End Sub
 
     Private Sub BtNotin8exeForzar_Click(sender As Object, e As EventArgs) Handles BtNotin8exeForzar.Click
@@ -4040,6 +4034,8 @@ Public Class FrmInstaladorKubo
             BtEstableNet.BackColor = SystemColors.Control
             BtNetBetax64F462.BackColor = SystemColors.Control
             BtNetBetaW32F462.BackColor = SystemColors.Control
+            BtEstablew32F462.BackColor = SystemColors.Control
+
             RegistroInstalacion("TERMINADO. Proceso Notin8 aplicando Deploy finalizó. Revisa resultados.")
 
             MessageBox.Show("Actualización Versión Notin8 finalizada correctamente.", "Actualizar Notaría Deploy", MessageBoxButtons.OK, MessageBoxIcon.Information)
