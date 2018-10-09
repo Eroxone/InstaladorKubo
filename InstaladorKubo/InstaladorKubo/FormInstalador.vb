@@ -1752,7 +1752,7 @@ Public Class FrmInstaladorKubo
 
         TlpBackupNet.SetToolTip(BtBackupNet, "Además de explorar las carpeta de BackupNet se limpiarán las versiones de mas de 15 días.")
 
-        TlpVersionNet.SetToolTip(BtVersionNet, "Obtiene la versión Net instalada en el Sistema. Usa esto si en primera instancia no pudo obtenerla el Instalador.")
+        TlpVersionNet.SetToolTip(BtVersionNet, "Obtiene la versión NotinNet instalada en el Sistema.")
     End Sub
 #End Region
 
