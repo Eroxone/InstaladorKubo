@@ -3837,10 +3837,10 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub DescargarNotaria()
-        If UnidadF() = False Then
-            MessageBox.Show("Unidad F no disponible. No se puede proceder a Descargar Notaría.", "Unidad F no disponible", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Exit Sub
-        End If
+        'If UnidadF() = False Then
+        '    MessageBox.Show("Unidad F no disponible. No se puede proceder a Descargar Notaría.", "Unidad F no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Exit Sub
+        'End If
 
         If NotinRapp() = True Then
             Dim notinrapp = MessageBox.Show("Se va a proceder a Descargar y Ejecutar NOTIN8.exe en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
@@ -3905,9 +3905,8 @@ Public Class FrmInstaladorKubo
             BtNotin8exe.BackColor = Color.LightSalmon
         End Try
 
-
         If ProcesosActivos() = True Then
-            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos .Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que pueden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos .Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             If procesosactivos = DialogResult.Yes Then
                 Shell("cmd /c taskkill.exe /f /im winword.exe & taskkill.exe /f /im msaccess.exe & taskkill.exe /f /im notinnetdesktop.exe & taskkill.exe /f /im nexus.exe", AppWinStyle.Hide, True)
             Else
@@ -3945,7 +3944,7 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtNotin8exeForzar_Click(sender As Object, e As EventArgs) Handles BtNotin8exeForzar.Click
         If UnidadF() = False Then
-            MessageBox.Show("Unidad F no disponible. No se puede proceder a Descargar Notaría.", "Unidad F no disponible", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Unidad F no disponible. No se puede proceder a Descargar Notaría.", "Unidad F no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
 
