@@ -3837,6 +3837,11 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub DescargarNotaria()
+        If UnidadF() = False Then
+            MessageBox.Show("Unidad F no disponible. No se puede proceder a Descargar Notaría.", "Unidad F no disponible", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Exit Sub
+        End If
+
         If NotinRapp() = True Then
             Dim notinrapp = MessageBox.Show("Se va a proceder a Descargar y Ejecutar NOTIN8.exe en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             RegistroInstalacion("ADRA: Ejecutando Notin8.exe en entorno NotinRapp. Se advierte al usuario.")
@@ -3881,18 +3886,25 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
         End Try
 
-        If UnidadF() = True Then
-            Try
-                obtenerrobocopy()
-                Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe", AppWinStyle.NormalFocus, True)
-                RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
-            Catch ex As Exception
-                RegistroInstalacion("ERROR Notin8.exe no se pudo copiar a F. Causa: " & ex.Message)
-                BtNotin8exe.BackColor = Color.LightSalmon
-            End Try
-        Else
-            RegistroInstalacion("Notin8 no copiado a F: al no encontrarse la Unidad disponible.")
-        End If
+
+        obtenerrobocopy()
+        Try
+            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe /R:1 /W:1", AppWinStyle.NormalFocus, True)
+            RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
+            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe F:\ C:\Notawin.Net Notin8.mde", AppWinStyle.NormalFocus, True)
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Notin8.exe no se pudo copiar a F. Causa: " & ex.Message)
+            BtNotin8exe.BackColor = Color.LightSalmon
+        End Try
+
+        Try
+            Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe F:\ C:\Notawin.Net\ Notin8.mde /R:1 /W:1", AppWinStyle.NormalFocus, True)
+            RegistroInstalacion("Notin8 MDE copiado correctamente a C:\Notawin.Net para evitar autoupdate de Notin.")
+        Catch ex As Exception
+            RegistroInstalacion("ERROR Notin8 MDE no se pudo copiar desde  UnidadF. Causa: " & ex.Message)
+            BtNotin8exe.BackColor = Color.LightSalmon
+        End Try
+
 
         If ProcesosActivos() = True Then
             Dim procesosactivos As DialogResult = MessageBox.Show("Hay procesos en ejecución que puden interrumpir la instalación de NotinNet. Si continúas se forzará su cierre. ¿Proseguimos con la instalación?", "Procesos .Net detectados", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
@@ -3932,6 +3944,11 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtNotin8exeForzar_Click(sender As Object, e As EventArgs) Handles BtNotin8exeForzar.Click
+        If UnidadF() = False Then
+            MessageBox.Show("Unidad F no disponible. No se puede proceder a Descargar Notaría.", "Unidad F no disponible", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Exit Sub
+        End If
+
         Dim forzarnotin8 As DialogResult = MessageBox.Show("Se procede a Forzar la Descarga y Ejecución de NOTIN8. Ten en cuenta las siguientes advertencias:" & vbCrLf & "-Se forzará ejecución del MigradorSQL en Deploy (no es necesario que se hubiera ejecutado antes)." & vbCrLf & "-Si se requiere un cambio de diseño en la Base de Datos se debe advertir a los usuarios y forzar la actualización o readjunte del Notaría." & vbCrLf & "-Se lanzará Notin8.exe y se procederá a la instalación de .Net" & vbCrLf & "-En entorno ADRA se terminarán procesos en ejecución tales como Notin o Word." & vbCrLf & "¿DESEAS CONTINUAR?", "Forzar ejecución NOTIN8", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If forzarnotin8 = DialogResult.Yes Then
 
@@ -3992,20 +4009,23 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
             End Try
 
-            If UnidadF() = True Then
-                Try
-                    obtenerrobocopy()
-                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe /R:1 /W:1", AppWinStyle.NormalFocus, True)
-                    RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
-                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & "F:\ C:\NOTAWIN.NET\ Notin8.mde /R:1 /W:1", AppWinStyle.NormalFocus, True)
-                    RegistroInstalacion("Notin8 MDE copiado a Notawin.Net local del usuario.")
-                Catch ex As Exception
-                    RegistroInstalacion("ERROR Notin8 EXE/MDE no se pudo copiar. Causa: " & ex.Message)
-                    BtNotin8exeForzar.BackColor = Color.LightSalmon
-                End Try
-            Else
-                RegistroInstalacion("Notin8 no copiado a F: al no encontrarse la Unidad disponible.")
-            End If
+            Try
+                obtenerrobocopy()
+                Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & RutaDescargas & "NotinNet\ F:\ Notin8.exe /R:1 /W:1", AppWinStyle.NormalFocus, True)
+                RegistroInstalacion("Notin8.exe copiado correctamente a F:\ para futuras ejecuciones.")
+            Catch ex As Exception
+                RegistroInstalacion("ERROR Notin8 EXE no se pudo copiar. Causa: " & ex.Message)
+                BtNotin8exeForzar.BackColor = Color.LightSalmon
+            End Try
+
+            Try
+                Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe F:\ C:\Notawin.Net\ Notin8.mde /R:1 /W:1", AppWinStyle.NormalFocus, True)
+                RegistroInstalacion("Notin8 MDE copiado correctamente a C:\Notawin.Net para evitar autoupdate de Notin.")
+            Catch ex As Exception
+                RegistroInstalacion("ERROR Notin8 MDE no se pudo copiar desde  UnidadF. Causa: " & ex.Message)
+                BtNotin8exe.BackColor = Color.LightSalmon
+            End Try
+
 
             If ProcesosActivos() = True Then
                 RegistroInstalacion("Terminamos los procesos que puedan afectar a la Instalación de .Net. Se enviará un KILL.")
