@@ -144,6 +144,12 @@ Public Class FrmInstaladorKubo
 
     End Sub
 
+    'Acciones al Salir del Instalador.
+
+    Private Sub FrmInstaladorKubo_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        RegistroInstalacion("=== TERMINADA EJECUCIÓN DEL INSTALADOR. === FECHA: " & DateTime.Now.Date)
+    End Sub
+
     'BOTÓN NOVEDADES INSTALADOR
     Private Sub BtNovedades_Click(sender As Object, e As EventArgs) Handles BtNovedades.Click
         FormNovedades.ShowDialog()
@@ -5485,7 +5491,6 @@ Public Class FrmInstaladorKubo
     Private Sub BtVersionNet_Click(sender As Object, e As EventArgs) Handles BtVersionNet.Click
         ObtenerVersionNet()
     End Sub
-
 
 
     '    Private Sub LboxHoraAdraDiferido_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LboxHoraAdraDiferido.SelectedIndexChanged
