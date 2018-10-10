@@ -1487,7 +1487,6 @@ Partial Class FrmInstaladorKubo
         Me.TbIdentificaNotaria.TabIndex = 7
         Me.TbIdentificaNotaria.Tag = ""
         Me.TbIdentificaNotaria.Text = "Identificador Notaría..."
-        Me.TbIdentificaNotaria.Visible = False
         '
         'LBAdraDiferido
         '

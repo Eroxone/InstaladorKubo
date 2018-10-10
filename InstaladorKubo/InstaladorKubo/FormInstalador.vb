@@ -751,30 +751,7 @@ Public Class FrmInstaladorKubo
             MessageBox.Show(ex.Message, "Error de Ruta", MessageBoxButtons.OK)
         End Try
 
-
-
-        'Comprobamos si existe ya wget.exe
-        If Not System.IO.File.Exists(RutaDescargas & "wget.exe") Then
-
-            'Descargar ejecutable WGet
-            Try
-                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
-                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
-            Catch ex As Exception
-                'MessageBox.Show("Error al obtener el archivo. Revisa tu conexión a internet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-                'Reintentar descarga
-                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
-                My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, False)
-                If REINTENTAR = DialogResult.Retry Then
-                    My.Computer.Network.DownloadFile(PuestoNotin & "wget.exe", RutaDescargas & "wget.exe", "juanjo", "Palomeras24", False, 20000, True)
-                End If
-
-            End Try
-
-        End If
-
-
+        obtenerwget()
 
 #Region "CREACIÓN FICHEROS RUTAS DESCARGAS"
 
@@ -1348,6 +1325,7 @@ Public Class FrmInstaladorKubo
             '    Dim notinnetinstaller As New FileInfo(RutaDescargas & "NotinNet\NotinNetInstaller.exe")
             'Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
             'If notinnetinstaller.Length < "100000000" Then
+            obtenerwget()
 
             If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
                 'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
@@ -2216,6 +2194,7 @@ Public Class FrmInstaladorKubo
         End If
 
         'Parche para Scroll Word 2003
+        obtenerwget()
         Try
             Directory.CreateDirectory(RutaDescargas & "Office2003\ParcheScrollWORD")
             Dim wgetwinword As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/winwordsroll.msp -O " & RutaDescargas & "Office2003\ParcheScrollWORD\winwordsroll.msp"
@@ -2404,6 +2383,8 @@ Public Class FrmInstaladorKubo
             'Dim Lengthnotinnetinstallerexe As Long = notinnetinstaller.Length
 
             'If notinnetinstaller.Length < "100000000" Then
+            obtenerwget()
+
             If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
                 'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
                 Try
@@ -2969,8 +2950,12 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub CbNemo_CheckedChanged(sender As Object, e As EventArgs) Handles CbNemo.CheckedChanged
-        Dim urlnemo As String = "http://nemo.notin.net/jnemo-latest.exe"
-        My.Computer.Clipboard.SetText(urlnemo)
+        Try
+            Dim urlnemo As String = "http://nemo.notin.net/jnemo-latest.exe"
+            My.Computer.Clipboard.SetText(urlnemo)
+        Catch ex As Exception
+        End Try
+
         CalcularTamanoDescarga(12, CbNemo.Checked)
     End Sub
 
@@ -5149,7 +5134,7 @@ Public Class FrmInstaladorKubo
         Else
             BtNotinAdraDiferido.BackColor = SystemColors.Control
             LBAdraDiferido.Visible = False
-            EnvioMailADRA()
+            'EnvioMailADRA()
             Exit Sub
         End If
 
