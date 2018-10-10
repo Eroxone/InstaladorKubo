@@ -62,6 +62,7 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TabSistema = New System.Windows.Forms.TabControl()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
+        Me.BtVersionFW = New System.Windows.Forms.Button()
         Me.LbVersionFW = New System.Windows.Forms.Label()
         Me.LbInfoVersionFW = New System.Windows.Forms.Label()
         Me.BtFramework462 = New System.Windows.Forms.Button()
@@ -224,7 +225,6 @@ Partial Class FrmInstaladorKubo
         Me.BtExplorarRutas = New System.Windows.Forms.Button()
         Me.BtReconectar = New System.Windows.Forms.Button()
         Me.TlpVersionNet = New System.Windows.Forms.ToolTip(Me.components)
-        Me.BtVersionFW = New System.Windows.Forms.Button()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -731,6 +731,15 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.Size = New System.Drawing.Size(446, 370)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
+        '
+        'BtVersionFW
+        '
+        Me.BtVersionFW.Image = CType(resources.GetObject("BtVersionFW.Image"), System.Drawing.Image)
+        Me.BtVersionFW.Location = New System.Drawing.Point(230, 50)
+        Me.BtVersionFW.Name = "BtVersionFW"
+        Me.BtVersionFW.Size = New System.Drawing.Size(35, 34)
+        Me.BtVersionFW.TabIndex = 54
+        Me.BtVersionFW.UseVisualStyleBackColor = True
         '
         'LbVersionFW
         '
@@ -2318,15 +2327,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpVersionNet.IsBalloon = True
         Me.TlpVersionNet.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpVersionNet.ToolTipTitle = "Obtener VersiónNet"
-        '
-        'BtVersionFW
-        '
-        Me.BtVersionFW.Image = CType(resources.GetObject("BtVersionFW.Image"), System.Drawing.Image)
-        Me.BtVersionFW.Location = New System.Drawing.Point(230, 50)
-        Me.BtVersionFW.Name = "BtVersionFW"
-        Me.BtVersionFW.Size = New System.Drawing.Size(35, 34)
-        Me.BtVersionFW.TabIndex = 54
-        Me.BtVersionFW.UseVisualStyleBackColor = True
         '
         'FrmInstaladorKubo
         '
