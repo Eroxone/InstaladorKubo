@@ -3435,13 +3435,14 @@ Public Class FrmInstaladorKubo
 
             'If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
             'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
+            obtenerwget()
             Try
-                    Directory.CreateDirectory(RutaDescargas & "NotinNet")
-                    Dim urlnotinnetx64 As String = "https://static.unidata.es/NotinNetInstaller/x64/estable/NotinNetInstaller.exe"
-                    Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
+                Directory.CreateDirectory(RutaDescargas & "NotinNet")
+                Dim urlnotinnetx64 As String = "https://static.unidata.es/NotinNetInstaller/x64/estable/NotinNetInstaller.exe"
+                Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
                 RegistroInstalacion("NotinNet x64: Realizada descarga desde su url. Prosigue su instalación.")
             Catch ex As Exception
-                    RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener desde su url de descarga. Seguirán errores de Addins.")
+                RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener desde su url de descarga. Seguirán errores de Addins.")
                 End Try
             'End If
 
