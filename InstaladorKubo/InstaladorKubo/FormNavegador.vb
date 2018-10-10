@@ -19,7 +19,24 @@ Public Class FormNavegador
         Dim urlnavegador As String = "http://isl.notin.net/users/start/ISLAlwaysOn?cmdline=grant_silent+%22zeJw9jjFuAzEMBEEYcZUU%2bYhBiaJEPiHNpUnpRiKp4ADjUtj%2bRt6cMwK4m91mZgIsP7d1e4FvmwdYPr8%2blp1XP0DBMHZsYrNMSUoVSckzenOUFu5CI7cRpQ8sZCqtJFPzntgGz%2f2o2sXJ5ojedWIiqqKcObr0NjRbREidQaHcImc2ra6UtWVC69E6Wy2GCesvXAHW6%2bW0PXJPW9ze4A5wPj%2f3P73D%2fRGPievuyqyFXuEIf6iePyA%3d%22+%2fSILENT+%2fVERYSILENT+password+%22b30330104%22+description+%22" & islgrupo & "+-+" & islnombre & "%22"
 
         Navegador.Navigate(New Uri(urlnavegador))
-        Threading.Thread.Sleep(4000)
+
+        FrmInstaladorKubo.PbInstalaciones.Value = 0
+        FrmInstaladorKubo.PbInstalaciones.Visible = True
+
+        Dim tiempoespera As Integer
+        Dim pasosbarra As Integer = 8
+        While tiempoespera < 5
+            FrmInstaladorKubo.PbInstalaciones.Step = pasosbarra
+            FrmInstaladorKubo.PbInstalaciones.PerformStep()
+            Threading.Thread.Sleep(1000)
+            tiempoespera = tiempoespera + 1
+            pasosbarra = pasosbarra + 1
+        End While
+
+        FrmInstaladorKubo.PbInstalaciones.Visible = False
+        FrmInstaladorKubo.PbInstalaciones.Value = 0
+
+
         'SendKeys.Send()
         Me.Close()
 

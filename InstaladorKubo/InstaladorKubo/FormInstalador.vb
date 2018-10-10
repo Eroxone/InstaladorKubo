@@ -5391,8 +5391,9 @@ Public Class FrmInstaladorKubo
 
         MessageBox.Show("Se va a proceder a generar el ejecutable ABREEXCEL.EXE personalizado para este equipo." & vbCrLf & "Es posible que tu antivirus interfiera en esta ejecución. Si tienes algún error prueba a deshabilitarlo temporalmente o añadir una excepción. Siempre puedes consultar el Log del Instalador para obtener más detalles.", "Generando AbreExcel en este equipo.", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        PbInstalaciones.Visible = True
         PbInstalaciones.Value = 0
+        PbInstalaciones.Visible = True
+
 
 
         Dim rutaexcel As String
@@ -5480,8 +5481,8 @@ Public Class FrmInstaladorKubo
             Exit Sub
         End Try
 
-        PbInstalaciones.Visible = False
         PbInstalaciones.Value = 0
+        PbInstalaciones.Visible = False
 
         MessageBox.Show("Encontrarás ABREEXCEL.EXE en C:\Notawin.Net. Establécelo como Programa predeterminado para las extensiones XLS y XLSX.", "Generación de AbreExcel finalizada.", MessageBoxButtons.OK, MessageBoxIcon.Information)
         BtAbreExcel.BackColor = Color.PaleGreen
