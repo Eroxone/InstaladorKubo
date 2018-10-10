@@ -126,6 +126,22 @@ Public Class FrmInstaladorKubo
         End Try
 
         cIniArray.IniWrite(instaladorkuboini, "VERSION", "CLICKONCE", versionactual)
+
+
+        'LIMPIEZA DE FICHEROS AL INICIO
+
+        'Limpiar Icono versión anterior
+        Try
+            Dim Escritorio As String = "" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & ""
+            File.Delete(Escritorio & "InstaladorKubo.appref-ms")
+
+            'Fuerzo que se descarguen la nueva version de WGET (quitar en unas semanas)
+            File.Delete(RutaDescargas & "wget.exe")
+
+        Catch ex As Exception
+            RegistroInstalacion("INFO Limpieza Inicio: " & ex.Message)
+        End Try
+
     End Sub
 
     'BOTÓN NOVEDADES INSTALADOR
@@ -1634,7 +1650,7 @@ Public Class FrmInstaladorKubo
         tlpTerceros.IsBalloon = True
 
         tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones Notin y Word 2016 + Kubo"
-        tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Paquete descargado. Sialgún software se encuentra instalado preguntará si se desea realizar la reinstalación.")
+        tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Paquete descargado. Si algún software se encuentra instalado preguntará si se desea realizar la reinstalación.")
 
         TlpNotinWord2003.ToolTipTitle = "Comienza Instalación Notin y Word 2003"
         TlpNotinWord2003.SetToolTip(BtNotinWord2003, "Instala/Configura Notin y Word 2003. Además instalará Outlook, Excel..2016 si lo descargaste previamente.")
