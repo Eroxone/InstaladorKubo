@@ -72,20 +72,23 @@ Partial Class FrmConfigurarISL
         'BtConfirmarISL
         '
         Me.BtConfirmarISL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtConfirmarISL.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtConfirmarISL.Location = New System.Drawing.Point(132, 129)
+        Me.BtConfirmarISL.Font = New System.Drawing.Font("Lucida Bright", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtConfirmarISL.Image = CType(resources.GetObject("BtConfirmarISL.Image"), System.Drawing.Image)
+        Me.BtConfirmarISL.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtConfirmarISL.Location = New System.Drawing.Point(132, 123)
         Me.BtConfirmarISL.Name = "BtConfirmarISL"
-        Me.BtConfirmarISL.Size = New System.Drawing.Size(141, 53)
+        Me.BtConfirmarISL.Size = New System.Drawing.Size(187, 47)
         Me.BtConfirmarISL.TabIndex = 3
         Me.BtConfirmarISL.Text = "Confirmar"
+        Me.BtConfirmarISL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtConfirmarISL.UseVisualStyleBackColor = True
         '
         'BtSalir
         '
-        Me.BtSalir.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtSalir.Location = New System.Drawing.Point(340, 177)
+        Me.BtSalir.Font = New System.Drawing.Font("Lucida Bright", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtSalir.Location = New System.Drawing.Point(345, 171)
         Me.BtSalir.Name = "BtSalir"
-        Me.BtSalir.Size = New System.Drawing.Size(75, 34)
+        Me.BtSalir.Size = New System.Drawing.Size(70, 35)
         Me.BtSalir.TabIndex = 4
         Me.BtSalir.Text = "Salir"
         Me.BtSalir.UseVisualStyleBackColor = True
@@ -94,7 +97,7 @@ Partial Class FrmConfigurarISL
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(427, 223)
+        Me.ClientSize = New System.Drawing.Size(427, 218)
         Me.Controls.Add(Me.BtSalir)
         Me.Controls.Add(Me.BtConfirmarISL)
         Me.Controls.Add(Me.LbGrupoISL)

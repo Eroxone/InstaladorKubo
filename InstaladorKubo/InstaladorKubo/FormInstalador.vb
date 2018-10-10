@@ -3425,25 +3425,25 @@ Public Class FrmInstaladorKubo
         End If
 
         If UnidadF() = True Then
-            Try
-                Directory.CreateDirectory(RutaDescargas & "NotinNet")
-                File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstaller.exe", True)
-                RegistroInstalacion("NotinNetInstaller x64 copiado correctamente desde F:\Notawin.Net\x64\ para su ejecución.")
-            Catch ex As Exception
-                RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener de F:\Notawin.Net\x64\ se procede a su decarga desde static.unidata")
-            End Try
+            'Try
+            '    Directory.CreateDirectory(RutaDescargas & "NotinNet")
+            '    File.Copy("F:\NOTAWIN.NET\x64\NotinNetInstaller.exe", RutaDescargas & "NotinNet\NotinNetInstallerX64.exe", True)
+            '    RegistroInstalacion("NotinNetInstaller x64 copiado correctamente desde F:\Notawin.Net\x64\ para su ejecución.")
+            'Catch ex As Exception
+            '    RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener de F:\Notawin.Net\x64\ se procede a su decarga desde static.unidata")
+            'End Try
 
-            If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
-                'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
-                Try
+            'If File.Exists(RutaDescargas & "NotinNet\NotinNetInstaller.exe") = False Then
+            'RegistroInstalacion("NotinNetInstaller no encontrado. Se procede a su descarga.")
+            Try
                     Directory.CreateDirectory(RutaDescargas & "NotinNet")
-                    Dim urlnotinnetx64 As String = "http://static.unidata.es/NotinNetInstaller/x64/beta/NotinNetInstaller.exe"
+                    Dim urlnotinnetx64 As String = "https://static.unidata.es/NotinNetInstaller/x64/estable/NotinNetInstaller.exe"
                     Shell("cmd.exe /c " & RutaDescargas & "wget.exe -q --show-progress " & urlnotinnetx64 & " -O " & RutaDescargas & "NotinNet\NotinNetInstaller.exe", AppWinStyle.NormalFocus, True)
-                    RegistroInstalacion("NotinNet x64: Realizada descargar desde su url. Prosigue su instalación.")
-                Catch ex As Exception
+                RegistroInstalacion("NotinNet x64: Realizada descarga desde su url. Prosigue su instalación.")
+            Catch ex As Exception
                     RegistroInstalacion("NotinNetInstaller x64: No se pudo obtener desde su url de descarga. Seguirán errores de Addins.")
                 End Try
-            End If
+            'End If
 
             Try
                 Dim pnotinnet As New ProcessStartInfo()
@@ -4114,6 +4114,10 @@ Public Class FrmInstaladorKubo
         End Try
     End Sub
 
+    Private Sub BtVersionFW_Click(sender As Object, e As EventArgs) Handles BtVersionFW.Click
+        ObtenerVersionFW()
+    End Sub
+
     Private Sub ObtenerVersionFW()
         Directory.CreateDirectory(RutaDescargas)
 
@@ -4137,7 +4141,7 @@ Public Class FrmInstaladorKubo
             sr.Close()
 
             TlpVersionFW.ToolTipTitle = "REG Query para Versión Framework:"
-            TlpVersionFW.SetToolTip(LbVersionFW, infoversion)
+            TlpVersionFW.SetToolTip(BtVersionFW, infoversion)
 
             Dim numeroversion As String = infoversion.Substring(25)
 
@@ -4637,6 +4641,7 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("ERROR Consulta Reducir Datos: " & ex.Message)
             BtReducirDatos.BackColor = Color.LightSalmon
+            LbSentenciaSQL.Visible = False
         End Try
 
     End Sub
@@ -4655,6 +4660,7 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("ERROR Consulta Triggers: " & ex.Message)
             BtTriggers.BackColor = Color.LightSalmon
+            LbSentenciaSQL.Visible = False
         End Try
     End Sub
 
@@ -5142,7 +5148,7 @@ Public Class FrmInstaladorKubo
         Else
             BtNotinAdraDiferido.BackColor = SystemColors.Control
             LBAdraDiferido.Visible = False
-            'EnvioMailADRA()
+            EnvioMailADRA()
             Exit Sub
         End If
 
