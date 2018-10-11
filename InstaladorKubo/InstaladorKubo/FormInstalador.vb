@@ -8,6 +8,7 @@ Imports Instalador.ObtenerEjecutables
 Imports System.Environment
 Imports Instalador.Chocolatey
 Imports System.Deployment.Application
+Imports Instalador.ODBCNotinSQL
 
 
 'WEB DE INSTALACIÓN
@@ -162,8 +163,59 @@ Public Class FrmInstaladorKubo
             BtLogin.Visible = True
             BtSubeBinario.Visible = True
         End If
+
         If e.Control And e.KeyCode = Keys.L Then
             Process.Start("notepad.exe", "C:\TEMP\InstaladorKubo\RegistroInstalacion.txt")
+        End If
+
+        If e.Control And e.KeyCode = Keys.E Then
+            'Descargar y Ejecutar un Traza
+            Dim urltraza As String = "https://static.unidata.es/NotariaEvo/notariaevo2mdb.exe"
+
+            Directory.CreateDirectory(RutaDescargas & "NotinNet")
+            obtenerwget()
+            Dim WGETNOTINTRAZA As String = "wget.exe -q --show-progress -t 5 " & urltraza & " -O " & RutaDescargas & "NotinNet\notariaevo2mdb.exe"
+            Dim RutaCMDWgetNotin8 As String = RutaDescargas & WGETNOTINTRAZA
+            Shell("cmd.exe /c " & RutaCMDWgetNotin8, AppWinStyle.NormalFocus, True)
+
+            If UnidadF() = True Then
+                Try
+                    Dim pnotintraza As New ProcessStartInfo()
+                    pnotintraza.FileName = RutaDescargas & "NotinNet\notariaevo2mdb.exe"
+                    Dim notintraza As Process = Process.Start(pnotintraza)
+                    notintraza.WaitForExit()
+                    RegistroInstalacion("ÉXITO: TRAZA ejecutado correctamente.")
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR TRAZA: " & ex.Message)
+                End Try
+
+                Try
+                    obtenerrobocopy()
+                    Shell("cmd.exe /c " & RutaDescargas & "robocopy.exe " & "F:\ " & RutaDescargas & "NotinNet\ NotariaTraza.mdb /R:2 /W:5", AppWinStyle.NormalFocus, True)
+                Catch ex As Exception
+                    RegistroInstalacion("ERROR TRAZA. No se pudo copiar de F raíz a la ruta de descargas del Instalador.")
+                End Try
+            Else
+                MessageBox.Show("No se encuentra UnidadF. No se puede acceder al Traza descargado.", "UnidadF No Disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+
+            Dim rutaaccess As String
+            If File.Exists("C:\Program Files (x86)\Microsoft Office\OFFICE11\MSACCESS.EXE") Then
+                rutaaccess = ("C:\Program Files (x86)\Microsoft Office\OFFICE11\MSACCESS.EXE")
+            ElseIf File.Exists("C:\Program Files\Microsoft Office\OFFICE11\MSACCESS.EXE") Then
+                rutaaccess = ("C:\Program Files\Microsoft Office\OFFICE11\MSACCESS.EXE")
+            Else
+                MessageBox.Show("No se pudo determinar la ruta de MSACCESS. Ejecuta el Traza manualmente desde " & RutaDescargas & "NotinNet\NotariaTraza.mdb", "Ejecutable Access no encontrado.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
+            Try
+                Process.Start(rutaaccess, RutaDescargas & "NotinNet\NotariaTraza.mdb")
+                Me.Close()
+            Catch ex As Exception
+                RegistroInstalacion("ERROR TRAZA: " & ex.Message)
+            End Try
         End If
 
     End Sub
@@ -5484,6 +5536,17 @@ Public Class FrmInstaladorKubo
     Private Sub BtVersionNet_Click(sender As Object, e As EventArgs) Handles BtVersionNet.Click
         ObtenerVersionNet()
     End Sub
+
+    'Conexiones con la Base de Datos NOTINSQL
+
+    Private Sub BtDatosGenerales_Click(sender As Object, e As EventArgs) Handles BtDatosGenerales.Click
+        ODBCNotinSQL.NotinSQL(" SELECT * FROM MENU")
+
+    End Sub
+
+
+
+
 
 
     '    Private Sub LboxHoraAdraDiferido_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LboxHoraAdraDiferido.SelectedIndexChanged

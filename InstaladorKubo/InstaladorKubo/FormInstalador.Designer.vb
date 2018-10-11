@@ -134,6 +134,7 @@ Partial Class FrmInstaladorKubo
         Me.BtFocos = New System.Windows.Forms.Button()
         Me.BtConfWord2016ADRA = New System.Windows.Forms.Button()
         Me.TabPage12 = New System.Windows.Forms.TabPage()
+        Me.BtDatosGenerales = New System.Windows.Forms.Button()
         Me.BtCopiaNotario = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.lbRuta = New System.Windows.Forms.Label()
@@ -1564,6 +1565,7 @@ Partial Class FrmInstaladorKubo
         'TabPage12
         '
         Me.TabPage12.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage12.Controls.Add(Me.BtDatosGenerales)
         Me.TabPage12.Controls.Add(Me.BtCopiaNotario)
         Me.TabPage12.Controls.Add(Me.Label2)
         Me.TabPage12.Location = New System.Drawing.Point(4, 27)
@@ -1571,6 +1573,16 @@ Partial Class FrmInstaladorKubo
         Me.TabPage12.Size = New System.Drawing.Size(446, 370)
         Me.TabPage12.TabIndex = 5
         Me.TabPage12.Text = "Notaría"
+        '
+        'BtDatosGenerales
+        '
+        Me.BtDatosGenerales.Location = New System.Drawing.Point(11, 120)
+        Me.BtDatosGenerales.Name = "BtDatosGenerales"
+        Me.BtDatosGenerales.Size = New System.Drawing.Size(164, 27)
+        Me.BtDatosGenerales.TabIndex = 3
+        Me.BtDatosGenerales.Text = "Button1"
+        Me.BtDatosGenerales.UseVisualStyleBackColor = True
+        Me.BtDatosGenerales.Visible = False
         '
         'BtCopiaNotario
         '
@@ -2608,4 +2620,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtVersionNet As Button
     Friend WithEvents TlpVersionNet As ToolTip
     Friend WithEvents BtVersionFW As Button
+    Friend WithEvents BtDatosGenerales As Button
 End Class
