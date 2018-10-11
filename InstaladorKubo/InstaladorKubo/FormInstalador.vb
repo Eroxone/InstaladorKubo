@@ -4073,6 +4073,8 @@ Public Class FrmInstaladorKubo
             Catch ex As Exception
                 BtNotin8exeDeploy.BackColor = Color.LightSalmon
                 RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
+                MessageBox.Show("Actualización Versión Notin8 finalizada con errores. Revisa Loggers.", "Actualizar Notaría", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
             End Try
 
             Try
