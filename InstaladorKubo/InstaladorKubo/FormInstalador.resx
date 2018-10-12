@@ -120,9 +120,6 @@
   <metadata name="fbdDescarga.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="Label3.Text" xml:space="preserve">
-    <value>EXPLICACIÓN: Selecciona una hora/minuto en los listados inferiores y clic en Programar ejecución para activar el contador. A la hora seleccionada se actualizará la version en el despacho. Más info al ejecutar la tarea.</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="BtVersionFW.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -433,6 +430,9 @@
         BgnzJXsBlkPwlshYVkCiNH8nR13DTtE1VKTt67ggKHTdlJW673bUnxq7ieunYLxG/9CedfWTZtGRC6eE
         PKwy7e0qHWd9WiLNqwzC4A9D0Pb/Aasaxmn4j78SAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="Label3.Text" xml:space="preserve">
+    <value>EXPLICACIÓN: Selecciona una hora/minuto en los listados inferiores y clic en Programar ejecución para activar el contador. A la hora seleccionada se actualizará la version en el despacho. Más info al ejecutar la tarea.</value>
   </data>
   <metadata name="tlpUnidadF.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>159, 17</value>

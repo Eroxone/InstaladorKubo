@@ -411,7 +411,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbConfiguraWord2016x64.AutoSize = True
         Me.CbConfiguraWord2016x64.Font = New System.Drawing.Font("Lucida Bright", 10.2!)
-        Me.CbConfiguraWord2016x64.Location = New System.Drawing.Point(176, 129)
+        Me.CbConfiguraWord2016x64.Location = New System.Drawing.Point(180, 125)
         Me.CbConfiguraWord2016x64.Margin = New System.Windows.Forms.Padding(2)
         Me.CbConfiguraWord2016x64.Name = "CbConfiguraWord2016x64"
         Me.CbConfiguraWord2016x64.Size = New System.Drawing.Size(169, 20)
@@ -423,7 +423,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbOffice2016x64.AutoSize = True
         Me.CbOffice2016x64.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
-        Me.CbOffice2016x64.Location = New System.Drawing.Point(14, 128)
+        Me.CbOffice2016x64.Location = New System.Drawing.Point(14, 125)
         Me.CbOffice2016x64.Margin = New System.Windows.Forms.Padding(2)
         Me.CbOffice2016x64.Name = "CbOffice2016x64"
         Me.CbOffice2016x64.Size = New System.Drawing.Size(145, 21)
@@ -435,7 +435,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbPaquetesFT.AutoSize = True
         Me.CbPaquetesFT.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
-        Me.CbPaquetesFT.Location = New System.Drawing.Point(14, 242)
+        Me.CbPaquetesFT.Location = New System.Drawing.Point(14, 240)
         Me.CbPaquetesFT.Name = "CbPaquetesFT"
         Me.CbPaquetesFT.Size = New System.Drawing.Size(118, 21)
         Me.CbPaquetesFT.TabIndex = 24
@@ -556,7 +556,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbOffice2016odt.AutoSize = True
         Me.CbOffice2016odt.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
-        Me.CbOffice2016odt.Location = New System.Drawing.Point(14, 105)
+        Me.CbOffice2016odt.Location = New System.Drawing.Point(14, 100)
         Me.CbOffice2016odt.Name = "CbOffice2016odt"
         Me.CbOffice2016odt.Size = New System.Drawing.Size(153, 21)
         Me.CbOffice2016odt.TabIndex = 20
@@ -580,7 +580,7 @@ Partial Class FrmInstaladorKubo
         Me.CbOffice2003.BackColor = System.Drawing.SystemColors.Control
         Me.CbOffice2003.Font = New System.Drawing.Font("Lucida Bright", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CbOffice2003.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CbOffice2003.Location = New System.Drawing.Point(14, 49)
+        Me.CbOffice2003.Location = New System.Drawing.Point(14, 50)
         Me.CbOffice2003.Margin = New System.Windows.Forms.Padding(2)
         Me.CbOffice2003.Name = "CbOffice2003"
         Me.CbOffice2003.Size = New System.Drawing.Size(153, 21)
@@ -592,7 +592,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbOffice2016.AutoSize = True
         Me.CbOffice2016.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
-        Me.CbOffice2016.Location = New System.Drawing.Point(14, 81)
+        Me.CbOffice2016.Location = New System.Drawing.Point(14, 75)
         Me.CbOffice2016.Margin = New System.Windows.Forms.Padding(2)
         Me.CbOffice2016.Name = "CbOffice2016"
         Me.CbOffice2016.Size = New System.Drawing.Size(162, 21)
@@ -604,7 +604,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbConfiguraNotin.AutoSize = True
         Me.CbConfiguraNotin.Font = New System.Drawing.Font("Lucida Bright", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CbConfiguraNotin.Location = New System.Drawing.Point(176, 49)
+        Me.CbConfiguraNotin.Location = New System.Drawing.Point(180, 50)
         Me.CbConfiguraNotin.Margin = New System.Windows.Forms.Padding(2)
         Me.CbConfiguraNotin.Name = "CbConfiguraNotin"
         Me.CbConfiguraNotin.Size = New System.Drawing.Size(136, 20)
@@ -616,7 +616,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbRequisitos.AutoSize = True
         Me.CbRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
-        Me.CbRequisitos.Location = New System.Drawing.Point(176, 194)
+        Me.CbRequisitos.Location = New System.Drawing.Point(180, 194)
         Me.CbRequisitos.Margin = New System.Windows.Forms.Padding(2)
         Me.CbRequisitos.Name = "CbRequisitos"
         Me.CbRequisitos.Size = New System.Drawing.Size(136, 21)
@@ -628,7 +628,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbConfiguraWord2016.AutoSize = True
         Me.CbConfiguraWord2016.Font = New System.Drawing.Font("Lucida Bright", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CbConfiguraWord2016.Location = New System.Drawing.Point(176, 81)
+        Me.CbConfiguraWord2016.Location = New System.Drawing.Point(180, 76)
         Me.CbConfiguraWord2016.Margin = New System.Windows.Forms.Padding(2)
         Me.CbConfiguraWord2016.Name = "CbConfiguraWord2016"
         Me.CbConfiguraWord2016.Size = New System.Drawing.Size(143, 20)
@@ -640,7 +640,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.lbRequisitos.AutoSize = True
         Me.lbRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.2!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRequisitos.Location = New System.Drawing.Point(172, 175)
+        Me.lbRequisitos.Location = New System.Drawing.Point(177, 175)
         Me.lbRequisitos.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbRequisitos.Name = "lbRequisitos"
         Me.lbRequisitos.Size = New System.Drawing.Size(108, 16)
@@ -674,7 +674,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbPuestoNotin.AutoSize = True
         Me.CbPuestoNotin.Font = New System.Drawing.Font("Lucida Bright", 10.8!)
-        Me.CbPuestoNotin.Location = New System.Drawing.Point(14, 216)
+        Me.CbPuestoNotin.Location = New System.Drawing.Point(14, 217)
         Me.CbPuestoNotin.Margin = New System.Windows.Forms.Padding(2)
         Me.CbPuestoNotin.Name = "CbPuestoNotin"
         Me.CbPuestoNotin.Size = New System.Drawing.Size(142, 21)
