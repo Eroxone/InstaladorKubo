@@ -3910,10 +3910,10 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub DescargarNotaria()
-        'If UnidadF() = False Then
-        '    MessageBox.Show("Unidad F no disponible. No se puede proceder a Descargar Notaría.", "Unidad F no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    Exit Sub
-        'End If
+        If UnidadF() = False Then
+            MessageBox.Show("Unidad F no disponible. No se puede proceder a Descargar Notaría.", "Unidad F no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
 
         If NotinRapp() = True Then
             Dim notinrapp = MessageBox.Show("Se va a proceder a Descargar y Ejecutar NOTIN8.exe en host NOTINRAPP. ¿Estás seguro?", "NotinNet en AdRa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
@@ -4005,7 +4005,7 @@ Public Class FrmInstaladorKubo
             BtNotin8exe.BackColor = Color.LightSalmon
         End Try
 
-        MessageBox.Show("Actualización Versión Notin8 finalizada correctamente.", "Actualizar Notaría", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Actualización Versión Notin8 finalizada. Revisa Logger para más detalles.", "Actualizar Notaría", MessageBoxButtons.OK, MessageBoxIcon.Information)
         BtNotin8exe.BackColor = Color.PaleGreen
 
         'Como no puedo comprobar que versión de Net tiene dejo todas en gris
@@ -4134,7 +4134,7 @@ Public Class FrmInstaladorKubo
 
             RegistroInstalacion("TERMINADO. Proceso Notin8 aplicando Deploy finalizó correctamente. Revisa resultados.")
 
-            MessageBox.Show("Actualización Versión Notin8 finalizada correctamente.", "Actualizar Notaría Deploy", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Actualización Versión Notin8 finalizada. Revisa Logger para más detalles.", "Actualizar Notaría Deploy", MessageBoxButtons.OK, MessageBoxIcon.Information)
             BtNotin8exeDeploy.BackColor = Color.PaleGreen
 
         Else
