@@ -1802,7 +1802,7 @@ Public Class FrmInstaladorKubo
         TlpDeploy.SetToolTip(BtMigradorDeploy, "Descarga y Ejecuta Migrador forzando Deploy. Aplicando así las Actualizaciones en la BD. Esto no afecta a la bitácora de SQL.")
 
         TlpNotin8Forzar.ToolTipTitle = "Fuerza requisitos para Instalación del paquete Notin8.exe"
-        TlpNotin8Forzar.SetToolTip(BtNotin8exeDeploy, "Descarga y realiza y fuerza los requisitos necesarios para que se provoque la Instalación de Notin8.exe y .Net en cualquier entorno. Clic para leer las advertencias.")
+        TlpNotin8Forzar.SetToolTip(BtNotin8exeDeploy, "Descarga y Fuerza los requisitos necesarios para que se provoque la Instalación de Notin8.exe y .Net en cualquier entorno. Clic para leer las advertencias.")
 
         TlpPuestoC.SetToolTip(CbPuestoNotin, "Descarga y descomprime en C raíz carpetas como Notawin.Net, Plantillas, Accesos directos al Escritorio.." & vbCrLf & "Este proceso se realizará tras una instalación Notin-Kubo-Nexus.")
         TlpPuestoC.AutoPopDelay = 10000
