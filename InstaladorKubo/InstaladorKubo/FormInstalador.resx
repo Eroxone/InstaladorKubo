@@ -120,6 +120,9 @@
   <metadata name="fbdDescarga.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="Label3.Text" xml:space="preserve">
+    <value>EXPLICACIÓN: Selecciona una hora/minuto en los listados inferiores y clic en Programar ejecución para activar el contador. A la hora seleccionada se actualizará la version en el despacho. Más info al ejecutar la tarea.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="BtVersionFW.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -228,6 +231,43 @@
         GdybsZUvNp52a0WGGJKey8VQd60N6vA11sBWTn8gxOH5VBPxSYvnaz3oKS1HvN82xvXXUQLtiHa4iich
         0Ms7geVr3KsM41NNxCctnk9eSxHfd2khHKiOh2p/MHMiMSKLk5WTRyxU//P9TKBZaqitPvIuNNSzGPZv
         0hXQzAn0aWfxbvIdgdrk8SYYeHartSn1NxJnKhmDxLICAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="BtBackupNet.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        gg==
 </value>
   </data>
   <data name="BtNotin8exeDeploy.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -393,9 +433,6 @@
         BgnzJXsBlkPwlshYVkCiNH8nR13DTtE1VKTt67ggKHTdlJW673bUnxq7ieunYLxG/9CedfWTZtGRC6eE
         PKwy7e0qHWd9WiLNqwzC4A9D0Pb/Aasaxmn4j78SAAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="Label3.Text" xml:space="preserve">
-    <value>EXPLICACIÓN: Selecciona una hora/minuto en los listados inferiores y clic en Programar ejecución para activar el contador. A la hora seleccionada se actualizará la version en el despacho. Más info al ejecutar la tarea.</value>
   </data>
   <metadata name="tlpUnidadF.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>159, 17</value>

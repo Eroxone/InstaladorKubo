@@ -128,20 +128,28 @@ Public Class FrmInstaladorKubo
 
         cIniArray.IniWrite(instaladorkuboini, "VERSION", "CLICKONCE", versionactual)
 
+        LimpiezaInicio()
 
+    End Sub
+
+    Private Sub LimpiezaInicio()
         'LIMPIEZA DE FICHEROS AL INICIO
 
-        'Limpiar Icono versión anterior
+        'Quitar Icono versión anterior
         Try
             Dim Escritorio As String = "" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & ""
             File.Delete(Escritorio & "InstaladorKubo.appref-ms")
 
             'Fuerzo que se descarguen la nueva version de WGET (quitar en unas semanas)
-            File.Delete(RutaDescargas & "wget.exe")
-
+            Dim wgetexe As New FileInfo(RutaDescargas & "wget.exe")
+            Dim Lengthwget As Long = wgetexe.Length
+            If wgetexe.Length > "517577131" Then
+                File.Delete(RutaDescargas & "wget.exe")
+            End If
         Catch ex As Exception
             RegistroInstalacion("INFO Limpieza Inicio: " & ex.Message)
         End Try
+
 
     End Sub
 
@@ -4191,6 +4199,7 @@ Public Class FrmInstaladorKubo
 
             cIniArray.IniWrite(instaladorkuboini, "NET", "FWSISTEMA", numeroversion)
             RegistroInstalacion("INFO FRAMEWORK: InfoVersión en el Sistema: " & numeroversion)
+            File.Delete(RutaDescargas & "fwversion.txt")
         Catch ex As Exception
             RegistroInstalacion("INFO FRAMEWORK: No se pudo determinar Versión FW en Sistema.")
         End Try
@@ -5264,6 +5273,14 @@ Public Class FrmInstaladorKubo
             BtNotin8exe.BackColor = Color.LightSalmon
             RegistroInstalacion("ERROR NOTIN8: " & ex.Message)
             BtNotinAdraDiferido.BackColor = Color.LightSalmon
+
+            Me.Visible = True
+            Icononotificacion.Visible = False
+
+            LbAdraDiferido.ForeColor = Color.LightSalmon
+            LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA CON ERRORES=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & DateTime.Now.Minute
+            LbAdraDiferido.Visible = True
+            Exit Sub
         End Try
 
         If UnidadF() = True Then
@@ -5300,6 +5317,14 @@ Public Class FrmInstaladorKubo
             Catch ex As Exception
                 RegistroInstalacion("ERROR NOTIN NET BETA: No se pudo ejecutar NotinNetInstaller Beta. " & ex.Message)
                 BtNotinAdraDiferido.BackColor = Color.LightSalmon
+
+                Me.Visible = True
+                Icononotificacion.Visible = False
+
+                LbAdraDiferido.ForeColor = Color.LightSalmon
+                LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA CON ERRORES=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & DateTime.Now.Minute
+                LbAdraDiferido.Visible = True
+                Exit Sub
             End Try
 
             'COPIAR BETA A F:\NOTAWIN.NET
@@ -5337,7 +5362,8 @@ Public Class FrmInstaladorKubo
         'TERMINAMOS PROCESO Y AVISAMOS
         RegistroInstalacion("= ACTUALIZACIÓN DIFERIDA ADRA FINALIZADA.=")
         BtNotinAdraDiferido.BackColor = Color.PaleGreen
-        LBAdraDiferido.Visible = False
+        LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & DateTime.Now.Minute
+        LbAdraDiferido.Visible = True
         'EnvioMailADRA()
         'MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "En verde todo correcto. Rojo indicará algún error." & vbCrLf & "Revisa Log para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -5383,7 +5409,6 @@ Public Class FrmInstaladorKubo
             smtp.Port = 587
             smtp.Host = "smtp.gmail.com"
             smtp.EnableSsl = True
-
 
             Try
                 smtp.Send(correo)

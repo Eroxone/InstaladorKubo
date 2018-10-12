@@ -116,18 +116,16 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.LbAdraDiferido = New System.Windows.Forms.Label()
         Me.NumMinutoAdra = New System.Windows.Forms.NumericUpDown()
         Me.NumHoraAdra = New System.Windows.Forms.NumericUpDown()
         Me.CbBetaAdra = New System.Windows.Forms.CheckBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.LboxMinutoAdraDiferido = New System.Windows.Forms.ListBox()
-        Me.LboxHoraAdraDiferido = New System.Windows.Forms.ListBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TbIdentificaNotaria = New System.Windows.Forms.TextBox()
-        Me.LBAdraDiferido = New System.Windows.Forms.Label()
         Me.BtNotinAdraDiferido = New System.Windows.Forms.Button()
         Me.BtLimpiarPerfil = New System.Windows.Forms.Button()
         Me.BtDynamic = New System.Windows.Forms.Button()
@@ -1023,14 +1021,17 @@ Partial Class FrmInstaladorKubo
         '
         'BtBackupNet
         '
-        Me.BtBackupNet.BackColor = System.Drawing.Color.MistyRose
+        Me.BtBackupNet.BackColor = System.Drawing.Color.AliceBlue
         Me.BtBackupNet.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtBackupNet.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtBackupNet.Location = New System.Drawing.Point(282, 330)
+        Me.BtBackupNet.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtBackupNet.Image = CType(resources.GetObject("BtBackupNet.Image"), System.Drawing.Image)
+        Me.BtBackupNet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtBackupNet.Location = New System.Drawing.Point(269, 330)
         Me.BtBackupNet.Name = "BtBackupNet"
-        Me.BtBackupNet.Size = New System.Drawing.Size(115, 28)
+        Me.BtBackupNet.Size = New System.Drawing.Size(128, 28)
         Me.BtBackupNet.TabIndex = 52
-        Me.BtBackupNet.Text = "Ver BackupNet"
+        Me.BtBackupNet.Text = "BackupNet"
+        Me.BtBackupNet.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtBackupNet.UseVisualStyleBackColor = False
         '
         'LbWordx64
@@ -1147,10 +1148,10 @@ Partial Class FrmInstaladorKubo
         'BtNotinNetF
         '
         Me.BtNotinNetF.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinNetF.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtNotinNetF.Location = New System.Drawing.Point(282, 290)
+        Me.BtNotinNetF.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtNotinNetF.Location = New System.Drawing.Point(269, 290)
         Me.BtNotinNetF.Name = "BtNotinNetF"
-        Me.BtNotinNetF.Size = New System.Drawing.Size(115, 28)
+        Me.BtNotinNetF.Size = New System.Drawing.Size(128, 28)
         Me.BtNotinNetF.TabIndex = 41
         Me.BtNotinNetF.Text = "NotinNet a F:\.."
         Me.BtNotinNetF.UseVisualStyleBackColor = True
@@ -1352,6 +1353,7 @@ Partial Class FrmInstaladorKubo
         'BtSQL2014
         '
         Me.BtSQL2014.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtSQL2014.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtSQL2014.Location = New System.Drawing.Point(8, 10)
         Me.BtSQL2014.Name = "BtSQL2014"
         Me.BtSQL2014.Size = New System.Drawing.Size(167, 28)
@@ -1362,18 +1364,16 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.LbAdraDiferido)
         Me.TabPage10.Controls.Add(Me.NumMinutoAdra)
         Me.TabPage10.Controls.Add(Me.NumHoraAdra)
         Me.TabPage10.Controls.Add(Me.CbBetaAdra)
         Me.TabPage10.Controls.Add(Me.Label7)
         Me.TabPage10.Controls.Add(Me.Label6)
         Me.TabPage10.Controls.Add(Me.Label5)
-        Me.TabPage10.Controls.Add(Me.LboxMinutoAdraDiferido)
-        Me.TabPage10.Controls.Add(Me.LboxHoraAdraDiferido)
         Me.TabPage10.Controls.Add(Me.Label4)
         Me.TabPage10.Controls.Add(Me.Label3)
         Me.TabPage10.Controls.Add(Me.TbIdentificaNotaria)
-        Me.TabPage10.Controls.Add(Me.LBAdraDiferido)
         Me.TabPage10.Controls.Add(Me.BtNotinAdraDiferido)
         Me.TabPage10.Controls.Add(Me.BtLimpiarPerfil)
         Me.TabPage10.Controls.Add(Me.BtDynamic)
@@ -1384,6 +1384,16 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Size = New System.Drawing.Size(446, 370)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
+        '
+        'LbAdraDiferido
+        '
+        Me.LbAdraDiferido.Location = New System.Drawing.Point(8, 264)
+        Me.LbAdraDiferido.Name = "LbAdraDiferido"
+        Me.LbAdraDiferido.Size = New System.Drawing.Size(425, 51)
+        Me.LbAdraDiferido.TabIndex = 18
+        Me.LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA="
+        Me.LbAdraDiferido.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.LbAdraDiferido.Visible = False
         '
         'NumMinutoAdra
         '
@@ -1445,28 +1455,6 @@ Partial Class FrmInstaladorKubo
         Me.Label5.TabIndex = 12
         Me.Label5.Text = "Hora"
         '
-        'LboxMinutoAdraDiferido
-        '
-        Me.LboxMinutoAdraDiferido.FormattingEnabled = True
-        Me.LboxMinutoAdraDiferido.ItemHeight = 18
-        Me.LboxMinutoAdraDiferido.Items.AddRange(New Object() {"0", "15", "30", "45", "5", "10", "20", "25", "35", "40", "50", "55"})
-        Me.LboxMinutoAdraDiferido.Location = New System.Drawing.Point(103, 277)
-        Me.LboxMinutoAdraDiferido.Name = "LboxMinutoAdraDiferido"
-        Me.LboxMinutoAdraDiferido.Size = New System.Drawing.Size(69, 58)
-        Me.LboxMinutoAdraDiferido.TabIndex = 11
-        Me.LboxMinutoAdraDiferido.Visible = False
-        '
-        'LboxHoraAdraDiferido
-        '
-        Me.LboxHoraAdraDiferido.FormattingEnabled = True
-        Me.LboxHoraAdraDiferido.ItemHeight = 18
-        Me.LboxHoraAdraDiferido.Items.AddRange(New Object() {"22", "15", "8", "7", "14", "16", "17", "18", "19", "20", "0", "3", "5", "6", "9", "10", "11", "12", "13", "21", "23"})
-        Me.LboxHoraAdraDiferido.Location = New System.Drawing.Point(8, 289)
-        Me.LboxHoraAdraDiferido.Name = "LboxHoraAdraDiferido"
-        Me.LboxHoraAdraDiferido.Size = New System.Drawing.Size(69, 58)
-        Me.LboxHoraAdraDiferido.TabIndex = 10
-        Me.LboxHoraAdraDiferido.Visible = False
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -1491,31 +1479,19 @@ Partial Class FrmInstaladorKubo
         Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.TbIdentificaNotaria.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TbIdentificaNotaria.ForeColor = System.Drawing.SystemColors.ScrollBar
-        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(230, 194)
+        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(3, 195)
         Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
         Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 25)
         Me.TbIdentificaNotaria.TabIndex = 7
         Me.TbIdentificaNotaria.Tag = ""
         Me.TbIdentificaNotaria.Text = "Identificador Notaría..."
-        '
-        'LBAdraDiferido
-        '
-        Me.LBAdraDiferido.BackColor = System.Drawing.SystemColors.Control
-        Me.LBAdraDiferido.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
-        Me.LBAdraDiferido.ForeColor = System.Drawing.Color.Red
-        Me.LBAdraDiferido.Location = New System.Drawing.Point(4, 185)
-        Me.LBAdraDiferido.Name = "LBAdraDiferido"
-        Me.LBAdraDiferido.Size = New System.Drawing.Size(185, 90)
-        Me.LBAdraDiferido.TabIndex = 6
-        Me.LBAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS"
-        Me.LBAdraDiferido.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.LBAdraDiferido.Visible = False
+        Me.TbIdentificaNotaria.Visible = False
         '
         'BtNotinAdraDiferido
         '
         Me.BtNotinAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.BtNotinAdraDiferido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(230, 226)
+        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(230, 195)
         Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
         Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(203, 45)
         Me.BtNotinAdraDiferido.TabIndex = 5
@@ -1607,13 +1583,13 @@ Partial Class FrmInstaladorKubo
         'lbRuta
         '
         Me.lbRuta.AutoSize = True
-        Me.lbRuta.BackColor = System.Drawing.SystemColors.Control
+        Me.lbRuta.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.lbRuta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbRuta.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbRuta.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbRuta.Location = New System.Drawing.Point(60, 610)
         Me.lbRuta.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbRuta.Name = "lbRuta"
-        Me.lbRuta.Size = New System.Drawing.Size(70, 17)
+        Me.lbRuta.Size = New System.Drawing.Size(79, 17)
         Me.lbRuta.TabIndex = 31
         Me.lbRuta.Text = "C:\NOTIN\"
         '
@@ -1977,6 +1953,7 @@ Partial Class FrmInstaladorKubo
         'LbNotificacionemail
         '
         Me.LbNotificacionemail.AutoSize = True
+        Me.LbNotificacionemail.Enabled = False
         Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LbNotificacionemail.Location = New System.Drawing.Point(94, 658)
         Me.LbNotificacionemail.Name = "LbNotificacionemail"
@@ -1988,6 +1965,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CBoxEmail.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CBoxEmail.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CBoxEmail.Enabled = False
         Me.CBoxEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.CBoxEmail.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
         Me.CBoxEmail.FormattingEnabled = True
@@ -2598,12 +2576,9 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents Label2 As Label
     Friend WithEvents BtCopiaNotario As Button
     Friend WithEvents BtNotinAdraDiferido As Button
-    Friend WithEvents LBAdraDiferido As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents TbIdentificaNotaria As TextBox
     Friend WithEvents Label4 As Label
-    Friend WithEvents LboxMinutoAdraDiferido As ListBox
-    Friend WithEvents LboxHoraAdraDiferido As ListBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
@@ -2621,4 +2596,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TlpVersionNet As ToolTip
     Friend WithEvents BtVersionFW As Button
     Friend WithEvents BtDatosGenerales As Button
+    Friend WithEvents LbAdraDiferido As Label
 End Class
