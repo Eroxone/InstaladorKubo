@@ -1811,7 +1811,7 @@ Public Class FrmInstaladorKubo
 
         TlpBetaNetAdra.SetToolTip(CbBetaAdra, "Marcando esta casilla se descargará la última Beta de Net. En caso contrario se forzará la instalación de la versión Estable.")
 
-        TlpBackupNet.SetToolTip(BtBackupNet, "Además de explorar las carpeta de BackupNet se limpiarán las versiones de mas de 30 días.")
+        TlpBackupNet.SetToolTip(BtBackupNet, "Además de explorar la ruta BackupNet se limpiarán las versiones de mas de 30 días.")
 
         TlpVersionNet.SetToolTip(BtVersionNet, "Obtiene versión NotinNet instalada en el Sistema.")
 
