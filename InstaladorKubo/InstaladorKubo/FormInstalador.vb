@@ -63,9 +63,10 @@ Public Class FrmInstaladorKubo
         'Cargo correo anterior de notificaciones
         CBoxEmail.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
 
-        'Version NET en Sistema
-        ObtenerVersionNet()
+        'Versiones  Notin y .NET en Sistema
+        ObtenerVersionNotin()
 
+        ObtenerVersionNet()
 
         'Ejecución MigradorSQL
         'LbMigrador.Text = cIniArray.IniGet(instaladorkuboini, "SQL", "FECHAMIGRADOR", "Sin determinar")
@@ -1810,9 +1811,13 @@ Public Class FrmInstaladorKubo
 
         TlpBetaNetAdra.SetToolTip(CbBetaAdra, "Marcando esta casilla se descargará la última Beta de Net. En caso contrario se forzará la instalación de la versión Estable.")
 
-        TlpBackupNet.SetToolTip(BtBackupNet, "Además de explorar las carpeta de BackupNet se limpiarán las versiones de mas de 15 días.")
+        TlpBackupNet.SetToolTip(BtBackupNet, "Además de explorar las carpeta de BackupNet se limpiarán las versiones de mas de 30 días.")
 
-        TlpVersionNet.SetToolTip(BtVersionNet, "Obtiene la versión NotinNet instalada en el Sistema.")
+        TlpVersionNet.SetToolTip(BtVersionNet, "Obtiene versión NotinNet instalada en el Sistema.")
+
+        TlpVersionNotin.SetToolTip(BtVersionNotin, "Obtiene versión Notin instalada en el Sistema.")
+
+        TlpAbreExcel.SetToolTip(BtAbreExcel, "Compila el ejecutable AbreExcel.exe adaptado al equipo desde donde se genera.")
     End Sub
 #End Region
 
@@ -3998,6 +4003,7 @@ Public Class FrmInstaladorKubo
             Dim notinnet As Process = Process.Start(pnotinnet)
             notinnet.WaitForExit()
             RegistroInstalacion("ÉXITO: NotinNet ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+            ObtenerVersionNotin()
             ObtenerVersionNet()
         Catch ex As Exception
             'BtEstableNet.BackColor = Color.LightSalmon
@@ -4116,6 +4122,7 @@ Public Class FrmInstaladorKubo
                 Dim notinnet As Process = Process.Start(pnotinnet)
                 notinnet.WaitForExit()
                 RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
+                ObtenerVersionNotin()
                 ObtenerVersionNet()
             Catch ex As Exception
                 'BtEstableNet.BackColor = Color.LightSalmon
@@ -4144,6 +4151,25 @@ Public Class FrmInstaladorKubo
         BtNotin8exe.BackColor = SystemColors.Control
     End Sub
 
+    Private Sub ObtenerVersionNotin()
+        Try
+            Dim lognotin As String = "C:\Notawin.Net\Notin.log"
+            Dim infoversion As String
+
+            Dim sr As New System.IO.StreamReader(lognotin)
+            infoversion = sr.ReadLine()
+            'infoversion = sr.ReadToEnd
+            sr.Close()
+            Dim numeroversion = infoversion.LastIndexOf(":")
+            infoversion = infoversion.Substring(numeroversion + 2)
+            LbVersionNotin.Text = infoversion
+            cIniArray.IniWrite(instaladorkuboini, "NOTIN", "VERSION", infoversion)
+            RegistroInstalacion("NOTIN: InfoVersión en el Sistema: " & infoversion)
+        Catch ex As Exception
+            RegistroInstalacion("NOTIN: No se pudo determinar Versión NOTIN en Sistema.")
+        End Try
+    End Sub
+
 
     Private Sub ObtenerVersionNet()
         Try
@@ -4155,6 +4181,8 @@ Public Class FrmInstaladorKubo
             infoversion = sr.ReadLine()
             'infoversion = sr.ReadToEnd
             sr.Close()
+            Dim numeroversion = infoversion.LastIndexOf(",")
+            infoversion = infoversion.Substring(0,numeroversion)
             LbBetaNet.Text = infoversion
             cIniArray.IniWrite(instaladorkuboini, "NET", "NETSISTEMA", infoversion)
             'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHAEJECUCION", DateTime.Now)
@@ -5557,7 +5585,7 @@ Public Class FrmInstaladorKubo
         PbInstalaciones.Value = 0
         PbInstalaciones.Visible = False
 
-        MessageBox.Show("Encontrarás ABREEXCEL.EXE en C:\Notawin.Net. Establécelo como Programa predeterminado para las extensiones XLS y XLSX.", "Generación de AbreExcel finalizada.", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("Encontrarás ABREEXCEL.EXE en C:\Notawin.Net. Establécelo como Programa predeterminado para los tipos de extensiones Excel.", "Generación de AbreExcel finalizada.", MessageBoxButtons.OK, MessageBoxIcon.Information)
         BtAbreExcel.BackColor = Color.PaleGreen
         cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "ABREEXCEL", "1")
     End Sub
@@ -5571,6 +5599,10 @@ Public Class FrmInstaladorKubo
     Private Sub BtDatosGenerales_Click(sender As Object, e As EventArgs) Handles BtDatosGenerales.Click
         ODBCNotinSQL.NotinSQL(" SELECT * FROM MENU")
 
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtVersionNotin.Click
+        ObtenerVersionNotin()
     End Sub
 
 

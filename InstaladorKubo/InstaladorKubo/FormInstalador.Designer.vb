@@ -224,6 +224,11 @@ Partial Class FrmInstaladorKubo
         Me.BtExplorarRutas = New System.Windows.Forms.Button()
         Me.BtReconectar = New System.Windows.Forms.Button()
         Me.TlpVersionNet = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.LbVersionNotin = New System.Windows.Forms.Label()
+        Me.BtVersionNotin = New System.Windows.Forms.Button()
+        Me.TlpVersionNotin = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpAbreExcel = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -698,11 +703,11 @@ Partial Class FrmInstaladorKubo
         '
         'TabSistema
         '
-        Me.TabSistema.Controls.Add(Me.TabPage5)
-        Me.TabSistema.Controls.Add(Me.TabPage6)
         Me.TabSistema.Controls.Add(Me.TabPage11)
         Me.TabSistema.Controls.Add(Me.TabPage7)
         Me.TabSistema.Controls.Add(Me.TabPage10)
+        Me.TabSistema.Controls.Add(Me.TabPage6)
+        Me.TabSistema.Controls.Add(Me.TabPage5)
         Me.TabSistema.Controls.Add(Me.TabPage12)
         Me.TabSistema.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabSistema.Location = New System.Drawing.Point(4, 28)
@@ -734,7 +739,7 @@ Partial Class FrmInstaladorKubo
         'BtVersionFW
         '
         Me.BtVersionFW.Image = CType(resources.GetObject("BtVersionFW.Image"), System.Drawing.Image)
-        Me.BtVersionFW.Location = New System.Drawing.Point(230, 50)
+        Me.BtVersionFW.Location = New System.Drawing.Point(230, 10)
         Me.BtVersionFW.Name = "BtVersionFW"
         Me.BtVersionFW.Size = New System.Drawing.Size(35, 34)
         Me.BtVersionFW.TabIndex = 54
@@ -744,7 +749,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbVersionFW.AutoSize = True
         Me.LbVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbVersionFW.Location = New System.Drawing.Point(271, 68)
+        Me.LbVersionFW.Location = New System.Drawing.Point(271, 28)
         Me.LbVersionFW.Name = "LbVersionFW"
         Me.LbVersionFW.Size = New System.Drawing.Size(99, 15)
         Me.LbVersionFW.TabIndex = 52
@@ -754,7 +759,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbInfoVersionFW.AutoSize = True
         Me.LbInfoVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.LbInfoVersionFW.Location = New System.Drawing.Point(271, 50)
+        Me.LbInfoVersionFW.Location = New System.Drawing.Point(271, 10)
         Me.LbInfoVersionFW.Name = "LbInfoVersionFW"
         Me.LbInfoVersionFW.Size = New System.Drawing.Size(146, 15)
         Me.LbInfoVersionFW.TabIndex = 51
@@ -764,7 +769,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtFramework462.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtFramework462.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtFramework462.Location = New System.Drawing.Point(230, 10)
+        Me.BtFramework462.Location = New System.Drawing.Point(230, 50)
         Me.BtFramework462.Margin = New System.Windows.Forms.Padding(2)
         Me.BtFramework462.Name = "BtFramework462"
         Me.BtFramework462.Size = New System.Drawing.Size(167, 28)
@@ -986,6 +991,9 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.BtVersionNotin)
+        Me.TabPage11.Controls.Add(Me.LbVersionNotin)
+        Me.TabPage11.Controls.Add(Me.Label8)
         Me.TabPage11.Controls.Add(Me.BtVersionNet)
         Me.TabPage11.Controls.Add(Me.BtBackupNet)
         Me.TabPage11.Controls.Add(Me.LbWordx64)
@@ -1026,9 +1034,9 @@ Partial Class FrmInstaladorKubo
         Me.BtBackupNet.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtBackupNet.Image = CType(resources.GetObject("BtBackupNet.Image"), System.Drawing.Image)
         Me.BtBackupNet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtBackupNet.Location = New System.Drawing.Point(269, 330)
+        Me.BtBackupNet.Location = New System.Drawing.Point(269, 324)
         Me.BtBackupNet.Name = "BtBackupNet"
-        Me.BtBackupNet.Size = New System.Drawing.Size(128, 28)
+        Me.BtBackupNet.Size = New System.Drawing.Size(128, 34)
         Me.BtBackupNet.TabIndex = 52
         Me.BtBackupNet.Text = "BackupNet"
         Me.BtBackupNet.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -1047,14 +1055,11 @@ Partial Class FrmInstaladorKubo
         'BtNotin8exeDeploy
         '
         Me.BtNotin8exeDeploy.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotin8exeDeploy.Image = CType(resources.GetObject("BtNotin8exeDeploy.Image"), System.Drawing.Image)
-        Me.BtNotin8exeDeploy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtNotin8exeDeploy.Location = New System.Drawing.Point(230, 90)
         Me.BtNotin8exeDeploy.Name = "BtNotin8exeDeploy"
         Me.BtNotin8exeDeploy.Size = New System.Drawing.Size(167, 28)
         Me.BtNotin8exeDeploy.TabIndex = 50
         Me.BtNotin8exeDeploy.Text = "Deploy Notin 8"
-        Me.BtNotin8exeDeploy.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtNotin8exeDeploy.UseVisualStyleBackColor = True
         '
         'BtEstablew32F462
@@ -1135,14 +1140,12 @@ Partial Class FrmInstaladorKubo
         'BtNotin8exe
         '
         Me.BtNotin8exe.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotin8exe.Image = CType(resources.GetObject("BtNotin8exe.Image"), System.Drawing.Image)
         Me.BtNotin8exe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtNotin8exe.Location = New System.Drawing.Point(230, 50)
         Me.BtNotin8exe.Name = "BtNotin8exe"
         Me.BtNotin8exe.Size = New System.Drawing.Size(167, 28)
         Me.BtNotin8exe.TabIndex = 42
-        Me.BtNotin8exe.Text = "Descarga Notin"
-        Me.BtNotin8exe.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtNotin8exe.Text = "Descargar Notaría"
         Me.BtNotin8exe.UseVisualStyleBackColor = True
         '
         'BtNotinNetF
@@ -1265,7 +1268,7 @@ Partial Class FrmInstaladorKubo
         'BtSQL2008R2
         '
         Me.BtSQL2008R2.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtSQL2008R2.Location = New System.Drawing.Point(8, 130)
+        Me.BtSQL2008R2.Location = New System.Drawing.Point(8, 50)
         Me.BtSQL2008R2.Name = "BtSQL2008R2"
         Me.BtSQL2008R2.Size = New System.Drawing.Size(167, 28)
         Me.BtSQL2008R2.TabIndex = 10
@@ -1321,7 +1324,7 @@ Partial Class FrmInstaladorKubo
         'BtBlancosBD
         '
         Me.BtBlancosBD.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtBlancosBD.Location = New System.Drawing.Point(8, 50)
+        Me.BtBlancosBD.Location = New System.Drawing.Point(8, 90)
         Me.BtBlancosBD.Name = "BtBlancosBD"
         Me.BtBlancosBD.Size = New System.Drawing.Size(167, 28)
         Me.BtBlancosBD.TabIndex = 3
@@ -1332,7 +1335,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtRestaurarBak.Enabled = False
         Me.BtRestaurarBak.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtRestaurarBak.Location = New System.Drawing.Point(8, 90)
+        Me.BtRestaurarBak.Location = New System.Drawing.Point(8, 130)
         Me.BtRestaurarBak.Name = "BtRestaurarBak"
         Me.BtRestaurarBak.Size = New System.Drawing.Size(167, 28)
         Me.BtRestaurarBak.TabIndex = 2
@@ -1343,11 +1346,13 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtMigradorSQL.BackColor = System.Drawing.SystemColors.Control
         Me.BtMigradorSQL.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtMigradorSQL.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtMigradorSQL.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtMigradorSQL.Location = New System.Drawing.Point(230, 10)
         Me.BtMigradorSQL.Name = "BtMigradorSQL"
         Me.BtMigradorSQL.Size = New System.Drawing.Size(167, 28)
         Me.BtMigradorSQL.TabIndex = 1
-        Me.BtMigradorSQL.Text = "Migrador SQL"
+        Me.BtMigradorSQL.Text = "Migrador NotinSQL"
         Me.BtMigradorSQL.UseVisualStyleBackColor = False
         '
         'BtSQL2014
@@ -1421,7 +1426,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.CbBetaAdra.AutoSize = True
         Me.CbBetaAdra.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CbBetaAdra.Location = New System.Drawing.Point(245, 166)
+        Me.CbBetaAdra.Location = New System.Drawing.Point(248, 168)
         Me.CbBetaAdra.Name = "CbBetaAdra"
         Me.CbBetaAdra.Size = New System.Drawing.Size(159, 21)
         Me.CbBetaAdra.TabIndex = 15
@@ -2246,7 +2251,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.TlpBackupNet.IsBalloon = True
         Me.TlpBackupNet.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.TlpBackupNet.ToolTipTitle = "Explorar carpeta copias NotinNet anteriores"
+        Me.TlpBackupNet.ToolTipTitle = "Explorar carpeta BackupNet"
         '
         'BtNovedades
         '
@@ -2317,6 +2322,47 @@ Partial Class FrmInstaladorKubo
         Me.TlpVersionNet.IsBalloon = True
         Me.TlpVersionNet.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpVersionNet.ToolTipTitle = "Obtener VersiónNet"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.Label8.Location = New System.Drawing.Point(271, 10)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(107, 15)
+        Me.Label8.TabIndex = 54
+        Me.Label8.Text = "Versión NOTIN"
+        '
+        'LbVersionNotin
+        '
+        Me.LbVersionNotin.AutoSize = True
+        Me.LbVersionNotin.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbVersionNotin.Location = New System.Drawing.Point(271, 26)
+        Me.LbVersionNotin.Name = "LbVersionNotin"
+        Me.LbVersionNotin.Size = New System.Drawing.Size(99, 15)
+        Me.LbVersionNotin.TabIndex = 55
+        Me.LbVersionNotin.Text = "Sin información"
+        '
+        'BtVersionNotin
+        '
+        Me.BtVersionNotin.Image = CType(resources.GetObject("BtVersionNotin.Image"), System.Drawing.Image)
+        Me.BtVersionNotin.Location = New System.Drawing.Point(230, 7)
+        Me.BtVersionNotin.Name = "BtVersionNotin"
+        Me.BtVersionNotin.Size = New System.Drawing.Size(35, 34)
+        Me.BtVersionNotin.TabIndex = 56
+        Me.BtVersionNotin.UseVisualStyleBackColor = True
+        '
+        'TlpVersionNotin
+        '
+        Me.TlpVersionNotin.IsBalloon = True
+        Me.TlpVersionNotin.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpVersionNotin.ToolTipTitle = "Obtiene Versión Notin"
+        '
+        'TlpAbreExcel
+        '
+        Me.TlpAbreExcel.IsBalloon = True
+        Me.TlpAbreExcel.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpAbreExcel.ToolTipTitle = "Generar AbreExcel.exe"
         '
         'FrmInstaladorKubo
         '
@@ -2597,4 +2643,9 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtVersionFW As Button
     Friend WithEvents BtDatosGenerales As Button
     Friend WithEvents LbAdraDiferido As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents LbVersionNotin As Label
+    Friend WithEvents BtVersionNotin As Button
+    Friend WithEvents TlpVersionNotin As ToolTip
+    Friend WithEvents TlpAbreExcel As ToolTip
 End Class
