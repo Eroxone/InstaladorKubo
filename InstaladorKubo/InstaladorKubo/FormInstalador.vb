@@ -4151,23 +4151,87 @@ Public Class FrmInstaladorKubo
         BtNotin8exe.BackColor = SystemColors.Control
     End Sub
 
-    Private Sub ObtenerVersionNotin()
-        Try
-            Dim lognotin As String = "C:\Notawin.Net\Notin.log"
-            Dim infoversion As String
+    'Private Sub ObtenerVersionNotin()
+    '    Try
+    '        Dim lognotin As String = "C:\Notawin.Net\Notin.log"
+    '        Dim infoversion As String
 
-            Dim sr As New System.IO.StreamReader(lognotin)
-            infoversion = sr.ReadLine()
-            'infoversion = sr.ReadToEnd
-            sr.Close()
-            Dim numeroversion = infoversion.LastIndexOf(":")
-            infoversion = infoversion.Substring(numeroversion + 2)
-            LbVersionNotin.Text = infoversion
-            cIniArray.IniWrite(instaladorkuboini, "NOTIN", "VERSION", infoversion)
-            RegistroInstalacion("NOTIN: InfoVersión en el Sistema: " & infoversion)
+    '        Dim sr As New System.IO.StreamReader(lognotin)
+
+    '        While sr.ReadLine.Contains("ACCESS=ON")
+    '            infoversion = sr.ReadLine()
+    '        End While
+
+
+    '        sr.Close()
+    '        Dim numeroversion = infoversion.LastIndexOf(":")
+    '        infoversion = infoversion.Substring(numeroversion + 2)
+    '        LbVersionNotin.Text = infoversion
+    '        cIniArray.IniWrite(instaladorkuboini, "NOTIN", "VERSION", infoversion)
+    '        RegistroInstalacion("NOTIN: InfoVersión en el Sistema: " & infoversion)
+    '    Catch ex As Exception
+    '        RegistroInstalacion("NOTIN: No se pudo determinar Versión NOTIN en Sistema.")
+    '    End Try
+    'End Sub
+
+
+    Public Sub ObtenerVersionNotin()
+        Dim criterio As String
+        Dim filename As String
+
+        Dim contador As Integer = 1
+        Dim Linea_Actual As Integer = 0
+
+        ' Obtener el resultado
+        Dim vlcResultado As String = ""
+        ' Especifica el criterio
+        criterio = "ACCESS=ON"
+        Dim vlcCriterio As String = criterio
+        ' Nombre del archivo a utilizar
+        filename = "C:\Notawin.Net\Notin.log"
+        Dim vlcFileName As String = filename
+        ' Si el archivo existe
+        If IO.File.Exists(vlcFileName) Then
+            ' Crear el stream
+            Dim vloFile As New StreamReader(vlcFileName)
+            ' Ciclo de iteración entre líneas
+            While True
+                ' Cargar la línea
+                Dim vlcLinea = vloFile.ReadLine()
+                ' Si la línea es nula, sale del ciclo
+                If vlcLinea Is Nothing Then Exit While
+                ' Si la línea contiene el criterio
+                If vlcLinea.Contains(vlcCriterio) Then
+                    ' Obtener la línea como resultado,
+                    ' Concatenando un retorno de carro si ya hay ocurrencias
+                    vlcResultado += IIf(vlcResultado <> "", vbCrLf, "") & vlcLinea
+                    Linea_Actual = contador
+                    ' Salir del ciclo
+                    'Exit While ' Lo omites si quieres todas las ocurrencias
+                End If
+                contador += 1
+
+            End While
+        End If
+        ' Si no se encontraron resultados
+        If vlcResultado = "" Then
+            vlcResultado = "Sin información"
+            LbVersionNotin.Text = vlcResultado
+            Exit Sub
+        End If
+
+        'MsgBox("El resultado de La busqueda es: " + vlcResultado.ToString + " La linea en la que lo encontro es: " + Linea_Actual.ToString)
+
+        Try
+            Dim numeroversion = vlcResultado.LastIndexOf(":")
+            vlcResultado = vlcResultado.Substring(numeroversion + 2)
+            LbVersionNotin.Text = vlcResultado
+            cIniArray.IniWrite(instaladorkuboini, "NOTIN", "VERSION", vlcResultado)
+            RegistroInstalacion("NOTIN: InfoVersión en el Sistema: " & vlcResultado)
         Catch ex As Exception
-            RegistroInstalacion("NOTIN: No se pudo determinar Versión NOTIN en Sistema.")
+            'RegistroInstalacion("NOTIN: No se pudo determinar Versión NOTIN en Sistema.")
         End Try
+
     End Sub
 
 
