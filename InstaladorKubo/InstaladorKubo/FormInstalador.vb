@@ -1015,7 +1015,7 @@ Public Class FrmInstaladorKubo
 
         EnvioMail()
 
-        MessageBox.Show("DESCARGAS FINALIZADAS. Puedes encontrar los Paquetes en " & RutaDescargas, "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'MessageBox.Show("DESCARGAS FINALIZADAS. Puedes encontrar los Paquetes en " & RutaDescargas, "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         BtCopiarhaciaF.Enabled = True
         btTodo.Text = "Marcar todos"
@@ -1025,6 +1025,14 @@ Public Class FrmInstaladorKubo
     'Mensajes de acción
     Private Sub BtDescargar_MouseDown(sender As Object, e As MouseEventArgs) Handles btDescargar.MouseDown
         lbProcesandoDescargas.Visible = True
+    End Sub
+
+    Private Sub BtNexus64_MouseDown(sender As Object, e As MouseEventArgs) Handles BtNexus64.MouseDown
+        lbInstalando.Visible = True
+    End Sub
+
+    Private Sub BtNotinWord2003_MouseDown(sender As Object, e As MouseEventArgs) Handles BtNotinWord2003.MouseDown
+        lbInstalando.Visible = True
     End Sub
 
     Private Sub BtNotinKubo_MouseDown(sender As Object, e As MouseEventArgs) Handles btNotinKubo.MouseDown
@@ -1121,7 +1129,7 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub ComprobarDescargas(ByVal tipoinstalacion As String)
-        'TODO Comprobar tipo de Office2016 marcado
+
         If tipoinstalacion = "KUBO" Then
             CbOffice2003.Checked = True
             CbConfiguraNotin.Checked = True
@@ -5802,9 +5810,11 @@ Public Class FrmInstaladorKubo
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtVersionNotin.Click
+    Private Sub BtVersionNotin_Click(sender As Object, e As EventArgs) Handles BtVersionNotin.Click
         ObtenerVersionNotin()
     End Sub
+
+
 
 
 

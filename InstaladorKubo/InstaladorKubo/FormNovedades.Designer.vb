@@ -28,7 +28,6 @@ Partial Class FormNovedades
         Me.Label3 = New System.Windows.Forms.Label()
         Me.BtCerrar = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -42,7 +41,7 @@ Partial Class FormNovedades
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Calisto MT", 15.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(129, 9)
+        Me.Label1.Location = New System.Drawing.Point(189, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(294, 24)
         Me.Label1.TabIndex = 0
@@ -51,18 +50,18 @@ Partial Class FormNovedades
         'Label2
         '
         Me.Label2.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(12, 220)
+        Me.Label2.Location = New System.Drawing.Point(12, 336)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(562, 56)
+        Me.Label2.Size = New System.Drawing.Size(639, 56)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = resources.GetString("Label2.Text")
         '
         'Label3
         '
         Me.Label3.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(12, 297)
+        Me.Label3.Location = New System.Drawing.Point(12, 413)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(562, 35)
+        Me.Label3.Size = New System.Drawing.Size(639, 35)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Opción donde se irán incorporando mas utilidades para el despacho. De momento est" &
     "á disponible el Copia-Protocolo."
@@ -71,7 +70,7 @@ Partial Class FormNovedades
         '
         Me.BtCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtCerrar.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtCerrar.Location = New System.Drawing.Point(505, 474)
+        Me.BtCerrar.Location = New System.Drawing.Point(583, 462)
         Me.BtCerrar.Name = "BtCerrar"
         Me.BtCerrar.Size = New System.Drawing.Size(83, 33)
         Me.BtCerrar.TabIndex = 3
@@ -81,27 +80,16 @@ Partial Class FormNovedades
         'Label4
         '
         Me.Label4.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(12, 365)
+        Me.Label4.Location = New System.Drawing.Point(12, 63)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(562, 52)
+        Me.Label4.Size = New System.Drawing.Size(639, 64)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = resources.GetString("Label4.Text")
-        '
-        'Label5
-        '
-        Me.Label5.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(12, 417)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(562, 54)
-        Me.Label5.TabIndex = 5
-        Me.Label5.Text = "También se incorpora el Configura Word 2016 Adra el cual se copiará al NotinRapp " &
-    "y aparecerá distribuido en los equipos dentro de las utilidades (NR). Cualquier " &
-    "duda consultarme."
         '
         'Label6
         '
         Me.Label6.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.Label6.Location = New System.Drawing.Point(12, 199)
+        Me.Label6.Location = New System.Drawing.Point(12, 315)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(293, 21)
         Me.Label6.TabIndex = 6
@@ -110,7 +98,7 @@ Partial Class FormNovedades
         'Label7
         '
         Me.Label7.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.Label7.Location = New System.Drawing.Point(12, 276)
+        Me.Label7.Location = New System.Drawing.Point(12, 392)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(293, 21)
         Me.Label7.TabIndex = 7
@@ -119,16 +107,16 @@ Partial Class FormNovedades
         'Label8
         '
         Me.Label8.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.Label8.Location = New System.Drawing.Point(12, 344)
+        Me.Label8.Location = New System.Drawing.Point(12, 42)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(293, 21)
         Me.Label8.TabIndex = 8
-        Me.Label8.Text = "Utilidades para AdRa"
+        Me.Label8.Text = "Instalar Notin-Kubo-Nexus"
         '
         'Label9
         '
         Me.Label9.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(12, 41)
+        Me.Label9.Location = New System.Drawing.Point(12, 137)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(293, 21)
         Me.Label9.TabIndex = 9
@@ -137,16 +125,16 @@ Partial Class FormNovedades
         'Label10
         '
         Me.Label10.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(12, 62)
+        Me.Label10.Location = New System.Drawing.Point(12, 158)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(562, 53)
+        Me.Label10.Size = New System.Drawing.Size(639, 53)
         Me.Label10.TabIndex = 10
         Me.Label10.Text = resources.GetString("Label10.Text")
         '
         'Label11
         '
         Me.Label11.Font = New System.Drawing.Font("Calisto MT", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.Label11.Location = New System.Drawing.Point(12, 115)
+        Me.Label11.Location = New System.Drawing.Point(12, 221)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(293, 21)
         Me.Label11.TabIndex = 12
@@ -155,9 +143,9 @@ Partial Class FormNovedades
         'Label12
         '
         Me.Label12.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(12, 136)
+        Me.Label12.Location = New System.Drawing.Point(12, 242)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(562, 63)
+        Me.Label12.Size = New System.Drawing.Size(639, 63)
         Me.Label12.TabIndex = 11
         Me.Label12.Text = resources.GetString("Label12.Text")
         '
@@ -166,7 +154,7 @@ Partial Class FormNovedades
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.ClientSize = New System.Drawing.Size(600, 519)
+        Me.ClientSize = New System.Drawing.Size(678, 507)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Label10)
@@ -174,7 +162,6 @@ Partial Class FormNovedades
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.BtCerrar)
         Me.Controls.Add(Me.Label3)
@@ -197,7 +184,6 @@ Partial Class FormNovedades
     Friend WithEvents Label3 As Label
     Friend WithEvents BtCerrar As Button
     Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label

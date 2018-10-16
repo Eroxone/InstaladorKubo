@@ -118,7 +118,6 @@ Partial Class FrmInstaladorKubo
         Me.tlpTerceros = New System.Windows.Forms.ToolTip(Me.components)
         Me.tlpNotinKubo = New System.Windows.Forms.ToolTip(Me.components)
         Me.Icononotificacion = New System.Windows.Forms.NotifyIcon(Me.components)
-        Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
         Me.tlpTamaño = New System.Windows.Forms.ToolTip(Me.components)
         Me.lbInstalando = New System.Windows.Forms.Label()
         Me.tlpAncert = New System.Windows.Forms.ToolTip(Me.components)
@@ -232,6 +231,7 @@ Partial Class FrmInstaladorKubo
         Me.BtLimpiarPaquetes = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TlpNexus = New System.Windows.Forms.ToolTip(Me.components)
+        Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -1318,18 +1318,6 @@ Partial Class FrmInstaladorKubo
         Me.Icononotificacion.Icon = CType(resources.GetObject("Icononotificacion.Icon"), System.Drawing.Icon)
         Me.Icononotificacion.Text = "Instalador en ejecución"
         '
-        'lbProcesandoDescargas
-        '
-        Me.lbProcesandoDescargas.AutoSize = True
-        Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.Green
-        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(429, 585)
-        Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
-        Me.lbProcesandoDescargas.Size = New System.Drawing.Size(283, 25)
-        Me.lbProcesandoDescargas.TabIndex = 36
-        Me.lbProcesandoDescargas.Text = "Procesando Descargas..."
-        Me.lbProcesandoDescargas.Visible = False
-        '
         'tlpTamaño
         '
         Me.tlpTamaño.IsBalloon = True
@@ -2320,7 +2308,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage9.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage9.Size = New System.Drawing.Size(366, 401)
+        Me.TabPage9.Size = New System.Drawing.Size(357, 401)
         Me.TabPage9.TabIndex = 1
         Me.TabPage9.Text = "Limpieza Office"
         '
@@ -2380,12 +2368,25 @@ Partial Class FrmInstaladorKubo
         Me.TlpNexus.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpNexus.ToolTipTitle = "Instalacion Notin, OfficeX64 y Nexus"
         '
+        'lbProcesandoDescargas
+        '
+        Me.lbProcesandoDescargas.AutoSize = True
+        Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.Green
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(429, 585)
+        Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
+        Me.lbProcesandoDescargas.Size = New System.Drawing.Size(283, 25)
+        Me.lbProcesandoDescargas.TabIndex = 36
+        Me.lbProcesandoDescargas.Text = "Procesando Descargas..."
+        Me.lbProcesandoDescargas.Visible = False
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1134, 675)
+        Me.Controls.Add(Me.lbInstalando)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.BtNovedades)
         Me.Controls.Add(Me.LbVersionApp)
@@ -2401,7 +2402,6 @@ Partial Class FrmInstaladorKubo
         Me.Controls.Add(Me.BtLogin)
         Me.Controls.Add(Me.PbInstalaciones)
         Me.Controls.Add(Me.GroupBox5)
-        Me.Controls.Add(Me.lbInstalando)
         Me.Controls.Add(Me.lbProcesandoDescargas)
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
@@ -2475,7 +2475,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtOdbc As Button
     Friend WithEvents tlpNotinKubo As ToolTip
     Friend WithEvents Icononotificacion As NotifyIcon
-    Friend WithEvents lbProcesandoDescargas As Label
     Friend WithEvents tlpTamaño As ToolTip
     Friend WithEvents lbInstalando As Label
     Friend WithEvents BtExcepJava As Button
@@ -2665,4 +2664,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtLimpiarPaquetes As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents TlpNexus As ToolTip
+    Friend WithEvents lbProcesandoDescargas As Label
 End Class

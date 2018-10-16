@@ -121,7 +121,7 @@
     <value>Cuando se programe la hora el Instalador se minimizará al Tray de Windows y seguirá en memoria para no ser una ventana bloqueante. Al terminar se restaurará la ventana para poder comprobar el resultado.</value>
   </data>
   <data name="Label4.Text" xml:space="preserve">
-    <value>En la pestaña ADRA se incorporan las utilidades de Gestión de Perfil orientada a limpiar el Perfil de Adra existente. Por  problema de asociación de archivos de windows,  por cambio de usuario para el Puesto o simplemente por problemas en el Perfil.</value>
+    <value>Ya no es necesario realizar manualmente la descarga de los Paquetes Office, Notin, Requisitos... Clic en el tipo de instalación y se descargarán los paquetes necesarios. En caso de que los hubieras descargado previamente se omitirá ese paso. De esta forma se simplifica aún mas la instalación de Notin y proyectos Net a un Clic.</value>
   </data>
   <data name="Label10.Text" xml:space="preserve">
     <value>Desde la pestaña ÚTILES disponemos de la nueva opción AbreExcel la cual generará el ejecutable AbreExcel.exe teniendo en cuenta el entorno del equipo. Ya no serán necesarios varios AbreExcel. Si la ruta de Office cambia tendrás que volver a generarlo.</value>
