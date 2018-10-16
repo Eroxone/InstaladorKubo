@@ -177,6 +177,10 @@ Public Class FrmInstaladorKubo
             Process.Start("notepad.exe", "C:\TEMP\InstaladorKubo\RegistroInstalacion.txt")
         End If
 
+        If e.KeyValue = Keys.F12 Then
+            Me.Close()
+        End If
+
         If e.Control And e.KeyCode = Keys.E Then
             'Descargar y Ejecutar un Traza
             Dim urltraza As String = "https://static.unidata.es/NotariaEvo/notariaevo2mdb.exe"
@@ -1818,6 +1822,11 @@ Public Class FrmInstaladorKubo
         TlpVersionNotin.SetToolTip(BtVersionNotin, "Obtiene versión Notin instalada en el Sistema.")
 
         TlpAbreExcel.SetToolTip(BtAbreExcel, "Compila el ejecutable AbreExcel.exe adaptado al equipo desde donde se genera.")
+
+        TlpVisualizarLog.SetToolTip(BtRegistroInstalaciones, "Muestra el Registro del Instalador. Consulta el estado de una instalación o cualquier otro proceso.")
+
+        TlpSalir.SetToolTip(btSalir, "Cerramos el Instalador. Se registrará la salida correcta del mismo.")
+
     End Sub
 #End Region
 
