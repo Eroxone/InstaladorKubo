@@ -226,6 +226,8 @@ Partial Class FrmInstaladorKubo
         Me.TlpVersionNet = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpVersionNotin = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpAbreExcel = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpVisualizarLog = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpSalir = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -2325,6 +2327,18 @@ Partial Class FrmInstaladorKubo
         Me.TlpAbreExcel.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpAbreExcel.ToolTipTitle = "Generar AbreExcel.exe"
         '
+        'TlpVisualizarLog
+        '
+        Me.TlpVisualizarLog.IsBalloon = True
+        Me.TlpVisualizarLog.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpVisualizarLog.ToolTipTitle = "Visualizar registro Instalador (CTRL+L)"
+        '
+        'TlpSalir
+        '
+        Me.TlpSalir.IsBalloon = True
+        Me.TlpSalir.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpSalir.ToolTipTitle = "Salimos del Instalador (F12)"
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2605,4 +2619,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbVersionFW As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents BtNautilus As Button
+    Friend WithEvents TlpVisualizarLog As ToolTip
+    Friend WithEvents TlpSalir As ToolTip
 End Class

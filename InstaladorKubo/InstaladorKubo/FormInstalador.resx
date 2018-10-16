@@ -369,7 +369,7 @@
     <value>667, 17</value>
   </metadata>
   <metadata name="Icononotificacion.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>792, 17</value>
+    <value>705, 29</value>
   </metadata>
   <data name="Icononotificacion.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -948,40 +948,40 @@
 </value>
   </data>
   <metadata name="tlpTamaño.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>907, 17</value>
+    <value>941, 29</value>
   </metadata>
   <metadata name="tlpAncert.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1036, 17</value>
+    <value>1051, 29</value>
   </metadata>
   <metadata name="tlpOffice2003.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1155, 17</value>
+    <value>1153, 29</value>
   </metadata>
   <metadata name="tlpOffice2016.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1280, 17</value>
+    <value>17, 68</value>
   </metadata>
   <metadata name="TlpRutaDescargas.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>353, 134</value>
+    <value>585, 146</value>
   </metadata>
   <metadata name="TlpComenzarDescargas.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>502, 134</value>
+    <value>734, 146</value>
   </metadata>
   <metadata name="TlpJava.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>681, 134</value>
+    <value>913, 146</value>
   </metadata>
   <metadata name="TlpUac.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1087, 56</value>
+    <value>1212, 68</value>
   </metadata>
   <metadata name="ContextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>772, 134</value>
+    <value>1004, 146</value>
   </metadata>
   <metadata name="TlpPaquetesServidor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1176, 56</value>
+    <value>17, 107</value>
   </metadata>
   <metadata name="TlpCopiarServidor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>929, 134</value>
+    <value>1161, 146</value>
   </metadata>
   <metadata name="TlpTraerServidor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1078, 134</value>
+    <value>17, 185</value>
   </metadata>
   <data name="BtNexus64.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1132,106 +1132,106 @@
 </value>
   </data>
   <metadata name="TlpConfigWord2016.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 173</value>
+    <value>158, 185</value>
   </metadata>
   <metadata name="TlpKmspico.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>178, 173</value>
+    <value>319, 185</value>
   </metadata>
   <metadata name="TlpReconectarF.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>410, 173</value>
+    <value>551, 185</value>
   </metadata>
   <metadata name="TlpDirectivas.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>676, 173</value>
+    <value>817, 185</value>
   </metadata>
   <metadata name="TlpExplorerDescargas.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>797, 173</value>
+    <value>938, 185</value>
   </metadata>
   <metadata name="TlpSistema.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>965, 173</value>
+    <value>1106, 185</value>
   </metadata>
   <metadata name="TlpNotinWord2003.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1076, 173</value>
+    <value>17, 224</value>
   </metadata>
   <metadata name="TlpFramework.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>157, 212</value>
+    <value>173, 224</value>
   </metadata>
   <metadata name="TlpTuemail.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>286, 212</value>
+    <value>302, 224</value>
   </metadata>
   <metadata name="TlpNotinpdf.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>397, 212</value>
+    <value>413, 224</value>
   </metadata>
   <metadata name="TlpRequisitosNotin.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>514, 212</value>
+    <value>530, 224</value>
   </metadata>
   <metadata name="TlpPaquetesFT.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>545, 173</value>
+    <value>686, 185</value>
   </metadata>
   <metadata name="TlpISL.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>269, 134</value>
+    <value>501, 146</value>
   </metadata>
   <metadata name="TlpSQL2014.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>293, 173</value>
+    <value>434, 185</value>
   </metadata>
   <metadata name="TlpOffice2016x64.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>155, 56</value>
+    <value>280, 68</value>
   </metadata>
   <metadata name="TlpNotinNetaF.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>138, 134</value>
+    <value>370, 146</value>
   </metadata>
   <metadata name="TlpNotin8.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1199, 95</value>
+    <value>143, 146</value>
   </metadata>
   <metadata name="TlpBDBlancos.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1073, 95</value>
+    <value>17, 146</value>
   </metadata>
   <metadata name="TlpMigrador.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>751, 95</value>
+    <value>914, 107</value>
   </metadata>
   <metadata name="TlpChoco.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>870, 95</value>
+    <value>1033, 107</value>
   </metadata>
   <metadata name="TlpFocos.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>973, 95</value>
+    <value>1136, 107</value>
   </metadata>
   <metadata name="TlpLogMigrador.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>464, 95</value>
+    <value>627, 107</value>
   </metadata>
   <metadata name="TlpConsultaDatosSQL.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>295, 95</value>
+    <value>458, 107</value>
   </metadata>
   <metadata name="TlpUrlNemo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>177, 95</value>
+    <value>340, 107</value>
   </metadata>
   <metadata name="TlpConsultaTriggers.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 95</value>
+    <value>180, 107</value>
   </metadata>
   <metadata name="TlpVisorImagenes.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>603, 95</value>
+    <value>766, 107</value>
   </metadata>
   <metadata name="TlpVersionFW.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>960, 56</value>
+    <value>1085, 68</value>
   </metadata>
   <metadata name="TlpConfiguraWordAdra.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>782, 56</value>
+    <value>907, 68</value>
   </metadata>
   <metadata name="TlpPerfilAdra.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>660, 56</value>
+    <value>785, 68</value>
   </metadata>
   <metadata name="TlpDeploy.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>553, 56</value>
+    <value>678, 68</value>
   </metadata>
   <metadata name="TlpNotin8Forzar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>414, 56</value>
+    <value>539, 68</value>
   </metadata>
   <metadata name="TlpPuestoC.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>301, 56</value>
+    <value>426, 68</value>
   </metadata>
   <metadata name="TlpBetaNetAdra.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+    <value>142, 68</value>
   </metadata>
   <metadata name="TlpBackupNet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>669, 212</value>
+    <value>685, 224</value>
   </metadata>
   <data name="BtNovedades.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1444,13 +1444,13 @@
     <value>425, 29</value>
   </metadata>
   <metadata name="TlpAbreExcel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 134</value>
+    <value>249, 146</value>
   </metadata>
   <metadata name="TlpVisualizarLog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 212</value>
+    <value>565, 29</value>
   </metadata>
   <metadata name="TlpSalir.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>797, 212</value>
+    <value>850, 29</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>90</value>

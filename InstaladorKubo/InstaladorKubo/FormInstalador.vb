@@ -1120,6 +1120,21 @@ Public Class FrmInstaladorKubo
         Me.Close()
     End Sub
 
+    Private Sub ComprobarDescargas(ByVal tipoinstalacion As String)
+        If tipoinstalacion = "kubo" Then
+
+        End If
+
+        If tipoinstalacion = "word2003" Then
+
+        End If
+
+        If tipoinstalacion = "nexus" Then
+            CbOffice2003.Checked = True & CbOffice2016x64.Checked = True & CbConfiguraWord2016x64.Checked = True & CbPuestoNotin.Checked = True & CbRequisitos.Checked = True & CbPaquetesFT.Checked = True
+        End If
+    End Sub
+
+
     Private Sub BtSalir_MouseDown(sender As Object, e As MouseEventArgs) Handles btSalir.MouseDown
         btSalir.BackColor = SystemColors.ControlLightLight
     End Sub
@@ -3306,6 +3321,7 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("=== COMIENZO INSTALACIONES NOTIN-NEXUS x64 ===")
 
         'Comprobar si se ha efectuado alguna descarga
+        ComprobarDescargas("nexus")
         Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
         If comienzo = 2 AndAlso rutaenf = 2 Then
