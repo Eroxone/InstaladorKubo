@@ -62,6 +62,9 @@ Partial Class FrmInstaladorKubo
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.TabSistema = New System.Windows.Forms.TabControl()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
+        Me.BtVersionFW = New System.Windows.Forms.Button()
+        Me.LbVersionFW = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.BtVersionNotin = New System.Windows.Forms.Button()
         Me.LbVersionNotin = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -70,12 +73,8 @@ Partial Class FrmInstaladorKubo
         Me.LbWordx64 = New System.Windows.Forms.Label()
         Me.BtNotin8exeDeploy = New System.Windows.Forms.Button()
         Me.BtEstablew32F462 = New System.Windows.Forms.Button()
-        Me.BtLogNet = New System.Windows.Forms.Button()
-        Me.BtNautilusLog = New System.Windows.Forms.Button()
-        Me.BtNautilus = New System.Windows.Forms.Button()
         Me.BtNetBetax64F462 = New System.Windows.Forms.Button()
         Me.BtNetBetaW32F462 = New System.Windows.Forms.Button()
-        Me.LbSitienesF462 = New System.Windows.Forms.Label()
         Me.BtNotin8exe = New System.Windows.Forms.Button()
         Me.BtNotinNetF = New System.Windows.Forms.Button()
         Me.BtEstableNet = New System.Windows.Forms.Button()
@@ -113,6 +112,7 @@ Partial Class FrmInstaladorKubo
         Me.BtFocos = New System.Windows.Forms.Button()
         Me.BtConfWord2016ADRA = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.BtNautilus = New System.Windows.Forms.Button()
         Me.BtAbreExcel = New System.Windows.Forms.Button()
         Me.BtPanda = New System.Windows.Forms.Button()
         Me.CboxWUpdate = New System.Windows.Forms.ComboBox()
@@ -126,9 +126,6 @@ Partial Class FrmInstaladorKubo
         Me.BtExcepJava = New System.Windows.Forms.Button()
         Me.BtJava = New System.Windows.Forms.Button()
         Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.BtVersionFW = New System.Windows.Forms.Button()
-        Me.LbVersionFW = New System.Windows.Forms.Label()
-        Me.LbInfoVersionFW = New System.Windows.Forms.Label()
         Me.BtFramework462 = New System.Windows.Forms.Button()
         Me.BtOdbc = New System.Windows.Forms.Button()
         Me.BtFramework = New System.Windows.Forms.Button()
@@ -229,8 +226,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpVersionNet = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpVersionNotin = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpAbreExcel = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TlpVisualizarLog = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TlpSalir = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -722,6 +717,9 @@ Partial Class FrmInstaladorKubo
         'TabPage11
         '
         Me.TabPage11.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage11.Controls.Add(Me.BtVersionFW)
+        Me.TabPage11.Controls.Add(Me.LbVersionFW)
+        Me.TabPage11.Controls.Add(Me.Label10)
         Me.TabPage11.Controls.Add(Me.BtVersionNotin)
         Me.TabPage11.Controls.Add(Me.LbVersionNotin)
         Me.TabPage11.Controls.Add(Me.Label8)
@@ -730,12 +728,8 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Controls.Add(Me.LbWordx64)
         Me.TabPage11.Controls.Add(Me.BtNotin8exeDeploy)
         Me.TabPage11.Controls.Add(Me.BtEstablew32F462)
-        Me.TabPage11.Controls.Add(Me.BtLogNet)
-        Me.TabPage11.Controls.Add(Me.BtNautilusLog)
-        Me.TabPage11.Controls.Add(Me.BtNautilus)
         Me.TabPage11.Controls.Add(Me.BtNetBetax64F462)
         Me.TabPage11.Controls.Add(Me.BtNetBetaW32F462)
-        Me.TabPage11.Controls.Add(Me.LbSitienesF462)
         Me.TabPage11.Controls.Add(Me.BtNotin8exe)
         Me.TabPage11.Controls.Add(Me.BtNotinNetF)
         Me.TabPage11.Controls.Add(Me.BtEstableNet)
@@ -748,6 +742,35 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Size = New System.Drawing.Size(446, 370)
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = "NotinNet"
+        '
+        'BtVersionFW
+        '
+        Me.BtVersionFW.Image = CType(resources.GetObject("BtVersionFW.Image"), System.Drawing.Image)
+        Me.BtVersionFW.Location = New System.Drawing.Point(8, 130)
+        Me.BtVersionFW.Name = "BtVersionFW"
+        Me.BtVersionFW.Size = New System.Drawing.Size(35, 34)
+        Me.BtVersionFW.TabIndex = 59
+        Me.BtVersionFW.UseVisualStyleBackColor = True
+        '
+        'LbVersionFW
+        '
+        Me.LbVersionFW.AutoSize = True
+        Me.LbVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbVersionFW.Location = New System.Drawing.Point(49, 148)
+        Me.LbVersionFW.Name = "LbVersionFW"
+        Me.LbVersionFW.Size = New System.Drawing.Size(99, 15)
+        Me.LbVersionFW.TabIndex = 58
+        Me.LbVersionFW.Text = "Sin información"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.Label10.Location = New System.Drawing.Point(49, 130)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(88, 15)
+        Me.Label10.TabIndex = 57
+        Me.Label10.Text = "Framework:"
         '
         'BtVersionNotin
         '
@@ -830,39 +853,8 @@ Partial Class FrmInstaladorKubo
         Me.BtEstablew32F462.Name = "BtEstablew32F462"
         Me.BtEstablew32F462.Size = New System.Drawing.Size(167, 28)
         Me.BtEstablew32F462.TabIndex = 49
-        Me.BtEstablew32F462.Text = "Estable .NET w32"
+        Me.BtEstablew32F462.Text = "Estable -FW4.6.2"
         Me.BtEstablew32F462.UseVisualStyleBackColor = True
-        '
-        'BtLogNet
-        '
-        Me.BtLogNet.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic)
-        Me.BtLogNet.Location = New System.Drawing.Point(282, 239)
-        Me.BtLogNet.Name = "BtLogNet"
-        Me.BtLogNet.Size = New System.Drawing.Size(115, 25)
-        Me.BtLogNet.TabIndex = 48
-        Me.BtLogNet.Text = "Logs TaskPane"
-        Me.BtLogNet.UseVisualStyleBackColor = True
-        '
-        'BtNautilusLog
-        '
-        Me.BtNautilusLog.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Italic)
-        Me.BtNautilusLog.Location = New System.Drawing.Point(282, 204)
-        Me.BtNautilusLog.Name = "BtNautilusLog"
-        Me.BtNautilusLog.Size = New System.Drawing.Size(115, 25)
-        Me.BtNautilusLog.TabIndex = 47
-        Me.BtNautilusLog.Text = "Logs Nautilus"
-        Me.BtNautilusLog.UseVisualStyleBackColor = True
-        '
-        'BtNautilus
-        '
-        Me.BtNautilus.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNautilus.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtNautilus.Location = New System.Drawing.Point(230, 170)
-        Me.BtNautilus.Name = "BtNautilus"
-        Me.BtNautilus.Size = New System.Drawing.Size(167, 28)
-        Me.BtNautilus.TabIndex = 46
-        Me.BtNautilus.Text = "Nautilus (Updater)"
-        Me.BtNautilus.UseVisualStyleBackColor = True
         '
         'BtNetBetax64F462
         '
@@ -884,18 +876,8 @@ Partial Class FrmInstaladorKubo
         Me.BtNetBetaW32F462.Name = "BtNetBetaW32F462"
         Me.BtNetBetaW32F462.Size = New System.Drawing.Size(167, 28)
         Me.BtNetBetaW32F462.TabIndex = 44
-        Me.BtNetBetaW32F462.Text = "Beta .NET w32"
+        Me.BtNetBetaW32F462.Text = "Beta -FW4.6.2"
         Me.BtNetBetaW32F462.UseVisualStyleBackColor = True
-        '
-        'LbSitienesF462
-        '
-        Me.LbSitienesF462.AutoSize = True
-        Me.LbSitienesF462.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbSitienesF462.Location = New System.Drawing.Point(5, 140)
-        Me.LbSitienesF462.Name = "LbSitienesF462"
-        Me.LbSitienesF462.Size = New System.Drawing.Size(173, 17)
-        Me.LbSitienesF462.TabIndex = 43
-        Me.LbSitienesF462.Text = "Para Framework 4.6.2"
         '
         'BtNotin8exe
         '
@@ -1306,6 +1288,7 @@ Partial Class FrmInstaladorKubo
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage6.Controls.Add(Me.BtNautilus)
         Me.TabPage6.Controls.Add(Me.BtAbreExcel)
         Me.TabPage6.Controls.Add(Me.BtPanda)
         Me.TabPage6.Controls.Add(Me.CboxWUpdate)
@@ -1325,6 +1308,17 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.Size = New System.Drawing.Size(446, 370)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Útiles"
+        '
+        'BtNautilus
+        '
+        Me.BtNautilus.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtNautilus.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtNautilus.Location = New System.Drawing.Point(230, 170)
+        Me.BtNautilus.Name = "BtNautilus"
+        Me.BtNautilus.Size = New System.Drawing.Size(167, 28)
+        Me.BtNautilus.TabIndex = 47
+        Me.BtNautilus.Text = "Nautilus (Updater)"
+        Me.BtNautilus.UseVisualStyleBackColor = True
         '
         'BtAbreExcel
         '
@@ -1470,9 +1464,6 @@ Partial Class FrmInstaladorKubo
         'TabPage5
         '
         Me.TabPage5.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage5.Controls.Add(Me.BtVersionFW)
-        Me.TabPage5.Controls.Add(Me.LbVersionFW)
-        Me.TabPage5.Controls.Add(Me.LbInfoVersionFW)
         Me.TabPage5.Controls.Add(Me.BtFramework462)
         Me.TabPage5.Controls.Add(Me.BtOdbc)
         Me.TabPage5.Controls.Add(Me.BtFramework)
@@ -1486,40 +1477,11 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
-        'BtVersionFW
-        '
-        Me.BtVersionFW.Image = CType(resources.GetObject("BtVersionFW.Image"), System.Drawing.Image)
-        Me.BtVersionFW.Location = New System.Drawing.Point(230, 10)
-        Me.BtVersionFW.Name = "BtVersionFW"
-        Me.BtVersionFW.Size = New System.Drawing.Size(35, 34)
-        Me.BtVersionFW.TabIndex = 54
-        Me.BtVersionFW.UseVisualStyleBackColor = True
-        '
-        'LbVersionFW
-        '
-        Me.LbVersionFW.AutoSize = True
-        Me.LbVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbVersionFW.Location = New System.Drawing.Point(271, 28)
-        Me.LbVersionFW.Name = "LbVersionFW"
-        Me.LbVersionFW.Size = New System.Drawing.Size(99, 15)
-        Me.LbVersionFW.TabIndex = 52
-        Me.LbVersionFW.Text = "Sin información"
-        '
-        'LbInfoVersionFW
-        '
-        Me.LbInfoVersionFW.AutoSize = True
-        Me.LbInfoVersionFW.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.LbInfoVersionFW.Location = New System.Drawing.Point(271, 10)
-        Me.LbInfoVersionFW.Name = "LbInfoVersionFW"
-        Me.LbInfoVersionFW.Size = New System.Drawing.Size(146, 15)
-        Me.LbInfoVersionFW.TabIndex = 51
-        Me.LbInfoVersionFW.Text = "Versión Framework:"
-        '
         'BtFramework462
         '
         Me.BtFramework462.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtFramework462.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtFramework462.Location = New System.Drawing.Point(230, 50)
+        Me.BtFramework462.Location = New System.Drawing.Point(230, 10)
         Me.BtFramework462.Margin = New System.Windows.Forms.Padding(2)
         Me.BtFramework462.Name = "BtFramework462"
         Me.BtFramework462.Size = New System.Drawing.Size(167, 28)
@@ -1621,11 +1583,11 @@ Partial Class FrmInstaladorKubo
         Me.lbRuta.AutoSize = True
         Me.lbRuta.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.lbRuta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbRuta.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbRuta.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbRuta.Location = New System.Drawing.Point(60, 610)
         Me.lbRuta.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbRuta.Name = "lbRuta"
-        Me.lbRuta.Size = New System.Drawing.Size(79, 17)
+        Me.lbRuta.Size = New System.Drawing.Size(92, 19)
         Me.lbRuta.TabIndex = 31
         Me.lbRuta.Text = "C:\NOTIN\"
         '
@@ -1825,7 +1787,6 @@ Partial Class FrmInstaladorKubo
         '
         'BtNexus64
         '
-        Me.BtNexus64.BackColor = System.Drawing.Color.GhostWhite
         Me.BtNexus64.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
         Me.BtNexus64.Image = CType(resources.GetObject("BtNexus64.Image"), System.Drawing.Image)
         Me.BtNexus64.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1840,7 +1801,6 @@ Partial Class FrmInstaladorKubo
         '
         'BtNotinWord2003
         '
-        Me.BtNotinWord2003.BackColor = System.Drawing.Color.GhostWhite
         Me.BtNotinWord2003.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
         Me.BtNotinWord2003.Image = CType(resources.GetObject("BtNotinWord2003.Image"), System.Drawing.Image)
         Me.BtNotinWord2003.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1855,7 +1815,6 @@ Partial Class FrmInstaladorKubo
         '
         'btNotinKubo
         '
-        Me.btNotinKubo.BackColor = System.Drawing.Color.GhostWhite
         Me.btNotinKubo.Font = New System.Drawing.Font("Lucida Bright", 13.0!, System.Drawing.FontStyle.Bold)
         Me.btNotinKubo.Image = CType(resources.GetObject("btNotinKubo.Image"), System.Drawing.Image)
         Me.btNotinKubo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -2366,18 +2325,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpAbreExcel.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpAbreExcel.ToolTipTitle = "Generar AbreExcel.exe"
         '
-        'TlpVisualizarLog
-        '
-        Me.TlpVisualizarLog.IsBalloon = True
-        Me.TlpVisualizarLog.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.TlpVisualizarLog.ToolTipTitle = "Visualizar Log Instalador / CTRL + L"
-        '
-        'TlpSalir
-        '
-        Me.TlpSalir.IsBalloon = True
-        Me.TlpSalir.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.TlpSalir.ToolTipTitle = "Cerrar el Instalador / F12"
-        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2440,7 +2387,6 @@ Partial Class FrmInstaladorKubo
         CType(Me.NumHoraAdra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
         Me.TabPage5.ResumeLayout(False)
-        Me.TabPage5.PerformLayout()
         Me.TabPage12.ResumeLayout(False)
         Me.TabPage12.PerformLayout()
         Me.GroupBox5.ResumeLayout(False)
@@ -2603,9 +2549,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TlpConsultaDatosSQL As ToolTip
     Friend WithEvents BtNetBetax64F462 As Button
     Friend WithEvents BtNetBetaW32F462 As Button
-    Friend WithEvents LbSitienesF462 As Label
-    Friend WithEvents BtNautilus As Button
-    Friend WithEvents BtNautilusLog As Button
     Friend WithEvents BtPaginaActiva As Button
     Friend WithEvents TlpUrlNemo As ToolTip
     Friend WithEvents BtSQL2008R2 As Button
@@ -2615,14 +2558,11 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbEnlacesWeb As Label
     Friend WithEvents BtVisorImagenes As Button
     Friend WithEvents TlpVisorImagenes As ToolTip
-    Friend WithEvents BtLogNet As Button
     Friend WithEvents TlpVersionFW As ToolTip
     Friend WithEvents BtMigradorDeploy As Button
     Friend WithEvents BtDynamic As Button
     Friend WithEvents CboxWUpdate As ComboBox
     Friend WithEvents TlpConfiguraWordAdra As ToolTip
-    Friend WithEvents LbVersionFW As Label
-    Friend WithEvents LbInfoVersionFW As Label
     Friend WithEvents LbUptime As Label
     Friend WithEvents BtEstablew32F462 As Button
     Friend WithEvents BtLimpiarPerfil As Button
@@ -2654,7 +2594,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtAbreExcel As Button
     Friend WithEvents BtVersionNet As Button
     Friend WithEvents TlpVersionNet As ToolTip
-    Friend WithEvents BtVersionFW As Button
     Friend WithEvents BtDatosGenerales As Button
     Friend WithEvents LbAdraDiferido As Label
     Friend WithEvents Label8 As Label
@@ -2662,6 +2601,8 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents BtVersionNotin As Button
     Friend WithEvents TlpVersionNotin As ToolTip
     Friend WithEvents TlpAbreExcel As ToolTip
-    Friend WithEvents TlpVisualizarLog As ToolTip
-    Friend WithEvents TlpSalir As ToolTip
+    Friend WithEvents BtVersionFW As Button
+    Friend WithEvents LbVersionFW As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents BtNautilus As Button
 End Class

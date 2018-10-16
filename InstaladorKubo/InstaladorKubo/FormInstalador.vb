@@ -95,7 +95,7 @@ Public Class FrmInstaladorKubo
         End Try
 
         'Comprobar si existe Office 2016 x64 para mostrar .Net con x64
-        If File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") Then
+        If File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files\Microsoft Office\Office16\root\WINWORD.EXE") Then
             BtEstablex64F462.Enabled = True
             BtNetBetax64F462.Enabled = True
             'LbWordx64.Text = "Versión Office2016 x64"
@@ -105,9 +105,20 @@ Public Class FrmInstaladorKubo
             BtEstablew32F462.Enabled = False
             BtNetBetaW32F462.Enabled = False
 
-            LbSitienesF462.Enabled = False
+            'LbSitienesF462.Enabled = False
         Else
             LbWordx64.Enabled = False
+            BtEstablex64F462.Enabled = False
+            BtNetBetax64F462.Enabled = False
+
+            'Si tiene un FW superior o igual al 4.6.2
+            Dim versionfw = LbVersionFW.Text
+            versionfw = versionfw.Substring(8, 5)
+            If versionfw >= "4.6.2" Then
+                BtEstablew32F462.Enabled = Enabled
+                BtNetBetaW32F462.Enabled = Enabled
+            End If
+
         End If
 
         ' === MUESTREO NOVEDADES ===
@@ -877,6 +888,7 @@ Public Class FrmInstaladorKubo
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "Office2003PrimaryInterop.msi" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "VisualTools2005.exe" & vbCrLf
             requisitos = requisitos & PuestoNotin & "Requisitos/" & "VisualTools2015.exe" & vbCrLf
+            requisitos = requisitos & PuestoNotin & "Requisitos/" & "msvcr100.dll" & vbCrLf
             cIniArray.IniWrite(instaladorkuboini, "DESCARGAS", "REQUISITOS", "1")
             '   requisitos = requisitos & PuestoNotin & "Requisitos/" & "Framework35.bat" & vbCrLf
         End If
@@ -1311,6 +1323,24 @@ Public Class FrmInstaladorKubo
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             RegistroInstalacion("ERROR Requisitos Net: " & ex.Message)
         End Try
+
+        Try
+            Dim systemwindows As String
+            If Directory.Exists("C:\Windows\SysWOW64\") Then
+                systemwindows = "C:\Windows\SysWOW64\"
+            Else
+                systemwindows = "C:\Windows\System\"
+            End If
+
+            Dim dllasyswow64 As String = RutaDescargas & "robocopy.exe " & RutaDescargas & "Requisitos\ " & systemwindows & " MSVCR100.dll /R:1 /W:1"
+            File.WriteAllText(RutaDescargas & "Requisitos\MSVCR100.bat", dllasyswow64)
+        Catch ex As Exception
+            RegistroInstalacion("No se pudo crear fichero para copia MSVCR100.dll a Windows System. " & ex.Message)
+        End Try
+
+        RunAsAdmin(RutaDescargas & "Requisitos\MSVCR100.bat")
+        Threading.Thread.Sleep("2000")
+
         InstalarWord2016()
     End Sub
 
@@ -2433,6 +2463,24 @@ Public Class FrmInstaladorKubo
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             RegistroInstalacion("ERROR Requisitos Net: " & ex.Message)
         End Try
+
+        Try
+            Dim systemwindows As String
+            If Directory.Exists("C:\Windows\SysWOW64\") Then
+                systemwindows = "C:\Windows\SysWOW64\"
+            Else
+                systemwindows = "C:\Windows\System\"
+            End If
+
+            Dim dllasyswow64 As String = RutaDescargas & "robocopy.exe " & RutaDescargas & "Requisitos\ " & systemwindows & " MSVCR100.dll /R:1 /W:1"
+            File.WriteAllText(RutaDescargas & "Requisitos\MSVCR100.bat", dllasyswow64)
+        Catch ex As Exception
+            RegistroInstalacion("No se pudo crear fichero para copia MSVCR100.dll a Windows System. " & ex.Message)
+        End Try
+
+        RunAsAdmin(RutaDescargas & "Requisitos\MSVCR100.bat")
+        Threading.Thread.Sleep("2000")
+
         EjecutableNotinNet2003()
     End Sub
 
@@ -3443,6 +3491,26 @@ Public Class FrmInstaladorKubo
             MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             RegistroInstalacion("ERROR Requisitos Net: " & ex.Message)
         End Try
+
+        obtenerrobocopy()
+
+        Try
+            Dim systemwindows As String
+            If Directory.Exists("C:\Windows\SysWOW64\") Then
+                systemwindows = "C:\Windows\SysWOW64\"
+            Else
+                systemwindows = "C:\Windows\System\"
+            End If
+
+            Dim dllasyswow64 As String = RutaDescargas & "robocopy.exe " & RutaDescargas & "Requisitos\ " & systemwindows & " MSVCR100.dll /R:1 /W:1"
+            File.WriteAllText(RutaDescargas & "Requisitos\MSVCR100.bat", dllasyswow64)
+        Catch ex As Exception
+            RegistroInstalacion("No se pudo crear fichero para copia MSVCR100.dll a Windows System. " & ex.Message)
+        End Try
+
+        RunAsAdmin(RutaDescargas & "Requisitos\MSVCR100.bat")
+        Threading.Thread.Sleep("2000")
+
         InstalarWord2016x64()
     End Sub
 
@@ -4267,6 +4335,8 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtVersionFW_Click(sender As Object, e As EventArgs) Handles BtVersionFW.Click
         ObtenerVersionFW()
+        BtEstablew32F462.Enabled = True
+        BtNetBetaW32F462.Enabled = True
     End Sub
 
     Private Sub ObtenerVersionFW()
@@ -5000,12 +5070,12 @@ Public Class FrmInstaladorKubo
         End Try
     End Sub
 
-    Private Sub BtLogNet_Click(sender As Object, e As EventArgs) Handles BtLogNet.Click
+    Private Sub BtLogNet_Click(sender As Object, e As EventArgs)
         Dim appdata As String = GetFolderPath(SpecialFolder.ApplicationData)
         Process.Start("explorer.exe", appdata & "\Notin\Addins\NotinTaskPane\Log")
     End Sub
 
-    Private Sub BtNautilus_Click(sender As Object, e As EventArgs) Handles BtNautilus.Click
+    Private Sub BtNautilus_Click(sender As Object, e As EventArgs)
         RegistroInstalacion("Instalación Notin Control Center (NAUTILUS) ")
         obtenerwget()
         Directory.CreateDirectory(RutaDescargas & "NotinNet")
@@ -5024,7 +5094,7 @@ Public Class FrmInstaladorKubo
         End Try
     End Sub
 
-    Private Sub BtNautilusLog_Click(sender As Object, e As EventArgs) Handles BtNautilusLog.Click
+    Private Sub BtNautilusLog_Click(sender As Object, e As EventArgs)
         Try
             Process.Start("explorer.exe", "C:\Program Files (x86)\Humano Software\Services\NotinControlCenter\Log")
         Catch ex As Exception
@@ -5665,6 +5735,8 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtVersionNet_Click(sender As Object, e As EventArgs) Handles BtVersionNet.Click
         ObtenerVersionNet()
+        BtEstableNet.Enabled = True
+        BtNetBeta.Enabled = True
     End Sub
 
     'Conexiones con la Base de Datos NOTINSQL
@@ -5677,6 +5749,8 @@ Public Class FrmInstaladorKubo
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles BtVersionNotin.Click
         ObtenerVersionNotin()
     End Sub
+
+
 
 
 
