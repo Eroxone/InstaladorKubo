@@ -1142,13 +1142,18 @@ Public Class FrmInstaladorKubo
 
         If tipoinstalacion = "NEXUS" Then
             CbOffice2003.Checked = True
+            CbConfiguraNotin.Checked = True
             CbOffice2016x64.Checked = True
             CbConfiguraWord2016x64.Checked = True
-            CbPuestoNotin.Checked = True
             CbRequisitos.Checked = True
+            CbNemo.Checked = True
+            CbPuestoNotin.Checked = True
             CbPaquetesFT.Checked = True
-            btDescargar.PerformClick()
+            CbSferen.Checked = True
+            CbPasarelaSigno.Checked = True
+            CbTerceros.Checked = True
         End If
+        btDescargar.PerformClick()
     End Sub
 
 
@@ -1741,7 +1746,7 @@ Public Class FrmInstaladorKubo
 
         tlpDescargas.ToolTipIcon = ToolTipIcon.Info
         tlpDescargas.ToolTipTitle = "Leyenda Descargas"
-        tlpDescargas.SetToolTip(GroupBox1, "Gris: Descarga no realizada" + vbCrLf & "Verde: Descarga Completada" + vbCrLf & "Rojo: Descarga Incompleta")
+        'tlpDescargas.SetToolTip(GroupBox1, "Gris: Descarga no realizada" + vbCrLf & "Verde: Descarga Completada" + vbCrLf & "Rojo: Descarga Incompleta")
         tlpDescargas.IsBalloon = True
 
         tlpOffice2016odt.ToolTipIcon = ToolTipIcon.Info
