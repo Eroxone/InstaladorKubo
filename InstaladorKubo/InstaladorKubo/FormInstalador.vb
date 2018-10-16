@@ -398,10 +398,10 @@ Public Class FrmInstaladorKubo
             BtCopiarhaciaF.Enabled = True
         End If
 
-        Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
-        If claveinift = 1 Then
-            btNotinKubo.BackColor = Color.Honeydew
-        End If
+        'Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
+        'If claveinift = 1 Then
+        'btNotinKubo.BackColor = Color.Honeydew
+        'End If
 
         Dim configuraword2016 = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "2")
         If configuraword2016 = 1 Then
@@ -1124,23 +1124,31 @@ Public Class FrmInstaladorKubo
         'TODO Comprobar tipo de Office2016 marcado
         If tipoinstalacion = "KUBO" Then
             CbOffice2003.Checked = True
+            CbConfiguraNotin.Checked = True
             CbOffice2016odt.Checked = True
             CbConfiguraWord2016.Checked = True
-            CbPuestoNotin.Checked = True
             CbRequisitos.Checked = True
+            CbNemo.Checked = True
+            CbPuestoNotin.Checked = True
             CbPaquetesFT.Checked = True
-        End If
+            CbSferen.Checked = True
+            CbPasarelaSigno.Checked = True
+            CbTerceros.Checked = True
 
-        If tipoinstalacion = "WORD2003" Then
+        ElseIf tipoinstalacion = "WORD2003" Then
             CbOffice2003.Checked = True
+            CbConfiguraNotin.Checked = True
             CbOffice2016odt.Checked = True
-            CbConfiguraWord2016.Checked = True
-            CbPuestoNotin.Checked = True
             CbRequisitos.Checked = True
+            CbNemo.Checked = True
+            CbPuestoNotin.Checked = True
             CbPaquetesFT.Checked = True
-        End If
+            CbSferen.Checked = True
+            CbPasarelaSigno.Checked = True
+            CbTerceros.Checked = True
+            btDescargar.PerformClick()
 
-        If tipoinstalacion = "NEXUS" Then
+        ElseIf tipoinstalacion = "NEXUS" Then
             CbOffice2003.Checked = True
             CbConfiguraNotin.Checked = True
             CbOffice2016x64.Checked = True
@@ -1153,7 +1161,10 @@ Public Class FrmInstaladorKubo
             CbPasarelaSigno.Checked = True
             CbTerceros.Checked = True
         End If
-        btDescargar.PerformClick()
+
+        'btDescargar.PerformClick()
+        BtDescargar_Click(btDescargar, Nothing)
+
     End Sub
 
 
@@ -1175,14 +1186,16 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("=== COMIENZO INSTALACIONES NOTIN-KUBO ===")
 
         'Comprobar si se ha efectuado alguna descarga
-        Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
-        Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
-        If comienzo = 2 AndAlso rutaenf = 2 Then
-            MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            lbInstalando.Visible = False
+        ComprobarDescargas("KUBO")
 
-            Exit Sub
-        End If
+        'Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
+        'Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
+        'If comienzo = 2 AndAlso rutaenf = 2 Then
+        '    MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+        '    lbInstalando.Visible = False
+
+        '    Exit Sub
+        'End If
 
         Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
         If claveinift = 2 Then
@@ -1765,11 +1778,13 @@ Public Class FrmInstaladorKubo
         tlpTerceros.SetToolTip(CbTerceros, "Incluye Adobe Reader DC, FileZilla, Google Chrome y Notepad++")
         tlpTerceros.IsBalloon = True
 
+        TlpNexus.SetToolTip(BtNexus64, "Descarga e Instala NOTIN y Office2016 X64. Configurará WORD/KUBO y NEXUS.")
+
         tlpNotinKubo.ToolTipTitle = "Comienza Instalaciones Notin y Word 2016 + Kubo"
-        tlpNotinKubo.SetToolTip(btNotinKubo, "Preguntará por cada Paquete descargado. Si algún software se encuentra instalado preguntará si se desea realizar la reinstalación.")
+        tlpNotinKubo.SetToolTip(btNotinKubo, "Comenzará la Descarga y posterior Instalación de NOTIN y WORD 2016 / KUBO-NEXUS.")
 
         TlpNotinWord2003.ToolTipTitle = "Comienza Instalación Notin y Word 2003"
-        TlpNotinWord2003.SetToolTip(BtNotinWord2003, "Instala/Configura Notin y Word 2003. Además instalará Outlook, Excel..2016 si lo descargaste previamente.")
+        TlpNotinWord2003.SetToolTip(BtNotinWord2003, "Descarga e Instala NOTIN y WORD 2003. Además instalará Outlook, Excel.. en versión Office 2016.")
 
         'tlpAncert.ToolTipTitle = "URL Notariado"
         'tlpAncert.SetToolTip(lblAncert, "Acceder a url soporte.notariado.org")
@@ -2202,14 +2217,16 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("=== COMIENZO INSTALACIONES NOTIN-WORD 2003 ===")
 
         'Comprobar si se ha efectuado alguna descarga
-        Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
-        Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
-        If comienzo = 2 AndAlso rutaenf = 2 Then
-            lbInstalando.Visible = False
-            MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+        ComprobarDescargas("WORD2003")
 
-            Exit Sub
-        End If
+        'Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
+        'Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
+        'If comienzo = 2 AndAlso rutaenf = 2 Then
+        '    lbInstalando.Visible = False
+        '    MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+
+        '    Exit Sub
+        'End If
 
         Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
         If claveinift = 2 Then
@@ -3344,14 +3361,15 @@ Public Class FrmInstaladorKubo
 
         'Comprobar si se ha efectuado alguna descarga
         ComprobarDescargas("NEXUS")
-        Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
-        Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
-        If comienzo = 2 AndAlso rutaenf = 2 Then
-            lbInstalando.Visible = False
-            MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
 
-            Exit Sub
-        End If
+        'Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
+        'Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
+        'If comienzo = 2 AndAlso rutaenf = 2 Then
+        '    lbInstalando.Visible = False
+        '    MessageBox.Show("Descarga o Trae los Paquetes antes de comenzar las Instalaciones.", "¿Descargaste los paquetes?", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+
+        '    Exit Sub
+        'End If
 
         Dim claveinift = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "REGFT", "2")
         If claveinift = 2 Then
