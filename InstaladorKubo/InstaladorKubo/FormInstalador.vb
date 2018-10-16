@@ -1121,16 +1121,33 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub ComprobarDescargas(ByVal tipoinstalacion As String)
-        If tipoinstalacion = "kubo" Then
-
+        'TODO Comprobar tipo de Office2016 marcado
+        If tipoinstalacion = "KUBO" Then
+            CbOffice2003.Checked = True
+            CbOffice2016odt.Checked = True
+            CbConfiguraWord2016.Checked = True
+            CbPuestoNotin.Checked = True
+            CbRequisitos.Checked = True
+            CbPaquetesFT.Checked = True
         End If
 
-        If tipoinstalacion = "word2003" Then
-
+        If tipoinstalacion = "WORD2003" Then
+            CbOffice2003.Checked = True
+            CbOffice2016odt.Checked = True
+            CbConfiguraWord2016.Checked = True
+            CbPuestoNotin.Checked = True
+            CbRequisitos.Checked = True
+            CbPaquetesFT.Checked = True
         End If
 
-        If tipoinstalacion = "nexus" Then
-            CbOffice2003.Checked = True & CbOffice2016x64.Checked = True & CbConfiguraWord2016x64.Checked = True & CbPuestoNotin.Checked = True & CbRequisitos.Checked = True & CbPaquetesFT.Checked = True
+        If tipoinstalacion = "NEXUS" Then
+            CbOffice2003.Checked = True
+            CbOffice2016x64.Checked = True
+            CbConfiguraWord2016x64.Checked = True
+            CbPuestoNotin.Checked = True
+            CbRequisitos.Checked = True
+            CbPaquetesFT.Checked = True
+            btDescargar.PerformClick()
         End If
     End Sub
 
@@ -3321,7 +3338,7 @@ Public Class FrmInstaladorKubo
         RegistroInstalacion("=== COMIENZO INSTALACIONES NOTIN-NEXUS x64 ===")
 
         'Comprobar si se ha efectuado alguna descarga
-        ComprobarDescargas("nexus")
+        ComprobarDescargas("NEXUS")
         Dim comienzo = cIniArray.IniGet(instaladorkuboini, "DESCARGAS", "COMIENZO", "2")
         Dim rutaenf = cIniArray.IniGet(instaladorkuboini, "PAQUETES", "TRAERDEF", "2")
         If comienzo = 2 AndAlso rutaenf = 2 Then
