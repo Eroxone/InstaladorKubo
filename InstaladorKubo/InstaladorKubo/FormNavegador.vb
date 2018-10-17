@@ -1,8 +1,11 @@
 ﻿Imports Instalador.LeerFicherosINI
 Imports Instalador.FrmInstaladorKubo
+Imports System.ComponentModel
 
 Public Class FormNavegador
     Private Sub FrmNavegador_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'Me.WindowState = FormWindowState.Minimized
+
         Dim islnombre As String = FrmConfigurarISL.TbISLNombre.Text
         Dim islgrupo As String = FrmConfigurarISL.TbISLGrupo.Text
 
@@ -20,31 +23,60 @@ Public Class FormNavegador
 
         Navegador.Navigate(New Uri(urlnavegador))
 
-        FrmInstaladorKubo.PbInstalaciones.Value = 0
-        FrmInstaladorKubo.PbInstalaciones.Visible = True
 
-        Dim tiempoespera As Integer
-        Dim pasosbarra As Integer = 8
-        While tiempoespera < 5
-            FrmInstaladorKubo.PbInstalaciones.Step = pasosbarra
-            FrmInstaladorKubo.PbInstalaciones.PerformStep()
-            Threading.Thread.Sleep(1000)
-            tiempoespera = tiempoespera + 1
-            pasosbarra = pasosbarra + 1
-        End While
+        'FrmInstaladorKubo.PbInstalaciones.Value = 0
+        'FrmInstaladorKubo.PbInstalaciones.Visible = True
 
-        FrmInstaladorKubo.PbInstalaciones.Visible = False
-        FrmInstaladorKubo.PbInstalaciones.Value = 0
+        'Dim tiempoespera As Integer
+        'Dim pasosbarra As Integer = 16
+        'While tiempoespera < 3
+        '    FrmInstaladorKubo.PbInstalaciones.Step = pasosbarra
+        '    FrmInstaladorKubo.PbInstalaciones.PerformStep()
+        '    Threading.Thread.Sleep(1000)
+        '    tiempoespera = tiempoespera + 1
+        '    pasosbarra = pasosbarra + 1
+        'End While
+
+        'FrmInstaladorKubo.PbInstalaciones.Visible = False
+        'FrmInstaladorKubo.PbInstalaciones.Value = 0
 
 
         'SendKeys.Send()
-        Me.Close()
+
 
         RegistroInstalacion("ISLAlwaysON: Configurado Servicio ISL con las credenciales: " & islgrupo & " - " & islnombre & ".")
         cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "ISL", "1")
         FrmInstaladorKubo.BtISL.BackColor = Color.PaleGreen
 
+
     End Sub
 
+    'TODO arreglar esta chapuza
+    Private Sub FormNavegador_Click(sender As Object, e As EventArgs) Handles Me.Click
+        Me.Close()
+    End Sub
 
+    Private Sub FormNavegador_MouseEnter(sender As Object, e As EventArgs) Handles Me.MouseEnter
+        Me.Close()
+    End Sub
+
+    Private Sub FormNavegador_MouseLeave(sender As Object, e As EventArgs) Handles Me.MouseLeave
+        Me.Close()
+    End Sub
+
+    Private Sub FormNavegador_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        Me.Close()
+    End Sub
+
+    Private Sub FormNavegador_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+        Me.Close()
+    End Sub
+
+    Private Sub FormNavegador_MouseHover(sender As Object, e As EventArgs) Handles Me.MouseHover
+        Me.Close()
+    End Sub
+
+    Private Sub FormNavegador_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
+        Me.Close()
+    End Sub
 End Class

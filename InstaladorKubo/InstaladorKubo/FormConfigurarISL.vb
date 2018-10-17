@@ -19,6 +19,7 @@ Public Class FrmConfigurarISL
         TbISLGrupo.Text = ""
         TbISLNombre.Text = ""
         FrmInstaladorKubo.Show()
+        FormNavegador.Close()
         Me.Close()
     End Sub
 

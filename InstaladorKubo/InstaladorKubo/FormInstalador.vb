@@ -9,7 +9,7 @@ Imports System.Environment
 Imports Instalador.Chocolatey
 Imports System.Deployment.Application
 Imports Instalador.ODBCNotinSQL
-
+Imports Instalador.FormNavegador
 
 'WEB DE INSTALACIÓN
 'http://instalador.notin.net
@@ -1113,21 +1113,9 @@ Public Class FrmInstaladorKubo
 #End Region
 
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
-
-        'Limpieza de ficheros temporales para instalaciones por ejemplo.
-        'TODO revisar si hay que limpiar mas archivos.
-        'Try
-        '    File.Delete(RutaDescargas & "Requisitos\Framework35.bat")
-        '    File.Delete(RutaDescargas & "odbc32.bat")
-        '    File.Delete(RutaDescargas & "Registro\msoutl.bat")
-        '    File.Delete(RutaDescargas & "Office2016\ConfWord2016\ConfiguraWord2016.bat")
-        '    File.Delete(RutaDescargas & "Registro\unidadfword.bat")
-        '    File.Delete(RutaDescargas & "primerreinicio.bat")
-        '    File.Delete(RutaDescargas & "reiniciodirectivas.bat")
-        'Catch ex As Exception
-        'End Try
-        'Me.Dispose()
         Me.Close()
+        'TODO mientras lo arreglo que se cierre solo
+        FormNavegador.Close()
     End Sub
 
     Private Sub ComprobarDescargas(ByVal tipoinstalacion As String)
@@ -3256,7 +3244,6 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtISL_Click(sender As Object, e As EventArgs) Handles BtISL.Click
-        'MessageBox.Show("Funcionalidad en pruebas. Pendiente de revisión por Sánchez", "Instalar ISL", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         FrmConfigurarISL.ShowDialog()
     End Sub
 
@@ -5855,6 +5842,9 @@ Public Class FrmInstaladorKubo
     '        RegistroInstalacion("ERROR: Detectada posible instalación de Office 2016. Debe limpiarse antes de proceder a relizar la instalación desatendida.")
     '    End If
     'End If
+
+
+
 
 
 End Class
