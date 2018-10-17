@@ -148,8 +148,8 @@ Public Class FrmInstaladorKubo
         'LIMPIEZA DE FICHEROS AL INICIO
 
         'Quitar Icono versión anterior
+        Dim Escritorio As String = "" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & ""
         Try
-            Dim Escritorio As String = "" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & ""
             File.Delete(Escritorio & "InstaladorKubo.appref-ms")
 
             'Fuerzo que se descarguen la nueva version de WGET (quitar en unas semanas)
@@ -162,6 +162,13 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("INFO Limpieza Inicio: " & ex.Message)
         End Try
 
+        'Cuando hay cambio de Perfil en ADRA se duplica el icono del Instalador
+        Try
+            File.Delete(Escritorio & "Instalador - 1 ")
+            File.Delete(Escritorio & "Instalador - 1")
+        Catch ex As Exception
+            RegistroInstalacion("INFO Limpieza Inicio: " & ex.Message)
+        End Try
 
     End Sub
 
