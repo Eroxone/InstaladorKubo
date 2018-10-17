@@ -152,8 +152,8 @@ Partial Class FrmInstaladorKubo
         Me.BtCopiarhaciaF = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.BtRegistroInstalaciones = New System.Windows.Forms.Button()
-        Me.BtFicheroINI = New System.Windows.Forms.Button()
         Me.BtLimpiar = New System.Windows.Forms.Button()
+        Me.BtFicheroINI = New System.Windows.Forms.Button()
         Me.TabGestion = New System.Windows.Forms.TabControl()
         Me.TlpPaquetesFT = New System.Windows.Forms.ToolTip(Me.components)
         Me.BtSubeBinario = New System.Windows.Forms.Button()
@@ -215,6 +215,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.CbFineReader = New System.Windows.Forms.CheckBox()
         Me.CbTerceros = New System.Windows.Forms.CheckBox()
+        Me.BtLimpiarPaquetes = New System.Windows.Forms.Button()
         Me.lbPaquetes = New System.Windows.Forms.Label()
         Me.lbRequisitos = New System.Windows.Forms.Label()
         Me.LbMBDescargas = New System.Windows.Forms.Label()
@@ -228,10 +229,10 @@ Partial Class FrmInstaladorKubo
         Me.TabPage9 = New System.Windows.Forms.TabPage()
         Me.BtLimpiar2016 = New System.Windows.Forms.Button()
         Me.BtLimpiar2003 = New System.Windows.Forms.Button()
-        Me.BtLimpiarPaquetes = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TlpNexus = New System.Windows.Forms.ToolTip(Me.components)
         Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
+        Me.LbDescargas = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -1271,7 +1272,7 @@ Partial Class FrmInstaladorKubo
         Me.lbRuta.BackColor = System.Drawing.SystemColors.InactiveBorder
         Me.lbRuta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lbRuta.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbRuta.Location = New System.Drawing.Point(53, 591)
+        Me.lbRuta.Location = New System.Drawing.Point(53, 604)
         Me.lbRuta.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbRuta.Name = "lbRuta"
         Me.lbRuta.Size = New System.Drawing.Size(92, 19)
@@ -1358,7 +1359,7 @@ Partial Class FrmInstaladorKubo
         Me.btDirDescargas.BackColor = System.Drawing.SystemColors.Control
         Me.btDirDescargas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btDirDescargas.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btDirDescargas.Location = New System.Drawing.Point(9, 622)
+        Me.btDirDescargas.Location = New System.Drawing.Point(11, 640)
         Me.btDirDescargas.Margin = New System.Windows.Forms.Padding(2)
         Me.btDirDescargas.Name = "btDirDescargas"
         Me.btDirDescargas.Size = New System.Drawing.Size(114, 24)
@@ -1492,11 +1493,12 @@ Partial Class FrmInstaladorKubo
         Me.LbNotificacionemail.AutoSize = True
         Me.LbNotificacionemail.Enabled = False
         Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbNotificacionemail.Location = New System.Drawing.Point(138, 627)
+        Me.LbNotificacionemail.Location = New System.Drawing.Point(154, 647)
         Me.LbNotificacionemail.Name = "LbNotificacionemail"
         Me.LbNotificacionemail.Size = New System.Drawing.Size(78, 15)
         Me.LbNotificacionemail.TabIndex = 48
         Me.LbNotificacionemail.Text = "Notificar a:"
+        Me.LbNotificacionemail.Visible = False
         '
         'CBoxEmail
         '
@@ -1507,10 +1509,11 @@ Partial Class FrmInstaladorKubo
         Me.CBoxEmail.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
         Me.CBoxEmail.FormattingEnabled = True
         Me.CBoxEmail.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
-        Me.CBoxEmail.Location = New System.Drawing.Point(233, 624)
+        Me.CBoxEmail.Location = New System.Drawing.Point(246, 642)
         Me.CBoxEmail.Name = "CBoxEmail"
         Me.CBoxEmail.Size = New System.Drawing.Size(139, 22)
         Me.CBoxEmail.TabIndex = 49
+        Me.CBoxEmail.Visible = False
         '
         'TabPage1
         '
@@ -1578,18 +1581,6 @@ Partial Class FrmInstaladorKubo
         Me.BtRegistroInstalaciones.Text = "Visualizar Log"
         Me.BtRegistroInstalaciones.UseVisualStyleBackColor = False
         '
-        'BtFicheroINI
-        '
-        Me.BtFicheroINI.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.BtFicheroINI.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtFicheroINI.Location = New System.Drawing.Point(6, 40)
-        Me.BtFicheroINI.Margin = New System.Windows.Forms.Padding(2)
-        Me.BtFicheroINI.Name = "BtFicheroINI"
-        Me.BtFicheroINI.Size = New System.Drawing.Size(158, 28)
-        Me.BtFicheroINI.TabIndex = 0
-        Me.BtFicheroINI.Text = "Fichero INI"
-        Me.BtFicheroINI.UseVisualStyleBackColor = False
-        '
         'BtLimpiar
         '
         Me.BtLimpiar.BackColor = System.Drawing.Color.Gold
@@ -1604,6 +1595,18 @@ Partial Class FrmInstaladorKubo
         Me.BtLimpiar.Text = "Limpiar Log"
         Me.BtLimpiar.UseVisualStyleBackColor = False
         Me.BtLimpiar.Visible = False
+        '
+        'BtFicheroINI
+        '
+        Me.BtFicheroINI.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.BtFicheroINI.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtFicheroINI.Location = New System.Drawing.Point(6, 40)
+        Me.BtFicheroINI.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtFicheroINI.Name = "BtFicheroINI"
+        Me.BtFicheroINI.Size = New System.Drawing.Size(158, 28)
+        Me.BtFicheroINI.TabIndex = 0
+        Me.BtFicheroINI.Text = "Fichero INI"
+        Me.BtFicheroINI.UseVisualStyleBackColor = False
         '
         'TabGestion
         '
@@ -1832,7 +1835,7 @@ Partial Class FrmInstaladorKubo
         Me.BtExplorarRutas.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtExplorarRutas.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtExplorarRutas.Image = CType(resources.GetObject("BtExplorarRutas.Image"), System.Drawing.Image)
-        Me.BtExplorarRutas.Location = New System.Drawing.Point(9, 583)
+        Me.BtExplorarRutas.Location = New System.Drawing.Point(9, 596)
         Me.BtExplorarRutas.Name = "BtExplorarRutas"
         Me.BtExplorarRutas.Size = New System.Drawing.Size(37, 32)
         Me.BtExplorarRutas.TabIndex = 23
@@ -2178,6 +2181,20 @@ Partial Class FrmInstaladorKubo
         Me.CbTerceros.Text = "Software recomendado"
         Me.CbTerceros.UseVisualStyleBackColor = True
         '
+        'BtLimpiarPaquetes
+        '
+        Me.BtLimpiarPaquetes.BackColor = System.Drawing.Color.Gold
+        Me.BtLimpiarPaquetes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtLimpiarPaquetes.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.BtLimpiarPaquetes.Location = New System.Drawing.Point(277, 287)
+        Me.BtLimpiarPaquetes.Margin = New System.Windows.Forms.Padding(2)
+        Me.BtLimpiarPaquetes.Name = "BtLimpiarPaquetes"
+        Me.BtLimpiarPaquetes.Size = New System.Drawing.Size(76, 39)
+        Me.BtLimpiarPaquetes.TabIndex = 21
+        Me.BtLimpiarPaquetes.Text = "Limpiar Paquetes"
+        Me.BtLimpiarPaquetes.UseVisualStyleBackColor = False
+        Me.BtLimpiarPaquetes.Visible = False
+        '
         'lbPaquetes
         '
         Me.lbPaquetes.AutoSize = True
@@ -2337,20 +2354,6 @@ Partial Class FrmInstaladorKubo
         Me.BtLimpiar2003.Text = "Office 2003 diagcab"
         Me.BtLimpiar2003.UseVisualStyleBackColor = False
         '
-        'BtLimpiarPaquetes
-        '
-        Me.BtLimpiarPaquetes.BackColor = System.Drawing.Color.Gold
-        Me.BtLimpiarPaquetes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtLimpiarPaquetes.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtLimpiarPaquetes.Location = New System.Drawing.Point(277, 287)
-        Me.BtLimpiarPaquetes.Margin = New System.Windows.Forms.Padding(2)
-        Me.BtLimpiarPaquetes.Name = "BtLimpiarPaquetes"
-        Me.BtLimpiarPaquetes.Size = New System.Drawing.Size(76, 39)
-        Me.BtLimpiarPaquetes.TabIndex = 21
-        Me.BtLimpiarPaquetes.Text = "Limpiar Paquetes"
-        Me.BtLimpiarPaquetes.UseVisualStyleBackColor = False
-        Me.BtLimpiarPaquetes.Visible = False
-        '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.TabGestion)
@@ -2380,12 +2383,27 @@ Partial Class FrmInstaladorKubo
         Me.lbProcesandoDescargas.Text = "Procesando Descargas..."
         Me.lbProcesandoDescargas.Visible = False
         '
+        'LbDescargas
+        '
+        Me.LbDescargas.AutoSize = True
+        Me.LbDescargas.BackColor = System.Drawing.SystemColors.Control
+        Me.LbDescargas.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold)
+        Me.LbDescargas.ForeColor = System.Drawing.Color.Green
+        Me.LbDescargas.Location = New System.Drawing.Point(103, 572)
+        Me.LbDescargas.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.LbDescargas.Name = "LbDescargas"
+        Me.LbDescargas.Size = New System.Drawing.Size(282, 25)
+        Me.LbDescargas.TabIndex = 56
+        Me.LbDescargas.Text = "Descargas Completadas"
+        Me.LbDescargas.Visible = False
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1134, 675)
+        Me.Controls.Add(Me.LbDescargas)
         Me.Controls.Add(Me.lbInstalando)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.BtNovedades)
@@ -2665,4 +2683,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents TlpNexus As ToolTip
     Friend WithEvents lbProcesandoDescargas As Label
+    Friend WithEvents LbDescargas As Label
 End Class

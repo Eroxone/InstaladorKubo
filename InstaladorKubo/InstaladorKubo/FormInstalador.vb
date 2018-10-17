@@ -1013,12 +1013,14 @@ Public Class FrmInstaladorKubo
         CbPaquetesFT.Checked = False
         lbProcesandoDescargas.Visible = False
 
-        EnvioMail()
+        'EnvioMail()
 
         'MessageBox.Show("DESCARGAS FINALIZADAS. Puedes encontrar los Paquetes en " & RutaDescargas, "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         BtCopiarhaciaF.Enabled = True
         btTodo.Text = "Marcar todos"
+        LbDescargas.Visible = True
+        btDescargar.BackColor = Color.PaleGreen
     End Sub
 #End Region
 
