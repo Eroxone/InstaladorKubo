@@ -1720,7 +1720,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbEnlacesWeb.AutoSize = True
         Me.LbEnlacesWeb.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbEnlacesWeb.Location = New System.Drawing.Point(908, 310)
+        Me.LbEnlacesWeb.Location = New System.Drawing.Point(910, 310)
         Me.LbEnlacesWeb.Name = "LbEnlacesWeb"
         Me.LbEnlacesWeb.Size = New System.Drawing.Size(213, 19)
         Me.LbEnlacesWeb.TabIndex = 52
@@ -1807,7 +1807,7 @@ Partial Class FrmInstaladorKubo
         Me.BtDocRequisitos.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BtDocRequisitos.Image = CType(resources.GetObject("BtDocRequisitos.Image"), System.Drawing.Image)
         Me.BtDocRequisitos.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.BtDocRequisitos.Location = New System.Drawing.Point(912, 380)
+        Me.BtDocRequisitos.Location = New System.Drawing.Point(928, 376)
         Me.BtDocRequisitos.Name = "BtDocRequisitos"
         Me.BtDocRequisitos.Size = New System.Drawing.Size(180, 35)
         Me.BtDocRequisitos.TabIndex = 50
@@ -1821,7 +1821,7 @@ Partial Class FrmInstaladorKubo
         Me.BtPaginaActiva.Font = New System.Drawing.Font("Lucida Bright", 10.0!, System.Drawing.FontStyle.Bold)
         Me.BtPaginaActiva.Image = CType(resources.GetObject("BtPaginaActiva.Image"), System.Drawing.Image)
         Me.BtPaginaActiva.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.BtPaginaActiva.Location = New System.Drawing.Point(912, 335)
+        Me.BtPaginaActiva.Location = New System.Drawing.Point(928, 335)
         Me.BtPaginaActiva.Name = "BtPaginaActiva"
         Me.BtPaginaActiva.Size = New System.Drawing.Size(180, 35)
         Me.BtPaginaActiva.TabIndex = 51
@@ -1918,7 +1918,7 @@ Partial Class FrmInstaladorKubo
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(365, 432)
+        Me.TabControl1.Size = New System.Drawing.Size(365, 424)
         Me.TabControl1.TabIndex = 51
         '
         'TabPage8
@@ -1934,14 +1934,14 @@ Partial Class FrmInstaladorKubo
         Me.TabPage8.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage8.Name = "TabPage8"
         Me.TabPage8.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage8.Size = New System.Drawing.Size(357, 401)
+        Me.TabPage8.Size = New System.Drawing.Size(357, 393)
         Me.TabPage8.TabIndex = 0
         Me.TabPage8.Text = "Instalación"
         '
         'Label11
         '
         Me.Label11.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(7, 285)
+        Me.Label11.Location = New System.Drawing.Point(14, 260)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(335, 116)
         Me.Label11.TabIndex = 54
@@ -1952,7 +1952,7 @@ Partial Class FrmInstaladorKubo
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType(((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic) _
                 Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(7, 258)
+        Me.Label9.Location = New System.Drawing.Point(14, 233)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(103, 19)
         Me.Label9.TabIndex = 53

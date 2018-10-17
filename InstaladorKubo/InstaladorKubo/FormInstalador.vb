@@ -155,7 +155,7 @@ Public Class FrmInstaladorKubo
             'Fuerzo que se descarguen la nueva version de WGET (quitar en unas semanas)
             Dim wgetexe As New FileInfo(RutaDescargas & "wget.exe")
             Dim Lengthwget As Long = wgetexe.Length
-            If wgetexe.Length > "517577131" Then
+            If wgetexe.Length > "3895184" Then
                 File.Delete(RutaDescargas & "wget.exe")
             End If
         Catch ex As Exception
