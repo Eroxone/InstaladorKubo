@@ -45,12 +45,12 @@ Partial Class FormNavegador
         '
         Me.LBNavegador.AutoSize = True
         Me.LBNavegador.Font = New System.Drawing.Font("Lucida Bright", 13.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.LBNavegador.Location = New System.Drawing.Point(38, 35)
+        Me.LBNavegador.Location = New System.Drawing.Point(11, 35)
         Me.LBNavegador.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.LBNavegador.Name = "LBNavegador"
-        Me.LBNavegador.Size = New System.Drawing.Size(387, 22)
+        Me.LBNavegador.Size = New System.Drawing.Size(457, 22)
         Me.LBNavegador.TabIndex = 1
-        Me.LBNavegador.Text = "Navegando hacia ISL Light para Notin..."
+        Me.LBNavegador.Text = "=ISL Light Notin= Mueve el Cursor para cerrar."
         '
         'FormNavegador
         '
