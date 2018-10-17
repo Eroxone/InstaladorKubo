@@ -186,62 +186,64 @@ Public Class FormUsuarioAdra
             Exit Sub
         Else
 
+            'TODO Duplicar estas funciones aádiendo el espacio y (NR) a los iconos.
+
             'LIMPIAR ESCRITORIO
             Try
                 File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Notin 8.lnk")
                 File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Word 2016.lnk")
-                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\NotinControlClient (NR).lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\NotinControlClient.lnk")
                 File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\ABBYY FineReader 11.lnk")
                 File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Excel 2016.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Outlook 2016.lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Administrador de Tareas (NR).lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Agenda.lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\reload (NR).lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\ScanImg.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Administrador de Tareas.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Agenda.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\reload.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\ScanImg.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Desktop\Nexus.lnk")
 
             File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Notin 8.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Word 2016.lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\NotinControlClient (NR).lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\ABBYY FineReader 11.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Desktop\NotinControlClient.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Desktop\ABBYY FineReader 11.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Excel 2016.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Outlook 2016.lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Administrador de Tareas (NR).lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Agenda.lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\reload (NR).lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Desktop\ScanImg.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Administrador de Tareas.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Agenda.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Desktop\reload.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Desktop\ScanImg.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Desktop\Nexus.lnk")
 
             'LIMPIAR VINCULOS
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Notin 8.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Word 2016.lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\NotinControlClient (NR).lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\ABBYY FineReader 11.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\NotinControlClient.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\ABBYY FineReader 11.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Excel 2016.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Outlook 2016.lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Administrador de Tareas (NR).lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Agenda.lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\reload (NR).lnk")
-            File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\ScanImg.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Administrador de Tareas.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Agenda.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\reload.lnk")
+                File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\ScanImg.lnk")
             File.Delete("\\NOTINRAPP\Z\" & userseleccionado & "\Favorites\Vínculos\Nexus.lnk")
 
             File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Notin 8.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Word 2016.lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\NotinControlClient (NR).lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ABBYY FineReader 11.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\NotinControlClient.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ABBYY FineReader 11.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Excel 2016.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Outlook 2016.lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Administrador de Tareas (NR).lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Agenda.lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\reload (NR).lnk")
-            File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ScanImg.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Administrador de Tareas.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Agenda.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\reload.lnk")
+                File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ScanImg.lnk")
             File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Nexus.lnk")
 
                 FrmInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos sobre iconos (NR).")
 
             Catch ex As Exception
                 FrmInstaladorKubo.RegistroInstalacion("NO SE PUDO LIMPIAR EL PERFIL ADRA: " & ex.Message)
-                BtLimpiarIconos.BackColor = Color.LightSalmon
+                'BtLimpiarIconos.BackColor = Color.LightSalmon
             End Try
         End If
     End Sub
@@ -261,10 +263,10 @@ Public Class FormUsuarioAdra
                 File.Copy(origennr & "Notin 8.lnk", escritorio & "Notin 8.lnk", True)
                 File.Copy(origennr & "Word 2016.lnk", escritorio & "Word 2016.lnk", True)
                 File.Copy(origennr & "Outlook 2016.lnk", escritorio & "Outlook 2016.lnk", True)
-                File.Copy(origennr & "NotinControlClient (NR).lnk", escritorio & "NotinControlClient (NR).lnk", True)
+                File.Copy(origennr & "NotinControlClient.lnk", escritorio & "NotinControlClient.lnk", True)
                 File.Copy(origennr & "ABBYY FineReader 11.lnk", escritorio & "ABBYY FineReader 11.lnk", True)
                 File.Copy(origennr & "Excel 2016.lnk", escritorio & "Excel 2016.lnk", True)
-                File.Copy(origennr & "Administrador de Tareas (NR).lnk", escritorio & "Administrador de Tareas (NR).lnk", True)
+                File.Copy(origennr & "Administrador de Tareas.lnk", escritorio & "Administrador de Tareas.lnk", True)
                 File.Copy(origennr & "Agenda.lnk", escritorio & "Agenda.lnk", True)
                 File.Copy(origennr & "ScanImg.lnk", escritorio & "ScanImg.lnk", True)
 
@@ -272,12 +274,37 @@ Public Class FormUsuarioAdra
                 File.Copy(origennr & "Notin 8.lnk", vinculos & "Notin 8.lnk", True)
                 File.Copy(origennr & "Word 2016.lnk", vinculos & "Word 2016.lnk", True)
                 File.Copy(origennr & "Outlook 2016.lnk", vinculos & "Outlook 2016.lnk", True)
-                File.Copy(origennr & "NotinControlClient (NR).lnk", vinculos & "NotinControlClient (NR).lnk", True)
+                File.Copy(origennr & "NotinControlClient.lnk", vinculos & "NotinControlClient.lnk", True)
                 BtCopiarIconosNR.BackColor = Color.PaleGreen
             Catch ex As Exception
-                BtCopiarIconosNR.BackColor = Color.LightSalmon
+                'BtCopiarIconosNR.BackColor = Color.LightSalmon
                 FrmInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos NR: " & ex.Message)
             End Try
+
+            Dim origennrf As String = "\\Notinrapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\"
+
+            Try
+                'ESCRITORIO
+                File.Copy(origennrf & "Notin 8.lnk", escritorio & "Notin 8.lnk", True)
+                File.Copy(origennrf & "Word 2016.lnk", escritorio & "Word 2016.lnk", True)
+                File.Copy(origennrf & "Outlook 2016.lnk", escritorio & "Outlook 2016.lnk", True)
+                File.Copy(origennrf & "NotinControlClient.lnk", escritorio & "NotinControlClient.lnk", True)
+                File.Copy(origennrf & "ABBYY FineReader 11.lnk", escritorio & "ABBYY FineReader 11.lnk", True)
+                File.Copy(origennrf & "Excel 2016.lnk", escritorio & "Excel 2016.lnk", True)
+                File.Copy(origennrf & "Administrador de Tarea.lnk", escritorio & "Administrador de Tareas.lnk", True)
+                File.Copy(origennrf & "Agenda.lnk", escritorio & "Agenda.lnk", True)
+                File.Copy(origennrf & "ScanImg.lnk", escritorio & "ScanImg.lnk", True)
+
+                'VINCULOS
+                File.Copy(origennrf & "Notin 8.lnk", vinculos & "Notin 8.lnk", True)
+                File.Copy(origennrf & "Word 2016.lnk", vinculos & "Word 2016.lnk", True)
+                File.Copy(origennrf & "Outlook 2016.lnk", vinculos & "Outlook 2016.lnk", True)
+                File.Copy(origennrf & "NotinControlClient.lnk", vinculos & "NotinControlClient.lnk", True)
+
+            Catch ex As Exception
+                FrmInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos NR desde F: " & ex.Message)
+            End Try
+
         End If
 
     End Sub
