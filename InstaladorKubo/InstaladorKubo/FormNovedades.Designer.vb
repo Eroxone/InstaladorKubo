@@ -111,7 +111,7 @@ Partial Class FormNovedades
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(293, 21)
         Me.Label8.TabIndex = 8
-        Me.Label8.Text = "Instalar Notin-Kubo-Nexus"
+        Me.Label8.Text = "Instalar NOTIN-KUBO-NEXUS"
         '
         'Label9
         '
