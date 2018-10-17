@@ -26,7 +26,7 @@ Public Class FormUsuarioAdra
             BtLimpiar.Enabled = False
             BtCerrarsesion.Visible = True
         Else
-            MessageBox.Show("Selecciona ahora tu Usuario y clic en LIMPIAR. Una vez termine puedes cerrar sesión e Iniciar de nuevo con el usuario original del Dominio." & vbCrLf & "(Empezamos por esto y en siguientes versiones lo automatizo)", "Eliminar usuario en NOTARIA", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Selecciona ahora tu Usuario y clic en LIMPIAR. Una vez termine puedes cerrar sesión e Iniciar de nuevo con el usuario original del Dominio.", "Eliminar usuario en NOTARIA", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
@@ -51,7 +51,7 @@ Public Class FormUsuarioAdra
             Directory.CreateDirectory(rutadescargas & "ADRA")
         Catch ex As Exception
             MessageBox.Show("No se puede crear la ruta " & rutadescargas & "ADRA. Se cancela la operación.", "Ruta no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            FrmInstaladorKubo.RegistroInstalacion("ERROR: No se puede crear la ruta " & rutadescargas & "ADRA. Se cabcela la operación.")
+            FrmInstaladorKubo.RegistroInstalacion("ERROR: No se puede crear la ruta " & rutadescargas & "ADRA. Se cancela la operación.")
             BtLimpiar.BackColor = Color.LightSalmon
             Exit Sub
         End Try
@@ -169,7 +169,7 @@ Public Class FormUsuarioAdra
         'MessageBox.Show("A continuación se procede a limpiar Iconos en el Escritorio y Vínculos del anterior Perfil.", "Limpieza Escritorio y Vínculos", MessageBoxButtons.OK, MessageBoxIcon.Information)
         LimpiarIconos()
 
-        MessageBox.Show("== LIMPIEZA DE PERFIL COMPLETADA ==" & vbCrLf & "Nota: Si el botón Limpiar está en rojo revisa Logs. En caso contrario Cierra Sesión e inicia con tu usuario NOTARIA\" & userseleccionado & " para terminar la operación. Limpia el Escritorio y Vínculos manualmente. Lo automatizaré en las siguientes versiones.", "== LIMPIEZA USUARIO FINALIZADA ==", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show("== LIMPIEZA DE PERFIL COMPLETADA ==" & vbCrLf & "Nota: Si el botón Limpiar está en rojo revisa Logs. En caso contrario Cierra Sesión e inicia con tu usuario NOTARIA\" & userseleccionado & " para terminar la operación." & vbCrLf & "Se han Limpiado los Iconos y Vínculos. Tras Iniciar Sesión usa la opción 2.COPIADO para recuperar los iconos (NR).", "== LIMPIEZA USUARIO FINALIZADA ==", MessageBoxButtons.OK, MessageBoxIcon.Information)
         FrmInstaladorKubo.RegistroInstalacion("Terminada Limpieza del Perfil " & userseleccionado & " en entorno ADRA.")
         BtLimpiar.BackColor = Color.PaleGreen
         cIniArray.IniWrite(FrmInstaladorKubo.instaladorkuboini, "ADRA", "LIMPIARPERFIL", "1")
