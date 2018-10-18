@@ -5810,6 +5810,10 @@ Public Class FrmInstaladorKubo
         ObtenerVersionNotin()
     End Sub
 
+    Private Sub LklbDatosBlancos_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LklbDatosBlancos.LinkClicked
+        System.Diagnostics.Process.Start("http://tecnicos.notin.net/detalles.asp?id=1541")
+    End Sub
+
 
 
 

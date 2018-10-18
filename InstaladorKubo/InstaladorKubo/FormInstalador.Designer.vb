@@ -233,6 +233,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpNexus = New System.Windows.Forms.ToolTip(Me.components)
         Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
         Me.LbDescargas = New System.Windows.Forms.Label()
+        Me.LklbDatosBlancos = New System.Windows.Forms.LinkLabel()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -644,6 +645,7 @@ Partial Class FrmInstaladorKubo
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage7.Controls.Add(Me.LklbDatosBlancos)
         Me.TabPage7.Controls.Add(Me.BtMigradorDeploy)
         Me.TabPage7.Controls.Add(Me.BtTriggers)
         Me.TabPage7.Controls.Add(Me.LbConsultasSQL)
@@ -765,7 +767,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtRestaurarBak.Enabled = False
         Me.BtRestaurarBak.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtRestaurarBak.Location = New System.Drawing.Point(8, 130)
+        Me.BtRestaurarBak.Location = New System.Drawing.Point(8, 170)
         Me.BtRestaurarBak.Name = "BtRestaurarBak"
         Me.BtRestaurarBak.Size = New System.Drawing.Size(167, 28)
         Me.BtRestaurarBak.TabIndex = 2
@@ -2024,7 +2026,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage13.Controls.Add(Me.btDescargar)
         Me.TabPage13.Location = New System.Drawing.Point(4, 27)
         Me.TabPage13.Name = "TabPage13"
-        Me.TabPage13.Size = New System.Drawing.Size(357, 401)
+        Me.TabPage13.Size = New System.Drawing.Size(357, 393)
         Me.TabPage13.TabIndex = 2
         Me.TabPage13.Text = "Paquetes"
         '
@@ -2325,7 +2327,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage9.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage9.Name = "TabPage9"
         Me.TabPage9.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage9.Size = New System.Drawing.Size(357, 401)
+        Me.TabPage9.Size = New System.Drawing.Size(357, 393)
         Me.TabPage9.TabIndex = 1
         Me.TabPage9.Text = "Limpieza Office"
         '
@@ -2396,6 +2398,18 @@ Partial Class FrmInstaladorKubo
         Me.LbDescargas.TabIndex = 56
         Me.LbDescargas.Text = "Descargas Completadas"
         Me.LbDescargas.Visible = False
+        '
+        'LklbDatosBlancos
+        '
+        Me.LklbDatosBlancos.ActiveLinkColor = System.Drawing.Color.Red
+        Me.LklbDatosBlancos.AutoSize = True
+        Me.LklbDatosBlancos.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LklbDatosBlancos.Location = New System.Drawing.Point(5, 120)
+        Me.LklbDatosBlancos.Name = "LklbDatosBlancos"
+        Me.LklbDatosBlancos.Size = New System.Drawing.Size(156, 15)
+        Me.LklbDatosBlancos.TabIndex = 14
+        Me.LklbDatosBlancos.TabStop = True
+        Me.LklbDatosBlancos.Text = "Ver Comunicado 1541"
         '
         'FrmInstaladorKubo
         '
@@ -2684,4 +2698,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents TlpNexus As ToolTip
     Friend WithEvents lbProcesandoDescargas As Label
     Friend WithEvents LbDescargas As Label
+    Friend WithEvents LklbDatosBlancos As LinkLabel
 End Class
