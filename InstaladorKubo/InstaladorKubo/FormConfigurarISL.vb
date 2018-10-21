@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Xml
 Imports System.Environment
+Imports Instalador.FormNavegador
 
 Public Class FrmConfigurarISL
 
@@ -10,7 +11,7 @@ Public Class FrmConfigurarISL
         ElseIf TbISLNombre.Text = "" Then
             MessageBox.Show("No se admiten campos vacíos", "Información incompleta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         Else
-            FormNavegador.Show()
+            FormNavegador.IniciarNavegador("isl")
             Me.Close()
         End If
     End Sub
@@ -49,9 +50,14 @@ Public Class FrmConfigurarISL
         Dim jnemoisl As String = appData & "\jNemo\jnemoisl.xml"
 
         If File.Exists(jnemoxml) Then
-            File.Copy(jnemoxml, appData & "\jNemo\jnemoisl.xml", True)
+            Try
+                File.Copy(jnemoxml, appData & "\jNemo\jnemoisl.xml", True)
+            Catch ex As Exception
+                FrmInstaladorKubo.RegistroInstalacion("ERROR ISL. No se pudo realizar la copia del XML de jNemo")
+            End Try
+
             Dim doc As New XmlDocument()
-            doc.Load(jnemoisl)
+                doc.Load(jnemoisl)
 
             Dim ultimoprofile As String = ""
 

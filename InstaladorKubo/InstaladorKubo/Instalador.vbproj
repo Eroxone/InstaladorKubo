@@ -32,12 +32,12 @@
     <ProductName>Instalador</ProductName>
     <PublisherName>Instalador</PublisherName>
     <SuiteName>Instalador</SuiteName>
-    <MinimumRequiredVersion>1.0.7.0</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.8.0</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>9</ApplicationRevision>
-    <ApplicationVersion>1.0.7.%2a</ApplicationVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>1.0.8.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -152,6 +152,12 @@
     <Compile Include="FormNovedades.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPanda.Designer.vb">
+      <DependentUpon>FormPanda.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPanda.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSQL2008R2.Designer.vb">
       <DependentUpon>FormSQL2008R2.vb</DependentUpon>
     </Compile>
@@ -214,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNovedades.resx">
       <DependentUpon>FormNovedades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPanda.resx">
+      <DependentUpon>FormPanda.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSQL2008R2.resx">
       <DependentUpon>FormSQL2008R2.vb</DependentUpon>
@@ -341,7 +350,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Deeeebug" (powershell.exe -File  "D:\ConfuserEX\confuserps.ps1"  $(TargetDir) $(TargetDir) $(TargetPath) $(ProjectDir)confuser.crproj $(SolutionDir)BaseProjectbin $(SolutionDir)BaseProject2bin)</PostBuildEvent>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Debug" (powershell.exe -File  "D:\ConfuserEX\confuserps.ps1"  $(TargetDir) $(TargetDir) $(TargetPath) $(ProjectDir)confuser.crproj $(SolutionDir)BaseProjectbin $(SolutionDir)BaseProject2bin)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

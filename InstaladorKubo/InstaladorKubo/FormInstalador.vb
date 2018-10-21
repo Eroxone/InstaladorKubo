@@ -560,6 +560,12 @@ Public Class FrmInstaladorKubo
             BtAbreExcel.BackColor = Color.PaleGreen
         End If
 
+        Dim panda = cIniArray.IniGet(instaladorkuboini, "INSTALACIONES", "PANDA", "2")
+        If panda = 1 Then
+            BtPanda.BackColor = Color.PaleGreen
+        End If
+
+
     End Sub
 
     'Boton EXAMINAR
@@ -1121,8 +1127,7 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles btSalir.Click
         Me.Close()
-        'TODO mientras lo arreglo que se cierre solo
-        FormNavegador.Close()
+        'FormNavegador.Close()
     End Sub
 
     Private Sub ComprobarDescargas(ByVal tipoinstalacion As String)
@@ -1913,6 +1918,8 @@ Public Class FrmInstaladorKubo
         TlpVisualizarLog.SetToolTip(BtRegistroInstalaciones, "Muestra el Registro del Instalador. Consulta el estado de una instalación o cualquier otro proceso.")
 
         TlpSalir.SetToolTip(btSalir, "Cerramos el Instalador. Se registrará la salida correcta del mismo.")
+
+        TlpPanda.SetToolTip(BtPanda, "Descarga el Agente para instalar Panda End Point en el despacho. Se te consultará el grupo de la Notaría.")
 
     End Sub
 #End Region
@@ -3242,7 +3249,8 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtDocRequisitos_Click(sender As Object, e As EventArgs) Handles BtDocRequisitos.Click
         Try
-            Process.Start("iexplore.exe", "https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing")
+            'Process.Start("iexplore.exe", "https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing")
+            System.Diagnostics.Process.Start("https://docs.google.com/document/d/1NPprOtwrgrz6evWbYzYDfsjGrG9jcPAwX0aNjSkx5wQ/edit?usp=sharing")
             RegistroInstalacion("Hoja de Requisitos Notin visualizada.")
         Catch ex As Exception
             RegistroInstalacion("ERROR Hoja Requisitos: " & ex.Message)
@@ -5164,7 +5172,8 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtPaginaActiva_Click(sender As Object, e As EventArgs) Handles BtPaginaActiva.Click
         Try
-            Process.Start("iexplore.exe", "http://www.notin.net/portal/425r312x/pagina.asp")
+            'Process.Start("iexplore.exe", "http://www.notin.net/portal/425r312x/pagina.asp")
+            System.Diagnostics.Process.Start("http://www.notin.net/portal/425r312x/pagina.asp")
             'Shell("cmd /k start /d " & """" & "" & """" & " IEXPLORE.EXE http://www.notin.net/portal/425r312x/pagina.asp", AppWinStyle.Hide, False)
             RegistroInstalacion("Página activa lanzada a Internet Explorer.")
         Catch ex As Exception
@@ -5814,13 +5823,9 @@ Public Class FrmInstaladorKubo
         System.Diagnostics.Process.Start("http://tecnicos.notin.net/detalles.asp?id=1541")
     End Sub
 
-
-
-
-
-
-
-
+    Private Sub BtPanda_Click(sender As Object, e As EventArgs) Handles BtPanda.Click
+        FormPanda.ShowDialog()
+    End Sub
 
 
     '    Private Sub LboxHoraAdraDiferido_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LboxHoraAdraDiferido.SelectedIndexChanged

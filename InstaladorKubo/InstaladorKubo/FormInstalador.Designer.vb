@@ -58,6 +58,7 @@ Partial Class FrmInstaladorKubo
         Me.BtEstablex64F462 = New System.Windows.Forms.Button()
         Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.LklbDatosBlancos = New System.Windows.Forms.LinkLabel()
         Me.BtMigradorDeploy = New System.Windows.Forms.Button()
         Me.BtTriggers = New System.Windows.Forms.Button()
         Me.LbConsultasSQL = New System.Windows.Forms.Label()
@@ -233,7 +234,7 @@ Partial Class FrmInstaladorKubo
         Me.TlpNexus = New System.Windows.Forms.ToolTip(Me.components)
         Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
         Me.LbDescargas = New System.Windows.Forms.Label()
-        Me.LklbDatosBlancos = New System.Windows.Forms.LinkLabel()
+        Me.TlpPanda = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -665,6 +666,18 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
         '
+        'LklbDatosBlancos
+        '
+        Me.LklbDatosBlancos.ActiveLinkColor = System.Drawing.Color.Red
+        Me.LklbDatosBlancos.AutoSize = True
+        Me.LklbDatosBlancos.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LklbDatosBlancos.Location = New System.Drawing.Point(5, 120)
+        Me.LklbDatosBlancos.Name = "LklbDatosBlancos"
+        Me.LklbDatosBlancos.Size = New System.Drawing.Size(176, 17)
+        Me.LklbDatosBlancos.TabIndex = 14
+        Me.LklbDatosBlancos.TabStop = True
+        Me.LklbDatosBlancos.Text = "Ver Comunicado 1541"
+        '
         'BtMigradorDeploy
         '
         Me.BtMigradorDeploy.BackColor = System.Drawing.SystemColors.Control
@@ -1024,7 +1037,6 @@ Partial Class FrmInstaladorKubo
         '
         'BtPanda
         '
-        Me.BtPanda.Enabled = False
         Me.BtPanda.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtPanda.Font = New System.Drawing.Font("Lucida Bright", 12.0!, System.Drawing.FontStyle.Bold)
         Me.BtPanda.Location = New System.Drawing.Point(8, 250)
@@ -2399,17 +2411,11 @@ Partial Class FrmInstaladorKubo
         Me.LbDescargas.Text = "Descargas Completadas"
         Me.LbDescargas.Visible = False
         '
-        'LklbDatosBlancos
+        'TlpPanda
         '
-        Me.LklbDatosBlancos.ActiveLinkColor = System.Drawing.Color.Red
-        Me.LklbDatosBlancos.AutoSize = True
-        Me.LklbDatosBlancos.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LklbDatosBlancos.Location = New System.Drawing.Point(5, 120)
-        Me.LklbDatosBlancos.Name = "LklbDatosBlancos"
-        Me.LklbDatosBlancos.Size = New System.Drawing.Size(156, 15)
-        Me.LklbDatosBlancos.TabIndex = 14
-        Me.LklbDatosBlancos.TabStop = True
-        Me.LklbDatosBlancos.Text = "Ver Comunicado 1541"
+        Me.TlpPanda.IsBalloon = True
+        Me.TlpPanda.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpPanda.ToolTipTitle = "Descarga WAAgent para tu grupo Notaría"
         '
         'FrmInstaladorKubo
         '
@@ -2699,4 +2705,5 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents lbProcesandoDescargas As Label
     Friend WithEvents LbDescargas As Label
     Friend WithEvents LklbDatosBlancos As LinkLabel
+    Friend WithEvents TlpPanda As ToolTip
 End Class
