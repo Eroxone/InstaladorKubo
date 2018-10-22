@@ -50,6 +50,7 @@ Public Class FormNavegador
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "ISL", "1")
             FrmInstaladorKubo.BtISL.BackColor = Color.PaleGreen
 
+
         ElseIf servicio = "panda" Then
             LBNavegador.Text = "=Panda End Point= Mueve el Cursor para cerrar."
 
@@ -65,39 +66,9 @@ Public Class FormNavegador
 
             RegistroInstalacion("PandEndPiont: Configurado Servicio Panda con las credenciales: " & gruponotaria)
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "PANDA", "1")
-            FrmInstaladorKubo.BtISL.BackColor = Color.PaleGreen
+            FrmInstaladorKubo.BtPanda.BackColor = Color.PaleGreen
 
         End If
     End Sub
 
-
-
-    ''TODO arreglar esta chapuza
-    'Private Sub FormNavegador_Click(sender As Object, e As EventArgs) Handles Me.Click
-    '    Me.Close()
-    'End Sub
-
-    'Private Sub FormNavegador_MouseEnter(sender As Object, e As EventArgs) Handles Me.MouseEnter
-    '    Me.Close()
-    'End Sub
-
-    'Private Sub FormNavegador_MouseLeave(sender As Object, e As EventArgs) Handles Me.MouseLeave
-    '    Me.Close()
-    'End Sub
-
-    'Private Sub FormNavegador_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
-    '    Me.Close()
-    'End Sub
-
-    'Private Sub FormNavegador_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
-    '    Me.Close()
-    'End Sub
-
-    'Private Sub FormNavegador_MouseHover(sender As Object, e As EventArgs) Handles Me.MouseHover
-    '    Me.Close()
-    'End Sub
-
-    'Private Sub FormNavegador_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
-    '    Me.Close()
-    'End Sub
 End Class
