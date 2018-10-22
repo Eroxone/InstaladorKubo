@@ -58,6 +58,7 @@ Partial Class FrmInstaladorKubo
         Me.BtEstablex64F462 = New System.Windows.Forms.Button()
         Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.LbMigradorINI = New System.Windows.Forms.Label()
         Me.LklbDatosBlancos = New System.Windows.Forms.LinkLabel()
         Me.BtMigradorDeploy = New System.Windows.Forms.Button()
         Me.BtTriggers = New System.Windows.Forms.Button()
@@ -235,7 +236,6 @@ Partial Class FrmInstaladorKubo
         Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
         Me.LbDescargas = New System.Windows.Forms.Label()
         Me.TlpPanda = New System.Windows.Forms.ToolTip(Me.components)
-        Me.LbMigradorINI = New System.Windows.Forms.Label()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -367,7 +367,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.btSalir.BackColor = System.Drawing.SystemColors.Control
         Me.btSalir.Font = New System.Drawing.Font("Lucida Bright", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.btSalir.Location = New System.Drawing.Point(1034, 627)
+        Me.btSalir.Location = New System.Drawing.Point(1023, 621)
         Me.btSalir.Margin = New System.Windows.Forms.Padding(2)
         Me.btSalir.Name = "btSalir"
         Me.btSalir.Size = New System.Drawing.Size(89, 37)
@@ -668,6 +668,16 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
         '
+        'LbMigradorINI
+        '
+        Me.LbMigradorINI.AutoSize = True
+        Me.LbMigradorINI.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbMigradorINI.Location = New System.Drawing.Point(226, 85)
+        Me.LbMigradorINI.Name = "LbMigradorINI"
+        Me.LbMigradorINI.Size = New System.Drawing.Size(188, 17)
+        Me.LbMigradorINI.TabIndex = 15
+        Me.LbMigradorINI.Text = "Versión: Sin información"
+        '
         'LklbDatosBlancos
         '
         Me.LklbDatosBlancos.ActiveLinkColor = System.Drawing.Color.Red
@@ -695,7 +705,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtTriggers.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtTriggers.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtTriggers.Location = New System.Drawing.Point(230, 280)
+        Me.BtTriggers.Location = New System.Drawing.Point(229, 273)
         Me.BtTriggers.Name = "BtTriggers"
         Me.BtTriggers.Size = New System.Drawing.Size(167, 28)
         Me.BtTriggers.TabIndex = 12
@@ -706,7 +716,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbConsultasSQL.AutoSize = True
         Me.LbConsultasSQL.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbConsultasSQL.Location = New System.Drawing.Point(226, 216)
+        Me.LbConsultasSQL.Location = New System.Drawing.Point(226, 218)
         Me.LbConsultasSQL.Name = "LbConsultasSQL"
         Me.LbConsultasSQL.Size = New System.Drawing.Size(125, 18)
         Me.LbConsultasSQL.TabIndex = 11
@@ -738,7 +748,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.BtReducirDatos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtReducirDatos.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtReducirDatos.Location = New System.Drawing.Point(230, 240)
+        Me.BtReducirDatos.Location = New System.Drawing.Point(230, 239)
         Me.BtReducirDatos.Name = "BtReducirDatos"
         Me.BtReducirDatos.Size = New System.Drawing.Size(167, 28)
         Me.BtReducirDatos.TabIndex = 8
@@ -749,7 +759,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.TbMigradorLog.BackColor = System.Drawing.SystemColors.Control
         Me.TbMigradorLog.Font = New System.Drawing.Font("Lucida Bright", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TbMigradorLog.Location = New System.Drawing.Point(229, 147)
+        Me.TbMigradorLog.Location = New System.Drawing.Point(230, 145)
         Me.TbMigradorLog.Multiline = True
         Me.TbMigradorLog.Name = "TbMigradorLog"
         Me.TbMigradorLog.ReadOnly = True
@@ -761,7 +771,7 @@ Partial Class FrmInstaladorKubo
         '
         Me.LbVersionMigrador.AutoSize = True
         Me.LbVersionMigrador.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbVersionMigrador.Location = New System.Drawing.Point(227, 120)
+        Me.LbVersionMigrador.Location = New System.Drawing.Point(226, 120)
         Me.LbVersionMigrador.Name = "LbVersionMigrador"
         Me.LbVersionMigrador.Size = New System.Drawing.Size(137, 17)
         Me.LbVersionMigrador.TabIndex = 4
@@ -1347,7 +1357,7 @@ Partial Class FrmInstaladorKubo
         Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
         Me.lbInstalando.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold)
         Me.lbInstalando.ForeColor = System.Drawing.Color.Green
-        Me.lbInstalando.Location = New System.Drawing.Point(429, 585)
+        Me.lbInstalando.Location = New System.Drawing.Point(429, 603)
         Me.lbInstalando.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbInstalando.Name = "lbInstalando"
         Me.lbInstalando.Size = New System.Drawing.Size(309, 25)
@@ -1375,7 +1385,7 @@ Partial Class FrmInstaladorKubo
         Me.btDirDescargas.BackColor = System.Drawing.SystemColors.Control
         Me.btDirDescargas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btDirDescargas.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btDirDescargas.Location = New System.Drawing.Point(11, 640)
+        Me.btDirDescargas.Location = New System.Drawing.Point(11, 634)
         Me.btDirDescargas.Margin = New System.Windows.Forms.Padding(2)
         Me.btDirDescargas.Name = "btDirDescargas"
         Me.btDirDescargas.Size = New System.Drawing.Size(114, 24)
@@ -1426,12 +1436,12 @@ Partial Class FrmInstaladorKubo
         '
         'PbInstalaciones
         '
-        Me.PbInstalaciones.Location = New System.Drawing.Point(434, 621)
+        Me.PbInstalaciones.Location = New System.Drawing.Point(434, 633)
         Me.PbInstalaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.PbInstalaciones.MarqueeAnimationSpeed = 50
         Me.PbInstalaciones.Maximum = 50
         Me.PbInstalaciones.Name = "PbInstalaciones"
-        Me.PbInstalaciones.Size = New System.Drawing.Size(304, 25)
+        Me.PbInstalaciones.Size = New System.Drawing.Size(367, 25)
         Me.PbInstalaciones.TabIndex = 42
         Me.PbInstalaciones.Visible = False
         '
@@ -1445,7 +1455,7 @@ Partial Class FrmInstaladorKubo
         Me.BtLogin.BackColor = System.Drawing.Color.Gold
         Me.BtLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtLogin.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtLogin.Location = New System.Drawing.Point(1034, 596)
+        Me.BtLogin.Location = New System.Drawing.Point(1023, 590)
         Me.BtLogin.Margin = New System.Windows.Forms.Padding(2)
         Me.BtLogin.Name = "BtLogin"
         Me.BtLogin.Size = New System.Drawing.Size(89, 27)
@@ -1509,7 +1519,7 @@ Partial Class FrmInstaladorKubo
         Me.LbNotificacionemail.AutoSize = True
         Me.LbNotificacionemail.Enabled = False
         Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbNotificacionemail.Location = New System.Drawing.Point(154, 647)
+        Me.LbNotificacionemail.Location = New System.Drawing.Point(154, 638)
         Me.LbNotificacionemail.Name = "LbNotificacionemail"
         Me.LbNotificacionemail.Size = New System.Drawing.Size(78, 15)
         Me.LbNotificacionemail.TabIndex = 48
@@ -1525,7 +1535,7 @@ Partial Class FrmInstaladorKubo
         Me.CBoxEmail.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
         Me.CBoxEmail.FormattingEnabled = True
         Me.CBoxEmail.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
-        Me.CBoxEmail.Location = New System.Drawing.Point(246, 642)
+        Me.CBoxEmail.Location = New System.Drawing.Point(246, 633)
         Me.CBoxEmail.Name = "CBoxEmail"
         Me.CBoxEmail.Size = New System.Drawing.Size(139, 22)
         Me.CBoxEmail.TabIndex = 49
@@ -1645,7 +1655,7 @@ Partial Class FrmInstaladorKubo
         Me.BtSubeBinario.BackColor = System.Drawing.Color.Gold
         Me.BtSubeBinario.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.BtSubeBinario.Font = New System.Drawing.Font("Lucida Bright", 7.8!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.BtSubeBinario.Location = New System.Drawing.Point(1019, 564)
+        Me.BtSubeBinario.Location = New System.Drawing.Point(1008, 558)
         Me.BtSubeBinario.Margin = New System.Windows.Forms.Padding(2)
         Me.BtSubeBinario.Name = "BtSubeBinario"
         Me.BtSubeBinario.Size = New System.Drawing.Size(104, 28)
@@ -1809,7 +1819,7 @@ Partial Class FrmInstaladorKubo
         Me.BtNovedades.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtNovedades.Image = CType(resources.GetObject("BtNovedades.Image"), System.Drawing.Image)
         Me.BtNovedades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtNovedades.Location = New System.Drawing.Point(867, 627)
+        Me.BtNovedades.Location = New System.Drawing.Point(869, 621)
         Me.BtNovedades.Name = "BtNovedades"
         Me.BtNovedades.Size = New System.Drawing.Size(129, 37)
         Me.BtNovedades.TabIndex = 54
@@ -2392,7 +2402,7 @@ Partial Class FrmInstaladorKubo
         Me.lbProcesandoDescargas.AutoSize = True
         Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.Green
-        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(429, 585)
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(429, 603)
         Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
         Me.lbProcesandoDescargas.Size = New System.Drawing.Size(283, 25)
         Me.lbProcesandoDescargas.TabIndex = 36
@@ -2418,16 +2428,6 @@ Partial Class FrmInstaladorKubo
         Me.TlpPanda.IsBalloon = True
         Me.TlpPanda.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpPanda.ToolTipTitle = "Descarga WAAgent para tu grupo Notaría"
-        '
-        'LbMigradorINI
-        '
-        Me.LbMigradorINI.AutoSize = True
-        Me.LbMigradorINI.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbMigradorINI.Location = New System.Drawing.Point(230, 85)
-        Me.LbMigradorINI.Name = "LbMigradorINI"
-        Me.LbMigradorINI.Size = New System.Drawing.Size(124, 17)
-        Me.LbMigradorINI.TabIndex = 15
-        Me.LbMigradorINI.Text = "Sin información"
         '
         'FrmInstaladorKubo
         '

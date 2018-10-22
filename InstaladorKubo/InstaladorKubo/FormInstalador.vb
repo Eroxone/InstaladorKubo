@@ -11,6 +11,7 @@ Imports System.Deployment.Application
 Imports Instalador.ODBCNotinSQL
 Imports Instalador.FormNavegador
 Imports Instalador.ObtenerVersionado
+Imports Instalador.LimpiezaInicio
 
 'WEB DE INSTALACIÓN
 'http://instalador.notin.net
@@ -144,40 +145,10 @@ Public Class FrmInstaladorKubo
 
         cIniArray.IniWrite(instaladorkuboini, "VERSION", "CLICKONCE", versionactual)
 
-        LimpiezaInicio()
-
-    End Sub
-
-    Private Sub LimpiezaInicio()
-        'LIMPIEZA DE FICHEROS AL INICIO
-
-        'Quitar Icono versión anterior
-        Dim Escritorio As String = "" & My.Computer.FileSystem.SpecialDirectories.Desktop & "\" & ""
-        Try
-            File.Delete(Escritorio & "InstaladorKubo.appref-ms")
-
-            'Fuerzo que se descarguen la nueva version de WGET (quitar en unas semanas)
-            Dim wgetexe As New FileInfo(RutaDescargas & "wget.exe")
-            Dim Lengthwget As Long = wgetexe.Length
-            If wgetexe.Length > "3895184" Then
-                File.Delete(RutaDescargas & "wget.exe")
-            End If
-        Catch ex As Exception
-            RegistroInstalacion("INFO Limpieza Inicio: " & ex.Message)
-        End Try
-
-        'Cuando hay cambio de Perfil en ADRA se duplica el icono del Instalador
-        Try
-            File.Delete(Escritorio & "Instalador - 1 ")
-            File.Delete(Escritorio & "Instalador - 1")
-        Catch ex As Exception
-            RegistroInstalacion("INFO Limpieza Inicio: " & ex.Message)
-        End Try
-
+        LimpiezaInicio.LimpiezaInicio()
     End Sub
 
     'Acciones al Salir del Instalador.
-
     Private Sub FrmInstaladorKubo_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         RegistroInstalacion("=== TERMINADA EJECUCIÓN DEL INSTALADOR. === FECHA: " & DateTime.Now.Date)
     End Sub
@@ -293,7 +264,7 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtLimpiarPaquetes_Click(sender As Object, e As EventArgs) Handles BtLimpiarPaquetes.Click
-        'TODO limpiar REG - BAT y lo que pueda ser delicado.
+        LimpiezaInicio.LimpiezaInicio()
     End Sub
 
 
@@ -1044,6 +1015,8 @@ Public Class FrmInstaladorKubo
     'Mensajes de acción
     Private Sub BtDescargar_MouseDown(sender As Object, e As MouseEventArgs) Handles btDescargar.MouseDown
         lbProcesandoDescargas.Visible = True
+        LbDescargas.Visible = False
+        btDescargar.BackColor = SystemColors.Control
     End Sub
 
     Private Sub BtNexus64_MouseDown(sender As Object, e As MouseEventArgs) Handles BtNexus64.MouseDown
@@ -1958,7 +1931,6 @@ Public Class FrmInstaladorKubo
             ElseIf File.Exists("C:\Windows\System32\odbcconf.exe") Then
                 Dim odbc32 As String = "C:\Windows\System32\odbcconf.exe " & "/A " & "{CONFIGSYSDSN " & """" & "SQL Server" & """" & " " & """" & "DSN=NOTINSQL|Server=" & nombre_servidor & """" & "}"
                 File.WriteAllText(RutaDescargas & "odbc32.bat", odbc32 & vbCrLf)
-                'TODO Comprobar ruta registro Sistema 32bits
                 ' Dim bddatosnotinsql As String = "regedit.exe /s " & RutaDescargas & "Registro\BDDatosNotinSQL.reg"
                 'File.WriteAllText(RutaDescargas & "BDDatosNotinSQL.bat", bddatosnotinsql)
 
@@ -2644,7 +2616,6 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub JNemo2003()
-        'TODO añadir comprobación 32bits
         If Directory.Exists("c:\Program Files (x86)\Java") = False Then
             'Descarga de JAVA 1.8.171
             Directory.CreateDirectory(RutaDescargas & "Software")
@@ -3787,7 +3758,6 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub JNemox64()
-        'TODO añadir comprobación 32bits aqui y en Office 2003
         If Directory.Exists("c:\Program Files (x86)\Java") = False Then
             'Descarga de JAVA 1.8.171
             Directory.CreateDirectory(RutaDescargas & "Software")
@@ -5706,6 +5676,8 @@ Public Class FrmInstaladorKubo
     Private Sub BtPanda_Click(sender As Object, e As EventArgs) Handles BtPanda.Click
         FormPanda.ShowDialog()
     End Sub
+
+
 
 
     '    Private Sub LboxHoraAdraDiferido_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LboxHoraAdraDiferido.SelectedIndexChanged

@@ -95,7 +95,6 @@ Public Class FrmSQLInstalacion
         End Try
 
         Try
-            'TODO instalación desatendida
             Dim pspsql As New ProcessStartInfo With {
             .FileName = rutadescargas & "SQL\SQLServer2014SP2-KB3171021-x64-ESN.exe"
         }
