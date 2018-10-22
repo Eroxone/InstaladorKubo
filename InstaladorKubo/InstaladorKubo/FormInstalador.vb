@@ -5401,17 +5401,30 @@ Public Class FrmInstaladorKubo
 
     Private Sub BtNotinAdraDiferido_Click(sender As Object, e As EventArgs) Handles BtNotinAdraDiferido.Click
         'COMPROBAR QUE TRABAJAMOS EN UN SERVIDOR NOTINRAPP.
-        If NotinRapp() = False Then
-            MessageBox.Show("Por seguridad solo se permite la ejecución en Entornos ADRA bajo el host NotinRapp. Se cancela la ejecución.", "Ejecución fuera de AdRa", MessageBoxButtons.OK, MessageBoxIcon.Stop)
-            RegistroInstalacion("ADRA: Se cancela la actualización diferida de Adra. El Host no coincide.")
+        'If NotinRapp() = False Then
+        '    MessageBox.Show("Por seguridad solo se permite la ejecución en Entornos ADRA bajo el host NotinRapp. Se cancela la ejecución.", "Ejecución fuera de AdRa", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+        '    RegistroInstalacion("ADRA: Se cancela la actualización diferida de Adra. El Host no coincide.")
+        '    BtNotinAdraDiferido.BackColor = SystemColors.Control
+        '    LBAdraDiferido.Visible = False
+        '    Exit Sub
+        'Else
+        '    RegistroInstalacion("Detectado entorno ADRA. Se permite la ejecución de Actualización Adra Diferida.")
+        'End If
+
+        'COMPROBAR QUE SE HA EJECUTADO EL MIGRADOR
+        Dim migradorok = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "VARIABLES", "VersionMigradorNotinSQL", "0")
+        If migradorok = 0 Then
+            MessageBox.Show("Por seguridad solo se permite la ejecución en entornos donde se haya ejecutado el MigradorNotinSQL correctamente. Se cancela la ejecución.", "Ejecución Actualización Adra cancelada.", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+            RegistroInstalacion("ADRA: Se cancela la actualización diferida de Adra. Migrador no ejecutado con anterioridad.")
             BtNotinAdraDiferido.BackColor = SystemColors.Control
-            LBAdraDiferido.Visible = False
+            LbAdraDiferido.Visible = False
             Exit Sub
         Else
-            RegistroInstalacion("Detectado entorno ADRA. Se permite la ejecución de Actualización Adra Diferida.")
+            RegistroInstalacion("Detectado MigradorSQL ejecutado con anterioridad. Se permite la ejecución de Actualización Adra Diferida.")
+            RegistroInstalacion("Versión detectada Migrador: " & migradorok)
         End If
 
-        'MENSAJE ADVERTENCIA PROCESOS
+
         Dim horaseleccionada = NumHoraAdra.Value
         Dim minutoseleccionado = NumMinutoAdra.Value
         'Dim horaseleccionada = LboxHoraAdraDiferido.SelectedItem
