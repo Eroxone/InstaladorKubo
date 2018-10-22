@@ -401,7 +401,7 @@ Partial Class FrmInstaladorKubo
         Me.TabSistema.Margin = New System.Windows.Forms.Padding(2)
         Me.TabSistema.Name = "TabSistema"
         Me.TabSistema.SelectedIndex = 0
-        Me.TabSistema.Size = New System.Drawing.Size(454, 428)
+        Me.TabSistema.Size = New System.Drawing.Size(454, 432)
         Me.TabSistema.TabIndex = 35
         '
         'TabPage11
@@ -429,7 +429,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage11.Controls.Add(Me.BtNetBeta)
         Me.TabPage11.Location = New System.Drawing.Point(4, 27)
         Me.TabPage11.Name = "TabPage11"
-        Me.TabPage11.Size = New System.Drawing.Size(446, 397)
+        Me.TabPage11.Size = New System.Drawing.Size(446, 401)
         Me.TabPage11.TabIndex = 4
         Me.TabPage11.Text = "NotinNet"
         '
@@ -1932,7 +1932,7 @@ Partial Class FrmInstaladorKubo
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(365, 424)
+        Me.TabControl1.Size = New System.Drawing.Size(365, 432)
         Me.TabControl1.TabIndex = 51
         '
         'TabPage8
@@ -2038,7 +2038,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage13.Controls.Add(Me.btDescargar)
         Me.TabPage13.Location = New System.Drawing.Point(4, 27)
         Me.TabPage13.Name = "TabPage13"
-        Me.TabPage13.Size = New System.Drawing.Size(357, 393)
+        Me.TabPage13.Size = New System.Drawing.Size(357, 401)
         Me.TabPage13.TabIndex = 2
         Me.TabPage13.Text = "Paquetes"
         '
@@ -2117,7 +2117,7 @@ Partial Class FrmInstaladorKubo
         Me.TabAncertTerceros.Controls.Add(Me.TabPage3)
         Me.TabAncertTerceros.Controls.Add(Me.TabPage4)
         Me.TabAncertTerceros.Font = New System.Drawing.Font("Lucida Bright", 10.2!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
-        Me.TabAncertTerceros.Location = New System.Drawing.Point(13, 262)
+        Me.TabAncertTerceros.Location = New System.Drawing.Point(0, 262)
         Me.TabAncertTerceros.Name = "TabAncertTerceros"
         Me.TabAncertTerceros.SelectedIndex = 0
         Me.TabAncertTerceros.Size = New System.Drawing.Size(214, 95)
