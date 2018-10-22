@@ -5420,8 +5420,10 @@ Public Class FrmInstaladorKubo
             LbAdraDiferido.Visible = False
             Exit Sub
         Else
-            RegistroInstalacion("Detectado MigradorSQL ejecutado con anterioridad. Se permite la ejecución de Actualización Adra Diferida.")
-            RegistroInstalacion("Versión detectada Migrador: " & migradorok)
+            RegistroInstalacion("Detectado entorno ADRA o MigradorSQL ejecutado con anterioridad. Se permite la ejecución de Actualización Adra Diferida.")
+            If migradorok <> 0 Then
+                RegistroInstalacion("Versión detectada Migrador: " & migradorok)
+            End If
         End If
 
 
