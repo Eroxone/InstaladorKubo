@@ -78,6 +78,9 @@ Public Class FrmInstaladorKubo
         'Version FrameWork Sistema
         ObtenerVersionFW()
 
+        'Versión del Migrador
+        ObtenerVersionMigrador()
+
         'Mostrar versión de Aplicación
         Try
             'LbVersionApp.Text = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString
@@ -3940,6 +3943,7 @@ Public Class FrmInstaladorKubo
                     End If
                 End If
             End If
+            ObtenerVersionMigrador()
 
         Catch ex As Exception
             RegistroInstalacion("ERROR ejecución MigradorSQL: " & ex.Message)
@@ -3999,7 +4003,7 @@ Public Class FrmInstaladorKubo
                     End If
                 End If
             End If
-
+            ObtenerVersionMigrador()
         Catch ex As Exception
             RegistroInstalacion("ERROR ejecución MigradorSQL: " & ex.Message)
             BtMigradorDeploy.BackColor = Color.LightSalmon
@@ -4150,6 +4154,7 @@ Public Class FrmInstaladorKubo
             RegistroInstalacion("ÉXITO: NotinNet ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
             ObtenerVersionNotin()
             ObtenerVersionNet()
+            ObtenerVersionMigrador()
         Catch ex As Exception
             'BtEstableNet.BackColor = Color.LightSalmon
             RegistroInstalacion("ERROR NotinNet: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
@@ -4269,6 +4274,7 @@ Public Class FrmInstaladorKubo
                 RegistroInstalacion("ÉXITO: NOTIN NET ejecutado correctamente desde F:\Notawin.Net tras la descarga de Notin8.exe.")
                 ObtenerVersionNotin()
                 ObtenerVersionNet()
+                ObtenerVersionMigrador()
             Catch ex As Exception
                 'BtEstableNet.BackColor = Color.LightSalmon
                 RegistroInstalacion("ERROR NOTIN NET: No se pudo ejecutar NotinNetInstaller de F tras la descarga de Notin8.exe.")
@@ -4378,6 +4384,21 @@ Public Class FrmInstaladorKubo
         End Try
 
     End Sub
+
+    'TODO Mover todos los de Obtener version a una Clase
+
+    Private Sub ObtenerVersionMigrador()
+        Try
+            Dim migradorok = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "VARIABLES", "VersionMigradorNotinSQL", "0")
+            If migradorok <> 0 Then
+                LbMigradorINI.Text = "MigradorSQL " & migradorok
+            End If
+        Catch ex As Exception
+            RegistroInstalacion("No se pudo obtener versión de MigradorSQL. " & ex.Message)
+        End Try
+
+    End Sub
+
 
 
     Private Sub ObtenerVersionNet()

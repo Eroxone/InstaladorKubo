@@ -36,7 +36,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.8.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -350,7 +350,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Deeebug" (powershell.exe -File  "D:\ConfuserEX\confuserps.ps1"  $(TargetDir) $(TargetDir) $(TargetPath) $(ProjectDir)confuser.crproj $(SolutionDir)BaseProjectbin $(SolutionDir)BaseProject2bin)</PostBuildEvent>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Debug" (powershell.exe -File  "D:\ConfuserEX\confuserps.ps1"  $(TargetDir) $(TargetDir) $(TargetPath) $(ProjectDir)confuser.crproj $(SolutionDir)BaseProjectbin $(SolutionDir)BaseProject2bin)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
