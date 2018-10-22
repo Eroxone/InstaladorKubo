@@ -5413,8 +5413,8 @@ Public Class FrmInstaladorKubo
 
         'COMPROBAR QUE SE HA EJECUTADO EL MIGRADOR
         Dim migradorok = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "VARIABLES", "VersionMigradorNotinSQL", "0")
-        If migradorok = 0 Then
-            MessageBox.Show("Por seguridad solo se permite la ejecución en entornos donde se haya ejecutado el MigradorNotinSQL correctamente. Se cancela la ejecución.", "Ejecución Actualización Adra cancelada.", MessageBoxButtons.OK, MessageBoxIcon.Stop)
+        If migradorok = 0 AndAlso NotinRapp() = False Then
+            MessageBox.Show("Por seguridad solo se permite la ejecución en entornos donde se haya ejecutado el MigradorNotinSQL correctamente.", "Ejecución Actualización Adra cancelada.", MessageBoxButtons.OK, MessageBoxIcon.Stop)
             RegistroInstalacion("ADRA: Se cancela la actualización diferida de Adra. Migrador no ejecutado con anterioridad.")
             BtNotinAdraDiferido.BackColor = SystemColors.Control
             LbAdraDiferido.Visible = False
