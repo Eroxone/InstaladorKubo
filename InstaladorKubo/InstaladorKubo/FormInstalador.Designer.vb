@@ -941,7 +941,7 @@ Partial Class FrmInstaladorKubo
         Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.TbIdentificaNotaria.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TbIdentificaNotaria.ForeColor = System.Drawing.SystemColors.ScrollBar
-        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(3, 195)
+        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(21, 196)
         Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
         Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 25)
         Me.TbIdentificaNotaria.TabIndex = 7

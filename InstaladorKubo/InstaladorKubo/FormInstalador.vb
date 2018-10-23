@@ -4438,7 +4438,7 @@ Public Class FrmInstaladorKubo
                 Dim numeroversion = infoversion.Substring(8, 10)
                 Try
                     File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & numeroversion & ".exe", True)
-                    RegistroInstalacion("INFO BackupNet: Creado backup de NotinNetInstaller versión " & numeroversion)
+                    RegistroInstalacion("BackupNet ADRA: Creado backup de NotinNetInstaller en RutaDescargas. Versión " & numeroversion)
                 Catch ex As Exception
                     RegistroInstalacion("ERROR BackupNet: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
                 End Try
@@ -4447,7 +4447,7 @@ Public Class FrmInstaladorKubo
                 Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
                 Try
                     File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & notinnetfecha & ".exe", True)
-                    RegistroInstalacion("INFO BackupNet: Creado backup de NotinNetInstaller a " & notinnetfecha)
+                    RegistroInstalacion("BackupNet ADRA: Creado backup de NotinNetInstaller en RutaDescargas. A fecha " & notinnetfecha)
                 Catch ex As Exception
                     RegistroInstalacion("ERROR BackupNet.: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
                 End Try
@@ -4458,7 +4458,7 @@ Public Class FrmInstaladorKubo
                     Dim Fechahoy As String = DateTime.Now.Date
                     Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
                     File.Copy("F:\Notin8.exe", RutaDescargas & "NotinNet\BackupNet\Notin8_" & notinnetfecha & ".exe", True)
-                    RegistroInstalacion("INFO BackupNet: Realizado Backup de Notin8 de UnidadF raíz en BackupNet con fecha " & notinnetfecha)
+                    RegistroInstalacion("BackupNet ADRA: Realizado Backup de Notin8 de UnidadF raíz en BackupNet con fecha " & notinnetfecha)
                 Catch ex As Exception
                     RegistroInstalacion("ERROR BackupNet: No se pudo realizar el Backup de Notin8 de F raíz en BackupNet. " & ex.Message)
                 End Try
@@ -4468,7 +4468,7 @@ Public Class FrmInstaladorKubo
             Try
                 Directory.CreateDirectory("F:\Notawin.Net\BackupNet")
                 File.Copy("F:\Notin8.exe", "F:\Notawin.Net\BackupNet\Notin8_BackupNet.exe", True)
-                RegistroInstalacion("INFO BackupNet: Creado backup de Notin8 en F:\Notawin.Net\BackupNet\")
+                RegistroInstalacion("BackupNet ADRA: Creado backup de Notin8 en F:\Notawin.Net\BackupNet\")
             Catch ex As Exception
                 RegistroInstalacion("ERROR BackupNet: No se pudo copiar Notin8.exe a F:\Notawin.Net\BackupNet. " & ex.Message)
                 Exit Sub
@@ -4479,7 +4479,7 @@ Public Class FrmInstaladorKubo
                 'Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
                 Try
                     File.Copy("F:\Notawin.Net\NotinNetInstaller.exe", "F:\Notawin.Net\BackupNet\NotinNetInstaller_BackupNet.exe", True)
-                    RegistroInstalacion("INFO BackupNet: Creado backup de NotinNetInstaller en F:\Notawin.Net\BackupNet\")
+                    RegistroInstalacion("BackupNet ADRA: Creado backup de NotinNetInstaller en F:\Notawin.Net\BackupNet\")
                 Catch ex As Exception
                     RegistroInstalacion("ERROR BackupNet: No se puedo crear el Backup de NotinNetInstaller de F NotawinNet. " & ex.Message)
                 End Try
@@ -4502,7 +4502,7 @@ Public Class FrmInstaladorKubo
                 Dim numeroversion = infoversion.Substring(8, 10)
                 Try
                     File.Copy(RutaDescargas & "NotinNet\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & numeroversion & ".exe", True)
-                    RegistroInstalacion("INFO BackupNet: Creado backup de NotinNetInstaller versión " & numeroversion)
+                    RegistroInstalacion("BackupNet: Creado backup de NotinNetInstaller en RutaDescargas. Versión " & numeroversion)
                 Catch ex As Exception
                     RegistroInstalacion("ERROR BackupNet: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
                 End Try
@@ -4511,7 +4511,7 @@ Public Class FrmInstaladorKubo
                 Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
                 Try
                     File.Copy(RutaDescargas & "NotinNet\NotinNetInstaller.exe", RutaDescargas & "NotinNet\BackupNet\NotinNetInstaller_" & notinnetfecha & ".exe", True)
-                    RegistroInstalacion("INFO BackupNet: Creado backup de NotinNetInstaller con fecha " & notinnetfecha)
+                    RegistroInstalacion("BackupNet: Creado backup de NotinNetInstaller en RutaDescargas. A fecha " & notinnetfecha)
                 Catch ex As Exception
                     RegistroInstalacion("ERROR BackupNet: No se puedo crear el Backup de NotinNetInstaller en RutaDescargas. " & ex.Message)
                 End Try
@@ -4524,7 +4524,7 @@ Public Class FrmInstaladorKubo
                 Dim Fechahoy As String = DateTime.Now.Date
                 Dim notinnetfecha As String = Replace(Fechahoy, "/", ".")
                 File.Copy("F:\Notin8.exe", RutaDescargas & "NotinNet\BackupNet\Notin8_" & notinnetfecha & ".exe", True)
-                RegistroInstalacion("INFO BackupNet: Creado backup de NotinNetInstaller a fecha " & notinnetfecha)
+                RegistroInstalacion("BackupNet: Creado backup de NotinNetInstaller en RutaDescargas. A fecha " & notinnetfecha)
             Catch ex As Exception
                 RegistroInstalacion("ERROR BackupNet: No se pudo realizar el Backup de Notin8 de F raíz en BackupNet. " & ex.Message)
             End Try
