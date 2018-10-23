@@ -608,7 +608,7 @@ Public Class FrmInstaladorKubo
             End If
             RegistroInstalacion("Determinado Uptime Servidor en " & uptime & " milisegundos.")
         Catch ex As Exception
-            LbUptime.Text = "Uptime No se pudo determinar."
+            LbUptime.Text = "Uptime sin determinar"
         End Try
     End Sub
 
