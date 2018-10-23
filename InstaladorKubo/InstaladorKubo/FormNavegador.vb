@@ -53,24 +53,24 @@ Public Class FormNavegador
 
 
         'Damos tiempo a que se muestre la ventana de Descarga
-        FrmInstaladorKubo.PbInstalaciones.Value = 0
-        FrmInstaladorKubo.PbInstalaciones.Visible = True
+        'FrmInstaladorKubo.PbInstalaciones.Value = 0
+        'FrmInstaladorKubo.PbInstalaciones.Visible = True
 
-        Dim tiempoespera As Integer
-        Dim pasosbarra As Integer = 6
-        While tiempoespera < 6
-            FrmInstaladorKubo.PbInstalaciones.Step = pasosbarra
-            FrmInstaladorKubo.PbInstalaciones.PerformStep()
-            Threading.Thread.Sleep(1000)
-            tiempoespera = tiempoespera + 1
-            pasosbarra = pasosbarra + 2
-        End While
+        'Dim tiempoespera As Integer
+        'Dim pasosbarra As Integer = 6
+        'While tiempoespera < 6
+        '    FrmInstaladorKubo.PbInstalaciones.Step = pasosbarra
+        '    FrmInstaladorKubo.PbInstalaciones.PerformStep()
+        '    Threading.Thread.Sleep(1000)
+        '    tiempoespera = tiempoespera + 1
+        '    pasosbarra = pasosbarra + 2
+        'End While
 
-        FrmInstaladorKubo.PbInstalaciones.Visible = False
-        FrmInstaladorKubo.PbInstalaciones.Value = 0
+        'FrmInstaladorKubo.PbInstalaciones.Visible = False
+        'FrmInstaladorKubo.PbInstalaciones.Value = 0
 
 
-        Me.Close()
+        'Me.Close()
     End Sub
 
 

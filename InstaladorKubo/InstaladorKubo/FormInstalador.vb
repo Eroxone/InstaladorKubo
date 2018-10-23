@@ -3234,6 +3234,8 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtISL_Click(sender As Object, e As EventArgs) Handles BtISL.Click
+        'Por si el Navegador sigue activo...
+        FormNavegador.Close()
         FrmConfigurarISL.ShowDialog()
     End Sub
 
@@ -5674,9 +5676,10 @@ Public Class FrmInstaladorKubo
     End Sub
 
     Private Sub BtPanda_Click(sender As Object, e As EventArgs) Handles BtPanda.Click
+        'Por si el Navegador continua activo
+        FormNavegador.Close()
         FormPanda.ShowDialog()
     End Sub
-
 
 
 
