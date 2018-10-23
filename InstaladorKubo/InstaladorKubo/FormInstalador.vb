@@ -5390,7 +5390,13 @@ Public Class FrmInstaladorKubo
             Icononotificacion.Visible = False
 
             LbAdraDiferido.ForeColor = Color.LightSalmon
-            LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA CON ERRORES=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & DateTime.Now.Minute
+
+            If Date.Now.Minute <= 9 Then
+                LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA CON ERRORES=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & "0" & DateTime.Now.Minute
+            Else
+                LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA CON ERRORES=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & DateTime.Now.Minute
+            End If
+
             LbAdraDiferido.Visible = True
             Exit Sub
         End Try
@@ -5434,7 +5440,13 @@ Public Class FrmInstaladorKubo
                 Icononotificacion.Visible = False
 
                 LbAdraDiferido.ForeColor = Color.LightSalmon
-                LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA CON ERRORES=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & DateTime.Now.Minute
+
+                If Date.Now.Minute <= 9 Then
+                    LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA CON ERRORES=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & "0" & DateTime.Now.Minute
+                Else
+                    LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA CON ERRORES=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & DateTime.Now.Minute
+                End If
+
                 LbAdraDiferido.Visible = True
                 Exit Sub
             End Try
@@ -5474,7 +5486,13 @@ Public Class FrmInstaladorKubo
         'TERMINAMOS PROCESO Y AVISAMOS
         RegistroInstalacion("= ACTUALIZACIÓN DIFERIDA ADRA FINALIZADA.=")
         BtNotinAdraDiferido.BackColor = Color.PaleGreen
-        LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & DateTime.Now.Minute
+
+        If Date.Now.Minute <= 9 Then
+            LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & "0" & DateTime.Now.Minute
+        Else
+            LbAdraDiferido.Text = "=COMPLETADA ACTUALIZACIÓN ADRA=" & vbCrLf & DateTime.Now.Date & " " & DateTime.Now.Hour & ":" & DateTime.Now.Minute
+        End If
+
         LbAdraDiferido.Visible = True
         'EnvioMailADRA()
         'MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
