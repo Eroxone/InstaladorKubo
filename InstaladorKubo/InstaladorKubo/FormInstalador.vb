@@ -37,6 +37,7 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             MessageBox.Show("Error creando ruta Temporal. Pueden seguir mas errores en el Instalador.", "Error Ruta TEMP", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+        Dim opacidadformulario As Integer = 10
 
         SistemaOperativo()
         lbRuta.Text = GetPathTemp()
@@ -62,8 +63,10 @@ Public Class FrmInstaladorKubo
             LbPreparacionInicial.Visible = True
         End If
 
+
         'Cargo correo anterior de notificaciones
         CBoxEmail.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
+
 
         'Versiones  Notin y .NET en Sistema
         ObtenerVersionNotin()
@@ -74,16 +77,20 @@ Public Class FrmInstaladorKubo
         'LbMigrador.Text = cIniArray.IniGet(instaladorkuboini, "SQL", "FECHAMIGRADOR", "Sin determinar")
 
         'If File.Exists("C:\Program Files (x86)\Humano Software\MigradorSQL\Log\LoggerMigradorNotin.txt") Then
+
         LeerLogMigradorSQL()
         'End If
 
         'Version FrameWork Sistema
+
         ObtenerVersionFW()
 
         'Versión del Migrador
+
         ObtenerVersionMigrador()
 
         'Mostrar versión de Aplicación
+
         Try
             'LbVersionApp.Text = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString
             'LbVersionApp.Text = My.Application.Info.Version.Revision
@@ -98,6 +105,7 @@ Public Class FrmInstaladorKubo
         Catch ex As Exception
             RegistroInstalacion("INFO: No se detectó la versión de ClickOnce Publicada. Esto no es un error en la App.")
         End Try
+
 
         'Comprobar si existe Office 2016 x64 para mostrar .Net con x64
         If File.Exists("C:\Program Files\Microsoft Office\Office16\WINWORD.EXE") OrElse File.Exists("C:\Program Files\Microsoft Office\Office16\root\WINWORD.EXE") Then
@@ -126,6 +134,7 @@ Public Class FrmInstaladorKubo
 
         End If
 
+
         ' === MUESTREO NOVEDADES ===
         Dim versionanterior = cIniArray.IniGet(instaladorkuboini, "VERSION", "CLICKONCE", "0.0.0.0")
         'Dim versionactual = LbVersionApp.Text
@@ -144,6 +153,7 @@ Public Class FrmInstaladorKubo
         End Try
 
         cIniArray.IniWrite(instaladorkuboini, "VERSION", "CLICKONCE", versionactual)
+
 
         LimpiezaInicio.LimpiezaInicio()
     End Sub

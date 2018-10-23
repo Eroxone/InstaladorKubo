@@ -17,6 +17,7 @@ Public Class FormPassword
         If TbPassword.Text = "b30330104b" Then
             TbPassword.BackColor = Color.PaleGreen
             'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\instaladorkubo.ini", "LOGIN", "ENTRADA", 1)
+            Me.Opacity = 60
             FrmInstaladorKubo.Show()
             Me.Close()
         End If
