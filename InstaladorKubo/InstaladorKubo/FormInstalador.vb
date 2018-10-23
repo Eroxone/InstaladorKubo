@@ -5270,16 +5270,15 @@ Public Class FrmInstaladorKubo
         'Dim minutoseleccionado = LboxMinutoAdraDiferido.SelectedItem
 
         Dim adradiferido As DialogResult
-        If minutoseleccionado = 0 Then
-            adradiferido = MessageBox.Show("PROGRAMAR EJECUCIÓN A LAS " & horaseleccionada & ":" & "00" & " HORAS." & vbCrLf & "En ese momento se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net Estable o Beta según se marque." & vbCrLf & "Bajo un entorno estándar completar este proceso llevará quince minutos. Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador. El Instalador quedará en la barra de tareas a la espera de la hora programada." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If minutoseleccionado <= 9 Then
+            adradiferido = MessageBox.Show("PROGRAMAR EJECUCIÓN A LAS " & horaseleccionada & ":" & "0" & minutoseleccionado & " HORAS." & vbCrLf & "En ese momento se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net Estable o Beta según se marque." & vbCrLf & "Bajo un entorno estándar completar este proceso llevará quince minutos. Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador. El Instalador quedará en la barra de tareas a la espera de la hora programada." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         Else
             adradiferido = MessageBox.Show("PROGRAMAR EJECUCIÓN A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS." & vbCrLf & "En ese momento se procederá a terminar los procesos que afecten a la actualización tales como Notin, Word, Nexus..." & vbCrLf & "Ejecutaremos MigradorSQL con AllowDataLoss y se Descargará Versión de Notin y Net Estable o Beta según se marque." & vbCrLf & "Bajo un entorno estándar completar este proceso llevará quince minutos. Previamente no se realizará ninguna acción. Si deseas Cancelar termina el proceso del Instalador. El Instalador quedará en la barra de tareas a la espera de la hora programada." & vbCrLf & "¿Deseas programar la ejecución a la hora seleccionada?", "Advertencia actualización diferida", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         End If
 
         If adradiferido = DialogResult.Yes Then
-
-            If minutoseleccionado = 0 Then
-                RegistroInstalacion(vbCrLf & "= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA = HORA: " & horaseleccionada & ":" & "00." & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
+            If minutoseleccionado <= 9 Then
+                RegistroInstalacion(vbCrLf & "= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA = HORA: " & horaseleccionada & ":" & "0" & minutoseleccionado & "." & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
             Else
                 RegistroInstalacion(vbCrLf & "= Programada ACTUALIZACIÓN DIFERIDA NOTIN .NET entorno ADRA = HORA: " & horaseleccionada & ":" & minutoseleccionado & "." & vbCrLf & "Se irán logeando el resto de eventos producidos tras la hora de la ejecución.")
             End If
@@ -5480,9 +5479,9 @@ Public Class FrmInstaladorKubo
         Dim horaseleccionada = NumHoraAdra.Value
         Dim minutoseleccionado = NumMinutoAdra.Value
 
-        If minutoseleccionado = 0 Then
-            LbAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS " & horaseleccionada & ":" & "00" & " HORAS."
-            Icononotificacion.Text = "Programada Actualización AdRa a las " & horaseleccionada & ":" & "00" & " horas."
+        If minutoseleccionado <= 9 Then
+            LbAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS " & horaseleccionada & ":" & "0" & minutoseleccionado & " HORAS."
+            Icononotificacion.Text = "Programada Actualización AdRa a las " & horaseleccionada & ":" & "0" & minutoseleccionado & " horas."
         Else
             LbAdraDiferido.Text = "PROGRAMADA ACTUALIZACIÓN ADRA A LAS " & horaseleccionada & ":" & minutoseleccionado & " HORAS."
             Icononotificacion.Text = "Programada Actualización AdRa a las " & horaseleccionada & ":" & minutoseleccionado & " horas."
