@@ -20,28 +20,9 @@ Public Class FormNavegador
                 Exit Sub
             End If
 
-
             Dim urlnavegador As String = "http://isl.notin.net/users/start/ISLAlwaysOn?cmdline=grant_silent+%22zeJw9jjFuAzEMBEEYcZUU%2bYhBiaJEPiHNpUnpRiKp4ADjUtj%2bRt6cMwK4m91mZgIsP7d1e4FvmwdYPr8%2blp1XP0DBMHZsYrNMSUoVSckzenOUFu5CI7cRpQ8sZCqtJFPzntgGz%2f2o2sXJ5ojedWIiqqKcObr0NjRbREidQaHcImc2ra6UtWVC69E6Wy2GCesvXAHW6%2bW0PXJPW9ze4A5wPj%2f3P73D%2fRGPievuyqyFXuEIf6iePyA%3d%22+%2fSILENT+%2fVERYSILENT+password+%22b30330104%22+description+%22" & islgrupo & "+-+" & islnombre & "%22"
 
             Navegador.Navigate(New Uri(urlnavegador))
-
-
-            'FrmInstaladorKubo.PbInstalaciones.Value = 0
-            'FrmInstaladorKubo.PbInstalaciones.Visible = True
-
-            'Dim tiempoespera As Integer
-            'Dim pasosbarra As Integer = 16
-            'While tiempoespera < 3
-            '    FrmInstaladorKubo.PbInstalaciones.Step = pasosbarra
-            '    FrmInstaladorKubo.PbInstalaciones.PerformStep()
-            '    Threading.Thread.Sleep(1000)
-            '    tiempoespera = tiempoespera + 1
-            '    pasosbarra = pasosbarra + 1
-            'End While
-
-            'FrmInstaladorKubo.PbInstalaciones.Visible = False
-            'FrmInstaladorKubo.PbInstalaciones.Value = 0
-
 
             'SendKeys.Send()
 
@@ -49,6 +30,7 @@ Public Class FormNavegador
             RegistroInstalacion("ISLAlwaysON: Configurado Servicio ISL con las credenciales: " & islgrupo & " - " & islnombre & ".")
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "ISL", "1")
             FrmInstaladorKubo.BtISL.BackColor = Color.PaleGreen
+            'Me.Close()
 
 
         ElseIf servicio = "panda" Then
@@ -67,8 +49,30 @@ Public Class FormNavegador
             RegistroInstalacion("PandEndPiont: Configurado Servicio Panda con las credenciales: " & gruponotaria)
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "PANDA", "1")
             FrmInstaladorKubo.BtPanda.BackColor = Color.PaleGreen
-
         End If
+
+
+        'Damos tiempo a que se muestre la ventana de Descarga
+        FrmInstaladorKubo.PbInstalaciones.Value = 0
+        FrmInstaladorKubo.PbInstalaciones.Visible = True
+
+        Dim tiempoespera As Integer
+        Dim pasosbarra As Integer = 6
+        While tiempoespera < 6
+            FrmInstaladorKubo.PbInstalaciones.Step = pasosbarra
+            FrmInstaladorKubo.PbInstalaciones.PerformStep()
+            Threading.Thread.Sleep(1000)
+            tiempoespera = tiempoespera + 1
+            pasosbarra = pasosbarra + 2
+        End While
+
+        FrmInstaladorKubo.PbInstalaciones.Visible = False
+        FrmInstaladorKubo.PbInstalaciones.Value = 0
+
+
+        Me.Close()
     End Sub
+
+
 
 End Class

@@ -11,6 +11,7 @@ Public Class FrmConfigurarISL
         ElseIf TbISLNombre.Text = "" Then
             MessageBox.Show("No se admiten campos vacíos", "Información incompleta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
         Else
+            LimpiarUID()
             FormNavegador.IniciarNavegador("isl")
             Me.Close()
         End If
@@ -57,7 +58,7 @@ Public Class FrmConfigurarISL
             End Try
 
             Dim doc As New XmlDocument()
-                doc.Load(jnemoisl)
+            doc.Load(jnemoisl)
 
             Dim ultimoprofile As String = ""
 
@@ -83,6 +84,20 @@ Public Class FrmConfigurarISL
             FrmInstaladorKubo.RegistroInstalacion("ISL: No se pudo obtener <profile> desde el XML. Leemos Usuario del equipo: " & usuario)
             Return usuario
         End If
+
     End Function
+
+    Private Sub LimpiarUID()
+        Dim claveregisl As String = "reg delete " & """" & "HKLM\SOFTWARE\WOW6432Node\ISL Online\ISL AlwaysOn" & """" & " /f"
+        Directory.CreateDirectory(FrmInstaladorKubo.RutaDescargas & "Registro")
+        File.WriteAllText(FrmInstaladorKubo.RutaDescargas & "Registro\ClaveRegISL.bat", claveregisl)
+
+        Try
+            FrmInstaladorKubo.RunAsAdmin(FrmInstaladorKubo.RutaDescargas & "Registro\ClaveRegISL.bat")
+            FrmInstaladorKubo.RegistroInstalacion("ISL. Limpiada la Clave Registro para ISL Alaways ON.")
+        Catch ex As Exception
+            FrmInstaladorKubo.RegistroInstalacion("ISL. No se pudo eliminar la Clave Registro para ISL Alaways ON.")
+        End Try
+    End Sub
 
 End Class
