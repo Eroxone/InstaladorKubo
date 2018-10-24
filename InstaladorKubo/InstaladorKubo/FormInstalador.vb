@@ -12,6 +12,8 @@ Imports Instalador.ODBCNotinSQL
 Imports Instalador.FormNavegador
 Imports Instalador.ObtenerVersionado
 Imports Instalador.LimpiezaInicio
+Imports System.Console
+
 
 'WEB DE INSTALACIÓN
 'http://instalador.notin.net
@@ -27,8 +29,8 @@ Public Class FrmInstaladorKubo
     Public RutaDescargas As String = GetPathTemp() 'PATH_TEMP
     Public Const instaladorkuboini = "C:\TEMP\InstaladorKubo\InstaladorKubo.ini"
 
-
     Private Sub FrmInstaladorNotin_Load(sender As Object, e As EventArgs) Handles Me.Load
+
         Try
             Directory.CreateDirectory("C:\TEMP\InstaladorKubo")
             File.AppendAllText("C:\TEMP\InstaladorKubo\RegistroInstalacion.txt", vbCrLf & vbCrLf)
@@ -5756,9 +5758,6 @@ Public Class FrmInstaladorKubo
     '        RegistroInstalacion("ERROR: Detectada posible instalación de Office 2016. Debe limpiarse antes de proceder a relizar la instalación desatendida.")
     '    End If
     'End If
-
-
-
 
 
 End Class

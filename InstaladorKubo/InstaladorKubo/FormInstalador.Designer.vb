@@ -89,6 +89,7 @@ Partial Class FrmInstaladorKubo
         Me.BtFocos = New System.Windows.Forms.Button()
         Me.BtConfWord2016ADRA = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.BtNautilus = New System.Windows.Forms.Button()
         Me.BtAbreExcel = New System.Windows.Forms.Button()
         Me.BtPanda = New System.Windows.Forms.Button()
@@ -236,6 +237,7 @@ Partial Class FrmInstaladorKubo
         Me.lbProcesandoDescargas = New System.Windows.Forms.Label()
         Me.LbDescargas = New System.Windows.Forms.Label()
         Me.TlpPanda = New System.Windows.Forms.ToolTip(Me.components)
+        Me.BWProgreso = New System.ComponentModel.BackgroundWorker()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -664,7 +666,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage7.Location = New System.Drawing.Point(4, 27)
         Me.TabPage7.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage7.Name = "TabPage7"
-        Me.TabPage7.Size = New System.Drawing.Size(446, 401)
+        Me.TabPage7.Size = New System.Drawing.Size(463, 401)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
         '
@@ -843,7 +845,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.Controls.Add(Me.BtConfWord2016ADRA)
         Me.TabPage10.Location = New System.Drawing.Point(4, 27)
         Me.TabPage10.Name = "TabPage10"
-        Me.TabPage10.Size = New System.Drawing.Size(446, 401)
+        Me.TabPage10.Size = New System.Drawing.Size(463, 401)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
@@ -1003,6 +1005,7 @@ Partial Class FrmInstaladorKubo
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage6.Controls.Add(Me.Label12)
         Me.TabPage6.Controls.Add(Me.BtNautilus)
         Me.TabPage6.Controls.Add(Me.BtAbreExcel)
         Me.TabPage6.Controls.Add(Me.BtPanda)
@@ -1020,9 +1023,18 @@ Partial Class FrmInstaladorKubo
         Me.TabPage6.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage6.Name = "TabPage6"
         Me.TabPage6.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage6.Size = New System.Drawing.Size(446, 401)
+        Me.TabPage6.Size = New System.Drawing.Size(463, 401)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Utilidades"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(39, 350)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(71, 18)
+        Me.Label12.TabIndex = 48
+        Me.Label12.Text = "Label12"
         '
         'BtNautilus
         '
@@ -1187,7 +1199,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage5.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage5.Name = "TabPage5"
         Me.TabPage5.Padding = New System.Windows.Forms.Padding(2)
-        Me.TabPage5.Size = New System.Drawing.Size(446, 401)
+        Me.TabPage5.Size = New System.Drawing.Size(463, 401)
         Me.TabPage5.TabIndex = 0
         Me.TabPage5.Text = "Requisitos"
         '
@@ -1258,7 +1270,7 @@ Partial Class FrmInstaladorKubo
         Me.TabPage12.Controls.Add(Me.Label2)
         Me.TabPage12.Location = New System.Drawing.Point(4, 27)
         Me.TabPage12.Name = "TabPage12"
-        Me.TabPage12.Size = New System.Drawing.Size(446, 401)
+        Me.TabPage12.Size = New System.Drawing.Size(463, 401)
         Me.TabPage12.TabIndex = 5
         Me.TabPage12.Text = "Notaría"
         '
@@ -2429,6 +2441,11 @@ Partial Class FrmInstaladorKubo
         Me.TlpPanda.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         Me.TlpPanda.ToolTipTitle = "Descarga WAAgent para tu grupo Notaría"
         '
+        'BWProgreso
+        '
+        Me.BWProgreso.WorkerReportsProgress = True
+        Me.BWProgreso.WorkerSupportsCancellation = True
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2482,6 +2499,7 @@ Partial Class FrmInstaladorKubo
         CType(Me.NumMinutoAdra, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumHoraAdra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
+        Me.TabPage6.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage12.ResumeLayout(False)
         Me.TabPage12.PerformLayout()
@@ -2719,4 +2737,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LklbDatosBlancos As LinkLabel
     Friend WithEvents TlpPanda As ToolTip
     Friend WithEvents LbMigradorINI As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents BWProgreso As System.ComponentModel.BackgroundWorker
 End Class
