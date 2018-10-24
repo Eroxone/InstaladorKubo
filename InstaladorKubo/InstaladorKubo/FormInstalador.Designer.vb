@@ -94,7 +94,6 @@ Partial Class FormInstaladorKubo
         Me.BtFocos = New System.Windows.Forms.Button()
         Me.BtConfWord2016ADRA = New System.Windows.Forms.Button()
         Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.Label12 = New System.Windows.Forms.Label()
         Me.BtNautilus = New System.Windows.Forms.Button()
         Me.BtAbreExcel = New System.Windows.Forms.Button()
         Me.BtPanda = New System.Windows.Forms.Button()
@@ -1067,7 +1066,6 @@ Partial Class FormInstaladorKubo
         'TabPage6
         '
         Me.TabPage6.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPage6.Controls.Add(Me.Label12)
         Me.TabPage6.Controls.Add(Me.BtNautilus)
         Me.TabPage6.Controls.Add(Me.BtAbreExcel)
         Me.TabPage6.Controls.Add(Me.BtPanda)
@@ -1088,15 +1086,6 @@ Partial Class FormInstaladorKubo
         Me.TabPage6.Size = New System.Drawing.Size(463, 401)
         Me.TabPage6.TabIndex = 1
         Me.TabPage6.Text = "Utilidades"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(39, 350)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(71, 18)
-        Me.Label12.TabIndex = 48
-        Me.Label12.Text = "Label12"
         '
         'BtNautilus
         '
@@ -1510,7 +1499,7 @@ Partial Class FormInstaladorKubo
         '
         'PbInstalaciones
         '
-        Me.PbInstalaciones.Location = New System.Drawing.Point(449, 604)
+        Me.PbInstalaciones.Location = New System.Drawing.Point(449, 603)
         Me.PbInstalaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.PbInstalaciones.MarqueeAnimationSpeed = 50
         Me.PbInstalaciones.Maximum = 50
@@ -2571,7 +2560,6 @@ Partial Class FormInstaladorKubo
         CType(Me.NumMinutoAdra, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumHoraAdra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage6.ResumeLayout(False)
-        Me.TabPage6.PerformLayout()
         Me.TabPage5.ResumeLayout(False)
         Me.TabPage12.ResumeLayout(False)
         Me.TabPage12.PerformLayout()
@@ -2808,7 +2796,6 @@ Partial Class FormInstaladorKubo
     Friend WithEvents LklbDatosBlancos As LinkLabel
     Friend WithEvents TlpPanda As ToolTip
     Friend WithEvents LbMigradorINI As Label
-    Friend WithEvents Label12 As Label
     Friend WithEvents BWProgreso As System.ComponentModel.BackgroundWorker
     Friend WithEvents PbDescargas As ProgressBar
     Friend WithEvents Label13 As Label
