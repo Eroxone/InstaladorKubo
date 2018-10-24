@@ -1604,7 +1604,6 @@ Public Class FormInstaladorKubo
             RegistroInstalacion("ERROR: No se pudo Configurar WORD 2016. No se encontró la descarga de la Utilidad.")
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016", "0")
         End If
-        'TODO preparar esto también para la versión de 64bits
 
         SoftwareAncert()
         'KMSPico()
@@ -3200,7 +3199,6 @@ Public Class FormInstaladorKubo
 
 
     Public Sub EnvioMail()
-        'TODO enviar email cuando termine la instalación con el log e info sistema
         If Validaremail() = True Then
 
             'Dim A As String = Tbtucorreo.Text
@@ -3761,7 +3759,6 @@ Public Class FormInstaladorKubo
             RegistroInstalacion("ERROR: No se pudo Configurar WORD 2016 x64. No se encontró la descarga de la Utilidad.")
             cIniArray.IniWrite(instaladorkuboini, "INSTALACIONES", "CONFIGURAWORD2016X64", "0")
         End If
-        'TODO preparar esto también para la versión de 64bits
 
         SoftwareAncertx64()
         'KMSPico()
@@ -5564,7 +5561,7 @@ Public Class FormInstaladorKubo
     End Sub
 
     Public Sub EnvioMailADRA()
-        'TODO enviar email cuando termine la instalación con el log e info sistema
+
         If Validaremail() = True Then
 
             'Dim A As String = Tbtucorreo.Text
@@ -5641,14 +5638,16 @@ Public Class FormInstaladorKubo
         WindowState = FormWindowState.Normal
     End Sub
 
+
+    Private Sub BtAbreExcel_MouseDown(sender As Object, e As MouseEventArgs) Handles BtAbreExcel.MouseDown
+        lbInstalando.Visible = True
+        PbInstalaciones.Value = 0
+        PbInstalaciones.Visible = True
+    End Sub
+
     Private Sub BtAbreExcel_Click(sender As Object, e As EventArgs) Handles BtAbreExcel.Click
 
         MessageBox.Show("Se va a proceder a generar el ejecutable ABREEXCEL.EXE personalizado para este equipo." & vbCrLf & "Es posible que tu antivirus interfiera en esta ejecución. Si tienes algún error prueba a deshabilitarlo temporalmente o añadir una excepción. Siempre puedes consultar el Log del Instalador para obtener más detalles.", "Generando AbreExcel en este equipo.", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-        PbInstalaciones.Value = 0
-        PbInstalaciones.Visible = True
-
-
 
         Dim rutaexcel As String
         If File.Exists("C:\Program Files\Microsoft Office\Office16\EXCEL.EXE") Then
@@ -5684,7 +5683,6 @@ Public Class FormInstaladorKubo
             Exit Sub
         End Try
 
-        'TODO obtener archivos del ftp
         obtenerwget()
         Dim wgetscripts As String = "wget.exe -q --show-progress -t 5 -c --ftp-user=juanjo --ftp-password=Palomeras24 "
         Shell("cmd.exe /c " & RutaDescargas & wgetscripts & PuestoNotin & "Scripts\BatToExeConverter.exe" & " -O " & rutaabreexcel & "BatToExeConverter.exe", AppWinStyle.Hide, True)
@@ -5737,6 +5735,7 @@ Public Class FormInstaladorKubo
 
         PbInstalaciones.Value = 0
         PbInstalaciones.Visible = False
+        lbInstalando.Visible = False
 
         MessageBox.Show("Encontrarás ABREEXCEL.EXE en C:\Notawin.Net. Establécelo como Programa predeterminado para los tipos de extensiones Excel.", "Generación de AbreExcel finalizada.", MessageBoxButtons.OK, MessageBoxIcon.Information)
         BtAbreExcel.BackColor = Color.PaleGreen
@@ -5802,6 +5801,10 @@ Public Class FormInstaladorKubo
         End If
         CBoxNemo.Text = CboxNemoAdra.Text
     End Sub
+
+
+
+
 
 
 

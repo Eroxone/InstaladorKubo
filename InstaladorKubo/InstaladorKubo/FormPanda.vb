@@ -20,7 +20,6 @@ Public Class FormPanda
 
     End Sub
 
-    'TODO QUE SANDRA ME EXPLIQUE COMO HACER ESTO SIN FUNCION CON UN SUB Y UN BYVAL
     Private Function LeerXML()
         Dim appData As String = GetFolderPath(SpecialFolder.ApplicationData)
         Dim jnemoxml As String = appData & "\jNemo\jnemo.xml"

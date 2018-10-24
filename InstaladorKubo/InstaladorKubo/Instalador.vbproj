@@ -32,11 +32,11 @@
     <ProductName>Instalador</ProductName>
     <PublisherName>Instalador</PublisherName>
     <SuiteName>Instalador</SuiteName>
-    <MinimumRequiredVersion>1.0.8.0</MinimumRequiredVersion>
+    <MinimumRequiredVersion>1.0.8.50</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.htm</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>28</ApplicationRevision>
+    <ApplicationRevision>51</ApplicationRevision>
     <ApplicationVersion>1.0.8.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -357,7 +357,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Deebug" (powershell.exe -File  "D:\ConfuserEX\confuserps.ps1"  $(TargetDir) $(TargetDir) $(TargetPath) $(ProjectDir)confuser.crproj $(SolutionDir)BaseProjectbin $(SolutionDir)BaseProject2bin)</PostBuildEvent>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Debug" (powershell.exe -File  "D:\ConfuserEX\confuserps.ps1"  $(TargetDir) $(TargetDir) $(TargetPath) $(ProjectDir)confuser.crproj $(SolutionDir)BaseProjectbin $(SolutionDir)BaseProject2bin)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
