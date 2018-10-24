@@ -67,7 +67,7 @@ Public Class FormInstaladorKubo
 
 
         'Cargo correo anterior de notificaciones
-        CBoxEmail.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
+        CBoxNemo.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
 
 
         'Versiones  Notin y .NET en Sistema
@@ -1832,7 +1832,7 @@ Public Class FormInstaladorKubo
         TlpFramework.SetToolTip(BtFramework, "Se procederá a la instalación del Paquete Framework 3.5 necesario para .Net. Se recomienda Reinciar tras su instalación.")
 
         TlpTuemail.ToolTipTitle = "Indica tu email para recibir un aviso"
-        TlpTuemail.SetToolTip(CBoxEmail, "Se te remitirá un email de confirmación cuando finalice el proceso en ejecución.")
+        TlpTuemail.SetToolTip(CBoxNemo, "Se te remitirá un email de confirmación cuando finalice el proceso en ejecución.")
 
         TlpNotinpdf.ToolTipTitle = "Instalador NotinPDF"
         TlpNotinpdf.SetToolTip(BtNotinpdf, "Descargará el paquete NotinPDF y mostrará la ruta de descarga. Su ejecución será manual.")
@@ -3171,9 +3171,9 @@ Public Class FormInstaladorKubo
 
 #Region "ENVIO EMAIL"
     Private Function Validaremail()
-        If CBoxEmail.Text = Nothing Then
+        If CBoxNemo.Text = Nothing Then
             Return False
-        ElseIf System.Text.RegularExpressions.Regex.IsMatch(CBoxEmail.Text, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$") Then
+        ElseIf System.Text.RegularExpressions.Regex.IsMatch(CBoxNemo.Text, "^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$") Then
             Return True
         Else
             Return False
@@ -3186,7 +3186,7 @@ Public Class FormInstaladorKubo
         If Validaremail() = True Then
 
             'Dim A As String = Tbtucorreo.Text
-            Dim a As String = CBoxEmail.Text
+            Dim a As String = CBoxNemo.Text
             Dim Destinatario As MailAddress = New MailAddress(a)
 
             Dim correo As New MailMessage
@@ -3208,13 +3208,13 @@ Public Class FormInstaladorKubo
             smtp.EnableSsl = True
             Try
                 smtp.Send(correo)
-                RegistroInstalacion("Correo de notificación enviado a " & CBoxEmail.Text)
+                RegistroInstalacion("Correo de notificación enviado a " & CBoxNemo.Text)
             Catch ex As Exception
                 RegistroInstalacion("ERROR Email: " & ex.Message)
 
             End Try
         Else
-            RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & CBoxEmail.Text & " no se consideró válida o no se indicó ningunta dirección.")
+            RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & CBoxNemo.Text & " no se consideró válida o no se indicó ningunta dirección.")
         End If
 
     End Sub
@@ -3228,11 +3228,12 @@ Public Class FormInstaladorKubo
         End If
     End Sub
 
-    Private Sub CBoxEmail_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBoxEmail.LostFocus
+    Private Sub CBoxNemo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBoxNemo.LostFocus
         If Validaremail() = True Then
-            Dim destinatario As String = CBoxEmail.Text
-            cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", destinatario)
-            RegistroInstalacion("EMAIL: Dirección de correo establecida a " & destinatario)
+            Dim destinatario As String = CBoxNemo.Text
+            cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "NEMO", destinatario)
+            TbNemo.Text = destinatario
+            RegistroInstalacion("NEMO: Cuenta de Nemo establecida a " & destinatario)
         Else
             cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
         End If
@@ -5550,7 +5551,7 @@ Public Class FormInstaladorKubo
         If Validaremail() = True Then
 
             'Dim A As String = Tbtucorreo.Text
-            Dim a As String = CBoxEmail.Text
+            Dim a As String = CBoxNemo.Text
             Dim Destinatario As MailAddress = New MailAddress(a)
 
             Dim correo As New MailMessage
@@ -5575,13 +5576,13 @@ Public Class FormInstaladorKubo
 
             Try
                 smtp.Send(correo)
-                RegistroInstalacion("Correo de notificación enviado a " & CBoxEmail.Text)
+                RegistroInstalacion("Correo de notificación enviado a " & CBoxNemo.Text)
             Catch ex As Exception
                 RegistroInstalacion("ERROR Email: " & ex.Message)
 
             End Try
         Else
-            RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & CBoxEmail.Text & " no se consideró válida o no se indicó ningunta dirección.")
+            RegistroInstalacion("ADVERTENCIA: No se pudo notificar por correo. La dirección " & CBoxNemo.Text & " no se consideró válida o no se indicó ningunta dirección.")
         End If
 
     End Sub

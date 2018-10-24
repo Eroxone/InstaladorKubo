@@ -153,7 +153,7 @@ Partial Class FormInstaladorKubo
         Me.TlpNotinpdf = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpRequisitosNotin = New System.Windows.Forms.ToolTip(Me.components)
         Me.LbNotificacionemail = New System.Windows.Forms.Label()
-        Me.CBoxEmail = New System.Windows.Forms.ComboBox()
+        Me.CBoxNemo = New System.Windows.Forms.ComboBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.BtTraerdeF = New System.Windows.Forms.Button()
         Me.BtCopiarhaciaF = New System.Windows.Forms.Button()
@@ -1580,29 +1580,25 @@ Partial Class FormInstaladorKubo
         'LbNotificacionemail
         '
         Me.LbNotificacionemail.AutoSize = True
-        Me.LbNotificacionemail.Enabled = False
-        Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 9.75!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbNotificacionemail.Location = New System.Drawing.Point(154, 638)
+        Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbNotificacionemail.Location = New System.Drawing.Point(169, 638)
         Me.LbNotificacionemail.Name = "LbNotificacionemail"
-        Me.LbNotificacionemail.Size = New System.Drawing.Size(78, 15)
+        Me.LbNotificacionemail.Size = New System.Drawing.Size(79, 18)
         Me.LbNotificacionemail.TabIndex = 48
-        Me.LbNotificacionemail.Text = "Notificar a:"
-        Me.LbNotificacionemail.Visible = False
+        Me.LbNotificacionemail.Text = "Tu Nemo:"
         '
-        'CBoxEmail
+        'CBoxNemo
         '
-        Me.CBoxEmail.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.CBoxEmail.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CBoxEmail.Enabled = False
-        Me.CBoxEmail.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.CBoxEmail.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
-        Me.CBoxEmail.FormattingEnabled = True
-        Me.CBoxEmail.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
-        Me.CBoxEmail.Location = New System.Drawing.Point(246, 633)
-        Me.CBoxEmail.Name = "CBoxEmail"
-        Me.CBoxEmail.Size = New System.Drawing.Size(139, 22)
-        Me.CBoxEmail.TabIndex = 49
-        Me.CBoxEmail.Visible = False
+        Me.CBoxNemo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CBoxNemo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CBoxNemo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.CBoxNemo.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
+        Me.CBoxNemo.FormattingEnabled = True
+        Me.CBoxNemo.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
+        Me.CBoxNemo.Location = New System.Drawing.Point(254, 635)
+        Me.CBoxNemo.Name = "CBoxNemo"
+        Me.CBoxNemo.Size = New System.Drawing.Size(139, 22)
+        Me.CBoxNemo.TabIndex = 49
         '
         'TabPage1
         '
@@ -2523,7 +2519,7 @@ Partial Class FormInstaladorKubo
         Me.Controls.Add(Me.BtPaginaActiva)
         Me.Controls.Add(Me.LbHostname)
         Me.Controls.Add(Me.BtSubeBinario)
-        Me.Controls.Add(Me.CBoxEmail)
+        Me.Controls.Add(Me.CBoxNemo)
         Me.Controls.Add(Me.BtExplorarRutas)
         Me.Controls.Add(Me.LbNotificacionemail)
         Me.Controls.Add(Me.BtReconectar)
@@ -2644,7 +2640,7 @@ Partial Class FormInstaladorKubo
     Friend WithEvents BtReconectar As Button
     Friend WithEvents LbNotificacionemail As Label
     Friend WithEvents BtExplorarRutas As Button
-    Friend WithEvents CBoxEmail As ComboBox
+    Friend WithEvents CBoxNemo As ComboBox
     Friend WithEvents BtDocRequisitos As Button
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents BtTraerdeF As Button
