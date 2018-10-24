@@ -20,7 +20,7 @@ Public Class FrmConfigurarISL
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
         TbISLGrupo.Text = ""
         TbISLNombre.Text = ""
-        FrmInstaladorKubo.Show()
+        FormInstaladorKubo.Show()
         FormNavegador.Close()
         Me.Close()
     End Sub
@@ -35,11 +35,11 @@ Public Class FrmConfigurarISL
             Dim grupo = profile.Remove(0, longusuario + 1)
             TbISLGrupo.Text = grupo
             TbISLNombre.Text = usuario
-            FrmInstaladorKubo.RegistroInstalacion("ISL: Leído " & grupo & " - " & usuario & " desde el XML jNemo.")
+            FormInstaladorKubo.RegistroInstalacion("ISL: Leído " & grupo & " - " & usuario & " desde el XML jNemo.")
         Catch ex As Exception
             TbISLNombre.Text = LeerXML().ToString
             TbISLGrupo.Text = "UNIDATA"
-            FrmInstaladorKubo.RegistroInstalacion("ISL: Se obtiene usuario: " & TbISLNombre.Text.ToString & ". No se pudo determinar el Grupo. Se ofrece UNIDATA.")
+            FormInstaladorKubo.RegistroInstalacion("ISL: Se obtiene usuario: " & TbISLNombre.Text.ToString & ". No se pudo determinar el Grupo. Se ofrece UNIDATA.")
         End Try
 
     End Sub
@@ -54,7 +54,7 @@ Public Class FrmConfigurarISL
             Try
                 File.Copy(jnemoxml, appData & "\jNemo\jnemoisl.xml", True)
             Catch ex As Exception
-                FrmInstaladorKubo.RegistroInstalacion("ERROR ISL. No se pudo realizar la copia del XML de jNemo")
+                FormInstaladorKubo.RegistroInstalacion("ERROR ISL. No se pudo realizar la copia del XML de jNemo")
             End Try
 
             Dim doc As New XmlDocument()
@@ -81,7 +81,7 @@ Public Class FrmConfigurarISL
             Dim equipousuario As String = (My.User.Name)
             Dim equipo As Integer = equipousuario.LastIndexOf("\")
             Dim usuario = equipousuario.Remove(0, equipo + 1)
-            FrmInstaladorKubo.RegistroInstalacion("ISL: No se pudo obtener <profile> desde el XML. Leemos Usuario del equipo: " & usuario)
+            FormInstaladorKubo.RegistroInstalacion("ISL: No se pudo obtener <profile> desde el XML. Leemos Usuario del equipo: " & usuario)
             Return usuario
         End If
 
@@ -89,14 +89,14 @@ Public Class FrmConfigurarISL
 
     Private Sub LimpiarUID()
         Dim claveregisl As String = "reg delete " & """" & "HKLM\SOFTWARE\WOW6432Node\ISL Online\ISL AlwaysOn" & """" & " /f"
-        Directory.CreateDirectory(FrmInstaladorKubo.RutaDescargas & "Registro")
-        File.WriteAllText(FrmInstaladorKubo.RutaDescargas & "Registro\ClaveRegISL.bat", claveregisl)
+        Directory.CreateDirectory(FormInstaladorKubo.RutaDescargas & "Registro")
+        File.WriteAllText(FormInstaladorKubo.RutaDescargas & "Registro\ClaveRegISL.bat", claveregisl)
 
         Try
-            FrmInstaladorKubo.RunAsAdmin(FrmInstaladorKubo.RutaDescargas & "Registro\ClaveRegISL.bat")
-            FrmInstaladorKubo.RegistroInstalacion("ISL. Limpiada la Clave Registro para ISL Alaways ON.")
+            FormInstaladorKubo.RunAsAdmin(FormInstaladorKubo.RutaDescargas & "Registro\ClaveRegISL.bat")
+            FormInstaladorKubo.RegistroInstalacion("ISL. Limpiada la Clave Registro para ISL Alaways ON.")
         Catch ex As Exception
-            FrmInstaladorKubo.RegistroInstalacion("ISL. No se pudo eliminar la Clave Registro para ISL Alaways ON.")
+            FormInstaladorKubo.RegistroInstalacion("ISL. No se pudo eliminar la Clave Registro para ISL Alaways ON.")
         End Try
     End Sub
 

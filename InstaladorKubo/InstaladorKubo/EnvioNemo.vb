@@ -10,8 +10,8 @@
         Dim autenticacioncurl As String = """" & "auth=cf4a61cadd12a624539ebc1566ff82d2&"
         Dim pluginopenfire As String = "https://openfire.notin.net/plugins/httpbroadcast/send"
 
-        Shell("cmd /k " & FrmInstaladorKubo.RutaDescargas & "curl.exe -XPOST -k -d " & autenticacioncurl & "txt=" & mensaje & "&from=instalador@notin.net&recps[]=" & cuentanemo & """" & " " & pluginopenfire, AppWinStyle.Hide, False)
-        FrmInstaladorKubo.RegistroInstalacion("Envio Nemo a: " & cuentanemo)
+        Shell("cmd /k " & FormInstaladorKubo.RutaDescargas & "curl.exe -XPOST -k -d " & autenticacioncurl & "txt=" & mensaje & "&from=instalador@notin.net&recps[]=" & cuentanemo & """" & " " & pluginopenfire, AppWinStyle.Hide, False)
+        FormInstaladorKubo.RegistroInstalacion("Envio Nemo a: " & cuentanemo)
     End Sub
 
 

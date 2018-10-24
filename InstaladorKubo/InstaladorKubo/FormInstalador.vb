@@ -19,7 +19,7 @@ Imports System.Console
 'http://instalador.notin.net
 
 
-Public Class FrmInstaladorKubo
+Public Class FormInstaladorKubo
     'CONTROLES DESCARGAS VARIABLES STRING
     Private Const FILE_DOWNLOAD As String = "descargas.txt"
     Private Const REQUISITOS_DOWNLOAD As String = "requisitos.txt"
@@ -536,7 +536,7 @@ Public Class FrmInstaladorKubo
             BtConfWord2016ADRA.BackColor = Color.LightSalmon
         End If
 
-        Dim limpiarperfiladra = cIniArray.IniGet(FrmInstaladorKubo.instaladorkuboini, "ADRA", "LIMPIARPERFIL", "2")
+        Dim limpiarperfiladra = cIniArray.IniGet(FormInstaladorKubo.instaladorkuboini, "ADRA", "LIMPIARPERFIL", "2")
         If limpiarperfiladra = 1 Then
             BtLimpiarPerfil.BackColor = Color.PaleGreen
         End If
@@ -5142,7 +5142,7 @@ Public Class FrmInstaladorKubo
         'Advertir de las carpetas que se van a borrar.
         If unidadZ() = False Then
             MessageBox.Show("No se pudo conectar a \\NotinRAPP\Z. A continuación te dirigimos para que realices la conexión manualmente. Una vez hecha aguarda unos segundos y el proceso continuará.", "Conexión Manual a Z del Rapp", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            FrmInstaladorKubo.RegistroInstalacion("No se pudo conectar automáticamente al Rapp. Se procede a ofrecer la conexión manual.")
+            FormInstaladorKubo.RegistroInstalacion("No se pudo conectar automáticamente al Rapp. Se procede a ofrecer la conexión manual.")
             Try
                 My.Computer.Clipboard.SetText("\\NOTINRAPP\Z")
                 My.Computer.Keyboard.SendKeys("^{ESC}", True)
@@ -5404,6 +5404,7 @@ Public Class FrmInstaladorKubo
             End If
 
             LbAdraDiferido.Visible = True
+            EnvioNemo.envionemo(TbNemo.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO CON ERRORES.+DESPACHO:+" & TbIdentificaNotaria.Text)
             Exit Sub
         End Try
 
@@ -5454,6 +5455,7 @@ Public Class FrmInstaladorKubo
                 End If
 
                 LbAdraDiferido.Visible = True
+                EnvioNemo.envionemo(TbNemo.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO CON ERRORES.+DESPACHO:+" & TbIdentificaNotaria.Text)
                 Exit Sub
             End Try
 
@@ -5500,7 +5502,7 @@ Public Class FrmInstaladorKubo
         End If
 
         LbAdraDiferido.Visible = True
-        EnvioNemo.envionemo(TbNemo.Text.ToString, "=PROCESO+ACTUALIZACION+ADRA+FINALIZADO=+DESPACHO:+" & TbIdentificaNotaria.Text)
+        EnvioNemo.envionemo(TbNemo.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO CON EXITO.+DESPACHO:+" & TbIdentificaNotaria.Text)
 
         'EnvioMailADRA()
         'MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)

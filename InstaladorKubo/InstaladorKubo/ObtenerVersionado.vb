@@ -1,4 +1,4 @@
-﻿Imports Instalador.FrmInstaladorKubo
+﻿Imports Instalador.FormInstaladorKubo
 Imports System.IO
 Imports Instalador.LeerFicherosINI
 Imports System.Environment
@@ -46,7 +46,7 @@ Public Class ObtenerVersionado
         ' Si no se encontraron resultados
         If vlcResultado = "" Then
             vlcResultado = "Sin información"
-            FrmInstaladorKubo.LbVersionNotin.Text = vlcResultado
+            FormInstaladorKubo.LbVersionNotin.Text = vlcResultado
             Exit Sub
         End If
 
@@ -55,7 +55,7 @@ Public Class ObtenerVersionado
         Try
             Dim numeroversion = vlcResultado.LastIndexOf(":")
             vlcResultado = vlcResultado.Substring(numeroversion + 2)
-            FrmInstaladorKubo.LbVersionNotin.Text = vlcResultado
+            FormInstaladorKubo.LbVersionNotin.Text = vlcResultado
             cIniArray.IniWrite(instaladorkuboini, "NOTIN", "VERSION", vlcResultado)
             RegistroInstalacion("NOTIN: InfoVersión en el Sistema: " & vlcResultado)
         Catch ex As Exception
@@ -76,7 +76,7 @@ Public Class ObtenerVersionado
             sr.Close()
             Dim numeroversion = infoversion.LastIndexOf(",")
             infoversion = infoversion.Substring(0, numeroversion)
-            FrmInstaladorKubo.LbBetaNet.Text = infoversion
+            FormInstaladorKubo.LbBetaNet.Text = infoversion
             cIniArray.IniWrite(instaladorkuboini, "NET", "NETSISTEMA", infoversion)
             'cIniArray.IniWrite(instaladorkuboini, "NET", "FECHAEJECUCION", DateTime.Now)
             RegistroInstalacion("NOTIN .NET: InfoVersión en el Sistema: " & infoversion)
@@ -89,7 +89,7 @@ Public Class ObtenerVersionado
         Try
             Dim migradorok = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "VARIABLES", "VersionMigradorNotinSQL", "0")
             If migradorok <> 0 Then
-                FrmInstaladorKubo.LbMigradorINI.Text = "MigradorSQL " & migradorok
+                FormInstaladorKubo.LbMigradorINI.Text = "MigradorSQL " & migradorok
             End If
         Catch ex As Exception
             RegistroInstalacion("No se pudo obtener versión de MigradorSQL. " & ex.Message)
@@ -97,16 +97,16 @@ Public Class ObtenerVersionado
     End Sub
 
     Public Shared Sub ObtenerVersionFW()
-        Directory.CreateDirectory(FrmInstaladorKubo.RutaDescargas)
+        Directory.CreateDirectory(FormInstaladorKubo.RutaDescargas)
 
         Try
-            Shell("cmd /c reg Query " & """" & "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client" & """" & " /v Version > " & FrmInstaladorKubo.RutaDescargas & "fwversion.txt", AppWinStyle.Hide, True)
+            Shell("cmd /c reg Query " & """" & "HKLM\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Client" & """" & " /v Version > " & FormInstaladorKubo.RutaDescargas & "fwversion.txt", AppWinStyle.Hide, True)
         Catch ex As Exception
             RegistroInstalacion("ERROR Obtener versión FW: " & ex.Message)
         End Try
 
         Try
-            Dim versionfw As String = FrmInstaladorKubo.RutaDescargas & "fwversion.txt"
+            Dim versionfw As String = FormInstaladorKubo.RutaDescargas & "fwversion.txt"
             Dim infoversion As String = "Sin información."
 
             Dim sr As New System.IO.StreamReader(versionfw)
@@ -118,16 +118,16 @@ Public Class ObtenerVersionado
             End While
             sr.Close()
 
-            FrmInstaladorKubo.TlpVersionFW.ToolTipTitle = "REG Query para Versión Framework:"
-            FrmInstaladorKubo.TlpVersionFW.SetToolTip(FrmInstaladorKubo.BtVersionFW, infoversion)
+            FormInstaladorKubo.TlpVersionFW.ToolTipTitle = "REG Query para Versión Framework:"
+            FormInstaladorKubo.TlpVersionFW.SetToolTip(FormInstaladorKubo.BtVersionFW, infoversion)
 
             Dim numeroversion As String = infoversion.Substring(25)
 
-            FrmInstaladorKubo.LbVersionFW.Text = "Versión " & numeroversion
+            FormInstaladorKubo.LbVersionFW.Text = "Versión " & numeroversion
 
             cIniArray.IniWrite(instaladorkuboini, "NET", "FWSISTEMA", numeroversion)
             RegistroInstalacion("INFO FRAMEWORK: InfoVersión en el Sistema: " & numeroversion)
-            File.Delete(FrmInstaladorKubo.RutaDescargas & "fwversion.txt")
+            File.Delete(FormInstaladorKubo.RutaDescargas & "fwversion.txt")
         Catch ex As Exception
             RegistroInstalacion("INFO FRAMEWORK: No se pudo determinar Versión FW en Sistema.")
         End Try

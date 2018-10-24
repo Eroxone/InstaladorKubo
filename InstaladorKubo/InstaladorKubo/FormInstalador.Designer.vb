@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class FrmInstaladorKubo
+Partial Class FormInstaladorKubo
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -23,7 +23,7 @@ Partial Class FrmInstaladorKubo
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmInstaladorKubo))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInstaladorKubo))
         Me.lbUnidadF = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.fbdDescarga = New System.Windows.Forms.FolderBrowserDialog()
@@ -2517,7 +2517,7 @@ Partial Class FrmInstaladorKubo
         Me.PbDescargas.TabIndex = 57
         Me.PbDescargas.Visible = False
         '
-        'FrmInstaladorKubo
+        'FormInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -2553,7 +2553,7 @@ Partial Class FrmInstaladorKubo
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(2)
-        Me.Name = "FrmInstaladorKubo"
+        Me.Name = "FormInstaladorKubo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Instalador"
         Me.GroupBox4.ResumeLayout(False)

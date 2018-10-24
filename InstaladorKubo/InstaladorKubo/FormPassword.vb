@@ -1,14 +1,14 @@
 ﻿Imports Instalador.LeerFicherosINI
 Imports System.IO
-Imports Instalador.FrmInstaladorKubo
+Imports Instalador.FormInstaladorKubo
 
 Public Class FormPassword
 
     Private Sub FormPassword_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        Dim entrada = cIniArray.IniGet(FrmInstaladorKubo.instaladorkuboini, "LOGIN", "ENTRADA", 2)
+        Dim entrada = cIniArray.IniGet(FormInstaladorKubo.instaladorkuboini, "LOGIN", "ENTRADA", 2)
         If entrada = 1 Then
-            FrmInstaladorKubo.Show()
+            FormInstaladorKubo.Show()
             Me.Close()
         End If
     End Sub
@@ -18,7 +18,7 @@ Public Class FormPassword
             TbPassword.BackColor = Color.PaleGreen
             'cIniArray.IniWrite("C:\TEMP\InstaladorKubo\instaladorkubo.ini", "LOGIN", "ENTRADA", 1)
             Me.Opacity = 60
-            FrmInstaladorKubo.Show()
+            FormInstaladorKubo.Show()
             Me.Close()
         End If
     End Sub

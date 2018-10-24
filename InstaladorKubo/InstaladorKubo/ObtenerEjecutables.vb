@@ -6,7 +6,7 @@ Public Class ObtenerEjecutables
 
     Public Shared Sub obtenerwget()
         If Not System.IO.File.Exists(RutaDescargas & "wget.exe") Then
-            FrmInstaladorKubo.RegistroInstalacion("No se encontró WGET. Se procede a su descarga.")
+            FormInstaladorKubo.RegistroInstalacion("No se encontró WGET. Se procede a su descarga.")
             'Descargar ejecutable WGet
             Try
                 'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
@@ -25,7 +25,7 @@ Public Class ObtenerEjecutables
 
     Public Shared Sub obtenerrobocopy()
         If Not System.IO.File.Exists(RutaDescargas & "robocopy.exe") Then
-            FrmInstaladorKubo.RegistroInstalacion("No se encontró ROBOCOPY. Se procede a su descarga.")
+            FormInstaladorKubo.RegistroInstalacion("No se encontró ROBOCOPY. Se procede a su descarga.")
             'Descargar ejecutable WGet
             Try
                 'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
@@ -46,7 +46,7 @@ Public Class ObtenerEjecutables
     Public Shared Sub obtenerunrar()
         'Comprobamos si existe ya unrar.exe
         If Not System.IO.File.Exists(RutaDescargas & "unrar.exe") Then
-            FrmInstaladorKubo.RegistroInstalacion("No se encontró UNRAR. Se procede a su descarga.")
+            FormInstaladorKubo.RegistroInstalacion("No se encontró UNRAR. Se procede a su descarga.")
             'Descargar ejecutable UnRAR
             Try
                 'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
@@ -66,7 +66,7 @@ Public Class ObtenerEjecutables
 
     Public Shared Sub curl()
         If Not System.IO.File.Exists(RutaDescargas & "curl.exe") Then
-            FrmInstaladorKubo.RegistroInstalacion("No se encontró WGET. Se procede a su descarga.")
+            FormInstaladorKubo.RegistroInstalacion("No se encontró WGET. Se procede a su descarga.")
             'Descargar ejecutable WGet
             Try
                 'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)

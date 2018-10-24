@@ -1,5 +1,5 @@
 ﻿Imports System.IO
-Imports Instalador.FrmInstaladorKubo
+Imports Instalador.FormInstaladorKubo
 Imports Instalador.LeerFicherosINI
 
 
@@ -49,7 +49,7 @@ Public Class FrmSQLInstalacion
 
         cIniArray.IniWrite(instaladorkuboini, "SQL2014", "INSTALADO", "1")
         MessageBox.Show("Lanzada instalación desatendida de SQL2014 x64. Revisa Log para ver los detalles.", "Fin instalación desatendida SQL", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        FrmInstaladorKubo.Show()
+        FormInstaladorKubo.Show()
         Me.Close()
     End Sub
 
@@ -58,7 +58,7 @@ Public Class FrmSQLInstalacion
     End Sub
 
     Private Sub FrmSQLInstalacion_Load(sender As Object, e As EventArgs) Handles Me.Load
-        FrmInstaladorKubo.Hide()
+        FormInstaladorKubo.Hide()
 
         TbBDUsuario.Text = cIniArray.IniGet(instaladorkuboini, "SQL2014", "BDUSUARIO", "G:\RESPALDO\F\NOTAWIN.NET")
         TbInstancia.Text = cIniArray.IniGet(instaladorkuboini, "SQL2014", "INSTANCIA", "MSSQLSERVER")
@@ -73,12 +73,12 @@ Public Class FrmSQLInstalacion
     End Sub
 
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
-        FrmInstaladorKubo.Show()
+        FormInstaladorKubo.Show()
         Me.Close()
     End Sub
 
     Private Sub FrmSQLInstalacion_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        FrmInstaladorKubo.Show()
+        FormInstaladorKubo.Show()
     End Sub
 
     Private Sub BtLogs_Click(sender As Object, e As EventArgs) Handles BtLogs.Click

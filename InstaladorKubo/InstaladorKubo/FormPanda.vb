@@ -11,11 +11,11 @@ Public Class FormPanda
             Dim longusuario As Integer = profile.LastIndexOf(".")
             Dim grupo = profile.Remove(0, longusuario + 1)
             TbPandaNotaria.Text = grupo
-            FrmInstaladorKubo.RegistroInstalacion("PANDA: Leído " & grupo & " desde el XML jNemo.")
+            FormInstaladorKubo.RegistroInstalacion("PANDA: Leído " & grupo & " desde el XML jNemo.")
         Catch ex As Exception
             'TbISLGrupo.Text = "UNIDATA"
             TbPandaNotaria.Text = ""
-            FrmInstaladorKubo.RegistroInstalacion("PANDA: No se pudo obtener el Grupo. Dejamos el campo sin rellenar.")
+            FormInstaladorKubo.RegistroInstalacion("PANDA: No se pudo obtener el Grupo. Dejamos el campo sin rellenar.")
         End Try
 
     End Sub
@@ -30,7 +30,7 @@ Public Class FormPanda
             Try
                 File.Copy(jnemoxml, appData & "\jNemo\jnemopanda.xml", True)
             Catch ex As Exception
-                FrmInstaladorKubo.RegistroInstalacion("ERROR Panda. No se pudo realizar la copia del XML de jNemo.")
+                FormInstaladorKubo.RegistroInstalacion("ERROR Panda. No se pudo realizar la copia del XML de jNemo.")
             End Try
 
             Dim doc As New XmlDocument()

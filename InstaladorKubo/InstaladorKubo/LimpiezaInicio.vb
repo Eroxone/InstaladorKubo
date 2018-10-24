@@ -1,4 +1,4 @@
-﻿Imports Instalador.FrmInstaladorKubo
+﻿Imports Instalador.FormInstaladorKubo
 Imports System.IO
 
 Public Class LimpiezaInicio
@@ -15,10 +15,10 @@ Public Class LimpiezaInicio
 
         Try
             'Fuerzo que se descarguen la nueva version de WGET (quitar en unas semanas)
-            Dim wgetexe As New FileInfo(FrmInstaladorKubo.RutaDescargas & "wget.exe")
+            Dim wgetexe As New FileInfo(FormInstaladorKubo.RutaDescargas & "wget.exe")
             Dim Lengthwget As Long = wgetexe.Length
             If wgetexe.Length > "3895184" Then
-                File.Delete(FrmInstaladorKubo.RutaDescargas & "wget.exe")
+                File.Delete(FormInstaladorKubo.RutaDescargas & "wget.exe")
             End If
         Catch ex As Exception
             RegistroInstalacion("INFO Limpieza Inicio Wget: " & ex.Message)
@@ -34,17 +34,17 @@ Public Class LimpiezaInicio
 
         'Archivos TXT de las Descargas
         Try
-            File.Delete(FrmInstaladorKubo.RutaDescargas & "descargas.txt")
-            File.Delete(FrmInstaladorKubo.RutaDescargas & "registro.txt")
-            File.Delete(FrmInstaladorKubo.RutaDescargas & "requisitos.txt")
-            File.Delete(FrmInstaladorKubo.RutaDescargas & "terceros.txt")
+            File.Delete(FormInstaladorKubo.RutaDescargas & "descargas.txt")
+            File.Delete(FormInstaladorKubo.RutaDescargas & "registro.txt")
+            File.Delete(FormInstaladorKubo.RutaDescargas & "requisitos.txt")
+            File.Delete(FormInstaladorKubo.RutaDescargas & "terceros.txt")
         Catch ex As Exception
             RegistroInstalacion("INFO Limpieza Inicio TXT: " & ex.Message)
         End Try
 
         'Se descargará con cada instalación en la primera fase de FT
         Try
-            File.Delete(FrmInstaladorKubo.RutaDescargas & "SmartScreen.reg")
+            File.Delete(FormInstaladorKubo.RutaDescargas & "SmartScreen.reg")
         Catch ex As Exception
             RegistroInstalacion("INFO Limpieza Inicio SmartScreen REG: " & ex.Message)
         End Try

@@ -1,6 +1,6 @@
 ﻿Imports System.IO
 Imports Instalador.LeerFicherosINI
-Imports Instalador.FrmInstaladorKubo
+Imports Instalador.FormInstaladorKubo
 
 Public Class Chocolatey
     Private Const PuestoNotin As String = "ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/"
@@ -18,14 +18,14 @@ Public Class Chocolatey
             Try
                 My.Computer.Network.DownloadFile(PuestoNotin & "InstalacionChocolatey.bat", rutadescargas & "Chocolatey\InstalacionChocolatey.bat", "juanjo", "Palomeras24", False, 20000, True)
                 RegistroInstalacion("ÉXITO: Obtenido instalador para Chocolatey")
-                FrmInstaladorKubo.RunAsAdmin(rutadescargas & "Chocolatey\InstalacionChocolatey.bat")
+                FormInstaladorKubo.RunAsAdmin(rutadescargas & "Chocolatey\InstalacionChocolatey.bat")
                 cIniArray.IniWrite(instaladorkuboini, "CHOCOLATEY", "INSTALADO", "1")
-                Instalador.FrmInstaladorKubo.BtChocolatey.BackColor = Color.PaleGreen
-                Instalador.FrmInstaladorKubo.BtLogChoco.Visible = True
+                Instalador.FormInstaladorKubo.BtChocolatey.BackColor = Color.PaleGreen
+                Instalador.FormInstaladorKubo.BtLogChoco.Visible = True
             Catch ex As Exception
                 MessageBox.Show("Error instalando Chocolatey. Revisa Log para mas detalles.", "Paquete Chocolatey", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 RegistroInstalacion("ERROR obteniendo instalador para Chocolatey: " & ex.Message)
-                Instalador.FrmInstaladorKubo.BtChocolatey.BackColor = Color.LightSalmon
+                Instalador.FormInstaladorKubo.BtChocolatey.BackColor = Color.LightSalmon
             End Try
 
         End If

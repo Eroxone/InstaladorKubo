@@ -1,5 +1,5 @@
 ﻿Imports Instalador.LeerFicherosINI
-Imports Instalador.FrmInstaladorKubo
+Imports Instalador.FormInstaladorKubo
 
 
 Public Class FormNavegador
@@ -29,7 +29,7 @@ Public Class FormNavegador
 
             RegistroInstalacion("ISLAlwaysON: Configurado Servicio ISL con las credenciales: " & islgrupo & " - " & islnombre & ".")
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "ISL", "1")
-            FrmInstaladorKubo.BtISL.BackColor = Color.PaleGreen
+            FormInstaladorKubo.BtISL.BackColor = Color.PaleGreen
             'Me.Close()
 
 
@@ -48,7 +48,7 @@ Public Class FormNavegador
 
             RegistroInstalacion("PandEndPiont: Configurado Servicio Panda con las credenciales: " & gruponotaria)
             cIniArray.IniWrite("C:\TEMP\InstaladorKubo\InstaladorKubo.ini", "INSTALACIONES", "PANDA", "1")
-            FrmInstaladorKubo.BtPanda.BackColor = Color.PaleGreen
+            FormInstaladorKubo.BtPanda.BackColor = Color.PaleGreen
         End If
 
 

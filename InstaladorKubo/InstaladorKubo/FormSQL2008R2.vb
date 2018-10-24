@@ -1,4 +1,4 @@
-﻿Imports Instalador.FrmInstaladorKubo
+﻿Imports Instalador.FormInstaladorKubo
 Imports Instalador.LeerFicherosINI
 Imports System.IO
 Imports System.Net.Mail
@@ -8,7 +8,7 @@ Public Class FormSQL2008R2
     Private Const PuestoNotin As String = "ftp://ftp.lbackup.notin.net/tecnicos/JUANJO/PuestoNotin/"
 
     Private Sub FormSQL2008R2_Load(sender As Object, e As EventArgs) Handles Me.Load
-        FrmInstaladorKubo.Hide()
+        FormInstaladorKubo.Hide()
         LbRutaSQL.Text = "Explorar " & rutadescargas & "SQL\SQL2008R2"
         Dim descargadosql = cIniArray.IniGet(instaladorkuboini, "SQL", "DESCARGASQL2008R2", "2")
         If descargadosql = 1 Then
@@ -47,7 +47,7 @@ Public Class FormSQL2008R2
     End Sub
 
     Private Sub FormSQL2008R2_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        FrmInstaladorKubo.Show()
+        FormInstaladorKubo.Show()
     End Sub
 
     Private Sub DescargarSQL()
@@ -181,7 +181,7 @@ Public Class FormSQL2008R2
     End Sub
 
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
-        FrmInstaladorKubo.Show()
+        FormInstaladorKubo.Show()
         'Me.Close()
         Me.Dispose()
     End Sub

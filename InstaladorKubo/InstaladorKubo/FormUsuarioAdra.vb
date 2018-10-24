@@ -40,10 +40,10 @@ Public Class FormUsuarioAdra
 
     Private Sub BtLimpiar_Click(sender As Object, e As EventArgs) Handles BtLimpiar.Click
         Dim userseleccionado = LbUsuario.Text
-        FrmInstaladorKubo.RegistroInstalacion("Seleccionado Usuario: " & LBoxUsuarios.SelectedItem)
+        FormInstaladorKubo.RegistroInstalacion("Seleccionado Usuario: " & LBoxUsuarios.SelectedItem)
         If userseleccionado = "UsuarioAdra" Then
             MessageBox.Show("Selecciona un Usuario válido y seguimos.", "Usuario no válido o desconocido", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            FrmInstaladorKubo.RegistroInstalacion("No se seleccionó un usuario válido para Limpiar. Se cancela la operación. (eso o coincide que se llama UsuarioAdra y me pego un tiro...")
+            FormInstaladorKubo.RegistroInstalacion("No se seleccionó un usuario válido para Limpiar. Se cancela la operación. (eso o coincide que se llama UsuarioAdra y me pego un tiro...")
             Exit Sub
         End If
 
@@ -51,14 +51,14 @@ Public Class FormUsuarioAdra
             Directory.CreateDirectory(rutadescargas & "ADRA")
         Catch ex As Exception
             MessageBox.Show("No se puede crear la ruta " & rutadescargas & "ADRA. Se cancela la operación.", "Ruta no disponible", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            FrmInstaladorKubo.RegistroInstalacion("ERROR: No se puede crear la ruta " & rutadescargas & "ADRA. Se cancela la operación.")
+            FormInstaladorKubo.RegistroInstalacion("ERROR: No se puede crear la ruta " & rutadescargas & "ADRA. Se cancela la operación.")
             BtLimpiar.BackColor = Color.LightSalmon
             Exit Sub
         End Try
 
         Try
             Dim carpetasperfil = Directory.GetDirectories("\\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Workspaces")
-            FrmInstaladorKubo.RegistroInstalacion("Se procede a limpiar la Ruta \\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Workspaces. Mas info en TXT CarpetasPerfil en " & rutadescargas & "ADRA\")
+            FormInstaladorKubo.RegistroInstalacion("Se procede a limpiar la Ruta \\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Workspaces. Mas info en TXT CarpetasPerfil en " & rutadescargas & "ADRA\")
             'Dim carpetasperfil = Directory.GetDirectories("C:\TEMP\Prueba")
             Dim totalcarpetas As Integer = carpetasperfil.Count
             Dim numcarpeta As Integer = 0
@@ -69,17 +69,17 @@ Public Class FormUsuarioAdra
                 Try
                     'Directory.Delete(carpetaactual, True)
                     Shell("cmd /c RD /S /Q " & """" & carpetaactual & """", AppWinStyle.NormalFocus, True)
-                    FrmInstaladorKubo.RegistroInstalacion("Eliminada Ruta del Perfil con ID " & carpetaactual)
+                    FormInstaladorKubo.RegistroInstalacion("Eliminada Ruta del Perfil con ID " & carpetaactual)
                 Catch ex As Exception
                     MessageBox.Show("No se pudieron eliminar carpetas del Perfil. Mas info en el Logger.", "Error Borrado Carpetas Perfil", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza Perfil Usuario: " & ex.Message)
-                    FrmInstaladorKubo.RegistroInstalacion("Se buscó la Ruta " & carpetaactual & ". No se pudo eliminar.")
+                    FormInstaladorKubo.RegistroInstalacion("ERROR Limpieza Perfil Usuario: " & ex.Message)
+                    FormInstaladorKubo.RegistroInstalacion("Se buscó la Ruta " & carpetaactual & ". No se pudo eliminar.")
                     BtLimpiar.BackColor = Color.LightSalmon
                 End Try
                 numcarpeta = numcarpeta + 1
             End While
         Catch ex As Exception
-            FrmInstaladorKubo.RegistroInstalacion("ERROR: No se puede acceder a la ruta Workspaces del usuario. " & ex.Message)
+            FormInstaladorKubo.RegistroInstalacion("ERROR: No se puede acceder a la ruta Workspaces del usuario. " & ex.Message)
             MessageBox.Show("No se puede acceder al Workspaces del usuario seleccionado. Se prosigue con el resto de procesos.", "Ruta WorksPaces", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             BtLimpiar.BackColor = Color.LightSalmon
         End Try
@@ -87,7 +87,7 @@ Public Class FormUsuarioAdra
         'Limpieza de recursos NR del Adra
         Try
             Dim archivosnr = Directory.GetFiles("\\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)")
-            FrmInstaladorKubo.RegistroInstalacion("Se procede a limpiar la Ruta \\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC). Mas info en TXT ArchivosNR.txt en " & rutadescargas & "ADRA\")
+            FormInstaladorKubo.RegistroInstalacion("Se procede a limpiar la Ruta \\NotinRapp\Z\" & userseleccionado & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC). Mas info en TXT ArchivosNR.txt en " & rutadescargas & "ADRA\")
             'Dim archivosnr = Directory.GetFiles("C:\TEMP\Prueba")
             Dim totalarchivos As Integer = archivosnr.Count
             Dim numarchivo As Integer = 0
@@ -101,14 +101,14 @@ Public Class FormUsuarioAdra
                     Shell("cmd /c del /F /Q " & """" & archivoactual & """", AppWinStyle.NormalFocus, True)
                 Catch ex As Exception
                     'MessageBox.Show("No se pudieron eliminar archivos de NR (RADC). Mas info en el Logger.", "Error borrado NR (RADC)", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    FrmInstaladorKubo.RegistroInstalacion("ERROR Limpieza archivos NR (RADC): " & ex.Message)
-                    FrmInstaladorKubo.RegistroInstalacion("Se procedió a eliminar Perfil con ID " & archivoactual & ". No se pudo eliminar.")
+                    FormInstaladorKubo.RegistroInstalacion("ERROR Limpieza archivos NR (RADC): " & ex.Message)
+                    FormInstaladorKubo.RegistroInstalacion("Se procedió a eliminar Perfil con ID " & archivoactual & ". No se pudo eliminar.")
                     BtLimpiar.BackColor = Color.LightSalmon
                 End Try
                 numarchivo = numarchivo + 1
             End While
         Catch ex As Exception
-            FrmInstaladorKubo.RegistroInstalacion("ERROR: No se puede acceder a la ruta NR (RADC) del usuario. " & ex.Message)
+            FormInstaladorKubo.RegistroInstalacion("ERROR: No se puede acceder a la ruta NR (RADC) del usuario. " & ex.Message)
             MessageBox.Show("No se puede acceder al NR (RADC) del usuario seleccionado. Se prosigue con el resto de procesos.", "Objetos en NR (RADC)", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             BtLimpiar.BackColor = Color.LightSalmon
         End Try
@@ -118,16 +118,16 @@ Public Class FormUsuarioAdra
             Dim hostname = Environment.MachineName
             Try
                 Directory.Delete("\\NotinRapp\Z\rapp_control\" & hostname, True)
-                FrmInstaladorKubo.RegistroInstalacion("Eliminada ruta en Rapp_Control para " & hostname & ".")
+                FormInstaladorKubo.RegistroInstalacion("Eliminada ruta en Rapp_Control para " & hostname & ".")
             Catch ex As Exception
-                FrmInstaladorKubo.RegistroInstalacion("No se pudo eliminar Rapp Control para " & hostname & ". " & ex.Message)
+                FormInstaladorKubo.RegistroInstalacion("No se pudo eliminar Rapp Control para " & hostname & ". " & ex.Message)
                 BtLimpiar.BackColor = Color.LightSalmon
             End Try
 
         Catch ex As Exception
             MessageBox.Show("No se limpiar Rapp_Control para este Equipo. Mas info en el Logger.", "Error borrado RAPP_CONTROL", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Dim hostname = Environment.MachineName
-            FrmInstaladorKubo.RegistroInstalacion("ERROR eliminando Rapp_Control para " & hostname & "." & ex.Message)
+            FormInstaladorKubo.RegistroInstalacion("ERROR eliminando Rapp_Control para " & hostname & "." & ex.Message)
             BtLimpiar.BackColor = Color.LightSalmon
         End Try
 
@@ -159,7 +159,7 @@ Public Class FormUsuarioAdra
 
             BtCerrarsesion.Visible = True
         Catch ex As Exception
-            FrmInstaladorKubo.RegistroInstalacion("ERROR. No se pudo llamar a System Properties Adv a traves del proceso: " & ex.Message)
+            FormInstaladorKubo.RegistroInstalacion("ERROR. No se pudo llamar a System Properties Adv a traves del proceso: " & ex.Message)
             BtLimpiar.BackColor = Color.LightSalmon
         End Try
 
@@ -170,9 +170,9 @@ Public Class FormUsuarioAdra
         LimpiarIconos()
 
         MessageBox.Show("== LIMPIEZA DE PERFIL COMPLETADA ==" & vbCrLf & "Nota: Si el botón Limpiar está en rojo revisa Logs. En caso contrario Cierra Sesión e inicia con tu usuario NOTARIA\" & userseleccionado & " para terminar la operación." & vbCrLf & "Se han Limpiado los Iconos y Vínculos. Tras Iniciar Sesión usa la opción 2.COPIADO para recuperar los iconos (NR).", "== LIMPIEZA USUARIO FINALIZADA ==", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        FrmInstaladorKubo.RegistroInstalacion("Terminada Limpieza del Perfil " & userseleccionado & " en entorno ADRA.")
+        FormInstaladorKubo.RegistroInstalacion("Terminada Limpieza del Perfil " & userseleccionado & " en entorno ADRA.")
         BtLimpiar.BackColor = Color.PaleGreen
-        cIniArray.IniWrite(FrmInstaladorKubo.instaladorkuboini, "ADRA", "LIMPIARPERFIL", "1")
+        cIniArray.IniWrite(FormInstaladorKubo.instaladorkuboini, "ADRA", "LIMPIARPERFIL", "1")
     End Sub
 
     Private Sub BtLimpiarIconos_Click(sender As Object, e As EventArgs) Handles BtLimpiarIconos.Click
@@ -237,10 +237,10 @@ Public Class FormUsuarioAdra
                 File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ScanImg.lnk")
                 File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Nexus.lnk")
 
-                FrmInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos sobre iconos.")
+                FormInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos sobre iconos.")
 
             Catch ex As Exception
-                FrmInstaladorKubo.RegistroInstalacion("NO SE PUDO LIMPIAR EL PERFIL ADRA: " & ex.Message)
+                FormInstaladorKubo.RegistroInstalacion("NO SE PUDO LIMPIAR EL PERFIL ADRA: " & ex.Message)
                 'BtLimpiarIconos.BackColor = Color.LightSalmon
             End Try
 
@@ -296,10 +296,10 @@ Public Class FormUsuarioAdra
                 File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\ScanImg (NR).lnk")
                 File.Delete("C:\USERS\" & userseleccionado & "\Favorites\Vínculos\Nexus (NR).lnk")
 
-                FrmInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos sobre iconos (NR).")
+                FormInstaladorKubo.RegistroInstalacion("LIMPIAR USUARIO ADRA: Ejecutada Limpieza de Escritorio y Vínculos sobre iconos (NR).")
 
             Catch ex As Exception
-                FrmInstaladorKubo.RegistroInstalacion("NO SE PUDO LIMPIAR EL PERFIL ADRA: " & ex.Message)
+                FormInstaladorKubo.RegistroInstalacion("NO SE PUDO LIMPIAR EL PERFIL ADRA: " & ex.Message)
                 'BtLimpiarIconos.BackColor = Color.LightSalmon
             End Try
         End If
@@ -335,7 +335,7 @@ Public Class FormUsuarioAdra
                 BtCopiarIconosNR.BackColor = Color.PaleGreen
             Catch ex As Exception
                 'BtCopiarIconosNR.BackColor = Color.LightSalmon
-                FrmInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos: " & ex.Message)
+                FormInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos: " & ex.Message)
             End Try
 
             Try
@@ -358,7 +358,7 @@ Public Class FormUsuarioAdra
                 BtCopiarIconosNR.BackColor = Color.PaleGreen
             Catch ex As Exception
                 'BtCopiarIconosNR.BackColor = Color.LightSalmon
-                FrmInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos NR: " & ex.Message)
+                FormInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos NR: " & ex.Message)
             End Try
 
 
@@ -383,7 +383,7 @@ Public Class FormUsuarioAdra
                 File.Copy(origennrf & "NotinControlClient.lnk", vinculos & "NotinControlClient.lnk", True)
 
             Catch ex As Exception
-                FrmInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos NR desde F: " & ex.Message)
+                FormInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos NR desde F: " & ex.Message)
             End Try
 
             Try
@@ -405,7 +405,7 @@ Public Class FormUsuarioAdra
                 File.Copy(origennrf & "NotinControlClient (NR).lnk", vinculos & "NotinControlClient (NR).lnk", True)
 
             Catch ex As Exception
-            FrmInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos NR desde F: " & ex.Message)
+            FormInstaladorKubo.RegistroInstalacion("ERROR Copiando iconos NR desde F: " & ex.Message)
             End Try
 
 
