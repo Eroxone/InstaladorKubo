@@ -67,7 +67,7 @@ Public Class FormInstaladorKubo
 
 
         'Cargo correo anterior de notificaciones
-        CBoxNemo.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
+        '        CBoxNemo.Text = cIniArray.IniGet(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
 
 
         'Versiones  Notin y .NET en Sistema
@@ -552,9 +552,14 @@ Public Class FormInstaladorKubo
             BtPanda.BackColor = Color.PaleGreen
         End If
 
-        'Notificación Adra
-        TbNemo.Text = cIniArray.IniGet(instaladorkuboini, "CUENTAS", "NEMO", "@notin.net")
-        TbIdentificaNotaria.Text = cIniArray.IniGet(instaladorkuboini, "CUENTAS", "DESPACHO", "IDENTIFICA NOTARIA")
+        'Notificación NEMO
+        CBoxNemo.Text = cIniArray.IniGet(instaladorkuboini, "CUENTAS", "NEMO", "")
+        CboxNemoAdra.Text = CBoxNemo.Text
+
+        If File.Exists("F:\WINDOWS\NNOTIN.INI") Then
+            TbIdentificaNotaria.Text = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "LOCALIDAD", "LOCALIDAD", "IDENTIFICA NOTARIA")
+        End If
+
     End Sub
 
     'Boton EXAMINAR
@@ -1831,8 +1836,8 @@ Public Class FormInstaladorKubo
         TlpFramework.ToolTipTitle = "Instalación Framework 3.5"
         TlpFramework.SetToolTip(BtFramework, "Se procederá a la instalación del Paquete Framework 3.5 necesario para .Net. Se recomienda Reinciar tras su instalación.")
 
-        TlpTuemail.ToolTipTitle = "Indica tu email para recibir un aviso"
-        TlpTuemail.SetToolTip(CBoxNemo, "Se te remitirá un email de confirmación cuando finalice el proceso en ejecución.")
+        TlpTuemail.ToolTipTitle = "Indica tu Nemo para recibir un aviso"
+        TlpTuemail.SetToolTip(CBoxNemo, "Se te remitirá un mensaje de confirmación cuando finalice el proceso en ejecución.")
 
         TlpNotinpdf.ToolTipTitle = "Instalador NotinPDF"
         TlpNotinpdf.SetToolTip(BtNotinpdf, "Descargará el paquete NotinPDF y mostrará la ruta de descarga. Su ejecución será manual.")
@@ -3228,16 +3233,15 @@ Public Class FormInstaladorKubo
         End If
     End Sub
 
-    Private Sub CBoxNemo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBoxNemo.LostFocus
-        If Validaremail() = True Then
-            Dim destinatario As String = CBoxNemo.Text
-            cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "NEMO", destinatario)
-            TbNemo.Text = destinatario
-            RegistroInstalacion("NEMO: Cuenta de Nemo establecida a " & destinatario)
-        Else
-            cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
-        End If
-    End Sub
+    'Private Sub CBoxNemo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBoxNemo.LostFocus
+    '    If Validaremail() = True Then
+    '        Dim destinatario As String = CBoxNemo.Text
+    '        cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "NEMO", destinatario)
+    '        RegistroInstalacion("NEMO: Cuenta de Nemo establecida a " & destinatario)
+    '    Else
+    '        cIniArray.IniWrite(instaladorkuboini, "EMAIL", "DESTINATARIO", "")
+    '    End If
+    'End Sub
 
     Private Sub BtDocRequisitos_Click(sender As Object, e As EventArgs) Handles BtDocRequisitos.Click
         Try
@@ -5405,7 +5409,7 @@ Public Class FormInstaladorKubo
             End If
 
             LbAdraDiferido.Visible = True
-            EnvioNemo.envionemo(TbNemo.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO CON ERRORES.+DESPACHO:+" & TbIdentificaNotaria.Text)
+            EnvioNemo.envionemo(CboxNemoAdra.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO CON ERRORES.+DESPACHO:+" & TbIdentificaNotaria.Text)
             Exit Sub
         End Try
 
@@ -5456,7 +5460,7 @@ Public Class FormInstaladorKubo
                 End If
 
                 LbAdraDiferido.Visible = True
-                EnvioNemo.envionemo(TbNemo.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO CON ERRORES.+DESPACHO:+" & TbIdentificaNotaria.Text)
+                EnvioNemo.envionemo(CBoxNemo.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO CON ERRORES.+DESPACHO:+" & TbIdentificaNotaria.Text)
                 Exit Sub
             End Try
 
@@ -5503,7 +5507,7 @@ Public Class FormInstaladorKubo
         End If
 
         LbAdraDiferido.Visible = True
-        EnvioNemo.envionemo(TbNemo.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO CON EXITO.+DESPACHO:+" & TbIdentificaNotaria.Text)
+        EnvioNemo.envionemo(CBoxNemo.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO CON EXITO.+DESPACHO:+" & TbIdentificaNotaria.Text)
 
         'EnvioMailADRA()
         'MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -5754,7 +5758,7 @@ Public Class FormInstaladorKubo
     End Sub
 
     Private Sub BtTestNemo_Click(sender As Object, e As EventArgs) Handles BtTestNemo.Click
-        EnvioNemo.envionemo(TbNemo.Text.ToString, "=PROCESO+ACTUALIZACION+ADRA+FINALIZADO=+DESPACHO:+" & TbIdentificaNotaria.Text)
+        EnvioNemo.envionemo(CBoxNemo.Text.ToString, "PROCESO+ACTUALIZACION+ADRA+FINALIZADO.+DESPACHO:+" & TbIdentificaNotaria.Text)
     End Sub
 
 
@@ -5762,9 +5766,30 @@ Public Class FormInstaladorKubo
         cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "DESPACHO", TbIdentificaNotaria.Text.ToUpper)
     End Sub
 
-    Private Sub TbNemo_TextChanged(sender As Object, e As EventArgs) Handles TbNemo.TextChanged
-        cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "NEMO", TbNemo.Text.ToLower)
+    'Private Sub CboxNemoAdra_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboxNemoAdra.SelectedIndexChanged
+    '    cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "NEMO", CboxNemoAdra.Text)
+    '    CBoxNemo.Text = CboxNemoAdra.Text
+    'End Sub
+
+    'Private Sub CBoxNemo_SelectedValueChanged(sender As Object, e As EventArgs) Handles CBoxNemo.SelectedValueChanged
+    '    cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "NEMO", CBoxNemo.Text)
+    '    CboxNemoAdra.Text = CBoxNemo.Text
+    'End Sub
+
+    Private Sub CBoxNemo_TextChanged(sender As Object, e As EventArgs) Handles CBoxNemo.TextChanged
+        If Validaremail() = True Then
+            cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "NEMO", CBoxNemo.Text)
+        End If
+        CboxNemoAdra.Text = CBoxNemo.Text
     End Sub
+
+    Private Sub CboxNemoAdra_TextChanged(sender As Object, e As EventArgs) Handles CboxNemoAdra.TextChanged
+        If Validaremail() = True Then
+            cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "NEMO", CboxNemoAdra.Text)
+        End If
+        CBoxNemo.Text = CboxNemoAdra.Text
+    End Sub
+
 
 
 

@@ -73,11 +73,11 @@ Partial Class FormInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.CboxNemoAdra = New System.Windows.Forms.ComboBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.BtTestNemo = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.TbNemo = New System.Windows.Forms.TextBox()
         Me.LbAdraDiferido = New System.Windows.Forms.Label()
         Me.NumMinutoAdra = New System.Windows.Forms.NumericUpDown()
         Me.NumHoraAdra = New System.Windows.Forms.NumericUpDown()
@@ -833,11 +833,11 @@ Partial Class FormInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.CboxNemoAdra)
         Me.TabPage10.Controls.Add(Me.Label15)
         Me.TabPage10.Controls.Add(Me.Label14)
         Me.TabPage10.Controls.Add(Me.BtTestNemo)
         Me.TabPage10.Controls.Add(Me.Label13)
-        Me.TabPage10.Controls.Add(Me.TbNemo)
         Me.TabPage10.Controls.Add(Me.LbAdraDiferido)
         Me.TabPage10.Controls.Add(Me.NumMinutoAdra)
         Me.TabPage10.Controls.Add(Me.NumHoraAdra)
@@ -858,6 +858,19 @@ Partial Class FormInstaladorKubo
         Me.TabPage10.Size = New System.Drawing.Size(463, 401)
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
+        '
+        'CboxNemoAdra
+        '
+        Me.CboxNemoAdra.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.CboxNemoAdra.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CboxNemoAdra.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.CboxNemoAdra.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.CboxNemoAdra.FormattingEnabled = True
+        Me.CboxNemoAdra.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
+        Me.CboxNemoAdra.Location = New System.Drawing.Point(230, 218)
+        Me.CboxNemoAdra.Name = "CboxNemoAdra"
+        Me.CboxNemoAdra.Size = New System.Drawing.Size(203, 25)
+        Me.CboxNemoAdra.TabIndex = 58
         '
         'Label15
         '
@@ -898,18 +911,6 @@ Partial Class FormInstaladorKubo
         Me.Label13.Size = New System.Drawing.Size(222, 15)
         Me.Label13.TabIndex = 21
         Me.Label13.Text = "Recibir notificación al terminar:"
-        '
-        'TbNemo
-        '
-        Me.TbNemo.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TbNemo.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
-        Me.TbNemo.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TbNemo.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.TbNemo.Location = New System.Drawing.Point(230, 219)
-        Me.TbNemo.Name = "TbNemo"
-        Me.TbNemo.Size = New System.Drawing.Size(203, 25)
-        Me.TbNemo.TabIndex = 20
-        Me.TbNemo.Tag = ""
         '
         'LbAdraDiferido
         '
@@ -1005,7 +1006,7 @@ Partial Class FormInstaladorKubo
         Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.TbIdentificaNotaria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TbIdentificaNotaria.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TbIdentificaNotaria.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.TbIdentificaNotaria.ForeColor = System.Drawing.SystemColors.WindowText
         Me.TbIdentificaNotaria.Location = New System.Drawing.Point(230, 250)
         Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
         Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 25)
@@ -1420,7 +1421,7 @@ Partial Class FormInstaladorKubo
         Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
         Me.lbInstalando.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold)
         Me.lbInstalando.ForeColor = System.Drawing.Color.Green
-        Me.lbInstalando.Location = New System.Drawing.Point(444, 576)
+        Me.lbInstalando.Location = New System.Drawing.Point(523, 576)
         Me.lbInstalando.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbInstalando.Name = "lbInstalando"
         Me.lbInstalando.Size = New System.Drawing.Size(309, 25)
@@ -1499,7 +1500,7 @@ Partial Class FormInstaladorKubo
         '
         'PbInstalaciones
         '
-        Me.PbInstalaciones.Location = New System.Drawing.Point(449, 603)
+        Me.PbInstalaciones.Location = New System.Drawing.Point(509, 600)
         Me.PbInstalaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.PbInstalaciones.MarqueeAnimationSpeed = 50
         Me.PbInstalaciones.Maximum = 50
@@ -1580,10 +1581,10 @@ Partial Class FormInstaladorKubo
         'LbNotificacionemail
         '
         Me.LbNotificacionemail.AutoSize = True
-        Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbNotificacionemail.Location = New System.Drawing.Point(169, 638)
+        Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbNotificacionemail.Location = New System.Drawing.Point(147, 638)
         Me.LbNotificacionemail.Name = "LbNotificacionemail"
-        Me.LbNotificacionemail.Size = New System.Drawing.Size(79, 18)
+        Me.LbNotificacionemail.Size = New System.Drawing.Size(101, 22)
         Me.LbNotificacionemail.TabIndex = 48
         Me.LbNotificacionemail.Text = "Tu Nemo:"
         '
@@ -1592,12 +1593,12 @@ Partial Class FormInstaladorKubo
         Me.CBoxNemo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
         Me.CBoxNemo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CBoxNemo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.CBoxNemo.Font = New System.Drawing.Font("Lucida Bright", 8.25!)
+        Me.CBoxNemo.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CBoxNemo.FormattingEnabled = True
         Me.CBoxNemo.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
-        Me.CBoxNemo.Location = New System.Drawing.Point(254, 635)
+        Me.CBoxNemo.Location = New System.Drawing.Point(254, 637)
         Me.CBoxNemo.Name = "CBoxNemo"
-        Me.CBoxNemo.Size = New System.Drawing.Size(139, 22)
+        Me.CBoxNemo.Size = New System.Drawing.Size(171, 23)
         Me.CBoxNemo.TabIndex = 49
         '
         'TabPage1
@@ -2461,7 +2462,7 @@ Partial Class FormInstaladorKubo
         Me.lbProcesandoDescargas.AutoSize = True
         Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.Green
-        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(425, 598)
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(521, 601)
         Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
         Me.lbProcesandoDescargas.Size = New System.Drawing.Size(283, 25)
         Me.lbProcesandoDescargas.TabIndex = 36
@@ -2495,9 +2496,9 @@ Partial Class FormInstaladorKubo
         '
         'PbDescargas
         '
-        Me.PbDescargas.Location = New System.Drawing.Point(430, 630)
+        Me.PbDescargas.Location = New System.Drawing.Point(509, 630)
         Me.PbDescargas.Name = "PbDescargas"
-        Me.PbDescargas.Size = New System.Drawing.Size(467, 23)
+        Me.PbDescargas.Size = New System.Drawing.Size(367, 23)
         Me.PbDescargas.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.PbDescargas.TabIndex = 57
         Me.PbDescargas.Visible = False
@@ -2795,8 +2796,8 @@ Partial Class FormInstaladorKubo
     Friend WithEvents BWProgreso As System.ComponentModel.BackgroundWorker
     Friend WithEvents PbDescargas As ProgressBar
     Friend WithEvents Label13 As Label
-    Friend WithEvents TbNemo As TextBox
     Friend WithEvents BtTestNemo As Button
     Friend WithEvents Label15 As Label
     Friend WithEvents Label14 As Label
+    Friend WithEvents CboxNemoAdra As ComboBox
 End Class
