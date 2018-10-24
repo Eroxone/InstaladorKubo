@@ -74,8 +74,8 @@ Partial Class FormInstaladorKubo
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
         Me.CboxNemoAdra = New System.Windows.Forms.ComboBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
+        Me.LbIdentificadorNotaria = New System.Windows.Forms.Label()
+        Me.LbTuNemoAdra = New System.Windows.Forms.Label()
         Me.BtTestNemo = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.LbAdraDiferido = New System.Windows.Forms.Label()
@@ -152,7 +152,7 @@ Partial Class FormInstaladorKubo
         Me.TlpTuemail = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpNotinpdf = New System.Windows.Forms.ToolTip(Me.components)
         Me.TlpRequisitosNotin = New System.Windows.Forms.ToolTip(Me.components)
-        Me.LbNotificacionemail = New System.Windows.Forms.Label()
+        Me.LbNotificacionNemo = New System.Windows.Forms.Label()
         Me.CBoxNemo = New System.Windows.Forms.ComboBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.BtTraerdeF = New System.Windows.Forms.Button()
@@ -243,6 +243,8 @@ Partial Class FormInstaladorKubo
         Me.TlpPanda = New System.Windows.Forms.ToolTip(Me.components)
         Me.BWProgreso = New System.ComponentModel.BackgroundWorker()
         Me.PbDescargas = New System.Windows.Forms.ProgressBar()
+        Me.TlpIdentificadorNotaria = New System.Windows.Forms.ToolTip(Me.components)
+        Me.TlpNemo = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -834,8 +836,7 @@ Partial Class FormInstaladorKubo
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
         Me.TabPage10.Controls.Add(Me.CboxNemoAdra)
-        Me.TabPage10.Controls.Add(Me.Label15)
-        Me.TabPage10.Controls.Add(Me.Label14)
+        Me.TabPage10.Controls.Add(Me.LbTuNemoAdra)
         Me.TabPage10.Controls.Add(Me.BtTestNemo)
         Me.TabPage10.Controls.Add(Me.Label13)
         Me.TabPage10.Controls.Add(Me.LbAdraDiferido)
@@ -847,7 +848,6 @@ Partial Class FormInstaladorKubo
         Me.TabPage10.Controls.Add(Me.Label5)
         Me.TabPage10.Controls.Add(Me.Label4)
         Me.TabPage10.Controls.Add(Me.Label3)
-        Me.TabPage10.Controls.Add(Me.TbIdentificaNotaria)
         Me.TabPage10.Controls.Add(Me.BtNotinAdraDiferido)
         Me.TabPage10.Controls.Add(Me.BtLimpiarPerfil)
         Me.TabPage10.Controls.Add(Me.BtDynamic)
@@ -872,25 +872,25 @@ Partial Class FormInstaladorKubo
         Me.CboxNemoAdra.Size = New System.Drawing.Size(203, 25)
         Me.CboxNemoAdra.TabIndex = 58
         '
-        'Label15
+        'LbIdentificadorNotaria
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(135, 251)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(89, 19)
-        Me.Label15.TabIndex = 24
-        Me.Label15.Text = "Despacho:"
+        Me.LbIdentificadorNotaria.AutoSize = True
+        Me.LbIdentificadorNotaria.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.LbIdentificadorNotaria.Location = New System.Drawing.Point(165, 640)
+        Me.LbIdentificadorNotaria.Name = "LbIdentificadorNotaria"
+        Me.LbIdentificadorNotaria.Size = New System.Drawing.Size(107, 22)
+        Me.LbIdentificadorNotaria.TabIndex = 24
+        Me.LbIdentificadorNotaria.Text = "Despacho:"
         '
-        'Label14
+        'LbTuNemoAdra
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(140, 220)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(84, 19)
-        Me.Label14.TabIndex = 23
-        Me.Label14.Text = "Tu Nemo:"
+        Me.LbTuNemoAdra.AutoSize = True
+        Me.LbTuNemoAdra.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbTuNemoAdra.Location = New System.Drawing.Point(140, 220)
+        Me.LbTuNemoAdra.Name = "LbTuNemoAdra"
+        Me.LbTuNemoAdra.Size = New System.Drawing.Size(84, 19)
+        Me.LbTuNemoAdra.TabIndex = 23
+        Me.LbTuNemoAdra.Text = "Tu Nemo:"
         '
         'BtTestNemo
         '
@@ -1007,7 +1007,7 @@ Partial Class FormInstaladorKubo
         Me.TbIdentificaNotaria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TbIdentificaNotaria.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TbIdentificaNotaria.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(230, 250)
+        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(278, 638)
         Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
         Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 25)
         Me.TbIdentificaNotaria.TabIndex = 7
@@ -1017,7 +1017,7 @@ Partial Class FormInstaladorKubo
         '
         Me.BtNotinAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.BtNotinAdraDiferido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(230, 282)
+        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(230, 249)
         Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
         Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(203, 45)
         Me.BtNotinAdraDiferido.TabIndex = 5
@@ -1578,15 +1578,15 @@ Partial Class FormInstaladorKubo
         Me.TlpRequisitosNotin.IsBalloon = True
         Me.TlpRequisitosNotin.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
         '
-        'LbNotificacionemail
+        'LbNotificacionNemo
         '
-        Me.LbNotificacionemail.AutoSize = True
-        Me.LbNotificacionemail.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbNotificacionemail.Location = New System.Drawing.Point(147, 638)
-        Me.LbNotificacionemail.Name = "LbNotificacionemail"
-        Me.LbNotificacionemail.Size = New System.Drawing.Size(101, 22)
-        Me.LbNotificacionemail.TabIndex = 48
-        Me.LbNotificacionemail.Text = "Tu Nemo:"
+        Me.LbNotificacionNemo.AutoSize = True
+        Me.LbNotificacionNemo.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LbNotificacionNemo.Location = New System.Drawing.Point(171, 606)
+        Me.LbNotificacionNemo.Name = "LbNotificacionNemo"
+        Me.LbNotificacionNemo.Size = New System.Drawing.Size(101, 22)
+        Me.LbNotificacionNemo.TabIndex = 48
+        Me.LbNotificacionNemo.Text = "Tu Nemo:"
         '
         'CBoxNemo
         '
@@ -1596,9 +1596,9 @@ Partial Class FormInstaladorKubo
         Me.CBoxNemo.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CBoxNemo.FormattingEnabled = True
         Me.CBoxNemo.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
-        Me.CBoxNemo.Location = New System.Drawing.Point(254, 637)
+        Me.CBoxNemo.Location = New System.Drawing.Point(278, 605)
         Me.CBoxNemo.Name = "CBoxNemo"
-        Me.CBoxNemo.Size = New System.Drawing.Size(171, 23)
+        Me.CBoxNemo.Size = New System.Drawing.Size(203, 23)
         Me.CBoxNemo.TabIndex = 49
         '
         'TabPage1
@@ -2503,12 +2503,25 @@ Partial Class FormInstaladorKubo
         Me.PbDescargas.TabIndex = 57
         Me.PbDescargas.Visible = False
         '
+        'TlpIdentificadorNotaria
+        '
+        Me.TlpIdentificadorNotaria.IsBalloon = True
+        Me.TlpIdentificadorNotaria.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpIdentificadorNotaria.ToolTipTitle = "Identificador Notaría"
+        '
+        'TlpNemo
+        '
+        Me.TlpNemo.IsBalloon = True
+        Me.TlpNemo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpNemo.ToolTipTitle = "Indica tu cuenta Nemo"
+        '
         'FormInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1179, 675)
+        Me.Controls.Add(Me.LbIdentificadorNotaria)
         Me.Controls.Add(Me.PbDescargas)
         Me.Controls.Add(Me.LbDescargas)
         Me.Controls.Add(Me.lbInstalando)
@@ -2522,7 +2535,8 @@ Partial Class FormInstaladorKubo
         Me.Controls.Add(Me.BtSubeBinario)
         Me.Controls.Add(Me.CBoxNemo)
         Me.Controls.Add(Me.BtExplorarRutas)
-        Me.Controls.Add(Me.LbNotificacionemail)
+        Me.Controls.Add(Me.TbIdentificaNotaria)
+        Me.Controls.Add(Me.LbNotificacionNemo)
         Me.Controls.Add(Me.BtReconectar)
         Me.Controls.Add(Me.BtLogin)
         Me.Controls.Add(Me.PbInstalaciones)
@@ -2639,7 +2653,7 @@ Partial Class FormInstaladorKubo
     Friend WithEvents TlpNotinpdf As ToolTip
     Friend WithEvents TlpRequisitosNotin As ToolTip
     Friend WithEvents BtReconectar As Button
-    Friend WithEvents LbNotificacionemail As Label
+    Friend WithEvents LbNotificacionNemo As Label
     Friend WithEvents BtExplorarRutas As Button
     Friend WithEvents CBoxNemo As ComboBox
     Friend WithEvents BtDocRequisitos As Button
@@ -2797,7 +2811,9 @@ Partial Class FormInstaladorKubo
     Friend WithEvents PbDescargas As ProgressBar
     Friend WithEvents Label13 As Label
     Friend WithEvents BtTestNemo As Button
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label14 As Label
+    Friend WithEvents LbIdentificadorNotaria As Label
+    Friend WithEvents LbTuNemoAdra As Label
     Friend WithEvents CboxNemoAdra As ComboBox
+    Friend WithEvents TlpIdentificadorNotaria As ToolTip
+    Friend WithEvents TlpNemo As ToolTip
 End Class
