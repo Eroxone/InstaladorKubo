@@ -63,4 +63,25 @@ Public Class ObtenerEjecutables
         End If
     End Sub
 
+
+    Public Shared Sub curl()
+        If Not System.IO.File.Exists(RutaDescargas & "curl.exe") Then
+            FrmInstaladorKubo.RegistroInstalacion("No se encontró WGET. Se procede a su descarga.")
+            'Descargar ejecutable WGet
+            Try
+                'Dim RutaSinBarra As String = RutaDescargas.Substring(0, RutaDescargas.Length - 1)
+                My.Computer.Network.DownloadFile(PuestoNotin & "curl.exe", RutaDescargas & "curl.exe", "juanjo", "Palomeras24", False, 20000, False)
+            Catch ex As Exception
+
+                'Reintentar descarga
+                Dim REINTENTAR As DialogResult = MessageBox.Show(ex.Message, "Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error)
+                My.Computer.Network.DownloadFile(PuestoNotin & "curl.exe", RutaDescargas & "curl.exe", "juanjo", "Palomeras24", False, 20000, False)
+                If REINTENTAR = DialogResult.Retry Then
+                    My.Computer.Network.DownloadFile(PuestoNotin & "curl.exe", RutaDescargas & "curl.exe", "juanjo", "Palomeras24", False, 20000, True)
+                End If
+            End Try
+        End If
+    End Sub
+
+
 End Class

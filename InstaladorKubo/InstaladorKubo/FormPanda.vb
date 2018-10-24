@@ -67,12 +67,6 @@ Public Class FormPanda
     End Sub
 
 
-
-
-    Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click
-        Me.Close()
-    End Sub
-
     Private Sub TbPandaNotaria_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbPandaNotaria.KeyPress
         If Char.IsWhiteSpace(e.KeyChar) Then
             MessageBox.Show("El Grupo Notaría no puede contener espacios.", "Grupo erróneo", MessageBoxButtons.OK, MessageBoxIcon.Warning)

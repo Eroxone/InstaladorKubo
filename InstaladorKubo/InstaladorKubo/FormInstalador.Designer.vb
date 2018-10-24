@@ -73,6 +73,11 @@ Partial Class FrmInstaladorKubo
         Me.BtMigradorSQL = New System.Windows.Forms.Button()
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.BtTestNemo = New System.Windows.Forms.Button()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TbNemo = New System.Windows.Forms.TextBox()
         Me.LbAdraDiferido = New System.Windows.Forms.Label()
         Me.NumMinutoAdra = New System.Windows.Forms.NumericUpDown()
         Me.NumHoraAdra = New System.Windows.Forms.NumericUpDown()
@@ -238,6 +243,7 @@ Partial Class FrmInstaladorKubo
         Me.LbDescargas = New System.Windows.Forms.Label()
         Me.TlpPanda = New System.Windows.Forms.ToolTip(Me.components)
         Me.BWProgreso = New System.ComponentModel.BackgroundWorker()
+        Me.PbDescargas = New System.Windows.Forms.ProgressBar()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -828,6 +834,11 @@ Partial Class FrmInstaladorKubo
         'TabPage10
         '
         Me.TabPage10.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage10.Controls.Add(Me.Label15)
+        Me.TabPage10.Controls.Add(Me.Label14)
+        Me.TabPage10.Controls.Add(Me.BtTestNemo)
+        Me.TabPage10.Controls.Add(Me.Label13)
+        Me.TabPage10.Controls.Add(Me.TbNemo)
         Me.TabPage10.Controls.Add(Me.LbAdraDiferido)
         Me.TabPage10.Controls.Add(Me.NumMinutoAdra)
         Me.TabPage10.Controls.Add(Me.NumHoraAdra)
@@ -849,9 +860,61 @@ Partial Class FrmInstaladorKubo
         Me.TabPage10.TabIndex = 3
         Me.TabPage10.Text = "AdRA"
         '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.Location = New System.Drawing.Point(135, 251)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(89, 19)
+        Me.Label15.TabIndex = 24
+        Me.Label15.Text = "Despacho:"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Lucida Bright", 12.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(140, 220)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(84, 19)
+        Me.Label14.TabIndex = 23
+        Me.Label14.Text = "Tu Nemo:"
+        '
+        'BtTestNemo
+        '
+        Me.BtTestNemo.Location = New System.Drawing.Point(8, 200)
+        Me.BtTestNemo.Name = "BtTestNemo"
+        Me.BtTestNemo.Size = New System.Drawing.Size(75, 44)
+        Me.BtTestNemo.TabIndex = 22
+        Me.BtTestNemo.Text = "Test Nemo"
+        Me.BtTestNemo.UseVisualStyleBackColor = True
+        Me.BtTestNemo.Visible = False
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Location = New System.Drawing.Point(227, 200)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(222, 15)
+        Me.Label13.TabIndex = 21
+        Me.Label13.Text = "Recibir notificación al terminar:"
+        '
+        'TbNemo
+        '
+        Me.TbNemo.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.TbNemo.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
+        Me.TbNemo.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TbNemo.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.TbNemo.Location = New System.Drawing.Point(230, 219)
+        Me.TbNemo.Name = "TbNemo"
+        Me.TbNemo.Size = New System.Drawing.Size(203, 25)
+        Me.TbNemo.TabIndex = 20
+        Me.TbNemo.Tag = ""
+        '
         'LbAdraDiferido
         '
-        Me.LbAdraDiferido.Location = New System.Drawing.Point(8, 264)
+        Me.LbAdraDiferido.Location = New System.Drawing.Point(8, 337)
         Me.LbAdraDiferido.Name = "LbAdraDiferido"
         Me.LbAdraDiferido.Size = New System.Drawing.Size(425, 51)
         Me.LbAdraDiferido.TabIndex = 18
@@ -941,21 +1004,20 @@ Partial Class FrmInstaladorKubo
         'TbIdentificaNotaria
         '
         Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.TbIdentificaNotaria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TbIdentificaNotaria.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TbIdentificaNotaria.ForeColor = System.Drawing.SystemColors.ScrollBar
-        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(21, 196)
+        Me.TbIdentificaNotaria.ForeColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(230, 250)
         Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
         Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 25)
         Me.TbIdentificaNotaria.TabIndex = 7
         Me.TbIdentificaNotaria.Tag = ""
-        Me.TbIdentificaNotaria.Text = "Identificador Notaría..."
-        Me.TbIdentificaNotaria.Visible = False
         '
         'BtNotinAdraDiferido
         '
         Me.BtNotinAdraDiferido.BackColor = System.Drawing.SystemColors.Control
         Me.BtNotinAdraDiferido.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(230, 195)
+        Me.BtNotinAdraDiferido.Location = New System.Drawing.Point(230, 282)
         Me.BtNotinAdraDiferido.Name = "BtNotinAdraDiferido"
         Me.BtNotinAdraDiferido.Size = New System.Drawing.Size(203, 45)
         Me.BtNotinAdraDiferido.TabIndex = 5
@@ -1369,7 +1431,7 @@ Partial Class FrmInstaladorKubo
         Me.lbInstalando.BackColor = System.Drawing.SystemColors.Control
         Me.lbInstalando.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold)
         Me.lbInstalando.ForeColor = System.Drawing.Color.Green
-        Me.lbInstalando.Location = New System.Drawing.Point(429, 603)
+        Me.lbInstalando.Location = New System.Drawing.Point(444, 576)
         Me.lbInstalando.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lbInstalando.Name = "lbInstalando"
         Me.lbInstalando.Size = New System.Drawing.Size(309, 25)
@@ -1397,7 +1459,7 @@ Partial Class FrmInstaladorKubo
         Me.btDirDescargas.BackColor = System.Drawing.SystemColors.Control
         Me.btDirDescargas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btDirDescargas.Font = New System.Drawing.Font("Lucida Bright", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btDirDescargas.Location = New System.Drawing.Point(11, 634)
+        Me.btDirDescargas.Location = New System.Drawing.Point(9, 638)
         Me.btDirDescargas.Margin = New System.Windows.Forms.Padding(2)
         Me.btDirDescargas.Name = "btDirDescargas"
         Me.btDirDescargas.Size = New System.Drawing.Size(114, 24)
@@ -1448,7 +1510,7 @@ Partial Class FrmInstaladorKubo
         '
         'PbInstalaciones
         '
-        Me.PbInstalaciones.Location = New System.Drawing.Point(434, 633)
+        Me.PbInstalaciones.Location = New System.Drawing.Point(449, 604)
         Me.PbInstalaciones.Margin = New System.Windows.Forms.Padding(2)
         Me.PbInstalaciones.MarqueeAnimationSpeed = 50
         Me.PbInstalaciones.Maximum = 50
@@ -2414,7 +2476,7 @@ Partial Class FrmInstaladorKubo
         Me.lbProcesandoDescargas.AutoSize = True
         Me.lbProcesandoDescargas.Font = New System.Drawing.Font("Lucida Bright", 16.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbProcesandoDescargas.ForeColor = System.Drawing.Color.Green
-        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(429, 603)
+        Me.lbProcesandoDescargas.Location = New System.Drawing.Point(425, 598)
         Me.lbProcesandoDescargas.Name = "lbProcesandoDescargas"
         Me.lbProcesandoDescargas.Size = New System.Drawing.Size(283, 25)
         Me.lbProcesandoDescargas.TabIndex = 36
@@ -2446,12 +2508,22 @@ Partial Class FrmInstaladorKubo
         Me.BWProgreso.WorkerReportsProgress = True
         Me.BWProgreso.WorkerSupportsCancellation = True
         '
+        'PbDescargas
+        '
+        Me.PbDescargas.Location = New System.Drawing.Point(430, 630)
+        Me.PbDescargas.Name = "PbDescargas"
+        Me.PbDescargas.Size = New System.Drawing.Size(467, 23)
+        Me.PbDescargas.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.PbDescargas.TabIndex = 57
+        Me.PbDescargas.Visible = False
+        '
         'FrmInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(1179, 675)
+        Me.Controls.Add(Me.PbDescargas)
         Me.Controls.Add(Me.LbDescargas)
         Me.Controls.Add(Me.lbInstalando)
         Me.Controls.Add(Me.GroupBox1)
@@ -2534,7 +2606,6 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents btSalir As Button
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents lbRuta As Label
-    Friend WithEvents pbDescargas As ProgressBar
     Friend WithEvents btDescargar As Button
     Friend WithEvents tlpUnidadF As ToolTip
     Friend WithEvents tlpDescargas As ToolTip
@@ -2739,4 +2810,10 @@ Partial Class FrmInstaladorKubo
     Friend WithEvents LbMigradorINI As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents BWProgreso As System.ComponentModel.BackgroundWorker
+    Friend WithEvents PbDescargas As ProgressBar
+    Friend WithEvents Label13 As Label
+    Friend WithEvents TbNemo As TextBox
+    Friend WithEvents BtTestNemo As Button
+    Friend WithEvents Label15 As Label
+    Friend WithEvents Label14 As Label
 End Class

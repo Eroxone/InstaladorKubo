@@ -552,7 +552,9 @@ Public Class FrmInstaladorKubo
             BtPanda.BackColor = Color.PaleGreen
         End If
 
-
+        'Notificación Adra
+        TbNemo.Text = cIniArray.IniGet(instaladorkuboini, "CUENTAS", "NEMO", "@notin.net")
+        TbIdentificaNotaria.Text = cIniArray.IniGet(instaladorkuboini, "CUENTAS", "DESPACHO", "IDENTIFICA NOTARIA")
     End Sub
 
     'Boton EXAMINAR
@@ -2105,7 +2107,9 @@ Public Class FrmInstaladorKubo
         Directory.CreateDirectory(RutaDescargas & "Software")
         Dim urljava As String = "http://javadl.oracle.com/webapps/download/AutoDL?BundleId=233170_512cd62ec5174c3487ac17c61aaa89e8"
         Dim wgetjava As String = "wget.exe -q --show-progress -t 5 -c "
+
         Shell("cmd.exe /c " & RutaDescargas & wgetjava & urljava & " -O " & RutaDescargas & "Software\java8.exe", AppWinStyle.Hide, True)
+
         Dim instalajava As New Process()
         instalajava.StartInfo.FileName = RutaDescargas & "Software/java8.exe"
         instalajava.StartInfo.Arguments = "/s WEB_JAVA_SECURITY_LEVEL=M"
@@ -3282,12 +3286,12 @@ Public Class FrmInstaladorKubo
 
         Try
             'Esta ruta es la antigua. No añado comprobación tiro de la Local.
-            'Dim rutaconfword As String = """" & "\\NOTINRAPP\Z\" & usuario & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\" & """"
             Dim rutaconfword As String = """" & "C:\Users\" & usuario & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)\" & """"
-
-            '%systemroot%\system32\mstsc.exe "\\NOTINRAPP\Z\rosa\AppData\Roaming\Microsoft\Workspaces\{CE4B537B-B510-4C8C-80DE-CEACE84BD4B2}\Resource\Configura Word 2016 (NR).rdp"
+            Dim rutaconfwordZ As String = """" & "\\Notinrapp\z\" & usuario & "\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\NR (RADC)" & """"
             If Directory.Exists(rutaconfword) Then
                 Process.Start("explorer.exe", rutaconfword)
+            ElseIf Directory.Exists(rutaconfwordZ) Then
+                Process.Start("explorer.exe", rutaconfwordZ)
             Else
                 MessageBox.Show("No se pudo determinar/acceder a la ruta NR (RADC) del Usuario " & usuario & ". Intenta acceder manualmente.", "Error acceso Ruta NR", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
@@ -5496,9 +5500,29 @@ Public Class FrmInstaladorKubo
         End If
 
         LbAdraDiferido.Visible = True
+        EnvioNemo.envionemo(TbNemo.Text.ToString, "=PROCESO+ACTUALIZACION+ADRA+FINALIZADO=+DESPACHO:+" & TbIdentificaNotaria.Text)
+
         'EnvioMailADRA()
         'MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "Revisa Log o Correo enviado para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
         MessageBox.Show("Proceso Actualización ADRA Finalizado." & vbCrLf & "En verde todo correcto. Rojo indicará algún error." & vbCrLf & "Revisa Log para más información.", "Actualización Completada", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
+    'Private Sub TbNemo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbNemo.KeyPress
+    '    If Char.IsWhiteSpace(e.KeyChar) Then
+    '        MessageBox.Show("Tu Nemo no puede contener espacios.", "Cuenta Nemo errónea", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+    '        TbNemo.Text = "@notin.net"
+    '    End If
+    'End Sub
+
+    'Private Sub TbIdentificaNotaria_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbIdentificaNotaria.KeyPress
+    '    If Char.IsWhiteSpace(e.KeyChar) Then
+    '        MessageBox.Show("El Identificador Notaría no puede contener espacios.", "Identificador Notaría erróneo", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+    '        TbIdentificaNotaria.Text = Nothing
+    '    End If
+    'End Sub
+
+    Private Sub TbIdentificaNotaria_MouseClick(sender As Object, e As MouseEventArgs) Handles TbIdentificaNotaria.MouseClick
+        TbIdentificaNotaria.Text = Nothing
     End Sub
 
     Private Sub BtNotinAdraDiferido_MouseDown(sender As Object, e As MouseEventArgs) Handles BtNotinAdraDiferido.MouseDown
@@ -5726,6 +5750,21 @@ Public Class FrmInstaladorKubo
         FormPanda.ShowDialog()
     End Sub
 
+    Private Sub BtTestNemo_Click(sender As Object, e As EventArgs) Handles BtTestNemo.Click
+        EnvioNemo.envionemo(TbNemo.Text.ToString, "=PROCESO+ACTUALIZACION+ADRA+FINALIZADO=+DESPACHO:+" & TbIdentificaNotaria.Text)
+    End Sub
+
+
+    Private Sub TbIdentificaNotaria_TextChanged(sender As Object, e As EventArgs) Handles TbIdentificaNotaria.TextChanged
+        cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "DESPACHO", TbIdentificaNotaria.Text.ToUpper)
+    End Sub
+
+    Private Sub TbNemo_TextChanged(sender As Object, e As EventArgs) Handles TbNemo.TextChanged
+        cIniArray.IniWrite(instaladorkuboini, "CUENTAS", "NEMO", TbNemo.Text.ToLower)
+    End Sub
+
+
+
 
 
     '    Private Sub LboxHoraAdraDiferido_SelectedIndexChanged(sender As Object, e As EventArgs) Handles LboxHoraAdraDiferido.SelectedIndexChanged
@@ -5758,6 +5797,7 @@ Public Class FrmInstaladorKubo
     '        RegistroInstalacion("ERROR: Detectada posible instalación de Office 2016. Debe limpiarse antes de proceder a relizar la instalación desatendida.")
     '    End If
     'End If
+
 
 
 End Class
