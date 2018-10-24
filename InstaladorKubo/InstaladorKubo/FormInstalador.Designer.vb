@@ -74,7 +74,6 @@ Partial Class FormInstaladorKubo
         Me.BtSQL2014 = New System.Windows.Forms.Button()
         Me.TabPage10 = New System.Windows.Forms.TabPage()
         Me.CboxNemoAdra = New System.Windows.Forms.ComboBox()
-        Me.LbIdentificadorNotaria = New System.Windows.Forms.Label()
         Me.LbTuNemoAdra = New System.Windows.Forms.Label()
         Me.BtTestNemo = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -87,7 +86,6 @@ Partial Class FormInstaladorKubo
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.TbIdentificaNotaria = New System.Windows.Forms.TextBox()
         Me.BtNotinAdraDiferido = New System.Windows.Forms.Button()
         Me.BtLimpiarPerfil = New System.Windows.Forms.Button()
         Me.BtDynamic = New System.Windows.Forms.Button()
@@ -117,6 +115,8 @@ Partial Class FormInstaladorKubo
         Me.BtDatosGenerales = New System.Windows.Forms.Button()
         Me.BtCopiaNotario = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.LbIdentificadorNotaria = New System.Windows.Forms.Label()
+        Me.TbIdentificaNotaria = New System.Windows.Forms.TextBox()
         Me.lbRuta = New System.Windows.Forms.Label()
         Me.btDescargar = New System.Windows.Forms.Button()
         Me.tlpUnidadF = New System.Windows.Forms.ToolTip(Me.components)
@@ -866,21 +866,11 @@ Partial Class FormInstaladorKubo
         Me.CboxNemoAdra.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.CboxNemoAdra.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold)
         Me.CboxNemoAdra.FormattingEnabled = True
-        Me.CboxNemoAdra.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
+        Me.CboxNemoAdra.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net", "mario@notin.net"})
         Me.CboxNemoAdra.Location = New System.Drawing.Point(230, 218)
         Me.CboxNemoAdra.Name = "CboxNemoAdra"
         Me.CboxNemoAdra.Size = New System.Drawing.Size(203, 25)
         Me.CboxNemoAdra.TabIndex = 58
-        '
-        'LbIdentificadorNotaria
-        '
-        Me.LbIdentificadorNotaria.AutoSize = True
-        Me.LbIdentificadorNotaria.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
-        Me.LbIdentificadorNotaria.Location = New System.Drawing.Point(165, 640)
-        Me.LbIdentificadorNotaria.Name = "LbIdentificadorNotaria"
-        Me.LbIdentificadorNotaria.Size = New System.Drawing.Size(107, 22)
-        Me.LbIdentificadorNotaria.TabIndex = 24
-        Me.LbIdentificadorNotaria.Text = "Despacho:"
         '
         'LbTuNemoAdra
         '
@@ -1000,18 +990,6 @@ Partial Class FormInstaladorKubo
         Me.Label3.Size = New System.Drawing.Size(203, 70)
         Me.Label3.TabIndex = 8
         Me.Label3.Text = resources.GetString("Label3.Text")
-        '
-        'TbIdentificaNotaria
-        '
-        Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.TbIdentificaNotaria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TbIdentificaNotaria.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TbIdentificaNotaria.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(278, 638)
-        Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
-        Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 25)
-        Me.TbIdentificaNotaria.TabIndex = 7
-        Me.TbIdentificaNotaria.Tag = ""
         '
         'BtNotinAdraDiferido
         '
@@ -1356,6 +1334,28 @@ Partial Class FormInstaladorKubo
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Recopilación scripts batch creados por Jaime"
         '
+        'LbIdentificadorNotaria
+        '
+        Me.LbIdentificadorNotaria.AutoSize = True
+        Me.LbIdentificadorNotaria.Font = New System.Drawing.Font("Lucida Bright", 14.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.LbIdentificadorNotaria.Location = New System.Drawing.Point(165, 640)
+        Me.LbIdentificadorNotaria.Name = "LbIdentificadorNotaria"
+        Me.LbIdentificadorNotaria.Size = New System.Drawing.Size(107, 22)
+        Me.LbIdentificadorNotaria.TabIndex = 24
+        Me.LbIdentificadorNotaria.Text = "Despacho:"
+        '
+        'TbIdentificaNotaria
+        '
+        Me.TbIdentificaNotaria.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.TbIdentificaNotaria.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TbIdentificaNotaria.Font = New System.Drawing.Font("Lucida Bright", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TbIdentificaNotaria.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.TbIdentificaNotaria.Location = New System.Drawing.Point(278, 638)
+        Me.TbIdentificaNotaria.Name = "TbIdentificaNotaria"
+        Me.TbIdentificaNotaria.Size = New System.Drawing.Size(203, 25)
+        Me.TbIdentificaNotaria.TabIndex = 7
+        Me.TbIdentificaNotaria.Tag = ""
+        '
         'lbRuta
         '
         Me.lbRuta.AutoSize = True
@@ -1595,7 +1595,7 @@ Partial Class FormInstaladorKubo
         Me.CBoxNemo.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.CBoxNemo.Font = New System.Drawing.Font("Lucida Bright", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CBoxNemo.FormattingEnabled = True
-        Me.CBoxNemo.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net"})
+        Me.CBoxNemo.Items.AddRange(New Object() {"atencionalcliente@notin.net", "carmona@notin.net", "clemente@notin.net", "cristian@notin.net", "dperez@notin.net", "extremadura@notin.net", "gerard@notin.net", "granada@notin.net", "jaime@notin.net", "jlozano@notin.net", "jonatan@notin.net", "jorge@notin.net", "josechumillas@notin.net", "jramon@notin.net", "juanjo@notin.net", "logistica@notin.net", "madrid@notin.net", "malaga@notin.net", "manolo@notin.net", "mariano@notin.net", "montes@notin.net", "noguera@notin.net", "nemo@notin.net", "noguera@notin.net", "oscar@notin.net", "pablo@notin.net", "pascual@notin.net", "roberto@notin.net", "ruben@notin.net", "sevilla@notin.net", "sistemas@notin.net", "taller@notin.net", "valencia@notin.net", "mario@notin.net"})
         Me.CBoxNemo.Location = New System.Drawing.Point(278, 605)
         Me.CBoxNemo.Name = "CBoxNemo"
         Me.CBoxNemo.Size = New System.Drawing.Size(203, 23)
