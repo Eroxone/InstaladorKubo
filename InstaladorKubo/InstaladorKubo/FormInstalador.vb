@@ -1028,6 +1028,7 @@ Public Class FormInstaladorKubo
         btTodo.Text = "Marcar todos"
         LbDescargas.Visible = True
         btDescargar.BackColor = Color.PaleGreen
+        EnvioNemo.envionemo(CBoxNemo.Text.ToString, "DESCARGAS DESDE EL INSTALADOR COMPLETADAS. DESPACHO: " & TbIdentificaNotaria.Text)
     End Sub
 #End Region
 
