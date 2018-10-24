@@ -556,8 +556,13 @@ Public Class FormInstaladorKubo
         CBoxNemo.Text = cIniArray.IniGet(instaladorkuboini, "CUENTAS", "NEMO", "")
         CboxNemoAdra.Text = CBoxNemo.Text
 
-        If File.Exists("F:\WINDOWS\NNOTIN.INI") Then
-            TbIdentificaNotaria.Text = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "LOCALIDAD", "LOCALIDAD", "IDENTIFICA NOTARIA")
+        TbIdentificaNotaria.Text = cIniArray.IniGet(instaladorkuboini, "CUENTAS", "DESPACHO", "")
+        If TbIdentificaNotaria.Text = "" Then
+            If File.Exists("F:\WINDOWS\NNOTIN.INI") Then
+                TbIdentificaNotaria.Text = cIniArray.IniGet("F:\WINDOWS\NNOTIN.INI", "LOCALIDAD", "LOCALIDAD", "IDENTIFICA NOTARIA")
+            End If
+        Else
+            TbIdentificaNotaria.Text = cIniArray.IniGet(instaladorkuboini, "CUENTAS", "DESPACHO", "")
         End If
 
     End Sub
