@@ -1922,8 +1922,8 @@ Public Class FormInstaladorKubo
 
         TlpPanda.SetToolTip(BtPanda, "Descarga el Agente para instalar Panda End Point en el despacho. Se te consultará el grupo de la Notaría.")
 
-        TlpIdentificadorNotaria.SetToolTip(TbIdentificaNotaria, "Se usará esta descripción para adjuntarlo al mensaje Nemo que se te remitirá a fin de que puedas localizar identificar el despacho.")
-        TlpIdentificadorNotaria.SetToolTip(LbIdentificadorNotaria, "Se usará esta descripción para adjuntarlo al mensaje Nemo que se te remitirá a fin de que puedas localizar identificar el despacho.")
+        TlpIdentificadorNotaria.SetToolTip(TbIdentificaNotaria, "Se adjuntará esta descripción al mensaje Nemo que se te remitirá a fin de que puedas identificar el despacho donde se lanzó la tarea.")
+        TlpIdentificadorNotaria.SetToolTip(LbIdentificadorNotaria, "Se adjuntará esta descripción al mensaje Nemo que se te remitirá a fin de que puedas identificar el despacho donde se lanzó la tarea.")
 
         TlpNemo.SetToolTip(CBoxNemo, "Indica tu cuenta Nemo para enviarte un mensaje al finalizar alguna de las acciones realizadas.")
         TlpNemo.SetToolTip(LbNotificacionNemo, "Indica tu cuenta Nemo para enviarte un mensaje al finalizar alguna de las acciones realizadas.")
