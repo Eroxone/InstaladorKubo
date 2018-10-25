@@ -58,6 +58,7 @@ Partial Class FormInstaladorKubo
         Me.BtEstablex64F462 = New System.Windows.Forms.Button()
         Me.BtNetBeta = New System.Windows.Forms.Button()
         Me.TabPage7 = New System.Windows.Forms.TabPage()
+        Me.BtSQLManager = New System.Windows.Forms.Button()
         Me.LbMigradorINI = New System.Windows.Forms.Label()
         Me.LklbDatosBlancos = New System.Windows.Forms.LinkLabel()
         Me.BtMigradorDeploy = New System.Windows.Forms.Button()
@@ -246,7 +247,6 @@ Partial Class FormInstaladorKubo
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
-        Me.BtSQLManager = New System.Windows.Forms.Button()
         Me.TlpSQLManager = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -683,6 +683,17 @@ Partial Class FormInstaladorKubo
         Me.TabPage7.Size = New System.Drawing.Size(463, 401)
         Me.TabPage7.TabIndex = 2
         Me.TabPage7.Text = "SQL"
+        '
+        'BtSQLManager
+        '
+        Me.BtSQLManager.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtSQLManager.Image = CType(resources.GetObject("BtSQLManager.Image"), System.Drawing.Image)
+        Me.BtSQLManager.Location = New System.Drawing.Point(403, 10)
+        Me.BtSQLManager.Name = "BtSQLManager"
+        Me.BtSQLManager.Size = New System.Drawing.Size(28, 28)
+        Me.BtSQLManager.TabIndex = 16
+        Me.BtSQLManager.UseVisualStyleBackColor = True
+        Me.BtSQLManager.Visible = False
         '
         'LbMigradorINI
         '
@@ -2553,17 +2564,6 @@ Partial Class FormInstaladorKubo
         Me.GroupBox8.TabIndex = 61
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Enlaces Web e Info"
-        '
-        'BtSQLManager
-        '
-        Me.BtSQLManager.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.BtSQLManager.Image = CType(resources.GetObject("BtSQLManager.Image"), System.Drawing.Image)
-        Me.BtSQLManager.Location = New System.Drawing.Point(403, 10)
-        Me.BtSQLManager.Name = "BtSQLManager"
-        Me.BtSQLManager.Size = New System.Drawing.Size(32, 30)
-        Me.BtSQLManager.TabIndex = 16
-        Me.BtSQLManager.UseVisualStyleBackColor = True
-        Me.BtSQLManager.Visible = False
         '
         'TlpSQLManager
         '

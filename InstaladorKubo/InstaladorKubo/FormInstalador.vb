@@ -136,7 +136,8 @@ Public Class FormInstaladorKubo
 
         End If
 
-        If File.Exists("C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe") Then
+        'SQL Manegement Studio
+        If File.Exists("C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe") OrElse File.Exists("C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\Ssms.exe") Then
             BtSQLManager.Visible = True
         End If
 
@@ -5810,7 +5811,11 @@ Public Class FormInstaladorKubo
     End Sub
 
     Private Sub BtSQLManager_Click(sender As Object, e As EventArgs) Handles BtSQLManager.Click
-        Process.Start("C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe")
+        If File.Exists("C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe") Then
+            Process.Start("C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe")
+        ElseIf File.Exists("C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\Ssms.exe") Then
+            Process.Start("C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio\Ssms.exe")
+        End If
     End Sub
 
 
