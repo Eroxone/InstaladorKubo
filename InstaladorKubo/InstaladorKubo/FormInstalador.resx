@@ -350,6 +350,49 @@
         gg==
 </value>
   </data>
+  <data name="BtSQLManager.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        QmCC
+</value>
+  </data>
   <data name="Label3.Text" xml:space="preserve">
     <value>EXPLICACIÓN: Selecciona una hora/minuto en los listados inferiores y clic en Programar ejecución para activar el contador. A la hora seleccionada se actualizará la version en el despacho. También sirve para otros despachos fuera de Adra si se cumplen condiciones.</value>
   </data>
@@ -1599,6 +1642,9 @@
     <value>813, 51</value>
   </metadata>
   <metadata name="TlpNemo.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>813, 51</value>
+  </metadata>
+  <metadata name="TlpSQLManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>813, 51</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

@@ -136,6 +136,11 @@ Public Class FormInstaladorKubo
 
         End If
 
+        If File.Exists("C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe") Then
+            BtSQLManager.Visible = True
+        End If
+
+
 
         ' === MUESTREO NOVEDADES ===
         Dim versionanterior = cIniArray.IniGet(instaladorkuboini, "VERSION", "CLICKONCE", "0.0.0.0")
@@ -1928,6 +1933,8 @@ Public Class FormInstaladorKubo
         TlpNemo.SetToolTip(CBoxNemo, "Indica tu cuenta Nemo para enviarte un mensaje al finalizar alguna de las acciones realizadas.")
         TlpNemo.SetToolTip(LbNotificacionNemo, "Indica tu cuenta Nemo para enviarte un mensaje al finalizar alguna de las acciones realizadas.")
         TlpNemo.SetToolTip(CboxNemoAdra, "Indica tu cuenta Nemo para enviarte un mensaje al finalizar la tarea de Actualización AdRa.")
+
+        TlpSQLManager.SetToolTip(BtSQLManager, "Ejecuta SQL Server Management Studio")
 
     End Sub
 #End Region
@@ -5802,7 +5809,9 @@ Public Class FormInstaladorKubo
         CBoxNemo.Text = CboxNemoAdra.Text
     End Sub
 
-
+    Private Sub BtSQLManager_Click(sender As Object, e As EventArgs) Handles BtSQLManager.Click
+        Process.Start("C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\Ssms.exe")
+    End Sub
 
 
 

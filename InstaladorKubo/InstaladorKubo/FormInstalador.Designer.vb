@@ -246,6 +246,8 @@ Partial Class FormInstaladorKubo
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
         Me.GroupBox7 = New System.Windows.Forms.GroupBox()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.BtSQLManager = New System.Windows.Forms.Button()
+        Me.TlpSQLManager = New System.Windows.Forms.ToolTip(Me.components)
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -660,6 +662,7 @@ Partial Class FormInstaladorKubo
         'TabPage7
         '
         Me.TabPage7.BackColor = System.Drawing.SystemColors.Control
+        Me.TabPage7.Controls.Add(Me.BtSQLManager)
         Me.TabPage7.Controls.Add(Me.LbMigradorINI)
         Me.TabPage7.Controls.Add(Me.LklbDatosBlancos)
         Me.TabPage7.Controls.Add(Me.BtMigradorDeploy)
@@ -2551,6 +2554,23 @@ Partial Class FormInstaladorKubo
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "Enlaces Web e Info"
         '
+        'BtSQLManager
+        '
+        Me.BtSQLManager.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtSQLManager.Image = CType(resources.GetObject("BtSQLManager.Image"), System.Drawing.Image)
+        Me.BtSQLManager.Location = New System.Drawing.Point(403, 10)
+        Me.BtSQLManager.Name = "BtSQLManager"
+        Me.BtSQLManager.Size = New System.Drawing.Size(32, 30)
+        Me.BtSQLManager.TabIndex = 16
+        Me.BtSQLManager.UseVisualStyleBackColor = True
+        Me.BtSQLManager.Visible = False
+        '
+        'TlpSQLManager
+        '
+        Me.TlpSQLManager.IsBalloon = True
+        Me.TlpSQLManager.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        Me.TlpSQLManager.ToolTipTitle = "SQL Management Studio"
+        '
         'FormInstaladorKubo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2849,4 +2869,6 @@ Partial Class FormInstaladorKubo
     Friend WithEvents GroupBox6 As GroupBox
     Friend WithEvents GroupBox7 As GroupBox
     Friend WithEvents GroupBox8 As GroupBox
+    Friend WithEvents BtSQLManager As Button
+    Friend WithEvents TlpSQLManager As ToolTip
 End Class
